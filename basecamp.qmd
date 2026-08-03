@@ -1,0 +1,36 @@
+---
+title: "Base Camp"
+subtitle: "Mondays, first half of the semester — the on-ramp"
+---
+
+**Mondays are optional-session day in this course, all semester long.** The first half of the semester, those Mondays are **Base Camp**: sessions built for one audience — people who are new to all of this. If week 2 is your first code ever, Base Camp is where your reps live. (The second half of the semester, Mondays become [Side Quests](sidequests.qmd) — same room, same hour, different flavor.)
+
+Let's be precise about what this is, because the framing matters: **Base Camp is not remedial.** Nothing is wrong with you; something is simply true about you — you haven't done this before — and that's the single most fixable condition in engineering. Plenty of your classmates arrive with years of tinkering; you're not behind them in ability, you're behind them in *hours*, and hours are exactly what Mondays supply. The course was designed assuming zero prior experience. Base Camp is where that assumption gets honored with an instructor at your elbow.
+
+**The promises:** no attendance is taken, nothing here affects your grade in any direction, and "I don't understand variables yet" is not an admission here — it's the entrance ticket. And a promise in the other direction too: these sessions are where we get to know each other. Office hours in every course you'll ever take work better once you've learned that talking to your professor is just… talking. Mondays are the practice reps for that, too.
+
+After each checkpoint, I may personally suggest a Monday session to a few people. If that's you, hear it correctly — it is not a summons and not a judgment. It's me doing arithmetic about hours, and pointing at where more of them live.
+
+*Time and room set by signup poll in week 1 — watch Canvas.*
+
+## The sessions
+
+**BC0 (Week 1) · The computer itself, and how to talk about code.** Before any Python: the machine layer nobody teaches — Colab login, browsers vs. apps, where a downloaded file *goes*, folders, uploading to Colab, what "the cloud" means for your work. Then the second half, which pays off all semester: **how to ask a question about code** — the vocabulary (what do you *call* `**`, `[]`, `:`?), and the professional question format: *what I ran / what I expected / what I got instead*. That format is simultaneously how you ask a TA, how you ask your table, and how you prompt an LLM — one skill, three doors. (No laptop yet? Come anyway; we'll get you set up with campus options. The [installing page](installing.qmd) covers the whole ladder, from Colab to your own machine.)
+
+**BC1 (Week 2) · First contact, slowly.** The [week 2 lesson](lessons/02a-first-contact.qmd) again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.
+
+**BC2 (Week 3) · The vocabulary drill.** Reps on the core reading skills: trace variables by hand, predict outputs, read `=` as "gets." Includes **assembly problems** — working code with its lines scrambled, yours to reorder — the missing rung between *reading* code and *writing* it.
+
+**BC3 (Week 4) · Dress rehearsal: Checkpoint 1.** A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. Your first no-partial-credit assessment should not also be your first *experience* of one; Tuesday's should feel like the second time. **Dress rehearsals repeat on the Monday before every checkpoint** (weeks 4, 6, 8, 10) — they're the one session type that runs all semester, whichever half we're in.
+
+**BC4 (Week 5) · Loop clinic.** Loops trip up more beginners than any other construct, everywhere, always. Extra reps with accumulators, `range`, predicting iteration by hand, and scrambled-loop assembly — because ordering the lines of a loop *is* understanding a loop.
+
+**BC5 (Week 6) · Dress rehearsal: Checkpoint 2** — including re-offer items from Checkpoint 1, exactly as Tuesday will.
+
+## Practice library (async Base Camp)
+
+Can't make Mondays — job, practice, life? The practice problems live on this site: extra traces, predict-then-runs, and assembly problems, *with* collapsible answers (self-study is the one place answers belong next to problems). Growing weekly; requests welcome — it's live now: **[Practice Library](practice.qmd)**, and every problem on it runs in your browser.
+
+::: {.callout-note}
+A table norm worth adopting: **every table sends at least one person to BC0 or BC1** and brings back what they learned. It normalizes going — and your table's beginners are your teammates through week 14; their hours are your project's hours.
+:::

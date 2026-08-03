@@ -1,0 +1,64 @@
+/*-- scss:defaults --*/
+
+// Restrained palette: charcoal text, CU-adjacent gold used sparingly as the accent.
+$primary: #2b2b2b;
+$link-color: #8a6d1f;          // darkened gold for accessible link contrast
+$font-size-root: 17px;
+$headings-font-weight: 650;
+
+/*-- scss:rules --*/
+
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  border-bottom: 2px solid #cfb87c;   // CU gold rule under section heads
+  padding-bottom: 0.2rem;
+  margin-top: 2.2rem;
+}
+
+// --- "Bring to class" block -------------------------------------------------
+// Every lesson ends with one of these. It replaces a pre-class Canvas quiz:
+// the student commits to an answer on paper, and class opens with the vote.
+.bring-to-class {
+  border: 2px solid #cfb87c;
+  border-left-width: 10px;
+  border-radius: 6px;
+  background: #fbf7ec;
+  padding: 1rem 1.25rem;
+  margin: 2rem 0;
+
+  &::before {
+    content: "✎ Bring to class";
+    display: block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8a6d1f;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// --- Stub notice ------------------------------------------------------------
+.stub-notice {
+  border: 1px dashed #b0b0b0;
+  border-radius: 6px;
+  background: #f6f6f6;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+// Margin notes a touch smaller, matching the heat-transfer page feel
+.column-margin {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+// Keep code blocks calm
+pre {
+  border-radius: 6px;
+}

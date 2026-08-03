@@ -1,0 +1,94 @@
+---
+title: "What does an LLM actually do?"
+subtitle: "Week 1, Lesson B — read before Thursday"
+---
+
+You will use AI constantly in this course, so we are going to spend one lesson opening the hood. Not because you need to build one — you need to build a *mental model* of one, so its behavior stops being magic and starts being predictable. Engineers don't use instruments they don't understand the failure modes of.
+
+## Think First
+
+Recall
+
+1. Your phone's keyboard suggests the next word as you type. How do you think it decides what to suggest?
+2. Have you ever confidently "remembered" something that turned out to be wrong — a fact you'd have bet money on? What did that feel like *from the inside*?
+
+Look Ahead
+
+1. If two students give an AI the *exact same prompt*, will they get the exact same code back?
+2. Why might an AI be *better* at writing code than at doing arithmetic?
+
+## The one-sentence version
+
+A large language model does one thing:
+
+> Given some text, predict a plausible next small chunk of text. Then do it again. And again.
+
+That's it. That is the entire mechanism. Everything else — the code-writing, the explanations, the apparent reasoning — emerges from doing that one thing extremely well, at enormous scale.
+
+::: {.column-margin}
+The "small chunks" are called *tokens* — usually a word or piece of a word. `thermal` might be one token; `thermodynamics` might be three.
+:::
+
+The model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and critically for us, **billions of lines of code** — and adjusting billions of internal numerical knobs until its next-chunk predictions got very good. When you prompt it, you're providing the start of a text, and it continues that text one chunk at a time, each new chunk chosen based on everything that came before.
+
+## Three consequences you must internalize
+
+Everything strange about LLM behavior falls out of that mechanism. Three consequences matter for this course.
+
+### 1. It's plausibility, not truth
+
+The model produces text that is *statistically likely to follow* your prompt — text shaped like a correct answer. Usually, the most plausible continuation of an engineering question *is* the correct answer, which is why these tools are so useful. But when the model doesn't "know," it does not stop and say so. It keeps generating plausible text — a function name that sounds real but isn't, a formula with one term quietly wrong, a citation to a paper that doesn't exist. This is often called **hallucination**, and the dangerous part is the *fluency*: wrong answers arrive in the same confident voice as right ones.
+
+::: {.callout-important}
+There is no tone-of-voice difference between an LLM being right and an LLM being wrong. Your verification habits are the only alarm system you get.
+:::
+
+### 2. Same prompt, different answers
+
+Prediction produces a *menu* of plausible next chunks, each with a probability — and by design, the model doesn't always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.
+
+This is why, on Thursday, thirty tables prompting for the same task will produce thirty *different* programs — different variable names, different structures, sometimes different algorithms, occasionally different *answers*. In this course that divergence isn't a nuisance; it's the curriculum. "Why did your table's code come out different from ours, and which one is right?" is the most instructive question we will ask all semester.
+
+### 3. Your specification is the steering wheel
+
+The model fills every gap in your prompt with a plausible assumption — plausible *on average across everything it has read*, not plausible *for your specific problem*. Ask for "a program to compute the trajectory of a projectile" and you'll get something — but did it include air resistance? What launch angle convention? Degrees or radians? SI units? You didn't say, so it guessed.
+
+This is the punchline of the whole week: **specification (Tuesday's lesson) is precisely the skill that controls an LLM.** A vague prompt doesn't get you a wrong answer; it gets you a correct answer *to a question you didn't quite ask* — which is worse, because it looks right.
+
+## Why is it so good at code, anyway?
+
+Two reasons, one obvious, one useful to know.
+
+The obvious one: the training data included billions of lines of code, much of it from working software, so the statistical patterns of correct code run deep.
+
+The useful one: **code is checkable in a way prose isn't.** An essay can be subtly wrong forever; a program can be *run*. It either produces $0.78$ s for the falling wrench or it doesn't. This is great news for engineers — it means the verification tools you'll build in this course have real teeth. It's also why we can hand production to the AI with a straight face: not because the AI is trustworthy, but because *code is auditable* and you're going to learn to audit it.
+
+::: {.column-margin}
+Contrast: LLMs are historically *mediocre at arithmetic* — predicting the text-shape of a calculation is not the same as calculating. Modern tools patch this by letting the model write and run actual code for the math. Worth remembering: even the AI doesn't trust itself with arithmetic.
+:::
+
+## The stance of this course
+
+Here's the relationship we're building toward, stated plainly:
+
+**The LLM is your extremely fast, extremely well-read, occasionally overconfident junior collaborator.** You are the engineer of record. You direct it (specification), you check its work (verification), and you sign your name to the result. That's not a course rule invented to keep you honest — it is *exactly* the arrangement practicing engineers describe with these tools, and companies are notably uninterested in hiring people who can't play the senior role in it.
+
+What this course will never ask you to do is pretend the AI doesn't exist. What it will constantly ask you to do is prove *you* were in charge: show your specification, annotate what came back, demonstrate your verification, and — at the end of the semester — explain what is actually going on inside a project with your name on it, on paper, with no AI in the room.
+
+::: {.callout-tip}
+## Think
+People sometimes describe an LLM as "autocomplete on steroids." Having read this lesson: in what sense is that fair, and in what sense does it undersell what's happening? Hold that tension — it's the beginning of a calibrated relationship with the tool, which is worth more than either hype or dismissal.
+:::
+
+::: {.bring-to-class}
+Commit, on paper, to answers to both of these — Thursday's opening votes:
+
+1. Two students give an LLM the *identical* prompt for a projectile program. Predict: (a) identical code, (b) different code, same numerical answers, (c) different code, possibly different answers. Write one sentence defending your pick.
+
+2. The LLM hands you a projectile program and it **runs without any errors, and produces a nice plot.** List every distinct reason you can think of that its output might still be wrong. (Thursday we'll pool the class list. It's longer than you think.)
+:::
+
+::: {.content-hidden}
+**Instructor answer key (planning only — stripped from the rendered site):** (1) is (c) — different code, possibly different answers; sampling forks and forks compound. (2) seed list if pooling stalls: wrong formula, mixed units, silently-filled assumption, botched edge case, correct code answering the wrong question, plausible hallucinated function.
+:::
+

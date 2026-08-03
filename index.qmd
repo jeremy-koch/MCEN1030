@@ -1,0 +1,85 @@
+---
+title: "What do engineers do with computation, and why is it awesome?"
+subtitle: "MCEN 1030 · Introduction to Engineering Computing"
+---
+
+Welcome. Before anything else, four things a mechanical engineer can do with a computer that you may not know are possible:
+
+- Write a function once, then call it from a script with 100 different parameter inputs and write every result to a file. This takes about one second to run, and you will have predicted **all the possible outcomes of a process**.
+- Open an engineering data set with 60,000 rows. Excel will choke. Pandas will not even notice.
+- Pull the live speed and position of the **International Space Station**. Get accelerometer data off your own phone. Talk to an AI from inside a program.
+- Solve "unsolvable" problems — equations with no algebraic solution — numerically, in a few lines.
+
+These are things working engineers actually do, and this course is about making all of them yours.
+
+## The big idea
+
+The process of creating computational tools looks roughly like this:
+
+```{=html}
+<svg viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:700px; width:100%; height:auto;">
+  <title>The computational pipeline</title>
+  <desc>Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.</desc>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#2b2b2b"/>
+    </marker>
+  </defs>
+  <g font-family="sans-serif" font-size="14" text-anchor="middle">
+    <rect x="5"   y="40" width="90"  height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"/>
+    <text x="50"  y="65">Idea</text>
+    <rect x="135" y="40" width="120" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"/>
+    <text x="195" y="65">Specification</text>
+    <rect x="295" y="40" width="110" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"/>
+    <text x="350" y="65">Production</text>
+    <rect x="445" y="40" width="110" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"/>
+    <text x="500" y="65">Verification</text>
+    <rect x="595" y="40" width="90"  height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"/>
+    <text x="640" y="65">Use</text>
+    <line x1="95"  y1="60" x2="133" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="255" y1="60" x2="293" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="405" y1="60" x2="443" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="555" y1="60" x2="593" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"/>
+    <path d="M 640 82 Q 640 130 420 130 Q 195 130 195 84" fill="none" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
+  </g>
+</svg>
+```
+
+For decades, **Production** — actually typing the code — was the bottleneck, so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:
+
+**Specification** means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you cannot articulate the problem, no tool — human or AI — can solve it for you.
+
+**Verification** means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.
+
+You will still read and run and modify plenty of code in this course — you can't verify what you can't read. But you will be graded on whether you can *think computationally*: frame a problem, direct the tools, and audit the results. That is what engineers are actually hired to do.
+
+## How a week works
+
+**Before class**, you read one lesson on this site (30–45 minutes) — and the lessons are *runnable*: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the [getting going page](installing.qmd) has the ladder.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a **Bring to class** box: one question you answer *on paper, committed, before you arrive*.
+
+**Class opens with that question.** You'll vote on it, argue with your table, and vote again. If you didn't do the reading, you will know it, and so will your table. That's the whole accountability system, and it works better than a quiz because you can't outsource an argument.
+
+**Mondays are optional and yours.** All semester, one weekly optional session: [Base Camp](basecamp.qmd) early (the beginner on-ramp, plus checkpoint dress rehearsals), [Side Quests](sidequests.qmd) later (build a tiny language model, 3D-print a parameter sweep, and more — you vote on the menu). No grades attached, ever; just hours, help, and getting to know each other.
+
+**Four Tuesdays open with a checkpoint** (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the [grading page](grading.qmd).
+
+**The rest of class is work at the tables.** Early in the semester that's mostly short, sharp problems with right answers. Later it shifts toward open-ended problems where every table's AI-assisted solution comes out *different* — and the interesting question becomes *why*.
+
+::: {.column-margin}
+The room has islands of computers for a reason. But when it's time to argue, it's screens down, eyes up. You'll hear me say it a lot.
+:::
+
+**Homework** runs on a four-step submission — specify, annotate, verify, report — where the code is never what's graded. The [homework page](homework/index.qmd) explains the format; the problems are real mechanical engineering (a beam to lighten, a siren to clock, a wind farm to site, a quench to time).
+
+## The AI policy, in one paragraph
+
+You are **expected** to use AI tools in this course. You are also **completely responsible** for everything they produce for you. "The AI wrote it" is the engineering equivalent of "my supplier shipped it" — if you signed off on it, it's yours. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project *you* produced. Plan accordingly.
+
+## Grading
+
+This course uses **standards-based grading**: a list of specific skills ([the standards](standards.qmd)), each marked *Met* or *Not Yet*, plus **engagement credits** for committed preparation and in-class work — credited for good faith, never for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you *end up*, not where you started. The full mechanics, including a grade table and worked examples, are on the [grading page](grading.qmd).
+
+## Where to go next
+
+The [schedule](schedule.qmd) shows the whole semester at a glance. Your first reading is [What do engineers do with computation?](lessons/01a-what-engineers-do.qmd) If you have never written a line of code in your life: good, you're in the right place — and [Base Camp](basecamp.qmd) is the page built specifically for you. The curious should also browse the [Side Quests](sidequests.qmd).

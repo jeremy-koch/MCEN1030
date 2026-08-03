@@ -1,0 +1,146 @@
+---
+title: "What do engineers do with computation?"
+subtitle: "Week 1, Lesson A — read before Tuesday"
+---
+
+No computer needed for this reading, and there won't be one in Tuesday's class either. We're starting with the thing computers can't do for you.
+
+## Think First
+
+Recall
+
+1. Think of a time you gave someone instructions (directions to your house, a recipe, rules to a game) and they got it wrong. Whose fault was it?
+2. In high school physics, you checked answers by asking "is this number reasonable?" — a car going 900 m/s is probably a mistake. What were you *actually* doing when you did that?
+
+Look Ahead
+
+1. If an AI can write working code from a plain-English description in five seconds, what's left for the engineer to do?
+2. What would it take for you to *trust* a program you didn't write?
+
+## Four things you may not know are possible
+
+A first-year student can be forgiven for thinking "engineering computing" means suffering through syntax errors to make a ball bounce across a screen. Here is what it actually looks like:
+
+**Predict every outcome of a process.** Write a function that models something — the stress in a bracket, the temperature of a battery — then call it 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.
+
+**Handle data at engineering scale.** A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course will not even slow down.
+
+**Reach out and touch the world.** From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer *inside your program*.
+
+**Solve the unsolvable.** Most real equations in engineering have no algebraic solution — nobody can "solve for x." Numerically, with a computer, many of them fall in milliseconds.
+
+::: {.column-margin}
+"Unsolvable" deserves its scare quotes. The equations governing a pendulum swinging at large angles have no closed-form solution. Engineers have been computing pendulum swings anyway for a very long time.
+:::
+
+This course is about making these powers yours. But there's a catch, and the catch is the whole point.
+
+## The pipeline
+
+Creating a computational tool looks something like this:
+
+```{=html}
+<svg viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:700px; width:100%; height:auto;">
+  <title>The computational pipeline</title>
+  <desc>Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.</desc>
+  <defs>
+    <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#2b2b2b"/>
+    </marker>
+  </defs>
+  <g font-family="sans-serif" font-size="14" text-anchor="middle">
+    <rect x="5"   y="40" width="90"  height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"/>
+    <text x="50"  y="65">Idea</text>
+    <rect x="135" y="40" width="120" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"/>
+    <text x="195" y="65">Specification</text>
+    <rect x="295" y="40" width="110" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"/>
+    <text x="350" y="65">Production</text>
+    <rect x="445" y="40" width="110" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"/>
+    <text x="500" y="65">Verification</text>
+    <rect x="595" y="40" width="90"  height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"/>
+    <text x="640" y="65">Use</text>
+    <line x1="95"  y1="60" x2="133" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <line x1="255" y1="60" x2="293" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <line x1="405" y1="60" x2="443" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <line x1="555" y1="60" x2="593" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <path d="M 640 82 Q 640 130 420 130 Q 195 130 195 84" fill="none" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"/>
+    <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
+  </g>
+</svg>
+```
+
+The **idea** is always the hard part — no news there. But for the seventy years after that, **production** was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on it.
+
+That era is over. AI tools now produce working code from a good description in seconds. Production has, for most everyday engineering purposes, been solved.
+
+::: {.column-margin}
+A historical rhyme: John Backus reportedly disliked the tedium of assembly-language programming, so in the 1950s he led the team that created FORTRAN — and a generation of programmers stopped hand-writing machine instructions. Every generation, the tedious layer gets automated and the engineer moves up one level. You're living through the next one.
+:::
+
+So what's left? The two highlighted boxes — and they are harder than they look.
+
+## Specification: saying what you actually mean
+
+**Specification** means describing the problem completely: the inputs, the outputs, what has to happen in between, and what should happen at the edges. It sounds trivial. It is the single hardest skill in this course, and it is where real engineering projects most often fail — long before any code is involved.
+
+Here's the uncomfortable truth about *any* tool that builds from your description, whether it's an AI, a contractor, or a teammate: **every gap in your specification gets filled with an assumption, and you don't get to choose the assumption.**
+
+Try this one. A perfectly obedient, perfectly literal robot chef awaits your command:
+
+> "Make me a peanut butter sandwich."
+
+::: {.callout-note collapse="true"}
+### Click to see what the robot needs to know
+
+How many slices of bread? Which sides get peanut butter? How much? Spread with what? Should the jar be opened first? (You didn't say.) Crusts on or off? Cut in half — diagonally? What if there's no peanut butter: fail loudly, substitute almond butter, or go buy some? What does "done" look like?
+
+None of these are jokes. Each is a decision, and if you don't make it, the robot will — its way.
+:::
+
+Now the engineering version. Compare these two problem statements:
+
+> **A.** "Write a function `freq_shift(t, U, x0, y0, c, f)` that returns the apparent frequency of a moving siren at each time in the array `t`, and plots it against time."
+
+> **B.** "Write a program that would allow you to determine the velocity (speed and direction) of a siren."
+
+Statement A is a *completed specification* — someone already did all the thinking, and you're just following instructions. Statement B is a *problem*. To attack B, you have to decide: what are the inputs? (A recording? Frequency-vs-time data?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?
+
+In the old version of this course, you got Statement A. In this version, you get Statement B — because Statement B is what your future boss will hand you. Nobody in industry hands you Statement A; **producing Statement A from Statement B is the job.**
+
+## Verification: refusing to trust the black box
+
+**Verification** means confirming a program does what you intended — *without* taking anyone's word for it, including the AI's, including your own.
+
+The core moves, which we will drill all semester:
+
+The **hand estimate**: before running anything, compute a rough expected answer for one simple case. A dropped wrench falls 3 meters in — pause, you can do this — about $t = \sqrt{2h/g} \approx \sqrt{6/9.8} \approx 0.8$ seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, you've earned a little trust.
+
+The **edge case**: what happens at zero? At a negative input? When the file is empty? A program that works on the happy path and explodes at the edges is a program that will fail in the field.
+
+The **intuition check**: you have years of physical intuition — heavier things don't fall faster, sirens sound higher approaching than receding, hot coffee cools toward room temperature and not past it. That intuition is a verification instrument. This course will sharpen it, not replace it.
+
+::: {.callout-important}
+An AI will hand you code that runs, produces a plot, and is confidently, invisibly wrong — a sign flipped, a unit mixed, an edge case botched. It will not warn you. **"It ran without errors" and "it is correct" are entirely different claims**, and confusing them is how engineering disasters happen.
+:::
+
+## The map of this course
+
+Four verbs describe what engineers do with computation, and they organize everything we'll touch:
+
+1. **Fetch** — get real data into (and out of) your programs: sensors, files, the internet.
+2. **Process** — turn raw data into meaningful quantities: functions, sweeps, big datasets.
+3. **Simulate** — build models, make predictions, ask "what if," and know when not to believe yourself.
+4. **Analyze** — communicate findings honestly: good plots, stated uncertainty, defensible conclusions.
+
+We'll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The [standards page](../standards.qmd) lists exactly what you'll be able to do under each verb — that list *is* your grade, so go read it.
+
+::: {.callout-tip}
+## Think
+The pipeline diagram above should look faintly familiar if you've seen an engineering *design* loop: define the problem, generate a solution, test it, iterate. That's not a coincidence — specify/produce/verify/adapt **is** the design loop, wearing computational clothes. You are not learning "a programming class thing." You are learning how engineers attack problems.
+:::
+
+::: {.bring-to-class}
+On paper (yes, actual paper), write a specification — 5 to 10 sentences — for this problem: *a program that tells a student the fastest walking route between two buildings on campus.* Your spec must state the inputs, the outputs, and **at least three edge cases** with what should happen in each.
+
+Class opens with tables exchanging specs and hunting for the gaps. The table that finds the most unstated assumptions in another table's spec wins bragging rights. Bring your sharpest pedantry.
+:::

@@ -1,0 +1,66 @@
+---
+title: "The Standards"
+subtitle: "What you will be able to do"
+---
+
+Your grade in this course is built from the standards below. Each is a specific, demonstrable skill, marked **met** or **not yet** — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class **checkpoints** (weeks 4, 6, 8, 10 — see [grading](grading.qmd)), activity work, the design project, and the final defense. Convergent standards require at least one *in-class* demonstration. A standard missed in week 4 and nailed in week 11 is *met*.
+
+Each standard carries a tag:
+
+- **[convergent]{.badge-c}** — has a right answer you can check. These get assessed in the Tuesday-style parts of the course: predict-and-vote questions, short exercises, exam problems.
+- **[divergent]{.badge-d}** — open-ended; quality is judged, not checked. These get assessed through your project work, critique sessions, and written reports.
+
+::: {.column-margin}
+These tags are also your **critique vocabulary**. When you review another table's work, the divergent standards are the questions you ask of it: What did they assume? How did they verify? Is the plot honest?
+:::
+
+## Fetch — get real data in and out
+
+**F1** — Acquire real data from a phone sensor, a file, or a keyless API. [divergent]{.badge-d}
+
+**F2** — Read data's shape: recognize CSV rows/columns and JSON/dictionary structure, and pull out the value you want. [convergent]{.badge-c}
+
+## Process — turn raw data into meaning
+
+**P1** — Write and reuse a function, and check it in isolation against a hand estimate. [convergent]{.badge-c}
+*(At least one P1 demonstration is hand-written at a checkpoint: a short function from a given spec, no AI — the minimum writing fluency that verification rests on.)*
+
+**P2** — Run a parameter sweep: one function across many values, results written to a file. [convergent]{.badge-c}
+
+**P3** — Tame a large dataset with pandas: filter, summarize, reduce many rows to a few meaningful numbers. [convergent]{.badge-c}
+
+**P4** — Read code well enough to predict what a short script does, and recognize the shape of a computational project (inputs → script → outputs). [convergent]{.badge-c}
+
+**P5** *(proposed — under discussion)* — Hold a whole project in your head: navigate a multi-file program you produced, and explain what each piece does, why it is structured that way, and what breaks if an input is malformed. [divergent]{.badge-d}
+
+::: {.column-margin}
+P5 is what the final defense tests. P4 is reading a paragraph; P5 is knowing your way around the whole book.
+:::
+
+## Simulate — build models, make predictions
+
+**S1** — Build a model of a simple system: a given algebraic relation, or by time-stepping. [convergent]{.badge-c}
+
+**S2** — Decide what to include and what to ignore: identify a model's assumptions and judge whether they're reasonable for the situation. [divergent]{.badge-d}
+
+**S3** — Judge whether to trust the model: recognize the ways it goes wrong — too coarse a step (numerical), a missing effect (physical), or use outside its valid range (extrapolation). [convergent]{.badge-c}
+
+**S4** — Explore with a model: pose a what-if, vary inputs, and interpret how the output responds. [divergent]{.badge-d}
+
+## Analyze — and the habits woven through everything
+
+**A1** — Estimate and sanity-check a result before trusting it. [convergent]{.badge-c}
+
+**A2** — Make and judge an honest plot, and catch a misleading one. [convergent]{.badge-c}
+
+**A3** — State uncertainty and document provenance: report how far model and reality diverge without false precision, and record where a number came from so someone else could rerun it. [divergent]{.badge-d}
+
+**A4** — Direct and audit AI: get an AI to produce a computational artifact and critically audit the output. [divergent]{.badge-d}
+
+
+```{=html}
+<style>
+.badge-c { background:#e8eef7; color:#1f4e8a; border-radius:4px; padding:0.05em 0.5em; font-size:0.75em; font-weight:700; letter-spacing:0.03em; }
+.badge-d { background:#fbf0e4; color:#8a4d1f; border-radius:4px; padding:0.05em 0.5em; font-size:0.75em; font-weight:700; letter-spacing:0.03em; }
+</style>
+```

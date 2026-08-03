@@ -1,0 +1,24 @@
+---
+title: "The flaw hunt"
+subtitle: "Week 2 Thursday · 2 engagement credits"
+---
+
+**Standards seeded:** P4, A1, A4 · **You'll need:** your annotated pool script from the reading (on paper, unexecuted).
+
+## Opening vote
+
+Which line hides the **silent** flaw? Commit → vote → argue → revote. Then, and only then, we run the script and let reality adjudicate — including watching the syntax error stop it cold before the interesting bugs even get a chance.
+
+## Warm-up: assembly required
+
+Ten minutes, before the hunt: each table gets the pool script's *lines on paper strips, scrambled*. Reassemble a working order. Some lines have more than one valid position (which? why?) — and discovering that is your first taste of the difference between what a program *must* sequence and what it merely happens to.
+
+## The hunt
+
+Tables reconcile their annotations line by line: every line gets a *why*, every disagreement gets traced by hand. Then each table receives a second script (fresh flaws, same rules) and races: annotate, name all three flaw types, state the correct answer — *before* running.
+
+## Debrief
+
+The scoreboard truth we're after: the hand estimate catches what running cannot. Tables report which flaw they found *last* — it's almost always the silent one, and the reasons why are the lesson.
+
+**Deliverable (2 EC):** the table's annotated second script with the three flaws named and the corrected answer, initialed by every member.

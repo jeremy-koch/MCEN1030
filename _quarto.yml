@@ -1,0 +1,118 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - "data/"
+  render:
+    - "*.qmd"
+    - "lessons/*.qmd"
+    - "activities/*.qmd"
+    - "homework/*.qmd"
+    - "!instructor/"
+
+website:
+  title: "MCEN 1030"
+  description: "What do engineers do with computation, and why is it awesome?"
+  navbar:
+    background: dark
+    left:
+      - href: index.qmd
+        text: Home
+      - href: schedule.qmd
+        text: Schedule
+      - href: standards.qmd
+        text: Standards
+      - href: grading.qmd
+        text: Grading
+      - href: homework/index.qmd
+        text: Homework
+      - href: basecamp.qmd
+        text: Base Camp
+      - href: sidequests.qmd
+        text: Side Quests
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - section: "Start Here"
+        contents:
+          - index.qmd
+          - schedule.qmd
+          - standards.qmd
+          - grading.qmd
+          - installing.qmd
+      - section: "Phase 0 — Thinking (Weeks 1–2)"
+        contents:
+          - lessons/01a-what-engineers-do.qmd
+          - lessons/01b-what-llms-do.qmd
+          - activities/w01-divergence-demo.qmd
+          - lessons/02a-first-contact.qmd
+          - lessons/02b-reading-code.qmd
+          - activities/w02-flaw-hunt.qmd
+      - section: "Phase 1 — Vocabulary (Weeks 3–6)"
+        contents:
+          - lessons/03-functions.qmd
+          - activities/w03-function-forge.qmd
+          - lessons/04-logic-edges.qmd
+          - activities/w04-edge-hunt.qmd
+          - lessons/05-loops-sweeps.qmd
+          - activities/w05-sweep-lab.qmd
+          - lessons/06-data-io-plots.qmd
+          - activities/w06-plot-clinic.qmd
+      - section: "Phase 2 — Power Tools (Weeks 7–10)"
+        contents:
+          - lessons/07-pandas.qmd
+          - activities/w07-triage.qmd
+          - lessons/08-fetch.qmd
+          - activities/w08-acquisition.qmd
+          - lessons/09-simulate-1.qmd
+          - activities/w09-model-lab.qmd
+          - lessons/10-simulate-2.qmd
+          - activities/w10-model-critique.qmd
+      - section: "Phase 3 — Integration (Weeks 11–14)"
+        contents:
+          - lessons/11-matlab.qmd
+          - activities/w11-launch.qmd
+          - lessons/12-13-project-studio.qmd
+          - activities/w12-pinup-1.qmd
+          - activities/w13-pinup-2.qmd
+          - lessons/14-defense.qmd
+          - activities/w14-mock-defense.qmd
+          - peer-evaluation.qmd
+      - section: "Homework"
+        contents:
+          - homework/index.qmd
+          - homework/hw1-grade-calculator.qmd
+          - homework/hw2-materials-librarian.qmd
+          - homework/hw3-lightest-beam.qmd
+          - homework/hw4-siren.qmd
+          - homework/hw5-wind-farm.qmd
+          - homework/hw6-track-the-station.qmd
+          - homework/hw7-quench.qmd
+          - homework/hw8-parking-lot.qmd
+          - homework/hw9-bilingual.qmd
+      - section: "Mondays"
+        contents:
+          - basecamp.qmd
+          - sidequests.qmd
+          - practice.qmd
+
+pyodide:
+  packages:
+    - numpy
+    - pandas
+    - matplotlib
+
+format:
+  live-html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
+
+execute:
+  freeze: auto
