@@ -1,0 +1,57 @@
+# Renders the Quarto site and publishes it to the gh-pages branch on every
+# push to main. Also runnable by hand from the Actions tab.
+#
+# One-time setup before this workflow will work:
+#   1. In the repo's Settings -> Pages, set "Source" to "Deploy from a
+#      branch" and the branch to gh-pages / (root) -- the workflow creates
+#      that branch the first time it runs, so you may need to save this
+#      setting again once gh-pages exists.
+#   2. In Settings -> Actions -> General -> Workflow permissions, make sure
+#      "Read and write permissions" is enabled so the publish step can push
+#      to gh-pages. (The `permissions: contents: write` block below asks
+#      for this at the job level, but the repo setting must allow it too.)
+#
+# No other secrets are needed -- GITHUB_TOKEN is provided automatically.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
+name: Quarto Publish
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      # Only needed if any .qmd pages execute Python code (e.g. the
+      # parameter-sweep or pandas examples). Safe to leave in even if a
+      # given page doesn't execute code -- it's just a couple extra seconds.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install jupyter pandas matplotlib
+          fi
+
+      - name: Render and publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
