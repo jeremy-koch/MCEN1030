@@ -5,7 +5,7 @@ subtitle: "Mondays, second half of the semester — enrichment for the curious"
 
 Once [Base Camp](basecamp.qmd) winds down, **Mondays keep going** — same hour, same room, new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just *the day we hang out and build things*, which is roughly what engineering departments are for.
 
-Dress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — **signups on Canvas; a quest runs if ~10 people want it** — so consider this page a menu, not a schedule. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library.
+Dress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — **signups on Canvas; a quest runs if ~10 people want it** — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library.
 
 ## The menu
 

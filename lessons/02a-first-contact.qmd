@@ -7,7 +7,7 @@ Time to touch a computer. This lesson gets you running Python code in your brows
 
 ::: {.callout-note}
 ## If you have never written a line of code before
-Perfect — this lesson assumes exactly that, and this course was designed with you specifically in mind. Two promises: every unfamiliar word gets defined the first time it appears, and [Base Camp](../basecamp.qmd) session BC1 this week walks through today's material again, slowly, with an instructor in the room. Experienced folks: read anyway. The *predict-then-run* habit below is probably new to you, and it's the one we keep.
+Perfect — this lesson assumes exactly that, and this course was designed with you specifically in mind. Two promises: every unfamiliar word gets defined the first time it appears, and [Base Camp](../basecamp.qmd) session BC2 this week walks through today's material again, slowly, with an instructor in the room. Experienced folks: read anyway. The *predict-then-run* habit below is probably new to you, and it's the one we keep.
 :::
 
 ## Think First

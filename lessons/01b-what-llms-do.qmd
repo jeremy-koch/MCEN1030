@@ -3,14 +3,16 @@ title: "What does an LLM actually do?"
 subtitle: "Week 1, Lesson B — read before Thursday"
 ---
 
-You will use AI constantly in this course, so we are going to spend one lesson opening the hood. Not because you need to build one — you need to build a *mental model* of one, so its behavior stops being magic and starts being predictable. Engineers don't use instruments they don't understand the failure modes of.
+You will use AI constantly in this course, and you've probably already got some experience. (If not, don't worry!) Let's spend one lesson on what's it's actually doing.
+
+<!-- . Not because you need to build one — you need to build a *mental model* of one, so its behavior stops being magic and starts being predictable. Engineers don't use instruments they don't understand the failure modes of. -->
 
 ## Think First
 
 Recall
 
 1. Your phone's keyboard suggests the next word as you type. How do you think it decides what to suggest?
-2. Have you ever confidently "remembered" something that turned out to be wrong — a fact you'd have bet money on? What did that feel like *from the inside*?
+2. Have you ever confidently "remembered" something that turned out to be wrong?
 
 Look Ahead
 
@@ -31,29 +33,33 @@ The "small chunks" are called *tokens* — usually a word or piece of a word. `t
 
 The model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and critically for us, **billions of lines of code** — and adjusting billions of internal numerical knobs until its next-chunk predictions got very good. When you prompt it, you're providing the start of a text, and it continues that text one chunk at a time, each new chunk chosen based on everything that came before.
 
-## Three consequences you must internalize
+## Three consequences
 
-Everything strange about LLM behavior falls out of that mechanism. Three consequences matter for this course.
+Everything strange about LLM behavior falls out of that mechanism.
 
-### 1. It's plausibility, not truth
+### 1. It's plausible, but maybe not the truth
 
-The model produces text that is *statistically likely to follow* your prompt — text shaped like a correct answer. Usually, the most plausible continuation of an engineering question *is* the correct answer, which is why these tools are so useful. But when the model doesn't "know," it does not stop and say so. It keeps generating plausible text — a function name that sounds real but isn't, a formula with one term quietly wrong, a citation to a paper that doesn't exist. This is often called **hallucination**, and the dangerous part is the *fluency*: wrong answers arrive in the same confident voice as right ones.
+The model produces text that is *statistically likely to follow* your prompt — the text sounds like what the correct answer might sound like. Usually, the most plausible continuation of an engineering question *is* the correct answer, which is why these tools are often useful. But when the model doesn't "know," it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn't apply to the situation (dangerous!), a citation to a paper that doesn't exist, a recipe with crazy ingredients. This is often called a **hallucination**, and the dangerous part is that the LLM can be just as confident about its hallucinations as it is about real information.
 
 ::: {.callout-important}
-There is no tone-of-voice difference between an LLM being right and an LLM being wrong. Your verification habits are the only alarm system you get.
+There is no tone-of-voice difference between an LLM being right and an LLM being wrong. Verify!
 :::
 
 ### 2. Same prompt, different answers
 
 Prediction produces a *menu* of plausible next chunks, each with a probability — and by design, the model doesn't always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.
 
+::: {.column-margin}
+LLMs with a higher "temperature" value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it create the same output every time.
+:::
+
 This is why, on Thursday, thirty tables prompting for the same task will produce thirty *different* programs — different variable names, different structures, sometimes different algorithms, occasionally different *answers*. In this course that divergence isn't a nuisance; it's the curriculum. "Why did your table's code come out different from ours, and which one is right?" is the most instructive question we will ask all semester.
 
 ### 3. Your specification is the steering wheel
 
-The model fills every gap in your prompt with a plausible assumption — plausible *on average across everything it has read*, not plausible *for your specific problem*. Ask for "a program to compute the trajectory of a projectile" and you'll get something — but did it include air resistance? What launch angle convention? Degrees or radians? SI units? You didn't say, so it guessed.
+The model fills every gap in your prompt with a plausible assumption. Ask for "a program to compute the trajectory of a projectile" and you'll get something — but did it include air resistance? What launch angle convention? Degrees or radians? SI units? You didn't say, so it guessed.
 
-This is the punchline of the whole week: **specification (Tuesday's lesson) is precisely the skill that controls an LLM.** A vague prompt doesn't get you a wrong answer; it gets you a correct answer *to a question you didn't quite ask* — which is worse, because it looks right.
+This is the punchline of the whole week: **specification (Tuesday's lesson) is precisely the skill that controls an LLM.** A vague prompt doesn't get you a wrong answer; it gets you a correct answer *to a question you didn't quite ask* — which might be worse for you because it looks right but doesn't quite do the job.
 
 ## Why is it so good at code, anyway?
 

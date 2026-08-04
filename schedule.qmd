@@ -36,7 +36,7 @@ Read the lesson *before* the class it's listed under. [Homework sets](homework/i
 The ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the [grading page](grading.qmd).
 :::
 
-::: {.callout-note}
+<!-- ::: {.callout-note}
 ## About Phase 3
 Weeks 12–14 have no new reading. The lesson pages for those weeks describe how studio time works, what a pin-up is, what makes critique useful, and exactly what the defense will ask of you.
-:::
+::: -->

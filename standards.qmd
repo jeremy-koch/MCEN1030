@@ -8,7 +8,7 @@ Your grade in this course is built from the standards below. Each is a specific,
 Each standard carries a tag:
 
 - **[convergent]{.badge-c}** — has a right answer you can check. These get assessed in the Tuesday-style parts of the course: predict-and-vote questions, short exercises, exam problems.
-- **[divergent]{.badge-d}** — open-ended; quality is judged, not checked. These get assessed through your project work, critique sessions, and written reports.
+- **[divergent]{.badge-d}** — open-ended. These get assessed through your project work, critique sessions, and written reports.
 
 ::: {.column-margin}
 These tags are also your **critique vocabulary**. When you review another table's work, the divergent standards are the questions you ask of it: What did they assume? How did they verify? Is the plot honest?

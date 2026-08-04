@@ -31,6 +31,7 @@ lessons/09*
 lessons/1*
 
 peer-evaluation.qmd
+CLAUDE.md
 
 /.quarto/
 **/*.quarto_ipynb

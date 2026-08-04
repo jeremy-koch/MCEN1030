@@ -56,29 +56,29 @@ You will still read and run and modify plenty of code in this course — you can
 
 ## How a week works
 
-**Before class**, you read one lesson on this site (30–45 minutes) — and the lessons are *runnable*: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the [getting going page](installing.qmd) has the ladder.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a **Bring to class** box: one question you answer *on paper, committed, before you arrive*.
+**Before class**, you read one lesson on this site (30–45 minutes) — and the lessons are *runnable*: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the [getting going page](installing.qmd) has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a **Bring to class** box: one question you answer *on paper, committed, before you arrive*.
 
 **Class opens with that question.** You'll vote on it, argue with your table, and vote again. If you didn't do the reading, you will know it, and so will your table. That's the whole accountability system, and it works better than a quiz because you can't outsource an argument.
 
-**Mondays are optional and yours.** All semester, one weekly optional session: [Base Camp](basecamp.qmd) early (the beginner on-ramp, plus checkpoint dress rehearsals), [Side Quests](sidequests.qmd) later (build a tiny language model, 3D-print a parameter sweep, and more — you vote on the menu). No grades attached, ever; just hours, help, and getting to know each other.
+**Mondays are optional.** All semester, one weekly optional session: [Base Camp](basecamp.qmd) early (the beginner on-ramp, plus checkpoint dress rehearsals), [Side Quests](sidequests.qmd) later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.
 
 **Four Tuesdays open with a checkpoint** (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the [grading page](grading.qmd).
 
 **The rest of class is work at the tables.** Early in the semester that's mostly short, sharp problems with right answers. Later it shifts toward open-ended problems where every table's AI-assisted solution comes out *different* — and the interesting question becomes *why*.
 
-::: {.column-margin}
+<!-- ::: {.column-margin}
 The room has islands of computers for a reason. But when it's time to argue, it's screens down, eyes up. You'll hear me say it a lot.
-:::
+::: -->
 
-**Homework** runs on a four-step submission — specify, annotate, verify, report — where the code is never what's graded. The [homework page](homework/index.qmd) explains the format; the problems are real mechanical engineering (a beam to lighten, a siren to clock, a wind farm to site, a quench to time).
+**Homework** runs on a four-step submission — specify, annotate, verify, report — the code is not what's graded. T he problems are real mechanical engineering. The [homework page](homework/index.qmd) explains the format.
 
 ## The AI policy, in one paragraph
 
-You are **expected** to use AI tools in this course. You are also **completely responsible** for everything they produce for you. "The AI wrote it" is the engineering equivalent of "my supplier shipped it" — if you signed off on it, it's yours. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project *you* produced. Plan accordingly.
+You are **expected** to use AI tools in this course. You are also **completely responsible** for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project *you* produced.
 
 ## Grading
 
-This course uses **standards-based grading**: a list of specific skills ([the standards](standards.qmd)), each marked *Met* or *Not Yet*, plus **engagement credits** for committed preparation and in-class work — credited for good faith, never for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you *end up*, not where you started. The full mechanics, including a grade table and worked examples, are on the [grading page](grading.qmd).
+This course uses **standards-based grading**: a list of specific skills ([the standards](standards.qmd)), each marked *Met* or *Not Yet*, plus **engagement credits** for committed preparation and in-class work — credited for good faith and not for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you *end up*, not where you started. The full mechanics, including a grade table and worked examples, are on the [grading page](grading.qmd).
 
 ## Where to go next
 

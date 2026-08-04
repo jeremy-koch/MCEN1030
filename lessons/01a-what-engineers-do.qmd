@@ -17,17 +17,15 @@ Look Ahead
 1. If an AI can write working code from a plain-English description in five seconds, what's left for the engineer to do?
 2. What would it take for you to *trust* a program you didn't write?
 
-## Four things you may not know are possible
-
-A first-year student can be forgiven for thinking "engineering computing" means suffering through syntax errors to make a ball bounce across a screen. Here is what it actually looks like:
+## Four things you may not know are possible with computation
 
 **Predict every outcome of a process.** Write a function that models something — the stress in a bracket, the temperature of a battery — then call it 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.
 
-**Handle data at engineering scale.** A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course will not even slow down.
+**Handle data at engineering scale.** A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.
 
 **Reach out and touch the world.** From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer *inside your program*.
 
-**Solve the unsolvable.** Most real equations in engineering have no algebraic solution — nobody can "solve for x." Numerically, with a computer, many of them fall in milliseconds.
+**Solve the unsolvable.** Most real equations in engineering have no solution. Many of those problems can be solved numerically in 10 lines of code.
 
 ::: {.column-margin}
 "Unsolvable" deserves its scare quotes. The equations governing a pendulum swinging at large angles have no closed-form solution. Engineers have been computing pendulum swings anyway for a very long time.
@@ -74,14 +72,14 @@ The **idea** is always the hard part — no news there. But for the seventy year
 That era is over. AI tools now produce working code from a good description in seconds. Production has, for most everyday engineering purposes, been solved.
 
 ::: {.column-margin}
-A historical rhyme: John Backus reportedly disliked the tedium of assembly-language programming, so in the 1950s he led the team that created FORTRAN — and a generation of programmers stopped hand-writing machine instructions. Every generation, the tedious layer gets automated and the engineer moves up one level. You're living through the next one.
+John Backus reportedly disliked the tedium of [assembly-language](https://en.wikipedia.org/wiki/Assembly_language) programming, so in the 1950s he led the team that created [FORTRAN](https://en.wikipedia.org/wiki/Fortran) — and a generation of programmers stopped hand-writing machine instructions. Later, [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) emerged as a much more readable language. The history of computer science is a story of making code less abstract, and LLMs might be the next step.
 :::
 
-So what's left? The two highlighted boxes — and they are harder than they look.
+What should be the focus today?
 
-## Specification: saying what you actually mean
+## Specification means describing the problem completely
 
-**Specification** means describing the problem completely: the inputs, the outputs, what has to happen in between, and what should happen at the edges. It sounds trivial. It is the single hardest skill in this course, and it is where real engineering projects most often fail — long before any code is involved.
+... the inputs, the outputs, what has to happen in between, and what should happen at the edges. It sounds trivial. It is the single hardest skill in this course, and it is where real engineering projects most often fail — long before any code is involved.
 
 Here's the uncomfortable truth about *any* tool that builds from your description, whether it's an AI, a contractor, or a teammate: **every gap in your specification gets filled with an assumption, and you don't get to choose the assumption.**
 
@@ -107,17 +105,15 @@ Statement A is a *completed specification* — someone already did all the think
 
 In the old version of this course, you got Statement A. In this version, you get Statement B — because Statement B is what your future boss will hand you. Nobody in industry hands you Statement A; **producing Statement A from Statement B is the job.**
 
-## Verification: refusing to trust the black box
+## Verification means confirming a program does what you intended
 
-**Verification** means confirming a program does what you intended — *without* taking anyone's word for it, including the AI's, including your own.
+... without taking anyone's word for it, including the AI's. This semester we will verify our code with:
 
-The core moves, which we will drill all semester:
-
-The **hand estimate**: before running anything, compute a rough expected answer for one simple case. A dropped wrench falls 3 meters in — pause, you can do this — about $t = \sqrt{2h/g} \approx \sqrt{6/9.8} \approx 0.8$ seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, you've earned a little trust.
+The **hand estimate**: before running anything, compute a rough expected answer for one simple case. A dropped wrench falls 3 meters in about $t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2} \approx 0.8$ seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that's a good sign.
 
 The **edge case**: what happens at zero? At a negative input? When the file is empty? A program that works on the happy path and explodes at the edges is a program that will fail in the field.
 
-The **intuition check**: you have years of physical intuition — heavier things don't fall faster, sirens sound higher approaching than receding, hot coffee cools toward room temperature and not past it. That intuition is a verification instrument. This course will sharpen it, not replace it.
+The **intuition check**: you have years of physical intuition — heavier things don't fall faster, sirens sound higher approaching than receding, hot coffee cools toward room temperature and not past it. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!
 
 ::: {.callout-important}
 An AI will hand you code that runs, produces a plot, and is confidently, invisibly wrong — a sign flipped, a unit mixed, an edge case botched. It will not warn you. **"It ran without errors" and "it is correct" are entirely different claims**, and confusing them is how engineering disasters happen.
@@ -125,14 +121,14 @@ An AI will hand you code that runs, produces a plot, and is confidently, invisib
 
 ## The map of this course
 
-Four verbs describe what engineers do with computation, and they organize everything we'll touch:
+Four verbs describe what engineers do with computation, and they outline this course:
 
 1. **Fetch** — get real data into (and out of) your programs: sensors, files, the internet.
 2. **Process** — turn raw data into meaningful quantities: functions, sweeps, big datasets.
 3. **Simulate** — build models, make predictions, ask "what if," and know when not to believe yourself.
 4. **Analyze** — communicate findings honestly: good plots, stated uncertainty, defensible conclusions.
 
-We'll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The [standards page](../standards.qmd) lists exactly what you'll be able to do under each verb — that list *is* your grade, so go read it.
+We'll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The [standards page](../standards.qmd) lists exactly what you'll be able to do under each verb.
 
 ::: {.callout-tip}
 ## Think

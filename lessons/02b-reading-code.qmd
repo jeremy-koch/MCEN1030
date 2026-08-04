@@ -65,7 +65,7 @@ When an AI hands you code, you will annotate it: a comment on every line or logi
 **Rule 2:** Annotate the *why*, not just the *what*. `# convert to liters` beats `# multiply by 1000` — the first survives a bug hunt, the second is just the code again, slower.
 :::
 
-This feels tedious in week 2. It is also, quietly, your entire preparation for the final defense — a project annotated as it grows is a project you can explain under examination. Students who skip this discipline meet it again in week 14, at the worst possible time.
+This feels tedious in week 2. It is also preparation for the final defense — a project annotated as it grows is a project you can explain under examination. Students who skip this discipline meet it again in week 14, at the worst possible time.
 
 ## One full lap: the pool problem
 
