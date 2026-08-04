@@ -104,15 +104,15 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="./info/schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./standards.html"> 
+    <a class="nav-link" href="./info/standards.html"> 
 <span class="menu-text">Standards</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./grading.html"> 
+    <a class="nav-link" href="./info/grading.html"> 
 <span class="menu-text">Grading</span></a>
   </li>  
   <li class="nav-item">
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Homework</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./basecamp.html"> 
+    <a class="nav-link" href="./info/basecamp.html"> 
 <span class="menu-text">Base Camp</span></a>
   </li>  
 </ul>
@@ -171,25 +171,25 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="./info/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./standards.html" class="sidebar-item-text sidebar-link">
+  <a href="./info/standards.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Standards</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./grading.html" class="sidebar-item-text sidebar-link">
+  <a href="./info/grading.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">How your grade works</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./installing.html" class="sidebar-item-text sidebar-link">
+  <a href="./info/installing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting going in your language</span></a>
   </div>
 </li>
@@ -254,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#the-big-idea" id="toc-the-big-idea" class="nav-link active" data-scroll-target="#the-big-idea">The big idea</a></li>
   <li><a href="#how-a-week-works" id="toc-how-a-week-works" class="nav-link" data-scroll-target="#how-a-week-works">How a week works</a></li>
-  <li><a href="#the-ai-policy-in-one-paragraph" id="toc-the-ai-policy-in-one-paragraph" class="nav-link" data-scroll-target="#the-ai-policy-in-one-paragraph">The AI policy, in one paragraph</a></li>
+  <li><a href="#ai-policy" id="toc-ai-policy" class="nav-link" data-scroll-target="#ai-policy">AI policy</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
   <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
   </ul>
@@ -283,14 +283,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome. Before anything else, four things a mechanical engineer can do with a computer that you may not know are possible:</p>
-<ul>
-<li>Write a function once, then call it from a script with 100 different parameter inputs and write every result to a file. This takes about one second to run, and you will have predicted <strong>all the possible outcomes of a process</strong>.</li>
-<li>Open an engineering data set with 60,000 rows. Excel will choke. Pandas will not even notice.</li>
-<li>Pull the live speed and position of the <strong>International Space Station</strong>. Get accelerometer data off your own phone. Talk to an AI from inside a program.</li>
-<li>Solve “unsolvable” problems — equations with no algebraic solution — numerically, in a few lines.</li>
-</ul>
-<p>These are things working engineers actually do, and this course is about making all of them yours.</p>
+<p>Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.</p>
+<p>We are trying a new approach to this class this semester. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professors gave us very clean problem statements so that we could focus on writing the code. This is no longer the process of programming! AI (artificial intelligence) and specifically LLMs (large language models) have proven they are extremely capable of writing code based on a prompt (natural language instructions), and so they solve well-specified problems almost instantaneously. ::: {.column-margin} We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk in this class about how they are actually just statistical word-guessers. :::</p>
+<p>For better or worse, it seems LLMs are here to stay, and so we will learn how to integrate them into our computing workflow. Most engineers are not manually typing in <code>for i in items:</code> anymore, they are writing prompts that include phrases “…iterate through the items in that list…” and having ChatGPT, Claude, Gemini, Grok, or Co-Pilot write the code. ::: {.column-margin} If they are using a “local LLM”, one that is not run on the cloud (and thus one that is not sending out company secrets), they might be using Qwen, Gemma, Deepseek, or another open-source model. :::</p>
+<p>That doesn’t mean it is not important to understand code. We are not going to treat LLM-generated code as a “black box”. We we learn why LLMs are not 100% trustworthy and that will motivate us to learn about the concepts, the meanings of errors, etc., so that we can troubleshoot and improve upon code. And, after all, if you end up using an LLM result in your job and an engine explodes, you won’t be able to blame ChatGPT — it’s your fault! So we better make sure we understand what is going on in the code. ::: {.column-margin} We can’t look inside a “black box” to see what is going on. :::</p>
 <section id="the-big-idea" class="level2">
 <h2 class="anchored" data-anchor-id="the-big-idea">The big idea</h2>
 <p>The process of creating computational tools looks roughly like this:</p>
@@ -321,34 +317,31 @@ ul.task-list li input[type="checkbox"] {
     <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
   </g>
 </svg>
-<p>For decades, <strong>Production</strong> — actually typing the code — was the bottleneck, so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:</p>
+<p>For decades, <strong>Production</strong> — actually thinking about the code structure and typing the code — was the bottleneck, so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:</p>
 <p><strong>Specification</strong> means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you cannot articulate the problem, no tool — human or AI — can solve it for you.</p>
 <p><strong>Verification</strong> means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.</p>
 <p>You will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can <em>think computationally</em>: frame a problem, direct the tools, and audit the results. That is what engineers are actually hired to do.</p>
 </section>
 <section id="how-a-week-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-a-week-works">How a week works</h2>
-<p><strong>Before class</strong>, you read one lesson on this site (30–45 minutes) — and the lessons are <em>runnable</em>: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the <a href="./installing.html">getting going page</a> has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper, committed, before you arrive</em>.</p>
+<p><strong>Before class</strong>, you read one lesson on this site (30–45 minutes) — and the lessons are <em>runnable</em>: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the <a href="./info/installing.html">getting going page</a> has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper, committed, before you arrive</em>.</p>
 <p><strong>Class opens with that question.</strong> You’ll vote on it, argue with your table, and vote again. If you didn’t do the reading, you will know it, and so will your table. That’s the whole accountability system, and it works better than a quiz because you can’t outsource an argument.</p>
-<p><strong>Mondays are optional.</strong> All semester, one weekly optional session: <a href="./basecamp.html">Base Camp</a> early (the beginner on-ramp, plus checkpoint dress rehearsals), <a href="./sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.</p>
-<p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the <a href="./grading.html">grading page</a>.</p>
-<p><strong>The rest of class is work at the tables.</strong> Early in the semester that’s mostly short, sharp problems with right answers. Later it shifts toward open-ended problems where every table’s AI-assisted solution comes out <em>different</em> — and the interesting question becomes <em>why</em>.</p>
-<!-- ::: {.column-margin}
-The room has islands of computers for a reason. But when it's time to argue, it's screens down, eyes up. You'll hear me say it a lot.
-::: -->
-<p><strong>Homework</strong> runs on a four-step submission — specify, annotate, verify, report — the code is not what’s graded. T he problems are real mechanical engineering. The <a href="homework/index.qmd">homework page</a> explains the format.</p>
+<p><strong>Mondays are optional.</strong> All semester, one weekly optional session: <a href="./info/basecamp.html">Base Camp</a> early (the beginner on-ramp, plus checkpoint dress rehearsals), <a href="./info/sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.</p>
+<p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the <a href="./info/grading.html">grading page</a>.</p>
+<p><strong>The rest of class is work at the tables.</strong> Early in the semester that’s mostly short problems with right answers. Later it shifts toward open-ended problems where every table’s AI-assisted solution comes out <em>different</em>, and the interesting question becomes <em>why</em>.</p>
+<p><strong>Homework</strong> are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. (The code is not what’s graded). The <a href="homework/index.qmd">homework page</a> explains the format.</p>
 </section>
-<section id="the-ai-policy-in-one-paragraph" class="level2">
-<h2 class="anchored" data-anchor-id="the-ai-policy-in-one-paragraph">The AI policy, in one paragraph</h2>
+<section id="ai-policy" class="level2">
+<h2 class="anchored" data-anchor-id="ai-policy">AI policy</h2>
 <p>You are <strong>expected</strong> to use AI tools in this course. You are also <strong>completely responsible</strong> for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project <em>you</em> produced.</p>
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for committed preparation and in-class work — credited for good faith and not for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you <em>end up</em>, not where you started. The full mechanics, including a grade table and worked examples, are on the <a href="./grading.html">grading page</a>.</p>
+<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./info/standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for committed preparation and in-class work — credited for good faith and not for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you <em>end up</em>, not where you started. The full mechanics, including a grade table and worked examples, are on the <a href="./info/grading.html">grading page</a>.</p>
 </section>
 <section id="where-to-go-next" class="level2">
 <h2 class="anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
-<p>The <a href="./schedule.html">schedule</a> shows the whole semester at a glance. Your first reading is <a href="./lessons/01a-what-engineers-do.html">What do engineers do with computation?</a> If you have never written a line of code in your life: good, you’re in the right place — and <a href="./basecamp.html">Base Camp</a> is the page built specifically for you. The curious should also browse the <a href="./sidequests.html">Side Quests</a>.</p>
+<p>The <a href="./info/schedule.html">schedule</a> shows the whole semester at a glance. Your first reading (for Tuesday) is <a href="./lessons/01a-what-engineers-do.html">What do engineers do with computation?</a> If you have never written a line of code in your life: good, you’re in the right place — and <a href="./info/basecamp.html">Base Camp</a> is the page built specifically for you. The curious should also browse the <a href="./info/sidequests.html">Side Quests</a>.</p>
 
 
 <script type="ojs-module-contents">
