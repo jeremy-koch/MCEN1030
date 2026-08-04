@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -260,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Start Here</a></li><li class="breadcrumb-item"><a href="./index.html">What do engineers do with computation, and why is it awesome?</a></li></ol></nav>
 <div class="quarto-title">
@@ -325,25 +325,25 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Verification</strong> means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.</p>
 <p>You will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can <em>think computationally</em>: frame a problem, direct the tools, and audit the results. That is what engineers are actually hired to do.</p>
 </section>
-<section id="how-a-week-works" class="level2 page-columns page-full">
+<section id="how-a-week-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-a-week-works">How a week works</h2>
-<p><strong>Before class</strong>, you read one lesson on this site (30–45 minutes) — and the lessons are <em>runnable</em>: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the <a href="./installing.html">getting going page</a> has the ladder.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper, committed, before you arrive</em>.</p>
+<p><strong>Before class</strong>, you read one lesson on this site (30–45 minutes) — and the lessons are <em>runnable</em>: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the <a href="./installing.html">getting going page</a> has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper, committed, before you arrive</em>.</p>
 <p><strong>Class opens with that question.</strong> You’ll vote on it, argue with your table, and vote again. If you didn’t do the reading, you will know it, and so will your table. That’s the whole accountability system, and it works better than a quiz because you can’t outsource an argument.</p>
-<p><strong>Mondays are optional and yours.</strong> All semester, one weekly optional session: <a href="./basecamp.html">Base Camp</a> early (the beginner on-ramp, plus checkpoint dress rehearsals), <a href="./sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, and more — you vote on the menu). No grades attached, ever; just hours, help, and getting to know each other.</p>
+<p><strong>Mondays are optional.</strong> All semester, one weekly optional session: <a href="./basecamp.html">Base Camp</a> early (the beginner on-ramp, plus checkpoint dress rehearsals), <a href="./sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.</p>
 <p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the <a href="./grading.html">grading page</a>.</p>
 <p><strong>The rest of class is work at the tables.</strong> Early in the semester that’s mostly short, sharp problems with right answers. Later it shifts toward open-ended problems where every table’s AI-assisted solution comes out <em>different</em> — and the interesting question becomes <em>why</em>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>The room has islands of computers for a reason. But when it’s time to argue, it’s screens down, eyes up. You’ll hear me say it a lot.</p>
-</div></div><p><strong>Homework</strong> runs on a four-step submission — specify, annotate, verify, report — where the code is never what’s graded. The <a href="homework/index.qmd">homework page</a> explains the format; the problems are real mechanical engineering (a beam to lighten, a siren to clock, a wind farm to site, a quench to time).</p>
+<!-- ::: {.column-margin}
+The room has islands of computers for a reason. But when it's time to argue, it's screens down, eyes up. You'll hear me say it a lot.
+::: -->
+<p><strong>Homework</strong> runs on a four-step submission — specify, annotate, verify, report — the code is not what’s graded. T he problems are real mechanical engineering. The <a href="homework/index.qmd">homework page</a> explains the format.</p>
 </section>
 <section id="the-ai-policy-in-one-paragraph" class="level2">
 <h2 class="anchored" data-anchor-id="the-ai-policy-in-one-paragraph">The AI policy, in one paragraph</h2>
-<p>You are <strong>expected</strong> to use AI tools in this course. You are also <strong>completely responsible</strong> for everything they produce for you. “The AI wrote it” is the engineering equivalent of “my supplier shipped it” — if you signed off on it, it’s yours. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project <em>you</em> produced. Plan accordingly.</p>
+<p>You are <strong>expected</strong> to use AI tools in this course. You are also <strong>completely responsible</strong> for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project <em>you</em> produced.</p>
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for committed preparation and in-class work — credited for good faith, never for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you <em>end up</em>, not where you started. The full mechanics, including a grade table and worked examples, are on the <a href="./grading.html">grading page</a>.</p>
+<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for committed preparation and in-class work — credited for good faith and not for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you <em>end up</em>, not where you started. The full mechanics, including a grade table and worked examples, are on the <a href="./grading.html">grading page</a>.</p>
 </section>
 <section id="where-to-go-next" class="level2">
 <h2 class="anchored" data-anchor-id="where-to-go-next">Where to go next</h2>

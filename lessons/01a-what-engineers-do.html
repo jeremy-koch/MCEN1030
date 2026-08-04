@@ -281,10 +281,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
-  <li><a href="#four-things-you-may-not-know-are-possible" id="toc-four-things-you-may-not-know-are-possible" class="nav-link" data-scroll-target="#four-things-you-may-not-know-are-possible">Four things you may not know are possible</a></li>
+  <li><a href="#four-things-you-may-not-know-are-possible-with-computation" id="toc-four-things-you-may-not-know-are-possible-with-computation" class="nav-link" data-scroll-target="#four-things-you-may-not-know-are-possible-with-computation">Four things you may not know are possible with computation</a></li>
   <li><a href="#the-pipeline" id="toc-the-pipeline" class="nav-link" data-scroll-target="#the-pipeline">The pipeline</a></li>
-  <li><a href="#specification-saying-what-you-actually-mean" id="toc-specification-saying-what-you-actually-mean" class="nav-link" data-scroll-target="#specification-saying-what-you-actually-mean">Specification: saying what you actually mean</a></li>
-  <li><a href="#verification-refusing-to-trust-the-black-box" id="toc-verification-refusing-to-trust-the-black-box" class="nav-link" data-scroll-target="#verification-refusing-to-trust-the-black-box">Verification: refusing to trust the black box</a></li>
+  <li><a href="#specification-means-describing-the-problem-completely" id="toc-specification-means-describing-the-problem-completely" class="nav-link" data-scroll-target="#specification-means-describing-the-problem-completely">Specification means describing the problem completely</a></li>
+  <li><a href="#verification-means-confirming-a-program-does-what-you-intended" id="toc-verification-means-confirming-a-program-does-what-you-intended" class="nav-link" data-scroll-target="#verification-means-confirming-a-program-does-what-you-intended">Verification means confirming a program does what you intended</a></li>
   <li><a href="#the-map-of-this-course" id="toc-the-map-of-this-course" class="nav-link" data-scroll-target="#the-map-of-this-course">The map of this course</a></li>
   </ul>
 </nav>
@@ -326,13 +326,12 @@ window.Quarto = {
 <li>What would it take for you to <em>trust</em> a program you didn’t write?</li>
 </ol>
 </section>
-<section id="four-things-you-may-not-know-are-possible" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="four-things-you-may-not-know-are-possible">Four things you may not know are possible</h2>
-<p>A first-year student can be forgiven for thinking “engineering computing” means suffering through syntax errors to make a ball bounce across a screen. Here is what it actually looks like:</p>
+<section id="four-things-you-may-not-know-are-possible-with-computation" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="four-things-you-may-not-know-are-possible-with-computation">Four things you may not know are possible with computation</h2>
 <p><strong>Predict every outcome of a process.</strong> Write a function that models something — the stress in a bracket, the temperature of a battery — then call it 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.</p>
-<p><strong>Handle data at engineering scale.</strong> A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course will not even slow down.</p>
+<p><strong>Handle data at engineering scale.</strong> A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.</p>
 <p><strong>Reach out and touch the world.</strong> From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer <em>inside your program</em>.</p>
-<p><strong>Solve the unsolvable.</strong> Most real equations in engineering have no algebraic solution — nobody can “solve for x.” Numerically, with a computer, many of them fall in milliseconds.</p>
+<p><strong>Solve the unsolvable.</strong> Most real equations in engineering have no solution. Many of those problems can be solved numerically in 10 lines of code.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>“Unsolvable” deserves its scare quotes. The equations governing a pendulum swinging at large angles have no closed-form solution. Engineers have been computing pendulum swings anyway for a very long time.</p>
@@ -372,12 +371,12 @@ window.Quarto = {
 <p>That era is over. AI tools now produce working code from a good description in seconds. Production has, for most everyday engineering purposes, been solved.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>A historical rhyme: John Backus reportedly disliked the tedium of assembly-language programming, so in the 1950s he led the team that created FORTRAN — and a generation of programmers stopped hand-writing machine instructions. Every generation, the tedious layer gets automated and the engineer moves up one level. You’re living through the next one.</p>
-</div></div><p>So what’s left? The two highlighted boxes — and they are harder than they look.</p>
+<p>John Backus reportedly disliked the tedium of <a href="https://en.wikipedia.org/wiki/Assembly_language">assembly-language</a> programming, so in the 1950s he led the team that created <a href="https://en.wikipedia.org/wiki/Fortran">FORTRAN</a> — and a generation of programmers stopped hand-writing machine instructions. Later, <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> emerged as a much more readable language. The history of computer science is a story of making code less abstract, and LLMs might be the next step.</p>
+</div></div><p>What should be the focus today?</p>
 </section>
-<section id="specification-saying-what-you-actually-mean" class="level2">
-<h2 class="anchored" data-anchor-id="specification-saying-what-you-actually-mean">Specification: saying what you actually mean</h2>
-<p><strong>Specification</strong> means describing the problem completely: the inputs, the outputs, what has to happen in between, and what should happen at the edges. It sounds trivial. It is the single hardest skill in this course, and it is where real engineering projects most often fail — long before any code is involved.</p>
+<section id="specification-means-describing-the-problem-completely" class="level2">
+<h2 class="anchored" data-anchor-id="specification-means-describing-the-problem-completely">Specification means describing the problem completely</h2>
+<p>… the inputs, the outputs, what has to happen in between, and what should happen at the edges. It sounds trivial. It is the single hardest skill in this course, and it is where real engineering projects most often fail — long before any code is involved.</p>
 <p>Here’s the uncomfortable truth about <em>any</em> tool that builds from your description, whether it’s an AI, a contractor, or a teammate: <strong>every gap in your specification gets filled with an assumption, and you don’t get to choose the assumption.</strong></p>
 <p>Try this one. A perfectly obedient, perfectly literal robot chef awaits your command:</p>
 <blockquote class="blockquote">
@@ -410,13 +409,12 @@ window.Quarto = {
 <p>Statement A is a <em>completed specification</em> — someone already did all the thinking, and you’re just following instructions. Statement B is a <em>problem</em>. To attack B, you have to decide: what are the inputs? (A recording? Frequency-vs-time data?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?</p>
 <p>In the old version of this course, you got Statement A. In this version, you get Statement B — because Statement B is what your future boss will hand you. Nobody in industry hands you Statement A; <strong>producing Statement A from Statement B is the job.</strong></p>
 </section>
-<section id="verification-refusing-to-trust-the-black-box" class="level2">
-<h2 class="anchored" data-anchor-id="verification-refusing-to-trust-the-black-box">Verification: refusing to trust the black box</h2>
-<p><strong>Verification</strong> means confirming a program does what you intended — <em>without</em> taking anyone’s word for it, including the AI’s, including your own.</p>
-<p>The core moves, which we will drill all semester:</p>
-<p>The <strong>hand estimate</strong>: before running anything, compute a rough expected answer for one simple case. A dropped wrench falls 3 meters in — pause, you can do this — about <span class="math inline">\(t = \sqrt{2h/g} \approx \sqrt{6/9.8} \approx 0.8\)</span> seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, you’ve earned a little trust.</p>
+<section id="verification-means-confirming-a-program-does-what-you-intended" class="level2">
+<h2 class="anchored" data-anchor-id="verification-means-confirming-a-program-does-what-you-intended">Verification means confirming a program does what you intended</h2>
+<p>… without taking anyone’s word for it, including the AI’s. This semester we will verify our code with:</p>
+<p>The <strong>hand estimate</strong>: before running anything, compute a rough expected answer for one simple case. A dropped wrench falls 3 meters in about <span class="math inline">\(t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2} \approx 0.8\)</span> seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that’s a good sign.</p>
 <p>The <strong>edge case</strong>: what happens at zero? At a negative input? When the file is empty? A program that works on the happy path and explodes at the edges is a program that will fail in the field.</p>
-<p>The <strong>intuition check</strong>: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools toward room temperature and not past it. That intuition is a verification instrument. This course will sharpen it, not replace it.</p>
+<p>The <strong>intuition check</strong>: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools toward room temperature and not past it. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -433,14 +431,14 @@ Important
 </section>
 <section id="the-map-of-this-course" class="level2">
 <h2 class="anchored" data-anchor-id="the-map-of-this-course">The map of this course</h2>
-<p>Four verbs describe what engineers do with computation, and they organize everything we’ll touch:</p>
+<p>Four verbs describe what engineers do with computation, and they outline this course:</p>
 <ol type="1">
 <li><strong>Fetch</strong> — get real data into (and out of) your programs: sensors, files, the internet.</li>
 <li><strong>Process</strong> — turn raw data into meaningful quantities: functions, sweeps, big datasets.</li>
 <li><strong>Simulate</strong> — build models, make predictions, ask “what if,” and know when not to believe yourself.</li>
 <li><strong>Analyze</strong> — communicate findings honestly: good plots, stated uncertainty, defensible conclusions.</li>
 </ol>
-<p>We’ll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The <a href="../standards.html">standards page</a> lists exactly what you’ll be able to do under each verb — that list <em>is</em> your grade, so go read it.</p>
+<p>We’ll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The <a href="../standards.html">standards page</a> lists exactly what you’ll be able to do under each verb.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

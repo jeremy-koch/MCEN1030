@@ -282,9 +282,9 @@ window.Quarto = {
   <ul>
   <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
   <li><a href="#the-one-sentence-version" id="toc-the-one-sentence-version" class="nav-link" data-scroll-target="#the-one-sentence-version">The one-sentence version</a></li>
-  <li><a href="#three-consequences-you-must-internalize" id="toc-three-consequences-you-must-internalize" class="nav-link" data-scroll-target="#three-consequences-you-must-internalize">Three consequences you must internalize</a>
+  <li><a href="#three-consequences" id="toc-three-consequences" class="nav-link" data-scroll-target="#three-consequences">Three consequences</a>
   <ul class="collapse">
-  <li><a href="#its-plausibility-not-truth" id="toc-its-plausibility-not-truth" class="nav-link" data-scroll-target="#its-plausibility-not-truth">1. It’s plausibility, not truth</a></li>
+  <li><a href="#its-plausible-but-maybe-not-the-truth" id="toc-its-plausible-but-maybe-not-the-truth" class="nav-link" data-scroll-target="#its-plausible-but-maybe-not-the-truth">1. It’s plausible, but maybe not the truth</a></li>
   <li><a href="#same-prompt-different-answers" id="toc-same-prompt-different-answers" class="nav-link" data-scroll-target="#same-prompt-different-answers">2. Same prompt, different answers</a></li>
   <li><a href="#your-specification-is-the-steering-wheel" id="toc-your-specification-is-the-steering-wheel" class="nav-link" data-scroll-target="#your-specification-is-the-steering-wheel">3. Your specification is the steering wheel</a></li>
   </ul></li>
@@ -316,13 +316,14 @@ window.Quarto = {
 </header>
 
 
-<p>You will use AI constantly in this course, so we are going to spend one lesson opening the hood. Not because you need to build one — you need to build a <em>mental model</em> of one, so its behavior stops being magic and starts being predictable. Engineers don’t use instruments they don’t understand the failure modes of.</p>
+<p>You will use AI constantly in this course, and you’ve probably already got some experience. (If not, don’t worry!) Let’s spend one lesson on what’s it’s actually doing.</p>
+<!-- . Not because you need to build one — you need to build a *mental model* of one, so its behavior stops being magic and starts being predictable. Engineers don't use instruments they don't understand the failure modes of. -->
 <section id="think-first" class="level2">
 <h2 class="anchored" data-anchor-id="think-first">Think First</h2>
 <p>Recall</p>
 <ol type="1">
 <li>Your phone’s keyboard suggests the next word as you type. How do you think it decides what to suggest?</li>
-<li>Have you ever confidently “remembered” something that turned out to be wrong — a fact you’d have bet money on? What did that feel like <em>from the inside</em>?</li>
+<li>Have you ever confidently “remembered” something that turned out to be wrong?</li>
 </ol>
 <p>Look Ahead</p>
 <ol type="1">
@@ -342,12 +343,12 @@ window.Quarto = {
 <p>The “small chunks” are called <em>tokens</em> — usually a word or piece of a word. <code>thermal</code> might be one token; <code>thermodynamics</code> might be three.</p>
 </div></div><p>The model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and critically for us, <strong>billions of lines of code</strong> — and adjusting billions of internal numerical knobs until its next-chunk predictions got very good. When you prompt it, you’re providing the start of a text, and it continues that text one chunk at a time, each new chunk chosen based on everything that came before.</p>
 </section>
-<section id="three-consequences-you-must-internalize" class="level2">
-<h2 class="anchored" data-anchor-id="three-consequences-you-must-internalize">Three consequences you must internalize</h2>
-<p>Everything strange about LLM behavior falls out of that mechanism. Three consequences matter for this course.</p>
-<section id="its-plausibility-not-truth" class="level3">
-<h3 class="anchored" data-anchor-id="its-plausibility-not-truth">1. It’s plausibility, not truth</h3>
-<p>The model produces text that is <em>statistically likely to follow</em> your prompt — text shaped like a correct answer. Usually, the most plausible continuation of an engineering question <em>is</em> the correct answer, which is why these tools are so useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a function name that sounds real but isn’t, a formula with one term quietly wrong, a citation to a paper that doesn’t exist. This is often called <strong>hallucination</strong>, and the dangerous part is the <em>fluency</em>: wrong answers arrive in the same confident voice as right ones.</p>
+<section id="three-consequences" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="three-consequences">Three consequences</h2>
+<p>Everything strange about LLM behavior falls out of that mechanism.</p>
+<section id="its-plausible-but-maybe-not-the-truth" class="level3">
+<h3 class="anchored" data-anchor-id="its-plausible-but-maybe-not-the-truth">1. It’s plausible, but maybe not the truth</h3>
+<p>The model produces text that is <em>statistically likely to follow</em> your prompt — the text sounds like what the correct answer might sound like. Usually, the most plausible continuation of an engineering question <em>is</em> the correct answer, which is why these tools are often useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn’t apply to the situation (dangerous!), a citation to a paper that doesn’t exist, a recipe with crazy ingredients. This is often called a <strong>hallucination</strong>, and the dangerous part is that the LLM can be just as confident about its hallucinations as it is about real information.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -358,19 +359,22 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There is no tone-of-voice difference between an LLM being right and an LLM being wrong. Your verification habits are the only alarm system you get.</p>
+<p>There is no tone-of-voice difference between an LLM being right and an LLM being wrong. Verify!</p>
 </div>
 </div>
 </section>
-<section id="same-prompt-different-answers" class="level3">
+<section id="same-prompt-different-answers" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="same-prompt-different-answers">2. Same prompt, different answers</h3>
 <p>Prediction produces a <em>menu</em> of plausible next chunks, each with a probability — and by design, the model doesn’t always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.</p>
-<p>This is why, on Thursday, thirty tables prompting for the same task will produce thirty <em>different</em> programs — different variable names, different structures, sometimes different algorithms, occasionally different <em>answers</em>. In this course that divergence isn’t a nuisance; it’s the curriculum. “Why did your table’s code come out different from ours, and which one is right?” is the most instructive question we will ask all semester.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>LLMs with a higher “temperature” value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it create the same output every time.</p>
+</div></div><p>This is why, on Thursday, thirty tables prompting for the same task will produce thirty <em>different</em> programs — different variable names, different structures, sometimes different algorithms, occasionally different <em>answers</em>. In this course that divergence isn’t a nuisance; it’s the curriculum. “Why did your table’s code come out different from ours, and which one is right?” is the most instructive question we will ask all semester.</p>
 </section>
 <section id="your-specification-is-the-steering-wheel" class="level3">
 <h3 class="anchored" data-anchor-id="your-specification-is-the-steering-wheel">3. Your specification is the steering wheel</h3>
-<p>The model fills every gap in your prompt with a plausible assumption — plausible <em>on average across everything it has read</em>, not plausible <em>for your specific problem</em>. Ask for “a program to compute the trajectory of a projectile” and you’ll get something — but did it include air resistance? What launch angle convention? Degrees or radians? SI units? You didn’t say, so it guessed.</p>
-<p>This is the punchline of the whole week: <strong>specification (Tuesday’s lesson) is precisely the skill that controls an LLM.</strong> A vague prompt doesn’t get you a wrong answer; it gets you a correct answer <em>to a question you didn’t quite ask</em> — which is worse, because it looks right.</p>
+<p>The model fills every gap in your prompt with a plausible assumption. Ask for “a program to compute the trajectory of a projectile” and you’ll get something — but did it include air resistance? What launch angle convention? Degrees or radians? SI units? You didn’t say, so it guessed.</p>
+<p>This is the punchline of the whole week: <strong>specification (Tuesday’s lesson) is precisely the skill that controls an LLM.</strong> A vague prompt doesn’t get you a wrong answer; it gets you a correct answer <em>to a question you didn’t quite ask</em> — which might be worse for you because it looks right but doesn’t quite do the job.</p>
 </section>
 </section>
 <section id="why-is-it-so-good-at-code-anyway" class="level2 page-columns page-full">
