@@ -407,73 +407,73 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "What do engineers do with computation, and why is it awesome?",
+    "title": "Welcome",
     "section": "",
-    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWe are trying a new approach to this class this semester. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professors gave us very clean problem statements so that we could focus on writing the code. This is no longer the process of programming! AI (artificial intelligence) and specifically LLMs (large language models) have proven they are extremely capable of writing code based on a prompt (natural language instructions), and so they solve well-specified problems almost instantaneously. ::: {.column-margin} We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk in this class about how they are actually just statistical word-guessers. :::\nFor better or worse, it seems LLMs are here to stay, and so we will learn how to integrate them into our computing workflow. Most engineers are not manually typing in for i in items: anymore, they are writing prompts that include phrases “…iterate through the items in that list…” and having ChatGPT, Claude, Gemini, Grok, or Co-Pilot write the code. ::: {.column-margin} If they are using a “local LLM”, one that is not run on the cloud (and thus one that is not sending out company secrets), they might be using Qwen, Gemma, Deepseek, or another open-source model. :::\nThat doesn’t mean it is not important to understand code. We are not going to treat LLM-generated code as a “black box”. We we learn why LLMs are not 100% trustworthy and that will motivate us to learn about the concepts, the meanings of errors, etc., so that we can troubleshoot and improve upon code. And, after all, if you end up using an LLM result in your job and an engine explodes, you won’t be able to blame ChatGPT — it’s your fault! So we better make sure we understand what is going on in the code. ::: {.column-margin} We can’t look inside a “black box” to see what is going on. :::",
+    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWe are trying a new approach to this class. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation, how computer logic works, and how to interpret code, but we will also learn how to integrate LLMs into our computing workflow. Importantly, we are not going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM result in your job and a test engine explodes, you won’t be able to blame an LLM - it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project - if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, LLMs are tool that can help us produce better work, faster. And they’ll give us an opportunity to do some moderately ambitious engineering work this semester.",
     "crumbs": [
       "Home",
       "Start Here",
-      "What do engineers do with computation, and why is it awesome?"
+      "Welcome"
     ]
   },
   {
     "objectID": "index.html#the-big-idea",
     "href": "index.html#the-big-idea",
-    "title": "What do engineers do with computation, and why is it awesome?",
+    "title": "Welcome",
     "section": "The big idea",
     "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — actually thinking about the code structure and typing the code — was the bottleneck, so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you cannot articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers are actually hired to do.",
     "crumbs": [
       "Home",
       "Start Here",
-      "What do engineers do with computation, and why is it awesome?"
+      "Welcome"
     ]
   },
   {
     "objectID": "index.html#how-a-week-works",
     "href": "index.html#how-a-week-works",
-    "title": "What do engineers do with computation, and why is it awesome?",
+    "title": "Welcome",
     "section": "How a week works",
-    "text": "How a week works\nBefore class, you read one lesson on this site (30–45 minutes) — and the lessons are runnable: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the getting going page has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a Bring to class box: one question you answer on paper, committed, before you arrive.\nClass opens with that question. You’ll vote on it, argue with your table, and vote again. If you didn’t do the reading, you will know it, and so will your table. That’s the whole accountability system, and it works better than a quiz because you can’t outsource an argument.\nMondays are optional. All semester, one weekly optional session: Base Camp early (the beginner on-ramp, plus checkpoint dress rehearsals), Side Quests later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.\nFour Tuesdays open with a checkpoint (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the grading page.\nThe rest of class is work at the tables. Early in the semester that’s mostly short problems with right answers. Later it shifts toward open-ended problems where every table’s AI-assisted solution comes out different, and the interesting question becomes why.\nHomework are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. (The code is not what’s graded). The homework page explains the format.",
+    "text": "How a week works\nBefore class, you read one lesson on this site (~30 minutes) — and the lessons are runnable: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the getting going page has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a Bring to class box: one question you answer on paper, committed, before you arrive.\nClass opens with that question. You’ll vote on it, argue with your table, and vote again. If you didn’t do the reading, you will know it, and so will your table. That’s the whole accountability system, and it works better than a quiz because you can’t outsource an argument.\nMondays are optional. All semester, one weekly optional session: Base Camp early (the beginner on-ramp, plus checkpoint dress rehearsals), Side Quests later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.\nFour Tuesdays open with a checkpoint (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the grading page.\nThe rest of class is work at the tables. Early in the semester that’s mostly short problems with right answers. Later it shifts toward open-ended problems where every table’s AI-assisted solution comes out different, and the interesting question becomes why.\nHomework are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. (The code is not what’s graded). The homework page explains the format.",
     "crumbs": [
       "Home",
       "Start Here",
-      "What do engineers do with computation, and why is it awesome?"
+      "Welcome"
     ]
   },
   {
     "objectID": "index.html#ai-policy",
     "href": "index.html#ai-policy",
-    "title": "What do engineers do with computation, and why is it awesome?",
+    "title": "Welcome",
     "section": "AI policy",
     "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project you produced.",
     "crumbs": [
       "Home",
       "Start Here",
-      "What do engineers do with computation, and why is it awesome?"
+      "Welcome"
     ]
   },
   {
     "objectID": "index.html#grading",
     "href": "index.html#grading",
-    "title": "What do engineers do with computation, and why is it awesome?",
+    "title": "Welcome",
     "section": "Grading",
-    "text": "Grading\nThis course uses standards-based grading: a list of specific skills (the standards), each marked Met or Not Yet, plus engagement credits for committed preparation and in-class work — credited for good faith and not for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you end up, not where you started. The full mechanics, including a grade table and worked examples, are on the grading page.",
+    "text": "Grading\nThis course uses standards-based grading: a list of specific skills (the standards), each marked Met or Not Yet, plus engagement credits for preparation and in-class work. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. The full mechanics, including a grade table and worked examples, are on the grading page.",
     "crumbs": [
       "Home",
       "Start Here",
-      "What do engineers do with computation, and why is it awesome?"
+      "Welcome"
     ]
   },
   {
     "objectID": "index.html#where-to-go-next",
     "href": "index.html#where-to-go-next",
-    "title": "What do engineers do with computation, and why is it awesome?",
+    "title": "Welcome",
     "section": "Where to go next",
     "text": "Where to go next\nThe schedule shows the whole semester at a glance. Your first reading (for Tuesday) is What do engineers do with computation? If you have never written a line of code in your life: good, you’re in the right place — and Base Camp is the page built specifically for you. The curious should also browse the Side Quests.",
     "crumbs": [
       "Home",
       "Start Here",
-      "What do engineers do with computation, and why is it awesome?"
+      "Welcome"
     ]
   },
   {

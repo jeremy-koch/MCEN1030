@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What do engineers do with computation, and why is it awesome? – MCEN 1030</title>
+<title>Welcome – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Start Here</a></li><li class="breadcrumb-item"><a href="./index.html">What do engineers do with computation, and why is it awesome?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Start Here</a></li><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">What do engineers do with computation, and why is it awesome?</span></a>
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -261,11 +261,11 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Start Here</a></li><li class="breadcrumb-item"><a href="./index.html">What do engineers do with computation, and why is it awesome?</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Start Here</a></li><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">What do engineers do with computation, and why is it awesome?</h1>
+<h1 class="title">Welcome</h1>
 <p class="subtitle lead">MCEN 1030 · Introduction to Engineering Computing</p>
 </div>
 
@@ -284,10 +284,23 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.</p>
-<p>We are trying a new approach to this class this semester. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professors gave us very clean problem statements so that we could focus on writing the code. This is no longer the process of programming! AI (artificial intelligence) and specifically LLMs (large language models) have proven they are extremely capable of writing code based on a prompt (natural language instructions), and so they solve well-specified problems almost instantaneously. ::: {.column-margin} We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk in this class about how they are actually just statistical word-guessers. :::</p>
-<p>For better or worse, it seems LLMs are here to stay, and so we will learn how to integrate them into our computing workflow. Most engineers are not manually typing in <code>for i in items:</code> anymore, they are writing prompts that include phrases “…iterate through the items in that list…” and having ChatGPT, Claude, Gemini, Grok, or Co-Pilot write the code. ::: {.column-margin} If they are using a “local LLM”, one that is not run on the cloud (and thus one that is not sending out company secrets), they might be using Qwen, Gemma, Deepseek, or another open-source model. :::</p>
-<p>That doesn’t mean it is not important to understand code. We are not going to treat LLM-generated code as a “black box”. We we learn why LLMs are not 100% trustworthy and that will motivate us to learn about the concepts, the meanings of errors, etc., so that we can troubleshoot and improve upon code. And, after all, if you end up using an LLM result in your job and an engine explodes, you won’t be able to blame ChatGPT — it’s your fault! So we better make sure we understand what is going on in the code. ::: {.column-margin} We can’t look inside a “black box” to see what is going on. :::</p>
-<section id="the-big-idea" class="level2">
+<p>We are trying a new approach to this class. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
+<p>Today, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in <code>for i in items:</code> anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work. <!-- — they can solve those traditional intro to computing problems almost instantaneously. Outside of class, the problems are not as well-specified — engineering is messy, and by definition any new design has never been tested before. But still,  --></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk in this class about how they are actually just statistics-based word-guessers.</p>
+</div><div class="">
+<p>The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engineers might use a “local LLM” instead, one that is not run on a personal computer, not the cloud. (Thus, your company secrets stay on your computer.) In such a case they might have downloaded Qwen, Gemma, Deepseek, or another open-source model.</p>
+</div></div>
+<p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation, how computer logic works, and how to interpret code, but we will also learn how to integrate LLMs into our computing workflow. Importantly, we are not going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM result in your job and a test engine explodes, you won’t be able to blame an LLM - it’s your fault!</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>We can’t look inside a “black box” to see what is going on.</p>
+</div></div><p>Further, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project - if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, LLMs are tool that can help us produce better work, faster. And they’ll give us an opportunity to do some moderately ambitious engineering work this semester.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The flip side of this coin is: if we don’t understand computational ideas and are just hoping the LLM figures out what to do based on a vague description of the problem, we are going to be in trouble.</p>
+</div></div><section id="the-big-idea" class="level2">
 <h2 class="anchored" data-anchor-id="the-big-idea">The big idea</h2>
 <p>The process of creating computational tools looks roughly like this:</p>
 <svg viewbox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:700px; width:100%; height:auto;">
@@ -324,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="how-a-week-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-a-week-works">How a week works</h2>
-<p><strong>Before class</strong>, you read one lesson on this site (30–45 minutes) — and the lessons are <em>runnable</em>: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the <a href="./info/installing.html">getting going page</a> has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper, committed, before you arrive</em>.</p>
+<p><strong>Before class</strong>, you read one lesson on this site (~30 minutes) — and the lessons are <em>runnable</em>: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the <a href="./info/installing.html">getting going page</a> has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper, committed, before you arrive</em>.</p>
 <p><strong>Class opens with that question.</strong> You’ll vote on it, argue with your table, and vote again. If you didn’t do the reading, you will know it, and so will your table. That’s the whole accountability system, and it works better than a quiz because you can’t outsource an argument.</p>
 <p><strong>Mondays are optional.</strong> All semester, one weekly optional session: <a href="./info/basecamp.html">Base Camp</a> early (the beginner on-ramp, plus checkpoint dress rehearsals), <a href="./info/sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.</p>
 <p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the <a href="./info/grading.html">grading page</a>.</p>
@@ -337,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./info/standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for committed preparation and in-class work — credited for good faith and not for correctness. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it naturally reappears, and your grade is where you <em>end up</em>, not where you started. The full mechanics, including a grade table and worked examples, are on the <a href="./info/grading.html">grading page</a>.</p>
+<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./info/standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for preparation and in-class work. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you <em>end up</em>, not where you started. The full mechanics, including a grade table and worked examples, are on the <a href="./info/grading.html">grading page</a>.</p>
 </section>
 <section id="where-to-go-next" class="level2">
 <h2 class="anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
