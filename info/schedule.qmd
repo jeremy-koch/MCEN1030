@@ -1,0 +1,42 @@
+---
+title: "Schedule"
+subtitle: "The semester at a glance"
+---
+
+The course moves through four phases. The classroom rhythm shifts as it goes: early weeks are mostly **convergent** (questions with right answers — commit, vote, argue, re-vote), and as the semester accumulates material worth arguing about, Thursdays tilt increasingly **divergent** (open-ended work, table critique, "why did your AI's answer come out different from ours?").
+
+Read the lesson *before* the class it's listed under. [Homework sets](../homework/index.qmd) anchor to weeks 2, 3, 5, 6, 7, 8, 9, 10, and 11; Mondays carry the optional [Base Camp / Side Quest](basecamp.qmd) sessions. Every lesson ends with a **Bring to class** item; class opens with it.
+
+| Week | Tuesday | Thursday | Standards in play |
+|:----:|:--------|:---------|:------------------|
+| **Phase 0 — Thinking** | | | |
+| 1 | [What do engineers do with computation?](../lessons/01a-what-engineers-do.qmd) — the pipeline; specification as *the* skill. No computers. | [What does an LLM actually do?](../lessons/01b-what-llms-do.qmd) → [Divergence & the ISS](../activities/w01-divergence-demo.qmd) | — |
+| 2 | [First contact](../lessons/02a-first-contact.qmd) — Colab, cells, variables; predict-then-run. | [Reading code](../lessons/02b-reading-code.qmd) → [The flaw hunt](../activities/w02-flaw-hunt.qmd) | P4, A1 |
+| **Phase 1 — Vocabulary** | | | |
+| 3 | [Functions](../lessons/03-functions.qmd) — inputs, outputs, and the contract between them. | [The function forge](../activities/w03-function-forge.qmd) — spec one, direct the AI, check it in isolation. | P1, A4 |
+| 4 | ✓ **Checkpoint 1**, then [Logic & edge cases](../lessons/04-logic-edges.qmd) — if/else, booleans; where specs go to die. | [The edge-case hunt](../activities/w04-edge-hunt.qmd) — break each other's functions. | P4, P1 |
+| 5 | [Loops, arrays & sweeps](../lessons/05-loops-sweeps.qmd) — repetition as a superpower. | [Sweep lab](../activities/w05-sweep-lab.qmd) — predict all outcomes of a process. | P2, S4 |
+| 6 | ✓ **Checkpoint 2**, then [Data in, data out](../lessons/06-data-io-plots.qmd) — files, CSV, and honest plotting. | [Plot clinic](../activities/w06-plot-clinic.qmd) — make one honest plot, catch one misleading one. | F2, A2 |
+| **Phase 2 — Power Tools** | | | |
+| 7 | [Pandas](../lessons/07-pandas.qmd) — 60,000 rows without fear. | [Dataset triage](../activities/w07-triage.qmd) — real, messy data at scale. | P3, F2 |
+| 8 | ✓ **Checkpoint 3**, then [Fetch](../lessons/08-fetch.qmd) — APIs, JSON, and your phone's accelerometer. | [Data acquisition lab](../activities/w08-acquisition.qmd) — the stairwell awaits. | F1, F2, A3 |
+| 9 | [Simulate I](../lessons/09-simulate-1.qmd) — time-stepping a model into the future. | [Build-a-model lab](../activities/w09-model-lab.qmd) — every table marches a different system. | S1, S3 |
+| 10 | ✓ **Checkpoint 4**, then [Simulate II](../lessons/10-simulate-2.qmd) — assumptions, trust, and what-ifs. | [Model critique](../activities/w10-model-critique.qmd) — every table's model is wrong differently. | S2, S3, S4 |
+| **Phase 3 — Integration** | | | |
+| 11 | [Your second language](../lessons/11-matlab.qmd) — MATLAB, translation, and choosing tools. | [**Project launch**](../activities/w11-launch.qmd) — menu, teams, spec zero. | P4, A4 |
+| 12 | [Project studio](../lessons/12-13-project-studio.qmd) — desk crits at tables. | [Pin-up #1](../activities/w12-pinup-1.qmd) — specs & verification plans on the wall. | S2, A3, A4, P5 |
+| 13 | Project studio — desk crits at tables. | [Pin-up #2](../activities/w13-pinup-2.qmd) — working artifacts, same-project pairing. | A2, A3, P5 |
+| 14 | [Defense prep](../lessons/14-defense.qmd) — what it means to know your own project. | [Mock defenses](../activities/w14-mock-defense.qmd) at tables. | P5 |
+| Finals | **The Defense** — a written exam about *your* project: trace it, explain it, predict what breaks. | | P5 + everything |
+
+: {tbl-colwidths="[6,34,34,26]"}
+
+::: {.callout-note}
+## Checkpoints
+The ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the [grading page](grading.qmd).
+:::
+
+<!-- ::: {.callout-note}
+## About Phase 3
+Weeks 12–14 have no new reading. The lesson pages for those weeks describe how studio time works, what a pin-up is, what makes critique useful, and exactly what the defense will ask of you.
+::: -->

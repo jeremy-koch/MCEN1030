@@ -1,0 +1,32 @@
+---
+title: "Side Quests"
+subtitle: "Mondays, second half of the semester — enrichment for the curious"
+---
+
+Once [Base Camp](basecamp.qmd) winds down, **Mondays keep going** with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just *the day we hang out and build things*, which is roughly what engineering departments are for.
+
+Dress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — **signups on Canvas; a quest runs if ~10 people want it** — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library.
+
+## The menu
+
+**Starting from scratch.** *(Timed for week 11, right before project launch.)* The blank-page protocol: what to actually do when there's no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build *that*; grow it. We'll start something real from nothing, live, mistakes included.
+
+**Git & version control.** *(Week 12.)* How real teams avoid `final_v2_ACTUAL_final.py`: commits, history, branches, and undo-anything confidence.
+
+**Build a tiny language model.** You've directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.
+
+**Parametric design → 3D print.** Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we *print* the winner on the department's machines. It's HW 3's parameter sweep made physical: the design space in your hand. (Print queue permitting.)
+
+<!-- **Measure the world.** The room is full of instruments. Signal off a function generator, capture it on an oscilloscope, *and* record the same tone with Phyphox — then reconcile the two in Python. Fetch (F1) meets real lab hardware, and a quiet preview of your instrumentation courses.
+
+**Your data, your problem.** Bring any dataset you actually care about — fantasy football, workout logs, your bank's CSV export — and we'll wrangle it with pandas together. The fastest way to make week 7 permanent is to point it at something you love.
+
+**Debugging as detective work.** A structured method for "it's broken and I don't know why": isolate, hypothesize, test, repeat. The scientific method wearing a hoodie.
+
+**ML taster, on your own data.** Train a walk-vs-run classifier on your week-8 accelerometer recordings — your data, your body, ~20 lines of scikit-learn. An honest trailer for where computational coursework goes next.
+
+**Run an LLM on your own machine.** Local models: what a laptop can do (more than you think), what it costs (nothing), why you might want one (privacy, no subscription, tinkering). Live setup included.
+
+**The portfolio.** *(Late semester.)* Your project report is already a Quarto page; this session makes it a public site on GitHub Pages, plus the resume bullet that honestly describes what you did ("directed and audited AI-generated analysis of…"). The session where A3-quality documentation starts paying you back.
+
+**Where this goes next.** *(Week 14 / on demand.)* Computational Methods, machine learning, CFD, the clubs and competitions on this campus — and a pointer at **Advent of Code**, which starts December 1st, the week this course ends, and is the best "how do I keep going?" answer that exists. -->

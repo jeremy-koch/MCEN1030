@@ -1,0 +1,67 @@
+---
+title: "Getting going in your language"
+subtitle: "Google Colab first, then VS Code (or whatever!)"
+---
+
+A few recommendations, if you want them. **You can do this entire course in Google Colab and MATLAB Online** — nothing to install, works on any machine. Start there. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.
+
+
+<!-- ::: {.callout-important}
+I considered giving NO instructions for installing Python, because local setups require some care and occasional maintenance during the semester — and I want you willing and able to handle that yourselves. (Chasing down an installation problem is excellent training for this course's whole philosophy.) But I relented. Recommendations below — and you will need to do a bit of work from the command line. If you flat-out do not want to do command-line stuff, stay in Colab or go with MATLAB. But for what it's worth: it makes me feel powerful to do command-line stuff.
+::: -->
+
+## Python via Google Colab
+
+Go to [colab.research.google.com](https://colab.research.google.com), sign in with your university Google account, click **New notebook**. That's the entire installation. Python runs on Google's computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!
+
+## Python on your machine
+
+There are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you.
+
+There are two steps: install Python and a package manager, and install an editor.
+
+### Package manager
+
+My recommendation is to [install **miniconda**](https://www.anaconda.com/docs/getting-started/miniconda/install) — NOT the full Anaconda (which you can find nearby if you really want to, but I'm not linking it).
+::: {.column-margin}
+The full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I "downgraded" to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer [VS Code](https://code.visualstudio.com), which supports Jupyter Notebooks and has a GitHub integration.
+:::
+
+Miniconda starts with essentially no packages, so you'll install what you need from the command line. **NumPy, matplotlib, and pandas** cover this course; [this page has the instructions](https://www.anaconda.com/docs/getting-started/working-with-conda/packages/install-packages). Note that miniconda still uses `conda` as the command.
+
+::: {.column-margin}
+pip is another package-management option — really not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.
+:::
+
+::: {.callout-tip}
+Some other packages that might be worth installing:
+
+- Jupyter is a "notebook" environment that looks a lot like Colab.
+- Seaborn is built on-top of matplotlib... it makes really beautiful plots.
+- SciPy is a deep toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools.
+- Scikit-learn is a good machine learning toolbox that we might use in a Machine Learning Side Quest.
+:::
+
+### Editor
+
+For the editor, I recommend [**VS Code**](https://code.visualstudio.com) — it supports Jupyter notebooks (and the interface is better than the default notebook, which launches in a web browser), has an integrated terminal, and its GitHub integration will matter to anyone who takes the version-control Side Quest. Install VS Code, then its *Python* and *Jupyter* extensions (VS Code will offer them the first time you open a `.py` or `.ipynb` file).
+
+
+
+
+::: {.callout-note collapse="true"}
+## Python "environments" (optional reading)
+Many serious programmers insist each project should have its own "environment" with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (I still couldn't get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment. 
+
+If you do want to create separate environments, e.g., one for your homework repository, one for the machine learning project, you can. From the command line, you would start with something like ```conda create --name homework``` and then ```conda activate homework``` puts you in that environment, and then ```conda install numpy``` would get you numpy in just that environment. You need to install packages in each environment -- if you have three environments set up on your machine, you might technically have numpy installed three times.
+:::
+
+## MATLAB (later in the semester)
+
+ As a CU student you have free access: create a MathWorks account with your CU email — instructions are [here](https://oit.colorado.edu/software-hardware/software-catalog/matlab), under the student "How to get it."
+
+Once your account is tied to the school's license, you can install desktop MATLAB **or** use [MATLAB Online](https://matlab.mathworks.com) in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.
+
+Basic MATLAB is all this course needs; no toolboxes required. If you're going on in the department, toolboxes like Simulink (used in System Dynamics) can be added anytime, so there's no need to decide now.
+
+The MathWorks "**MATLAB Onramp**" tutorial — find it under Online Training at [matlab.mathworks.com](https://matlab.mathworks.com) — is genuinely good, takes about two hours.
