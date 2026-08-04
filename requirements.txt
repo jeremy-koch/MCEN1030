@@ -1,0 +1,14 @@
+# Python packages needed to execute the ```{python} code cells across
+# the course site (the big-dataset, sweep, and pandas lessons). Installed
+# by the publish.yml workflow's `pip install -r requirements.txt` step.
+#
+# Note: this has nothing to do with the {pyodide} "Run Code" cells --
+# those run via WebAssembly in the student's browser and need no
+# packages installed here at all.
+
+jupyter        # the execution engine Quarto uses to run python cells
+ipykernel      # the kernel jupyter actually runs code through
+pandas         # the big-dataset and sweep-to-csv lessons
+matplotlib     # every plot on the site
+numpy          # time-stepping / sweep math, if you lean on it over plain python
+requests       # the ISS / Open-Meteo / USGS API fetches
