@@ -28,8 +28,8 @@ website:
         text: Homework
       - href: basecamp.qmd
         text: Base Camp
-      - href: sidequests.qmd
-        text: Side Quests
+      # - href: sidequests.qmd
+      #   text: Side Quests
   sidebar:
     style: docked
     search: true
