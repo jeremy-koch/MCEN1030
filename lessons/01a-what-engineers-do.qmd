@@ -128,7 +128,7 @@ Four verbs describe what engineers do with computation, and they outline this co
 3. **Simulate** — build models, make predictions, ask "what if," and know when not to believe yourself.
 4. **Analyze** — communicate findings honestly: good plots, stated uncertainty, defensible conclusions.
 
-We'll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The [standards page](../standards.qmd) lists exactly what you'll be able to do under each verb.
+We'll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The [standards page](../info/standards.qmd) lists exactly what you'll be able to do under each verb.
 
 ::: {.callout-tip}
 ## Think

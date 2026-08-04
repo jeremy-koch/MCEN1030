@@ -5,6 +5,7 @@ project:
     - "data/"
   render:
     - "*.qmd"
+    - "info/*.qmd"
     - "lessons/*.qmd"
     - "activities/*.qmd"
     - "homework/*.qmd"
@@ -19,17 +20,17 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: schedule.qmd
+      - href: info/schedule.qmd
         text: Schedule
-      - href: standards.qmd
+      - href: info/standards.qmd
         text: Standards
-      - href: grading.qmd
+      - href: info/grading.qmd
         text: Grading
       - href: homework/index.qmd
         text: Homework
-      - href: basecamp.qmd
+      - href: info/basecamp.qmd
         text: Base Camp
-      # - href: sidequests.qmd
+      # - href: info/sidequests.qmd
       #   text: Side Quests
   sidebar:
     style: docked
@@ -38,10 +39,10 @@ website:
       - section: "Start Here"
         contents:
           - index.qmd
-          - schedule.qmd
-          - standards.qmd
-          - grading.qmd
-          - installing.qmd
+          - info/schedule.qmd
+          - info/standards.qmd
+          - info/grading.qmd
+          - info/installing.qmd
       - section: "Phase 0 — Thinking (Weeks 1–2)"
         contents:
           - lessons/01a-what-engineers-do.qmd
@@ -79,7 +80,7 @@ website:
       #     - activities/w13-pinup-2.qmd
       #     - lessons/14-defense.qmd
       #     - activities/w14-mock-defense.qmd
-      #     - peer-evaluation.qmd
+      #     - info/peer-evaluation.qmd
       # - section: "Homework"
       #   contents:
       #     - homework/index.qmd
@@ -94,9 +95,9 @@ website:
       #     - homework/hw9-bilingual.qmd
       # - section: "Mondays"
       #   contents:
-      #     - basecamp.qmd
-      #     - sidequests.qmd
-      #     - practice.qmd
+      #     - info/basecamp.qmd
+      #     - info/sidequests.qmd
+      #     - info/practice.qmd
 
 pyodide:
   packages:
