@@ -13,6 +13,7 @@ project:
 website:
   title: "MCEN 1030"
   description: "What do engineers do with computation, and why is it awesome?"
+  favicon: favicon.svg
   navbar:
     background: dark
     left:
