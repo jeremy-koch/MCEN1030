@@ -23,7 +23,7 @@ You already know enough Python to read most short engineering scripts. Here's th
 
 | You see | It means |
 |---|---|
-| `x = 5` | store 5 under the name `x` ("gets", not "equals") |
+| `x = 5` | store 5 under the name `x` ("`x` is assigned 5", not "equals") |
 | `print(x)` | display the value of `x` |
 | `x ** 2`, `x / y` | power, division |
 | `# text` | note for humans; Python skips it |

@@ -20,7 +20,7 @@ After each checkpoint, I may personally suggest a Monday session to a few people
 
 **BC2 (Week 2) · First contact, slowly.** The [week 2 lesson](../lessons/02a-first-contact.qmd) again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.
 
-**BC3 (Week 3) · The vocabulary drill.** Reps on the core reading skills: trace variables by hand, predict outputs, read `=` as "gets." Includes **assembly problems** — working code with its lines scrambled, yours to reorder — the missing rung between *reading* code and *writing* it.
+**BC3 (Week 3) · The vocabulary drill.** Reps on the core reading skills: trace variables by hand, predict outputs, read `=` as "is assigned." Includes **assembly problems** — working code with its lines scrambled, yours to reorder — the missing rung between *reading* code and *writing* it.
 
 **BC4 (Week 4) · Dress rehearsal: Checkpoint 1.** A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. Your first no-partial-credit assessment should not also be your first *experience* of one; Tuesday's should feel like the second time. **Dress rehearsals repeat on the Monday before every checkpoint** (weeks 4, 6, 8, 10) — they're the one session type that runs all semester, whichever half we're in.
 

@@ -97,4 +97,3 @@ Commit, on paper, to answers to both of these — Thursday's opening votes:
 ::: {.content-hidden}
 **Instructor answer key (planning only — stripped from the rendered site):** (1) is (c) — different code, possibly different answers; sampling forks and forks compound. (2) seed list if pooling stalls: wrong formula, mixed units, silently-filled assumption, botched edge case, correct code answering the wrong question, plausible hallucinated function.
 :::
-

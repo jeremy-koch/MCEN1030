@@ -31,7 +31,7 @@ print(a - b)
 ```
 
 ::: {.hint exercise="t1"}
-Line by line, keeping a two-column table of `a` and `b`. Remember: `=` means *gets* — line 3 uses the values as they are *at that moment*, and `b` never updates afterward.
+Line by line, keeping a two-column table of `a` and `b`. Remember: `=` means *is assigned* — line 3 uses the values as they are *at that moment*, and `b` never updates afterward.
 :::
 
 ::: {.solution exercise="t1"}

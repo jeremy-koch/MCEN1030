@@ -57,7 +57,7 @@ The `=` sign here does **not** mean "equals" in the math sense. It means **"stor
 count = count + 1
 ```
 
-As algebra, nonsense. As an instruction — *take the value stored in `count`, add 1, store the result back under `count`* — perfectly sensible. Reading `=` as "gets" instead of "equals" will save you real confusion.
+As algebra, nonsense. As an instruction — *take the value stored in `count`, add 1, store the result back under `count`* — perfectly sensible. Reading `=` as "is assigned" instead of "equals" will save you real confusion.
 
 ## The habit that defines this course: predict, then run
 
