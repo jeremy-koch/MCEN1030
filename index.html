@@ -284,15 +284,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.</p>
-<p>We are trying a new approach to this class. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
+<p>We are taking a new approach to this class. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
 <p>Today, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in <code>for i in items:</code> anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work. <!-- — they can solve those traditional intro to computing problems almost instantaneously. Outside of class, the problems are not as well-specified — engineering is messy, and by definition any new design has never been tested before. But still,  --></p>
 
 <!-- ::: {.column-margin}
 The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engineers might use a "local LLM" instead, one that is not run on a personal computer, not the cloud. (Thus, your company secrets stay on your computer.) In such a case they might have downloaded Qwen, Gemma, Deepseek, or another open-source model. 
 ::: -->
 <div class="no-row-height column-margin column-container"><div class="">
-<p>We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk in this class about how they are actually just statistics-based word-guessers.</p>
-</div></div><p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation, how computer logic works, and how to interpret code, but we will also learn how to integrate LLMs into our computing workflow. Importantly, we are not going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM result in your job and a test engine explodes, you won’t be able to blame an LLM — it’s your fault!</p>
+<p>We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk about how they are just statistics-based word-guessers.</p>
+</div></div><p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve differential equations without solutions, like <a href="https://en.wikipedia.org/wiki/Lorenz_system">The Lorenz Equations</a>?), how computer logic works, and how to interpret code (what is happening with <code>for i in items:</code>?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM result in your job and a test engine explodes, you won’t be able to blame an LLM — it’s your fault!</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>We can’t look inside a “black box” to see what is going on.</p>
@@ -330,23 +330,26 @@ The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engine
     <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
   </g>
 </svg>
-<p>For decades, <strong>Production</strong> — actually thinking about the code structure and typing the code — was the bottleneck, so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:</p>
-<p><strong>Specification</strong> means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you cannot articulate the problem, no tool — human or AI — can solve it for you.</p>
+<p>For decades, <strong>Production</strong> — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:</p>
+<p><strong>Specification</strong> means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.</p>
 <p><strong>Verification</strong> means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.</p>
-<p>You will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can <em>think computationally</em>: frame a problem, direct the tools, and audit the results. That is what engineers are actually hired to do.</p>
+<p>You will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can <em>think computationally</em>: frame a problem, direct the tools, and audit the results. That is what engineers actually do!</p>
 </section>
-<section id="how-a-week-works" class="level2">
+<section id="how-a-week-works" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="how-a-week-works">How a week works</h2>
-<p><strong>Before class</strong>, you read one lesson on this site (~30 minutes) — and the lessons are <em>runnable</em>: most code on these pages executes right in your browser, editable, no installation, no setup. (When you want more than the browser — Colab, or Python on your own machine — the <a href="./info/installing.html">getting going page</a> has instructions.) No videos to watch, no Canvas quiz. Instead, every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper, committed, before you arrive</em>.</p>
-<p><strong>Class opens with that question.</strong> You’ll vote on it, argue with your table, and vote again. If you didn’t do the reading, you will know it, and so will your table. That’s the whole accountability system, and it works better than a quiz because you can’t outsource an argument.</p>
+<p><strong>Before class</strong>, you’ll read one lesson on this site (~30 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper before you arrive</em>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>More serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the <a href="./info/installing.html">getting going page</a> has instructions.</p>
+</div></div><p><strong>Class opens with that question.</strong> You’ll vote on it, argue with your table, and vote again.</p>
 <p><strong>Mondays are optional.</strong> All semester, one weekly optional session: <a href="./info/basecamp.html">Base Camp</a> early (the beginner on-ramp, plus checkpoint dress rehearsals), <a href="./info/sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.</p>
-<p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI — where the convergent standards get demonstrated for real, with earlier items re-offered so a rough week is always repairable. Everything about how that feeds your grade is on the <a href="./info/grading.html">grading page</a>.</p>
-<p><strong>The rest of class is work at the tables.</strong> Early in the semester that’s mostly short problems with right answers. Later it shifts toward open-ended problems where every table’s AI-assisted solution comes out <em>different</em>, and the interesting question becomes <em>why</em>.</p>
-<p><strong>Homework</strong> are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. (The code is not what’s graded). The <a href="homework/index.qmd">homework page</a> explains the format.</p>
+<p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI. Everything about how that feeds your grade is on the <a href="./info/grading.html">grading page</a>.</p>
+<p><strong>The rest of class is work at the tables.</strong> Early in the semester that’s mostly short problems with right answers, later it shifts toward open-ended problems.</p>
+<p><strong>Homework</strong> problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The <a href="homework/index.qmd">homework page</a> explains the format.</p>
 </section>
 <section id="ai-policy" class="level2">
 <h2 class="anchored" data-anchor-id="ai-policy">AI policy</h2>
-<p>You are <strong>expected</strong> to use AI tools in this course. You are also <strong>completely responsible</strong> for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. The final exam asks you to explain what is actually going on inside a project <em>you</em> produced.</p>
+<p>You are <strong>expected</strong> to use AI tools in this course. You are also <strong>completely responsible</strong> for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. <!-- The final exam asks you to explain what is actually going on inside a project *you* produced. --></p>
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
@@ -354,7 +357,7 @@ The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engine
 </section>
 <section id="where-to-go-next" class="level2">
 <h2 class="anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
-<p>The <a href="./info/schedule.html">schedule</a> shows the whole semester at a glance. Your first reading (for Tuesday) is <a href="./lessons/01a-what-engineers-do.html">What do engineers do with computation?</a> If you have never written a line of code in your life: good, you’re in the right place — and <a href="./info/basecamp.html">Base Camp</a> is the page built specifically for you. The curious should also browse the <a href="./info/sidequests.html">Side Quests</a>.</p>
+<p>The <a href="./info/schedule.html">schedule</a> shows the whole semester at a glance. Your first reading (for Tuesday) is <a href="./lessons/01a-what-engineers-do.html">What do engineers do with computation?</a> You might look at <a href="./info/basecamp.html">Base Camp</a> if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. If curious, you might browse the <a href="./info/sidequests.html">Side Quests</a> — a few ideas are already on that page.</p>
 
 
 <script type="ojs-module-contents">

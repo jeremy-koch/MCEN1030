@@ -285,26 +285,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>A few recommendations, if you want them. <strong>You can do this entire course in Google Colab and MATLAB Online</strong> — nothing to install, works on any machine. Start there. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.</p>
-<!-- ::: {.callout-important}
-I considered giving NO instructions for installing Python, because local setups require some care and occasional maintenance during the semester — and I want you willing and able to handle that yourselves. (Chasing down an installation problem is excellent training for this course's whole philosophy.) But I relented. Recommendations below — and you will need to do a bit of work from the command line. If you flat-out do not want to do command-line stuff, stay in Colab or go with MATLAB. But for what it's worth: it makes me feel powerful to do command-line stuff.
-::: -->
+<p>A few recommendations. <strong>You can do this entire course in Google Colab and MATLAB Online</strong> — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.</p>
 <section id="python-via-google-colab" class="level2">
 <h2 class="anchored" data-anchor-id="python-via-google-colab">Python via Google Colab</h2>
-<p>Go to <a href="https://colab.research.google.com">colab.research.google.com</a>, sign in with your university Google account, click <strong>New notebook</strong>. That’s the entire installation. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g.&nbsp;a csv) but we will figure it out!</p>
+<p>Go to <a href="https://colab.research.google.com">colab.research.google.com</a>, sign in with your university Google account, click <strong>New notebook</strong>, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g.&nbsp;a csv) but we will figure it out!</p>
 </section>
 <section id="python-on-your-machine" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="python-on-your-machine">Python on your machine</h2>
 <p>There are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you.</p>
-<p>There are two steps: install Python and a package manager, and install an editor.</p>
+<p>There are two things you’ll need to do: install Python+a package manager, and install an editor.</p>
 <section id="package-manager" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="package-manager">Package manager</h3>
 <p>My recommendation is to <a href="https://www.anaconda.com/docs/getting-started/miniconda/install">install <strong>miniconda</strong></a> — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it). ::: {.column-margin} The full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer <a href="https://code.visualstudio.com">VS Code</a>, which supports Jupyter Notebooks and has a GitHub integration. :::</p>
-<p>Miniconda starts with essentially no packages, so you’ll install what you need from the command line. <strong>NumPy, matplotlib, and pandas</strong> cover this course; <a href="https://www.anaconda.com/docs/getting-started/working-with-conda/packages/install-packages">this page has the instructions</a>. Note that miniconda still uses <code>conda</code> as the command.</p>
+<p>Miniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. <strong>NumPy, matplotlib, and pandas</strong> are necessary for this course; <a href="https://www.anaconda.com/docs/getting-started/working-with-conda/packages/install-packages">this page has the instructions</a>. Note that miniconda still uses <code>conda</code> as the command.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
+<p>What are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">Trapezoid Rule</a> for finding the area under a curve, and implemented it <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapezoid.html">into the SciPy package</a>. Now, instead of writing the code from scratch, you can just call that function with <code>trapezoid(y)</code> in your code.</p>
+</div><div class="">
 <p>pip is another package-management option — really not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.</p>
-</div></div><div class="callout callout-style-default callout-tip callout-titled">
+</div></div>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -318,15 +318,16 @@ Tip
 <ul>
 <li>Jupyter is a “notebook” environment that looks a lot like Colab.</li>
 <li>Seaborn is built on-top of matplotlib… it makes really beautiful plots.</li>
-<li>SciPy is a deep toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools.</li>
-<li>Scikit-learn is a good machine learning toolbox that we might use in a Machine Learning Side Quest.</li>
+<li>SciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.</li>
+<li>Scikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.</li>
 </ul>
 </div>
 </div>
 </section>
 <section id="editor" class="level3">
 <h3 class="anchored" data-anchor-id="editor">Editor</h3>
-<p>For the editor, I recommend <a href="https://code.visualstudio.com"><strong>VS Code</strong></a> — it supports Jupyter notebooks (and the interface is better than the default notebook, which launches in a web browser), has an integrated terminal, and its GitHub integration will matter to anyone who takes the version-control Side Quest. Install VS Code, then its <em>Python</em> and <em>Jupyter</em> extensions (VS Code will offer them the first time you open a <code>.py</code> or <code>.ipynb</code> file).</p>
+<p>For the editor, I recommend <a href="https://code.visualstudio.com"><strong>VS Code</strong></a> — it supports Jupyter notebooks (and the notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its <em>Python</em> and <em>Jupyter</em> extensions (VS Code will automatically offer to install them the first time you open a <code>.py</code> or <code>.ipynb</code> file).</p>
+<p>If you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -339,8 +340,8 @@ Tip
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Many serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.</p>
-<p>If you do want to create separate environments, e.g., one for your homework repository, one for the machine learning project, you can. From the command line, you would start with something like <code>conda create --name homework</code> and then <code>conda activate homework</code> puts you in that environment, and then <code>conda install numpy</code> would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have numpy installed three times.</p>
+<p>Many serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.</p>
+<p>If you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like <code>conda create --name project1</code> and then <code>conda activate project1</code> puts you in that environment, and then <code>conda install numpy</code> would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.</p>
 </div>
 </div>
 </div>

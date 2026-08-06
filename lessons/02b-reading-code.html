@@ -438,7 +438,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDJcbmIgPSBhICsgM1xu
 </section>
 <section id="the-annotation-discipline" class="level2">
 <h2 class="anchored" data-anchor-id="the-annotation-discipline">The annotation discipline</h2>
-<p>When an AI hands you code, you will annotate it: a comment on every line or logical block, <strong>in your own words</strong>, saying what it does and <em>why it’s there</em>. Two rules, permanent for the semester:</p>
+<p>When an AI hands you code, you will annotate it: a comment on every line or logical block, <strong>in your own words</strong>, saying what it does and <em>why it’s there</em>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -449,7 +449,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Rule 1:</strong> A line you cannot annotate is a line you do not understand, and a line you do not understand does not enter your program. Investigate it or delete it.</p>
+<p><strong>Rule 1:</strong> A line you can’t annotate is a line you do not understand. Investigate it or delete it.</p>
 <p><strong>Rule 2:</strong> Annotate the <em>why</em>, not just the <em>what</em>. <code># convert to liters</code> beats <code># multiply by 1000</code> — the first survives a bug hunt, the second is just the code again, slower.</p>
 </div>
 </div>
@@ -482,7 +482,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibGVuZ3RoID0gOC4wICAgICAg
 <h2 class="anchored" data-anchor-id="when-the-ai-gets-it-plausibly-wrong">When the AI gets it plausibly wrong</h2>
 <p>Same prompt, different day, and the returned code contains:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>volume_L <span class="op">=</span> volume_m3 <span class="op">*</span> <span class="dv">100</span>    <span class="co"># convert cubic meters to liters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>It runs. It plots nothing suspicious. It reports a fill time of <strong>8.4 hours</strong> — brisk, believable, <em>wrong by a factor of ten</em>. The comment even asserts the conversion confidently. Only two things catch this: the hand estimate (80 ≠ 8.4) and the annotation pass (is 1 m³ really 100 L? A cube 10 dm on a side holds 10 × 10 × 10 = 1000 L). Nothing about <em>running</em> the program catches it. This is the “confident, invisibly wrong” failure mode from week 1, in the wild — and you just watched two cheap habits kill it.</p>
+<p>It runs. It plots nothing suspicious. It reports a fill time of <strong>8.4 hours</strong> — maybe believable, but <em>wrong by a factor of ten</em>. The comment even asserts the conversion confidently. Only two things catch this: the hand estimate (80 ≠ 8.4) and the annotation pass (is 1 m³ really 100 L? Nothing about <em>running</em> the program catches it. This is the “confident, invisibly wrong” failure mode from week 1, in the wild — and you just watched two cheap habits kill it.</p>
 <div class="bring-to-class">
 <p>Below is an AI-generated script with <strong>three planted flaws</strong>: one <em>syntax</em> error (won’t run), one <em>logic</em> error (runs, obviously wrong), and one <em>silent</em> error (runs, plausibly wrong). On paper: annotate every line, name all three flaws, and state what the correct fill time should be. Do <strong>not</strong> run it first — Thursday’s opening vote is which line hides the silent one, and the fun is finding it by reading.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flow <span class="op">=</span> <span class="fl">9.5</span>            <span class="co"># hose flow rate, liters per minute</span></span>
