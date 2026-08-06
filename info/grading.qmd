@@ -24,7 +24,6 @@ Four Tuesdays — **weeks 4, 6, 8, and 10** — open with a checkpoint: about tw
 <!-- The rule that gives the whole system its spine: **at least one of a convergent standard's two demonstrations must be in-class** — at a checkpoint or on the defense. -->
 
 Checkpoints are also where a small amount of unaided writing lives: expect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production? Because verification requires a minimum writing fluency. Checkpoint items are marked Met / Not Yet per standard like everything else; there is no checkpoint "score," and a rough checkpoint costs you nothing that the re-offers can't repair. 
-<!-- (Rough checkpoints are also how Base Camp invitations happen — see [Base Camp](basecamp.qmd) — which is a resource, not a consequence.) -->
 
 ## Engagement credits: the process
 

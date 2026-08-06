@@ -178,7 +178,7 @@ for v in values:
     total = total + v
 print(total / count)
 ```
-The first three lines can go in any order among themselves — data dependency, not ceremony, dictates sequence. That observation is the entire point of assembly problems.
+The first three lines can go in any order among themselves. That observation is the entire point of assembly problems.
 :::
 
 ## Arrays (weeks 5–6)

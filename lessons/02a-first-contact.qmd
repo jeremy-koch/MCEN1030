@@ -89,7 +89,7 @@ If you got an error instead — welcome to programming; see the next section.
 
 This **predict-then-run** move is the single most important habit in the course. It's how you'll read AI-generated code, how you'll debug, how class voting works, and how the final exam works. Running code without a prediction teaches you nothing; you're just watching lights blink.
 
-## Errors are data, not disasters
+## Errors are data
 
 Delete the `h = 3.0` line and run the cell again. You'll get an angry red block ending in something like:
 

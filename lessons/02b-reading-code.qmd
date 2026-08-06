@@ -23,10 +23,10 @@ You already know enough Python to read most short engineering scripts. Here's th
 
 | You see | It means |
 |---|---|
-| `x = 5` | store 5 under the name `x` ("`x` is assigned 5", not "equals") |
+| `x = 5` | store 5 under the name `x` ("`x` is assigned 5") |
 | `print(x)` | display the value of `x` |
 | `x ** 2`, `x / y` | power, division |
-| `# text` | note for humans; Python skips it |
+| `# text` | code comments, note for humans; Python skips it |
 | `if condition:` | *preview (week 4):* run the indented block only when the condition holds |
 | `for item in things:` | *preview (week 5):* run the indented block once per item |
 
@@ -48,7 +48,7 @@ print(a, b, c)
 
 ::: {.callout-note collapse="true"}
 ### Click to see the trace
-After line 1: `a = 2`. After line 2: `a = 2, b = 5`. After line 3: `a = 20, b = 5` (note: `b` doesn't move — it stored a *value*, not a relationship). After line 4: `c = 25`.
+After line 1: `a = 2`. After line 2: `a = 2, b = 5`. After line 3: `a = 20, b = 5`. After line 4: `c = 25`.
 
 If you got `c = 25`, you can trace. If you got `c = 7`, you read `=` as algebra again — go re-run the week-2a mental patch.
 :::
