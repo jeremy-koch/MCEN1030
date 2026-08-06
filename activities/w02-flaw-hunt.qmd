@@ -19,6 +19,6 @@ Tables reconcile their annotations line by line: every line gets a *why*, every 
 
 ## Debrief
 
-The scoreboard truth we're after: the hand estimate catches what running cannot. Tables report which flaw they found *last* — it's almost always the silent one, and the reasons why are the lesson.
+The scoreboard truth we're after: the hand estimate catches what running can't. Tables report which flaw they found *last* — it's almost always the silent one, and the reasons why are the lesson.
 
 **Deliverable (2 EC):** the table's annotated second script with the three flaws named and the corrected answer, initialed by every member.

@@ -82,7 +82,7 @@ Now run it.
 
 ::: {.callout-note collapse="true"}
 ### Click after you've actually run it
-You should see `0.7820...` — matching the hand estimate. Feel that little click of confirmation? That's **verification** (standard A1), and it's the feeling this course is built around. You didn't trust the program because it ran; you trusted it because you *predicted its behavior and it complied*.
+You should see `0.7820...` — matching the hand estimate. **Verification**!
 
 If you got an error instead — welcome to programming; see the next section.
 :::

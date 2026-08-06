@@ -16,14 +16,14 @@ Every standard gets multiple opportunities across the semester (checkpoints, in-
 
 - **Convergent standards** (the ones with checkable right answers) require **two successful demonstrations**, on different occasions.
 - **Divergent standards** (open-ended) require **one demonstration at "Meets" quality**, with the right to revise and resubmit once per artifact.
-- **"Not Yet" means you aren't there yet.** A standard missed in week 4 and demonstrated in week 11 is *Met*. Your grade records where you ended up, because that's what learning a skill means. (The one bound: reassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens. It is not unlimited-on-demand.)
+- **"Not Yet" means you aren't there yet.** A standard missed in week 4 and demonstrated in week 11 is *Met*. Your grade records where you ended up. (The one bound: reassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens. It is not unlimited-on-demand.)
 
 ## Checkpoints
 
 Four Tuesdays — **weeks 4, 6, 8, and 10** — open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards **and re-offers items from earlier checkpoints**. 
 <!-- The rule that gives the whole system its spine: **at least one of a convergent standard's two demonstrations must be in-class** — at a checkpoint or on the defense. -->
 
-Checkpoints are also where a small amount of unaided writing lives: expect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production? Because verification requires a minimum writing fluency: you cannot audit a language you can't produce a sentence in. Checkpoint items are marked Met / Not Yet per standard like everything else; there is no checkpoint "score," and a rough checkpoint costs you nothing that the re-offers can't repair. 
+Checkpoints are also where a small amount of unaided writing lives: expect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production? Because verification requires a minimum writing fluency. Checkpoint items are marked Met / Not Yet per standard like everything else; there is no checkpoint "score," and a rough checkpoint costs you nothing that the re-offers can't repair. 
 <!-- (Rough checkpoints are also how Base Camp invitations happen — see [Base Camp](basecamp.qmd) — which is a resource, not a consequence.) -->
 
 ## Engagement credits: the process
@@ -39,9 +39,7 @@ This course runs on committed preparation and in-room collaboration — the open
 
 Rules: credits are checked for *committed good-faith work* — a wrong answer with reasoning earns full credit; a blank or a transparently uncommitted scribble earns none. Credits are earned in the room (that's the point), with tokens as a pressure-release valve. And note the arithmetic below is deliberately forgiving: an A requires 40 of ~50, so you can fully miss about a fifth of everything and feel no effect.
 
-::: {.column-margin}
-Why credits at all? Because without them, the rational move is to skip the preparation and coast on the tables' work — and this course *is* the tables. Credits make the preparation count without making it a quiz. (Design borrowed from Robert Talbert's pairing of engagement credits with standards-based grading.)
-:::
+
 
 ### Project-period credits are individual
 
@@ -70,13 +68,13 @@ Why P5 is necessary for the A and B: P5 — holding your whole project in your h
 
 **Student 1 — the straightforward case.** Meets 14 standards including P5 (only S4 still Not Yet after the project), earns 43 engagement credits, spends one token on an extension during a brutal midterm week. Check the A row: 14 ≥ 14 ✓, P5 ✓, 43 ≥ 40 ✓. **Grade: A.** The two unspent tokens add 2 credits (45), which changes nothing.
 
-**Student 2 — the slow start (read this one if you're nervous).** Bombs the first checkpoint: P1 and P4 both Not Yet in week 4, and it feels catastrophic. It isn't — both standards are re-offered at the week-6 and week-8 checkpoints, and Student 2 demonstrated each twice by mid-semester. Finishes with 12 standards Met *including* P5 (S2 and A3 fell short on the project report; his revision closed A3 but not S2, and F1 never came together), and 41 engagement credits, because Student 2 did the work all semester even while the checkpoints were rough. B row: 12 ≥ 12 ✓, P5 ✓, 41 ≥ 32 ✓ → at least a B. Plus check: meet ≥ 1 requirement of the A row? The 41 credits clear the A row's 40 ✓. **Grade: B+.** Note the early disasters cost *nothing*. The grade records where we ended up.
+**Student 2 — the slow start (read this one if you're nervous).** Bombs the first checkpoint: P1 and P4 both Not Yet in week 4, and it feels catastrophic. It isn't — both standards are re-offered at the week-6 and week-8 checkpoints, and Student 2 demonstrated each twice by mid-semester. Finishes with 12 standards Met *including* P5 (S2 and A3 fell short on the project report; his revision closed A3 but not S2, and F1 never came together). Then 41 engagement credits, did the work all semester even while the checkpoints were rough. B row: 12 ≥ 12 ✓, P5 ✓, 41 ≥ 32 ✓ → at least a B. Plus check: meet ≥ 1 requirement of the A row? The 41 credits clear the A row's 40 ✓. **Grade: B+.** Note the early disasters cost *nothing*. The grade records where we ended up.
 
-**Student 3 — the ghost (read this one if you're planning to skip class).** Brilliant, and knows it: 13 standards Met including P5, some on first attempt. But treats class as optional — skips the readings' commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). B row: standards ✓ ✓, but 25 < 32 ✗. C row: 13 ≥ 10 ✓, 25 ≥ 24 ✓ → **at least a C.** Plus check: meets two B-row requirements (standards, P5) → **Grade: C+.** Is that harsh for someone with 13 standards? Well, this course is also about *the process* — prepare, commit, argue, critique — because that's the half of the job the standards can't see. Just show up! Ten more Thursdays of just *participating* and we're at a B+.
+**Student 3 — the ghost (read this one if you're planning to skip class).** Brilliant, and knows it: 13 standards Met including P5, some on first attempt. But treats class as optional — skips the readings' commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). B row: standards ✓ ✓, but 25 < 32 ✗. C row: 13 ≥ 10 ✓, 25 ≥ 24 ✓ → **at least a C.** Plus check: meets two B-row requirements (standards, P5) → **Grade: C+.** Is that harsh for someone with 13 standards? Well, this course is also about *the process* — prepare, commit, argue, critique. Ten more Thursdays of just *participating* and we're at a B+.
 
 <!-- ## The philosophy, in one paragraph
 
-Standards answer "can you do the thing?" Engagement credits answer "did you do the work?" A course grade should require both, because your degree asserts both. And nothing in this system rewards being right *early* — only being right *eventually*, which is the only kind of right that engineering careers are made of. Struggle freely. It's priced in. -->
+Standards answer "can you do the thing?" Engagement credits answer "did you do the work?" A course grade should require both. And nothing in this system rewards being right *early* — only being right *eventually*, which is the only kind of right that engineering careers are made of. Struggle freely. It's priced in. -->
 
 <!-- ::: {.callout-note}
 Logistics: your current standards ledger and credit count live on Canvas, updated weekly. Arithmetic disputes are welcome and boring (bring them anytime); judgment disputes on divergent standards go through the revise-and-resubmit channel, which exists precisely for that conversation.

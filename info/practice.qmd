@@ -3,13 +3,13 @@ title: "Practice Library"
 subtitle: "Async Base Camp — runnable, right here, answers included"
 ---
 
-Every problem on this page runs **in your browser**. Edit the code, press Run, repeat until it's boring. This is the one place in the course where answers sit right next to problems, so use the hints and solutions shamelessly. The page grows as the semester does; requests welcome.
+The code on this page is editable and runs **in your browser**. More added throughout the semester, requests welcome.
 
-The first Run on this page takes a few seconds while Python loads into your browser. After that, everything is instant.
+The first Run on this page takes a few seconds while Python loads into your browser. After that, it should be fast.
 
 ## The sandbox
 
-Nothing to solve — just a scratchpad. Type anything, run it, break it. You cannot damage anything; reload the page and it's factory-new.
+Nothing to solve — just a scratchpad. Type anything, run it, break it.
 
 ```{pyodide}
 message = "hello"

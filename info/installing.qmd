@@ -3,22 +3,19 @@ title: "Getting going in your language"
 subtitle: "Google Colab first, then VS Code (or whatever!)"
 ---
 
-A few recommendations, if you want them. **You can do this entire course in Google Colab and MATLAB Online** — nothing to install, works on any machine. Start there. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.
+A few recommendations. **You can do this entire course in Google Colab and MATLAB Online** — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.
 
 
-<!-- ::: {.callout-important}
-I considered giving NO instructions for installing Python, because local setups require some care and occasional maintenance during the semester — and I want you willing and able to handle that yourselves. (Chasing down an installation problem is excellent training for this course's whole philosophy.) But I relented. Recommendations below — and you will need to do a bit of work from the command line. If you flat-out do not want to do command-line stuff, stay in Colab or go with MATLAB. But for what it's worth: it makes me feel powerful to do command-line stuff.
-::: -->
 
 ## Python via Google Colab
 
-Go to [colab.research.google.com](https://colab.research.google.com), sign in with your university Google account, click **New notebook**. That's the entire installation. Python runs on Google's computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!
+Go to [colab.research.google.com](https://colab.research.google.com), sign in with your university Google account, click **New notebook**, and... that's it. Python runs on Google's computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!
 
 ## Python on your machine
 
 There are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you.
 
-There are two steps: install Python and a package manager, and install an editor.
+There are two things you'll need to do: install Python+a package manager, and install an editor.
 
 ### Package manager
 
@@ -27,7 +24,11 @@ My recommendation is to [install **miniconda**](https://www.anaconda.com/docs/ge
 The full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I "downgraded" to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer [VS Code](https://code.visualstudio.com), which supports Jupyter Notebooks and has a GitHub integration.
 :::
 
-Miniconda starts with essentially no packages, so you'll install what you need from the command line. **NumPy, matplotlib, and pandas** cover this course; [this page has the instructions](https://www.anaconda.com/docs/getting-started/working-with-conda/packages/install-packages). Note that miniconda still uses `conda` as the command.
+Miniconda installs Python, but otherwise I think there are zero packages, so you'll install what you need from the command line. **NumPy, matplotlib, and pandas** are necessary for this course; [this page has the instructions](https://www.anaconda.com/docs/getting-started/working-with-conda/packages/install-packages). Note that miniconda still uses `conda` as the command.
+
+::: {.column-margin}
+What are "packages"? They are collections Python files that include useful Python functions that can be "called". For example: someone has already written an implementation of the [Trapezoid Rule](https://en.wikipedia.org/wiki/Trapezoidal_rule) for finding the area under a curve, and implemented it [into the SciPy package](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapezoid.html). Now, instead of writing the code from scratch, you can just call that function with `trapezoid(y)` in your code.
+:::
 
 ::: {.column-margin}
 pip is another package-management option — really not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.
@@ -38,22 +39,22 @@ Some other packages that might be worth installing:
 
 - Jupyter is a "notebook" environment that looks a lot like Colab.
 - Seaborn is built on-top of matplotlib... it makes really beautiful plots.
-- SciPy is a deep toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools.
-- Scikit-learn is a good machine learning toolbox that we might use in a Machine Learning Side Quest.
+- SciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.
+- Scikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.
 :::
 
 ### Editor
 
-For the editor, I recommend [**VS Code**](https://code.visualstudio.com) — it supports Jupyter notebooks (and the interface is better than the default notebook, which launches in a web browser), has an integrated terminal, and its GitHub integration will matter to anyone who takes the version-control Side Quest. Install VS Code, then its *Python* and *Jupyter* extensions (VS Code will offer them the first time you open a `.py` or `.ipynb` file).
+For the editor, I recommend [**VS Code**](https://code.visualstudio.com) — it supports Jupyter notebooks (and the notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its *Python* and *Jupyter* extensions (VS Code will automatically offer to install them the first time you open a `.py` or `.ipynb` file).
 
-
+If you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven't tried it yet!)
 
 
 ::: {.callout-note collapse="true"}
 ## Python "environments" (optional reading)
-Many serious programmers insist each project should have its own "environment" with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (I still couldn't get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment. 
+Many serious programmers insist each project should have its own "environment" with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn't get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment. 
 
-If you do want to create separate environments, e.g., one for your homework repository, one for the machine learning project, you can. From the command line, you would start with something like ```conda create --name homework``` and then ```conda activate homework``` puts you in that environment, and then ```conda install numpy``` would get you numpy in just that environment. You need to install packages in each environment -- if you have three environments set up on your machine, you might technically have numpy installed three times.
+If you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like ```conda create --name project1``` and then ```conda activate project1``` puts you in that environment, and then ```conda install numpy``` would get you numpy in just that environment. You need to install packages in each environment -- if you have three environments set up on your machine, you might technically have NumPy installed three times.
 :::
 
 ## MATLAB (later in the semester)
