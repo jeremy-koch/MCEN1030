@@ -1,42 +1,49 @@
 ---
 title: "How your grade works"
-# subtitle: "Standards + engagement credits — no points, no partial credit, no curve"
+subtitle: "Standards + engagement credits"
 ---
 
 Your grade is built from exactly two ingredients:
 
-1. **Standards** measure *what you learned* — the [fifteen specific skills](standards.qmd), each marked **Met** or **Not Yet**.
-2. **Engagement credits** are about *the process that produces learning* — credit for showing up prepared and doing the work (and you'll learn more by participating, even if that learning is harder to measure).
+1. **Standards** measure *what you learned*. There are [fifteen specific skills](standards.qmd) that you will be assessed on, each marked **Met** or **Not Yet**.
+2. **Engagement credits** are about *the process that produces learning* — credit for showing up prepared and doing the work. 
+<!-- (Also: you'll learn more by participating, even if that learning is harder to measure.) -->
 
-There are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: there is no penalty for struggling early. You can recover!
+There are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!
+
+<!-- The idea here is to collect evidence that you can do the thing (the standards) and that you did the work (the engagement credits). -->
+
 
 ## Standards: Met or Not Yet
 
 Every standard gets multiple opportunities across the semester (checkpoints, in-class work, the project, the defense — the [schedule](schedule.qmd) shows where each appears). The rules:
 
-- **Convergent standards** (the ones with checkable right answers) require **two successful demonstrations**, on different occasions.
+- **Convergent standards** (the ones with checkable right answers) require **two successful demonstrations** on different occasions.
 - **Divergent standards** (open-ended) require **one demonstration at "Meets" quality**, with the right to revise and resubmit once per artifact.
-- **"Not Yet" means you aren't there yet.** A standard missed in week 4 and demonstrated in week 11 is *Met*. Your grade records where you ended up. (The one bound: reassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens. It is not unlimited-on-demand.)
+- **"Not Yet" means you aren't there yet.** But if you are *Not Yet* on a standard in week 4, then successfully demonstrate it in week 11, the standard is *Met* and you will receive *full credit*. (Though don't forget some standards require two successful demonstrations.) 
+- **Reassessment** happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.
 
-## Checkpoints
+### Checkpoints
 
-Four Tuesdays — **weeks 4, 6, 8, and 10** — open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards **and re-offers items from earlier checkpoints**. 
+Four Tuesdays (weeks 4, 6, 8, and 10) open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards **and re-offers items from earlier checkpoints**. 
 <!-- The rule that gives the whole system its spine: **at least one of a convergent standard's two demonstrations must be in-class** — at a checkpoint or on the defense. -->
 
-Checkpoints are also where a small amount of unaided writing lives: expect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production? Because verification requires a minimum writing fluency. Checkpoint items are marked Met / Not Yet per standard like everything else; there is no checkpoint "score," and a rough checkpoint costs you nothing that the re-offers can't repair. 
+<!-- Checkpoints are also where a small amount of unaided writing lives: e -->
+
+Expect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements/what is possible with computing and at least a bit of fluency with the language.
 
 ## Engagement credits: the process
 
-This course runs on committed preparation and in-room collaboration — the opening votes, the table arguments, the critiques. Those can't be graded on correctness without poisoning them (nobody argues honestly at a table where wrong answers cost points). So they're credited for **good-faith completion** instead:
+Part of your grade will be based on before-class preparation and in-class collaboration. These won't be graded on correctness, and instead are based on **good-faith completion**:
 
 | Earned by | Credits | Roughly available |
 |---|---|---|
-| Bring-to-class item, committed on paper, checked at the opening vote | 1 each | ~22 |
+| Bring-to-class item, written on paper, checked at the start of class | 1 each | ~22 |
 | Thursday activity deliverable | 2–3 each | ~24 |
 | Pin-up participation & review quality (weeks 12–13) | 3 each | 6 |
 | **Total available** | | **~50** |
 
-Rules: credits are checked for *committed good-faith work* — a wrong answer with reasoning earns full credit; a blank or a transparently uncommitted scribble earns none. Credits are earned in the room (that's the point), with tokens as a pressure-release valve. And note the arithmetic below is deliberately forgiving: an A requires 40 of ~50, so you can fully miss about a fifth of everything and feel no effect.
+Rules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can't be replaced with out of class work (though you can safely miss a few, and tokens can be used as a pressure-release valve).
 
 
 
@@ -46,7 +53,7 @@ The 8 credits of the project period (pin-ups #1 and #2, the mock defense) are aw
 
 ## Tokens
 
-Everyone starts the semester with **3 tokens**. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, life); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required — that's what the tokens are *for*. Unspent tokens convert to 1 engagement credit each at semester's end.
+Everyone starts the semester with **3 tokens**. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, life); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester's end.
 
 ## The grade table
 

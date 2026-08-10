@@ -25,7 +25,8 @@ The second half of the semester, Mondays become [Side Quests](sidequests.qmd) �
 
 **BC3 (Week 3) · The vocabulary drill.** Reps on the core reading skills: trace variables by hand, predict outputs, read `=` as "is assigned." Includes **assembly problems** — working code with its lines scrambled.
 
-**BC4 (Week 4) · Dress rehearsal: Checkpoint 1.** A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. **Dress rehearsals repeat on the Monday before every checkpoint** (weeks 4, 6, 8, 10).
+**BC4 (Week 4) · Dress rehearsal: Checkpoint 1.** A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. 
+<!-- **Dress rehearsals repeat on the Monday before every checkpoint** (weeks 4, 6, 8, 10). -->
 
 **BC5 (Week 5) · Loop clinic.** Loops trip up more beginners than any other fundamental ingredient. Extra reps with accumulators, `range`, predicting iteration by hand, and loop assembly.
 

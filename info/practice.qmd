@@ -3,13 +3,13 @@ title: "Practice Library"
 subtitle: "Async Base Camp — runnable, right here, answers included"
 ---
 
-The code on this page is editable and runs **in your browser**. More added throughout the semester, requests welcome.
+The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.
 
-The first Run on this page takes a few seconds while Python loads into your browser. After that, it should be fast.
+The first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.
 
-## The sandbox
+## Sandbox
 
-Nothing to solve — just a scratchpad. Type anything, run it, break it.
+Nothing to solve — just a scratchpad.
 
 ```{pyodide}
 message = "hello"
@@ -18,7 +18,7 @@ print(message * 3)
 
 ## Tracing (weeks 2–3)
 
-**T1.** Predict all three printed values *on paper*, then run to check.
+**T1.** Look through the code and try to predict all three printed values, then run to check.
 
 ```{pyodide}
 #| exercise: t1
@@ -31,14 +31,18 @@ print(a - b)
 ```
 
 ::: {.hint exercise="t1"}
-Line by line, keeping a two-column table of `a` and `b`. Remember: `=` means *is assigned* — line 3 uses the values as they are *at that moment*, and `b` never updates afterward.
+Make a two-column table of `a` and `b` values, then go line-by-line. Remember: `=` means *is assigned* — line 3 uses the values as they are *at that moment*.
 :::
 
 ::: {.solution exercise="t1"}
-`10`, `4`, `6`. After line 1: a=6. Line 2: b=4. Line 3: a = 6+4 = 10 (b stays 4 — it stored a value, not a relationship).
+`10`, `4`, `6`.
+
+- After line 1: `a` is `6`. 
+- After line 2: `b` is `4` (and `a` is still `6`).
+- After Line 3: `a` is `6+4`, that is: `a` is `10`. (And `b` stays `4` — it stored a value, not a relationship.)
 :::
 
-**T2.** This one prints a single value. Commit to it before running.
+**T2.** This one prints a single value.
 
 ```{pyodide}
 #| exercise: t2
@@ -53,12 +57,12 @@ The same line twice is not the same *result* twice — the second one starts fro
 :::
 
 ::: {.solution exercise="t2"}
-`16`. First squaring: 4. Second squaring squares the *new* value: 16. If you said 8, you read line 3 as "times the original x."
+`16`. First squaring: `4`. Second squaring squares the *new* value: `16`.
 :::
 
 ## Functions (week 3)
 
-**F1.** Fill in the blank so the function matches its docstring, then verify with the test call — it should print `78.5` (approximately).
+**F1.** Fill in the blank `______` so the function matches its docstring, then verify it works by running the code.
 
 ```{pyodide}
 #| exercise: f1
@@ -70,17 +74,16 @@ print(circle_area(5))
 ```
 
 ::: {.hint exercise="f1"}
-Area is π r² — and remember Python needs the power written explicitly. Two ways to write "r squared" both work.
+Area is π r² — and remember Python needs the power written explicitly.
 :::
 
 ::: {.solution exercise="f1"}
 ```python
 return 3.14159 * r ** 2      # or: 3.14159 * r * r
 ```
-The verification habit in miniature: 3.14 × 25 ≈ 78.5, hand-checkable before you trust it anywhere.
 :::
 
-**F2.** Predict what prints — this is the local-names idea from the week 3 reading, wearing a different shirt.
+**F2.** Predict what prints.
 
 ```{pyodide}
 #| exercise: f2
@@ -95,16 +98,16 @@ print(result)
 ```
 
 ::: {.hint exercise="f2"}
-The `n` inside the function is the function's *private* n. What happens in the function stays in the function — only the `return` value escapes.
+The `n` inside the function is limited in *scope*. What happens in the function stays in the function — only the `return` value escapes.
 :::
 
 ::: {.solution exercise="f2"}
-`1` then `11`. The outer `n` is untouched; `add_ten` worked on its own local copy and shipped the result out through `return`.
+`1` then `11`. The outer `n` is untouched; `add_ten` worked on its own local copy and returned the `result`.
 :::
 
 ## Logic (week 4)
 
-**L1.** Four calls, four predictions on paper, then run.
+**L1.**
 
 ```{pyodide}
 #| exercise: l1
@@ -123,16 +126,16 @@ print(classify(-5))
 ```
 
 ::: {.hint exercise="l1"}
-Top to bottom, *first true branch wins*. And check the boundaries with a jeweler's eye: is 100 greater than 100?
+Go top to bottom, and the *first true branch wins*. Check the boundaries: is 100 greater than 100?
 :::
 
 ::: {.solution exercise="l1"}
-`highway`, `highway` (100 is not > 100 — the boundary lesson), `too fast`, `city` (−5 falls through to else — is that what a *spec* would want? That question is week 4's whole point).
+`highway`, `highway` (100 is not > 100), `too fast`, `city` (−5 falls through to else... not sure this was a good *specification*, if we are talking about the speed of a city!).
 :::
 
 ## Loops (week 5)
 
-**X1.** Fix the loop so it prints the sum of the squares of 1 through 4 (which is 30 — verify that by hand first).
+**X1.** Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)
 
 ```{pyodide}
 #| exercise: x1
@@ -143,14 +146,14 @@ print(total)
 ```
 
 ::: {.hint exercise="x1"}
-Run it as-is and look at what you get (16). The loop isn't *accumulating* — each pass throws away the previous total. What's missing from the right-hand side?
+Run it as-is and look at what you get: `16`. The loop isn't *accumulating* — each pass throws away the previous total. What's missing from the right-hand side?
 :::
 
 ::: {.solution exercise="x1"}
 ```python
 total = total + k * k
 ```
-The accumulator pattern: the new total is built *from* the old total. `total = k * k` just overwrites, and you end up with only the last pass (16).
+The accumulator pattern: the new total is built *from* the old total. `total = k * k` just overwrites, and you end up with only the last pass (`16`).
 :::
 
 **X2.** Assembly problem: these lines compute the average of a list, but they're scrambled. Reorder them (cut and paste in the editor) so it runs and prints `5.0`.
@@ -166,7 +169,11 @@ total = 0
 ```
 
 ::: {.hint exercise="x2"}
-Three constraints: names must exist before they're used; the indented line belongs to the `for`; the `print` needs everything finished. (Also — could you avoid hard-coding `count = 3`? Python's `len(values)` exists. Not required, but that's the better program.)
+1. Names must exist before they're used.
+2. The indented line belongs to the `for`.
+3. The `print` needs everything finished. 
+
+(Also — could you avoid hard-coding `count = 3`? Python's `len(values)` exists and is probably better.
 :::
 
 ::: {.solution exercise="x2"}
@@ -178,12 +185,12 @@ for v in values:
     total = total + v
 print(total / count)
 ```
-The first three lines can go in any order among themselves. That observation is the entire point of assembly problems.
+The first three lines can go in any order among themselves.
 :::
 
 ## Arrays (weeks 5–6)
 
-**A1.** One line replaces the whole loop: fill in the blank so `t` holds the fall time for *every* height at once, then print it.
+**A1.** Fill in the blank so `t` holds the fall time for *every* height at once, then print it.
 
 ```{pyodide}
 #| exercise: a1
@@ -201,9 +208,5 @@ The formula is $t=\sqrt{2h/g}$, and NumPy's square root is `np.sqrt(...)`. Write
 ```python
 t = np.sqrt(2 * h / 9.81)
 ```
-Sanity anchor: the first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2). Check the printout against that — a free verification pattern hiding in the problem's structure.
-:::
-
-::: {.callout-note}
-Want more? Say so at a Monday session or in class — this library grows in whatever direction the requests point. Solutions to *homework* problems will never appear here, but problems *shaped like* homework absolutely will.
+The first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).
 :::

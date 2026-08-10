@@ -15,7 +15,7 @@ Dress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and
 
 **Build a tiny language model.** You've directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.
 
-**Parametric design → 3D print.** Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we *print* the winner on the department's machines. It's HW 3's parameter sweep made physical: the design space in your hand. (Print queue permitting.)
+**Parametric design → 3D print.** Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we *print* the winner on the College's machines. It's HW 3's parameter sweep made physical: the design space in your hand. (Print queue permitting.)
 
 <!-- **Measure the world.** The room is full of instruments. Signal off a function generator, capture it on an oscilloscope, *and* record the same tone with Phyphox — then reconcile the two in Python. Fetch (F1) meets real lab hardware, and a quiet preview of your instrumentation courses.
 
