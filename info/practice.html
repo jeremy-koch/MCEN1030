@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b100633d5c7c23e777683a44cdf05e85.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f86af386e0768cd34ebfa24bc02c7c06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -316,7 +316,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-sandbox" id="toc-the-sandbox" class="nav-link active" data-scroll-target="#the-sandbox">The sandbox</a></li>
+  <li><a href="#sandbox" id="toc-sandbox" class="nav-link active" data-scroll-target="#sandbox">Sandbox</a></li>
   <li><a href="#tracing-weeks-23" id="toc-tracing-weeks-23" class="nav-link" data-scroll-target="#tracing-weeks-23">Tracing (weeks 2–3)</a></li>
   <li><a href="#functions-week-3" id="toc-functions-week-3" class="nav-link" data-scroll-target="#functions-week-3">Functions (week 3)</a></li>
   <li><a href="#logic-week-4" id="toc-logic-week-4" class="nav-link" data-scroll-target="#logic-week-4">Logic (week 4)</a></li>
@@ -348,11 +348,11 @@ window.Quarto = {
 </header>
 
 
-<p>The code on this page is editable and runs <strong>in your browser</strong>. More added throughout the semester, requests welcome.</p>
-<p>The first Run on this page takes a few seconds while Python loads into your browser. After that, it should be fast.</p>
-<section id="the-sandbox" class="level2">
-<h2 class="anchored" data-anchor-id="the-sandbox">The sandbox</h2>
-<p>Nothing to solve — just a scratchpad. Type anything, run it, break it.</p>
+<p>The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.</p>
+<p>The first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.</p>
+<section id="sandbox" class="level2">
+<h2 class="anchored" data-anchor-id="sandbox">Sandbox</h2>
+<p>Nothing to solve — just a scratchpad.</p>
 <div>
 <div id="pyodide-1" class="exercise-cell">
 
@@ -364,7 +364,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibWVzc2FnZSA9IFwiaGVsbG9c
 </section>
 <section id="tracing-weeks-23" class="level2">
 <h2 class="anchored" data-anchor-id="tracing-weeks-23">Tracing (weeks 2–3)</h2>
-<p><strong>T1.</strong> Predict all three printed values <em>on paper</em>, then run to check.</p>
+<p><strong>T1.</strong> Look through the code and try to predict all three printed values, then run to check.</p>
 <div>
 <div id="pyodide-2" class="exercise-cell">
 
@@ -374,12 +374,17 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoidDEifSwiY29kZSI6ImEg
 </script>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="t1">
-<p>Line by line, keeping a two-column table of <code>a</code> and <code>b</code>. Remember: <code>=</code> means <em>is assigned</em> — line 3 uses the values as they are <em>at that moment</em>, and <code>b</code> never updates afterward.</p>
+<p>Make a two-column table of <code>a</code> and <code>b</code> values, then go line-by-line. Remember: <code>=</code> means <em>is assigned</em> — line 3 uses the values as they are <em>at that moment</em>.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t1">
-<p><code>10</code>, <code>4</code>, <code>6</code>. After line 1: a=6. Line 2: b=4. Line 3: a = 6+4 = 10 (b stays 4 — it stored a value, not a relationship).</p>
+<p><code>10</code>, <code>4</code>, <code>6</code>.</p>
+<ul>
+<li>After line 1: <code>a</code> is <code>6</code>.</li>
+<li>After line 2: <code>b</code> is <code>4</code> (and <code>a</code> is still <code>6</code>).</li>
+<li>After Line 3: <code>a</code> is <code>6+4</code>, that is: <code>a</code> is <code>10</code>. (And <code>b</code> stays <code>4</code> — it stored a value, not a relationship.)</li>
+</ul>
 </div>
-<p><strong>T2.</strong> This one prints a single value. Commit to it before running.</p>
+<p><strong>T2.</strong> This one prints a single value.</p>
 <div>
 <div id="pyodide-3" class="exercise-cell">
 
@@ -392,12 +397,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoidDIifSwiY29kZSI6Ingg
 <p>The same line twice is not the same <em>result</em> twice — the second one starts from where the first one left off.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t2">
-<p><code>16</code>. First squaring: 4. Second squaring squares the <em>new</em> value: 16. If you said 8, you read line 3 as “times the original x.”</p>
+<p><code>16</code>. First squaring: <code>4</code>. Second squaring squares the <em>new</em> value: <code>16</code>.</p>
 </div>
 </section>
 <section id="functions-week-3" class="level2">
 <h2 class="anchored" data-anchor-id="functions-week-3">Functions (week 3)</h2>
-<p><strong>F1.</strong> Fill in the blank so the function matches its docstring, then verify with the test call — it should print <code>78.5</code> (approximately).</p>
+<p><strong>F1.</strong> Fill in the blank <code>______</code> so the function matches its docstring, then verify it works by running the code.</p>
 <div>
 <div id="pyodide-4" class="exercise-cell">
 
@@ -407,13 +412,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZjEifSwiY29kZSI6ImRl
 </script>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="f1">
-<p>Area is π r² — and remember Python needs the power written explicitly. Two ways to write “r squared” both work.</p>
+<p>Area is π r² — and remember Python needs the power written explicitly.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="f1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="fl">3.14159</span> <span class="op">*</span> r <span class="op">**</span> <span class="dv">2</span>      <span class="co"># or: 3.14159 * r * r</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The verification habit in miniature: 3.14 × 25 ≈ 78.5, hand-checkable before you trust it anywhere.</p>
 </div>
-<p><strong>F2.</strong> Predict what prints — this is the local-names idea from the week 3 reading, wearing a different shirt.</p>
+<p><strong>F2.</strong> Predict what prints.</p>
 <div>
 <div id="pyodide-5" class="exercise-cell">
 
@@ -423,15 +427,15 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZjIifSwiY29kZSI6ImRl
 </script>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="f2">
-<p>The <code>n</code> inside the function is the function’s <em>private</em> n.&nbsp;What happens in the function stays in the function — only the <code>return</code> value escapes.</p>
+<p>The <code>n</code> inside the function is limited in <em>scope</em>. What happens in the function stays in the function — only the <code>return</code> value escapes.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="f2">
-<p><code>1</code> then <code>11</code>. The outer <code>n</code> is untouched; <code>add_ten</code> worked on its own local copy and shipped the result out through <code>return</code>.</p>
+<p><code>1</code> then <code>11</code>. The outer <code>n</code> is untouched; <code>add_ten</code> worked on its own local copy and returned the <code>result</code>.</p>
 </div>
 </section>
 <section id="logic-week-4" class="level2">
 <h2 class="anchored" data-anchor-id="logic-week-4">Logic (week 4)</h2>
-<p><strong>L1.</strong> Four calls, four predictions on paper, then run.</p>
+<p><strong>L1.</strong></p>
 <div>
 <div id="pyodide-6" class="exercise-cell">
 
@@ -441,15 +445,15 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoibDEifSwiY29kZSI6ImRl
 </script>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="l1">
-<p>Top to bottom, <em>first true branch wins</em>. And check the boundaries with a jeweler’s eye: is 100 greater than 100?</p>
+<p>Go top to bottom, and the <em>first true branch wins</em>. Check the boundaries: is 100 greater than 100?</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="l1">
-<p><code>highway</code>, <code>highway</code> (100 is not &gt; 100 — the boundary lesson), <code>too fast</code>, <code>city</code> (−5 falls through to else — is that what a <em>spec</em> would want? That question is week 4’s whole point).</p>
+<p><code>highway</code>, <code>highway</code> (100 is not &gt; 100), <code>too fast</code>, <code>city</code> (−5 falls through to else… not sure this was a good <em>specification</em>, if we are talking about the speed of a city!).</p>
 </div>
 </section>
 <section id="loops-week-5" class="level2">
 <h2 class="anchored" data-anchor-id="loops-week-5">Loops (week 5)</h2>
-<p><strong>X1.</strong> Fix the loop so it prints the sum of the squares of 1 through 4 (which is 30 — verify that by hand first).</p>
+<p><strong>X1.</strong> Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)</p>
 <div>
 <div id="pyodide-7" class="exercise-cell">
 
@@ -459,11 +463,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoieDEifSwiY29kZSI6InRv
 </script>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="x1">
-<p>Run it as-is and look at what you get (16). The loop isn’t <em>accumulating</em> — each pass throws away the previous total. What’s missing from the right-hand side?</p>
+<p>Run it as-is and look at what you get: <code>16</code>. The loop isn’t <em>accumulating</em> — each pass throws away the previous total. What’s missing from the right-hand side?</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="x1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> total <span class="op">+</span> k <span class="op">*</span> k</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The accumulator pattern: the new total is built <em>from</em> the old total. <code>total = k * k</code> just overwrites, and you end up with only the last pass (16).</p>
+<p>The accumulator pattern: the new total is built <em>from</em> the old total. <code>total = k * k</code> just overwrites, and you end up with only the last pass (<code>16</code>).</p>
 </div>
 <p><strong>X2.</strong> Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints <code>5.0</code>.</p>
 <div>
@@ -475,7 +479,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoieDIifSwiY29kZSI6InBy
 </script>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="x2">
-<p>Three constraints: names must exist before they’re used; the indented line belongs to the <code>for</code>; the <code>print</code> needs everything finished. (Also — could you avoid hard-coding <code>count = 3</code>? Python’s <code>len(values)</code> exists. Not required, but that’s the better program.)</p>
+<ol type="1">
+<li>Names must exist before they’re used.</li>
+<li>The indented line belongs to the <code>for</code>.</li>
+<li>The <code>print</code> needs everything finished.</li>
+</ol>
+<p>(Also — could you avoid hard-coding <code>count = 3</code>? Python’s <code>len(values)</code> exists and is probably better.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="x2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>]</span>
@@ -484,12 +493,12 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoieDIifSwiY29kZSI6InBy
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> values:</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> total <span class="op">+</span> v</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total <span class="op">/</span> count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The first three lines can go in any order among themselves. That observation is the entire point of assembly problems.</p>
+<p>The first three lines can go in any order among themselves.</p>
 </div>
 </section>
 <section id="arrays-weeks-56" class="level2">
 <h2 class="anchored" data-anchor-id="arrays-weeks-56">Arrays (weeks 5–6)</h2>
-<p><strong>A1.</strong> One line replaces the whole loop: fill in the blank so <code>t</code> holds the fall time for <em>every</em> height at once, then print it.</p>
+<p><strong>A1.</strong> Fill in the blank so <code>t</code> holds the fall time for <em>every</em> height at once, then print it.</p>
 <div>
 <div id="pyodide-9" class="exercise-cell">
 
@@ -503,20 +512,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiYTEifSwiY29kZSI6Imlt
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="a1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> h <span class="op">/</span> <span class="fl">9.81</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Sanity anchor: the first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2). Check the printout against that — a free verification pattern hiding in the problem’s structure.</p>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Want more? Say so at a Monday session or in class — this library grows in whatever direction the requests point. Solutions to <em>homework</em> problems will never appear here, but problems <em>shaped like</em> homework absolutely will.</p>
-</div>
+<p>The first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).</p>
 </div>
 
 

@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b100633d5c7c23e777683a44cdf05e85.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f86af386e0768cd34ebfa24bc02c7c06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -284,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.</p>
-<p>We are taking a new approach to this class. When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
+<p>When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
 <p>Today, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in <code>for i in items:</code> anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work. <!-- — they can solve those traditional intro to computing problems almost instantaneously. Outside of class, the problems are not as well-specified — engineering is messy, and by definition any new design has never been tested before. But still,  --></p>
 
 <!-- ::: {.column-margin}
@@ -292,11 +292,11 @@ The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engine
 ::: -->
 <div class="no-row-height column-margin column-container"><div class="">
 <p>We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk about how they are just statistics-based word-guessers.</p>
-</div></div><p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve differential equations without solutions, like <a href="https://en.wikipedia.org/wiki/Lorenz_system">The Lorenz Equations</a>?), how computer logic works, and how to interpret code (what is happening with <code>for i in items:</code>?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM result in your job and a test engine explodes, you won’t be able to blame an LLM — it’s your fault!</p>
+</div></div><p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve “unsolvable” differential equations like <a href="https://en.wikipedia.org/wiki/Lorenz_system">The Lorenz Equations</a>?), how computer logic works, and how to interpret code (what is happening with <code>for i in items:</code>?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are <strong>not</strong> going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>We can’t look inside a “black box” to see what is going on.</p>
-</div></div><p>Further, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, LLMs are tool that can help us produce better work, faster. And they’ll give us an opportunity to do some moderately ambitious engineering work this semester.</p>
+</div></div><p>Further, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, LLMs are tool that can help us produce better work, faster, even if their initial result is flawed. And they’ll give us an opportunity to do some moderately ambitious engineering work this semester.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The flip side of this coin is: if we don’t understand computational ideas and are just hoping the LLM figures out what to do based on a vague description of the problem, we are going to be in trouble.</p>
@@ -341,10 +341,10 @@ The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engine
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>More serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the <a href="./info/installing.html">getting going page</a> has instructions.</p>
-</div></div><p><strong>Class opens with that question.</strong> You’ll vote on it, argue with your table, and vote again.</p>
-<p><strong>Mondays are optional.</strong> All semester, one weekly optional session: <a href="./info/basecamp.html">Base Camp</a> early (the beginner on-ramp, plus checkpoint dress rehearsals), <a href="./info/sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, and more). No grades attached, just help and getting to know each other.</p>
-<p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI. Everything about how that feeds your grade is on the <a href="./info/grading.html">grading page</a>.</p>
+</div></div><p><strong>Four Tuesdays open with a checkpoint</strong> (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI. Everything about how that feeds your grade is on the <a href="./info/grading.html">grading page</a>.</p>
+<!-- **Class opens with that question.** You'll vote on it, discuss with your table, and vote again. -->
 <p><strong>The rest of class is work at the tables.</strong> Early in the semester that’s mostly short problems with right answers, later it shifts toward open-ended problems.</p>
+<p><strong>Get extra practice on Mondays (optional).</strong> T<a href="./info/basecamp.html">Base Camp</a> early (the beginner on-ramp, checkpoint practice, …), <a href="./info/sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.</p>
 <p><strong>Homework</strong> problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The <a href="homework/index.qmd">homework page</a> explains the format.</p>
 </section>
 <section id="ai-policy" class="level2">
@@ -353,7 +353,7 @@ The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engine
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./info/standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for preparation and in-class work. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you <em>end up</em>, not where you started. The full mechanics, including a grade table and worked examples, are on the <a href="./info/grading.html">grading page</a>.</p>
+<p>This course uses <strong>standards-based grading</strong>: a list of specific skills (<a href="./info/standards.html">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em>, plus <strong>engagement credits</strong> for preparation and in-class work. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you <em>end up</em>, not where you started. See the <a href="./info/grading.html">grading page</a>.</p>
 </section>
 <section id="where-to-go-next" class="level2">
 <h2 class="anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
