@@ -10,12 +10,16 @@ Read the lesson *before* the class it's listed under.
 ::: {.callout-note}
 ## Checkpoints
 The ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the [grading page](grading.qmd).
+:::
 
+::: {.callout-note}
 ## Homework 
 [Homework sets](../homework/index.qmd) are assigned in weeks 2, 3, 5, 6, 7, 8, 9, 10, and 11.
+:::
 
+::: {.callout-note}
 ## Base Camp/Side Quest Sessions
-... happen on Mondays: [Base Camp / Side Quest](basecamp.qmd).
+... happen on Mondays: [Base Camp](basecamp.qmd)/[Side Quests](sidequests.qmd). (Optional.)
 :::
 
 

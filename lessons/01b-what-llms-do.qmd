@@ -75,9 +75,9 @@ Contrast: LLMs are historically *mediocre at arithmetic* — predicting the text
 
 ## The stance of this course
 
-Here's the relationship we're building toward, stated plainly:
+Here's the relationship we're building toward:
 
-**The LLM is your extremely fast, extremely well-read, occasionally overconfident junior collaborator.** You are the engineer of record. You direct it (specification), you check its work (verification), and you sign your name to the result. That's not a course rule invented to keep you honest — it is *exactly* the arrangement practicing engineers describe with these tools, and companies are notably uninterested in hiring people who can't play the senior role in it.
+**The LLM is your extremely fast, extremely well-read, occasionally overconfident junior collaborator.** You are the engineer of record. You direct it (specification), you check its work (verification), and you sign your name to the result. This is the arrangement practicing engineers use when designing with LLMs.
 
 What this course will never ask you to do is pretend the AI doesn't exist. What it will constantly ask you to do is prove *you* were in charge: show your specification, annotate what came back, demonstrate your verification, and — at the end of the semester — explain what is actually going on inside a project with your name on it, on paper, with no AI in the room.
 

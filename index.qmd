@@ -6,20 +6,20 @@ subtitle: "MCEN 1030 · Introduction to Engineering Computing"
 
 Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.
 
-When I took this course (circa Fall 2006... oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors. 
+When I took this course (in fall 2006... oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors. 
 
 Today, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in `for i in items:` anymore... they are writing prompts that include something like "iterate through the items in that list" and having an LLM do the work.
 <!-- — they can solve those traditional intro to computing problems almost instantaneously. Outside of class, the problems are not as well-specified — engineering is messy, and by definition any new design has never been tested before. But still,  -->
 
 ::: {.column-margin}
-We can argue if LLMs are actually a form of artificial "intelligence" — we'll talk about how they are just statistics-based word-guessers.
+We could argue about LLMs actually being a form of artificial "intelligence" — we'll talk about how they are just statistics-based word-guessers.
 :::
 
 <!-- ::: {.column-margin}
 The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engineers might use a "local LLM" instead, one that is not run on a personal computer, not the cloud. (Thus, your company secrets stay on your computer.) In such a case they might have downloaded Qwen, Gemma, Deepseek, or another open-source model. 
 ::: -->
 
-What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve "unsolvable" differential equations like [The Lorenz Equations](https://en.wikipedia.org/wiki/Lorenz_system)?), how computer logic works, and how to interpret code (what is happening with `for i in items:`?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are **not** going to treat LLM-generated code as a "black box": we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won't be able to blame an LLM — it's your fault!
+What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve "unsolvable" differential equations like [The Lorenz Equations](https://en.wikipedia.org/wiki/Lorenz_system)?), how computer logic works (`a=5,b=a+5,a=10`... what is the current value of `b`?), and how to interpret code (what is happening with `for i in items:`?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are **not** going to treat LLM-generated code as a "black box": we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won't be able to blame an LLM — it's your fault!
 
 ::: {.column-margin}
 We can't look inside a "black box" to see what is going on.

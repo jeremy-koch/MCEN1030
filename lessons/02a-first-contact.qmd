@@ -61,7 +61,7 @@ As algebra, nonsense. As an instruction — *take the value stored in `count`, a
 
 ## The habit that defines this course: predict, then run
 
-Here is a complete little program. **Before you run it — before you even think about running it — write down what you expect it to display.** On paper. Committed.
+Here is a complete little program. **Before you run it write down what you expect it to display.**
 
 ```{pyodide}
 g = 9.81
@@ -128,7 +128,7 @@ That misreading — treating a program like a set of simultaneous equations inst
 ::: {.bring-to-class}
 On paper, two things:
 
-1. Your committed prediction for what this displays — with one sentence of reasoning:
+1. Your prediction for what this displays with one sentence of reasoning:
 ```python
 x = 10
 y = x + 5

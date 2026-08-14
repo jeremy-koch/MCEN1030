@@ -19,7 +19,7 @@ Look Ahead
 
 ## The reading vocabulary
 
-You already know enough Python to read most short engineering scripts. Here's the honest inventory, plus two constructs you haven't formally learned but will *see* in AI output long before we cover them:
+You already know enough Python to read most short engineering scripts. Here's a beginning inventory, plus two constructs you haven't formally learned but will *see* in AI output before we cover them:
 
 | You see | It means |
 |---|---|

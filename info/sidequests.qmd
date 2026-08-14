@@ -23,7 +23,7 @@ Dress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and
 
 **Debugging as detective work.** A structured method for "it's broken and I don't know why": isolate, hypothesize, test, repeat. The scientific method wearing a hoodie.
 
-**ML taster, on your own data.** Train a walk-vs-run classifier on your week-8 accelerometer recordings — your data, your body, ~20 lines of scikit-learn. An honest trailer for where computational coursework goes next.
+**ML taster, on your own data.** Train a walk-vs-run classifier on your week-8 accelerometer recordings — your data, your body, ~20 lines of scikit-learn. An preview of where computational coursework goes next.
 
 **Run an LLM on your own machine.** Local models: what a laptop can do (more than you think), what it costs (nothing), why you might want one (privacy, no subscription, tinkering). Live setup included.
 
