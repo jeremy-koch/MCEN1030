@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f86af386e0768cd34ebfa24bc02c7c06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-575e597892c2686a42d60c83fc67b4a5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -284,15 +284,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.</p>
-<p>When I took this course (circa Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
+<p>When I took this course (in fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
 <p>Today, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in <code>for i in items:</code> anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work. <!-- — they can solve those traditional intro to computing problems almost instantaneously. Outside of class, the problems are not as well-specified — engineering is messy, and by definition any new design has never been tested before. But still,  --></p>
 
 <!-- ::: {.column-margin}
 The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engineers might use a "local LLM" instead, one that is not run on a personal computer, not the cloud. (Thus, your company secrets stay on your computer.) In such a case they might have downloaded Qwen, Gemma, Deepseek, or another open-source model. 
 ::: -->
 <div class="no-row-height column-margin column-container"><div class="">
-<p>We can argue if LLMs are actually a form of artificial “intelligence” — we’ll talk about how they are just statistics-based word-guessers.</p>
-</div></div><p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve “unsolvable” differential equations like <a href="https://en.wikipedia.org/wiki/Lorenz_system">The Lorenz Equations</a>?), how computer logic works, and how to interpret code (what is happening with <code>for i in items:</code>?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are <strong>not</strong> going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!</p>
+<p>We could argue about LLMs actually being a form of artificial “intelligence” — we’ll talk about how they are just statistics-based word-guessers.</p>
+</div></div><p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve “unsolvable” differential equations like <a href="https://en.wikipedia.org/wiki/Lorenz_system">The Lorenz Equations</a>?), how computer logic works (<code>a=5,b=a+5,a=10</code>… what is the current value of <code>b</code>?), and how to interpret code (what is happening with <code>for i in items:</code>?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are <strong>not</strong> going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>We can’t look inside a “black box” to see what is going on.</p>
