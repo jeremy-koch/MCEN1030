@@ -2,38 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/01a-what-engineers-do.html</loc>
-    <lastmod>2026-08-23T19:33:19.344Z</lastmod>
+    <lastmod>2026-08-23T19:45:57.574Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/sidequests.html</loc>
-    <lastmod>2026-08-23T19:33:19.344Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/practice.html</loc>
-    <lastmod>2026-08-23T19:33:19.344Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/grading.html</loc>
-    <lastmod>2026-08-23T19:33:19.344Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/index.html</loc>
-    <lastmod>2026-08-23T19:33:19.343Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/basecamp.html</loc>
-    <lastmod>2026-08-23T19:33:19.343Z</lastmod>
+    <lastmod>2026-08-23T19:45:57.574Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/installing.html</loc>
-    <lastmod>2026-08-23T19:33:19.344Z</lastmod>
+    <lastmod>2026-08-23T19:45:57.573Z</lastmod>
   </url>
   <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/schedule.html</loc>
-    <lastmod>2026-08-23T19:33:19.344Z</lastmod>
+    <loc>https://jeremy-koch.github.io/MCEN1030/info/basecamp.html</loc>
+    <lastmod>2026-08-23T19:45:57.573Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/index.html</loc>
+    <lastmod>2026-08-23T19:45:57.573Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/info/grading.html</loc>
+    <lastmod>2026-08-23T19:45:57.573Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/info/practice.html</loc>
+    <lastmod>2026-08-23T19:45:57.573Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/standards.html</loc>
-    <lastmod>2026-08-23T19:33:19.344Z</lastmod>
+    <lastmod>2026-08-23T19:45:57.574Z</lastmod>
   </url>
 </urlset>

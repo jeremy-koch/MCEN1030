@@ -98,6 +98,231 @@
     "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
   },
   {
+    "objectID": "info/installing.html",
+    "href": "info/installing.html",
+    "title": "Getting going in your language",
+    "section": "",
+    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#python-via-google-colab",
+    "href": "info/installing.html#python-via-google-colab",
+    "title": "Getting going in your language",
+    "section": "Python via Google Colab",
+    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#python-on-your-machine",
+    "href": "info/installing.html#python-on-your-machine",
+    "title": "Getting going in your language",
+    "section": "Python on your machine",
+    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#matlab-later-in-the-semester",
+    "href": "info/installing.html#matlab-later-in-the-semester",
+    "title": "Getting going in your language",
+    "section": "MATLAB (later in the semester)",
+    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/basecamp.html",
+    "href": "info/basecamp.html",
+    "title": "Base Camp",
+    "section": "",
+    "text": "Mondays are an optional session/office hour. The first half of the semester, those Mondays are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
+  },
+  {
+    "objectID": "info/basecamp.html#the-sessions",
+    "href": "info/basecamp.html#the-sessions",
+    "title": "Base Camp",
+    "section": "The sessions",
+    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
+  },
+  {
+    "objectID": "info/basecamp.html#practice-library-async-base-camp",
+    "href": "info/basecamp.html#practice-library-async-base-camp",
+    "title": "Base Camp",
+    "section": "Practice library (async Base Camp)",
+    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation…\nhow computer logic works…\nand how to interpret code…\nbut we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”1: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, as long as we humans are an active participant in the process.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#the-big-idea",
+    "href": "index.html#the-big-idea",
+    "title": "Welcome",
+    "section": "The big idea",
+    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#how-a-week-works",
+    "href": "index.html#how-a-week-works",
+    "title": "Welcome",
+    "section": "How a week works",
+    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nClass time is mostly group work at the tables. Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you’ll actually implement them.\nGet extra practice on Mondays (optional). Base Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nCheckpoints happen on Tuesdays (weeks 4, 6, 8, 10): twenty-minute “mini-exams”, individual, on paper, with no AI. See the grading page.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#ai-policy",
+    "href": "index.html#ai-policy",
+    "title": "Welcome",
+    "section": "AI policy",
+    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#grading",
+    "href": "index.html#grading",
+    "title": "Welcome",
+    "section": "Grading",
+    "text": "Grading\nThis course uses standards-based grading, based on:\n\na list of specific skills (the standards), each marked Met or Not Yet\nand engagement credits for preparation and in-class work.\n\nThere is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#where-to-go-next",
+    "href": "index.html#where-to-go-next",
+    "title": "Welcome",
+    "section": "Where to go next",
+    "text": "Where to go next\nYour first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the Practice Library if you want to run some code right now in your browser (and let me know if it doesn’t work). If curious, you might browse the Side Quests — a few ideas are already on that page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Welcome",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nWe can’t look inside a “black box” to see what is going on.↩︎",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "info/grading.html",
+    "href": "info/grading.html",
+    "title": "How your grade works",
+    "section": "",
+    "text": "Your grade is built from exactly two ingredients:\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#standards-met-or-not-yet",
+    "href": "info/grading.html#standards-met-or-not-yet",
+    "title": "How your grade works",
+    "section": "Standards: Met or Not Yet",
+    "text": "Standards: Met or Not Yet\nEvery standard gets multiple opportunities across the semester (checkpoints, in-class work, the project, the defense — the schedule shows where each appears). The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget some standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesdays (weeks 4, 6, 8, and 10) open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements/what is possible with computing and at least a bit of fluency with the language.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#engagement-credits-the-process",
+    "href": "info/grading.html#engagement-credits-the-process",
+    "title": "How your grade works",
+    "section": "Engagement credits: the process",
+    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used as a pressure-release valve).\n\nProject-period credits are individual\nThe 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded per person, informed by teammate evaluation — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the peer evaluation page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#tokens",
+    "href": "info/grading.html#tokens",
+    "title": "How your grade works",
+    "section": "Tokens",
+    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, life); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#the-grade-table",
+    "href": "info/grading.html#the-grade-table",
+    "title": "How your grade works",
+    "section": "The grade table",
+    "text": "The grade table\nYour letter grade is the highest row where you meet every requirement in that row:\n\n\n\nGrade\nStandards Met (of 15)\nMust include\nEngagement credits\n\n\n\n\nA\n≥ 14\nP5\n≥ 40\n\n\nB\n≥ 12\nP5\n≥ 32\n\n\nC\n≥ 10\n—\n≥ 24\n\n\nD\n≥ 7\n—\n≥ 16\n\n\n\nPlus: meet all of your row and at least one requirement of the row above → attach a plus (e.g., B+). Minus: exactly one requirement falls short of your row, and it lands in the row directly below → you get the higher grade with a minus rather than dropping a full letter. F is reserved for missing the D row.\nWhy P5 is necessary for the A and B: P5 — holding your whole project in your head — is what the defense measures, and it’s the standard that certifies all the others were yours. An A in a course about directing and auditing computation, held by someone who can’t explain their own project, would be a false statement. We don’t issue those.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#three-worked-examples",
+    "href": "info/grading.html#three-worked-examples",
+    "title": "How your grade works",
+    "section": "Three worked examples",
+    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 14 standards including P5 (only S4 still Not Yet after the project), earns 43 engagement credits, spends one token on an extension during a brutal midterm week. Check the A row: 14 ≥ 14 ✓, P5 ✓, 43 ≥ 40 ✓. Grade: A. The two unspent tokens add 2 credits (45), which changes nothing.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint: P1 and P4 both Not Yet in week 4, and it feels catastrophic. It isn’t — both standards are re-offered at the week-6 and week-8 checkpoints, and Student 2 demonstrated each twice by mid-semester. Finishes with 12 standards Met including P5 (S2 and A3 fell short on the project report; his revision closed A3 but not S2, and F1 never came together). Then 41 engagement credits, did the work all semester even while the checkpoints were rough. B row: 12 ≥ 12 ✓, P5 ✓, 41 ≥ 32 ✓ → at least a B. Plus check: meet ≥ 1 requirement of the A row? The 41 credits clear the A row’s 40 ✓. Grade: B+. Note the early disasters cost nothing. The grade records where we ended up.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 13 standards Met including P5, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). B row: standards ✓ ✓, but 25 &lt; 32 ✗. C row: 13 ≥ 10 ✓, 25 ≥ 24 ✓ → at least a C. Plus check: meets two B-row requirements (standards, P5) → Grade: C+. Is that harsh for someone with 13 standards? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we’re at a B+.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
     "objectID": "info/practice.html",
     "href": "info/practice.html",
     "title": "Practice Library",
@@ -179,243 +404,6 @@
       "Home",
       "Start Here",
       "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/grading.html",
-    "href": "info/grading.html",
-    "title": "How your grade works",
-    "section": "",
-    "text": "Your grade is built from exactly two ingredients:\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#standards-met-or-not-yet",
-    "href": "info/grading.html#standards-met-or-not-yet",
-    "title": "How your grade works",
-    "section": "Standards: Met or Not Yet",
-    "text": "Standards: Met or Not Yet\nEvery standard gets multiple opportunities across the semester (checkpoints, in-class work, the project, the defense — the schedule shows where each appears). The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget some standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesdays (weeks 4, 6, 8, and 10) open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements/what is possible with computing and at least a bit of fluency with the language.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#engagement-credits-the-process",
-    "href": "info/grading.html#engagement-credits-the-process",
-    "title": "How your grade works",
-    "section": "Engagement credits: the process",
-    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used as a pressure-release valve).\n\nProject-period credits are individual\nThe 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded per person, informed by teammate evaluation — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the peer evaluation page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#tokens",
-    "href": "info/grading.html#tokens",
-    "title": "How your grade works",
-    "section": "Tokens",
-    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, life); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#the-grade-table",
-    "href": "info/grading.html#the-grade-table",
-    "title": "How your grade works",
-    "section": "The grade table",
-    "text": "The grade table\nYour letter grade is the highest row where you meet every requirement in that row:\n\n\n\nGrade\nStandards Met (of 15)\nMust include\nEngagement credits\n\n\n\n\nA\n≥ 14\nP5\n≥ 40\n\n\nB\n≥ 12\nP5\n≥ 32\n\n\nC\n≥ 10\n—\n≥ 24\n\n\nD\n≥ 7\n—\n≥ 16\n\n\n\nPlus: meet all of your row and at least one requirement of the row above → attach a plus (e.g., B+). Minus: exactly one requirement falls short of your row, and it lands in the row directly below → you get the higher grade with a minus rather than dropping a full letter. F is reserved for missing the D row.\nWhy P5 is necessary for the A and B: P5 — holding your whole project in your head — is what the defense measures, and it’s the standard that certifies all the others were yours. An A in a course about directing and auditing computation, held by someone who can’t explain their own project, would be a false statement. We don’t issue those.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#three-worked-examples",
-    "href": "info/grading.html#three-worked-examples",
-    "title": "How your grade works",
-    "section": "Three worked examples",
-    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 14 standards including P5 (only S4 still Not Yet after the project), earns 43 engagement credits, spends one token on an extension during a brutal midterm week. Check the A row: 14 ≥ 14 ✓, P5 ✓, 43 ≥ 40 ✓. Grade: A. The two unspent tokens add 2 credits (45), which changes nothing.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint: P1 and P4 both Not Yet in week 4, and it feels catastrophic. It isn’t — both standards are re-offered at the week-6 and week-8 checkpoints, and Student 2 demonstrated each twice by mid-semester. Finishes with 12 standards Met including P5 (S2 and A3 fell short on the project report; his revision closed A3 but not S2, and F1 never came together). Then 41 engagement credits, did the work all semester even while the checkpoints were rough. B row: 12 ≥ 12 ✓, P5 ✓, 41 ≥ 32 ✓ → at least a B. Plus check: meet ≥ 1 requirement of the A row? The 41 credits clear the A row’s 40 ✓. Grade: B+. Note the early disasters cost nothing. The grade records where we ended up.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 13 standards Met including P5, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). B row: standards ✓ ✓, but 25 &lt; 32 ✗. C row: 13 ≥ 10 ✓, 25 ≥ 24 ✓ → at least a C. Plus check: meets two B-row requirements (standards, P5) → Grade: C+. Is that harsh for someone with 13 standards? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we’re at a B+.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation…\nhow computer logic works…\nand how to interpret code…\nbut we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”1: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, as long as we humans are an active participant in the process.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#the-big-idea",
-    "href": "index.html#the-big-idea",
-    "title": "Welcome",
-    "section": "The big idea",
-    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#how-a-week-works",
-    "href": "index.html#how-a-week-works",
-    "title": "Welcome",
-    "section": "How a week works",
-    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nClass time is mostly group work at the tables. Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you’ll actually implement them.\nGet extra practice on Mondays (optional). Base Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nCheckpoints happen on Tuesdays (weeks 4, 6, 8, 10): twenty-minute “mini-exams”, individual, on paper, with no AI. See the grading page.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#ai-policy",
-    "href": "index.html#ai-policy",
-    "title": "Welcome",
-    "section": "AI policy",
-    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#grading",
-    "href": "index.html#grading",
-    "title": "Welcome",
-    "section": "Grading",
-    "text": "Grading\nThis course uses standards-based grading, based on:\n\na list of specific skills (the standards), each marked Met or Not Yet\nand engagement credits for preparation and in-class work.\n\nThere is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#where-to-go-next",
-    "href": "index.html#where-to-go-next",
-    "title": "Welcome",
-    "section": "Where to go next",
-    "text": "Where to go next\nThe schedule shows the whole semester at a glance. Your first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the Practice Library if you want to run some code right now in your browser (and let me know if it doesn’t work). If curious, you might browse the Side Quests — a few ideas are already on that page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "Welcome",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nWe can’t look inside a “black box” to see what is going on.↩︎",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "info/basecamp.html",
-    "href": "info/basecamp.html",
-    "title": "Base Camp",
-    "section": "",
-    "text": "Mondays are an optional session/office hour. The first half of the semester, those Mondays are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade in any direction, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!\nTime and room set by signup poll in week 1 — watch Canvas."
-  },
-  {
-    "objectID": "info/basecamp.html#the-sessions",
-    "href": "info/basecamp.html#the-sessions",
-    "title": "Base Camp",
-    "section": "The sessions",
-    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead. \nBC2 (Week 2) · First contact, slowly. The week 2 lesson again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.\nBC3 (Week 3) · The vocabulary drill. Reps on the core reading skills: trace variables by hand, predict outputs, read = as “is assigned.” Includes assembly problems — working code with its lines scrambled.\nBC4 (Week 4) · Dress rehearsal: Checkpoint 1. A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. \nBC5 (Week 5) · Loop clinic. Loops trip up more beginners than any other fundamental ingredient. Extra reps with accumulators, range, predicting iteration by hand, and loop assembly.\nBC6 (Week 6) · Dress rehearsal: Checkpoint 2 — including re-offer items from Checkpoint 1, just as Tuesday will."
-  },
-  {
-    "objectID": "info/basecamp.html#practice-library-async-base-camp",
-    "href": "info/basecamp.html#practice-library-async-base-camp",
-    "title": "Base Camp",
-    "section": "Practice library (async Base Camp)",
-    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
-  },
-  {
-    "objectID": "info/installing.html",
-    "href": "info/installing.html",
-    "title": "Getting going in your language",
-    "section": "",
-    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#python-via-google-colab",
-    "href": "info/installing.html#python-via-google-colab",
-    "title": "Getting going in your language",
-    "section": "Python via Google Colab",
-    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#python-on-your-machine",
-    "href": "info/installing.html#python-on-your-machine",
-    "title": "Getting going in your language",
-    "section": "Python on your machine",
-    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#matlab-later-in-the-semester",
-    "href": "info/installing.html#matlab-later-in-the-semester",
-    "title": "Getting going in your language",
-    "section": "MATLAB (later in the semester)",
-    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/schedule.html",
-    "href": "info/schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "The course moves through four phases. The classroom rhythm shifts as it goes: early weeks are mostly convergent (questions with right answers), and once we learn more computing ideas, we start doing more things that are divergent (open-ended work, critiques, “why did your AI’s answer come out different from ours?”).\nRead the lesson before the class it’s listed under.\n\n\n\n\n\n\nNoteCheckpoints\n\n\n\nThe ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the grading page.\n\n\n\n\n\n\n\n\nNoteHomework\n\n\n\nHomework sets are assigned in weeks 2, 3, 5, 6, 7, 8, 9, 10, and 11.\n\n\n\n\n\n\n\n\nNoteBase Camp/Side Quest Sessions\n\n\n\n… happen on Mondays: Base Camp/Side Quests. (Optional.)\n\n\n\n\n\n\n\n\n\n\n\nWeek\nTuesday\nThursday\nStandards\n\n\n\n\nPhase 0 — Thinking\n\n\n\n\n\n1\nWhat do engineers do with computation? — specification as the skill. No computers.\nWhat does an LLM actually do? → Divergence & the ISS\n—\n\n\n2\nFirst contact — Colab, cells, variables; predict-then-run.\nReading code → The flaw hunt\nP4, A1\n\n\nPhase 1 — Vocabulary\n\n\n\n\n\n3\nFunctions — inputs and outputs.\nThe function forge — spec one, direct the AI, check it.\nP1, A4\n\n\n4\n✓ Checkpoint 1, then Logic & edge cases — if/else, booleans.\nThe edge-case hunt — break each other’s functions.\nP4, P1\n\n\n5\nLoops, arrays & sweeps — computational superpowers.\nSweep lab — predict all outcomes of a process.\nP2, S4\n\n\n6\n✓ Checkpoint 2, then Data in, data out — files, CSV, and plotting.\nPlot clinic — make one honest plot, catch one misleading one.\nF2, A2\n\n\nPhase 2 — Tools\n\n\n\n\n\n7\nPandas — dealing with big data sets.\nDataset triage — real, messy data.\nP3, F2\n\n\n8\n✓ Checkpoint 3, then Fetch — APIs, JSON, and your phone’s accelerometer.\nData acquisition lab.\nF1, F2, A3\n\n\n9\nSimulate I — time-stepping a model into the future.\nBuild-a-model lab — every table marches a different system.\nS1, S3\n\n\n10\n✓ Checkpoint 4, then Simulate II — assumptions, trust, and what-ifs.\nModel critique — every table’s model is wrong differently.\nS2, S3, S4\n\n\nPhase 3 — Integration\n\n\n\n\n\n11\nYour second language — MATLAB, translation, and choosing tools.\nProject launch — menu, teams, spec zero.\nP4, A4\n\n\n12\nProject studio — desk crits at tables.\nPin-up #1 — specs & verification plans on the wall.\nS2, A3, A4, P5\n\n\n13\nProject studio — desk crits at tables.\nPin-up #2 — working artifacts, same-project pairing.\nA2, A3, P5\n\n\n14\nDefense prep — what it means to know your own project.\nMock defenses at tables.\nP5\n\n\nFinals\nThe Defense — a written exam about your project: trace it, explain it, predict what breaks.\n\nP5 + everything",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Schedule"
     ]
   },
   {
