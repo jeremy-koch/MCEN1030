@@ -6,29 +6,39 @@ subtitle: "MCEN 1030 · Introduction to Engineering Computing"
 
 Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.
 
-When I took this course (in fall 2006... oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors. 
+When I took this course (in Fall 2006... oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors. 
 
-Today, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in `for i in items:` anymore... they are writing prompts that include something like "iterate through the items in that list" and having an LLM do the work.
+Today, we have **AI (artificial intelligence)**, specifically **LLMs (large language models)**. These have proven to be extremely capable of writing code based on a **prompt** (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in `for i in items:` anymore... they are writing prompts that include something like "iterate through the items in that list" and having an LLM do the work.
 <!-- — they can solve those traditional intro to computing problems almost instantaneously. Outside of class, the problems are not as well-specified — engineering is messy, and by definition any new design has never been tested before. But still,  -->
 
 ::: {.column-margin}
-We could argue about LLMs actually being a form of artificial "intelligence" — we'll talk about how they are just statistics-based word-guessers.
+We could argue about LLMs actually being a form of artificial "intelligence"... we'll talk about how they are just statistics-based word-guessers.
 :::
 
 <!-- ::: {.column-margin}
 The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engineers might use a "local LLM" instead, one that is not run on a personal computer, not the cloud. (Thus, your company secrets stay on your computer.) In such a case they might have downloaded Qwen, Gemma, Deepseek, or another open-source model. 
 ::: -->
 
-What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve "unsolvable" differential equations like [The Lorenz Equations](https://en.wikipedia.org/wiki/Lorenz_system)?), how computer logic works (`a=5,b=a+5,a=10`... what is the current value of `b`?), and how to interpret code (what is happening with `for i in items:`?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are **not** going to treat LLM-generated code as a "black box": we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won't be able to blame an LLM — it's your fault!
+What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation...
+
+- Can we solve "unsolvable" differential equations like [The Lorenz Equations](https://en.wikipedia.org/wiki/Lorenz_system)?
+
+how computer logic works...
+
+- `a=5,b=a+5,a=10`... what is the current value of `b`? 
+
+and how to interpret code...
+
+- what is happening with `for i in items:`? 
+
+but we will also learn how to integrate LLMs into our workflow. Importantly, we are **not** going to treat LLM-generated code as a "black box"^[We can't look inside a "black box" to see what is going on.]: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won't be able to blame an LLM — it's your fault!
+
+
+
+Further, we'll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn't mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, **as long as we humans are an active participant in the process**.
 
 ::: {.column-margin}
-We can't look inside a "black box" to see what is going on.
-:::
-
-Further, we'll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn't mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, LLMs are tool that can help us produce better work, faster, even if their initial result is flawed. And they'll give us an opportunity to do some moderately ambitious engineering work this semester.
-
-::: {.column-margin}
-The flip side of this coin is: if we don't understand computational ideas and are just hoping the LLM figures out what to do based on a vague description of the problem, we are going to be in trouble. 
+The flip side of this coin is: if we don't understand computational ideas and are just hoping the LLM figures out what to do based on a vague description of the problem, we are going to be in trouble.
 :::
 
 
@@ -71,9 +81,10 @@ The process of creating computational tools looks roughly like this:
 </svg>
 ```
 
-For decades, **Production** — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:
+For decades, **Production** — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:
 
 **Specification** means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can't articulate the problem, no tool — human or AI — can solve it for you.
+
 
 **Verification** means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.
 
@@ -81,19 +92,22 @@ You will still read and run and modify plenty of code in this course — you can
 
 ## How a week works
 
-**Before class**, you'll read one lesson on this site (~30 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a **Bring to class** box: one question you answer *on paper before you arrive*.
+**Before class**, you'll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a **Bring to class** box: one question you answer *on paper before you arrive*.
 
 ::: {.column-margin}
 More serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the [getting going page](info/installing.qmd) has instructions.
 :::
 
-**Four Tuesdays open with a checkpoint** (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI. Everything about how that feeds your grade is on the [grading page](info/grading.qmd).
+
 
 <!-- **Class opens with that question.** You'll vote on it, discuss with your table, and vote again. -->
 
-**The rest of class is work at the tables.** Early in the semester that's mostly short problems with right answers, later it shifts toward open-ended problems.
+**Class time is mostly group work at the tables.** Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you'll actually implement them.
 
-**Get extra practice on Mondays (optional).** T[Base Camp](info/basecamp.qmd) early (the beginner on-ramp, checkpoint practice, ...), [Side Quests](info/sidequests.qmd) later (build a tiny language model, 3D-print a parameter sweep, ...). No grades attached.
+**Get extra practice on Mondays (optional).** [Base Camp](info/basecamp.qmd) early (the beginner on-ramp, checkpoint practice, ...), [Side Quests](info/sidequests.qmd) later (build a tiny language model, 3D-print a parameter sweep, ...). No grades attached.
+
+**Checkpoints happen on Tuesdays** (weeks 4, 6, 8, 10): twenty-minute "mini-exams", individual, on paper, with no AI. See [the grading page](info/grading.qmd).
+
 
 **Homework** problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The [homework page](homework/index.qmd) explains the format.
 
@@ -104,8 +118,13 @@ You are **expected** to use AI tools in this course. You are also **completely r
 
 ## Grading
 
-This course uses **standards-based grading**: a list of specific skills ([the standards](info/standards.qmd)), each marked *Met* or *Not Yet*, plus **engagement credits** for preparation and in-class work. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you *end up*, not where you started. See the [grading page](info/grading.qmd).
+This course uses **standards-based grading**, based on: 
+
+- a list of specific skills ([the standards](info/standards.qmd)), each marked *Met* or *Not Yet*
+- and **engagement credits** for preparation and in-class work. 
+
+There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you *end up*, not where you started. See the [grading page](info/grading.qmd).
 
 ## Where to go next
 
-The [schedule](info/schedule.qmd) shows the whole semester at a glance. Your first reading (for Tuesday) is [What do engineers do with computation?](lessons/01a-what-engineers-do.qmd) You might look at [Base Camp](info/basecamp.qmd) if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. If curious, you might browse the [Side Quests](info/sidequests.qmd) — a few ideas are already on that page.
+The [schedule](info/schedule.qmd) shows the whole semester at a glance. Your first reading (for Tuesday) is [What do engineers do with computation?](lessons/01a-what-engineers-do.qmd) You might look at [Base Camp](info/basecamp.qmd) if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the [Practice Library](info/practice.qmd) if you want to run some code right now in your browser (and let me know if it doesn't work). If curious, you might browse the [Side Quests](info/sidequests.qmd) — a few ideas are already on that page.

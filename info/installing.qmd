@@ -3,7 +3,7 @@ title: "Getting going in your language"
 subtitle: "Google Colab first, then VS Code (or whatever!)"
 ---
 
-A few recommendations. **You can do this entire course in Google Colab and MATLAB Online** — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.
+This page contains my recommendations for how to set up your programming environment. **You can do this entire course in Google Colab and MATLAB Online** — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.
 
 
 
@@ -11,15 +11,18 @@ A few recommendations. **You can do this entire course in Google Colab and MATLA
 
 Go to [colab.research.google.com](https://colab.research.google.com), sign in with your university Google account, click **New notebook**, and... that's it. Python runs on Google's computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!
 
+::: {.column-margin}
+We'll talk about how to **import** packages soon... engineers don't use base Python much, we need to bring in some extra tools.
+:::
+
 ## Python on your machine
 
-There are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you.
-
-There are two things you'll need to do: install Python+a package manager, and install an editor.
+There are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you'll need to do: install Python+a package manager, and install an editor.
 
 ### Package manager
 
 My recommendation is to [install **miniconda**](https://www.anaconda.com/docs/getting-started/miniconda/install) — NOT the full Anaconda (which you can find nearby if you really want to, but I'm not linking it).
+
 ::: {.column-margin}
 The full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I "downgraded" to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer [VS Code](https://code.visualstudio.com), which supports Jupyter Notebooks and has a GitHub integration.
 :::
@@ -31,7 +34,7 @@ What are "packages"? They are collections Python files that include useful Pytho
 :::
 
 ::: {.column-margin}
-pip is another package-management option — really not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.
+pip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.
 :::
 
 ::: {.callout-tip}
@@ -45,7 +48,11 @@ Some other packages that might be worth installing:
 
 ### Editor
 
-For the editor, I recommend [**VS Code**](https://code.visualstudio.com) — it supports Jupyter notebooks (and the notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its *Python* and *Jupyter* extensions (VS Code will automatically offer to install them the first time you open a `.py` or `.ipynb` file).
+For the editor, I recommend [**VS Code**](https://code.visualstudio.com) — it supports Jupyter notebooks (and it's notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its *Python* and *Jupyter* extensions (VS Code will automatically offer to install them the first time you open a `.py` or `.ipynb` file).
+
+::: {.column-margin}
+[GitHub](https://github.com) is a website that hosts code projects ("repositories") so you can save your work, track changes over time, and share it with others.
+:::
 
 If you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven't tried it yet!)
 
@@ -63,6 +70,6 @@ If you do want to create separate environments, e.g., one for each project, you 
 
 Once your account is tied to the school's license, you can install desktop MATLAB **or** use [MATLAB Online](https://matlab.mathworks.com) in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.
 
-Basic MATLAB is all this course needs; no toolboxes required. If you're going on in the department, toolboxes like Simulink (used in System Dynamics) can be added anytime, so there's no need to decide now.
+Basic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.
 
-The MathWorks "**MATLAB Onramp**" tutorial — find it under Online Training at [matlab.mathworks.com](https://matlab.mathworks.com) — is genuinely good, takes about two hours.
+The MathWorks "**MATLAB Onramp**" tutorial — find it under Online Training at [matlab.mathworks.com](https://matlab.mathworks.com) — is genuinely good and takes about two hours. We won't be using MATLAB until the second half of the course.

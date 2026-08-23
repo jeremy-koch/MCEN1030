@@ -3,27 +3,38 @@ title: "What do engineers do with computation?"
 subtitle: "Week 1, Lesson A — read before Tuesday"
 ---
 
-No computer needed for this reading, and there won't be one in Tuesday's class either. We're starting with the thing computers can't do for you.
+We're starting with computational thinking, not coding. What is actually possible with computation? What does a computer need from you to do something useful? How can you tell if a calculation is trustworthy? These are things we'll be thinking about all semester, but we'll introduce them here.
 
 ## Think First
 
 Recall
 
 1. Think of a time you gave someone instructions (directions to your house, a recipe, rules to a game) and they got it wrong. Whose fault was it?
-2. In high school physics, you checked answers by asking "is this number reasonable?" — a car going 900 m/s is probably a mistake. What were you *actually* doing when you did that?
+2. In high school physics, you checked answers by asking "is this number reasonable?" — a car going 900 m/s is probably a mistake. What was that process like... what were you recalling, what did you do when you realized the answer was ridiculous?
 
 Look Ahead
 
 1. If an AI can write working code from a plain-English description in five seconds, what's left for the engineer to do?
-2. What would it take for you to *trust* a program you didn't write?
+2. What would it take for you to trust a program you didn't write?
 
 ## Four things you may not know are possible with computation
 
-**Predict every outcome of a process.** Write a function that models something — the stress in a bracket, the temperature of a battery — then call it 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.
+**Predict every outcome of a process.** Write a function that models something — the stress in a bracket, the temperature of a battery — then use that function 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.
+
+::: {.column-margin}
+A **function** has a very similar meaning in this class as it did in algebra: there are inputs, and there are outputs. An example: we might want to calculate the area of a triangle. We'd write a function with inputs `base` and `height`, and the output is the area. In Python, this would look like
+
+```python
+def triangle_area(base, height):
+    return 0.5 * base * height
+```
+
+If we "called" this function and provided values for `base` and `height`, it would "return" the area of the triangle. We'll talk about this structure a lot more in two weeks.
+:::
 
 **Handle data at engineering scale.** A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.
 
-**Reach out and touch the world.** From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer *inside your program*.
+**Collect and process real engineering data.** From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer *inside your program*.
 
 **Solve the unsolvable.** Most real equations in engineering have no analytical solution. Many of those problems can be solved numerically in 10 lines of code.
 
@@ -61,47 +72,29 @@ Creating a computational tool looks something like this:
 </svg>
 ```
 
-The **idea** is always the hard part — no news there. But for the seventy years after that, **production** was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on it.
+The **idea** is always the hard part. Then, at least for the seventy years after that, **production** was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on how to write correct code.
 
-That era is over. AI tools now produce working code from a good description in seconds. Production has, for most everyday engineering purposes, been solved.
+That era is over. AI tools now produce working code **from a good description** in seconds. Production has, for most everyday engineering purposes, been solved.
 
 ::: {.column-margin}
-John Backus reportedly disliked the tedium of [assembly-language](https://en.wikipedia.org/wiki/Assembly_language) programming, so in the 1950s he led the team that created [FORTRAN](https://en.wikipedia.org/wiki/Fortran) — and a generation of programmers stopped hand-writing machine instructions. Later, [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) emerged as a much more readable language. The history of computer science is a story of making code less abstract, and LLMs might be the next step.
+[John Backus](https://en.wikipedia.org/wiki/John_Backus) thought of himself as a bad [assembly-language](https://en.wikipedia.org/wiki/Assembly_language) coder, so in the 1950s he created [FORTRAN](https://en.wikipedia.org/wiki/Fortran). The history of computer science is a story of making code less abstract, and LLMs might be the next step.
 :::
 
 What should be the focus today?
 
 ## Specification means describing the problem completely
 
-... the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it's an AI, a contractor, or a teammate who is helping with the task, **every gap in your specification gets filled with an assumption**. If your specification is doesn't mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!
+... the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it's an AI, a contractor, or a teammate who is helping with the task, **every gap in your specification gets filled with an assumption**. If your specification doesn't mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!
 
-Try this one. A perfectly obedient, perfectly literal robot chef awaits your command:
-
-> "Make me a peanut butter sandwich."
-
-::: {.callout-note collapse="true"}
-### Click to see what the robot needs to know
-
-How many slices of bread? Which sides get peanut butter? How much? Spread with what? Should the jar be opened first? (You didn't say.) Crusts on or off? Cut in half — diagonally? What if there's no peanut butter: fail loudly, substitute almond butter, or go buy some? What does "done" look like?
-
-None of these are jokes. Each is a decision, and if you don't make it, the robot will — its way.
-:::
-
-That's a toy, so let's do one that will actually happen to you in about three weeks. Same robot, same literalism, but now the request is one an engineer might really make:
+Think about asking a question like...
 
 > "Tell me the average temperature in Boulder."
 
 ::: {.callout-note collapse="true"}
-### Click to see what the robot needs to know
+### What details do you actually need to provide?
 
-Average over *what* — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what "average temperature" usually means, but you didn't say)? What about the days the weather station didn't report anything — and there are plenty of those, going back to the 1890s? In the raw file, a missing day isn't blank, it's `-9999`. Hand that to a robot that was told to average and it will average it, cheerfully, and tell you Boulder's mean temperature is about −270 °C.
-
-And units. The file stores temperatures in *tenths* of a degree Celsius. So a perfectly correct average of perfectly correct numbers is off by a factor of ten before you've done anything wrong.
+Average over *what* — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what "average temperature" usually means, but maybe you are concerned with human comfort and thus should pay attention to the extremes)? What about the days the weather station didn't report anything? There are plenty of those if we're looking back to the 1890s. In the raw file, a missing day might not be blank, it might be recorded as `-9999`. Hand that to a basic Python program for computing the average and you might "learn" that the average temperature is about −270 °C. And, a classic problem even for humans: What are the units? 
 :::
-
-Notice what's different about that one. Nothing in it was a joke, every gap was a real decision, and — this is the part worth sitting with — a robot that filled those gaps badly would still hand you a number. A clean, confident, plausible-looking number. Somewhere between "Boulder averages 11 °C" and "Boulder averages −270 °C" there's an answer that's merely *wrong*, and that's the dangerous one, because you'd never notice.
-
-This is why we're going to keep saying: a number isn't an answer until someone has reasoned about it.
 
 Now a different kind of gap. Compare these two problem statements:
 
@@ -109,22 +102,22 @@ Now a different kind of gap. Compare these two problem statements:
 
 > **B.** "Write a program that would allow you to determine the velocity (speed and direction) of a siren."
 
-Statement A is a *completed specification* — someone already did all the thinking, and you're just following instructions. Statement B is a *problem*. To attack B, you have to decide: what are the inputs? (A recording? Frequency-vs-time data?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?
+Statement A is a *completed specification* — someone already did all the thinking, and you're just following instructions. Statement B is a *problem*. To attack B, you have to decide: what are the inputs my team has access to/ability to control? (A recording? Frequency-vs-time data? Hypothetical object speeds?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?
 
-In the old version of this course, where we focused on code production, you got Statement A. In this version, where we augment our work with LLMs, you get Statement B. Nobody in industry hands you Statement A; **producing Statement A from Statement B is the job.**
+In the old version of this course, where we focused on code production, I'd give you Statement A. (Indeed, this was a homework problem last year.) In this version, where we augment our work with LLMs, you might get Statement B. Importantly: in real engineering, no one will hand you Statement A, especially now that LLMs make short work of the ensuing code. **Producing Statement A from Statement B is the job.**
 
 ## Verification means confirming a program does what you intended
 
-... without taking anyone's word for it, including the AI's. This semester we will verify our code with:
+... and notably: not assuming that the product given to you by a colleague or LLM is correct. This semester we will verify our code with:
 
-The **hand estimate**: before running anything, compute a rough expected answer for one simple case. A dropped wrench falls 3 meters in about $t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2} \approx 0.8$ seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that's a good sign.
+The **hand estimate**: before running anything, compute a rough expected answer for a simple case. A dropped wrench falls 3 meters in about $t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2)} \approx 0.8$ seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that's a good sign.
 
-The **edge case**: what happens at zero? At a negative input? When the file is empty? A program that works on the happy path and explodes at the edges is a program that will fail in the field.
+The **edge case**: what happens at zero? At a negative input? When the file is empty? What should happen in these cases?
 
-The **intuition check**: you have years of physical intuition — heavier things don't fall faster, sirens sound higher approaching than receding, hot coffee cools toward room temperature and not past it. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!
+The **intuition check**: you have years of physical intuition — heavier things don't fall faster, sirens sound higher approaching than receding, hot coffee cools to room temperature over several minutes but won't drop below room temperature. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!
 
 ::: {.callout-important}
-An AI will hand you code that runs, produces a plot, and is confidently, invisibly wrong — a sign flipped, a unit mixed, an edge case botched. It will not warn you. **"It ran without errors" and "it is correct" are entirely different claims**, and confusing them is how engineering disasters happen.
+An AI will hand you code that runs yet is confidently, invisibly wrong — it flipped a sign, used the wrong equation because you forgot to specify one, assumed Celsius when the data was in Fahrenheit. It will not warn you. **"It ran without errors" and "it is correct" are entirely different claims**.
 :::
 
 ## The map of this course
@@ -134,17 +127,14 @@ Four verbs describe what engineers do with computation, and they outline this co
 1. **Fetch** — get real data into (and out of) your programs: sensors, files, the internet.
 2. **Process** — turn raw data into meaningful quantities: functions, sweeps, big datasets.
 3. **Simulate** — build models, make predictions, ask "what if," and know when not to believe yourself.
-4. **Analyze** — communicate findings honestly: good plots, stated uncertainty, defensible conclusions.
+4. **Analyze** — communicate findings honestly: good plots that lead to good understanding, defensible conclusions that lead to engineering decisions.
 
 We'll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The [standards page](../info/standards.qmd) lists what you'll be able to do under each verb.
 
-::: {.callout-tip}
-## Think
-The pipeline diagram above should look faintly familiar if you've seen an engineering *design* loop: define the problem, generate a solution, test it, iterate. That's not a coincidence — specify/produce/verify/adapt **is** the design loop, wearing computational clothes. You are not learning "a programming class thing." You are learning how engineers attack problems.
-:::
+
 
 ::: {.bring-to-class}
 On paper (yes, actual paper), write a specification — 5 to 10 sentences — for this problem: *a program that tells a student the fastest walking route between two buildings on campus.* Your spec must state the inputs, the outputs, and **at least three edge cases** with what should happen in each.
 
-Class opens with tables exchanging specs and hunting for the gaps. The table that finds the most unstated assumptions in another table's spec wins bragging rights. Bring your sharpest pedantry.
+Class opens with tables exchanging specs and hunting for the gaps.
 :::
