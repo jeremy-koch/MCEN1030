@@ -43,14 +43,15 @@ website:
           - info/standards.qmd
           - info/grading.qmd
           - info/installing.qmd
+          - info/practice.qmd
       - section: "Phase 0 — Thinking (Weeks 1–2)"
         contents:
           - lessons/01a-what-engineers-do.qmd
-          - lessons/01b-what-llms-do.qmd
-          - activities/w01-divergence-demo.qmd
-          - lessons/02a-first-contact.qmd
-          - lessons/02b-reading-code.qmd
-          - activities/w02-flaw-hunt.qmd
+          # - lessons/01b-what-llms-do.qmd
+          # - activities/w01-divergence-demo.qmd
+          # - lessons/02a-first-contact.qmd
+          # - lessons/02b-reading-code.qmd
+          # - activities/w02-flaw-hunt.qmd
       # - section: "Phase 1 — Vocabulary (Weeks 3–6)"
       #   contents:
       #     - lessons/03-functions.qmd
