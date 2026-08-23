@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -289,25 +324,31 @@ window.Quarto = {
 </header>
 
 
-<p>No computer needed for this reading, and there won’t be one in Tuesday’s class either. We’re starting with the thing computers can’t do for you.</p>
+<p>We’re starting with computational thinking, not coding. What is actually possible with computation? What does a computer need from you to do something useful? How can you tell if a calculation is trustworthy? These are things we’ll be thinking about all semester, but we’ll introduce them here.</p>
 <section id="think-first" class="level2">
 <h2 class="anchored" data-anchor-id="think-first">Think First</h2>
 <p>Recall</p>
 <ol type="1">
 <li>Think of a time you gave someone instructions (directions to your house, a recipe, rules to a game) and they got it wrong. Whose fault was it?</li>
-<li>In high school physics, you checked answers by asking “is this number reasonable?” — a car going 900 m/s is probably a mistake. What were you <em>actually</em> doing when you did that?</li>
+<li>In high school physics, you checked answers by asking “is this number reasonable?” — a car going 900 m/s is probably a mistake. What was that process like… what were you recalling, what did you do when you realized the answer was ridiculous?</li>
 </ol>
 <p>Look Ahead</p>
 <ol type="1">
 <li>If an AI can write working code from a plain-English description in five seconds, what’s left for the engineer to do?</li>
-<li>What would it take for you to <em>trust</em> a program you didn’t write?</li>
+<li>What would it take for you to trust a program you didn’t write?</li>
 </ol>
 </section>
-<section id="four-things-you-may-not-know-are-possible-with-computation" class="level2">
+<section id="four-things-you-may-not-know-are-possible-with-computation" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="four-things-you-may-not-know-are-possible-with-computation">Four things you may not know are possible with computation</h2>
-<p><strong>Predict every outcome of a process.</strong> Write a function that models something — the stress in a bracket, the temperature of a battery — then call it 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.</p>
-<p><strong>Handle data at engineering scale.</strong> A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.</p>
-<p><strong>Reach out and touch the world.</strong> From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer <em>inside your program</em>.</p>
+<p><strong>Predict every outcome of a process.</strong> Write a function that models something — the stress in a bracket, the temperature of a battery — then use that function 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A <strong>function</strong> has a very similar meaning in this class as it did in algebra: there are inputs, and there are outputs. An example: we might want to calculate the area of a triangle. We’d write a function with inputs <code>base</code> and <code>height</code>, and the output is the area. In Python, this would look like</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> triangle_area(base, height):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> base <span class="op">*</span> height</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If we “called” this function and provided values for <code>base</code> and <code>height</code>, it would “return” the area of the triangle. We’ll talk about this structure a lot more in two weeks.</p>
+</div></div><p><strong>Handle data at engineering scale.</strong> A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.</p>
+<p><strong>Collect and process real engineering data.</strong> From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer <em>inside your program</em>.</p>
 <p><strong>Solve the unsolvable.</strong> Most real equations in engineering have no analytical solution. Many of those problems can be solved numerically in 10 lines of code.</p>
 </section>
 <section id="the-pipeline" class="level2 page-columns page-full">
@@ -340,19 +381,19 @@ window.Quarto = {
     <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
   </g>
 </svg>
-<p>The <strong>idea</strong> is always the hard part — no news there. But for the seventy years after that, <strong>production</strong> was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on it.</p>
-<p>That era is over. AI tools now produce working code from a good description in seconds. Production has, for most everyday engineering purposes, been solved.</p>
+<p>The <strong>idea</strong> is always the hard part. Then, at least for the seventy years after that, <strong>production</strong> was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on how to write correct code.</p>
+<p>That era is over. AI tools now produce working code <strong>from a good description</strong> in seconds. Production has, for most everyday engineering purposes, been solved.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>John Backus reportedly disliked the tedium of <a href="https://en.wikipedia.org/wiki/Assembly_language">assembly-language</a> programming, so in the 1950s he led the team that created <a href="https://en.wikipedia.org/wiki/Fortran">FORTRAN</a> — and a generation of programmers stopped hand-writing machine instructions. Later, <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> emerged as a much more readable language. The history of computer science is a story of making code less abstract, and LLMs might be the next step.</p>
+<p><a href="https://en.wikipedia.org/wiki/John_Backus">John Backus</a> thought of himself as a bad <a href="https://en.wikipedia.org/wiki/Assembly_language">assembly-language</a> coder, so in the 1950s he created <a href="https://en.wikipedia.org/wiki/Fortran">FORTRAN</a>. The history of computer science is a story of making code less abstract, and LLMs might be the next step.</p>
 </div></div><p>What should be the focus today?</p>
 </section>
 <section id="specification-means-describing-the-problem-completely" class="level2">
 <h2 class="anchored" data-anchor-id="specification-means-describing-the-problem-completely">Specification means describing the problem completely</h2>
-<p>… the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it’s an AI, a contractor, or a teammate who is helping with the task, <strong>every gap in your specification gets filled with an assumption</strong>. If your specification is doesn’t mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!</p>
-<p>Try this one. A perfectly obedient, perfectly literal robot chef awaits your command:</p>
+<p>… the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it’s an AI, a contractor, or a teammate who is helping with the task, <strong>every gap in your specification gets filled with an assumption</strong>. If your specification doesn’t mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!</p>
+<p>Think about asking a question like…</p>
 <blockquote class="blockquote">
-<p>“Make me a peanut butter sandwich.”</p>
+<p>“Tell me the average temperature in Boulder.”</p>
 </blockquote>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -360,40 +401,16 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Click to see what the robot needs to know
+<span class="screen-reader-only">Note</span>What details do you actually need to provide?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>How many slices of bread? Which sides get peanut butter? How much? Spread with what? Should the jar be opened first? (You didn’t say.) Crusts on or off? Cut in half — diagonally? What if there’s no peanut butter: fail loudly, substitute almond butter, or go buy some? What does “done” look like?</p>
-<p>None of these are jokes. Each is a decision, and if you don’t make it, the robot will — its way.</p>
+<p>Average over <em>what</em> — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what “average temperature” usually means, but maybe you are concerned with human comfort and thus should pay attention to the extremes)? What about the days the weather station didn’t report anything? There are plenty of those if we’re looking back to the 1890s. In the raw file, a missing day might not be blank, it might be recorded as <code>-9999</code>. Hand that to a basic Python program for computing the average and you might “learn” that the average temperature is about −270 °C. And, a classic problem even for humans: What are the units?</p>
 </div>
 </div>
 </div>
-<p>That’s a toy, so let’s do one that will actually happen to you in about three weeks. Same robot, same literalism, but now the request is one an engineer might really make:</p>
-<blockquote class="blockquote">
-<p>“Tell me the average temperature in Boulder.”</p>
-</blockquote>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Click to see what the robot needs to know
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Average over <em>what</em> — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what “average temperature” usually means, but you didn’t say)? What about the days the weather station didn’t report anything — and there are plenty of those, going back to the 1890s? In the raw file, a missing day isn’t blank, it’s <code>-9999</code>. Hand that to a robot that was told to average and it will average it, cheerfully, and tell you Boulder’s mean temperature is about −270 °C.</p>
-<p>And units. The file stores temperatures in <em>tenths</em> of a degree Celsius. So a perfectly correct average of perfectly correct numbers is off by a factor of ten before you’ve done anything wrong.</p>
-</div>
-</div>
-</div>
-<p>Notice what’s different about that one. Nothing in it was a joke, every gap was a real decision, and — this is the part worth sitting with — a robot that filled those gaps badly would still hand you a number. A clean, confident, plausible-looking number. Somewhere between “Boulder averages 11 °C” and “Boulder averages −270 °C” there’s an answer that’s merely <em>wrong</em>, and that’s the dangerous one, because you’d never notice.</p>
-<p>This is why we’re going to keep saying: a number isn’t an answer until someone has reasoned about it.</p>
 <p>Now a different kind of gap. Compare these two problem statements:</p>
 <blockquote class="blockquote">
 <p><strong>A.</strong> “Write a function <code>freq_shift(t, U, x0, y0, c, f)</code> that returns the apparent frequency of a moving siren at each time in the array <code>t</code>, and plots it against time.”</p>
@@ -401,15 +418,15 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>B.</strong> “Write a program that would allow you to determine the velocity (speed and direction) of a siren.”</p>
 </blockquote>
-<p>Statement A is a <em>completed specification</em> — someone already did all the thinking, and you’re just following instructions. Statement B is a <em>problem</em>. To attack B, you have to decide: what are the inputs? (A recording? Frequency-vs-time data?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?</p>
-<p>In the old version of this course, where we focused on code production, you got Statement A. In this version, where we augment our work with LLMs, you get Statement B. Nobody in industry hands you Statement A; <strong>producing Statement A from Statement B is the job.</strong></p>
+<p>Statement A is a <em>completed specification</em> — someone already did all the thinking, and you’re just following instructions. Statement B is a <em>problem</em>. To attack B, you have to decide: what are the inputs my team has access to/ability to control? (A recording? Frequency-vs-time data? Hypothetical object speeds?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?</p>
+<p>In the old version of this course, where we focused on code production, I’d give you Statement A. (Indeed, this was a homework problem last year.) In this version, where we augment our work with LLMs, you might get Statement B. Importantly: in real engineering, no one will hand you Statement A, especially now that LLMs make short work of the ensuing code. <strong>Producing Statement A from Statement B is the job.</strong></p>
 </section>
 <section id="verification-means-confirming-a-program-does-what-you-intended" class="level2">
 <h2 class="anchored" data-anchor-id="verification-means-confirming-a-program-does-what-you-intended">Verification means confirming a program does what you intended</h2>
-<p>… without taking anyone’s word for it, including the AI’s. This semester we will verify our code with:</p>
-<p>The <strong>hand estimate</strong>: before running anything, compute a rough expected answer for one simple case. A dropped wrench falls 3 meters in about <span class="math inline">\(t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2} \approx 0.8\)</span> seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that’s a good sign.</p>
-<p>The <strong>edge case</strong>: what happens at zero? At a negative input? When the file is empty? A program that works on the happy path and explodes at the edges is a program that will fail in the field.</p>
-<p>The <strong>intuition check</strong>: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools toward room temperature and not past it. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!</p>
+<p>… and notably: not assuming that the product given to you by a colleague or LLM is correct. This semester we will verify our code with:</p>
+<p>The <strong>hand estimate</strong>: before running anything, compute a rough expected answer for a simple case. A dropped wrench falls 3 meters in about <span class="math inline">\(t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2)} \approx 0.8\)</span> seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that’s a good sign.</p>
+<p>The <strong>edge case</strong>: what happens at zero? At a negative input? When the file is empty? What should happen in these cases?</p>
+<p>The <strong>intuition check</strong>: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools to room temperature over several minutes but won’t drop below room temperature. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -420,7 +437,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>An AI will hand you code that runs, produces a plot, and is confidently, invisibly wrong — a sign flipped, a unit mixed, an edge case botched. It will not warn you. <strong>“It ran without errors” and “it is correct” are entirely different claims</strong>, and confusing them is how engineering disasters happen.</p>
+<p>An AI will hand you code that runs yet is confidently, invisibly wrong — it flipped a sign, used the wrong equation because you forgot to specify one, assumed Celsius when the data was in Fahrenheit. It will not warn you. <strong>“It ran without errors” and “it is correct” are entirely different claims</strong>.</p>
 </div>
 </div>
 </section>
@@ -431,25 +448,12 @@ Important
 <li><strong>Fetch</strong> — get real data into (and out of) your programs: sensors, files, the internet.</li>
 <li><strong>Process</strong> — turn raw data into meaningful quantities: functions, sweeps, big datasets.</li>
 <li><strong>Simulate</strong> — build models, make predictions, ask “what if,” and know when not to believe yourself.</li>
-<li><strong>Analyze</strong> — communicate findings honestly: good plots, stated uncertainty, defensible conclusions.</li>
+<li><strong>Analyze</strong> — communicate findings honestly: good plots that lead to good understanding, defensible conclusions that lead to engineering decisions.</li>
 </ol>
 <p>We’ll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The <a href="../info/standards.html">standards page</a> lists what you’ll be able to do under each verb.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Think
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The pipeline diagram above should look faintly familiar if you’ve seen an engineering <em>design</em> loop: define the problem, generate a solution, test it, iterate. That’s not a coincidence — specify/produce/verify/adapt <strong>is</strong> the design loop, wearing computational clothes. You are not learning “a programming class thing.” You are learning how engineers attack problems.</p>
-</div>
-</div>
 <div class="bring-to-class">
 <p>On paper (yes, actual paper), write a specification — 5 to 10 sentences — for this problem: <em>a program that tells a student the fastest walking route between two buildings on campus.</em> Your spec must state the inputs, the outputs, and <strong>at least three edge cases</strong> with what should happen in each.</p>
-<p>Class opens with tables exchanging specs and hunting for the gaps. The table that finds the most unstated assumptions in another table’s spec wins bragging rights. Bring your sharpest pedantry.</p>
+<p>Class opens with tables exchanging specs and hunting for the gaps.</p>
 </div>
 
 
