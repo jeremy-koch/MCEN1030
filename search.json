@@ -1,617 +1,5 @@
 [
   {
-    "objectID": "lessons/02b-reading-code.html",
-    "href": "lessons/02b-reading-code.html",
-    "title": "Reading code & the full cycle",
-    "section": "",
-    "text": "Tuesday you ran code. Today you learn to read it — which, in a course where AI handles production, is the load-bearing skill — and then we put the whole week-1 philosophy through one complete lap: spec → prompt → annotate → verify.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code & the full cycle"
-    ]
-  },
-  {
-    "objectID": "lessons/02b-reading-code.html#think-first",
-    "href": "lessons/02b-reading-code.html#think-first",
-    "title": "Reading code & the full cycle",
-    "section": "Think First",
-    "text": "Think First\nRecall\n\nFrom Tuesday: what does = actually do, and why is count = count + 1 not nonsense?\nFrom week 1: what fills the gaps in an under-specified prompt?\n\nLook Ahead\n\nCould you convince someone a program is correct without running it?\nWhat’s the difference between a comment that says what a line does and one that says why it’s there?",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code & the full cycle"
-    ]
-  },
-  {
-    "objectID": "lessons/02b-reading-code.html#the-reading-vocabulary",
-    "href": "lessons/02b-reading-code.html#the-reading-vocabulary",
-    "title": "Reading code & the full cycle",
-    "section": "The reading vocabulary",
-    "text": "The reading vocabulary\nYou already know enough Python to read most short engineering scripts. Here’s a beginning inventory, plus two constructs you haven’t formally learned but will see in AI output before we cover them:\n\n\n\n\n\n\n\nYou see\nIt means\n\n\n\n\nx = 5\nstore 5 under the name x (“x is assigned 5”)\n\n\nprint(x)\ndisplay the value of x\n\n\nx ** 2, x / y\npower, division\n\n\n# text\ncode comments, note for humans; Python skips it\n\n\nif condition:\npreview (week 4): run the indented block only when the condition holds\n\n\nfor item in things:\npreview (week 5): run the indented block once per item\n\n\n\nYou don’t need to write if or for yet. You need to recognize their shape — indentation marks the “inside” — so AI-generated code doesn’t look like hieroglyphics for the next two weeks.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code & the full cycle"
-    ]
-  },
-  {
-    "objectID": "lessons/02b-reading-code.html#tracing-running-code-in-your-head",
-    "href": "lessons/02b-reading-code.html#tracing-running-code-in-your-head",
-    "title": "Reading code & the full cycle",
-    "section": "Tracing: running code in your head",
-    "text": "Tracing: running code in your head\nTo trace a program, be the computer: go top to bottom, one line at a time, keeping a little table of every variable’s current value.\n\n\n\n\n\n\n(Runnable — after your trace. The print line is added so the machine can confirm your paper.)\n\n\n\n\n\n\nNoteClick to see the trace\n\n\n\n\n\nAfter line 1: a = 2. After line 2: a = 2, b = 5. After line 3: a = 20, b = 5. After line 4: c = 25.\nIf you got c = 25, you can trace. If you got c = 7, you read = as algebra again — go re-run the week-2a mental patch.\n\n\n\nTracing is slow and that’s fine. It’s a verification instrument, not a way of life: you deploy it on the lines you don’t trust.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code & the full cycle"
-    ]
-  },
-  {
-    "objectID": "lessons/02b-reading-code.html#the-annotation-discipline",
-    "href": "lessons/02b-reading-code.html#the-annotation-discipline",
-    "title": "Reading code & the full cycle",
-    "section": "The annotation discipline",
-    "text": "The annotation discipline\nWhen an AI hands you code, you will annotate it: a comment on every line or logical block, in your own words, saying what it does and why it’s there.\n\n\n\n\n\n\nImportant\n\n\n\nRule 1: A line you can’t annotate is a line you do not understand. Investigate it or delete it.\nRule 2: Annotate the why, not just the what. # convert to liters beats # multiply by 1000 — the first survives a bug hunt, the second is just the code again, slower.\n\n\nThis feels tedious in week 2. It is also preparation for the final defense — a project annotated as it grows is a project you can explain under examination. Students who skip this discipline meet it again in week 14, at the worst possible time.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code & the full cycle"
-    ]
-  },
-  {
-    "objectID": "lessons/02b-reading-code.html#one-full-lap-the-pool-problem",
-    "href": "lessons/02b-reading-code.html#one-full-lap-the-pool-problem",
-    "title": "Reading code & the full cycle",
-    "section": "One full lap: the pool problem",
-    "text": "One full lap: the pool problem\nThe problem: How long will it take to fill a backyard swimming pool with a garden hose?\nStep 1 — Specification. Before any AI is involved, decisions: Inputs — pool length, width, depth (m), hose flow rate (L/min). Output — fill time in hours, displayed with units. Assumptions — rectangular pool, constant flow, starts empty, no evaporation or splashing (fine at this timescale). Edge cases — zero or negative flow rate should stop with a clear error, not divide by zero or report a negative time.\nStep 2 — The prompt. Notice how the spec practically is the prompt:\n\nWrite a short Python script that computes the time to fill a rectangular pool. Inputs as variables: length, width, depth in meters, and flow rate in liters per minute. Convert consistently, output the fill time in hours with a printed sentence including units. Comment each step.\n\nStep 3 — Annotate what comes back. Suppose the AI returns:\n\n\n\n\n\n\nThe two arrow-comments are annotation doing its real job: flagging the hinges — the lines where a silent error would live.\nStep 4 — Verify. Hand estimate: volume is \\(8 \\times 4 \\times 1.5 = 48\\) m³ = 48,000 L. At ~10 L/min that’s ~4,800 min ≈ 80 hours. Program says 84.2. Agreement — trust earned. Unit check: trace the units through each line (they cancel to hours — do it). Edge case: set flow = 0 and predict before running what happens.\n\n\nAbout 3.5 days of continuous garden hose. Verification sometimes delivers engineering judgment for free: the answer is “rent a water truck.”",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code & the full cycle"
-    ]
-  },
-  {
-    "objectID": "lessons/02b-reading-code.html#when-the-ai-gets-it-plausibly-wrong",
-    "href": "lessons/02b-reading-code.html#when-the-ai-gets-it-plausibly-wrong",
-    "title": "Reading code & the full cycle",
-    "section": "When the AI gets it plausibly wrong",
-    "text": "When the AI gets it plausibly wrong\nSame prompt, different day, and the returned code contains:\nvolume_L = volume_m3 * 100    # convert cubic meters to liters\nIt runs. It plots nothing suspicious. It reports a fill time of 8.4 hours — maybe believable, but wrong by a factor of ten. The comment even asserts the conversion confidently. Only two things catch this: the hand estimate (80 ≠ 8.4) and the annotation pass (is 1 m³ really 100 L? Nothing about running the program catches it. This is the “confident, invisibly wrong” failure mode from week 1, in the wild — and you just watched two cheap habits kill it.\n\nBelow is an AI-generated script with three planted flaws: one syntax error (won’t run), one logic error (runs, obviously wrong), and one silent error (runs, plausibly wrong). On paper: annotate every line, name all three flaws, and state what the correct fill time should be. Do not run it first — Thursday’s opening vote is which line hides the silent one, and the fun is finding it by reading.\nflow = 9.5            # hose flow rate, liters per minute\nlength = 8            # m\nwidth = 4             # m\ndepth = 1.5           # m\n\nvolume = length * width * width   # pool volume, m^3\nvolume_liters = volume * 1000     # convert m^3 to liters\nminutes = volume_liters / flow    # minutes to fill\nhours = minutes * 60              # convert minutes to hours\nprint(\"Fill time:\", hours \"hours\")",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code & the full cycle"
-    ]
-  },
-  {
-    "objectID": "lessons/01b-what-llms-do.html",
-    "href": "lessons/01b-what-llms-do.html",
-    "title": "What does an LLM actually do?",
-    "section": "",
-    "text": "You will use AI constantly in this course, and you’ve probably already got some experience. (If not, don’t worry!) Let’s spend one lesson on what’s it’s actually doing.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
-    ]
-  },
-  {
-    "objectID": "lessons/01b-what-llms-do.html#think-first",
-    "href": "lessons/01b-what-llms-do.html#think-first",
-    "title": "What does an LLM actually do?",
-    "section": "Think First",
-    "text": "Think First\nRecall\n\nYour phone’s keyboard suggests the next word as you type. How do you think it decides what to suggest?\nHave you ever confidently “remembered” something that turned out to be wrong?\n\nLook Ahead\n\nIf two students give an AI the exact same prompt, will they get the exact same code back?\nWhy might an AI be better at writing code than at doing arithmetic?",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
-    ]
-  },
-  {
-    "objectID": "lessons/01b-what-llms-do.html#the-one-sentence-version",
-    "href": "lessons/01b-what-llms-do.html#the-one-sentence-version",
-    "title": "What does an LLM actually do?",
-    "section": "The one-sentence version",
-    "text": "The one-sentence version\nA large language model does one thing:\n\nGiven some text, predict a plausible next small chunk of text. Then do it again. And again.\n\nThat’s it. That is the entire mechanism. Everything else — the code-writing, the explanations, the apparent reasoning — emerges from doing that one thing extremely well, at enormous scale.\n\n\nThe “small chunks” are called tokens — usually a word or piece of a word. thermal might be one token; thermodynamics might be three.\nThe model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and critically for us, billions of lines of code — and adjusting billions of internal numerical knobs until its next-chunk predictions got very good. When you prompt it, you’re providing the start of a text, and it continues that text one chunk at a time, each new chunk chosen based on everything that came before.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
-    ]
-  },
-  {
-    "objectID": "lessons/01b-what-llms-do.html#three-consequences",
-    "href": "lessons/01b-what-llms-do.html#three-consequences",
-    "title": "What does an LLM actually do?",
-    "section": "Three consequences",
-    "text": "Three consequences\nEverything strange about LLM behavior falls out of that mechanism.\n\n1. It’s plausible, but maybe not the truth\nThe model produces text that is statistically likely to follow your prompt — the text sounds like what the correct answer might sound like. Usually, the most plausible continuation of an engineering question is the correct answer, which is why these tools are often useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn’t apply to the situation (dangerous!), a citation to a paper that doesn’t exist, a recipe with crazy ingredients. This is often called a hallucination, and the dangerous part is that the LLM can be just as confident about its hallucinations as it is about real information.\n\n\n\n\n\n\nImportant\n\n\n\nThere is no tone-of-voice difference between an LLM being right and an LLM being wrong. Verify!\n\n\n\n\n2. Same prompt, different answers\nPrediction produces a menu of plausible next chunks, each with a probability — and by design, the model doesn’t always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.\n\n\nLLMs with a higher “temperature” value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it create the same output every time.\nThis is why, on Thursday, thirty tables prompting for the same task will produce thirty different programs — different variable names, different structures, sometimes different algorithms, occasionally different answers. In this course that divergence isn’t a nuisance; it’s the curriculum. “Why did your table’s code come out different from ours, and which one is right?” is the most instructive question we will ask all semester.\n\n\n3. Your specification is the steering wheel\nThe model fills every gap in your prompt with a plausible assumption. Ask for “a program to compute the trajectory of a projectile” and you’ll get something — but did it include air resistance? What launch angle convention? Degrees or radians? SI units? You didn’t say, so it guessed.\nThis is the punchline of the whole week: specification (Tuesday’s lesson) is precisely the skill that controls an LLM. A vague prompt doesn’t get you a wrong answer; it gets you a correct answer to a question you didn’t quite ask — which might be worse for you because it looks right but doesn’t quite do the job.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
-    ]
-  },
-  {
-    "objectID": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
-    "href": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
-    "title": "What does an LLM actually do?",
-    "section": "Why is it so good at code, anyway?",
-    "text": "Why is it so good at code, anyway?\nTwo reasons, one obvious, one useful to know.\nThe obvious one: the training data included billions of lines of code, much of it from working software, so the statistical patterns of correct code run deep.\nThe useful one: code is checkable in a way prose isn’t. An essay can be subtly wrong forever; a program can be run. It either produces \\(0.78\\) s for the falling wrench or it doesn’t. This is great news for engineers — it means the verification tools you’ll build in this course have real teeth. It’s also why we can hand production to the AI with a straight face: not because the AI is trustworthy, but because code is auditable and you’re going to learn to audit it.\n\n\nContrast: LLMs are historically mediocre at arithmetic — predicting the text-shape of a calculation is not the same as calculating. Modern tools patch this by letting the model write and run actual code for the math. Worth remembering: even the AI doesn’t trust itself with arithmetic.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
-    ]
-  },
-  {
-    "objectID": "lessons/01b-what-llms-do.html#the-stance-of-this-course",
-    "href": "lessons/01b-what-llms-do.html#the-stance-of-this-course",
-    "title": "What does an LLM actually do?",
-    "section": "The stance of this course",
-    "text": "The stance of this course\nHere’s the relationship we’re building toward:\nThe LLM is your extremely fast, extremely well-read, occasionally overconfident junior collaborator. You are the engineer of record. You direct it (specification), you check its work (verification), and you sign your name to the result. This is the arrangement practicing engineers use when designing with LLMs.\nWhat this course will never ask you to do is pretend the AI doesn’t exist. What it will constantly ask you to do is prove you were in charge: show your specification, annotate what came back, demonstrate your verification, and — at the end of the semester — explain what is actually going on inside a project with your name on it, on paper, with no AI in the room.\n\n\n\n\n\n\nTipThink\n\n\n\nPeople sometimes describe an LLM as “autocomplete on steroids.” Having read this lesson: in what sense is that fair, and in what sense does it undersell what’s happening? Hold that tension — it’s the beginning of a calibrated relationship with the tool, which is worth more than either hype or dismissal.\n\n\n\nCommit, on paper, to answers to both of these — Thursday’s opening votes:\n\nTwo students give an LLM the identical prompt for a projectile program. Predict: (a) identical code, (b) different code, same numerical answers, (c) different code, possibly different answers. Write one sentence defending your pick.\nThe LLM hands you a projectile program and it runs without any errors, and produces a nice plot. List every distinct reason you can think of that its output might still be wrong. (Thursday we’ll pool the class list. It’s longer than you think.)",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
-    ]
-  },
-  {
-    "objectID": "info/standards.html",
-    "href": "info/standards.html",
-    "title": "The Standards",
-    "section": "",
-    "text": "Your grade in this course is built from the standards below. Each is a specific, demonstrable skill, marked met or not yet — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class checkpoints (weeks 4, 6, 8, 10 — see grading), activity work, the design project, and the final defense. Convergent standards require at least one in-class demonstration. A standard missed in week 4 and nailed in week 11 is met.\nEach standard carries a tag:",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#fetch-get-real-data-in-and-out",
-    "href": "info/standards.html#fetch-get-real-data-in-and-out",
-    "title": "The Standards",
-    "section": "Fetch — get real data in and out",
-    "text": "Fetch — get real data in and out\nF1 — Acquire real data from a phone sensor, a file, or a keyless API. divergent\nF2 — Read data’s shape: recognize CSV rows/columns and JSON/dictionary structure, and pull out the value you want. convergent",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#process-turn-raw-data-into-meaning",
-    "href": "info/standards.html#process-turn-raw-data-into-meaning",
-    "title": "The Standards",
-    "section": "Process — turn raw data into meaning",
-    "text": "Process — turn raw data into meaning\nP1 — Write and reuse a function, and check it in isolation against a hand estimate. convergent (At least one P1 demonstration is hand-written at a checkpoint: a short function from a given spec, no AI — the minimum writing fluency that verification rests on.)\nP2 — Run a parameter sweep: one function across many values, results written to a file. convergent\nP3 — Tame a large dataset with pandas: filter, summarize, reduce many rows to a few meaningful numbers. convergent\nP4 — Read code well enough to predict what a short script does, and recognize the shape of a computational project (inputs → script → outputs). convergent\nP5 (proposed — under discussion) — Hold a whole project in your head: navigate a multi-file program you produced, and explain what each piece does, why it is structured that way, and what breaks if an input is malformed. divergent\n\n\nP5 is what the final defense tests. P4 is reading a paragraph; P5 is knowing your way around the whole book.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#simulate-build-models-make-predictions",
-    "href": "info/standards.html#simulate-build-models-make-predictions",
-    "title": "The Standards",
-    "section": "Simulate — build models, make predictions",
-    "text": "Simulate — build models, make predictions\nS1 — Build a model of a simple system: a given algebraic relation, or by time-stepping. convergent\nS2 — Decide what to include and what to ignore: identify a model’s assumptions and judge whether they’re reasonable for the situation. divergent\nS3 — Judge whether to trust the model: recognize the ways it goes wrong — too coarse a step (numerical), a missing effect (physical), or use outside its valid range (extrapolation). convergent\nS4 — Explore with a model: pose a what-if, vary inputs, and interpret how the output responds. divergent",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#analyze-and-the-habits-woven-through-everything",
-    "href": "info/standards.html#analyze-and-the-habits-woven-through-everything",
-    "title": "The Standards",
-    "section": "Analyze — and the habits woven through everything",
-    "text": "Analyze — and the habits woven through everything\nA1 — Estimate and sanity-check a result before trusting it. convergent\nA2 — Make and judge an honest plot, and catch a misleading one. convergent\nA3 — State uncertainty and document provenance: report how far model and reality diverge without false precision, and record where a number came from so someone else could rerun it. divergent\nA4 — Direct and audit AI: get an AI to produce a computational artifact and critically audit the output. divergent",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/schedule.html",
-    "href": "info/schedule.html",
-    "title": "Schedule",
-    "section": "",
-    "text": "The course moves through four phases. The classroom rhythm shifts as it goes: early weeks are mostly convergent (questions with right answers), and once we learn more computing ideas, we start doing more things that are divergent (open-ended work, critiques, “why did your AI’s answer come out different from ours?”).\nRead the lesson before the class it’s listed under.\n\n\n\n\n\n\nNoteCheckpoints\n\n\n\nThe ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the grading page.\n\n\n\n\n\n\n\n\nNoteHomework\n\n\n\nHomework sets are assigned in weeks 2, 3, 5, 6, 7, 8, 9, 10, and 11.\n\n\n\n\n\n\n\n\nNoteBase Camp/Side Quest Sessions\n\n\n\n… happen on Mondays: Base Camp/Side Quests. (Optional.)\n\n\n\n\n\n\n\n\n\n\n\nWeek\nTuesday\nThursday\nStandards\n\n\n\n\nPhase 0 — Thinking\n\n\n\n\n\n1\nWhat do engineers do with computation? — specification as the skill. No computers.\nWhat does an LLM actually do? → Divergence & the ISS\n—\n\n\n2\nFirst contact — Colab, cells, variables; predict-then-run.\nReading code → The flaw hunt\nP4, A1\n\n\nPhase 1 — Vocabulary\n\n\n\n\n\n3\nFunctions — inputs and outputs.\nThe function forge — spec one, direct the AI, check it.\nP1, A4\n\n\n4\n✓ Checkpoint 1, then Logic & edge cases — if/else, booleans.\nThe edge-case hunt — break each other’s functions.\nP4, P1\n\n\n5\nLoops, arrays & sweeps — computational superpowers.\nSweep lab — predict all outcomes of a process.\nP2, S4\n\n\n6\n✓ Checkpoint 2, then Data in, data out — files, CSV, and plotting.\nPlot clinic — make one honest plot, catch one misleading one.\nF2, A2\n\n\nPhase 2 — Tools\n\n\n\n\n\n7\nPandas — dealing with big data sets.\nDataset triage — real, messy data.\nP3, F2\n\n\n8\n✓ Checkpoint 3, then Fetch — APIs, JSON, and your phone’s accelerometer.\nData acquisition lab.\nF1, F2, A3\n\n\n9\nSimulate I — time-stepping a model into the future.\nBuild-a-model lab — every table marches a different system.\nS1, S3\n\n\n10\n✓ Checkpoint 4, then Simulate II — assumptions, trust, and what-ifs.\nModel critique — every table’s model is wrong differently.\nS2, S3, S4\n\n\nPhase 3 — Integration\n\n\n\n\n\n11\nYour second language — MATLAB, translation, and choosing tools.\nProject launch — menu, teams, spec zero.\nP4, A4\n\n\n12\nProject studio — desk crits at tables.\nPin-up #1 — specs & verification plans on the wall.\nS2, A3, A4, P5\n\n\n13\nProject studio — desk crits at tables.\nPin-up #2 — working artifacts, same-project pairing.\nA2, A3, P5\n\n\n14\nDefense prep — what it means to know your own project.\nMock defenses at tables.\nP5\n\n\nFinals\nThe Defense — a written exam about your project: trace it, explain it, predict what breaks.\n\nP5 + everything",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "info/installing.html",
-    "href": "info/installing.html",
-    "title": "Getting going in your language",
-    "section": "",
-    "text": "A few recommendations. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#python-via-google-colab",
-    "href": "info/installing.html#python-via-google-colab",
-    "title": "Getting going in your language",
-    "section": "Python via Google Colab",
-    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#python-on-your-machine",
-    "href": "info/installing.html#python-on-your-machine",
-    "title": "Getting going in your language",
-    "section": "Python on your machine",
-    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you.\nThere are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it). ::: {.column-margin} The full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration. :::\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — really not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and the notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#matlab-later-in-the-semester",
-    "href": "info/installing.html#matlab-later-in-the-semester",
-    "title": "Getting going in your language",
-    "section": "MATLAB (later in the semester)",
-    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. If you’re going on in the department, toolboxes like Simulink (used in System Dynamics) can be added anytime, so there’s no need to decide now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good, takes about two hours.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/basecamp.html",
-    "href": "info/basecamp.html",
-    "title": "Base Camp",
-    "section": "",
-    "text": "Mondays are an optional session/office hour. The first half of the semester, those Mondays are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade in any direction, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!\nTime and room set by signup poll in week 1 — watch Canvas."
-  },
-  {
-    "objectID": "info/basecamp.html#the-sessions",
-    "href": "info/basecamp.html#the-sessions",
-    "title": "Base Camp",
-    "section": "The sessions",
-    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead. \nBC2 (Week 2) · First contact, slowly. The week 2 lesson again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.\nBC3 (Week 3) · The vocabulary drill. Reps on the core reading skills: trace variables by hand, predict outputs, read = as “is assigned.” Includes assembly problems — working code with its lines scrambled.\nBC4 (Week 4) · Dress rehearsal: Checkpoint 1. A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. \nBC5 (Week 5) · Loop clinic. Loops trip up more beginners than any other fundamental ingredient. Extra reps with accumulators, range, predicting iteration by hand, and loop assembly.\nBC6 (Week 6) · Dress rehearsal: Checkpoint 2 — including re-offer items from Checkpoint 1, just as Tuesday will."
-  },
-  {
-    "objectID": "info/basecamp.html#practice-library-async-base-camp",
-    "href": "info/basecamp.html#practice-library-async-base-camp",
-    "title": "Base Camp",
-    "section": "Practice library (async Base Camp)",
-    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
-  },
-  {
-    "objectID": "activities/w02-flaw-hunt.html",
-    "href": "activities/w02-flaw-hunt.html",
-    "title": "The flaw hunt",
-    "section": "",
-    "text": "Standards seeded: P4, A1, A4 · You’ll need: your annotated pool script from the reading (on paper, unexecuted).",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "The flaw hunt"
-    ]
-  },
-  {
-    "objectID": "activities/w02-flaw-hunt.html#opening-vote",
-    "href": "activities/w02-flaw-hunt.html#opening-vote",
-    "title": "The flaw hunt",
-    "section": "Opening vote",
-    "text": "Opening vote\nWhich line hides the silent flaw? Commit → vote → argue → revote. Then, and only then, we run the script and let reality adjudicate — including watching the syntax error stop it cold before the interesting bugs even get a chance.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "The flaw hunt"
-    ]
-  },
-  {
-    "objectID": "activities/w02-flaw-hunt.html#warm-up-assembly-required",
-    "href": "activities/w02-flaw-hunt.html#warm-up-assembly-required",
-    "title": "The flaw hunt",
-    "section": "Warm-up: assembly required",
-    "text": "Warm-up: assembly required\nTen minutes, before the hunt: each table gets the pool script’s lines on paper strips, scrambled. Reassemble a working order. Some lines have more than one valid position (which? why?) — and discovering that is your first taste of the difference between what a program must sequence and what it merely happens to.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "The flaw hunt"
-    ]
-  },
-  {
-    "objectID": "activities/w02-flaw-hunt.html#the-hunt",
-    "href": "activities/w02-flaw-hunt.html#the-hunt",
-    "title": "The flaw hunt",
-    "section": "The hunt",
-    "text": "The hunt\nTables reconcile their annotations line by line: every line gets a why, every disagreement gets traced by hand. Then each table receives a second script (fresh flaws, same rules) and races: annotate, name all three flaw types, state the correct answer — before running.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "The flaw hunt"
-    ]
-  },
-  {
-    "objectID": "activities/w02-flaw-hunt.html#debrief",
-    "href": "activities/w02-flaw-hunt.html#debrief",
-    "title": "The flaw hunt",
-    "section": "Debrief",
-    "text": "Debrief\nThe scoreboard truth we’re after: the hand estimate catches what running can’t. Tables report which flaw they found last — it’s almost always the silent one, and the reasons why are the lesson.\nDeliverable (2 EC): the table’s annotated second script with the three flaws named and the corrected answer, initialed by every member.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "The flaw hunt"
-    ]
-  },
-  {
-    "objectID": "activities/w01-divergence-demo.html",
-    "href": "activities/w01-divergence-demo.html",
-    "title": "Divergence & the ISS",
-    "section": "",
-    "text": "Standards seeded: A4, A1 · You’ll need: your Bring-to-class answers; one laptop per table.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Divergence & the ISS"
-    ]
-  },
-  {
-    "objectID": "activities/w01-divergence-demo.html#opening-vote",
-    "href": "activities/w01-divergence-demo.html#opening-vote",
-    "title": "Divergence & the ISS",
-    "section": "Opening vote",
-    "text": "Opening vote\nQuestion 1 from the reading: identical prompts → identical code? Commit → vote → argue with your table → revote. Then we settle it live: every table sends the same projectile prompt to an LLM, and we tally what comes back.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Divergence & the ISS"
-    ]
-  },
-  {
-    "objectID": "activities/w01-divergence-demo.html#the-class-list",
-    "href": "activities/w01-divergence-demo.html#the-class-list",
-    "title": "Divergence & the ISS",
-    "section": "The class list",
-    "text": "The class list\nQuestion 2: the program ran and made a nice plot — why might it still be wrong? Tables pool their reasons, we build the master list on the board. This list gets photographed and becomes a course artifact; you will be checking your own work against it in week 14.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Divergence & the ISS"
-    ]
-  },
-  {
-    "objectID": "activities/w01-divergence-demo.html#the-awesome-part",
-    "href": "activities/w01-divergence-demo.html#the-awesome-part",
-    "title": "Divergence & the ISS",
-    "section": "The awesome part",
-    "text": "The awesome part\nLive, from the front: three lines of Python, and the International Space Station’s position, speed, and altitude appear. We sanity-check its speed against a 90-minute orbit — your first A1 in the wild. You’ll write this program yourself in week 8; today it’s here so you know where this course is going.\nDeliverable (2 EC): your table’s contribution to the master list — at least three distinct failure reasons, on the provided card, team names on it.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Divergence & the ISS"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve “unsolvable” differential equations like The Lorenz Equations?), how computer logic works (a=5,b=a+5,a=10… what is the current value of b?), and how to interpret code (what is happening with for i in items:?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, LLMs are tool that can help us produce better work, faster, even if their initial result is flawed. And they’ll give us an opportunity to do some moderately ambitious engineering work this semester.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#the-big-idea",
-    "href": "index.html#the-big-idea",
-    "title": "Welcome",
-    "section": "The big idea",
-    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#how-a-week-works",
-    "href": "index.html#how-a-week-works",
-    "title": "Welcome",
-    "section": "How a week works",
-    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~30 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nFour Tuesdays open with a checkpoint (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI. Everything about how that feeds your grade is on the grading page.\n\nThe rest of class is work at the tables. Early in the semester that’s mostly short problems with right answers, later it shifts toward open-ended problems.\nGet extra practice on Mondays (optional). TBase Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#ai-policy",
-    "href": "index.html#ai-policy",
-    "title": "Welcome",
-    "section": "AI policy",
-    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#grading",
-    "href": "index.html#grading",
-    "title": "Welcome",
-    "section": "Grading",
-    "text": "Grading\nThis course uses standards-based grading: a list of specific skills (the standards), each marked Met or Not Yet, plus engagement credits for preparation and in-class work. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#where-to-go-next",
-    "href": "index.html#where-to-go-next",
-    "title": "Welcome",
-    "section": "Where to go next",
-    "text": "Where to go next\nThe schedule shows the whole semester at a glance. Your first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. If curious, you might browse the Side Quests — a few ideas are already on that page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "info/grading.html",
-    "href": "info/grading.html",
-    "title": "How your grade works",
-    "section": "",
-    "text": "Your grade is built from exactly two ingredients:\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#standards-met-or-not-yet",
-    "href": "info/grading.html#standards-met-or-not-yet",
-    "title": "How your grade works",
-    "section": "Standards: Met or Not Yet",
-    "text": "Standards: Met or Not Yet\nEvery standard gets multiple opportunities across the semester (checkpoints, in-class work, the project, the defense — the schedule shows where each appears). The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget some standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesdays (weeks 4, 6, 8, and 10) open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements/what is possible with computing and at least a bit of fluency with the language.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#engagement-credits-the-process",
-    "href": "info/grading.html#engagement-credits-the-process",
-    "title": "How your grade works",
-    "section": "Engagement credits: the process",
-    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used as a pressure-release valve).\n\nProject-period credits are individual\nThe 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded per person, informed by teammate evaluation — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the peer evaluation page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#tokens",
-    "href": "info/grading.html#tokens",
-    "title": "How your grade works",
-    "section": "Tokens",
-    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, life); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#the-grade-table",
-    "href": "info/grading.html#the-grade-table",
-    "title": "How your grade works",
-    "section": "The grade table",
-    "text": "The grade table\nYour letter grade is the highest row where you meet every requirement in that row:\n\n\n\nGrade\nStandards Met (of 15)\nMust include\nEngagement credits\n\n\n\n\nA\n≥ 14\nP5\n≥ 40\n\n\nB\n≥ 12\nP5\n≥ 32\n\n\nC\n≥ 10\n—\n≥ 24\n\n\nD\n≥ 7\n—\n≥ 16\n\n\n\nPlus: meet all of your row and at least one requirement of the row above → attach a plus (e.g., B+). Minus: exactly one requirement falls short of your row, and it lands in the row directly below → you get the higher grade with a minus rather than dropping a full letter. F is reserved for missing the D row.\nWhy P5 is necessary for the A and B: P5 — holding your whole project in your head — is what the defense measures, and it’s the standard that certifies all the others were yours. An A in a course about directing and auditing computation, held by someone who can’t explain their own project, would be a false statement. We don’t issue those.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#three-worked-examples",
-    "href": "info/grading.html#three-worked-examples",
-    "title": "How your grade works",
-    "section": "Three worked examples",
-    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 14 standards including P5 (only S4 still Not Yet after the project), earns 43 engagement credits, spends one token on an extension during a brutal midterm week. Check the A row: 14 ≥ 14 ✓, P5 ✓, 43 ≥ 40 ✓. Grade: A. The two unspent tokens add 2 credits (45), which changes nothing.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint: P1 and P4 both Not Yet in week 4, and it feels catastrophic. It isn’t — both standards are re-offered at the week-6 and week-8 checkpoints, and Student 2 demonstrated each twice by mid-semester. Finishes with 12 standards Met including P5 (S2 and A3 fell short on the project report; his revision closed A3 but not S2, and F1 never came together). Then 41 engagement credits, did the work all semester even while the checkpoints were rough. B row: 12 ≥ 12 ✓, P5 ✓, 41 ≥ 32 ✓ → at least a B. Plus check: meet ≥ 1 requirement of the A row? The 41 credits clear the A row’s 40 ✓. Grade: B+. Note the early disasters cost nothing. The grade records where we ended up.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 13 standards Met including P5, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). B row: standards ✓ ✓, but 25 &lt; 32 ✗. C row: 13 ≥ 10 ✓, 25 ≥ 24 ✓ → at least a C. Plus check: meets two B-row requirements (standards, P5) → Grade: C+. Is that harsh for someone with 13 standards? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we’re at a B+.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/practice.html",
-    "href": "info/practice.html",
-    "title": "Practice Library",
-    "section": "",
-    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast."
-  },
-  {
-    "objectID": "info/practice.html#sandbox",
-    "href": "info/practice.html#sandbox",
-    "title": "Practice Library",
-    "section": "Sandbox",
-    "text": "Sandbox\nNothing to solve — just a scratchpad."
-  },
-  {
-    "objectID": "info/practice.html#tracing-weeks-23",
-    "href": "info/practice.html#tracing-weeks-23",
-    "title": "Practice Library",
-    "section": "Tracing (weeks 2–3)",
-    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16."
-  },
-  {
-    "objectID": "info/practice.html#functions-week-3",
-    "href": "info/practice.html#functions-week-3",
-    "title": "Practice Library",
-    "section": "Functions (week 3)",
-    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result."
-  },
-  {
-    "objectID": "info/practice.html#logic-week-4",
-    "href": "info/practice.html#logic-week-4",
-    "title": "Practice Library",
-    "section": "Logic (week 4)",
-    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!)."
-  },
-  {
-    "objectID": "info/practice.html#loops-week-5",
-    "href": "info/practice.html#loops-week-5",
-    "title": "Practice Library",
-    "section": "Loops (week 5)",
-    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves."
-  },
-  {
-    "objectID": "info/practice.html#arrays-weeks-56",
-    "href": "info/practice.html#arrays-weeks-56",
-    "title": "Practice Library",
-    "section": "Arrays (weeks 5–6)",
-    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2)."
-  },
-  {
-    "objectID": "info/sidequests.html",
-    "href": "info/sidequests.html",
-    "title": "Side Quests",
-    "section": "",
-    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
-  },
-  {
-    "objectID": "info/sidequests.html#the-menu",
-    "href": "info/sidequests.html#the-menu",
-    "title": "Side Quests",
-    "section": "The menu",
-    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
-  },
-  {
     "objectID": "lessons/01a-what-engineers-do.html",
     "href": "lessons/01a-what-engineers-do.html",
     "title": "What do engineers do with computation?",
@@ -696,87 +84,386 @@
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html",
-    "href": "lessons/02a-first-contact.html",
-    "title": "First contact",
+    "objectID": "info/sidequests.html",
+    "href": "info/sidequests.html",
+    "title": "Side Quests",
     "section": "",
-    "text": "Time to touch a computer. This lesson gets you running Python code in your browser — nothing to install, nothing to configure, nothing to break.",
+    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
+  },
+  {
+    "objectID": "info/sidequests.html#the-menu",
+    "href": "info/sidequests.html#the-menu",
+    "title": "Side Quests",
+    "section": "The menu",
+    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
+  },
+  {
+    "objectID": "info/practice.html",
+    "href": "info/practice.html",
+    "title": "Practice Library",
+    "section": "",
+    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact"
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#think-first",
-    "href": "lessons/02a-first-contact.html#think-first",
-    "title": "First contact",
-    "section": "Think First",
-    "text": "Think First\nRecall\n\nFrom last week: what does an LLM do with the gaps in your specification?\nA calculator evaluates 2 + 3 * 4 as 14, not 20. What rule is it following, and did anyone ever teach it to you as a computing rule?\n\nLook Ahead\n\nIf AI can write code, why are we about to learn to read it line by line?\nWhat’s the difference between a program storing a value and displaying a value?",
+    "objectID": "info/practice.html#sandbox",
+    "href": "info/practice.html#sandbox",
+    "title": "Practice Library",
+    "section": "Sandbox",
+    "text": "Sandbox\nNothing to solve — just a scratchpad.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact"
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#google-colab-a-lab-bench-in-your-browser",
-    "href": "lessons/02a-first-contact.html#google-colab-a-lab-bench-in-your-browser",
-    "title": "First contact",
-    "section": "Google Colab: a lab bench in your browser",
-    "text": "Google Colab: a lab bench in your browser\nGo to colab.research.google.com and sign in with your university Google account. Click New notebook. That’s the whole setup. You now have a notebook: a document made of cells, where each cell holds a bit of Python code you can run by pressing Shift+Enter (or the ▶ button).\n\n\nPython runs on Google’s computers, not yours — that’s why there’s nothing to install. Your Chromebook, gaming rig, and six-year-old laptop are all equally powerful here.\nType this into the first cell and run it — or, since this page runs Python right here in your browser, edit and run it below (the first run takes a few seconds while Python loads; after that it’s instant):\n\n\n\n\n\n\nThe text appears below the cell. Congratulations — you are a person who has run a program. The print(...) part is a function (a named, reusable action — much more on these in week 3) whose job is displaying things. Everything between the quotes is the text it displays.",
+    "objectID": "info/practice.html#tracing-weeks-23",
+    "href": "info/practice.html#tracing-weeks-23",
+    "title": "Practice Library",
+    "section": "Tracing (weeks 2–3)",
+    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact"
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#variables-giving-numbers-names",
-    "href": "lessons/02a-first-contact.html#variables-giving-numbers-names",
-    "title": "First contact",
-    "section": "Variables: giving numbers names",
-    "text": "Variables: giving numbers names\nA variable is a name attached to a value, so you can use the value by its name:\ng = 9.81        # gravitational acceleration, m/s^2\nh = 3.0         # drop height, m\n\n\nEverything after a # is a comment — a note for humans that Python ignores. Notice the comments carry the units. In this course, a number without units is a rumor.\nThe = sign here does not mean “equals” in the math sense. It means “store the value on the right under the name on the left.” This distinction will matter enormously, so here’s the line that looks insane to a mathematician but is everyday code:\ncount = count + 1\nAs algebra, nonsense. As an instruction — take the value stored in count, add 1, store the result back under count — perfectly sensible. Reading = as “is assigned” instead of “equals” will save you real confusion.",
+    "objectID": "info/practice.html#functions-week-3",
+    "href": "info/practice.html#functions-week-3",
+    "title": "Practice Library",
+    "section": "Functions (week 3)",
+    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact"
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#the-habit-that-defines-this-course-predict-then-run",
-    "href": "lessons/02a-first-contact.html#the-habit-that-defines-this-course-predict-then-run",
-    "title": "First contact",
-    "section": "The habit that defines this course: predict, then run",
-    "text": "The habit that defines this course: predict, then run\nHere is a complete little program. Before you run it write down what you expect it to display.\n\n\n\n\n\n\n(Yes, this cell runs too — but the prediction comes first, on paper. Running before predicting is watching lights blink; you’ll get nothing from it, and the only person who’d know is the only person it matters to.)\n\n\n** is Python’s “raise to a power,” so x ** 0.5 is a square root. And * must always be written explicitly: 2h is an error, 2 * h is code.\nSome reading help: line 3 computes \\(t = \\sqrt{2h/g}\\) — the fall time of a dropped object, which you met last week. So before running: \\(2 \\times 3 / 9.81 \\approx 0.61\\), and \\(\\sqrt{0.61} \\approx 0.78\\). Prediction: something near 0.78.\nNow run it.\n\n\n\n\n\n\nNoteClick after you’ve actually run it\n\n\n\n\n\nYou should see 0.7820... — matching the hand estimate. Verification!\nIf you got an error instead — welcome to programming; see the next section.\n\n\n\nThis predict-then-run move is the single most important habit in the course. It’s how you’ll read AI-generated code, how you’ll debug, how class voting works, and how the final exam works. Running code without a prediction teaches you nothing; you’re just watching lights blink.",
+    "objectID": "info/practice.html#logic-week-4",
+    "href": "info/practice.html#logic-week-4",
+    "title": "Practice Library",
+    "section": "Logic (week 4)",
+    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact"
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#errors-are-data",
-    "href": "lessons/02a-first-contact.html#errors-are-data",
-    "title": "First contact",
-    "section": "Errors are data",
-    "text": "Errors are data\nDelete the h = 3.0 line and run the cell again. You’ll get an angry red block ending in something like:\nNameError: name 'h' is not defined\nTwo things to know about errors, permanently:\nThey are normal. Professionals generate errors all day. The difference between a beginner and an expert isn’t fewer errors — it’s that the expert reads the message. The last line usually names the problem (NameError: you used a name nothing was stored under) and an arrow points at the guilty line.\nThey are the friendly failure mode. A program that crashes loudly is telling you where it hurts. The dangerous program is the one from last week’s reading — the one that runs happily and produces a wrong answer in a confident voice. You will come to prefer the crash.\n\n\n\n\n\n\nTip\n\n\n\nError message you can’t parse? That is a genuinely excellent use of an LLM: paste the code and the full error, and ask what’s wrong. Then — habit — verify the explanation makes sense before applying the fix. Junior collaborator, remember.",
+    "objectID": "info/practice.html#loops-week-5",
+    "href": "info/practice.html#loops-week-5",
+    "title": "Practice Library",
+    "section": "Loops (week 5)",
+    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact"
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#reading-before-writing",
-    "href": "lessons/02a-first-contact.html#reading-before-writing",
-    "title": "First contact",
-    "section": "Reading before writing",
-    "text": "Reading before writing\nYou now know enough to read simple Python, which — in a course where AI does the production — is the load-bearing skill. Predict what this displays, on paper, before the answer:\n\n\n\n\n\n\n\n\n\n\n\n\nNoteClick for the answer\n\n\n\n\n\n8 — not 2. Line 2 stored the value 8 under b; it did not create a live mathematical relationship “b is twice a.” When a changed afterward, b had no reason to care. Code executes top to bottom, once, each line acting on values as they are at that moment. If you predicted 2, you read = as algebra. Extremely common, now permanently fixed.\n\n\n\nThat misreading — treating a program like a set of simultaneous equations instead of a sequence of actions in time — is the most common beginner stumble there is, and you’ve just met and defeated it in four lines.\n\nOn paper, two things:\n\nYour prediction for what this displays with one sentence of reasoning:\n\nx = 10\ny = x + 5\nx = x + 1\nprint(x)\nprint(y)\n\nRun your own falling-wrench calculation in Colab for a height of your choosing (a building you know, a cliff you’ve seen). Write down: your height, your hand estimate, and what the program said. Tuesday opens with the prediction vote, and your table will compare wrench numbers — anyone whose estimate and output disagree gets the fun job of figuring out why, live.",
+    "objectID": "info/practice.html#arrays-weeks-56",
+    "href": "info/practice.html#arrays-weeks-56",
+    "title": "Practice Library",
+    "section": "Arrays (weeks 5–6)",
+    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact"
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/grading.html",
+    "href": "info/grading.html",
+    "title": "How your grade works",
+    "section": "",
+    "text": "Your grade is built from exactly two ingredients:\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#standards-met-or-not-yet",
+    "href": "info/grading.html#standards-met-or-not-yet",
+    "title": "How your grade works",
+    "section": "Standards: Met or Not Yet",
+    "text": "Standards: Met or Not Yet\nEvery standard gets multiple opportunities across the semester (checkpoints, in-class work, the project, the defense — the schedule shows where each appears). The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget some standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesdays (weeks 4, 6, 8, and 10) open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements/what is possible with computing and at least a bit of fluency with the language.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#engagement-credits-the-process",
+    "href": "info/grading.html#engagement-credits-the-process",
+    "title": "How your grade works",
+    "section": "Engagement credits: the process",
+    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used as a pressure-release valve).\n\nProject-period credits are individual\nThe 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded per person, informed by teammate evaluation — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the peer evaluation page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#tokens",
+    "href": "info/grading.html#tokens",
+    "title": "How your grade works",
+    "section": "Tokens",
+    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, life); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#the-grade-table",
+    "href": "info/grading.html#the-grade-table",
+    "title": "How your grade works",
+    "section": "The grade table",
+    "text": "The grade table\nYour letter grade is the highest row where you meet every requirement in that row:\n\n\n\nGrade\nStandards Met (of 15)\nMust include\nEngagement credits\n\n\n\n\nA\n≥ 14\nP5\n≥ 40\n\n\nB\n≥ 12\nP5\n≥ 32\n\n\nC\n≥ 10\n—\n≥ 24\n\n\nD\n≥ 7\n—\n≥ 16\n\n\n\nPlus: meet all of your row and at least one requirement of the row above → attach a plus (e.g., B+). Minus: exactly one requirement falls short of your row, and it lands in the row directly below → you get the higher grade with a minus rather than dropping a full letter. F is reserved for missing the D row.\nWhy P5 is necessary for the A and B: P5 — holding your whole project in your head — is what the defense measures, and it’s the standard that certifies all the others were yours. An A in a course about directing and auditing computation, held by someone who can’t explain their own project, would be a false statement. We don’t issue those.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#three-worked-examples",
+    "href": "info/grading.html#three-worked-examples",
+    "title": "How your grade works",
+    "section": "Three worked examples",
+    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 14 standards including P5 (only S4 still Not Yet after the project), earns 43 engagement credits, spends one token on an extension during a brutal midterm week. Check the A row: 14 ≥ 14 ✓, P5 ✓, 43 ≥ 40 ✓. Grade: A. The two unspent tokens add 2 credits (45), which changes nothing.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint: P1 and P4 both Not Yet in week 4, and it feels catastrophic. It isn’t — both standards are re-offered at the week-6 and week-8 checkpoints, and Student 2 demonstrated each twice by mid-semester. Finishes with 12 standards Met including P5 (S2 and A3 fell short on the project report; his revision closed A3 but not S2, and F1 never came together). Then 41 engagement credits, did the work all semester even while the checkpoints were rough. B row: 12 ≥ 12 ✓, P5 ✓, 41 ≥ 32 ✓ → at least a B. Plus check: meet ≥ 1 requirement of the A row? The 41 credits clear the A row’s 40 ✓. Grade: B+. Note the early disasters cost nothing. The grade records where we ended up.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 13 standards Met including P5, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). B row: standards ✓ ✓, but 25 &lt; 32 ✗. C row: 13 ≥ 10 ✓, 25 ≥ 24 ✓ → at least a C. Plus check: meets two B-row requirements (standards, P5) → Grade: C+. Is that harsh for someone with 13 standards? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we’re at a B+.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation (can we solve “unsolvable” differential equations like The Lorenz Equations?), how computer logic works (a=5,b=a+5,a=10… what is the current value of b?), and how to interpret code (what is happening with for i in items:?), but we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, LLMs are tool that can help us produce better work, faster, even if their initial result is flawed. And they’ll give us an opportunity to do some moderately ambitious engineering work this semester.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#the-big-idea",
+    "href": "index.html#the-big-idea",
+    "title": "Welcome",
+    "section": "The big idea",
+    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code from a good description in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#how-a-week-works",
+    "href": "index.html#how-a-week-works",
+    "title": "Welcome",
+    "section": "How a week works",
+    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~30 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nFour Tuesdays open with a checkpoint (weeks 4, 6, 8, 10): twenty minutes, individual, on paper, no AI. Everything about how that feeds your grade is on the grading page.\n\nThe rest of class is work at the tables. Early in the semester that’s mostly short problems with right answers, later it shifts toward open-ended problems.\nGet extra practice on Mondays (optional). TBase Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#ai-policy",
+    "href": "index.html#ai-policy",
+    "title": "Welcome",
+    "section": "AI policy",
+    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#grading",
+    "href": "index.html#grading",
+    "title": "Welcome",
+    "section": "Grading",
+    "text": "Grading\nThis course uses standards-based grading: a list of specific skills (the standards), each marked Met or Not Yet, plus engagement credits for preparation and in-class work. There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#where-to-go-next",
+    "href": "index.html#where-to-go-next",
+    "title": "Welcome",
+    "section": "Where to go next",
+    "text": "Where to go next\nThe schedule shows the whole semester at a glance. Your first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. If curious, you might browse the Side Quests — a few ideas are already on that page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "info/basecamp.html",
+    "href": "info/basecamp.html",
+    "title": "Base Camp",
+    "section": "",
+    "text": "Mondays are an optional session/office hour. The first half of the semester, those Mondays are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade in any direction, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!\nTime and room set by signup poll in week 1 — watch Canvas."
+  },
+  {
+    "objectID": "info/basecamp.html#the-sessions",
+    "href": "info/basecamp.html#the-sessions",
+    "title": "Base Camp",
+    "section": "The sessions",
+    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead. \nBC2 (Week 2) · First contact, slowly. The week 2 lesson again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.\nBC3 (Week 3) · The vocabulary drill. Reps on the core reading skills: trace variables by hand, predict outputs, read = as “is assigned.” Includes assembly problems — working code with its lines scrambled.\nBC4 (Week 4) · Dress rehearsal: Checkpoint 1. A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. \nBC5 (Week 5) · Loop clinic. Loops trip up more beginners than any other fundamental ingredient. Extra reps with accumulators, range, predicting iteration by hand, and loop assembly.\nBC6 (Week 6) · Dress rehearsal: Checkpoint 2 — including re-offer items from Checkpoint 1, just as Tuesday will."
+  },
+  {
+    "objectID": "info/basecamp.html#practice-library-async-base-camp",
+    "href": "info/basecamp.html#practice-library-async-base-camp",
+    "title": "Base Camp",
+    "section": "Practice library (async Base Camp)",
+    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+  },
+  {
+    "objectID": "info/installing.html",
+    "href": "info/installing.html",
+    "title": "Getting going in your language",
+    "section": "",
+    "text": "A few recommendations. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#python-via-google-colab",
+    "href": "info/installing.html#python-via-google-colab",
+    "title": "Getting going in your language",
+    "section": "Python via Google Colab",
+    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#python-on-your-machine",
+    "href": "info/installing.html#python-on-your-machine",
+    "title": "Getting going in your language",
+    "section": "Python on your machine",
+    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you.\nThere are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it). ::: {.column-margin} The full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration. :::\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — really not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and the notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#matlab-later-in-the-semester",
+    "href": "info/installing.html#matlab-later-in-the-semester",
+    "title": "Getting going in your language",
+    "section": "MATLAB (later in the semester)",
+    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. If you’re going on in the department, toolboxes like Simulink (used in System Dynamics) can be added anytime, so there’s no need to decide now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good, takes about two hours.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/schedule.html",
+    "href": "info/schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "The course moves through four phases. The classroom rhythm shifts as it goes: early weeks are mostly convergent (questions with right answers), and once we learn more computing ideas, we start doing more things that are divergent (open-ended work, critiques, “why did your AI’s answer come out different from ours?”).\nRead the lesson before the class it’s listed under.\n\n\n\n\n\n\nNoteCheckpoints\n\n\n\nThe ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the grading page.\n\n\n\n\n\n\n\n\nNoteHomework\n\n\n\nHomework sets are assigned in weeks 2, 3, 5, 6, 7, 8, 9, 10, and 11.\n\n\n\n\n\n\n\n\nNoteBase Camp/Side Quest Sessions\n\n\n\n… happen on Mondays: Base Camp/Side Quests. (Optional.)\n\n\n\n\n\n\n\n\n\n\n\nWeek\nTuesday\nThursday\nStandards\n\n\n\n\nPhase 0 — Thinking\n\n\n\n\n\n1\nWhat do engineers do with computation? — specification as the skill. No computers.\nWhat does an LLM actually do? → Divergence & the ISS\n—\n\n\n2\nFirst contact — Colab, cells, variables; predict-then-run.\nReading code → The flaw hunt\nP4, A1\n\n\nPhase 1 — Vocabulary\n\n\n\n\n\n3\nFunctions — inputs and outputs.\nThe function forge — spec one, direct the AI, check it.\nP1, A4\n\n\n4\n✓ Checkpoint 1, then Logic & edge cases — if/else, booleans.\nThe edge-case hunt — break each other’s functions.\nP4, P1\n\n\n5\nLoops, arrays & sweeps — computational superpowers.\nSweep lab — predict all outcomes of a process.\nP2, S4\n\n\n6\n✓ Checkpoint 2, then Data in, data out — files, CSV, and plotting.\nPlot clinic — make one honest plot, catch one misleading one.\nF2, A2\n\n\nPhase 2 — Tools\n\n\n\n\n\n7\nPandas — dealing with big data sets.\nDataset triage — real, messy data.\nP3, F2\n\n\n8\n✓ Checkpoint 3, then Fetch — APIs, JSON, and your phone’s accelerometer.\nData acquisition lab.\nF1, F2, A3\n\n\n9\nSimulate I — time-stepping a model into the future.\nBuild-a-model lab — every table marches a different system.\nS1, S3\n\n\n10\n✓ Checkpoint 4, then Simulate II — assumptions, trust, and what-ifs.\nModel critique — every table’s model is wrong differently.\nS2, S3, S4\n\n\nPhase 3 — Integration\n\n\n\n\n\n11\nYour second language — MATLAB, translation, and choosing tools.\nProject launch — menu, teams, spec zero.\nP4, A4\n\n\n12\nProject studio — desk crits at tables.\nPin-up #1 — specs & verification plans on the wall.\nS2, A3, A4, P5\n\n\n13\nProject studio — desk crits at tables.\nPin-up #2 — working artifacts, same-project pairing.\nA2, A3, P5\n\n\n14\nDefense prep — what it means to know your own project.\nMock defenses at tables.\nP5\n\n\nFinals\nThe Defense — a written exam about your project: trace it, explain it, predict what breaks.\n\nP5 + everything",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "info/standards.html",
+    "href": "info/standards.html",
+    "title": "The Standards",
+    "section": "",
+    "text": "Your grade in this course is built from the standards below. Each is a specific, demonstrable skill, marked met or not yet — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class checkpoints (weeks 4, 6, 8, 10 — see grading), activity work, the design project, and the final defense. Convergent standards require at least one in-class demonstration. A standard missed in week 4 and nailed in week 11 is met.\nEach standard carries a tag:",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "The Standards"
+    ]
+  },
+  {
+    "objectID": "info/standards.html#fetch-get-real-data-in-and-out",
+    "href": "info/standards.html#fetch-get-real-data-in-and-out",
+    "title": "The Standards",
+    "section": "Fetch — get real data in and out",
+    "text": "Fetch — get real data in and out\nF1 — Acquire real data from a phone sensor, a file, or a keyless API. divergent\nF2 — Read data’s shape: recognize CSV rows/columns and JSON/dictionary structure, and pull out the value you want. convergent",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "The Standards"
+    ]
+  },
+  {
+    "objectID": "info/standards.html#process-turn-raw-data-into-meaning",
+    "href": "info/standards.html#process-turn-raw-data-into-meaning",
+    "title": "The Standards",
+    "section": "Process — turn raw data into meaning",
+    "text": "Process — turn raw data into meaning\nP1 — Write and reuse a function, and check it in isolation against a hand estimate. convergent (At least one P1 demonstration is hand-written at a checkpoint: a short function from a given spec, no AI — the minimum writing fluency that verification rests on.)\nP2 — Run a parameter sweep: one function across many values, results written to a file. convergent\nP3 — Tame a large dataset with pandas: filter, summarize, reduce many rows to a few meaningful numbers. convergent\nP4 — Read code well enough to predict what a short script does, and recognize the shape of a computational project (inputs → script → outputs). convergent\nP5 (proposed — under discussion) — Hold a whole project in your head: navigate a multi-file program you produced, and explain what each piece does, why it is structured that way, and what breaks if an input is malformed. divergent\n\n\nP5 is what the final defense tests. P4 is reading a paragraph; P5 is knowing your way around the whole book.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "The Standards"
+    ]
+  },
+  {
+    "objectID": "info/standards.html#simulate-build-models-make-predictions",
+    "href": "info/standards.html#simulate-build-models-make-predictions",
+    "title": "The Standards",
+    "section": "Simulate — build models, make predictions",
+    "text": "Simulate — build models, make predictions\nS1 — Build a model of a simple system: a given algebraic relation, or by time-stepping. convergent\nS2 — Decide what to include and what to ignore: identify a model’s assumptions and judge whether they’re reasonable for the situation. divergent\nS3 — Judge whether to trust the model: recognize the ways it goes wrong — too coarse a step (numerical), a missing effect (physical), or use outside its valid range (extrapolation). convergent\nS4 — Explore with a model: pose a what-if, vary inputs, and interpret how the output responds. divergent",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "The Standards"
+    ]
+  },
+  {
+    "objectID": "info/standards.html#analyze-and-the-habits-woven-through-everything",
+    "href": "info/standards.html#analyze-and-the-habits-woven-through-everything",
+    "title": "The Standards",
+    "section": "Analyze — and the habits woven through everything",
+    "text": "Analyze — and the habits woven through everything\nA1 — Estimate and sanity-check a result before trusting it. convergent\nA2 — Make and judge an honest plot, and catch a misleading one. convergent\nA3 — State uncertainty and document provenance: report how far model and reality diverge without false precision, and record where a number came from so someone else could rerun it. divergent\nA4 — Direct and audit AI: get an AI to produce a computational artifact and critically audit the output. divergent",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "The Standards"
     ]
   }
 ]
