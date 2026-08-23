@@ -84,65 +84,87 @@
     ]
   },
   {
-    "objectID": "info/sidequests.html",
-    "href": "info/sidequests.html",
-    "title": "Side Quests",
+    "objectID": "info/practice.html",
+    "href": "info/practice.html",
+    "title": "Practice Library",
     "section": "",
-    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
-  },
-  {
-    "objectID": "info/sidequests.html#the-menu",
-    "href": "info/sidequests.html#the-menu",
-    "title": "Side Quests",
-    "section": "The menu",
-    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
-  },
-  {
-    "objectID": "info/installing.html",
-    "href": "info/installing.html",
-    "title": "Getting going in your language",
-    "section": "",
-    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
+    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
     "crumbs": [
       "Home",
       "Start Here",
-      "Getting going in your language"
+      "Practice Library"
     ]
   },
   {
-    "objectID": "info/installing.html#python-via-google-colab",
-    "href": "info/installing.html#python-via-google-colab",
-    "title": "Getting going in your language",
-    "section": "Python via Google Colab",
-    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
+    "objectID": "info/practice.html#sandbox",
+    "href": "info/practice.html#sandbox",
+    "title": "Practice Library",
+    "section": "Sandbox",
+    "text": "Sandbox\nNothing to solve — just a scratchpad.",
     "crumbs": [
       "Home",
       "Start Here",
-      "Getting going in your language"
+      "Practice Library"
     ]
   },
   {
-    "objectID": "info/installing.html#python-on-your-machine",
-    "href": "info/installing.html#python-on-your-machine",
-    "title": "Getting going in your language",
-    "section": "Python on your machine",
-    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
+    "objectID": "info/practice.html#tracing-weeks-23",
+    "href": "info/practice.html#tracing-weeks-23",
+    "title": "Practice Library",
+    "section": "Tracing (weeks 2–3)",
+    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
     "crumbs": [
       "Home",
       "Start Here",
-      "Getting going in your language"
+      "Practice Library"
     ]
   },
   {
-    "objectID": "info/installing.html#matlab-later-in-the-semester",
-    "href": "info/installing.html#matlab-later-in-the-semester",
-    "title": "Getting going in your language",
-    "section": "MATLAB (later in the semester)",
-    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
+    "objectID": "info/practice.html#functions-week-3",
+    "href": "info/practice.html#functions-week-3",
+    "title": "Practice Library",
+    "section": "Functions (week 3)",
+    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result.",
     "crumbs": [
       "Home",
       "Start Here",
-      "Getting going in your language"
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#logic-week-4",
+    "href": "info/practice.html#logic-week-4",
+    "title": "Practice Library",
+    "section": "Logic (week 4)",
+    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#loops-week-5",
+    "href": "info/practice.html#loops-week-5",
+    "title": "Practice Library",
+    "section": "Loops (week 5)",
+    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#arrays-weeks-56",
+    "href": "info/practice.html#arrays-weeks-56",
+    "title": "Practice Library",
+    "section": "Arrays (weeks 5–6)",
+    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
@@ -251,219 +273,65 @@
     ]
   },
   {
-    "objectID": "info/grading.html",
-    "href": "info/grading.html",
-    "title": "How your grade works",
+    "objectID": "info/installing.html",
+    "href": "info/installing.html",
+    "title": "Getting going in your language",
     "section": "",
-    "text": "Your grade is built from exactly two ingredients:\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
+    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
     "crumbs": [
       "Home",
       "Start Here",
-      "How your grade works"
+      "Getting going in your language"
     ]
   },
   {
-    "objectID": "info/grading.html#standards-met-or-not-yet",
-    "href": "info/grading.html#standards-met-or-not-yet",
-    "title": "How your grade works",
-    "section": "Standards: Met or Not Yet",
-    "text": "Standards: Met or Not Yet\nEvery standard gets multiple opportunities across the semester (checkpoints, in-class work, the project, the defense — the schedule shows where each appears). The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget some standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesdays (weeks 4, 6, 8, and 10) open with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements/what is possible with computing and at least a bit of fluency with the language.",
+    "objectID": "info/installing.html#python-via-google-colab",
+    "href": "info/installing.html#python-via-google-colab",
+    "title": "Getting going in your language",
+    "section": "Python via Google Colab",
+    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
     "crumbs": [
       "Home",
       "Start Here",
-      "How your grade works"
+      "Getting going in your language"
     ]
   },
   {
-    "objectID": "info/grading.html#engagement-credits-the-process",
-    "href": "info/grading.html#engagement-credits-the-process",
-    "title": "How your grade works",
-    "section": "Engagement credits: the process",
-    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used as a pressure-release valve).\n\nProject-period credits are individual\nThe 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded per person, informed by teammate evaluation — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the peer evaluation page.",
+    "objectID": "info/installing.html#python-on-your-machine",
+    "href": "info/installing.html#python-on-your-machine",
+    "title": "Getting going in your language",
+    "section": "Python on your machine",
+    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
     "crumbs": [
       "Home",
       "Start Here",
-      "How your grade works"
+      "Getting going in your language"
     ]
   },
   {
-    "objectID": "info/grading.html#tokens",
-    "href": "info/grading.html#tokens",
-    "title": "How your grade works",
-    "section": "Tokens",
-    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, life); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
+    "objectID": "info/installing.html#matlab-later-in-the-semester",
+    "href": "info/installing.html#matlab-later-in-the-semester",
+    "title": "Getting going in your language",
+    "section": "MATLAB (later in the semester)",
+    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
     "crumbs": [
       "Home",
       "Start Here",
-      "How your grade works"
+      "Getting going in your language"
     ]
   },
   {
-    "objectID": "info/grading.html#the-grade-table",
-    "href": "info/grading.html#the-grade-table",
-    "title": "How your grade works",
-    "section": "The grade table",
-    "text": "The grade table\nYour letter grade is the highest row where you meet every requirement in that row:\n\n\n\nGrade\nStandards Met (of 15)\nMust include\nEngagement credits\n\n\n\n\nA\n≥ 14\nP5\n≥ 40\n\n\nB\n≥ 12\nP5\n≥ 32\n\n\nC\n≥ 10\n—\n≥ 24\n\n\nD\n≥ 7\n—\n≥ 16\n\n\n\nPlus: meet all of your row and at least one requirement of the row above → attach a plus (e.g., B+). Minus: exactly one requirement falls short of your row, and it lands in the row directly below → you get the higher grade with a minus rather than dropping a full letter. F is reserved for missing the D row.\nWhy P5 is necessary for the A and B: P5 — holding your whole project in your head — is what the defense measures, and it’s the standard that certifies all the others were yours. An A in a course about directing and auditing computation, held by someone who can’t explain their own project, would be a false statement. We don’t issue those.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#three-worked-examples",
-    "href": "info/grading.html#three-worked-examples",
-    "title": "How your grade works",
-    "section": "Three worked examples",
-    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 14 standards including P5 (only S4 still Not Yet after the project), earns 43 engagement credits, spends one token on an extension during a brutal midterm week. Check the A row: 14 ≥ 14 ✓, P5 ✓, 43 ≥ 40 ✓. Grade: A. The two unspent tokens add 2 credits (45), which changes nothing.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint: P1 and P4 both Not Yet in week 4, and it feels catastrophic. It isn’t — both standards are re-offered at the week-6 and week-8 checkpoints, and Student 2 demonstrated each twice by mid-semester. Finishes with 12 standards Met including P5 (S2 and A3 fell short on the project report; his revision closed A3 but not S2, and F1 never came together). Then 41 engagement credits, did the work all semester even while the checkpoints were rough. B row: 12 ≥ 12 ✓, P5 ✓, 41 ≥ 32 ✓ → at least a B. Plus check: meet ≥ 1 requirement of the A row? The 41 credits clear the A row’s 40 ✓. Grade: B+. Note the early disasters cost nothing. The grade records where we ended up.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 13 standards Met including P5, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). B row: standards ✓ ✓, but 25 &lt; 32 ✗. C row: 13 ≥ 10 ✓, 25 ≥ 24 ✓ → at least a C. Plus check: meets two B-row requirements (standards, P5) → Grade: C+. Is that harsh for someone with 13 standards? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we’re at a B+.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/practice.html",
-    "href": "info/practice.html",
-    "title": "Practice Library",
+    "objectID": "info/sidequests.html",
+    "href": "info/sidequests.html",
+    "title": "Side Quests",
     "section": "",
-    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
+    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
   },
   {
-    "objectID": "info/practice.html#sandbox",
-    "href": "info/practice.html#sandbox",
-    "title": "Practice Library",
-    "section": "Sandbox",
-    "text": "Sandbox\nNothing to solve — just a scratchpad.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#tracing-weeks-23",
-    "href": "info/practice.html#tracing-weeks-23",
-    "title": "Practice Library",
-    "section": "Tracing (weeks 2–3)",
-    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#functions-week-3",
-    "href": "info/practice.html#functions-week-3",
-    "title": "Practice Library",
-    "section": "Functions (week 3)",
-    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#logic-week-4",
-    "href": "info/practice.html#logic-week-4",
-    "title": "Practice Library",
-    "section": "Logic (week 4)",
-    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#loops-week-5",
-    "href": "info/practice.html#loops-week-5",
-    "title": "Practice Library",
-    "section": "Loops (week 5)",
-    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#arrays-weeks-56",
-    "href": "info/practice.html#arrays-weeks-56",
-    "title": "Practice Library",
-    "section": "Arrays (weeks 5–6)",
-    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/standards.html",
-    "href": "info/standards.html",
-    "title": "The Standards",
-    "section": "",
-    "text": "Your grade in this course is built from the standards below. Each is a specific, demonstrable skill, marked met or not yet — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class checkpoints (weeks 4, 6, 8, 10 — see grading), activity work, the design project, and the final defense. Convergent standards require at least one in-class demonstration. A standard missed in week 4 and nailed in week 11 is met.\nEach standard carries a tag:",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#fetch-get-real-data-in-and-out",
-    "href": "info/standards.html#fetch-get-real-data-in-and-out",
-    "title": "The Standards",
-    "section": "Fetch — get real data in and out",
-    "text": "Fetch — get real data in and out\nF1 — Acquire real data from a phone sensor, a file, or a keyless API. divergent\nF2 — Read data’s shape: recognize CSV rows/columns and JSON/dictionary structure, and pull out the value you want. convergent",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#process-turn-raw-data-into-meaning",
-    "href": "info/standards.html#process-turn-raw-data-into-meaning",
-    "title": "The Standards",
-    "section": "Process — turn raw data into meaning",
-    "text": "Process — turn raw data into meaning\nP1 — Write and reuse a function, and check it in isolation against a hand estimate. convergent (At least one P1 demonstration is hand-written at a checkpoint: a short function from a given spec, no AI — the minimum writing fluency that verification rests on.)\nP2 — Run a parameter sweep: one function across many values, results written to a file. convergent\nP3 — Tame a large dataset with pandas: filter, summarize, reduce many rows to a few meaningful numbers. convergent\nP4 — Read code well enough to predict what a short script does, and recognize the shape of a computational project (inputs → script → outputs). convergent\nP5 (proposed — under discussion) — Hold a whole project in your head: navigate a multi-file program you produced, and explain what each piece does, why it is structured that way, and what breaks if an input is malformed. divergent\n\n\nP5 is what the final defense tests. P4 is reading a paragraph; P5 is knowing your way around the whole book.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#simulate-build-models-make-predictions",
-    "href": "info/standards.html#simulate-build-models-make-predictions",
-    "title": "The Standards",
-    "section": "Simulate — build models, make predictions",
-    "text": "Simulate — build models, make predictions\nS1 — Build a model of a simple system: a given algebraic relation, or by time-stepping. convergent\nS2 — Decide what to include and what to ignore: identify a model’s assumptions and judge whether they’re reasonable for the situation. divergent\nS3 — Judge whether to trust the model: recognize the ways it goes wrong — too coarse a step (numerical), a missing effect (physical), or use outside its valid range (extrapolation). convergent\nS4 — Explore with a model: pose a what-if, vary inputs, and interpret how the output responds. divergent",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
-  },
-  {
-    "objectID": "info/standards.html#analyze-and-the-habits-woven-through-everything",
-    "href": "info/standards.html#analyze-and-the-habits-woven-through-everything",
-    "title": "The Standards",
-    "section": "Analyze — and the habits woven through everything",
-    "text": "Analyze — and the habits woven through everything\nA1 — Estimate and sanity-check a result before trusting it. convergent\nA2 — Make and judge an honest plot, and catch a misleading one. convergent\nA3 — State uncertainty and document provenance: report how far model and reality diverge without false precision, and record where a number came from so someone else could rerun it. divergent\nA4 — Direct and audit AI: get an AI to produce a computational artifact and critically audit the output. divergent",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "The Standards"
-    ]
+    "objectID": "info/sidequests.html#the-menu",
+    "href": "info/sidequests.html#the-menu",
+    "title": "Side Quests",
+    "section": "The menu",
+    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
   }
 ]
