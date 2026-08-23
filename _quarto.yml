@@ -22,10 +22,10 @@ website:
         text: Home
       # - href: info/schedule.qmd
       #   text: Schedule
-      - href: info/standards.qmd
-        text: Standards
-      - href: info/grading.qmd
-        text: Grading
+      # - href: info/standards.qmd
+      #   text: Standards
+      # - href: info/grading.qmd
+      #   text: Grading
       # - href: homework/index.qmd
       #   text: Homework
       - href: info/basecamp.qmd
@@ -40,8 +40,8 @@ website:
         contents:
           - index.qmd
           # - info/schedule.qmd
-          - info/standards.qmd
-          - info/grading.qmd
+          # - info/standards.qmd
+          # - info/grading.qmd
           - info/installing.qmd
           - info/practice.qmd
       - section: "Phase 0 — Thinking (Weeks 1–2)"
