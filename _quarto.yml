@@ -20,14 +20,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: info/schedule.qmd
-        text: Schedule
+      # - href: info/schedule.qmd
+      #   text: Schedule
       - href: info/standards.qmd
         text: Standards
       - href: info/grading.qmd
         text: Grading
-      - href: homework/index.qmd
-        text: Homework
+      # - href: homework/index.qmd
+      #   text: Homework
       - href: info/basecamp.qmd
         text: Base Camp
       # - href: info/sidequests.qmd
@@ -39,7 +39,7 @@ website:
       - section: "Start Here"
         contents:
           - index.qmd
-          - info/schedule.qmd
+          # - info/schedule.qmd
           - info/standards.qmd
           - info/grading.qmd
           - info/installing.qmd

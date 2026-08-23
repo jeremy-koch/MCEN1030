@@ -3,10 +3,10 @@ title: "Base Camp"
 subtitle: "Mondays, first half of the semester — the on-ramp"
 ---
 
-Mondays are an optional session/office hour. The first half of the semester, those Mondays are **Base Camp**: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade in any direction, but you will have a better grasp of the material at the end of each session. Plus, it's a good way to meet some more people in the class and to talk to me/the TA!
+Mondays are an optional session/office hour. The first half of the semester, those Mondays are **Base Camp**: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it's a good way to meet some more people in the class and to talk to me/the TA!
 
 ::: {.column-margin}
-The second half of the semester, Mondays become [Side Quests](sidequests.qmd) — interesting extensions beyond the core course content.
+In the second half of the semester, Mondays become [Side Quests](sidequests.qmd) — interesting extensions beyond the core course content. Still optional.
 :::
 
 
@@ -14,23 +14,21 @@ The second half of the semester, Mondays become [Side Quests](sidequests.qmd) �
 <!-- Plenty of your classmates arrive with years of tinkering; you're not behind them in ability, you're behind them in *hours*. The course was designed assuming zero prior experience. Base Camp is where that assumption gets honored with an instructor at your elbow. -->
 
 
-*Time and room set by signup poll in week 1 — watch Canvas.*
 
 ## The sessions
 
 **BC1 (Week 1) · The computer itself, and how to talk about code.** Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what "the cloud" means for your work. Then the second half: **how to ask a question about code** — the vocabulary (what do you call `**`, `[]`, `:`?), the best way to ask a question: *what I ran / what I expected / what I got instead*. 
-<!-- How you'd ask a TA, how you'd ask your table, and how you'd prompt an LLM. -->
 
-**BC2 (Week 2) · First contact, slowly.** The [week 2 lesson](../lessons/02a-first-contact.qmd) again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.
+<!-- **BC2 (Week 2) · First contact, slowly.** The [week 2 lesson](../lessons/02a-first-contact.qmd) again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.
 
 **BC3 (Week 3) · The vocabulary drill.** Reps on the core reading skills: trace variables by hand, predict outputs, read `=` as "is assigned." Includes **assembly problems** — working code with its lines scrambled.
 
 **BC4 (Week 4) · Dress rehearsal: Checkpoint 1.** A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. 
 <!-- **Dress rehearsals repeat on the Monday before every checkpoint** (weeks 4, 6, 8, 10). -->
 
-**BC5 (Week 5) · Loop clinic.** Loops trip up more beginners than any other fundamental ingredient. Extra reps with accumulators, `range`, predicting iteration by hand, and loop assembly.
+<!-- **BC5 (Week 5) · Loop clinic.** Loops trip up more beginners than any other fundamental ingredient. Extra reps with accumulators, `range`, predicting iteration by hand, and loop assembly.
 
-**BC6 (Week 6) · Dress rehearsal: Checkpoint 2** — including re-offer items from Checkpoint 1, just as Tuesday will.
+**BC6 (Week 6) · Dress rehearsal: Checkpoint 2** — including re-offer items from Checkpoint 1, just as Tuesday will. -->
 
 ## Practice library (async Base Camp)
 
