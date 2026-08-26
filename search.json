@@ -1,192 +1,137 @@
 [
   {
-    "objectID": "lessons/01a-what-engineers-do.html",
-    "href": "lessons/01a-what-engineers-do.html",
-    "title": "What do engineers do with computation?",
+    "objectID": "lessons/01b-what-llms-do.html",
+    "href": "lessons/01b-what-llms-do.html",
+    "title": "What does an LLM actually do?",
     "section": "",
-    "text": "We’re starting with computational thinking, not coding. What is actually possible with computation? What does a computer need from you to do something useful? How can you tell if a calculation is trustworthy? These are things we’ll be thinking about all semester, but we’ll introduce them here.",
+    "text": "You will use AI consistently in this course and you might have some experience already. (If not, don’t worry!) Let’s spend one lesson on what’s it’s actually doing.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What do engineers do with computation?"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/01a-what-engineers-do.html#think-first",
-    "href": "lessons/01a-what-engineers-do.html#think-first",
-    "title": "What do engineers do with computation?",
+    "objectID": "lessons/01b-what-llms-do.html#think-first",
+    "href": "lessons/01b-what-llms-do.html#think-first",
+    "title": "What does an LLM actually do?",
     "section": "Think First",
-    "text": "Think First\nRecall\n\nThink of a time you gave someone instructions (directions to your house, a recipe, rules to a game) and they got it wrong. Whose fault was it?\nIn high school physics, you checked answers by asking “is this number reasonable?” — a car going 900 m/s is probably a mistake. What was that process like… what were you recalling, what did you do when you realized the answer was ridiculous?\n\nLook Ahead\n\nIf an AI can write working code from a plain-English description in five seconds, what’s left for the engineer to do?\nWhat would it take for you to trust a program you didn’t write?",
+    "text": "Think First\nRecall\n\nYour phone’s keyboard suggests the next word as you type. How do you think it decides what to suggest?\nHave you ever confidently “remembered” something that turned out to be wrong?\n\nLook Ahead\n\nIf two students give an AI the exact same prompt, will they get the exact same code back?\nWhy might an AI be better at writing code than at doing arithmetic?",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What do engineers do with computation?"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/01a-what-engineers-do.html#four-things-you-may-not-know-are-possible-with-computation",
-    "href": "lessons/01a-what-engineers-do.html#four-things-you-may-not-know-are-possible-with-computation",
-    "title": "What do engineers do with computation?",
-    "section": "Four things you may not know are possible with computation",
-    "text": "Four things you may not know are possible with computation\nPredict every outcome of a process. Write a function that models something — the stress in a bracket, the temperature of a battery — then use that function 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.\n\n\nA function has a very similar meaning in this class as it did in algebra: there are inputs, and there are outputs. An example: we might want to calculate the area of a triangle. We’d write a function with inputs base and height, and the output is the area. In Python, this would look like\ndef triangle_area(base, height):\n    return 0.5 * base * height\nIf we “called” this function and provided values for base and height, it would “return” the area of the triangle. We’ll talk about this structure a lot more in two weeks.\nHandle data at engineering scale. A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.\nCollect and process real engineering data. From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer inside your program.\nSolve the unsolvable. Most real equations in engineering have no analytical solution. Many of those problems can be solved numerically in 10 lines of code.",
+    "objectID": "lessons/01b-what-llms-do.html#the-short-version",
+    "href": "lessons/01b-what-llms-do.html#the-short-version",
+    "title": "What does an LLM actually do?",
+    "section": "The short version",
+    "text": "The short version\nA large language model (LLM) does one thing:\n\nGiven some text, predict a plausible next small chunk of text.\n\nThat’s it. Everything else — the code-writing, the explanations, the apparent reasoning — emerges from doing that one thing extremely well, at enormous scale.\n\n\nThe “small chunks” are called tokens — usually a word or piece of a word. thermal might be one token; thermodynamics might be three. (Different than the tokens involved in our standards-based grading scheme!)\nThe model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and importantly for us, billions of lines of code — and adjusting billions (perhaps trillions) of internal numerical knobs until its “next-chunk” predictions got very good. This is what we mean when we talk about a new LLM “model” — there are more parameters (knobs) and updated tunings of those knobs that do a better job of creating accurate/plausible bodies of text.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What do engineers do with computation?"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/01a-what-engineers-do.html#the-pipeline",
-    "href": "lessons/01a-what-engineers-do.html#the-pipeline",
-    "title": "What do engineers do with computation?",
-    "section": "The pipeline",
-    "text": "The pipeline\nCreating a computational tool looks something like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nThe idea is always the hard part. Then, at least for the seventy years after that, production was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on how to write correct code.\nThat era is over. AI tools now produce working code from a good description in seconds. Production has, for most everyday engineering purposes, been solved.\n\n\nJohn Backus thought of himself as a bad assembly-language coder, so in the 1950s he created FORTRAN. The history of computer science is a story of making code less abstract, and LLMs might be the next step.\nWhat should be the focus today?",
+    "objectID": "lessons/01b-what-llms-do.html#three-consequences",
+    "href": "lessons/01b-what-llms-do.html#three-consequences",
+    "title": "What does an LLM actually do?",
+    "section": "Three consequences",
+    "text": "Three consequences\nEverything strange about LLM behavior falls out of that mechanism.\n\n1. Its answers are plausible, but might not be true\nThe model produces text that is statistically likely to follow your prompt — the text sounds like what the correct answer might sound like. It is not reasoning based on physics, it has read a bunch of text written by humans who reasoned based on physics. Then it realized, statistically, that whenever those humans mention “physics”, “black holes”, and “singularity”, it is probably appropriate to use the word “Hawking”, and a likely word after that is “radiation”.\n\n\nOne concerning thing about LLMs is that they are increasingly being trained on text generated by LLMs — so much internet content is generated by LLMs that the LLMs are reinforcing their own tendencies and possibly that will lead to quality degrading over generations.\nUsually, the most plausible continuation of an engineering question is the correct answer, which is why these tools are often useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn’t apply to the situation (dangerous!), a citation to a paper that doesn’t exist, a recipe with a cup of vanilla instead of a teaspoon. This is often called a hallucination, and the dangerous part is that the LLM can be just as confident about a hallucination as it is about real information.\n\n\n\n\n\n\nImportant\n\n\n\nThere is no tone difference between an LLM being right and an LLM being wrong. Verify!\n\n\n\n\n2. Same prompt, different answers\nPrediction produces a menu of plausible next chunks, each with a probability. By design, the model doesn’t always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.\n\n\nLLMs with a higher “temperature” value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it creates the same output every time.\nThis is why, on Thursday, 15 tables prompting for the same task will produce 15 different programs — different variable names, different structures, sometimes different algorithms, occasionally different answers. Thinking about that is an important aspect of this class!\n\n\n3. A good specification tames the LLM\nA prompt is the text you supply to the LLM, maybe a question. An effective prompt is thoughtful… it’s not like a Google search where you just say some relevant words (“lyrics steely dan”) and then you, yourself, look through the results to find what you are looking for. You should be supplying instructions, relevant context, and constraints.\n\n\nDoes anyone else find it annoying that Google’s first result is now AI? Whenever I don’t know exactly what I am looking for, being able to scan the first few results is usually what it takes to figure it out; and whenever I do know what I am looking for, I am not interested in Gemini’s mediocre summary!\n“Build me a diet plan” is too general to be immediately useful… are you trying to lose weight? Gain weight? Gain muscle? Add more fiber? Eliminate carbs? Allergic to nuts? The LLM will probably follow up with questions like that, and you’ll end up somewhere good, but sometimes it might make assumptions for you that you have to spend time undoing. (“Yuck, it wants me to eat fish three times a week!”)\nRather than arguing with the LLM for 15 minutes, wasting a bunch of water and electricity in the process, you should be thoughtful about your specifications.\n\n\nThe context window is the cap on how much of that text the model can “see” at once — your current prompt, along with (at least some of) your previous questions in the same conversation, any files you’ve included. And maybe you’ve given the LLM some baseline instructions that are automatically applied to all conversations. There is a limit on how much of that information can be included in a given text-generation step, and even if it were all included, the more context it has, the greater chance of getting confused! I suspect part of the model development that is happening is about doing a better job understanding what in the context window is most relevant to your current prompt.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What do engineers do with computation?"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/01a-what-engineers-do.html#specification-means-describing-the-problem-completely",
-    "href": "lessons/01a-what-engineers-do.html#specification-means-describing-the-problem-completely",
-    "title": "What do engineers do with computation?",
-    "section": "Specification means describing the problem completely",
-    "text": "Specification means describing the problem completely\n… the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it’s an AI, a contractor, or a teammate who is helping with the task, every gap in your specification gets filled with an assumption. If your specification doesn’t mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!\nThink about asking a question like…\n\n“Tell me the average temperature in Boulder.”\n\n\n\n\n\n\n\nNoteWhat details do you actually need to provide?\n\n\n\n\n\nAverage over what — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what “average temperature” usually means, but maybe you are concerned with human comfort and thus should pay attention to the extremes)? What about the days the weather station didn’t report anything? There are plenty of those if we’re looking back to the 1890s. In the raw file, a missing day might not be blank, it might be recorded as -9999. Hand that to a basic Python program for computing the average and you might “learn” that the average temperature is about −270 °C. And, a classic problem even for humans: What are the units?\n\n\n\nNow a different kind of gap. Compare these two problem statements:\n\nA. “Write a function freq_shift(t, U, x0, y0, c, f) that returns the apparent frequency of a moving siren at each time in the array t, and plots it against time.”\n\n\nB. “Write a program that would allow you to determine the velocity (speed and direction) of a siren.”\n\nStatement A is a completed specification — someone already did all the thinking, and you’re just following instructions. Statement B is a problem. To attack B, you have to decide: what are the inputs my team has access to/ability to control? (A recording? Frequency-vs-time data? Hypothetical object speeds?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?\nIn the old version of this course, where we focused on code production, I’d give you Statement A. (Indeed, this was a homework problem last year.) In this version, where we augment our work with LLMs, you might get Statement B. Importantly: in real engineering, no one will hand you Statement A, especially now that LLMs make short work of the ensuing code. Producing Statement A from Statement B is the job.",
+    "objectID": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
+    "href": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
+    "title": "What does an LLM actually do?",
+    "section": "Why is it so good at code, anyway?",
+    "text": "Why is it so good at code, anyway?\nThe biggest reason: the training data included billions of lines of code, much of it from working programs, and a lot of solid documentation from the code creators themselves ( find_peaks). So there is a strong statistical signal that these are very relevant words for this task.\nBut furthermore: code is checkable. Compare\n\n“You can’t fix every problem, so just focus on doing good work in your own corner of it.”\n\nwith\n\n“It is not our part to master all the tides of the world, but to do what is in us for the succour of those years wherein we are set, uprooting the evil in the fields that we know, so that those who live after may have clean earth to till.”\n\nHow can you judge that the first one is “wrong”? Based on our understanding of how LLMs work, every new word/token in that line is a completely reasonable continuation of the sentence. The second one, by Tolkien, is better, but not “more correct”.\nMeanwhile: if code doesn’t run, something is wrong, and we further will get an output from code that can possibly be confirmed/validated against known results. Modern LLMs are able to run code on the cloud to confirm they perform as intended, and they are increasingly willing to compare against test cases for you: if you need some code to find the area under a curve, an LLM might write it, run it, and compare against the known area under \\(y=x\\) from 0 to 1. Basically, the LLMs are doing their own small verification. That probably isn’t sufficient to confirm that the code does what it is supposed to, but it is necessary that the code works for at least that basic problem.\nWe will do our own audit and verification of the code: read through it to make sure it follows a logic we agree with, and test its output in several ways. We may need to iterate — the AI gives us code that seems like it is 90% of the way to succeeding at the job, but there is an error, and so we need to work with the AI to revise. Unlike prose, we can identify specifics about what is wrong and eventually arrive at something that is verified correct.\n\n\nMeanwhile: LLMs are historically mediocre at arithmetic — predicting a text representation of numbers in a calculation is not the same as calculating.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What do engineers do with computation?"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/01a-what-engineers-do.html#verification-means-confirming-a-program-does-what-you-intended",
-    "href": "lessons/01a-what-engineers-do.html#verification-means-confirming-a-program-does-what-you-intended",
-    "title": "What do engineers do with computation?",
-    "section": "Verification means confirming a program does what you intended",
-    "text": "Verification means confirming a program does what you intended\n… and notably: not assuming that the product given to you by a colleague or LLM is correct. This semester we will verify our code with:\nThe hand estimate: before running anything, compute a rough expected answer for a simple case. A dropped wrench falls 3 meters in about \\(t = \\sqrt{2h/g} \\approx \\sqrt{2(3~\\text{m})/(9.8~\\text{m/s}^2)} \\approx 0.8\\) seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that’s a good sign.\nThe edge case: what happens at zero? At a negative input? When the file is empty? What should happen in these cases?\nThe intuition check: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools to room temperature over several minutes but won’t drop below room temperature. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!\n\n\n\n\n\n\nImportant\n\n\n\nAn AI will hand you code that runs yet is confidently, invisibly wrong — it flipped a sign, used the wrong equation because you forgot to specify one, assumed Celsius when the data was in Fahrenheit. It will not warn you. “It ran without errors” and “it is correct” are entirely different claims.",
+    "objectID": "lessons/01b-what-llms-do.html#the-stance-on-llms-in-this-course",
+    "href": "lessons/01b-what-llms-do.html#the-stance-on-llms-in-this-course",
+    "title": "What does an LLM actually do?",
+    "section": "The stance on LLMs in this course",
+    "text": "The stance on LLMs in this course\nNo doubt, LLMs are tools that can augment your abilities. A few years ago I might have manually combined 40 spreadsheets into one (which maybe would have taken an hour, but was annoying), or I might have written code to do that for me (which probably would have taken four hours to figure out… should have just done it manually arggg). Now I can ask an LLM to give me the Python code to do it, and the project is done in 5 minutes.\nI have become more ambitious and capable in some aspects of my work because I know I can get a head start using AI. But note: I am the one who came up with the idea, and I needed to describe the problem and some of the necessary steps. And, importantly, I am the one responsible if something breaks along the way, and so I need to have a strategy to confirm that everything made it into the finished project successfully.\nI think the following is very much in the spirit of coding in 2026: Think of LLMs as your extremely fast, extremely well-read, overconfident junior collaborator. You can use them to quickly retrieve information, you can ask them to help you write code, they can help troubleshoot problems. But ultimately, you are setting the expectations (specifications), and you are responsible for the project (so you better do some verification). And, further, there will be times when you have to show that you, too, actually know how to do the stuff (the checkpoints).\n\n\nOne more term you’ll see a lot: an agent is capable of actually making changes on your computer — creating new folders, creating/editing files, maybe sending emails — rather than giving you text in a web browser that you have to move around. Still basically a junior collaborator: you still provide the details and check the results, you just have to do less manual labor.\n\nAnswer these:\n\nTwo students give an LLM the identical prompt for a projectile program. Predict: (a) identical code, (b) different code, same numerical answers, (c) different code, possibly different answers. Write one sentence defending your pick.\nThe LLM hands you a projectile program and it runs without any errors, and produces a nice plot. List every distinct reason you can think of that its output might still be wrong.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What do engineers do with computation?"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/01a-what-engineers-do.html#the-map-of-this-course",
-    "href": "lessons/01a-what-engineers-do.html#the-map-of-this-course",
-    "title": "What do engineers do with computation?",
-    "section": "The map of this course",
-    "text": "The map of this course\nFour verbs describe what engineers do with computation, and they outline this course:\n\nFetch — get real data into (and out of) your programs: sensors, files, the internet.\nProcess — turn raw data into meaningful quantities: functions, sweeps, big datasets.\nSimulate — build models, make predictions, ask “what if,” and know when not to believe yourself.\nAnalyze — communicate findings honestly: good plots that lead to good understanding, defensible conclusions that lead to engineering decisions.\n\nWe’ll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The standards page lists what you’ll be able to do under each verb.\n\nOn paper (yes, actual paper), write a specification — 5 to 10 sentences — for this problem: a program that tells a student the fastest walking route between two buildings on campus. Your spec must state the inputs, the outputs, and at least three edge cases with what should happen in each.\nClass opens with tables exchanging specs and hunting for the gaps.",
-    "crumbs": [
-      "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "What do engineers do with computation?"
-    ]
-  },
-  {
-    "objectID": "info/practice.html",
-    "href": "info/practice.html",
-    "title": "Practice Library",
+    "objectID": "info/sidequests.html",
+    "href": "info/sidequests.html",
+    "title": "Side Quests",
     "section": "",
-    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
+    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
   },
   {
-    "objectID": "info/practice.html#sandbox",
-    "href": "info/practice.html#sandbox",
-    "title": "Practice Library",
-    "section": "Sandbox",
-    "text": "Sandbox\nNothing to solve — just a scratchpad.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
+    "objectID": "info/sidequests.html#the-menu",
+    "href": "info/sidequests.html#the-menu",
+    "title": "Side Quests",
+    "section": "The menu",
+    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
   },
   {
-    "objectID": "info/practice.html#tracing-weeks-23",
-    "href": "info/practice.html#tracing-weeks-23",
-    "title": "Practice Library",
-    "section": "Tracing (weeks 2–3)",
-    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#functions-week-3",
-    "href": "info/practice.html#functions-week-3",
-    "title": "Practice Library",
-    "section": "Functions (week 3)",
-    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#logic-week-4",
-    "href": "info/practice.html#logic-week-4",
-    "title": "Practice Library",
-    "section": "Logic (week 4)",
-    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#loops-week-5",
-    "href": "info/practice.html#loops-week-5",
-    "title": "Practice Library",
-    "section": "Loops (week 5)",
-    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#arrays-weeks-56",
-    "href": "info/practice.html#arrays-weeks-56",
-    "title": "Practice Library",
-    "section": "Arrays (weeks 5–6)",
-    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/basecamp.html",
-    "href": "info/basecamp.html",
-    "title": "Base Camp",
+    "objectID": "info/installing.html",
+    "href": "info/installing.html",
+    "title": "Getting going in your language",
     "section": "",
-    "text": "Mondays are an optional session/office hour. The first half of the semester, those Mondays are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
+    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
   },
   {
-    "objectID": "info/basecamp.html#the-sessions",
-    "href": "info/basecamp.html#the-sessions",
-    "title": "Base Camp",
-    "section": "The sessions",
-    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
+    "objectID": "info/installing.html#python-via-google-colab",
+    "href": "info/installing.html#python-via-google-colab",
+    "title": "Getting going in your language",
+    "section": "Python via Google Colab",
+    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
   },
   {
-    "objectID": "info/basecamp.html#practice-library-async-base-camp",
-    "href": "info/basecamp.html#practice-library-async-base-camp",
-    "title": "Base Camp",
-    "section": "Practice library (async Base Camp)",
-    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+    "objectID": "info/installing.html#python-on-your-machine",
+    "href": "info/installing.html#python-on-your-machine",
+    "title": "Getting going in your language",
+    "section": "Python on your machine",
+    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#matlab-later-in-the-semester",
+    "href": "info/installing.html#matlab-later-in-the-semester",
+    "title": "Getting going in your language",
+    "section": "MATLAB (later in the semester)",
+    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
   },
   {
     "objectID": "index.html",
@@ -273,65 +218,192 @@
     ]
   },
   {
-    "objectID": "info/installing.html",
-    "href": "info/installing.html",
-    "title": "Getting going in your language",
+    "objectID": "info/basecamp.html",
+    "href": "info/basecamp.html",
+    "title": "Base Camp",
     "section": "",
-    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
+    "text": "Mondays are an optional session/office hour. The first half of the semester, they are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
   },
   {
-    "objectID": "info/installing.html#python-via-google-colab",
-    "href": "info/installing.html#python-via-google-colab",
-    "title": "Getting going in your language",
-    "section": "Python via Google Colab",
-    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
+    "objectID": "info/basecamp.html#the-sessions",
+    "href": "info/basecamp.html#the-sessions",
+    "title": "Base Camp",
+    "section": "The sessions",
+    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
   },
   {
-    "objectID": "info/installing.html#python-on-your-machine",
-    "href": "info/installing.html#python-on-your-machine",
-    "title": "Getting going in your language",
-    "section": "Python on your machine",
-    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
+    "objectID": "info/basecamp.html#practice-library-async-base-camp",
+    "href": "info/basecamp.html#practice-library-async-base-camp",
+    "title": "Base Camp",
+    "section": "Practice library (async Base Camp)",
+    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
   },
   {
-    "objectID": "info/installing.html#matlab-later-in-the-semester",
-    "href": "info/installing.html#matlab-later-in-the-semester",
-    "title": "Getting going in your language",
-    "section": "MATLAB (later in the semester)",
-    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/sidequests.html",
-    "href": "info/sidequests.html",
-    "title": "Side Quests",
+    "objectID": "info/practice.html",
+    "href": "info/practice.html",
+    "title": "Practice Library",
     "section": "",
-    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
+    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
   },
   {
-    "objectID": "info/sidequests.html#the-menu",
-    "href": "info/sidequests.html#the-menu",
-    "title": "Side Quests",
-    "section": "The menu",
-    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
+    "objectID": "info/practice.html#sandbox",
+    "href": "info/practice.html#sandbox",
+    "title": "Practice Library",
+    "section": "Sandbox",
+    "text": "Sandbox\nNothing to solve — just a scratchpad.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#tracing-weeks-23",
+    "href": "info/practice.html#tracing-weeks-23",
+    "title": "Practice Library",
+    "section": "Tracing (weeks 2–3)",
+    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#functions-week-3",
+    "href": "info/practice.html#functions-week-3",
+    "title": "Practice Library",
+    "section": "Functions (week 3)",
+    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#logic-week-4",
+    "href": "info/practice.html#logic-week-4",
+    "title": "Practice Library",
+    "section": "Logic (week 4)",
+    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#loops-week-5",
+    "href": "info/practice.html#loops-week-5",
+    "title": "Practice Library",
+    "section": "Loops (week 5)",
+    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#arrays-weeks-56",
+    "href": "info/practice.html#arrays-weeks-56",
+    "title": "Practice Library",
+    "section": "Arrays (weeks 5–6)",
+    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "lessons/01a-what-engineers-do.html",
+    "href": "lessons/01a-what-engineers-do.html",
+    "title": "What do engineers do with computation?",
+    "section": "",
+    "text": "We’re starting with computational thinking, not coding. What is actually possible with computation? What does a computer need from you to do something useful? How can you tell if a calculation is trustworthy? These are things we’ll be thinking about all semester, but we’ll introduce them here.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What do engineers do with computation?"
+    ]
+  },
+  {
+    "objectID": "lessons/01a-what-engineers-do.html#think-first",
+    "href": "lessons/01a-what-engineers-do.html#think-first",
+    "title": "What do engineers do with computation?",
+    "section": "Think First",
+    "text": "Think First\nRecall\n\nThink of a time you gave someone instructions (directions to your house, a recipe, rules to a game) and they got it wrong. Whose fault was it?\nIn high school physics, you checked answers by asking “is this number reasonable?” — a car going 900 m/s is probably a mistake. What was that process like… what were you recalling, what did you do when you realized the answer was ridiculous?\n\nLook Ahead\n\nIf an AI can write working code from a plain-English description in five seconds, what’s left for the engineer to do?\nWhat would it take for you to trust a program you didn’t write?",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What do engineers do with computation?"
+    ]
+  },
+  {
+    "objectID": "lessons/01a-what-engineers-do.html#four-things-you-may-not-know-are-possible-with-computation",
+    "href": "lessons/01a-what-engineers-do.html#four-things-you-may-not-know-are-possible-with-computation",
+    "title": "What do engineers do with computation?",
+    "section": "Four things you may not know are possible with computation",
+    "text": "Four things you may not know are possible with computation\nPredict every outcome of a process. Write a function that models something — the stress in a bracket, the temperature of a battery — then use that function 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.\n\n\nA function has a very similar meaning in this class as it did in algebra: there are inputs, and there are outputs. An example: we might want to calculate the area of a triangle. We’d write a function with inputs base and height, and the output is the area. In Python, this would look like\ndef triangle_area(base, height):\n    return 0.5 * base * height\nIf we “called” this function and provided values for base and height, it would “return” the area of the triangle. We’ll talk about this structure a lot more in two weeks.\nHandle data at engineering scale. A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.\nCollect and process real engineering data. From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer inside your program.\nSolve the unsolvable. Most real equations in engineering have no analytical solution. Many of those problems can be solved numerically in 10 lines of code.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What do engineers do with computation?"
+    ]
+  },
+  {
+    "objectID": "lessons/01a-what-engineers-do.html#the-pipeline",
+    "href": "lessons/01a-what-engineers-do.html#the-pipeline",
+    "title": "What do engineers do with computation?",
+    "section": "The pipeline",
+    "text": "The pipeline\nCreating a computational tool looks something like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nThe idea is always the hard part. Then, at least for the seventy years after that, production was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on how to write correct code.\nThat era is over. AI tools now produce working code from a good description in seconds. Production has, for most everyday engineering purposes, been solved.\n\n\nJohn Backus thought of himself as a bad assembly-language coder, so in the 1950s he created FORTRAN. The history of computer science is a story of making code less abstract, and LLMs might be the next step.\nWhat should be the focus today?",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What do engineers do with computation?"
+    ]
+  },
+  {
+    "objectID": "lessons/01a-what-engineers-do.html#specification-means-describing-the-problem-completely",
+    "href": "lessons/01a-what-engineers-do.html#specification-means-describing-the-problem-completely",
+    "title": "What do engineers do with computation?",
+    "section": "Specification means describing the problem completely",
+    "text": "Specification means describing the problem completely\n… the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it’s an AI, a contractor, or a teammate who is helping with the task, every gap in your specification gets filled with an assumption. If your specification doesn’t mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!\nThink about asking a question like…\n\n“Tell me the average temperature in Boulder.”\n\n\n\n\n\n\n\nNoteWhat details do you actually need to provide?\n\n\n\n\n\nAverage over what — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what “average temperature” usually means, but maybe you are concerned with human comfort and thus should pay attention to the extremes)? What about the days the weather station didn’t report anything? There are plenty of those if we’re looking back to the 1890s. In the raw file, a missing day might not be blank, it might be recorded as -9999. Hand that to a basic Python program for computing the average and you might “learn” that the average temperature is about −270 °C. And, a classic problem even for humans: What are the units?\n\n\n\nNow a different kind of gap. Compare these two problem statements:\n\nA. “Write a function freq_shift(t, U, x0, y0, c, f) that returns the apparent frequency of a moving siren at each time in the array t, and plots it against time.”\n\n\nB. “Write a program that would allow you to determine the velocity (speed and direction) of a siren.”\n\nStatement A is a completed specification — someone already did all the thinking, and you’re just following instructions. Statement B is a problem. To attack B, you have to decide: what are the inputs my team has access to/ability to control? (A recording? Frequency-vs-time data? Hypothetical object speeds?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?\nIn the old version of this course, where we focused on code production, I’d give you Statement A. (Indeed, this was a homework problem last year.) In this version, where we augment our work with LLMs, you might get Statement B. Importantly: in real engineering, no one will hand you Statement A, especially now that LLMs make short work of the ensuing code. Producing Statement A from Statement B is the job.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What do engineers do with computation?"
+    ]
+  },
+  {
+    "objectID": "lessons/01a-what-engineers-do.html#verification-means-confirming-a-program-does-what-you-intended",
+    "href": "lessons/01a-what-engineers-do.html#verification-means-confirming-a-program-does-what-you-intended",
+    "title": "What do engineers do with computation?",
+    "section": "Verification means confirming a program does what you intended",
+    "text": "Verification means confirming a program does what you intended\n… and notably: not assuming that the product given to you by a colleague or LLM is correct. This semester we will verify our code with:\nThe hand estimate: before running anything, compute a rough expected answer for a simple case. A dropped wrench falls 3 meters in about \\(t = \\sqrt{2h/g} \\approx \\sqrt{2(3~\\text{m})/(9.8~\\text{m/s}^2)} \\approx 0.8\\) seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that’s a good sign.\nThe edge case: what happens at zero? At a negative input? When the file is empty? What should happen in these cases?\nThe intuition check: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools to room temperature over several minutes but won’t drop below room temperature. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!\n\n\n\n\n\n\nImportant\n\n\n\nAn AI will hand you code that runs yet is confidently, invisibly wrong — it flipped a sign, used the wrong equation because you forgot to specify one, assumed Celsius when the data was in Fahrenheit. It will not warn you. “It ran without errors” and “it is correct” are entirely different claims.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What do engineers do with computation?"
+    ]
+  },
+  {
+    "objectID": "lessons/01a-what-engineers-do.html#the-map-of-this-course",
+    "href": "lessons/01a-what-engineers-do.html#the-map-of-this-course",
+    "title": "What do engineers do with computation?",
+    "section": "The map of this course",
+    "text": "The map of this course\nFour verbs describe what engineers do with computation, and they outline this course:\n\nFetch — get real data into (and out of) your programs: sensors, files, the internet.\nProcess — turn raw data into meaningful quantities: functions, sweeps, big datasets.\nSimulate — build models, make predictions, ask “what if,” and know when not to believe yourself.\nAnalyze — communicate findings honestly: good plots that lead to good understanding, defensible conclusions that lead to engineering decisions.\n\nWe’ll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The standards page lists what you’ll be able to do under each verb.\n\nOn paper (yes, actual paper), write a specification — 5 to 10 sentences — for this problem: a program that tells a student the fastest walking route between two buildings on campus. Your spec must state the inputs, the outputs, and at least three edge cases with what should happen in each.\nClass opens with tables exchanging specs and hunting for the gaps.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What do engineers do with computation?"
+    ]
   }
 ]

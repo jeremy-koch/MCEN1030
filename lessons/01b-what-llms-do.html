@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Welcome – MCEN 1030</title>
+<title>What does an LLM actually do? – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,26 +29,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-575e597892c2686a42d60c83fc67b4a5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
-<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-575e597892c2686a42d60c83fc67b4a5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,9 +76,38 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -89,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MCEN 1030</span>
     </a>
   </div>
@@ -100,11 +129,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./info/basecamp.html"> 
+    <a class="nav-link" href="../info/basecamp.html"> 
 <span class="menu-text">Base Camp</span></a>
   </li>  
 </ul>
@@ -118,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Start Here</a></li><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01b-what-llms-do.html">What does an LLM actually do?</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -149,19 +178,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./info/installing.html" class="sidebar-item-text sidebar-link">
+  <a href="../info/installing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting going in your language</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./info/practice.html" class="sidebar-item-text sidebar-link">
+  <a href="../info/practice.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Practice Library</span></a>
   </div>
 </li>
@@ -178,13 +207,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
+  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What do engineers do with computation?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link">
+  <a href="../lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">What does an LLM actually do?</span></a>
   </div>
 </li>
@@ -200,21 +229,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-big-idea" id="toc-the-big-idea" class="nav-link active" data-scroll-target="#the-big-idea">The big idea</a></li>
-  <li><a href="#how-a-week-works" id="toc-how-a-week-works" class="nav-link" data-scroll-target="#how-a-week-works">How a week works</a></li>
-  <li><a href="#ai-policy" id="toc-ai-policy" class="nav-link" data-scroll-target="#ai-policy">AI policy</a></li>
-  <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
-  <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
+  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
+  <li><a href="#the-short-version" id="toc-the-short-version" class="nav-link" data-scroll-target="#the-short-version">The short version</a></li>
+  <li><a href="#three-consequences" id="toc-three-consequences" class="nav-link" data-scroll-target="#three-consequences">Three consequences</a>
+  <ul class="collapse">
+  <li><a href="#its-answers-are-plausible-but-might-not-be-true" id="toc-its-answers-are-plausible-but-might-not-be-true" class="nav-link" data-scroll-target="#its-answers-are-plausible-but-might-not-be-true">1. Its answers are plausible, but might not be true</a></li>
+  <li><a href="#same-prompt-different-answers" id="toc-same-prompt-different-answers" class="nav-link" data-scroll-target="#same-prompt-different-answers">2. Same prompt, different answers</a></li>
+  <li><a href="#a-good-specification-tames-the-llm" id="toc-a-good-specification-tames-the-llm" class="nav-link" data-scroll-target="#a-good-specification-tames-the-llm">3. A good specification tames the LLM</a></li>
+  </ul></li>
+  <li><a href="#why-is-it-so-good-at-code-anyway" id="toc-why-is-it-so-good-at-code-anyway" class="nav-link" data-scroll-target="#why-is-it-so-good-at-code-anyway">Why is it so good at code, anyway?</a></li>
+  <li><a href="#the-stance-on-llms-in-this-course" id="toc-the-stance-on-llms-in-this-course" class="nav-link" data-scroll-target="#the-stance-on-llms-in-this-course">The stance on LLMs in this course</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Start Here</a></li><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01b-what-llms-do.html">What does an LLM actually do?</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
-<p class="subtitle lead">MCEN 1030 · Introduction to Engineering Computing</p>
+<h1 class="title">What does an LLM actually do?</h1>
+<p class="subtitle lead">Week 1, Lesson B — read before Thursday</p>
 </div>
 
 
@@ -231,95 +265,111 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.</p>
-<p>When I took this course (in Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.</p>
-<p>Today, we have <strong>AI (artificial intelligence)</strong>, specifically <strong>LLMs (large language models)</strong>. These have proven to be extremely capable of writing code based on a <strong>prompt</strong> (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in <code>for i in items:</code> anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work. <!-- — they can solve those traditional intro to computing problems almost instantaneously. Outside of class, the problems are not as well-specified — engineering is messy, and by definition any new design has never been tested before. But still,  --></p>
-
-<!-- ::: {.column-margin}
-The big cloud-based LLMs are: ChatGPT, Claude, Gemini, Copilot, and Grok. Engineers might use a "local LLM" instead, one that is not run on a personal computer, not the cloud. (Thus, your company secrets stay on your computer.) In such a case they might have downloaded Qwen, Gemma, Deepseek, or another open-source model. 
-::: -->
-<div class="no-row-height column-margin column-container"><div class="">
-<p>We could argue about LLMs actually being a form of artificial “intelligence”… we’ll talk about how they are just statistics-based word-guessers.</p>
-</div></div><p>What does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation…</p>
-<ul>
-<li>Can we solve “unsolvable” differential equations like <a href="https://en.wikipedia.org/wiki/Lorenz_system">The Lorenz Equations</a>?</li>
-</ul>
-<p>how computer logic works…</p>
-<ul>
-<li><code>a=5,b=a+5,a=10</code>… what is the current value of <code>b</code>?</li>
-</ul>
-<p>and how to interpret code…</p>
-<ul>
-<li>what is happening with <code>for i in items:</code>?</li>
-</ul>
-<p>but we will also learn how to integrate LLMs into our workflow. Importantly, we are <strong>not</strong> going to treat LLM-generated code as a “black box”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!</p>
-<p>Further, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, <strong>as long as we humans are an active participant in the process</strong>.</p>
+<p>You will use AI consistently in this course and you might have some experience already. (If not, don’t worry!) Let’s spend one lesson on what’s it’s actually doing.</p>
+<section id="think-first" class="level2">
+<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
+<p>Recall</p>
+<ol type="1">
+<li>Your phone’s keyboard suggests the next word as you type. How do you think it decides what to suggest?</li>
+<li>Have you ever confidently “remembered” something that turned out to be wrong?</li>
+</ol>
+<p>Look Ahead</p>
+<ol type="1">
+<li>If two students give an AI the <em>exact same prompt</em>, will they get the exact same code back?</li>
+<li>Why might an AI be better at writing code than at doing arithmetic?</li>
+</ol>
+</section>
+<section id="the-short-version" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-short-version">The short version</h2>
+<p>A large language model (LLM) does one thing:</p>
+<blockquote class="blockquote">
+<p>Given some text, predict a plausible next small chunk of text.</p>
+</blockquote>
+<p>That’s it. Everything else — the code-writing, the explanations, the apparent reasoning — emerges from doing that one thing extremely well, at enormous scale.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>The flip side of this coin is: if we don’t understand computational ideas and are just hoping the LLM figures out what to do based on a vague description of the problem, we are going to be in trouble.</p>
-</div></div><section id="the-big-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-big-idea">The big idea</h2>
-<p>The process of creating computational tools looks roughly like this:</p>
-<svg viewbox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:700px; width:100%; height:auto;">
-  <title>The computational pipeline</title>
-  <desc>Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.</desc>
-  <defs>
-    <marker id="arr" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 z" fill="#2b2b2b"></path>
-    </marker>
-  </defs>
-  <g font-family="sans-serif" font-size="14" text-anchor="middle">
-    <rect x="5" y="40" width="90" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="50" y="65">Idea</text>
-    <rect x="135" y="40" width="120" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"></rect>
-    <text x="195" y="65">Specification</text>
-    <rect x="295" y="40" width="110" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="350" y="65">Production</text>
-    <rect x="445" y="40" width="110" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"></rect>
-    <text x="500" y="65">Verification</text>
-    <rect x="595" y="40" width="90" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="640" y="65">Use</text>
-    <line x1="95" y1="60" x2="133" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"></line>
-    <line x1="255" y1="60" x2="293" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"></line>
-    <line x1="405" y1="60" x2="443" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"></line>
-    <line x1="555" y1="60" x2="593" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"></line>
-    <path d="M 640 82 Q 640 130 420 130 Q 195 130 195 84" fill="none" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr)"></path>
-    <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
-  </g>
-</svg>
-<p>For decades, <strong>Production</strong> — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:</p>
-<p><strong>Specification</strong> means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.</p>
-<p><strong>Verification</strong> means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.</p>
-<p>You will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can <em>think computationally</em>: frame a problem, direct the tools, and audit the results. That is what engineers actually do!</p>
+<p>The “small chunks” are called <em>tokens</em> — usually a word or piece of a word. <code>thermal</code> might be one token; <code>thermodynamics</code> might be three. (Different than the tokens involved in our standards-based grading scheme!)</p>
+</div></div><p>The model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and importantly for us, <strong>billions of lines of code</strong> — and adjusting billions (perhaps trillions) of internal numerical knobs until its “next-chunk” predictions got very good. This is what we mean when we talk about a new LLM “model” — there are more parameters (knobs) and updated tunings of those knobs that do a better job of creating accurate/plausible bodies of text.</p>
+<!-- When you **prompt** it, you're providing the start of a text, and it continues that text one chunk at a time, each new chunk chosen based on everything that came before — including its own earlier replies. -->
 </section>
-<section id="how-a-week-works" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="how-a-week-works">How a week works</h2>
-<p><strong>Before class</strong>, you’ll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a <strong>Bring to class</strong> box: one question you answer <em>on paper before you arrive</em>.</p>
+<section id="three-consequences" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="three-consequences">Three consequences</h2>
+<p>Everything strange about LLM behavior falls out of that mechanism.</p>
+<section id="its-answers-are-plausible-but-might-not-be-true" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="its-answers-are-plausible-but-might-not-be-true">1. Its answers are plausible, but might not be true</h3>
+<p>The model produces text that is <em>statistically likely to follow</em> your prompt — the text sounds like what the correct answer might sound like. It is not reasoning based on physics, it has read a bunch of text written by humans who reasoned based on physics. Then it realized, statistically, that whenever those humans mention “physics”, “black holes”, and “singularity”, it is probably appropriate to use the word “Hawking”, and a likely word after that is “<a href="https://en.wikipedia.org/wiki/Hawking_radiation">radiation</a>”.</p>
 
-<!-- **Class opens with that question.** You'll vote on it, discuss with your table, and vote again. -->
 <div class="no-row-height column-margin column-container"><div class="">
-<p>More serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the <a href="./info/installing.html">getting going page</a> has instructions.</p>
-</div></div><p><strong>Class time is mostly group work at the tables.</strong> Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you’ll actually implement them.</p>
-<p><strong>Get extra practice on Mondays (optional).</strong> <a href="./info/basecamp.html">Base Camp</a> early (the beginner on-ramp, checkpoint practice, …), <a href="./info/sidequests.html">Side Quests</a> later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.</p>
-<p><strong>Checkpoints happen on Tuesdays</strong> (weeks 4, 6, 8, 10): twenty-minute “mini-exams”, individual, on paper, with no AI. See <a href="info/grading.qmd">the grading page</a>.</p>
-<p><strong>Homework</strong> problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The <a href="homework/index.qmd">homework page</a> explains the format.</p>
+<p>One concerning thing about LLMs is that they are increasingly being trained on text generated by LLMs — <a href="https://en.wikipedia.org/wiki/Dead_Internet_theory">so much internet content is generated by LLMs</a> that the LLMs are reinforcing their own tendencies and possibly that will lead to quality degrading over generations.</p>
+</div></div><p>Usually, the most plausible continuation of an engineering question is the correct answer, which is why these tools are often useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn’t apply to the situation (dangerous!), a citation to a paper that doesn’t exist, a recipe with a cup of vanilla instead of a teaspoon. This is often called a <strong>hallucination</strong>, and the dangerous part is that the LLM can be just as confident about a hallucination as it is about real information.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is no tone difference between an LLM being right and an LLM being wrong. Verify!</p>
+</div>
+</div>
 </section>
-<section id="ai-policy" class="level2">
-<h2 class="anchored" data-anchor-id="ai-policy">AI policy</h2>
-<p>You are <strong>expected</strong> to use AI tools in this course. You are also <strong>completely responsible</strong> for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification. <!-- The final exam asks you to explain what is actually going on inside a project *you* produced. --></p>
+<section id="same-prompt-different-answers" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="same-prompt-different-answers">2. Same prompt, different answers</h3>
+<p>Prediction produces a <em>menu</em> of plausible next chunks, each with a probability. By design, the model doesn’t always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>LLMs with a higher “temperature” value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it creates the same output every time.</p>
+</div></div><p>This is why, on Thursday, 15 tables prompting for the same task will produce 15 <em>different</em> programs — different variable names, different structures, sometimes different algorithms, occasionally different <em>answers</em>. Thinking about that is an important aspect of this class!</p>
 </section>
-<section id="grading" class="level2">
-<h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>This course uses <strong>standards-based grading</strong>, based on:</p>
-<ul>
-<li>a list of specific skills (<a href="info/standards.qmd">the standards</a>), each marked <em>Met</em> or <em>Not Yet</em></li>
-<li>and <strong>engagement credits</strong> for preparation and in-class work.</li>
-</ul>
-<p>There is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you <em>end up</em>, not where you started. See the <a href="info/grading.qmd">grading page</a>.</p>
+<section id="a-good-specification-tames-the-llm" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="a-good-specification-tames-the-llm">3. A good specification tames the LLM</h3>
+<p>A <strong>prompt</strong> is the text you supply to the LLM, maybe a question. An effective prompt is thoughtful… it’s not like a Google search where you just say some relevant words (“lyrics steely dan”) and then you, yourself, look through the results to find what you are looking for. You should be supplying instructions, relevant context, and constraints.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Does anyone else find it annoying that Google’s first result is now AI? Whenever I don’t know exactly what I am looking for, being able to scan the first few results is usually what it takes to figure it out; and whenever I do know what I am looking for, I am not interested in Gemini’s mediocre summary!</p>
+</div></div><p>“Build me a diet plan” is too general to be immediately useful… are you trying to lose weight? Gain weight? Gain muscle? Add more fiber? Eliminate carbs? Allergic to nuts? The LLM will probably follow up with questions like that, and you’ll end up somewhere good, but sometimes it might make assumptions for you that you have to spend time undoing. (“Yuck, it wants me to eat fish three times a week!”)</p>
+<p>Rather than arguing with the LLM for 15 minutes, wasting a bunch of water and electricity in the process, you should be thoughtful about your <strong>specifications</strong>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The <strong>context window</strong> is the cap on how much of that text the model can “see” at once — your current prompt, along with (at least some of) your previous questions in the same conversation, any files you’ve included. And maybe you’ve given the LLM some baseline instructions that are automatically applied to all conversations. There is a limit on how much of that information can be included in a given text-generation step, and even if it were all included, the more context it has, the greater chance of getting confused! I suspect part of the model development that is happening is about doing a better job understanding what in the context window is most relevant to your current prompt.</p>
+</div></div></section>
 </section>
-<section id="where-to-go-next" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
-<p>Your first reading (for Tuesday) is <a href="./lessons/01a-what-engineers-do.html">What do engineers do with computation?</a> You might look at <a href="./info/basecamp.html">Base Camp</a> if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the <a href="./info/practice.html">Practice Library</a> if you want to run some code right now in your browser (and let me know if it doesn’t work). If curious, you might browse the <a href="./info/sidequests.html">Side Quests</a> — a few ideas are already on that page.</p>
+<section id="why-is-it-so-good-at-code-anyway" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="why-is-it-so-good-at-code-anyway">Why is it so good at code, anyway?</h2>
+<p>The biggest reason: the training data included billions of lines of code, much of it from working programs, and a lot of solid documentation from the code creators themselves ( <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html">find_peaks</a>). So there is a strong statistical signal that <strong>these are very relevant words for this task</strong>.</p>
+<p>But furthermore: code is checkable. Compare</p>
+<blockquote class="blockquote">
+<p>“You can’t fix every problem, so just focus on doing good work in your own corner of it.”</p>
+</blockquote>
+<p>with</p>
+<blockquote class="blockquote">
+<p>“<a href="https://en.wikipedia.org/wiki/The_Return_of_the_King">It is not our part</a> to master all the tides of the world, but to do what is in us for the succour of those years wherein we are set, uprooting the evil in the fields that we know, so that those who live after may have clean earth to till.”</p>
+</blockquote>
+<p>How can you judge that the first one is “wrong”? Based on our understanding of how LLMs work, every new word/token in that line is a completely reasonable continuation of the sentence. The second one, by Tolkien, is better, but not “more correct”.</p>
+<p>Meanwhile: if code doesn’t run, something is wrong, and we further will get an output from code that can possibly be confirmed/validated against known results. Modern LLMs are able to run code on the cloud to confirm they perform as intended, and they are increasingly willing to compare against test cases for you: if you need some code to find the area under a curve, an LLM might write it, run it, and compare against the known area under <span class="math inline">\(y=x\)</span> from 0 to 1. Basically, the LLMs are doing their own small <strong>verification</strong>. That probably isn’t sufficient to confirm that the code does what it is supposed to, but it is necessary that the code works for <em>at least</em> that basic problem.</p>
+<p>We will do our own <strong>audit</strong> and <strong>verification</strong> of the code: read through it to make sure it follows a logic we agree with, and test its output in several ways. We may need to <strong>iterate</strong> — the AI gives us code that seems like it is 90% of the way to succeeding at the job, but there is an error, and so we need to work with the AI to revise. Unlike prose, we can identify specifics about what is wrong and eventually arrive at something that is verified correct.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Meanwhile: LLMs are historically mediocre at arithmetic — predicting a text representation of numbers in a calculation is not the same as calculating.</p>
+</div></div></section>
+<section id="the-stance-on-llms-in-this-course" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-stance-on-llms-in-this-course">The stance on LLMs in this course</h2>
+<p>No doubt, LLMs are tools that can <strong>augment</strong> your abilities. A few years ago I might have manually combined 40 spreadsheets into one (which maybe would have taken an hour, but was annoying), or I might have written code to do that for me (which probably would have taken four hours to figure out… should have just done it manually arggg). Now I can ask an LLM to give me the Python code to do it, and the project is done in 5 minutes.</p>
+<p>I have become more ambitious and capable in some aspects of my work because I know I can get a head start using AI. But note: I am the one who came up with the idea, and I needed to describe the problem and some of the necessary steps. And, importantly, I am the one responsible if something breaks along the way, and so I need to have a strategy to confirm that everything made it into the finished project successfully.</p>
+<p>I think the following is very much in the spirit of coding in 2026: <strong>Think of LLMs as your extremely fast, extremely well-read, overconfident junior collaborator</strong>. You can use them to quickly retrieve information, you can ask them to help you write code, they can help troubleshoot problems. But ultimately, you are setting the expectations (specifications), and you are responsible for the project (so you better do some verification). And, further, there will be times when you have to show that you, too, actually know how to do the stuff (the checkpoints).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>One more term you’ll see a lot: an <strong>agent</strong> is capable of actually making changes on your computer — creating new folders, creating/editing files, maybe sending emails — rather than giving you text in a web browser that you have to move around. Still basically a junior collaborator: you still provide the details and check the results, you just have to do less manual labor.</p>
+</div></div><div class="bring-to-class">
+<p>Answer these:</p>
+<ol type="1">
+<li><p>Two students give an LLM the <em>identical</em> prompt for a projectile program. Predict: (a) identical code, (b) different code, same numerical answers, (c) different code, possibly different answers. Write one sentence defending your pick.</p></li>
+<li><p>The LLM hands you a projectile program and it <strong>runs without any errors, and produces a nice plot.</strong> List every distinct reason you can think of that its output might still be wrong.</p></li>
+</ol>
+</div>
 
 
 <script type="ojs-module-contents">
@@ -338,21 +388,15 @@ W10=
 </script>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>We can’t look inside a “black box” to see what is going on.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToDoc = "../../lessons";
 window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "";
+window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;
 window._ojs.runtime.interpretFromScriptTags();
 </script>
