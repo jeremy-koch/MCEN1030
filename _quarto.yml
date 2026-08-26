@@ -47,7 +47,7 @@ website:
       - section: "Phase 0 — Thinking (Weeks 1–2)"
         contents:
           - lessons/01a-what-engineers-do.qmd
-          # - lessons/01b-what-llms-do.qmd
+          - lessons/01b-what-llms-do.qmd
           # - activities/w01-divergence-demo.qmd
           # - lessons/02a-first-contact.qmd
           # - lessons/02b-reading-code.qmd

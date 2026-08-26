@@ -3,7 +3,7 @@ title: "Base Camp"
 subtitle: "Monday office hours"
 ---
 
-Mondays are an optional session/office hour. The first half of the semester, those Mondays are **Base Camp**: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it's a good way to meet some more people in the class and to talk to me/the TA!
+Mondays are an optional session/office hour. The first half of the semester, they are **Base Camp**: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it's a good way to meet some more people in the class and to talk to me/the TA!
 
 ::: {.column-margin}
 In the second half of the semester, Mondays become [Side Quests](sidequests.qmd) — interesting extensions beyond the core course content. Still optional.
