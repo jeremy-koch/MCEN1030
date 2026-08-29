@@ -271,7 +271,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
-  <li><a href="#google-colab-a-lab-bench-in-your-browser" id="toc-google-colab-a-lab-bench-in-your-browser" class="nav-link" data-scroll-target="#google-colab-a-lab-bench-in-your-browser">Google Colab: a lab bench in your browser</a></li>
+  <li><a href="#google-colab-edit-code-in-your-browser" id="toc-google-colab-edit-code-in-your-browser" class="nav-link" data-scroll-target="#google-colab-edit-code-in-your-browser">Google Colab: edit code in your browser</a></li>
   <li><a href="#variables-giving-numbers-names" id="toc-variables-giving-numbers-names" class="nav-link" data-scroll-target="#variables-giving-numbers-names">Variables: giving numbers names</a></li>
   <li><a href="#a-good-habit-to-get-into-predict-then-run" id="toc-a-good-habit-to-get-into-predict-then-run" class="nav-link" data-scroll-target="#a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</a></li>
   <li><a href="#errors-are-data" id="toc-errors-are-data" class="nav-link" data-scroll-target="#errors-are-data">Errors are data</a></li>
@@ -315,22 +315,22 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p>… this course assumes exactly that. Let me mention three things:</p>
 <ol type="1">
-<li>I don’t think the best way to learn programming is to spend time trying to memorize the syntax; that will come naturally with experience. The best way to learn is to actually write and think about coding real problems. This page includes a lot of discussion of the syntax, but don’t make flash cards about it or anything like that. We’ll be writing programs soon enough, and you’ll start to recognize the patterns the same way you do with spoken language.</li>
-<li>There is hardly any cost for making a mistake in coding: the program gives an error, and you use the information in the error message to figure out how to fix your code. Students often try to write perfect code immediately, and want to give up if they can’t. <em>Don’t fall into that trap.</em> It is typical for a program to be “wrong” the first 5, 12, or 30 times you run it, and then you figure it out.</li>
-<li>Some of your colleagues have some experience with coding, and they might have an easier time with this course (and may ask some advanced questions that I’ll <em>try</em> to answer). Don’t let that discourage you: I am creating this course with the beginner in mind, and so you will get all the information you need. That doesn’t mean it will be easy — learning is always an uncomfortable process! But put forth the effort and you will be in a good place by December.</li>
+<li>I don’t think the best way to learn programming is to spend time trying to memorize the syntax; memorization will come naturally with experience. The best way to learn is to actually write and think about coding real problems. This page includes a lot of discussion of the syntax, but don’t make flash cards about it or anything like that. We’ll be writing programs soon enough, and you’ll start to recognize the patterns the same way you do with spoken language.</li>
+<li>There is hardly any cost for making a mistake in coding: the program gives an error, and you use the information in the error message to figure out how to fix your code. Students often try to write perfect code immediately, and want to give up if they can’t. <em>Don’t fall into that trap.</em> It is typical for a program to be “wrong” the first 5, 12, or 30 times you run it. You fix the errors and it works!</li>
+<li>Some of your colleagues have some experience with coding, and they might have an easier time with this course (and may ask some advanced questions that I’ll <em>try</em> to answer). Don’t let that discourage you: I am creating this course with the beginner in mind, and so you will get all the information you need to start from scratch. That doesn’t mean it will be easy — learning is always an uncomfortable process! But put forth the effort and you will be in a good place by December.</li>
 </ol>
 </div>
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>What do I mean by “syntax”? A for loop in Python looks like <code>for i in items:</code>. That is, we need a <code>for</code>; a variable that changes every time through the “loop”, <code>i</code>; the word <code>in</code>; then the list that the variable is drawn from, <code>items</code>; and then a colon <code>:</code>. This is “the syntax” for a for loop — forgetting any of those things will break the code.</p>
-<p>In MATLAB, the syntax is <code>for i=items</code>. An equals sign <code>=</code> instead of <code>in</code>, no colon needed, and there also needs to be an <code>end</code> at the end of the block. The syntax varies from language to language, and if you switch between languages it can be confusing. But LLMs rarely mess up the syntax… they are a useful tool for getting started on a new project (“I need a python for loop that goes through a list of items”), translating between languages (“turn this python code into matlab code”), and debugging when your syntax is imperfect (“why is this producing an error?”).</p>
+<p>What do I mean by “syntax”? A “for loop” in Python looks like <code>for i in items:</code>. That is, we need a <code>for</code>; a variable that changes every time through the “loop”, <code>i</code>; the word <code>in</code>; then the list that the variable is drawn from, <code>items</code>; and then a colon <code>:</code>. This is “the syntax” for a for loop — forgetting any of those things will break the code.</p>
+<p>In MATLAB, the syntax is <code>for i=items</code>… an equals sign <code>=</code> instead of <code>in</code>, no colon needed, and there also needs to be an <code>end</code> at the end of the block. The syntax varies from language to language, and if you switch between languages it can be confusing. But LLMs rarely mess up the syntax… they are a useful tool for getting started on a new project (“I need a python for loop that goes through a list of items”), translating between languages (“turn this python code into matlab code”), and debugging when your syntax is imperfect (“why is this code producing an error?… here is my error message:”).</p>
 </div></div><section id="think-first" class="level2">
 <h2 class="anchored" data-anchor-id="think-first">Think First</h2>
 <p>Recall</p>
 <ol type="1">
 <li>From last week: what does an LLM do with the gaps in your specification?</li>
-<li>A calculator evaluates <code>2 + 3 * 4</code> as 14, not 20. What rule is it following, and did anyone ever teach it to you as a <em>computing</em> rule?</li>
+<li>We evaluate <code>2 + 3 * 4</code> as 14, not 20. What rule is it following, and did anyone ever teach it to you as a <em>computing</em> rule?</li>
 </ol>
 <p>Look Ahead</p>
 <ol type="1">
@@ -338,10 +338,10 @@ window.Quarto = {
 <li>What’s the difference between a program <em>storing</em> a value and <em>displaying</em> a value?</li>
 </ol>
 </section>
-<section id="google-colab-a-lab-bench-in-your-browser" class="level2">
-<h2 class="anchored" data-anchor-id="google-colab-a-lab-bench-in-your-browser">Google Colab: a lab bench in your browser</h2>
+<section id="google-colab-edit-code-in-your-browser" class="level2">
+<h2 class="anchored" data-anchor-id="google-colab-edit-code-in-your-browser">Google Colab: edit code in your browser</h2>
 <p>Go to <a href="https://colab.research.google.com">colab.research.google.com</a> and sign in with your university Google account. Click <strong>New notebook</strong>. You now have a <strong>notebook</strong>: a document made of <strong>cells</strong>, where each cell holds a bit of Python code you can run by pressing <strong>Shift+Enter</strong> (or the ▶ button).</p>
-<p>Type this into the first cell and run it — or, since this page runs Python <strong>right here in your browser</strong>, edit and run it below (the first run takes a few seconds while Python loads; after that it’s instant):</p>
+<p>Type this into the first cell and run it — or, since this page runs Python <strong>right here in your browser</strong>, you can edit and run the code below (the first run takes a few seconds while Python loads; after that it should be fast):</p>
 <div>
 <div id="pyodide-1" class="exercise-cell">
 
@@ -359,7 +359,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJoZWxsbywgTUNF
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">3.0</span>         <span class="co"># drop height, m</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>The text after a <code>#</code> is a <strong>code comment</strong> — a note for humans that Python ignores. Here, we described the physical meaning of the variables and included the units.</p>
+<p>The text after a <code>#</code> is a <strong>code comment</strong> — a note for humans that Python ignores. Here, we described the physical meaning of the variables and included the units of the number.</p>
 </div></div><p>Variable names can be simple or complex. Probably you will appreciate being able to write a simple, readable equation <code>y=0.5*g*t**2</code> later in your code, but we also could have defined <code>gravity_earth_surface = 9.81</code> and then used <code>y=0.5*gravity_earth_surface*t**2</code> later on.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -371,12 +371,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is good practice to make the variable names descriptive such that when you look at equations involving those variables, you know what is going on. Something like <code>g</code> in a mechanics-based program is probably fine, because we are so used to seeing <code>g</code> in our mechanics equations. But if we had some code that involved gravity on earth and gravity on the moon (for some reason), it is better to write those as <code>g_earth</code> and <code>g_moon</code> instead of <code>g_1</code> and <code>g_2</code>.</p>
+<p>It is good practice to make the variable names descriptive such that you know what is going on in the equations involving those variables. Something like <code>g</code> in a mechanics-based program is probably fine because we are so used to seeing <code>g</code> in our mechanics equations. But if we had some code that involved gravity on earth and gravity on the moon (for some reason), it is better to write those as <code>g_earth</code> and <code>g_moon</code> instead of <code>g_1</code> and <code>g_2</code>.</p>
 </div>
 </div>
-<p>The <code>=</code> sign here does <strong>not</strong> mean “equals” in the math sense. It means <strong>“store the value under this name.”</strong> This structure conflicts with our experience with algebra, for example:</p>
+<p>The <code>=</code> sign here does <strong>not</strong> mean “equals” in the algebra sense. It means <strong>“store the value under this name.”</strong> This structure conflicts with our experience in math class, for example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we did algebra on this equation: subtract <code>count</code> from both sides, leaving <code>0=1</code>… nonsense. But as an instruction, it will take the (current) value of <code>count</code>, add <code>1</code>, and store the resulting value under the name <code>count</code> (thus replacing the old value). Perfectly acceptable, and indeed it is a common ingredient in code.</p>
+<p>If we did algebra on this equation: subtract <code>count</code> from both sides, leaving <code>0=1</code>… nonsense. But as an instruction, it will take the (current) value of <code>count</code>, add <code>1</code>, and store the resulting value under the name <code>count</code> (thus replacing the old value stored under that name). This is perfectly acceptable practice, and indeed it is a common ingredient in code.</p>
 </section>
 <section id="a-good-habit-to-get-into-predict-then-run" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</h2>
@@ -389,19 +389,19 @@ Tip
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZyA9IDkuODFcbmggPSAzLjBcbnQgPSAoMiAqIGggLyBnKSAqKiAwLjVcbnByaW50KHQpIn0=
 </script>
 </div>
-<p>(Sure, you can run it without thinking. I’m not keeping track of what you are doing here, but for the sake of your learning, I think you should think! Otherwise you’re just watching a really boring TV show…)</p>
+<p>(Sure, you can run it without thinking. I’m not keeping track of what you are doing here… for the sake of your learning, I think you should think! Otherwise this is like the most boring game on the internet: click to see some text.)</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p><code>**</code> is Python’s “raise to a power,” so <code>x ** 0.5</code> is a square root. And <code>*</code> must always be written explicitly: <code>2h</code> will give an error; you need <code>2 * h</code> instead.</p>
-</div></div><p>Some reading help: line 3 computes <span class="math inline">\(t = \sqrt{2h/g}\)</span> — the fall time of a dropped object. So before running: <span class="math inline">\(2 \times 3 / 9.81 \approx 0.61\)</span>, and <span class="math inline">\(\sqrt{0.61} \approx 0.78\)</span>. Prediction: something near <code>0.78</code>.</p>
+<p><code>**</code> is, annoyingly, Python’s “raise to a power.” So <code>x ** 0.5</code> is a square root. And <code>*</code> must always be written explicitly: <code>2h</code> will give an error; you need <code>2 * h</code> instead.</p>
+</div></div><p>Some reading help: line 3 computes <span class="math inline">\(t = \sqrt{2h/g}\)</span>, the fall time of an object dropped from height <span class="math inline">\(h\)</span>, subject to gravity <span class="math inline">\(g\)</span>. So: <span class="math inline">\(2 \times 3 / 9.81 \approx 0.61\)</span>, and <span class="math inline">\(\sqrt{0.61} \approx 0.78\)</span>. That is: we predict this code should produce something near <code>0.78</code>.</p>
 <p>Now run it. It should match, unless you changed something in the code. <strong>Verification</strong>!</p>
 </section>
 <section id="errors-are-data" class="level2">
 <h2 class="anchored" data-anchor-id="errors-are-data">Errors are data</h2>
-<p>In the code above, change <code>t = (2 * h / g) ** 0.5</code> to <code>t = (2 * h_1 / g) ** 0.5</code>, and run it again. You’ll get an angry red block ending in something like:</p>
-<pre><code>NameError: name 'h_1' is not defined</code></pre>
+<p>In the code above, change <code>t = (2 * h / g) ** 0.5</code> to <code>t = (2 * h_2 / g) ** 0.5</code>, and run it again. You’ll get an angry red block ending in something like:</p>
+<pre><code>NameError: name 'h_2' is not defined</code></pre>
 <p>Two things to know about errors:</p>
-<p><strong>They are normal.</strong> Experts probably do make fewer errors, but they don’t make zero errors… and actually, I use errors as a way to write code <em>faster</em>: just write out a sloppy version of the code without expecting it to work, then run, read and fix the error; run, read and fix the error; run, read and fix the error, and by then I’m probably done. <em>Read the error messages</em>, they usually describe the error and point to where it occurred in the code. Here: <code>NameError</code> because we used a variable name that the program didn’t know, and it will point to line 3 of the code.</p>
+<p><strong>They are normal.</strong> Experts probably do make fewer errors, but they don’t make zero errors… and actually, I use errors as a way to write code <em>faster</em>: just write out a sloppy version of the code without expecting it to work, then: run, read and fix the error; run, read and fix the error; run, read and fix the error; and by then I’m probably done. <em>Read the error messages</em>, they usually describe the error and point to where it occurred in the code. Here: this is a <code>NameError</code> because we used a variable name that the program didn’t know.</p>
 <p><strong>They are the friendly failure mode.</strong> It is way more difficult to figure out why code runs successfully, but produces a wrong answer. Error messages are kind of nice because they tell you exactly what is wrong (maybe cryptically)!</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -413,7 +413,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Understanding error messages is a genuinely excellent use of an LLM: paste the code and the full error, and ask what’s wrong. Verify the explanation makes sense — don’t let the LLM do all your thinking for you!</p>
+<p>Understanding error messages is a genuinely good use of an LLM: paste the code and the full error, and ask what’s wrong. Verify the explanation makes sense — don’t let the LLM do all your thinking for you!</p>
 </div>
 </div>
 </section>
@@ -440,7 +440,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDRcbmIgPSBhICogMlxu
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><code>8</code> — not <code>2</code>. Line 2 stored the <em>value</em> 8 under <code>b</code>; it did not create a live mathematical relationship “b is twice a.” When <code>a</code> changed afterward, <code>b</code> is unaware. The code executes <strong>top to bottom, once, each line acting on values as they are at that moment</strong>.</p>
+<p><code>8</code> — not <code>2</code>. Line 2 stored the <em>value</em> 8 under <code>b</code>; it did not create a live mathematical relationship “b is twice a.” When <code>a</code> changed afterward, <code>b</code> is unaware. The code executes <strong>top to bottom, each line acting on values as they are at that moment</strong>.</p>
 </div>
 </div>
 </div>
