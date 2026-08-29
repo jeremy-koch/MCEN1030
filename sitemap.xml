@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/lessons/01b-what-llms-do.html</loc>
-    <lastmod>2026-08-26T18:57:37.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/sidequests.html</loc>
-    <lastmod>2026-08-26T18:57:37.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/installing.html</loc>
-    <lastmod>2026-08-26T18:57:37.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/index.html</loc>
-    <lastmod>2026-08-26T18:57:37.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/basecamp.html</loc>
-    <lastmod>2026-08-26T18:57:37.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/info/practice.html</loc>
-    <lastmod>2026-08-26T18:57:37.359Z</lastmod>
+    <loc>https://jeremy-koch.github.io/MCEN1030/lessons/02a-first-contact.html</loc>
+    <lastmod>2026-08-29T17:57:46.902Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/01a-what-engineers-do.html</loc>
-    <lastmod>2026-08-26T18:57:37.359Z</lastmod>
+    <lastmod>2026-08-29T17:57:46.902Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/info/practice.html</loc>
+    <lastmod>2026-08-29T17:57:46.902Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/info/basecamp.html</loc>
+    <lastmod>2026-08-29T17:57:46.901Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/index.html</loc>
+    <lastmod>2026-08-29T17:57:46.901Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/info/installing.html</loc>
+    <lastmod>2026-08-29T17:57:46.902Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/info/sidequests.html</loc>
+    <lastmod>2026-08-29T17:57:46.902Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/lessons/01b-what-llms-do.html</loc>
+    <lastmod>2026-08-29T17:57:46.902Z</lastmod>
   </url>
 </urlset>

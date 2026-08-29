@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What do engineers do with computation? – MCEN 1030</title>
+<title>First contact with coding – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -182,7 +182,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">What do engineers do with computation?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/02a-first-contact.html">First contact with coding</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -242,7 +242,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What do engineers do with computation?</span></a>
   </div>
 </li>
@@ -254,7 +254,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link">
+  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">First contact with coding</span></a>
   </div>
 </li>
@@ -271,21 +271,21 @@ window.Quarto = {
    
   <ul>
   <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
-  <li><a href="#four-things-you-may-not-know-are-possible-with-computation" id="toc-four-things-you-may-not-know-are-possible-with-computation" class="nav-link" data-scroll-target="#four-things-you-may-not-know-are-possible-with-computation">Four things you may not know are possible with computation</a></li>
-  <li><a href="#the-pipeline" id="toc-the-pipeline" class="nav-link" data-scroll-target="#the-pipeline">The pipeline</a></li>
-  <li><a href="#specification-means-describing-the-problem-completely" id="toc-specification-means-describing-the-problem-completely" class="nav-link" data-scroll-target="#specification-means-describing-the-problem-completely">Specification means describing the problem completely</a></li>
-  <li><a href="#verification-means-confirming-a-program-does-what-you-intended" id="toc-verification-means-confirming-a-program-does-what-you-intended" class="nav-link" data-scroll-target="#verification-means-confirming-a-program-does-what-you-intended">Verification means confirming a program does what you intended</a></li>
-  <li><a href="#the-map-of-this-course" id="toc-the-map-of-this-course" class="nav-link" data-scroll-target="#the-map-of-this-course">The map of this course</a></li>
+  <li><a href="#google-colab-a-lab-bench-in-your-browser" id="toc-google-colab-a-lab-bench-in-your-browser" class="nav-link" data-scroll-target="#google-colab-a-lab-bench-in-your-browser">Google Colab: a lab bench in your browser</a></li>
+  <li><a href="#variables-giving-numbers-names" id="toc-variables-giving-numbers-names" class="nav-link" data-scroll-target="#variables-giving-numbers-names">Variables: giving numbers names</a></li>
+  <li><a href="#a-good-habit-to-get-into-predict-then-run" id="toc-a-good-habit-to-get-into-predict-then-run" class="nav-link" data-scroll-target="#a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</a></li>
+  <li><a href="#errors-are-data" id="toc-errors-are-data" class="nav-link" data-scroll-target="#errors-are-data">Errors are data</a></li>
+  <li><a href="#reading-before-writing" id="toc-reading-before-writing" class="nav-link" data-scroll-target="#reading-before-writing">Reading before writing</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">What do engineers do with computation?</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/02a-first-contact.html">First contact with coding</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">What do engineers do with computation?</h1>
-<p class="subtitle lead">Week 1, Lesson A — read before Tuesday</p>
+<h1 class="title">First contact with coding</h1>
+<p class="subtitle lead">Week 2, Lesson A — read before Tuesday</p>
 </div>
 
 
@@ -302,141 +302,169 @@ window.Quarto = {
 </header>
 
 
-<p>We’re starting with computational thinking, not coding. What is actually possible with computation? What does a computer need from you to do something useful? How can you tell if a calculation is trustworthy? These are things we’ll be thinking about all semester, but we’ll introduce them here.</p>
-<section id="think-first" class="level2">
-<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
-<p>Recall</p>
-<ol type="1">
-<li>Think of a time you gave someone instructions (directions to your house, a recipe, rules to a game) and they got it wrong. Whose fault was it?</li>
-<li>In high school physics, you checked answers by asking “is this number reasonable?” — a car going 900 m/s is probably a mistake. What was that process like… what were you recalling, what did you do when you realized the answer was ridiculous?</li>
-</ol>
-<p>Look Ahead</p>
-<ol type="1">
-<li>If an AI can write working code from a plain-English description in five seconds, what’s left for the engineer to do?</li>
-<li>What would it take for you to trust a program you didn’t write?</li>
-</ol>
-</section>
-<section id="four-things-you-may-not-know-are-possible-with-computation" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="four-things-you-may-not-know-are-possible-with-computation">Four things you may not know are possible with computation</h2>
-<p><strong>Predict every outcome of a process.</strong> Write a function that models something — the stress in a bracket, the temperature of a battery — then use that function 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>A <strong>function</strong> has a very similar meaning in this class as it did in algebra: there are inputs, and there are outputs. An example: we might want to calculate the area of a triangle. We’d write a function with inputs <code>base</code> and <code>height</code>, and the output is the area. In Python, this would look like</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> triangle_area(base, height):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> base <span class="op">*</span> height</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we “called” this function and provided values for <code>base</code> and <code>height</code>, it would “return” the area of the triangle. We’ll talk about this structure a lot more in two weeks.</p>
-</div></div><p><strong>Handle data at engineering scale.</strong> A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.</p>
-<p><strong>Collect and process real engineering data.</strong> From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer <em>inside your program</em>.</p>
-<p><strong>Solve the unsolvable.</strong> Most real equations in engineering have no analytical solution. Many of those problems can be solved numerically in 10 lines of code.</p>
-</section>
-<section id="the-pipeline" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-pipeline">The pipeline</h2>
-<p>Creating a computational tool looks something like this:</p>
-<svg viewbox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:700px; width:100%; height:auto;">
-  <title>The computational pipeline</title>
-  <desc>Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.</desc>
-  <defs>
-    <marker id="arr2" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 z" fill="#2b2b2b"></path>
-    </marker>
-  </defs>
-  <g font-family="sans-serif" font-size="14" text-anchor="middle">
-    <rect x="5" y="40" width="90" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="50" y="65">Idea</text>
-    <rect x="135" y="40" width="120" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"></rect>
-    <text x="195" y="65">Specification</text>
-    <rect x="295" y="40" width="110" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="350" y="65">Production</text>
-    <rect x="445" y="40" width="110" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"></rect>
-    <text x="500" y="65">Verification</text>
-    <rect x="595" y="40" width="90" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="640" y="65">Use</text>
-    <line x1="95" y1="60" x2="133" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <line x1="255" y1="60" x2="293" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <line x1="405" y1="60" x2="443" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <line x1="555" y1="60" x2="593" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <path d="M 640 82 Q 640 130 420 130 Q 195 130 195 84" fill="none" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></path>
-    <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
-  </g>
-</svg>
-<p>The <strong>idea</strong> is always the hard part. Then, at least for the seventy years after that, <strong>production</strong> was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on how to write correct code.</p>
-<p>That era is over. AI tools now produce working code <strong>from a good description</strong> in seconds. Production has, for most everyday engineering purposes, been solved.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="https://en.wikipedia.org/wiki/John_Backus">John Backus</a> thought of himself as a bad <a href="https://en.wikipedia.org/wiki/Assembly_language">assembly-language</a> coder, so in the 1950s he created <a href="https://en.wikipedia.org/wiki/Fortran">FORTRAN</a>. The history of computer science is a story of making code less abstract, and LLMs might be the next step.</p>
-</div></div><p>What should be the focus today?</p>
-</section>
-<section id="specification-means-describing-the-problem-completely" class="level2">
-<h2 class="anchored" data-anchor-id="specification-means-describing-the-problem-completely">Specification means describing the problem completely</h2>
-<p>… the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it’s an AI, a contractor, or a teammate who is helping with the task, <strong>every gap in your specification gets filled with an assumption</strong>. If your specification doesn’t mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!</p>
-<p>Think about asking a question like…</p>
-<blockquote class="blockquote">
-<p>“Tell me the average temperature in Boulder.”</p>
-</blockquote>
+<p>This lesson gets you running Python code in your browser via Google Colab — nothing to install on your computer, nothing to configure, and so we’ll be able to get going very quickly.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What details do you actually need to provide?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Average over <em>what</em> — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what “average temperature” usually means, but maybe you are concerned with human comfort and thus should pay attention to the extremes)? What about the days the weather station didn’t report anything? There are plenty of those if we’re looking back to the 1890s. In the raw file, a missing day might not be blank, it might be recorded as <code>-9999</code>. Hand that to a basic Python program for computing the average and you might “learn” that the average temperature is about −270 °C. And, a classic problem even for humans: What are the units?</p>
-</div>
-</div>
-</div>
-<p>Now a different kind of gap. Compare these two problem statements:</p>
-<blockquote class="blockquote">
-<p><strong>A.</strong> “Write a function <code>freq_shift(t, U, x0, y0, c, f)</code> that returns the apparent frequency of a moving siren at each time in the array <code>t</code>, and plots it against time.”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>B.</strong> “Write a program that would allow you to determine the velocity (speed and direction) of a siren.”</p>
-</blockquote>
-<p>Statement A is a <em>completed specification</em> — someone already did all the thinking, and you’re just following instructions. Statement B is a <em>problem</em>. To attack B, you have to decide: what are the inputs my team has access to/ability to control? (A recording? Frequency-vs-time data? Hypothetical object speeds?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?</p>
-<p>In the old version of this course, where we focused on code production, I’d give you Statement A. (Indeed, this was a homework problem last year.) In this version, where we augment our work with LLMs, you might get Statement B. Importantly: in real engineering, no one will hand you Statement A, especially now that LLMs make short work of the ensuing code. <strong>Producing Statement A from Statement B is the job.</strong></p>
-</section>
-<section id="verification-means-confirming-a-program-does-what-you-intended" class="level2">
-<h2 class="anchored" data-anchor-id="verification-means-confirming-a-program-does-what-you-intended">Verification means confirming a program does what you intended</h2>
-<p>… and notably: not assuming that the product given to you by a colleague or LLM is correct. This semester we will verify our code with:</p>
-<p>The <strong>hand estimate</strong>: before running anything, compute a rough expected answer for a simple case. A dropped wrench falls 3 meters in about <span class="math inline">\(t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2)} \approx 0.8\)</span> seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that’s a good sign.</p>
-<p>The <strong>edge case</strong>: what happens at zero? At a negative input? When the file is empty? What should happen in these cases?</p>
-<p>The <strong>intuition check</strong>: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools to room temperature over several minutes but won’t drop below room temperature. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!</p>
-<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+<span class="screen-reader-only">Note</span>If you have never written a line of code before
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>An AI will hand you code that runs yet is confidently, invisibly wrong — it flipped a sign, used the wrong equation because you forgot to specify one, assumed Celsius when the data was in Fahrenheit. It will not warn you. <strong>“It ran without errors” and “it is correct” are entirely different claims</strong>.</p>
+<p>… this course assumes exactly that. Let me mention three things:</p>
+<ol type="1">
+<li>I don’t think the best way to learn programming is to spend time trying to memorize the syntax; that will come naturally with experience. The best way to learn is to actually write and think about coding real problems. This page includes a lot of discussion of the syntax, but don’t make flash cards about it or anything like that. We’ll be writing programs soon enough, and you’ll start to recognize the patterns the same way you do with spoken language.</li>
+<li>There is hardly any cost for making a mistake in coding: the program gives an error, and you use the information in the error message to figure out how to fix your code. Students often try to write perfect code immediately, and want to give up if they can’t. <em>Don’t fall into that trap.</em> It is typical for a program to be “wrong” the first 5, 12, or 30 times you run it, and then you figure it out.</li>
+<li>Some of your colleagues have some experience with coding, and they might have an easier time with this course (and may ask some advanced questions that I’ll <em>try</em> to answer). Don’t let that discourage you: I am creating this course with the beginner in mind, and so you will get all the information you need. That doesn’t mean it will be easy — learning is always an uncomfortable process! But put forth the effort and you will be in a good place by December.</li>
+</ol>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>What do I mean by “syntax”? A for loop in Python looks like <code>for i in items:</code>. That is, we need a <code>for</code>; a variable that changes every time through the “loop”, <code>i</code>; the word <code>in</code>; then the list that the variable is drawn from, <code>items</code>; and then a colon <code>:</code>. This is “the syntax” for a for loop — forgetting any of those things will break the code.</p>
+<p>In MATLAB, the syntax is <code>for i=items</code>. An equals sign <code>=</code> instead of <code>in</code>, no colon needed, and there also needs to be an <code>end</code> at the end of the block. The syntax varies from language to language, and if you switch between languages it can be confusing. But LLMs rarely mess up the syntax… they are a useful tool for getting started on a new project (“I need a python for loop that goes through a list of items”), translating between languages (“turn this python code into matlab code”), and debugging when your syntax is imperfect (“why is this producing an error?”).</p>
+</div></div><section id="think-first" class="level2">
+<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
+<p>Recall</p>
+<ol type="1">
+<li>From last week: what does an LLM do with the gaps in your specification?</li>
+<li>A calculator evaluates <code>2 + 3 * 4</code> as 14, not 20. What rule is it following, and did anyone ever teach it to you as a <em>computing</em> rule?</li>
+</ol>
+<p>Look Ahead</p>
+<ol type="1">
+<li>If AI can write code, why are we about to learn to <em>read</em> it line by line?</li>
+<li>What’s the difference between a program <em>storing</em> a value and <em>displaying</em> a value?</li>
+</ol>
+</section>
+<section id="google-colab-a-lab-bench-in-your-browser" class="level2">
+<h2 class="anchored" data-anchor-id="google-colab-a-lab-bench-in-your-browser">Google Colab: a lab bench in your browser</h2>
+<p>Go to <a href="https://colab.research.google.com">colab.research.google.com</a> and sign in with your university Google account. Click <strong>New notebook</strong>. You now have a <strong>notebook</strong>: a document made of <strong>cells</strong>, where each cell holds a bit of Python code you can run by pressing <strong>Shift+Enter</strong> (or the ▶ button).</p>
+<p>Type this into the first cell and run it — or, since this page runs Python <strong>right here in your browser</strong>, edit and run it below (the first run takes a few seconds while Python loads; after that it’s instant):</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJoZWxsbywgTUNFTiAxMDMwXCIpIn0=
+</script>
+</div>
+<p>The text should appear below the cell. The <code>print(...)</code> part is a <strong>function</strong> (a named, reusable action — much more on these in week 3) whose job is to display the thing between the quotes.</p>
+</section>
+<section id="variables-giving-numbers-names" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="variables-giving-numbers-names">Variables: giving numbers names</h2>
+<p>A <strong>variable</strong> is a name attached to a value, so you can use the value by its name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="fl">9.81</span>        <span class="co"># gravitational acceleration, m/s^2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">3.0</span>         <span class="co"># drop height, m</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The text after a <code>#</code> is a <strong>code comment</strong> — a note for humans that Python ignores. Here, we described the physical meaning of the variables and included the units.</p>
+</div></div><p>Variable names can be simple or complex. Probably you will appreciate being able to write a simple, readable equation <code>y=0.5*g*t**2</code> later in your code, but we also could have defined <code>gravity_earth_surface = 9.81</code> and then used <code>y=0.5*gravity_earth_surface*t**2</code> later on.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is good practice to make the variable names descriptive such that when you look at equations involving those variables, you know what is going on. Something like <code>g</code> in a mechanics-based program is probably fine, because we are so used to seeing <code>g</code> in our mechanics equations. But if we had some code that involved gravity on earth and gravity on the moon (for some reason), it is better to write those as <code>g_earth</code> and <code>g_moon</code> instead of <code>g_1</code> and <code>g_2</code>.</p>
+</div>
+</div>
+<p>The <code>=</code> sign here does <strong>not</strong> mean “equals” in the math sense. It means <strong>“store the value under this name.”</strong> This structure conflicts with our experience with algebra, for example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If we did algebra on this equation: subtract <code>count</code> from both sides, leaving <code>0=1</code>… nonsense. But as an instruction, it will take the (current) value of <code>count</code>, add <code>1</code>, and store the resulting value under the name <code>count</code> (thus replacing the old value). Perfectly acceptable, and indeed it is a common ingredient in code.</p>
+</section>
+<section id="a-good-habit-to-get-into-predict-then-run" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</h2>
+<p>Here is a complete little program. <strong>Before you run it, write down what you expect it to display.</strong></p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZyA9IDkuODFcbmggPSAzLjBcbnQgPSAoMiAqIGggLyBnKSAqKiAwLjVcbnByaW50KHQpIn0=
+</script>
+</div>
+<p>(Sure, you can run it without thinking. I’m not keeping track of what you are doing here, but for the sake of your learning, I think you should think! Otherwise you’re just watching a really boring TV show…)</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><code>**</code> is Python’s “raise to a power,” so <code>x ** 0.5</code> is a square root. And <code>*</code> must always be written explicitly: <code>2h</code> will give an error; you need <code>2 * h</code> instead.</p>
+</div></div><p>Some reading help: line 3 computes <span class="math inline">\(t = \sqrt{2h/g}\)</span> — the fall time of a dropped object. So before running: <span class="math inline">\(2 \times 3 / 9.81 \approx 0.61\)</span>, and <span class="math inline">\(\sqrt{0.61} \approx 0.78\)</span>. Prediction: something near <code>0.78</code>.</p>
+<p>Now run it. It should match, unless you changed something in the code. <strong>Verification</strong>!</p>
+</section>
+<section id="errors-are-data" class="level2">
+<h2 class="anchored" data-anchor-id="errors-are-data">Errors are data</h2>
+<p>In the code above, change <code>t = (2 * h / g) ** 0.5</code> to <code>t = (2 * h_1 / g) ** 0.5</code>, and run it again. You’ll get an angry red block ending in something like:</p>
+<pre><code>NameError: name 'h_1' is not defined</code></pre>
+<p>Two things to know about errors:</p>
+<p><strong>They are normal.</strong> Experts probably do make fewer errors, but they don’t make zero errors… and actually, I use errors as a way to write code <em>faster</em>: just write out a sloppy version of the code without expecting it to work, then run, read and fix the error; run, read and fix the error; run, read and fix the error, and by then I’m probably done. <em>Read the error messages</em>, they usually describe the error and point to where it occurred in the code. Here: <code>NameError</code> because we used a variable name that the program didn’t know, and it will point to line 3 of the code.</p>
+<p><strong>They are the friendly failure mode.</strong> It is way more difficult to figure out why code runs successfully, but produces a wrong answer. Error messages are kind of nice because they tell you exactly what is wrong (maybe cryptically)!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Understanding error messages is a genuinely excellent use of an LLM: paste the code and the full error, and ask what’s wrong. Verify the explanation makes sense — don’t let the LLM do all your thinking for you!</p>
 </div>
 </div>
 </section>
-<section id="the-map-of-this-course" class="level2">
-<h2 class="anchored" data-anchor-id="the-map-of-this-course">The map of this course</h2>
-<p>Four verbs describe what engineers do with computation, and they outline this course:</p>
-<ol type="1">
-<li><strong>Fetch</strong> — get real data into (and out of) your programs: sensors, files, the internet.</li>
-<li><strong>Process</strong> — turn raw data into meaningful quantities: functions, sweeps, big datasets.</li>
-<li><strong>Simulate</strong> — build models, make predictions, ask “what if,” and know when not to believe yourself.</li>
-<li><strong>Analyze</strong> — communicate findings honestly: good plots that lead to good understanding, defensible conclusions that lead to engineering decisions.</li>
-</ol>
-<p>We’ll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The <a href="../info/standards.qmd">standards page</a> lists what you’ll be able to do under each verb.</p>
+<section id="reading-before-writing" class="level2">
+<h2 class="anchored" data-anchor-id="reading-before-writing">Reading before writing</h2>
+<p>You now know enough to <em>read</em> simple Python. Predict what this displays before running:</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDRcbmIgPSBhICogMlxuYSA9IDFcbnByaW50KGIpIn0=
+</script>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Click for the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>8</code> — not <code>2</code>. Line 2 stored the <em>value</em> 8 under <code>b</code>; it did not create a live mathematical relationship “b is twice a.” When <code>a</code> changed afterward, <code>b</code> is unaware. The code executes <strong>top to bottom, once, each line acting on values as they are at that moment</strong>.</p>
+</div>
+</div>
+</div>
 <div class="bring-to-class">
-<p>On paper (yes, actual paper), write a specification — 5 to 10 sentences — for this problem: <em>a program that tells a student the fastest walking route between two buildings on campus.</em> Your spec must state the inputs, the outputs, and <strong>at least three edge cases</strong> with what should happen in each.</p>
-<p>Class opens with tables exchanging specs and hunting for the gaps.</p>
+<p>On paper, two things:</p>
+<ol type="1">
+<li>Your prediction for what this displays with one sentence of reasoning:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">+</span> <span class="dv">5</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>An electric toothbrush draws about 0.3 A of current (<span class="math inline">\(I\)</span>) through 4 ohms of resistance (<span class="math inline">\(R\)</span>); a space heater draws about 12 A through 10 ohms. On paper, set the current and resistance values in the first four lines of your code, then compute and print the power dissipated, <span class="math inline">\(P = I^2 R\)</span>, for <em>both</em> devices. Don’t forget to <code>#</code> comment! Write out your hand estimate on the side. Which device do you expect will dissipate more power?</li>
+</ol>
 </div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
