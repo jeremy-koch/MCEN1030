@@ -191,8 +191,8 @@ Python's indented blocks are very nice, the code looks very clean, but you have 
 
 ```{pyodide}
 if 1==1:
-    print("it")     # indented with a "tab"
-    print("works")  # indented with a "tab"
+    print("it")     # indented with a tab
+    print("works")  # indented with a tab
 ```
 
 and this is fine
