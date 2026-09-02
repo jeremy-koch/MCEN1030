@@ -50,7 +50,7 @@ website:
           - lessons/01b-what-llms-do.qmd
           # - activities/w01-divergence-demo.qmd
           - lessons/02a-first-contact.qmd
-          # - lessons/02b-reading-code.qmd
+          - lessons/02b-reading-code.qmd
           # - activities/w02-flaw-hunt.qmd
       # - section: "Phase 1 — Vocabulary (Weeks 3–6)"
       #   contents:
