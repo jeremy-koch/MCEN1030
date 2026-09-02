@@ -3,7 +3,7 @@ title: "Reading code and conditional statements"
 subtitle: "Week 2, Lesson B — read before Thursday"
 ---
 
-Tuesday we ran code and thought about the results, today we are going to focus on how read and understand the code *without* needing to run it. Included is an example of the spec → prompt → annotate → verify process. Then we go through **conditional statements**, which bring us to the interesting/sometimes confusing world of branching logic: `if` something is `True`, do this, but if not, do that. 
+Tuesday we ran code and thought about the results, today we are going to focus on how read and understand the code *without* needing to run it. Included is an example of the spec → prompt → annotate → verify process. Then we go through **conditional statements**, which bring us to the interesting and sometimes-confusing world of branching logic: `if` something is `True`, do this, but if `False`, do something `else`. 
 
 ## Think First
 
@@ -21,6 +21,10 @@ Look Ahead
 ## The reading vocabulary
 
 You already know enough Python to read most short engineering scripts. Here's a beginning inventory:
+
+::: {.column-margin}
+Truthfully, much of what I code is handling arithmetic — nothing fancy at all. Take these numbers, square them and multiply by this constant, and plot the result. You don't know plotting yet, but you are quickly learning to understand how math is represented in code.
+:::
 
 | You see | It means |
 |---|---|
@@ -50,9 +54,9 @@ After line 1: `a = 2`, with `b` and `c` not yet defined. After line 2: `a = 2, b
 
 Tracing is slow and that's fine — it's a verification strategy you'll only deploy on the sections you aren't sure about
 
-## The annotation discipline
+## Annotation
 
-When an AI hands you code, you will annotate it — and that's not the same as reading the comments the AI already left. It means writing, **in your own words**, what every line or logical block does and *why it's there*. Producing that explanation yourself, not just reading someone else's, is what actually proves you understand the code.
+When an AI hands you code, you will annotate it. That's not the same as reading the comments the AI already left, it means writing, **in your own words**, what every line or logical block does and *why it's there*. Producing that explanation yourself, not just reading someone else's, is what actually proves you understand the code.
 
 ::: {.callout-important}
 **Rule 1:** A line you can't annotate is a line you do not understand.
@@ -92,7 +96,7 @@ length_m  = length_mm / 1000                    # mm to m <- check this conversi
 print(f"Filament needed: {length_m:.2f} m")     # a formatted string that displays the required length, including units
 ```
 
-Some initial good news: the code runs without any error messages, and every line is commented and makes sense. We've annotated three lines... these are worth checking: are the conversions/equations correct? They are chances for a silent error that would deliver an incorrect output!
+Some initial good news: the code runs without any error messages, and every line is commented and makes sense. We've annotated three lines... these are worth checking: are the conversions and equations correct? They are chances for a silent error that would deliver an incorrect output!
 
 ::: {.column-margin}
 You don't necessarily need to comment every line, especially if the variable names are intuitive. You also might be able to comment on an entire block at once, or if there are repeated steps just describe the first one, or ... . Just make sure your code+comments is understandable!
@@ -114,15 +118,15 @@ The AI might return something like
 volume_filled_mm3 = volume_filled_cm3 * 100    # convert cm^3 to mm^3
 ```
 
-It runs and reports a filament length of **0.37 m** — maybe believable, but *wrong by a factor of ten*.
+(E.g., centimeters to meters is a factor of 100... maybe it sees cm and conversion and assumes we are going that way.) It runs and reports a filament length of 0.37 m — maybe believable, but *wrong by a factor of ten*.
 
 ## One more thing: if/elif/else
 
-Code tracing through algebra, checking unit conversions and area equations, etc., is important but kind of boring. Let's go ahead and introduce **conditional statements** in this reading: they lead to branching: the code takes different paths depending on whether a **condition** is `True` or `False`.
+Code tracing through algebra, checking unit conversions and area equations, etc., is important but kind of boring. Let's go ahead and introduce **conditional statements** in this reading: they lead to branching... the code takes different paths depending on whether a **condition** is `True` or `False`.
 
 ### Conditions
 
-Conditions are expressions that evaluate to either `True` or `False`. Very useful in coding, e.g. if we are doing a fluid mechanics calculation, the pressure-drop equation depends on whether the flow is *laminar* or *turbulent*. Our code might check "is the flow turbulent?" and, if `False`, it will proceed with the laminar equation; and if `True`, it will proceed with the turbulent equation.
+Conditions are expressions that evaluate to either `True` or `False`. Very useful in coding, e.g. if we are doing a fluid mechanics calculation, the pressure-drop equation we use depends on whether the flow is *laminar* or *turbulent*. Our code might check "is the flow turbulent?" If `False`, it will proceed with the laminar equation; if `True`, it will proceed with the turbulent equation.
 
 Here are examples of all six basic conditions:
 
@@ -147,19 +151,11 @@ print(9>0)
 print(4.99999==5)
 ```
 
-Conditional statements can also be combined, and in Python it is really nice: we get to use the words `and` and `or`.
-
-```{pyodide}
-a = 6
-if a>99 or a<10:
-    print("a is greater than 99 or less than 10")
-```
+Conditional statements can also be combined, and in Python it is really nice: we get to use the words `and` and `or`. Statements with `and` or `or` can still be evaluated as `True` or `False`
 
 ::: {.column-margin}
 MATLAB, Java, C, C++, and others use `&&` and `||` for "and" and "or"... not too bad, but not as readable as `and` and `or`!
 :::
-
-Statements with `and` or `or` can still be evaluated as `True` or `False`
 
 ```{pyodide}
 print(5>9 or 5>0)
@@ -173,7 +169,7 @@ and we can make it pretty complicated by combining these expressions!
 print((5>9 or 5>0) and (5<1 or 5<=5))
 ```
 
-### `if`
+### `if` statements
 
 These are very readable, so let's just dive in with a basic example:
 
@@ -186,7 +182,7 @@ if a>5:
 This is an `if` statement. If the **condition** described after the `if` is `True`, Python executes the code inside the *block* that follows; if it is `False`, it skips it.
 
 ::: {.column-margin}
-In Python, a *block* is a collection of lines with the same amount of indent level. Python is a unique language in that it defines its blocks based on the indent — in other languages we enclose blocks in braces `{}` or maybe we introduce a block with an `if` and end it explicitly with a line that just says `end`. Many folks enjoy Python because they find the "white space" uncluttered.
+In Python, a *block* is a collection of lines with the same amount of indent level. Python is a unique language in that it defines its blocks based on the indent — in other languages we enclose blocks in braces `{}` or maybe we introduce a block with an `if` and end it explicitly with a line that just says `end`. Many folks enjoy Python because it is uncluttered.
 :::
 
 
@@ -218,7 +214,7 @@ if 1==1:
 
 Be alert for rogue spaces!
 
-### `if`/`else`
+### `if`/`else` statements
 
 This is pretty intuitive as well:
 
@@ -230,9 +226,9 @@ else:
     print("a is greater than or equal to 0")
 ```
 
-This is an **if/else statement**: it checks the condition after the `if` and, if it's true, it executes the code within the if block *but not the code within the else block*. If the condition after the if is false it *skips the code within the if block* and *executes the code within the else block*.
+This is an **if/else statement**: it checks the condition after the `if` and, if it's true, it executes the code within the if block *but not the code within the else block*. If the condition after the `if` is false it *skips the code within the if block* and *executes the code within the else block*.
 
-### `if`/`elif`/`else`
+### `if`/`elif`/`else` statements
 
 A third structure:
 
@@ -250,7 +246,7 @@ else:
     print("a is zero")
 ```
 
-This is an **if/else if/else** statement: it checks the condition after the `if` and, if it is `True`, it executes the if block then skips the elif and else blocks. If the condition after the if is `False`, it checks the condition after the elif, and if that is true, it executes the elif block and skips the else block. If both the if and elif conditions are false, it executes the code within the else block.
+This is an **if/else if/else** statement: it checks the condition after the `if` and, if it is `True`, it executes the if block then skips the elif and else blocks. If the condition after the `if` is `False`, it checks the condition after the `elif`, and if that is `True`, it executes the elif block and skips the else block. If both the if and elif conditions are `False`, it executes the code within the else block.
 
 I feel like explaining that in a paragraph might have been more confusing than just reading the code!
 
@@ -282,7 +278,7 @@ else:
 
 
 ::: {.callout-tip}
-    If the `if` statement is false, we move on to the `elif`. If the `elif` statement is `True`, we execute its block. Within there, we've got another `if` to consider.
+If the `if` statement is false, we move on to the `elif`. If the `elif` statement is `True`, we execute its block. Within there, we've got another `if` to consider.
 :::
 
 The hardest trace on this page!
@@ -316,7 +312,5 @@ print("Filament needed:", length_m "m")
 :::
 
 ::: {.column-margin}
-We're building a collection of error messages. In class on Tuesday we encountered `NameError` (used a variable name Python has never seen before), `SyntaxError` (the code is not valid Python — it can't run), and `TypeError` (e.g., we tried to do math with data that was interpreted as text: in 5+"15", the 15 is text). Setting `diameter = 0` back in Step 4 gives a `ZeroDivisionError` (you asked Python to divide by zero).
+We're building a collection of error messages. In class on Tuesday we encountered `NameError` (used a variable name Python has never seen before), `SyntaxError` (the code is not valid Python — it can't run), and `TypeError` (e.g., we tried to do math with data that was interpreted as text: in 5+"15", the 15 is text). Setting `diameter = 0` back in Step 4 gives a `ZeroDivisionError` (you asked Python to divide by zero). When we had inconsistent indentation in the if block, we got an `IndentationError`.
 :::
-
-
