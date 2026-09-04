@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Side Quests – MCEN 1030</title>
+<title>HW 1 · The grade calculator – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -118,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Side Quests</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">HW 1 · The grade calculator</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -219,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link">
+  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">HW 1 · The grade calculator</span></a>
   </div>
 </li>
@@ -235,17 +235,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-menu" id="toc-the-menu" class="nav-link active" data-scroll-target="#the-menu">The menu</a></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#its-trickier-than-it-looks" id="toc-its-trickier-than-it-looks" class="nav-link" data-scroll-target="#its-trickier-than-it-looks">It’s trickier than it looks!</a></li>
+  <li><a href="#your-submission" id="toc-your-submission" class="nav-link" data-scroll-target="#your-submission">Your submission</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">HW 1 · The grade calculator</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Side Quests</h1>
-<p class="subtitle lead">Mondays, second half of the semester — enrichment for the curious</p>
+<h1 class="title">HW 1 · The grade calculator</h1>
 </div>
 
 
@@ -262,27 +263,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Once <a href="../info/basecamp.html">Base Camp</a> winds down, <strong>Mondays keep going</strong> with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just <em>the day we hang out and build things</em>, which is roughly what engineering departments are for.</p>
-<p>Dress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — <strong>signups on Canvas; a quest runs if ~10 people want it</strong> — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library.</p>
-<section id="the-menu" class="level2">
-<h2 class="anchored" data-anchor-id="the-menu">The menu</h2>
-<p><strong>Starting from scratch.</strong> <em>(Timed for week 11, right before project launch.)</em> The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build <em>that</em>; grow it. We’ll start something real from nothing, live, mistakes included.</p>
-<p><strong>Git &amp; version control.</strong> <em>(Week 12.)</em> How real teams avoid <code>final_v2_ACTUAL_final.py</code>: commits, history, branches, and undo-anything confidence.</p>
-<p><strong>Build a tiny language model.</strong> You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.</p>
-<p><strong>Parametric design → 3D print.</strong> Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we <em>print</em> the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)</p>
-<!-- **Measure the world.** The room is full of instruments. Signal off a function generator, capture it on an oscilloscope, *and* record the same tone with Phyphox — then reconcile the two in Python. Fetch (F1) meets real lab hardware, and a quiet preview of your instrumentation courses.
-
-**Your data, your problem.** Bring any dataset you actually care about — fantasy football, workout logs, your bank's CSV export — and we'll wrangle it with pandas together. The fastest way to make week 7 permanent is to point it at something you love.
-
-**Debugging as detective work.** A structured method for "it's broken and I don't know why": isolate, hypothesize, test, repeat. The scientific method wearing a hoodie.
-
-**ML taster, on your own data.** Train a walk-vs-run classifier on your week-8 accelerometer recordings — your data, your body, ~20 lines of scikit-learn. An preview of where computational coursework goes next.
-
-**Run an LLM on your own machine.** Local models: what a laptop can do (more than you think), what it costs (nothing), why you might want one (privacy, no subscription, tinkering). Live setup included.
-
-**The portfolio.** *(Late semester.)* Your project report is already a Quarto page; this session makes it a public site on GitHub Pages, plus the resume bullet that honestly describes what you did ("directed and audited AI-generated analysis of…"). The session where A3-quality documentation starts paying you back.
-
-**Where this goes next.** *(Week 14 / on demand.)* Computational Methods, machine learning, CFD, the clubs and competitions on this campus — and a pointer at **Advent of Code**, which starts December 1st, the week this course ends, and is the best "how do I keep going?" answer that exists. -->
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I will add an example solution (to a different problem) soon!</p>
+</div>
+</div>
+<section id="scenario" class="level2">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>Build a program that tells a student their letter grade in this course.</p>
+<p>Everything the program needs to know is on the <a href="../info/grading.html">grading page</a> — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.</p>
+</section>
+<section id="its-trickier-than-it-looks" class="level2">
+<h2 class="anchored" data-anchor-id="its-trickier-than-it-looks">It’s trickier than it looks!</h2>
+<p>As you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.</p>
+</section>
+<section id="your-submission" class="level2">
+<h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
+<p><strong>Step 1 — Specify &amp; prompt.</strong> Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…</p>
+<p>… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a <code>print</code> of the result.</p>
+<p><strong>Step 2 — Annotate</strong> the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.</p>
+<p><strong>Step 3 — Verify.</strong> Hand-compute your predictions <em>before</em> you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.</p>
+<p><strong>Step 4 — Report.</strong> One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.</p>
 
 
 <script type="ojs-module-contents">
@@ -307,7 +316,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../info";
+window._ojs.paths.runtimeToDoc = "../../homework";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;

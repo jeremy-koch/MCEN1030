@@ -218,6 +218,75 @@
     ]
   },
   {
+    "objectID": "info/basecamp.html",
+    "href": "info/basecamp.html",
+    "title": "Base Camp",
+    "section": "",
+    "text": "Mondays are an optional session/office hour. The first half of the semester, they are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
+  },
+  {
+    "objectID": "info/basecamp.html#the-sessions",
+    "href": "info/basecamp.html#the-sessions",
+    "title": "Base Camp",
+    "section": "The sessions",
+    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
+  },
+  {
+    "objectID": "info/basecamp.html#practice-library-async-base-camp",
+    "href": "info/basecamp.html#practice-library-async-base-camp",
+    "title": "Base Camp",
+    "section": "Practice library (async Base Camp)",
+    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html",
+    "href": "homework/hw1-grade-calculator.html",
+    "title": "HW 1 · The grade calculator",
+    "section": "",
+    "text": "Note\n\n\n\nI will add an example solution (to a different problem) soon!",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#scenario",
+    "href": "homework/hw1-grade-calculator.html#scenario",
+    "title": "HW 1 · The grade calculator",
+    "section": "Scenario",
+    "text": "Scenario\nBuild a program that tells a student their letter grade in this course.\nEverything the program needs to know is on the grading page — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
+    "href": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
+    "title": "HW 1 · The grade calculator",
+    "section": "It’s trickier than it looks!",
+    "text": "It’s trickier than it looks!\nAs you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#your-submission",
+    "href": "homework/hw1-grade-calculator.html#your-submission",
+    "title": "HW 1 · The grade calculator",
+    "section": "Your submission",
+    "text": "Your submission\nStep 1 — Specify & prompt. Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…\n… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a print of the result.\nStep 2 — Annotate the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.\nStep 3 — Verify. Hand-compute your predictions before you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.\nStep 4 — Report. One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome",
@@ -302,25 +371,88 @@
     ]
   },
   {
-    "objectID": "info/basecamp.html",
-    "href": "info/basecamp.html",
-    "title": "Base Camp",
+    "objectID": "info/grading.html",
+    "href": "info/grading.html",
+    "title": "How your grade works",
     "section": "",
-    "text": "Mondays are an optional session/office hour. The first half of the semester, they are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
+    "text": "Your grade is built from two ingredients, plus the final exam modifier:\nThose two set a floor for your letter grade. The final exam — a written defense of your own project — then decides where inside that letter you land.\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
   },
   {
-    "objectID": "info/basecamp.html#the-sessions",
-    "href": "info/basecamp.html#the-sessions",
-    "title": "Base Camp",
-    "section": "The sessions",
-    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
+    "objectID": "info/grading.html#standards-the-concepts",
+    "href": "info/grading.html#standards-the-concepts",
+    "title": "How your grade works",
+    "section": "Standards: the concepts",
+    "text": "Standards: the concepts\nEvery standard gets multiple opportunities across the semester. The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget convergent standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesday classes (weeks 4, 6, 8, and 10) begin with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. At least one of a convergent standard’s two demonstrations must be in-class. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements and at least a bit of fluency with the language.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
   },
   {
-    "objectID": "info/basecamp.html#practice-library-async-base-camp",
-    "href": "info/basecamp.html#practice-library-async-base-camp",
-    "title": "Base Camp",
-    "section": "Practice library (async Base Camp)",
-    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+    "objectID": "info/grading.html#engagement-credits-the-process",
+    "href": "info/grading.html#engagement-credits-the-process",
+    "title": "How your grade works",
+    "section": "Engagement credits: the process",
+    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used to make up some credits).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#tokens",
+    "href": "info/grading.html#tokens",
+    "title": "How your grade works",
+    "section": "Tokens",
+    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, etc.); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#the-grade-table",
+    "href": "info/grading.html#the-grade-table",
+    "title": "How your grade works",
+    "section": "The grade table",
+    "text": "The grade table\nYour grade floor is the highest row where you meet every requirement in that row:\n\n\n\nFloor\nStandards Met (of 14)\nEngagement credits\n\n\n\n\nA-\n≥ 13\n≥ 40\n\n\nB-\n≥ 11\n≥ 32\n\n\nC-\n≥ 9\n≥ 24\n\n\nD-\n≥ 7\n≥ 16\n\n\n\nMissing the D- row is an F.\nMeeting these requirements earns you the minus grade, the final exam decides whether you stay there or move up.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#the-final-exam",
+    "href": "info/grading.html#the-final-exam",
+    "title": "How your grade works",
+    "section": "The final exam",
+    "text": "The final exam\n\nThe final is a written defense of your own project, assessed as:\n\n\n\nAssessment\nWhat happens\n\n\n\n\nWeak\nYou stay at your floor (e.g. B-)\n\n\nSolid\nUp to the whole grade (e.g. up to a B)\n\n\nDistinguished\nUp to the plus (e.g. up to a B+)\n\n\n\nNote about the ceiling: the university doesn’t issue A+ grades, so at the A- row a solid final and a distinguished final both land on A.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#three-worked-examples",
+    "href": "info/grading.html#three-worked-examples",
+    "title": "How your grade works",
+    "section": "Three worked examples",
+    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 13 standards, earns 43 engagement credits, spends one token on an extension during a tough midterm week. Check the A- row: 13 ≥ 13 ✓, 43 ≥ 40 ✓ → floor of A-. Then the final: we might ask to trace the path the data takes through the functions and how something is filtered out, and let’s say Student 1 answers that well → solid → Grade: A.\n\n\nFor Student 1, the two unspent tokens add 2 credits (45), but that doesn’t change anything about the grade.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint, messing up two standards. No big deal — both are re-offered at the week-6 and week-8 checkpoints, and after also succeeding at them in the homework, Student 2 demonstrates each twice by mid-semester. Finishes with 11 standards Met. Then 41 engagement credits, having done the work all semester even while the checkpoints were rough. B- row: 11 ≥ 11 ✓, 41 ≥ 32 ✓ → floor of B-. Note that those 41 credits clear the A- row’s bar, but 11 standards don’t — the floor is the highest row where every requirement is met. Then the defense: Student 2 knows everything about the project, teammates’ files included → distinguished → Grade: B+.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 12 standards Met, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). A- row: 12 &lt; 13 ✗. B- row: 12 ≥ 11 ✓, but 25 &lt; 32 ✗. C- row: 12 ≥ 9 ✓, 25 ≥ 24 ✓ → floor of C-. The defense is, predictably, excellent → distinguished → Grade: C+. Is that harsh for someone with 12 standards and a great defense? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we would be at a B+.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
   },
   {
     "objectID": "info/practice.html",

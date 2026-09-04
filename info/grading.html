@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Side Quests – MCEN 1030</title>
+<title>How your grade works – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Side Quests</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Start Here</a></li><li class="breadcrumb-item"><a href="../info/grading.html">How your grade works</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../info/grading.html" class="sidebar-item-text sidebar-link">
+  <a href="../info/grading.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">How your grade works</span></a>
   </div>
 </li>
@@ -235,17 +235,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-menu" id="toc-the-menu" class="nav-link active" data-scroll-target="#the-menu">The menu</a></li>
+  <li><a href="#standards-the-concepts" id="toc-standards-the-concepts" class="nav-link active" data-scroll-target="#standards-the-concepts">Standards: the concepts</a>
+  <ul class="collapse">
+  <li><a href="#checkpoints" id="toc-checkpoints" class="nav-link" data-scroll-target="#checkpoints">Checkpoints</a></li>
+  </ul></li>
+  <li><a href="#engagement-credits-the-process" id="toc-engagement-credits-the-process" class="nav-link" data-scroll-target="#engagement-credits-the-process">Engagement credits: the process</a></li>
+  <li><a href="#tokens" id="toc-tokens" class="nav-link" data-scroll-target="#tokens">Tokens</a></li>
+  <li><a href="#the-grade-table" id="toc-the-grade-table" class="nav-link" data-scroll-target="#the-grade-table">The grade table</a></li>
+  <li><a href="#the-final-exam" id="toc-the-final-exam" class="nav-link" data-scroll-target="#the-final-exam">The final exam</a></li>
+  <li><a href="#three-worked-examples" id="toc-three-worked-examples" class="nav-link" data-scroll-target="#three-worked-examples">Three worked examples</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Start Here</a></li><li class="breadcrumb-item"><a href="../info/grading.html">How your grade works</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Side Quests</h1>
-<p class="subtitle lead">Mondays, second half of the semester — enrichment for the curious</p>
+<h1 class="title">How your grade works</h1>
+<p class="subtitle lead">Standards + engagement credits</p>
 </div>
 
 
@@ -262,27 +270,157 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Once <a href="../info/basecamp.html">Base Camp</a> winds down, <strong>Mondays keep going</strong> with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just <em>the day we hang out and build things</em>, which is roughly what engineering departments are for.</p>
-<p>Dress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — <strong>signups on Canvas; a quest runs if ~10 people want it</strong> — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library.</p>
-<section id="the-menu" class="level2">
-<h2 class="anchored" data-anchor-id="the-menu">The menu</h2>
-<p><strong>Starting from scratch.</strong> <em>(Timed for week 11, right before project launch.)</em> The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build <em>that</em>; grow it. We’ll start something real from nothing, live, mistakes included.</p>
-<p><strong>Git &amp; version control.</strong> <em>(Week 12.)</em> How real teams avoid <code>final_v2_ACTUAL_final.py</code>: commits, history, branches, and undo-anything confidence.</p>
-<p><strong>Build a tiny language model.</strong> You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.</p>
-<p><strong>Parametric design → 3D print.</strong> Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we <em>print</em> the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)</p>
-<!-- **Measure the world.** The room is full of instruments. Signal off a function generator, capture it on an oscilloscope, *and* record the same tone with Phyphox — then reconcile the two in Python. Fetch (F1) meets real lab hardware, and a quiet preview of your instrumentation courses.
+<p>Your grade is built from two ingredients, plus the final exam modifier:</p>
+<ol type="1">
+<li><strong>Standards</strong> measure <em>what you learned</em>. There are <a href="standards.qmd">fourteen specific skills</a> that you will be assessed on, each marked <strong>Met</strong> or <strong>Not Yet</strong>.</li>
+<li><strong>Engagement credits</strong> are about <em>the process that produces learning</em> — credit for showing up prepared and doing the work.</li>
+</ol>
+<p>Those two set a <strong>floor</strong> for your letter grade. The <strong>final exam</strong> — a written defense of your own project — then decides where inside that letter you land. <!-- (Also: you'll learn more by participating, even if that learning is harder to measure.) --></p>
+<p>There are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!</p>
+<!-- The idea here is to collect evidence that you can do the thing (the standards) and that you did the work (the engagement credits). -->
+<section id="standards-the-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="standards-the-concepts">Standards: the concepts</h2>
+<p>Every standard gets multiple opportunities across the semester. The rules:</p>
+<ul>
+<li><strong>Convergent standards</strong> (the ones with checkable right answers) require <strong>two successful demonstrations</strong> on different occasions.</li>
+<li><strong>Divergent standards</strong> (open-ended) require <strong>one demonstration at “Meets” quality</strong>, with the right to revise and resubmit once per artifact.</li>
+<li><strong>“Not Yet” means you aren’t there yet.</strong> But if you are <em>Not Yet</em> on a standard in week 4, then successfully demonstrate it in week 11, the standard is <em>Met</em> and you will receive <em>full credit</em>. (Though don’t forget convergent standards require two successful demonstrations.)</li>
+<li><strong>Reassessment</strong> happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.</li>
+</ul>
+<section id="checkpoints" class="level3">
+<h3 class="anchored" data-anchor-id="checkpoints">Checkpoints</h3>
+<p>Four Tuesday classes (weeks 4, 6, 8, and 10) begin with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards <strong>and re-offers items from earlier checkpoints</strong>. At least one of a convergent standard’s two demonstrations must be in-class. <!-- The rule that gives the whole system its spine: **at least one of a convergent standard's two demonstrations must be in-class** — at a checkpoint or on the defense. --></p>
+<!-- Checkpoints are also where a small amount of unaided writing lives: e -->
+<p>Expect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements and at least a bit of fluency with the language.</p>
+</section>
+</section>
+<section id="engagement-credits-the-process" class="level2">
+<h2 class="anchored" data-anchor-id="engagement-credits-the-process">Engagement credits: the process</h2>
+<p>Part of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on <strong>good-faith completion</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Earned by</th>
+<th>Credits</th>
+<th>Roughly available</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bring-to-class item, written on paper, checked at the start of class</td>
+<td>1 each</td>
+<td>~22</td>
+</tr>
+<tr class="even">
+<td>Thursday activity deliverable</td>
+<td>2–3 each</td>
+<td>~24</td>
+</tr>
+<tr class="odd">
+<td>Pin-up participation &amp; review quality (weeks 12–13)</td>
+<td>3 each</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td><strong>Total available</strong></td>
+<td></td>
+<td><strong>~50</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Rules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used to make up some credits).</p>
+<!-- ### Project-period credits are individual
 
-**Your data, your problem.** Bring any dataset you actually care about — fantasy football, workout logs, your bank's CSV export — and we'll wrangle it with pandas together. The fastest way to make week 7 permanent is to point it at something you love.
+The 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded **per person, informed by teammate evaluation** — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the [peer evaluation page](peer-evaluation.qmd). -->
+</section>
+<section id="tokens" class="level2">
+<h2 class="anchored" data-anchor-id="tokens">Tokens</h2>
+<p>Everyone starts the semester with <strong>3 tokens</strong>. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, etc.); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.</p>
+</section>
+<section id="the-grade-table" class="level2">
+<h2 class="anchored" data-anchor-id="the-grade-table">The grade table</h2>
+<p>Your <strong>grade floor</strong> is the highest row where you meet every requirement in that row:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Floor</th>
+<th style="text-align: center;">Standards Met (of 14)</th>
+<th style="text-align: center;">Engagement credits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">A-</td>
+<td style="text-align: center;">≥ 13</td>
+<td style="text-align: center;">≥ 40</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B-</td>
+<td style="text-align: center;">≥ 11</td>
+<td style="text-align: center;">≥ 32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C-</td>
+<td style="text-align: center;">≥ 9</td>
+<td style="text-align: center;">≥ 24</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">D-</td>
+<td style="text-align: center;">≥ 7</td>
+<td style="text-align: center;">≥ 16</td>
+</tr>
+</tbody>
+</table>
+<p>Missing the D- row is an F.</p>
+<p>Meeting these requirements earns you the minus grade, the final exam decides whether you stay there or move up.</p>
+</section>
+<section id="the-final-exam" class="level2">
+<h2 class="anchored" data-anchor-id="the-final-exam">The final exam</h2>
+<!-- — [what it looks like, in detail](../lessons/14-defense.qmd).  -->
+<p>The final is a written defense of your own project, assessed as:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assessment</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Weak</td>
+<td>You stay at your floor (e.g.&nbsp;B-)</td>
+</tr>
+<tr class="even">
+<td>Solid</td>
+<td>Up to the whole grade (e.g.&nbsp;up to a B)</td>
+</tr>
+<tr class="odd">
+<td>Distinguished</td>
+<td>Up to the plus (e.g.&nbsp;up to a B+)</td>
+</tr>
+</tbody>
+</table>
+<p>Note about the ceiling: the university doesn’t issue A+ grades, so at the A- row a solid final and a distinguished final both land on A.</p>
+</section>
+<section id="three-worked-examples" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="three-worked-examples">Three worked examples</h2>
+<p><strong>Student 1 — the straightforward case.</strong> Meets 13 standards, earns 43 engagement credits, spends one token on an extension during a tough midterm week. Check the A- row: 13 ≥ 13 ✓, 43 ≥ 40 ✓ → floor of <strong>A-</strong>. Then the final: we might ask to trace the path the data takes through the functions and how something is filtered out, and let’s say Student 1 answers that well → solid → <strong>Grade: A.</strong></p>
 
-**Debugging as detective work.** A structured method for "it's broken and I don't know why": isolate, hypothesize, test, repeat. The scientific method wearing a hoodie.
+<div class="no-row-height column-margin column-container"><div class="">
+<p>For Student 1, the two unspent tokens add 2 credits (45), but that doesn’t change anything about the grade.</p>
+</div></div><p><strong>Student 2 — the slow start (read this one if you’re nervous).</strong> Bombs the first checkpoint, messing up two standards. No big deal — both are re-offered at the week-6 and week-8 checkpoints, and after also succeeding at them in the homework, Student 2 demonstrates each twice by mid-semester. Finishes with 11 standards Met. Then 41 engagement credits, having done the work all semester even while the checkpoints were rough. B- row: 11 ≥ 11 ✓, 41 ≥ 32 ✓ → floor of <strong>B-</strong>. Note that those 41 credits clear the A- row’s bar, but 11 standards don’t — the floor is the highest row where <em>every</em> requirement is met. Then the defense: Student 2 knows everything about the project, teammates’ files included → distinguished → <strong>Grade: B+.</strong></p>
+<p><strong>Student 3 — the ghost (read this one if you’re planning to skip class).</strong> Brilliant, and knows it: 12 standards Met, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). A- row: 12 &lt; 13 ✗. B- row: 12 ≥ 11 ✓, but 25 &lt; 32 ✗. C- row: 12 ≥ 9 ✓, 25 ≥ 24 ✓ → floor of <strong>C-</strong>. The defense is, predictably, excellent → distinguished → <strong>Grade: C+.</strong> Is that harsh for someone with 12 standards and a great defense? Well, this course is also about <em>the process</em> — prepare, commit, argue, critique. Ten more Thursdays of just <em>participating</em> and we would be at a B+.</p>
+<!-- ## The philosophy, in one paragraph
 
-**ML taster, on your own data.** Train a walk-vs-run classifier on your week-8 accelerometer recordings — your data, your body, ~20 lines of scikit-learn. An preview of where computational coursework goes next.
-
-**Run an LLM on your own machine.** Local models: what a laptop can do (more than you think), what it costs (nothing), why you might want one (privacy, no subscription, tinkering). Live setup included.
-
-**The portfolio.** *(Late semester.)* Your project report is already a Quarto page; this session makes it a public site on GitHub Pages, plus the resume bullet that honestly describes what you did ("directed and audited AI-generated analysis of…"). The session where A3-quality documentation starts paying you back.
-
-**Where this goes next.** *(Week 14 / on demand.)* Computational Methods, machine learning, CFD, the clubs and competitions on this campus — and a pointer at **Advent of Code**, which starts December 1st, the week this course ends, and is the best "how do I keep going?" answer that exists. -->
+Standards answer "can you do the thing?" Engagement credits answer "did you do the work?" A course grade should require both. And nothing in this system rewards being right *early* — only being right *eventually*, which is the only kind of right that engineering careers are made of. Struggle freely. It's priced in. -->
+<!-- ::: {.callout-note}
+Logistics: your current standards ledger and credit count live on Canvas, updated weekly. Arithmetic disputes are welcome and boring (bring them anytime); judgment disputes on divergent standards go through the revise-and-resubmit channel, which exists precisely for that conversation.
+::: -->
 
 
 <script type="ojs-module-contents">
