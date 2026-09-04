@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An example homework submission – MCEN 1030</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a423b8e9d6b53a10c67d5318008cbd7f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MCEN 1030</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/basecamp.html"> 
+<span class="menu-text">Base Camp</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">An example homework submission</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How your grade works</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/installing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going in your language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Library</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Phase 0 — Thinking (Weeks 1–2)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What do engineers do with computation?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What does an LLM actually do?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">First contact with coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02b-reading-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading code and conditional statements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/example-parking-garage.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">An example homework submission</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 1 · The grade calculator</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#this-is-not-your-homework" id="toc-this-is-not-your-homework" class="nav-link active" data-scroll-target="#this-is-not-your-homework">This is not your homework</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#step-1-specification-and-prompt" id="toc-step-1-specification-and-prompt" class="nav-link" data-scroll-target="#step-1-specification-and-prompt">Step 1 — Specification and prompt</a></li>
+  <li><a href="#step-2-annotation" id="toc-step-2-annotation" class="nav-link" data-scroll-target="#step-2-annotation">Step 2 — Annotation</a></li>
+  <li><a href="#step-3-verification" id="toc-step-3-verification" class="nav-link" data-scroll-target="#step-3-verification">Step 3 — Verification</a></li>
+  <li><a href="#step-4-report" id="toc-step-4-report" class="nav-link" data-scroll-target="#step-4-report">Step 4 — Report</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">An example homework submission</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">An example homework submission</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="this-is-not-your-homework" class="level2">
+<h2 class="anchored" data-anchor-id="this-is-not-your-homework">This is not your homework</h2>
+<p>This is an example submission on a different problem to give you an idea of what we expect — think of this as a template.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The commentary boxes are comments I am adding. “The problem” is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.</p>
+</div>
+</div>
+</section>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
+<p>Here is a sign posted at the entrance of a parking garage.</p>
+<blockquote class="blockquote">
+<p><strong>MESA LOT — RATES</strong></p>
+<ul>
+<li>First 30 minutes: free</li>
+<li>Up to 2 hours: $4</li>
+<li>Up to 5 hours: $9</li>
+<li>Over 5 hours: $16</li>
+<li>Daily maximum: $16 — no vehicle is charged more than this in a 24-hour period</li>
+<li>Overnight surcharge (vehicle present at 3:00 AM): add $10</li>
+<li>Departmental validation: $3 off</li>
+<li>Lost ticket: $25 flat</li>
+</ul>
+</blockquote>
+<p>The gate machine records the time a car enters and the time it leaves, and the attendant can tell you whether the ticket was validated or lost. A driver pulls up to the exit. Write a program that determines what they owe.</p>
+<hr>
+</section>
+<section id="step-1-specification-and-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-specification-and-prompt">Step 1 — Specification and prompt</h2>
+<p><strong>What the program needs to know.</strong> Four things that I’ll provide at the top of the script: the time the car entered, the time it left, whether the ticket was validated, and whether it was lost.</p>
+<p>The awkward decision is how to write a time. I settled on a plain number on a 24-hour clock, in decimal hours — so 11:15 PM is <code>23.25</code>. Writing 2:30 PM as <code>14.5</code> is a little unnatural, and I could have used hours and minutes as separate variables, but then the arithmetic gets messy and I’d be doing conversions by hand every time I tested something.</p>
+<!-- The program needs to figure out how long the car was there, which is subtraction except when the car stayed past midnight and the exit time is a smaller number than the entry time. And whether it was in the lot at 3:00 AM, which is what the overnight surcharge actually asks. Both of those are exactly the kind of fiddly thing I'd get wrong at the gate, so they belong in the code. -->
+<p><strong>Output.</strong> One number printed to the screen: the amount owed, in dollars, to the nearest cent.</p>
+<p><strong>Decisions I had to make, because the sign doesn’t say:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>My ruling</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exactly 0.5 hours</td>
+<td>Free</td>
+<td>Let’s hope it’s a friendly lot.</td>
+</tr>
+<tr class="even">
+<td>Exactly 2.0 hours</td>
+<td>$4</td>
+<td>Same logic, be consistent.</td>
+</tr>
+<tr class="odd">
+<td>Overnight + the 5-hour rate = $26, above the daily max</td>
+<td>Charge $26</td>
+<td>The max is about parking rates; the surcharge is a penalty on top. Could go the other way, would need to clarify.</td>
+</tr>
+<tr class="even">
+<td>Validation and daily max together</td>
+<td>Apply validation last, so $16 → $13</td>
+<td>The discount is something the department gives you, so it should come off whatever you’d otherwise owe.</td>
+</tr>
+<tr class="odd">
+<td>Lost ticket + validation</td>
+<td>$25 − $3 = $22</td>
+<td>The sign doesn’t exempt it.</td>
+</tr>
+<tr class="even">
+<td>Lost ticket + overnight</td>
+<td>$25 flat, no surcharge</td>
+<td>“Flat”.</td>
+</tr>
+<tr class="odd">
+<td>Validation on a free stay</td>
+<td>$0, never negative</td>
+<td>“Parking garages hate this one trick” … program might return -$3!</td>
+</tr>
+<tr class="even">
+<td>Exit time equals entry time</td>
+<td>Treat as an error and say so</td>
+<td>Either they didn’t park or they stayed exactly 24 hours, and I can’t tell which. Not guessing.</td>
+</tr>
+<tr class="odd">
+<td>Stay longer than 24 hours</td>
+<td>Can’t be expressed with two clock times, so out of scope</td>
+<td>A consequence of my input choice. If this mattered I’d need a date, not a time.</td>
+</tr>
+<tr class="even">
+<td>A time outside 0 to 24</td>
+<td>Refuse, with an error</td>
+<td>Not a real clock time — probably a typo.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This table is a good chunk of the grade. Every row states a <em>ruling</em>, and in cases of ambiguity a choice is made. “I could see it going the other way” is a reasonable addition to your submission. Again, this errs on the side of being over-detailed (with 10 cases)… five cases would probably be enough.</p>
+</div>
+</div>
+<p><strong>My prompt.</strong></p>
+<blockquote class="blockquote">
+<p>Write a short Python script (not function, I haven’t learned those yet) that calculates what a driver owes at a parking garage. I want the input values as variables at the top of the script where I can edit them by hand, then the calculation, then a <code>print</code> of the result. Don’t ask for user input.</p>
+<p>The variables at the top are <code>time_in</code> and <code>time_out</code>, each a number on a 24-hour clock in decimal hours (11:15 PM is 23.25), and <code>validated</code> and <code>lost_ticket</code>, each True or False.</p>
+<p>A car may stay past midnight, so if <code>time_out</code> is less than or equal to <code>time_in</code>, add 24 to <code>time_out</code> before anything else. The duration is then <code>time_out - time_in</code>.</p>
+<p>The car counts as overnight if it was in the lot at 3:00 AM — that is, if either 3 or 27 falls between <code>time_in</code> and <code>time_out</code> on that adjusted timeline.</p>
+<p>Rate tiers by duration: 0 up to and including 0.5 hours is $0. Above 0.5 up to and including 2.0 hours is $4. Above 2.0 up to and including 5.0 hours is $9. Above 5.0 hours is $16.</p>
+<p>Then: if overnight, add $10 — this is allowed to exceed the $16 daily maximum, because the maximum applies to the duration rate only. Then if <code>validated</code> is True, subtract $3, but never below $0.</p>
+<p>If <code>lost_ticket</code> is True, the charge is $25 flat regardless of duration and regardless of overnight, but validation still applies, giving $22.</p>
+<p>If either time is outside 0 to 24, or if <code>time_out</code> equals <code>time_in</code>, print a message explaining the problem instead of a price.</p>
+<p>Print the final amount to the nearest cent, with a dollar sign.</p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The prompt carries the rulings from the table into the request. It states the boundaries as “up to and including,” names the order of operations explicitly, and says what <em>not</em> to do. Compare it to what most people would send: a photograph of the sign and “write me a program for this.” That version outsources all ten decisions to the LLM, which will make them silently.</p>
+<p>Two important lines: the midnight rule and the 3-or-27 condition. Neither is on the sign. The student worked out that “present at 3:00 AM” means an interval containing 3 o’clock, and that a car parked from 10 PM to 6 AM lives on a timeline where 3 AM is at hour 27 — and then said so. <!-- A prompt that shrugged and said "handle the overnight surcharge" would have come back with something confident and wrong, and it would have looked fine. --></p>
+<p>Note also the part about not using functions. An LLM would likely jump to using functions, which is something we don’t know yet — though you can use them, if you have some experience. Telling LLMs what you know is a legitimate and underused aspect of prompting.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="step-2-annotation" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-annotation">Step 2 — Annotation</h2>
+<p>I’ve annotated the returned code in comments. A few lines I want to point out here:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Click here for the full script the LLM gave me
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is what came back, before I fixed anything — the two bugs from Step 3 are both still in here if you want to hunt for them yourself.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- inputs, edit these by hand ---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>time_in <span class="op">=</span> <span class="fl">22.0</span>        <span class="co"># 24-hour clock, decimal hours (11:15 PM = 23.25)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>time_out <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>validated <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>lost_ticket <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> time_in <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> time_in <span class="op">&gt;</span> <span class="dv">24</span> <span class="kw">or</span> time_out <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> time_out <span class="op">&gt;</span> <span class="dv">24</span>:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Error: times must be between 0 and 24."</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> time_out <span class="op">&lt;=</span> time_in:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        time_out <span class="op">=</span> time_out <span class="op">+</span> <span class="dv">24</span>      <span class="co"># car crossed midnight</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> time_out <span class="op">==</span> time_in:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Error: entry and exit times are the same."</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        hours <span class="op">=</span> time_out <span class="op">-</span> time_in</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># was the car here at 3 AM? (3 on day one, 27 on day two)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        overnight <span class="op">=</span> (time_in <span class="op">&lt;=</span> <span class="dv">3</span> <span class="op">&lt;=</span> time_out) <span class="kw">or</span> (time_in <span class="op">&lt;=</span> <span class="dv">27</span> <span class="op">&lt;=</span> time_out)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> hours <span class="op">&lt;=</span> <span class="fl">0.5</span>:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            fee <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> hours <span class="op">&lt;=</span> <span class="fl">2.0</span>:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            fee <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> hours <span class="op">&lt;=</span> <span class="fl">5.0</span>:</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            fee <span class="op">=</span> <span class="fl">9.0</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            fee <span class="op">=</span> <span class="fl">16.0</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> lost_ticket:</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            fee <span class="op">=</span> <span class="fl">25.0</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> overnight:</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            fee <span class="op">=</span> fee <span class="op">+</span> <span class="fl">10.0</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> validated:</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            fee <span class="op">=</span> fee <span class="op">-</span> <span class="fl">3.0</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> fee <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                fee <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Amount owed: $"</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(fee, <span class="dv">2</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> time_out <span class="op">&lt;=</span> time_in:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    time_out <span class="op">=</span> time_out <span class="op">+</span> <span class="dv">24</span>    <span class="co"># the car crossed midnight</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is important for an overnight stay — for a car in at 9 and out at 14, the if condition is false and the line is skipped entirely. After this runs, <code>time_out</code> can be 28, which is not a real clock time… which felt wrong, but after inputting decimal times, we start thinking about durations instead.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a “tier three” (excellent) annotation — it doesn’t just say what the line does, it says the student noticed the result stopped looking like a clock time and had to work out why that’s still correct. Nothing in the code marks that shift, so catching it requires actually tracing the logic, not just reading each line in isolation.</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> hours <span class="op">&lt;=</span> <span class="fl">0.5</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    fee <span class="op">=</span> <span class="fl">0.0</span>          <span class="co"># exactly 30 min is free</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> hours <span class="op">&lt;=</span> <span class="fl">2.0</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    fee <span class="op">=</span> <span class="fl">4.0</span>          <span class="co"># boundary at 2.0 goes to the cheap tier, as I asked</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>elif</code> chain is checked top to bottom and stops at the first true test, so a 0.4-hour stay never reaches the second line at all. That’s why the tiers can be written as simple <code>&lt;=</code> comparisons without needing to say “and greater than 0.5” — the earlier branch already ate those cases.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This one sits at “tier two” (good) — it’s more than a syntax gloss (“this is an elif”), since it explains <em>why</em> the comparisons can be written so simply. But it stops at describing the mechanism; it doesn’t flag anything the code decided that wasn’t asked for. Tier two is a perfectly acceptable annotation on its own — you don’t need tier three on every line — but a submission that never goes past tier two anywhere is probably not digesting the code completely.</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> lost_ticket:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    fee <span class="op">=</span> <span class="fl">25.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This sits <em>after</em> the tier chain, so it overwrites whatever the duration produced. That’s correct behavior but it isn’t what I pictured — I imagined it checking the lost ticket first and skipping the tiers entirely.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tier three again. The discovery is about <em>ordering</em> — the code runs every branch and then overrides the result with a final if statement. Similar to the first annotation, the student noted a design choice the LLM made that the prompt did not specify and talked about it.</p>
+<p>The three tiers of annotation are something like:</p>
+<ul>
+<li>Restating the syntax (“this is an if statement”) is weakest.</li>
+<li>Saying what a line does in the problem’s terms, like the <code>elif</code> note above, is fine.</li>
+<li>Annotation that also notices something — an ordering, a hidden assumption, a variable that changed what it means — is great.</li>
+</ul>
+<p>Not every single line needs to be the third tier.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="step-3-verification" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-verification">Step 3 — Verification</h2>
+<p>Predictions computed by hand, written down before running anything.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>in</th>
+<th>out</th>
+<th>validated</th>
+<th>lost</th>
+<th>I expect</th>
+<th>Code gave</th>
+<th>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9.0</td>
+<td>9.5</td>
+<td>no</td>
+<td>no</td>
+<td>$0</td>
+<td>$0</td>
+<td>ok</td>
+</tr>
+<tr class="even">
+<td>13.0</td>
+<td>15.0</td>
+<td>no</td>
+<td>no</td>
+<td>$4</td>
+<td>$4</td>
+<td>ok</td>
+</tr>
+<tr class="odd">
+<td>13.0</td>
+<td>15.1</td>
+<td>no</td>
+<td>no</td>
+<td>$9</td>
+<td>$9</td>
+<td>ok</td>
+</tr>
+<tr class="even">
+<td>22.0</td>
+<td>4.0</td>
+<td>no</td>
+<td>no</td>
+<td>$26</td>
+<td>$26</td>
+<td>ok</td>
+</tr>
+<tr class="odd">
+<td>8.0</td>
+<td>8.25</td>
+<td>yes</td>
+<td>no</td>
+<td>$0</td>
+<td>$0</td>
+<td>ok</td>
+</tr>
+<tr class="even">
+<td>22.0</td>
+<td>4.0</td>
+<td>yes</td>
+<td>no</td>
+<td>$23</td>
+<td>$23</td>
+<td>ok</td>
+</tr>
+<tr class="odd">
+<td>10.0</td>
+<td>13.0</td>
+<td>no</td>
+<td>yes</td>
+<td>$25</td>
+<td>$25</td>
+<td>ok</td>
+</tr>
+<tr class="even">
+<td>22.0</td>
+<td>4.0</td>
+<td>no</td>
+<td>yes</td>
+<td>$25</td>
+<td><strong>$35</strong></td>
+<td><strong>no</strong></td>
+</tr>
+<tr class="odd">
+<td>2.0</td>
+<td>5.0</td>
+<td>no</td>
+<td>no</td>
+<td>$19</td>
+<td>$19</td>
+<td>ok</td>
+</tr>
+<tr class="even">
+<td>8.0</td>
+<td>8.0</td>
+<td>no</td>
+<td>no</td>
+<td>error</td>
+<td><strong>$26</strong></td>
+<td><strong>no</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Row four is the one I was most worried about and it’s fine: 10 PM to 4 AM, so through 3AM, and it ended up fine. Row nine checks the other 3 AM case — a car that arrives at 2 AM and leaves at 5 AM never crosses midnight at all, but is still there at 3 — and that works too.</p>
+<p>Row eight is a real failure. My spec said a lost ticket is $25 flat regardless of overnight, and the prompt said so, but the <code>if overnight</code> block sits below the lost-ticket line and runs unconditionally, adding $10 to the flat charge. The model wrote the surcharge before it wrote the override and never reconciled them. I found it by testing <em>combinations</em> — lost alone passes, overnight alone passes, only the pair fails. The fix was moving the lost-ticket branch below the surcharge.</p>
+<p>Row ten is subtler and it’s my own fault, not the model’s. I asked for an error when the times are equal, and I also asked for the add-24 rule when <code>time_out &lt;= time_in</code> — and the add-24 rule is written first, so an 8-to-8 stay becomes a 24-hour stay, picks up the overnight surcharge on the way past 3 AM, and prints $26 before the error check ever runs. Two of my own requirements fighting each other. I moved the check above the wraparound.</p>
+<p>One gripe: running ten cases meant editing four variables at the top and re-running the script ten times, then doing it all again after each fix. Thirty-odd edits and I lost my place twice. There has to be a better way to do this.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is the best part of the submission and it’s why the predictions have to be written <em>before</em> running. If you fill in the “I expect” column after seeing the output, you will be tempted to agree with the code. Also notice that the interaction bug — two features that are each fine alone and wrong together — is the kind an LLM produces constantly.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="step-4-report" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-report">Step 4 — Report</h2>
+<p><strong>What this does.</strong> Given when a car entered and left the Mesa Lot, whether the ticket was validated, and whether it was lost, this script prints what the driver owes. Times go in as decimal hours on a 24-hour clock, e.g.&nbsp;11:15 PM is <code>23.25</code>, and the script handles the midnight wraparound and the 3 AM surcharge question itself.</p>
+<p><strong>Where I had to decide.</strong> The sign leaves a lot open and I ruled on ten cases, listed in Step 1. The three that actually changed the answer: the overnight surcharge stacks on top of the $16 daily maximum, validation comes off last so it applies to whatever you’d otherwise owe, and a lost ticket is $25 flat but still takes the $3 validation discount. I also put anything past 24 hours out of scope, which is a consequence of feeding the program clock times instead of dates.</p>
+<p><strong>What went wrong.</strong> Two bugs. The model’s: a lost ticket picked up the overnight surcharge anyway, because the surcharge line sits below the override and runs unconditionally — it output $35 where I’d predicted $25. Mine: I asked for an error when the times are equal <em>and</em> for the wraparound whenever <code>time_out &lt;= time_in</code>, and the wraparound runs first, so an 8-to-8 stay quietly became a 24-hour stay and printed $26 instead of an error. Both were one-line moves. The second one is the one is harder to notice.</p>
+<p><strong>Provenance.</strong> Claude Sonnet 4.6, prompted 4 September 2026; the full prompt is in Step 1 and the returned code is folded into Step 2.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Commentary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Four short paragraphs: no abstract, no restated rate table, no walkthrough of the code. The report points at the other steps rather than repeating them — “the three that actually changed the answer” instead of the full list of ten.</p>
+<p>You don’t want this to be too long — shorter than the specification. The test to apply: could a classmate who never saw the sign read this and know what the program does, what you decided, and what they’d need to rerun it?</p>
+</div>
+</div>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../homework";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jeremy-koch\.github\.io\/MCEN1030\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

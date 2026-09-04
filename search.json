@@ -287,6 +287,90 @@
     ]
   },
   {
+    "objectID": "homework/example-parking-garage.html",
+    "href": "homework/example-parking-garage.html",
+    "title": "An example homework submission",
+    "section": "",
+    "text": "This is an example submission on a different problem to give you an idea of what we expect — think of this as a template.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe commentary boxes are comments I am adding. “The problem” is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#this-is-not-your-homework",
+    "href": "homework/example-parking-garage.html#this-is-not-your-homework",
+    "title": "An example homework submission",
+    "section": "",
+    "text": "This is an example submission on a different problem to give you an idea of what we expect — think of this as a template.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe commentary boxes are comments I am adding. “The problem” is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#the-problem",
+    "href": "homework/example-parking-garage.html#the-problem",
+    "title": "An example homework submission",
+    "section": "The problem",
+    "text": "The problem\nHere is a sign posted at the entrance of a parking garage.\n\nMESA LOT — RATES\n\nFirst 30 minutes: free\nUp to 2 hours: $4\nUp to 5 hours: $9\nOver 5 hours: $16\nDaily maximum: $16 — no vehicle is charged more than this in a 24-hour period\nOvernight surcharge (vehicle present at 3:00 AM): add $10\nDepartmental validation: $3 off\nLost ticket: $25 flat\n\n\nThe gate machine records the time a car enters and the time it leaves, and the attendant can tell you whether the ticket was validated or lost. A driver pulls up to the exit. Write a program that determines what they owe.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-1-specification-and-prompt",
+    "href": "homework/example-parking-garage.html#step-1-specification-and-prompt",
+    "title": "An example homework submission",
+    "section": "Step 1 — Specification and prompt",
+    "text": "Step 1 — Specification and prompt\nWhat the program needs to know. Four things that I’ll provide at the top of the script: the time the car entered, the time it left, whether the ticket was validated, and whether it was lost.\nThe awkward decision is how to write a time. I settled on a plain number on a 24-hour clock, in decimal hours — so 11:15 PM is 23.25. Writing 2:30 PM as 14.5 is a little unnatural, and I could have used hours and minutes as separate variables, but then the arithmetic gets messy and I’d be doing conversions by hand every time I tested something.\n\nOutput. One number printed to the screen: the amount owed, in dollars, to the nearest cent.\nDecisions I had to make, because the sign doesn’t say:\n\n\n\n\n\n\n\n\nSituation\nMy ruling\nWhy\n\n\n\n\nExactly 0.5 hours\nFree\nLet’s hope it’s a friendly lot.\n\n\nExactly 2.0 hours\n$4\nSame logic, be consistent.\n\n\nOvernight + the 5-hour rate = $26, above the daily max\nCharge $26\nThe max is about parking rates; the surcharge is a penalty on top. Could go the other way, would need to clarify.\n\n\nValidation and daily max together\nApply validation last, so $16 → $13\nThe discount is something the department gives you, so it should come off whatever you’d otherwise owe.\n\n\nLost ticket + validation\n$25 − $3 = $22\nThe sign doesn’t exempt it.\n\n\nLost ticket + overnight\n$25 flat, no surcharge\n“Flat”.\n\n\nValidation on a free stay\n$0, never negative\n“Parking garages hate this one trick” … program might return -$3!\n\n\nExit time equals entry time\nTreat as an error and say so\nEither they didn’t park or they stayed exactly 24 hours, and I can’t tell which. Not guessing.\n\n\nStay longer than 24 hours\nCan’t be expressed with two clock times, so out of scope\nA consequence of my input choice. If this mattered I’d need a date, not a time.\n\n\nA time outside 0 to 24\nRefuse, with an error\nNot a real clock time — probably a typo.\n\n\n\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis table is a good chunk of the grade. Every row states a ruling, and in cases of ambiguity a choice is made. “I could see it going the other way” is a reasonable addition to your submission. Again, this errs on the side of being over-detailed (with 10 cases)… five cases would probably be enough.\n\n\nMy prompt.\n\nWrite a short Python script (not function, I haven’t learned those yet) that calculates what a driver owes at a parking garage. I want the input values as variables at the top of the script where I can edit them by hand, then the calculation, then a print of the result. Don’t ask for user input.\nThe variables at the top are time_in and time_out, each a number on a 24-hour clock in decimal hours (11:15 PM is 23.25), and validated and lost_ticket, each True or False.\nA car may stay past midnight, so if time_out is less than or equal to time_in, add 24 to time_out before anything else. The duration is then time_out - time_in.\nThe car counts as overnight if it was in the lot at 3:00 AM — that is, if either 3 or 27 falls between time_in and time_out on that adjusted timeline.\nRate tiers by duration: 0 up to and including 0.5 hours is $0. Above 0.5 up to and including 2.0 hours is $4. Above 2.0 up to and including 5.0 hours is $9. Above 5.0 hours is $16.\nThen: if overnight, add $10 — this is allowed to exceed the $16 daily maximum, because the maximum applies to the duration rate only. Then if validated is True, subtract $3, but never below $0.\nIf lost_ticket is True, the charge is $25 flat regardless of duration and regardless of overnight, but validation still applies, giving $22.\nIf either time is outside 0 to 24, or if time_out equals time_in, print a message explaining the problem instead of a price.\nPrint the final amount to the nearest cent, with a dollar sign.\n\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe prompt carries the rulings from the table into the request. It states the boundaries as “up to and including,” names the order of operations explicitly, and says what not to do. Compare it to what most people would send: a photograph of the sign and “write me a program for this.” That version outsources all ten decisions to the LLM, which will make them silently.\nTwo important lines: the midnight rule and the 3-or-27 condition. Neither is on the sign. The student worked out that “present at 3:00 AM” means an interval containing 3 o’clock, and that a car parked from 10 PM to 6 AM lives on a timeline where 3 AM is at hour 27 — and then said so. \nNote also the part about not using functions. An LLM would likely jump to using functions, which is something we don’t know yet — though you can use them, if you have some experience. Telling LLMs what you know is a legitimate and underused aspect of prompting.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-2-annotation",
+    "href": "homework/example-parking-garage.html#step-2-annotation",
+    "title": "An example homework submission",
+    "section": "Step 2 — Annotation",
+    "text": "Step 2 — Annotation\nI’ve annotated the returned code in comments. A few lines I want to point out here:\n\n\n\n\n\n\nNoteClick here for the full script the LLM gave me\n\n\n\n\n\nThis is what came back, before I fixed anything — the two bugs from Step 3 are both still in here if you want to hunt for them yourself.\n# --- inputs, edit these by hand ---\ntime_in = 22.0        # 24-hour clock, decimal hours (11:15 PM = 23.25)\ntime_out = 4.0\nvalidated = False\nlost_ticket = False\n# ----------------------------------\n\nif time_in &lt; 0 or time_in &gt; 24 or time_out &lt; 0 or time_out &gt; 24:\n    print(\"Error: times must be between 0 and 24.\")\nelse:\n    if time_out &lt;= time_in:\n        time_out = time_out + 24      # car crossed midnight\n\n    if time_out == time_in:\n        print(\"Error: entry and exit times are the same.\")\n    else:\n        hours = time_out - time_in\n\n        # was the car here at 3 AM? (3 on day one, 27 on day two)\n        overnight = (time_in &lt;= 3 &lt;= time_out) or (time_in &lt;= 27 &lt;= time_out)\n\n        if hours &lt;= 0.5:\n            fee = 0.0\n        elif hours &lt;= 2.0:\n            fee = 4.0\n        elif hours &lt;= 5.0:\n            fee = 9.0\n        else:\n            fee = 16.0\n\n        if lost_ticket:\n            fee = 25.0\n\n        if overnight:\n            fee = fee + 10.0\n\n        if validated:\n            fee = fee - 3.0\n            if fee &lt; 0:\n                fee = 0.0\n\n        print(\"Amount owed: $\" + str(round(fee, 2)))\n\n\n\nif time_out &lt;= time_in:\n    time_out = time_out + 24    # the car crossed midnight\nThis is important for an overnight stay — for a car in at 9 and out at 14, the if condition is false and the line is skipped entirely. After this runs, time_out can be 28, which is not a real clock time… which felt wrong, but after inputting decimal times, we start thinking about durations instead.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis is a “tier three” (excellent) annotation — it doesn’t just say what the line does, it says the student noticed the result stopped looking like a clock time and had to work out why that’s still correct. Nothing in the code marks that shift, so catching it requires actually tracing the logic, not just reading each line in isolation.\n\n\nif hours &lt;= 0.5:\n    fee = 0.0          # exactly 30 min is free\nelif hours &lt;= 2.0:\n    fee = 4.0          # boundary at 2.0 goes to the cheap tier, as I asked\nThe elif chain is checked top to bottom and stops at the first true test, so a 0.4-hour stay never reaches the second line at all. That’s why the tiers can be written as simple &lt;= comparisons without needing to say “and greater than 0.5” — the earlier branch already ate those cases.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis one sits at “tier two” (good) — it’s more than a syntax gloss (“this is an elif”), since it explains why the comparisons can be written so simply. But it stops at describing the mechanism; it doesn’t flag anything the code decided that wasn’t asked for. Tier two is a perfectly acceptable annotation on its own — you don’t need tier three on every line — but a submission that never goes past tier two anywhere is probably not digesting the code completely.\n\n\nif lost_ticket:\n    fee = 25.0\nThis sits after the tier chain, so it overwrites whatever the duration produced. That’s correct behavior but it isn’t what I pictured — I imagined it checking the lost ticket first and skipping the tiers entirely.\n\n\n\n\n\n\nTipCommentary\n\n\n\nTier three again. The discovery is about ordering — the code runs every branch and then overrides the result with a final if statement. Similar to the first annotation, the student noted a design choice the LLM made that the prompt did not specify and talked about it.\nThe three tiers of annotation are something like:\n\nRestating the syntax (“this is an if statement”) is weakest.\nSaying what a line does in the problem’s terms, like the elif note above, is fine.\nAnnotation that also notices something — an ordering, a hidden assumption, a variable that changed what it means — is great.\n\nNot every single line needs to be the third tier.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-3-verification",
+    "href": "homework/example-parking-garage.html#step-3-verification",
+    "title": "An example homework submission",
+    "section": "Step 3 — Verification",
+    "text": "Step 3 — Verification\nPredictions computed by hand, written down before running anything.\n\n\n\nin\nout\nvalidated\nlost\nI expect\nCode gave\n?\n\n\n\n\n9.0\n9.5\nno\nno\n$0\n$0\nok\n\n\n13.0\n15.0\nno\nno\n$4\n$4\nok\n\n\n13.0\n15.1\nno\nno\n$9\n$9\nok\n\n\n22.0\n4.0\nno\nno\n$26\n$26\nok\n\n\n8.0\n8.25\nyes\nno\n$0\n$0\nok\n\n\n22.0\n4.0\nyes\nno\n$23\n$23\nok\n\n\n10.0\n13.0\nno\nyes\n$25\n$25\nok\n\n\n22.0\n4.0\nno\nyes\n$25\n$35\nno\n\n\n2.0\n5.0\nno\nno\n$19\n$19\nok\n\n\n8.0\n8.0\nno\nno\nerror\n$26\nno\n\n\n\nRow four is the one I was most worried about and it’s fine: 10 PM to 4 AM, so through 3AM, and it ended up fine. Row nine checks the other 3 AM case — a car that arrives at 2 AM and leaves at 5 AM never crosses midnight at all, but is still there at 3 — and that works too.\nRow eight is a real failure. My spec said a lost ticket is $25 flat regardless of overnight, and the prompt said so, but the if overnight block sits below the lost-ticket line and runs unconditionally, adding $10 to the flat charge. The model wrote the surcharge before it wrote the override and never reconciled them. I found it by testing combinations — lost alone passes, overnight alone passes, only the pair fails. The fix was moving the lost-ticket branch below the surcharge.\nRow ten is subtler and it’s my own fault, not the model’s. I asked for an error when the times are equal, and I also asked for the add-24 rule when time_out &lt;= time_in — and the add-24 rule is written first, so an 8-to-8 stay becomes a 24-hour stay, picks up the overnight surcharge on the way past 3 AM, and prints $26 before the error check ever runs. Two of my own requirements fighting each other. I moved the check above the wraparound.\nOne gripe: running ten cases meant editing four variables at the top and re-running the script ten times, then doing it all again after each fix. Thirty-odd edits and I lost my place twice. There has to be a better way to do this.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis is the best part of the submission and it’s why the predictions have to be written before running. If you fill in the “I expect” column after seeing the output, you will be tempted to agree with the code. Also notice that the interaction bug — two features that are each fine alone and wrong together — is the kind an LLM produces constantly.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-4-report",
+    "href": "homework/example-parking-garage.html#step-4-report",
+    "title": "An example homework submission",
+    "section": "Step 4 — Report",
+    "text": "Step 4 — Report\nWhat this does. Given when a car entered and left the Mesa Lot, whether the ticket was validated, and whether it was lost, this script prints what the driver owes. Times go in as decimal hours on a 24-hour clock, e.g. 11:15 PM is 23.25, and the script handles the midnight wraparound and the 3 AM surcharge question itself.\nWhere I had to decide. The sign leaves a lot open and I ruled on ten cases, listed in Step 1. The three that actually changed the answer: the overnight surcharge stacks on top of the $16 daily maximum, validation comes off last so it applies to whatever you’d otherwise owe, and a lost ticket is $25 flat but still takes the $3 validation discount. I also put anything past 24 hours out of scope, which is a consequence of feeding the program clock times instead of dates.\nWhat went wrong. Two bugs. The model’s: a lost ticket picked up the overnight surcharge anyway, because the surcharge line sits below the override and runs unconditionally — it output $35 where I’d predicted $25. Mine: I asked for an error when the times are equal and for the wraparound whenever time_out &lt;= time_in, and the wraparound runs first, so an 8-to-8 stay quietly became a 24-hour stay and printed $26 instead of an error. Both were one-line moves. The second one is the one is harder to notice.\nProvenance. Claude Sonnet 4.6, prompted 4 September 2026; the full prompt is in Step 1 and the returned code is folded into Step 2.\n\n\n\n\n\n\nTipCommentary\n\n\n\nFour short paragraphs: no abstract, no restated rate table, no walkthrough of the code. The report points at the other steps rather than repeating them — “the three that actually changed the answer” instead of the full list of ten.\nYou don’t want this to be too long — shorter than the specification. The test to apply: could a classmate who never saw the sign read this and know what the program does, what you decided, and what they’d need to rerun it?",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome",
