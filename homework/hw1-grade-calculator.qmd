@@ -1,0 +1,36 @@
+---
+title: "HW 1 · The grade calculator"
+# subtitle: "Anchor week 2 · Standards: P4, A4"
+---
+
+
+::: {.callout-note}
+I will add an example solution (to a different problem) soon!
+:::
+
+
+## Scenario
+
+Build a program that tells a student their letter grade in this course.
+
+Everything the program needs to know is on the [grading page](../info/grading.qmd) — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you'd read a client's description of a problem, not a spec someone already wrote for you.
+
+## It's trickier than it looks!
+
+As you write your problem specifications, you'll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.
+
+## Your submission
+
+**Step 1 — Specify & prompt.** Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt...
+
+... but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a `print` of the result.
+
+**Step 2 — Annotate** the returned code. For a line of the grade-table logic, say which case it's catching and why it's there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.
+
+**Step 3 — Verify.** Hand-compute your predictions *before* you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row's threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.
+
+**Step 4 — Report.** One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.
+
+::: {.content-hidden}
+**Instructor key:** the grading page's own worked examples now settle token-conversion ordering (Student 3's 22-credit case only clears C— after the 3 unspent tokens convert), so this is no longer an open ambiguity — it's a verification target. A submission that computes the floor before applying leftover-token credit will silently misgrade any student sitting near a threshold on tokens alone; that's the bug Step 3's token test case is designed to surface, not a legitimate alternate reading. The genuinely open question is the F/exam-modifier interaction: the grading page never says whether a distinguished defense does anything for a student who missed the D— row. Watch for whether students notice the gap and rule on it explicitly (either reading — "nothing, F has no modifier" or "it can't apply, there's no floor to move up from" — is fine) versus students who don't notice it exists.
+:::

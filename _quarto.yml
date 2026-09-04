@@ -41,7 +41,7 @@ website:
           - index.qmd
           # - info/schedule.qmd
           # - info/standards.qmd
-          # - info/grading.qmd
+          - info/grading.qmd
           - info/installing.qmd
           - info/practice.qmd
       - section: "Phase 0 — Thinking (Weeks 1–2)"
@@ -82,6 +82,9 @@ website:
       #     - lessons/14-defense.qmd
       #     - activities/w14-mock-defense.qmd
       #     - info/peer-evaluation.qmd
+      - section: "Homework"
+        contents:
+          - homework/hw1-grade-calculator.qmd
       # - section: "Homework"
       #   contents:
       #     - homework/index.qmd

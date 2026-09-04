@@ -9,7 +9,8 @@ README.html
 README.md
 /data/
 /instructor/
-/homework/
+/homework/*
+!/homework/hw1-grade-calculator.qmd
 
 
 activities/w01*
@@ -35,7 +36,6 @@ lessons/1*
 
 peer-evaluation.qmd
 info/schedule.qmd
-info/grading.qmd
 info/standards.qmd
 CLAUDE.md
 
