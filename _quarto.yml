@@ -84,6 +84,7 @@ website:
       #     - info/peer-evaluation.qmd
       - section: "Homework"
         contents:
+          - homework/example-parking-garage.qmd
           - homework/hw1-grade-calculator.qmd
       # - section: "Homework"
       #   contents:

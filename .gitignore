@@ -10,6 +10,7 @@ README.md
 /data/
 /instructor/
 /homework/*
+!/homework/example-parking-garage.qmd
 !/homework/hw1-grade-calculator.qmd
 
 

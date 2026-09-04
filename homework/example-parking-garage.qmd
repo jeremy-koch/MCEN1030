@@ -1,0 +1,248 @@
+---
+title: "An example homework submission"
+# subtitle: ""
+---
+
+## This is not your homework
+
+This is an example submission on a different problem to give you an idea of what we expect — think of this as a template. 
+
+
+
+::: {.callout-tip}
+## Commentary
+The commentary boxes are comments I am adding. "The problem" is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.
+:::
+
+## The problem
+
+Here is a sign posted at the entrance of a parking garage.
+
+> **MESA LOT — RATES**
+>
+> - First 30 minutes: free
+> - Up to 2 hours: \$4
+> - Up to 5 hours: \$9
+> - Over 5 hours: \$16
+> - Daily maximum: \$16 — no vehicle is charged more than this in a 24-hour period
+> - Overnight surcharge (vehicle present at 3:00 AM): add \$10
+> - Departmental validation: \$3 off
+> - Lost ticket: \$25 flat
+
+The gate machine records the time a car enters and the time it leaves, and the attendant can tell you whether the ticket was validated or lost. A driver pulls up to the exit. Write a program that determines what they owe.
+
+---
+
+## Step 1 — Specification and prompt
+
+**What the program needs to know.** Four things that I'll provide at the top of the script: the time the car entered, the time it left, whether the ticket was validated, and whether it was lost.
+
+The awkward decision is how to write a time. I settled on a plain number on a 24-hour clock, in decimal hours — so 11:15 PM is `23.25`. Writing 2:30 PM as `14.5` is a little unnatural, and I could have used hours and minutes as separate variables, but then the arithmetic gets messy and I'd be doing conversions by hand every time I tested something.
+
+<!-- The program needs to figure out how long the car was there, which is subtraction except when the car stayed past midnight and the exit time is a smaller number than the entry time. And whether it was in the lot at 3:00 AM, which is what the overnight surcharge actually asks. Both of those are exactly the kind of fiddly thing I'd get wrong at the gate, so they belong in the code. -->
+
+**Output.** One number printed to the screen: the amount owed, in dollars, to the nearest cent.
+
+**Decisions I had to make, because the sign doesn't say:**
+
+| Situation | My ruling | Why |
+|---|---|---|
+| Exactly 0.5 hours | Free | Let's hope it's a friendly lot. |
+| Exactly 2.0 hours | \$4 | Same logic, be consistent. |
+| Overnight + the 5-hour rate = \$26, above the daily max | Charge \$26 | The max is about parking rates; the surcharge is a penalty on top. Could go the other way, would need to clarify. |
+| Validation and daily max together | Apply validation last, so \$16 → \$13 | The discount is something the department gives you, so it should come off whatever you'd otherwise owe. |
+| Lost ticket + validation | \$25 − \$3 = \$22 | The sign doesn't exempt it. |
+| Lost ticket + overnight | \$25 flat, no surcharge | "Flat". |
+| Validation on a free stay | \$0, never negative | "Parking garages hate this one trick" ... program might return -\$3! |
+| Exit time equals entry time | Treat as an error and say so | Either they didn't park or they stayed exactly 24 hours, and I can't tell which. Not guessing. |
+| Stay longer than 24 hours | Can't be expressed with two clock times, so out of scope | A consequence of my input choice. If this mattered I'd need a date, not a time. |
+| A time outside 0 to 24 | Refuse, with an error | Not a real clock time — probably a typo. |
+
+::: {.callout-tip}
+## Commentary
+This table is a good chunk of the grade. Every row states a *ruling*, and in cases of ambiguity a choice is made. "I could see it going the other way" is a reasonable addition to your submission. Again, this errs on the side of being over-detailed (with 10 cases)... five cases would probably be enough.
+:::
+
+**My prompt.**
+
+> Write a short Python script (not function, I haven't learned those yet) that calculates what a driver owes at a parking garage. I want the input values as variables at the top of the script where I can edit them by hand, then the calculation, then a `print` of the result. Don't ask for user input.
+>
+> The variables at the top are `time_in` and `time_out`, each a number on a 24-hour clock in decimal hours (11:15 PM is 23.25), and `validated` and `lost_ticket`, each True or False.
+>
+> A car may stay past midnight, so if `time_out` is less than or equal to `time_in`, add 24 to `time_out` before anything else. The duration is then `time_out - time_in`.
+>
+> The car counts as overnight if it was in the lot at 3:00 AM — that is, if either 3 or 27 falls between `time_in` and `time_out` on that adjusted timeline.
+>
+> Rate tiers by duration: 0 up to and including 0.5 hours is \$0. Above 0.5 up to and including 2.0 hours is \$4. Above 2.0 up to and including 5.0 hours is \$9. Above 5.0 hours is \$16.
+>
+> Then: if overnight, add \$10 — this is allowed to exceed the \$16 daily maximum, because the maximum applies to the duration rate only. Then if `validated` is True, subtract \$3, but never below \$0.
+>
+> If `lost_ticket` is True, the charge is \$25 flat regardless of duration and regardless of overnight, but validation still applies, giving \$22.
+>
+> If either time is outside 0 to 24, or if `time_out` equals `time_in`, print a message explaining the problem instead of a price.
+>
+> Print the final amount to the nearest cent, with a dollar sign.
+
+::: {.callout-tip}
+## Commentary
+The prompt carries the rulings from the table into the request. It states the boundaries as "up to and including," names the order of operations explicitly, and says what *not* to do. Compare it to what most people would send: a photograph of the sign and "write me a program for this." That version outsources all ten decisions to the LLM, which will make them silently.
+
+Two important lines: the midnight rule and the 3-or-27 condition. Neither is on the sign. The student worked out that "present at 3:00 AM" means an interval containing 3 o'clock, and that a car parked from 10 PM to 6 AM lives on a timeline where 3 AM is at hour 27 — and then said so. 
+<!-- A prompt that shrugged and said "handle the overnight surcharge" would have come back with something confident and wrong, and it would have looked fine. -->
+
+Note also the part about not using functions. An LLM would likely jump to using functions, which is something we don't know yet — though you can use them, if you have some experience. Telling LLMs what you know is a legitimate and underused aspect of prompting.
+:::
+
+---
+
+## Step 2 — Annotation
+
+I've annotated the returned code in comments. A few lines I want to point out here:
+
+::: {.callout-note collapse="true"}
+### Click here for the full script the LLM gave me
+
+This is what came back, before I fixed anything — the two bugs from Step 3 are both still in here if you want to hunt for them yourself.
+
+```python
+# --- inputs, edit these by hand ---
+time_in = 22.0        # 24-hour clock, decimal hours (11:15 PM = 23.25)
+time_out = 4.0
+validated = False
+lost_ticket = False
+# ----------------------------------
+
+if time_in < 0 or time_in > 24 or time_out < 0 or time_out > 24:
+    print("Error: times must be between 0 and 24.")
+else:
+    if time_out <= time_in:
+        time_out = time_out + 24      # car crossed midnight
+
+    if time_out == time_in:
+        print("Error: entry and exit times are the same.")
+    else:
+        hours = time_out - time_in
+
+        # was the car here at 3 AM? (3 on day one, 27 on day two)
+        overnight = (time_in <= 3 <= time_out) or (time_in <= 27 <= time_out)
+
+        if hours <= 0.5:
+            fee = 0.0
+        elif hours <= 2.0:
+            fee = 4.0
+        elif hours <= 5.0:
+            fee = 9.0
+        else:
+            fee = 16.0
+
+        if lost_ticket:
+            fee = 25.0
+
+        if overnight:
+            fee = fee + 10.0
+
+        if validated:
+            fee = fee - 3.0
+            if fee < 0:
+                fee = 0.0
+
+        print("Amount owed: $" + str(round(fee, 2)))
+```
+:::
+
+```python
+if time_out <= time_in:
+    time_out = time_out + 24    # the car crossed midnight
+```
+
+This is important for an overnight stay — for a car in at 9 and out at 14, the if condition is false and the line is skipped entirely. After this runs, `time_out` can be 28, which is not a real clock time... which felt wrong, but after inputting decimal times, we start thinking about durations instead.
+
+::: {.callout-tip}
+## Commentary
+This is a "tier three" (excellent) annotation — it doesn't just say what the line does, it says the student noticed the result stopped looking like a clock time and had to work out why that's still correct. Nothing in the code marks that shift, so catching it requires actually tracing the logic, not just reading each line in isolation.
+:::
+
+```python
+if hours <= 0.5:
+    fee = 0.0          # exactly 30 min is free
+elif hours <= 2.0:
+    fee = 4.0          # boundary at 2.0 goes to the cheap tier, as I asked
+```
+
+The `elif` chain is checked top to bottom and stops at the first true test, so a 0.4-hour stay never reaches the second line at all. That's why the tiers can be written as simple `<=` comparisons without needing to say "and greater than 0.5" — the earlier branch already ate those cases.
+
+::: {.callout-tip}
+## Commentary
+This one sits at "tier two" (good) — it's more than a syntax gloss ("this is an elif"), since it explains *why* the comparisons can be written so simply. But it stops at describing the mechanism; it doesn't flag anything the code decided that wasn't asked for. Tier two is a perfectly acceptable annotation on its own — you don't need tier three on every line — but a submission that never goes past tier two anywhere is probably not digesting the code completely.
+:::
+
+```python
+if lost_ticket:
+    fee = 25.0
+```
+
+This sits *after* the tier chain, so it overwrites whatever the duration produced. That's correct behavior but it isn't what I pictured — I imagined it checking the lost ticket first and skipping the tiers entirely.
+
+::: {.callout-tip}
+## Commentary
+Tier three again. The discovery is about *ordering* — the code runs every branch and then overrides the result with a final if statement. Similar to the first annotation, the student noted a design choice the LLM made that the prompt did not specify and talked about it.
+
+The three tiers of annotation are something like:
+
+- Restating the syntax ("this is an if statement") is weakest. 
+- Saying what a line does in the problem's terms, like the `elif` note above, is fine. 
+- Annotation that also notices something — an ordering, a hidden assumption, a variable that changed what it means — is great.
+
+Not every single line needs to be the third tier.
+:::
+
+---
+
+## Step 3 — Verification
+
+Predictions computed by hand, written down before running anything.
+
+| in | out | validated | lost | I expect | Code gave | ? |
+|---|---|---|---|---|---|---|
+| 9.0 | 9.5 | no | no | \$0 | \$0 | ok |
+| 13.0 | 15.0 | no | no | \$4 | \$4 | ok |
+| 13.0 | 15.1 | no | no | \$9 | \$9 | ok |
+| 22.0 | 4.0 | no | no | \$26 | \$26 | ok |
+| 8.0 | 8.25 | yes | no | \$0 | \$0 | ok |
+| 22.0 | 4.0 | yes | no | \$23 | \$23 | ok |
+| 10.0 | 13.0 | no | yes | \$25 | \$25 | ok |
+| 22.0 | 4.0 | no | yes | \$25 | **\$35** | **no** |
+| 2.0 | 5.0 | no | no | \$19 | \$19 | ok |
+| 8.0 | 8.0 | no | no | error | **\$26** | **no** |
+
+Row four is the one I was most worried about and it's fine: 10 PM to 4 AM, so through 3AM, and it ended up fine. Row nine checks the other 3 AM case — a car that arrives at 2 AM and leaves at 5 AM never crosses midnight at all, but is still there at 3 — and that works too.
+
+Row eight is a real failure. My spec said a lost ticket is \$25 flat regardless of overnight, and the prompt said so, but the `if overnight` block sits below the lost-ticket line and runs unconditionally, adding \$10 to the flat charge. The model wrote the surcharge before it wrote the override and never reconciled them. I found it by testing *combinations* — lost alone passes, overnight alone passes, only the pair fails. The fix was moving the lost-ticket branch below the surcharge.
+
+Row ten is subtler and it's my own fault, not the model's. I asked for an error when the times are equal, and I also asked for the add-24 rule when `time_out <= time_in` — and the add-24 rule is written first, so an 8-to-8 stay becomes a 24-hour stay, picks up the overnight surcharge on the way past 3 AM, and prints \$26 before the error check ever runs. Two of my own requirements fighting each other. I moved the check above the wraparound.
+
+One gripe: running ten cases meant editing four variables at the top and re-running the script ten times, then doing it all again after each fix. Thirty-odd edits and I lost my place twice. There has to be a better way to do this.
+
+::: {.callout-tip}
+## Commentary
+This is the best part of the submission and it's why the predictions have to be written *before* running. If you fill in the "I expect" column after seeing the output, you will be tempted to agree with the code. Also notice that the interaction bug — two features that are each fine alone and wrong together — is the kind an LLM produces constantly.
+:::
+
+---
+
+## Step 4 — Report
+
+**What this does.** Given when a car entered and left the Mesa Lot, whether the ticket was validated, and whether it was lost, this script prints what the driver owes. Times go in as decimal hours on a 24-hour clock, e.g. 11:15 PM is `23.25`, and the script handles the midnight wraparound and the 3 AM surcharge question itself.
+
+**Where I had to decide.** The sign leaves a lot open and I ruled on ten cases, listed in Step 1. The three that actually changed the answer: the overnight surcharge stacks on top of the \$16 daily maximum, validation comes off last so it applies to whatever you'd otherwise owe, and a lost ticket is \$25 flat but still takes the \$3 validation discount. I also put anything past 24 hours out of scope, which is a consequence of feeding the program clock times instead of dates.
+
+**What went wrong.** Two bugs. The model's: a lost ticket picked up the overnight surcharge anyway, because the surcharge line sits below the override and runs unconditionally — it output \$35 where I'd predicted \$25. Mine: I asked for an error when the times are equal *and* for the wraparound whenever `time_out <= time_in`, and the wraparound runs first, so an 8-to-8 stay quietly became a 24-hour stay and printed \$26 instead of an error. Both were one-line moves. The second one is the one is harder to notice.
+
+**Provenance.** Claude Sonnet 4.6, prompted 4 September 2026; the full prompt is in Step 1 and the returned code is folded into Step 2.
+
+::: {.callout-tip}
+## Commentary
+Four short paragraphs: no abstract, no restated rate table, no walkthrough of the code. The report points at the other steps rather than repeating them — "the three that actually changed the answer" instead of the full list of ten.
+
+You don't want this to be too long — shorter than the specification. The test to apply: could a classmate who never saw the sign read this and know what the program does, what you decided, and what they'd need to rerun it?
+:::
