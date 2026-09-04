@@ -5,7 +5,7 @@ subtitle: "Standards + engagement credits"
 
 Your grade is built from two ingredients, plus the final exam modifier:
 
-1. **Standards** measure *what you learned*. There are [fourteen specific skills](standards.qmd) that you will be assessed on, each marked **Met** or **Not Yet**.
+1. **Standards** measure *what you learned*. There are fourteen specific skills that you will be assessed on, each marked **Met** or **Not Yet**.
 2. **Engagement credits** are about *the process that produces learning* — credit for showing up prepared and doing the work.
 
 Those two set a **floor** for your letter grade. The **final exam** — a written defense of your own project — then decides where inside that letter you land.
