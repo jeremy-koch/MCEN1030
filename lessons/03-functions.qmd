@@ -57,7 +57,7 @@ Defining a function does not mean the function **runs**. To actually get values 
 Calling it:
 
 ```python
-t1 = fall_time(3.0)          # wrench dropped from h = 3 m in Earth's gravity
+t1 = fall_time(3.0)          # drop from h = 3 m in Earth's gravity
 t2 = fall_time(3.0, 1.62)    # same drop on the Moon
 ```
 
@@ -110,7 +110,7 @@ The docstring says what the function *should do*. The annotation says what the f
 :::
 
 ::: {.bring-to-class}
-We'll think about stopping distance for a car under braking. On paper write: the full signature with units, a two-sentence docstring including assumptions, and **one hand-checkable test case with its expected output** (show the arithmetic).
+We'll think about stopping distance for a car under braking. On paper write: the function definition line, a two-sentence docstring including assumptions and units, and **one hand-checkable test case with its expected output** (show the arithmetic). You don't need to code the whole thing.
 
 And here's a description that you'll base your work on: a car doesn't stop the instant the driver decides to brake — there's a **reaction time** first, maybe 1.5 s, during which the car just keeps cruising at speed $v$. That chunk of distance is just speed times time, $d_{\text{reaction}} = v \cdot t_{\text{reaction}}$. Then the brakes engage and the car decelerates from $v$ to $0$ at a roughly constant deceleration $a$. 
 
