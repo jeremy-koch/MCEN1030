@@ -1,0 +1,115 @@
+---
+title: "Functions: the contract"
+subtitle: "Week 3 — read before Tuesday"
+---
+
+Getting an area from a radius, power from a resistance and current, distance traveled from velocity and time... these are calculations engineers do repeatedly. While we could write 
+
+```python
+I = 0.12        # current, in amps
+R = 3           # resistance, in ohms
+P= R*I**2       # power, in watts
+```
+
+... and then edit that code for every new calculation, we might instead write **a function** that takes current and resistance as inputs and produces power as an output. Any calculation we use over and over again is a good candidate for turning into a function. We'll learn about functions in this lesson.
+
+
+## Think First
+
+Recall
+
+1. Week 1: what are the parts of a complete specification?
+2. Week 2: the pool-filling script computed the time to fill one pool. What would you do if your boss asked about 50 different pool designs?
+
+Look Ahead
+
+1. What should happen when a function is *defined* but never *called*?
+2. If a variable is created inside a function, should the rest of the program be able to see it?
+
+## Anatomy of a function
+
+```{pyodide}
+def fall_time(h, g=9.81):
+    """Time (s) for an object to fall from rest through height h (m)."""
+    t = (2 * h / g) ** 0.5
+    return t
+
+print(fall_time(3.0))          # our wrench
+print(fall_time(3.0, 1.62))    # same drop, on the Moon
+```
+
+This cell is live — feel free to edit it, break it, change the default gravity (Mars has $g = 3.71$).
+
+What's in here: 
+- `def` is the syntax that starts a function definition.
+- `fall_time` is the function name (we choose it).
+- `(h, g=9.81)` are the function inputs, with `g` given a **default** value so callers can omit it.
+- Then we have an indented block that does the tasks we wrote the function for. Here, just a bit of math.
+- The triple-quoted line is a **docstring**: the function's specification, basically a comment that describes the function's purpose. Technically optional, but a good idea.
+- `return` tells us the thing(s) that is (are) output once the function is done with its magic.
+
+
+::: {.column-margin}
+Defining a function does not mean the function **runs**. To actually get values from a function, we must **call** it: `fall_time(3.0)`.
+:::
+
+Calling it:
+
+```python
+t1 = fall_time(3.0)          # wrench dropped from h = 3 m in Earth's gravity
+t2 = fall_time(3.0, 1.62)    # same drop on the Moon
+```
+
+Before you run: should it take longer to fall when the gravity is lower? Verification!
+
+## The docstring is basically a specification
+
+Look at `fall_time(h, g=9.81)` and its `docstring` — you know almost everything about the function from reading it: what goes in, with what units, what comes out, what's assumed (from rest). A good problem specification practically writes the prompt and the docstring, but you can also ask for a good, detailed docstring in your prompt:
+
+> Write a Python function `pressure_drop(L, D, Q)` returning the pressure drop in Pa for laminar water flow through a smooth pipe of length L (m), diameter D (m), at flow rate Q (m³/s). Assume 20 °C water. Include a docstring stating the formula and its valid range.
+
+
+## Check the function in isolation
+
+Before a function enters any larger program: **call it at least once with a case you can check by hand.**
+
+```python
+print(fall_time(3.0))   # hand estimate said ~0.78 — confirm before proceeding
+```
+
+Next week we'll be calling functions inside loops, maybe 100 or 1000 times. Basically impossible to check all of them, but checking one or two... if they work out correctly, that is a good sign.
+
+
+## Local names: the function's private scratchpad
+
+It is probably easier to see this than understand an explanation. What do you predict will be printed in the following code?
+
+```{pyodide}
+def double(x):
+    result = x * 2
+    return result
+
+result = 5
+answer = double(10)
+print(result)
+```
+
+::: {.callout-note collapse="true"}
+### Click for the answer
+`5`. The `result` inside `double` is **local** — it exists only while the function runs, in the function's private workspace, and it is a *different variable* from the "outer" `result`, despite the shared name. This is a feature, not a hazard: it means you can use a function without knowing or caring what names it uses internally. Functions go inputs → output; the function interior is kept secret from the outside.
+:::
+
+## Bring functions and AI together
+
+The workflow that carries the rest of the semester: **spec the function → prompt for it → annotate the body → hand-check it in isolation → use it.** Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.
+
+::: {.callout-tip}
+## Think
+The docstring says what the function *should do*. The annotation says what the function *actually does*. Verification is checking that those two are the same.
+:::
+
+::: {.bring-to-class}
+Pick **one** from the menu — (a) stopping distance for a car under braking, (b) a °F/°C/K temperature converter — and on paper write: the full signature with units, a two-sentence docstring including assumptions, and **one hand-checkable test case with its expected output** (show the arithmetic). Thursday you'll direct the AI to build it and your committed test case becomes the acceptance test. If the AI's function fails *your* test, one of you is wrong — and finding out which is the whole game.
+
+If you're picking (a), here's a refresher in case the pieces are fuzzy. A car doesn't stop the instant the driver decides to brake — there's a **reaction time** first, maybe 1.5 s, during which the car just keeps cruising at speed $v$. That chunk of distance is just speed times time, $d_{\text{reaction}} = v \cdot t_{\text{reaction}}$. Then the brakes engage and the car decelerates from $v$ to $0$ at some roughly constant deceleration $a$. This piece comes from the kinematic equation $v_f^2 = v_0^2 - 2ad$ — since we're solving for where the car finally stops ($v_f = 0$), it rearranges to $d_{\text{braking}} = v^2 / (2a)$. Total stopping distance is the sum, $d = d_{\text{reaction}} + d_{\text{braking}}$. One thing to check before you trust a number out of this: doubling $v$ should more than double $d$, since $v$ shows up squared in the braking term.
+:::

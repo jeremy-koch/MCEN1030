@@ -52,10 +52,10 @@ website:
           - lessons/02a-first-contact.qmd
           - lessons/02b-reading-code.qmd
           # - activities/w02-flaw-hunt.qmd
-      # - section: "Phase 1 — Vocabulary (Weeks 3–6)"
-      #   contents:
-      #     - lessons/03-functions.qmd
-      #     - activities/w03-function-forge.qmd
+      - section: "Phase 1 — Vocabulary (Weeks 3–6)"
+        contents:
+          - lessons/03-functions.qmd
+          # - activities/w03-function-forge.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
