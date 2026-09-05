@@ -34,17 +34,18 @@ def fall_time(h, g=9.81):
     t = (2 * h / g) ** 0.5
     return t
 
-print(fall_time(3.0))          # our wrench
+print(fall_time(3.0))          # drop from 3 meters
 print(fall_time(3.0, 1.62))    # same drop, on the Moon
 ```
 
 This cell is live — feel free to edit it, break it, change the default gravity (Mars has $g = 3.71$).
 
 What's in here: 
+
 - `def` is the syntax that starts a function definition.
 - `fall_time` is the function name (we choose it).
-- `(h, g=9.81)` are the function inputs, with `g` given a **default** value so callers can omit it.
-- Then we have an indented block that does the tasks we wrote the function for. Here, just a bit of math.
+- `(h, g=9.81)` are the function inputs, with `g` given a **default** value so callers can omit it. It can be included if you have need to change the parameter value.
+- Then we have an indented block that does the tasks we wrote the function for. Here, the function just does a bit of math.
 - The triple-quoted line is a **docstring**: the function's specification, basically a comment that describes the function's purpose. Technically optional, but a good idea.
 - `return` tells us the thing(s) that is (are) output once the function is done with its magic.
 
@@ -109,7 +110,9 @@ The docstring says what the function *should do*. The annotation says what the f
 :::
 
 ::: {.bring-to-class}
-Pick **one** from the menu — (a) stopping distance for a car under braking, (b) a °F/°C/K temperature converter — and on paper write: the full signature with units, a two-sentence docstring including assumptions, and **one hand-checkable test case with its expected output** (show the arithmetic). Thursday you'll direct the AI to build it and your committed test case becomes the acceptance test. If the AI's function fails *your* test, one of you is wrong — and finding out which is the whole game.
+We'll think about stopping distance for a car under braking. On paper write: the full signature with units, a two-sentence docstring including assumptions, and **one hand-checkable test case with its expected output** (show the arithmetic).
 
-If you're picking (a), here's a refresher in case the pieces are fuzzy. A car doesn't stop the instant the driver decides to brake — there's a **reaction time** first, maybe 1.5 s, during which the car just keeps cruising at speed $v$. That chunk of distance is just speed times time, $d_{\text{reaction}} = v \cdot t_{\text{reaction}}$. Then the brakes engage and the car decelerates from $v$ to $0$ at some roughly constant deceleration $a$. This piece comes from the kinematic equation $v_f^2 = v_0^2 - 2ad$ — since we're solving for where the car finally stops ($v_f = 0$), it rearranges to $d_{\text{braking}} = v^2 / (2a)$. Total stopping distance is the sum, $d = d_{\text{reaction}} + d_{\text{braking}}$. One thing to check before you trust a number out of this: doubling $v$ should more than double $d$, since $v$ shows up squared in the braking term.
+And here's a description that you'll base your work on: a car doesn't stop the instant the driver decides to brake — there's a **reaction time** first, maybe 1.5 s, during which the car just keeps cruising at speed $v$. That chunk of distance is just speed times time, $d_{\text{reaction}} = v \cdot t_{\text{reaction}}$. Then the brakes engage and the car decelerates from $v$ to $0$ at a roughly constant deceleration $a$. 
+
+The kinematic equation is $v_f^2 = v_0^2 - 2ad$. Since we're solving for where the car finally stops ($v_f = 0$), it rearranges to $d_{\text{braking}} = v^2 / (2a)$. Total stopping distance is the sum, $d = d_{\text{reaction}} + d_{\text{braking}}$. One thing to check before you trust a number out of this: doubling $v$ should more than double $d$, since $v$ shows up squared in the braking term.
 :::
