@@ -1,625 +1,170 @@
 [
   {
-    "objectID": "lessons/02b-reading-code.html",
-    "href": "lessons/02b-reading-code.html",
-    "title": "Reading code and conditional statements",
+    "objectID": "lessons/03-functions.html",
+    "href": "lessons/03-functions.html",
+    "title": "Functions: the contract",
     "section": "",
-    "text": "Tuesday we ran code and thought about the results, today we are going to focus on how read and understand the code without needing to run it. Included is an example of the spec → prompt → annotate → verify process. Then we go through conditional statements, which bring us to the interesting and sometimes-confusing world of branching logic: if something is True, do this, but if False, do something else.",
+    "text": "Getting an area from a radius, power from a resistance and current, distance traveled from velocity and time… these are calculations engineers do repeatedly. While we could write\n… and then edit that code for every new calculation, we might instead write a function that takes current and resistance as inputs and produces power as an output. Any calculation we use over and over again is a good candidate for turning into a function. We’ll learn about functions in this lesson.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code and conditional statements"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions: the contract"
     ]
   },
   {
-    "objectID": "lessons/02b-reading-code.html#think-first",
-    "href": "lessons/02b-reading-code.html#think-first",
-    "title": "Reading code and conditional statements",
+    "objectID": "lessons/03-functions.html#think-first",
+    "href": "lessons/03-functions.html#think-first",
+    "title": "Functions: the contract",
     "section": "Think First",
-    "text": "Think First\nRecall\n\nFrom Tuesday: what does = actually do, and why is count = count + 1 not nonsense?\nFrom week 1: what fills the gaps in an under-specified prompt?\n\nLook Ahead\n\nCould you convince someone a program is correct without running it?\nWhat’s the difference between a comment that says what a line does and one that says why it’s there?\nWhat does it mean for a program to “choose” between two different things to do — and how would you trace that choice by hand?",
+    "text": "Think First\nRecall\n\nWeek 1: what are the parts of a complete specification?\nWeek 2: the pool-filling script computed the time to fill one pool. What would you do if your boss asked about 50 different pool designs?\n\nLook Ahead\n\nWhat should happen when a function is defined but never called?\nIf a variable is created inside a function, should the rest of the program be able to see it?",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code and conditional statements"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions: the contract"
     ]
   },
   {
-    "objectID": "lessons/02b-reading-code.html#the-reading-vocabulary",
-    "href": "lessons/02b-reading-code.html#the-reading-vocabulary",
-    "title": "Reading code and conditional statements",
-    "section": "The reading vocabulary",
-    "text": "The reading vocabulary\nYou already know enough Python to read most short engineering scripts. Here’s a beginning inventory:\n\n\nTruthfully, much of what I code is handling arithmetic — nothing fancy at all. Take these numbers, square them and multiply by this constant, and plot the result. You don’t know plotting yet, but you are quickly learning to understand how math is represented in code.\n\n\n\nYou see\nIt means\n\n\n\n\nx = 5\nstore 5 under the name x (“x is assigned 5”)\n\n\nprint(x)\ndisplay the value of x\n\n\nx ** 2, x / y\npower, division\n\n\n# text\ncode comments",
+    "objectID": "lessons/03-functions.html#anatomy-of-a-function",
+    "href": "lessons/03-functions.html#anatomy-of-a-function",
+    "title": "Functions: the contract",
+    "section": "Anatomy of a function",
+    "text": "Anatomy of a function\n\n\n\n\n\n\nThis cell is live — feel free to edit it, break it, change the default gravity (Mars has \\(g = 3.71\\)).\nWhat’s in here: - def is the syntax that starts a function definition. - fall_time is the function name (we choose it). - (h, g=9.81) are the function inputs, with g given a default value so callers can omit it. - Then we have an indented block that does the tasks we wrote the function for. Here, just a bit of math. - The triple-quoted line is a docstring: the function’s specification, basically a comment that describes the function’s purpose. Technically optional, but a good idea. - return tells us the thing(s) that is (are) output once the function is done with its magic.\n\n\nDefining a function does not mean the function runs. To actually get values from a function, we must call it: fall_time(3.0).\nCalling it:\nt1 = fall_time(3.0)          # wrench dropped from h = 3 m in Earth's gravity\nt2 = fall_time(3.0, 1.62)    # same drop on the Moon\nBefore you run: should it take longer to fall when the gravity is lower? Verification!",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code and conditional statements"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions: the contract"
     ]
   },
   {
-    "objectID": "lessons/02b-reading-code.html#tracing-running-code-in-your-head",
-    "href": "lessons/02b-reading-code.html#tracing-running-code-in-your-head",
-    "title": "Reading code and conditional statements",
-    "section": "Tracing: running code in your head",
-    "text": "Tracing: running code in your head\nTo trace a program, be the computer: go top to bottom, one line at a time, keeping a little table of every variable’s current value. (Run the code after your trace to confirm your suspicions.)\n\n\n\n\n\n\n\n\n\n\n\n\nNoteClick to see the trace\n\n\n\n\n\nAfter line 1: a = 2, with b and c not yet defined. After line 2: a = 2, b = 5. After line 3: a = 20, b = 5. After line 4: c = 25.\n\n\n\nTracing is slow and that’s fine — it’s a verification strategy you’ll only deploy on the sections you aren’t sure about",
+    "objectID": "lessons/03-functions.html#the-docstring-is-basically-a-specification",
+    "href": "lessons/03-functions.html#the-docstring-is-basically-a-specification",
+    "title": "Functions: the contract",
+    "section": "The docstring is basically a specification",
+    "text": "The docstring is basically a specification\nLook at fall_time(h, g=9.81) and its docstring — you know almost everything about the function from reading it: what goes in, with what units, what comes out, what’s assumed (from rest). A good problem specification practically writes the prompt and the docstring, but you can also ask for a good, detailed docstring in your prompt:\n\nWrite a Python function pressure_drop(L, D, Q) returning the pressure drop in Pa for laminar water flow through a smooth pipe of length L (m), diameter D (m), at flow rate Q (m³/s). Assume 20 °C water. Include a docstring stating the formula and its valid range.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code and conditional statements"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions: the contract"
     ]
   },
   {
-    "objectID": "lessons/02b-reading-code.html#annotation",
-    "href": "lessons/02b-reading-code.html#annotation",
-    "title": "Reading code and conditional statements",
-    "section": "Annotation",
-    "text": "Annotation\nWhen an AI hands you code, you will annotate it. That’s not the same as reading the comments the AI already left, it means writing, in your own words, what every line or logical block does and why it’s there. Producing that explanation yourself, not just reading someone else’s, is what actually proves you understand the code.\n\n\n\n\n\n\nImportant\n\n\n\nRule 1: A line you can’t annotate is a line you do not understand.\nRule 2: Annotate the why, not just the what. # convert to liters is better than # multiply by 1000. (The latter is probably a repeat of the code!)",
+    "objectID": "lessons/03-functions.html#check-the-function-in-isolation",
+    "href": "lessons/03-functions.html#check-the-function-in-isolation",
+    "title": "Functions: the contract",
+    "section": "Check the function in isolation",
+    "text": "Check the function in isolation\nBefore a function enters any larger program: call it at least once with a case you can check by hand.\nprint(fall_time(3.0))   # hand estimate said ~0.78 — confirm before proceeding\nNext week we’ll be calling functions inside loops, maybe 100 or 1000 times. Basically impossible to check all of them, but checking one or two… if they work out correctly, that is a good sign.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code and conditional statements"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions: the contract"
     ]
   },
   {
-    "objectID": "lessons/02b-reading-code.html#one-full-lap-the-3d-printer-problem",
-    "href": "lessons/02b-reading-code.html#one-full-lap-the-3d-printer-problem",
-    "title": "Reading code and conditional statements",
-    "section": "One full lap: the 3D-printer problem",
-    "text": "One full lap: the 3D-printer problem\nThe problem: How much filament will it take to 3D-print this part?\nStep 1 — Specification. Inputs — part volume (cm³), infill fraction (0–1), filament diameter (mm). Output — filament length needed, in meters. Assumptions — filament is drawn out as a solid cylinder, no waste from priming or purge lines, infill fraction distributed uniformly. Edge cases — zero diameter will raise a division-by-zero error rather than silently returning a bad result.\n\n\nThe slicer is the software that turns a 3D model into printing instructions. The infill fraction is the fraction of a part’s interior that is plastic — if its value is, say, 0.20, the interior of an apparently solid object is a lattice that is 20% plastic and 80% air.\nStep 2 — The prompt. The spec practically is the prompt:\n\nWrite a Python script that computes the length of filament needed to 3D-print a part. Inputs: part volume in cubic centimeters, infill fraction (0 to 1), and filament diameter in millimeters. Output the filament length in meters including units. Comment each step, including tracking the units/unit conversions along the way.\n\nStep 3 — Annotate what comes back. Suppose the AI returns:\n\n\n\n\n\n\nSome initial good news: the code runs without any error messages, and every line is commented and makes sense. We’ve annotated three lines… these are worth checking: are the conversions and equations correct? They are chances for a silent error that would deliver an incorrect output!\n\n\nYou don’t necessarily need to comment every line, especially if the variable names are intuitive. You also might be able to comment on an entire block at once, or if there are repeated steps just describe the first one, or … . Just make sure your code+comments is understandable!\nStep 4 — Verify. Hand estimate: the printed volume is \\(45 \\times 0.20 = 9\\) cm³ = 9,000 mm³. The filament’s cross-section is roughly \\(\\pi (0.875)^2 \\approx 2.4\\) mm². So the required length is \\(\\approx 9{,}000 / 2.4 \\approx 3{,}750\\) mm \\(\\approx 3.75\\) m. We were careful with units here, good. Edge case: set diameter = 0 and predict what happens before running.\n\n\nYou might ask: why did we write a program, and then calculate it by hand anyway? It’s good to have the confirmation — we might not trust the AI, and we might not trust our algebra, but if they agree we can feel better about both. But more importantly: we will get into functions next week, where we write code that can accept different input values, and maybe we use that function 1000 times on a project. With functions, we’ll check on one or two cases by hand, and if it’s good we can feel OK about using that function for the other 998 cases.\n\nWhen the AI gets it plausibly wrong\nThe AI might return something like\nvolume_filled_mm3 = volume_filled_cm3 * 100    # convert cm^3 to mm^3\n(E.g., centimeters to meters is a factor of 100… maybe it sees cm and conversion and assumes we are going that way.) It runs and reports a filament length of 0.37 m — maybe believable, but wrong by a factor of ten.",
+    "objectID": "lessons/03-functions.html#local-names-the-functions-private-scratchpad",
+    "href": "lessons/03-functions.html#local-names-the-functions-private-scratchpad",
+    "title": "Functions: the contract",
+    "section": "Local names: the function’s private scratchpad",
+    "text": "Local names: the function’s private scratchpad\nIt is probably easier to see this than understand an explanation. What do you predict will be printed in the following code?\n\n\n\n\n\n\n\n\n\n\n\n\nNoteClick for the answer\n\n\n\n\n\n5. The result inside double is local — it exists only while the function runs, in the function’s private workspace, and it is a different variable from the “outer” result, despite the shared name. This is a feature, not a hazard: it means you can use a function without knowing or caring what names it uses internally. Functions go inputs → output; the function interior is kept secret from the outside.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code and conditional statements"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions: the contract"
     ]
   },
   {
-    "objectID": "lessons/02b-reading-code.html#one-more-thing-ifelifelse",
-    "href": "lessons/02b-reading-code.html#one-more-thing-ifelifelse",
-    "title": "Reading code and conditional statements",
-    "section": "One more thing: if/elif/else",
-    "text": "One more thing: if/elif/else\nCode tracing through algebra, checking unit conversions and area equations, etc., is important but kind of boring. Let’s go ahead and introduce conditional statements in this reading: they lead to branching… the code takes different paths depending on whether a condition is True or False.\n\nConditions\nConditions are expressions that evaluate to either True or False. Very useful in coding, e.g. if we are doing a fluid mechanics calculation, the pressure-drop equation we use depends on whether the flow is laminar or turbulent. Our code might check “is the flow turbulent?” If False, it will proceed with the laminar equation; if True, it will proceed with the turbulent equation.\nHere are examples of all six basic conditions:\n\n\n\nCondition\nMeaning\n\n\n\n\nx == 5\n“x is equal to 5”\n\n\nb!=3\n“b is not equal to 3”\n\n\na&gt;3\n“a is greater than 3”\n\n\na&gt;=2\n“a is greater than or equal to 2”\n\n\nc&lt;-99\n“c is less than negative 99”\n\n\nc&lt;=8\n“c is less than or equal to 8”\n\n\n\n\n\nThe double equals == is the “conditional equals”, the single equals = is the “assignment equals”. 5=3 will get you an error, but 5==3 will be interpreted as False, and the program will keep running no problem.\nThese conditions evaluate as either True or False:\n\n\n\n\n\n\nConditional statements can also be combined, and in Python it is really nice: we get to use the words and and or. Statements with and or or can still be evaluated as True or False\n\n\nMATLAB, Java, C, C++, and others use && and || for “and” and “or”… not too bad, but not as readable as and and or!\n\n\n\n\n\n\nand we can make it pretty complicated by combining these expressions!\n\n\n\n\n\n\n\n\nif statements\nThese are very readable, so let’s just dive in with a basic example:\n\n\n\n\n\n\nThis is an if statement. If the condition described after the if is True, Python executes the code inside the block that follows; if it is False, it skips it.\n\n\nIn Python, a block is a collection of lines with the same amount of indent level. Python is a unique language in that it defines its blocks based on the indent — in other languages we enclose blocks in braces {} or maybe we introduce a block with an if and end it explicitly with a line that just says end. Many folks enjoy Python because it is uncluttered.\n\n\n\n\n\n\nWarning\n\n\n\nPython’s indented blocks are very nice, the code looks very clean, but you have to be accurate with your spacing. This is fine:\n\n\n\n\n\n\nand this is fine\n\n\n\n\n\n\nbut this will break\n\n\n\n\n\n\n\n\nBe alert for rogue spaces!\n\n\nif/else statements\nThis is pretty intuitive as well:\n\n\n\n\n\n\nThis is an if/else statement: it checks the condition after the if and, if it’s true, it executes the code within the if block but not the code within the else block. If the condition after the if is false it skips the code within the if block and executes the code within the else block.\n\n\nif/elif/else statements\nA third structure:\n\n\nIn Python, elif is “else if”.\n\n\n\n\n\n\nThis is an if/else if/else statement: it checks the condition after the if and, if it is True, it executes the if block then skips the elif and else blocks. If the condition after the if is False, it checks the condition after the elif, and if that is True, it executes the elif block and skips the else block. If both the if and elif conditions are False, it executes the code within the else block.\nI feel like explaining that in a paragraph might have been more confusing than just reading the code!\n\n\n\n\n\n\nImportant\n\n\n\nYou can add more than one elif. The conditions are always checked from top to bottom, and the first one that evaluates as True is the only part of the structure that is actually executed by Python.\nIt is not mandatory to have an else statement. If none of the if/elif conditions are True and there is no else, it is effectively the same as just skipping the whole block. Sometimes that is desired!\n\n\n\n\nNested conditional statements\nBy using two levels of indentation, we can create nested conditional statements. Try to understand the following…\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf the if statement is false, we move on to the elif. If the elif statement is True, we execute its block. Within there, we’ve got another if to consider.\n\n\nThe hardest trace on this page!\n\nBelow is an AI-generated script with three planted flaws: one syntax error (won’t run), one loud error (runs, obviously wrong), and one silent error (runs, plausibly wrong). On paper: annotate every line, name all three flaws, trace the if statement and say whether its warning prints, and state what the correct filament length should be. Don’t run it first, you are here to learn!\nimport math\n\ndiameter     = 1.75    # filament diameter, mm\npart_volume  = 45      # part volume, cm^3\ninfill       = 0.20    # fraction of volume actually printed\nspool_volume = 285     # cm^3 of plastic on a standard 1 kg spool\n\nvolume_filled = part_volume * infill      # cm^3 of plastic actually extruded\nvolume_mm3    = volume_filled * 1000      # convert cm^3 to mm^3\narea          = math.pi * diameter ** 2   # cross-sectional area of filament, mm^2\nlength_mm     = area / volume_mm3         # mm of filament needed\nlength_m      = length_mm / 1000          # convert mm to m\n\nif volume_filled &gt; spool_volume:\n    print(\"warning: volume larger than standard spool size\")\n\nprint(\"Filament needed:\", length_m \"m\")\n\n\n\n\n\nWe’re building a collection of error messages. In class on Tuesday we encountered NameError (used a variable name Python has never seen before), SyntaxError (the code is not valid Python — it can’t run), and TypeError (e.g., we tried to do math with data that was interpreted as text: in 5+“15”, the 15 is text). Setting diameter = 0 back in Step 4 gives a ZeroDivisionError (you asked Python to divide by zero). When we had inconsistent indentation in the if block, we got an IndentationError.",
+    "objectID": "lessons/03-functions.html#bring-functions-and-ai-together",
+    "href": "lessons/03-functions.html#bring-functions-and-ai-together",
+    "title": "Functions: the contract",
+    "section": "Bring functions and AI together",
+    "text": "Bring functions and AI together\nThe workflow that carries the rest of the semester: spec the function → prompt for it → annotate the body → hand-check it in isolation → use it. Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.\n\n\n\n\n\n\nTipThink\n\n\n\nThe docstring says what the function should do. The annotation says what the function actually does. Verification is checking that those two are the same.\n\n\n\nPick one from the menu — (a) stopping distance for a car under braking, (b) a °F/°C/K temperature converter — and on paper write: the full signature with units, a two-sentence docstring including assumptions, and one hand-checkable test case with its expected output (show the arithmetic). Thursday you’ll direct the AI to build it and your committed test case becomes the acceptance test. If the AI’s function fails your test, one of you is wrong — and finding out which is the whole game.\nIf you’re picking (a), here’s a refresher in case the pieces are fuzzy. A car doesn’t stop the instant the driver decides to brake — there’s a reaction time first, maybe 1.5 s, during which the car just keeps cruising at speed \\(v\\). That chunk of distance is just speed times time, \\(d_{\\text{reaction}} = v \\cdot t_{\\text{reaction}}\\). Then the brakes engage and the car decelerates from \\(v\\) to \\(0\\) at some roughly constant deceleration \\(a\\). This piece comes from the kinematic equation \\(v_f^2 = v_0^2 - 2ad\\) — since we’re solving for where the car finally stops (\\(v_f = 0\\)), it rearranges to \\(d_{\\text{braking}} = v^2 / (2a)\\). Total stopping distance is the sum, \\(d = d_{\\text{reaction}} + d_{\\text{braking}}\\). One thing to check before you trust a number out of this: doubling \\(v\\) should more than double \\(d\\), since \\(v\\) shows up squared in the braking term.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "Reading code and conditional statements"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions: the contract"
     ]
   },
   {
-    "objectID": "lessons/01b-what-llms-do.html",
-    "href": "lessons/01b-what-llms-do.html",
-    "title": "What does an LLM actually do?",
+    "objectID": "lessons/02a-first-contact.html",
+    "href": "lessons/02a-first-contact.html",
+    "title": "First contact with coding",
     "section": "",
-    "text": "You will use AI consistently in this course and you might have some experience already. (If not, don’t worry!) Let’s spend one lesson on what’s it’s actually doing.",
+    "text": "This lesson gets you running Python code in your browser via Google Colab — nothing to install on your computer, nothing to configure, and so we’ll be able to get going very quickly.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
+      "First contact with coding"
     ]
   },
   {
-    "objectID": "lessons/01b-what-llms-do.html#think-first",
-    "href": "lessons/01b-what-llms-do.html#think-first",
-    "title": "What does an LLM actually do?",
+    "objectID": "lessons/02a-first-contact.html#think-first",
+    "href": "lessons/02a-first-contact.html#think-first",
+    "title": "First contact with coding",
     "section": "Think First",
-    "text": "Think First\nRecall\n\nYour phone’s keyboard suggests the next word as you type. How do you think it decides what to suggest?\nHave you ever confidently “remembered” something that turned out to be wrong?\n\nLook Ahead\n\nIf two students give an AI the exact same prompt, will they get the exact same code back?\nWhy might an AI be better at writing code than at doing arithmetic?",
+    "text": "Think First\nRecall\n\nFrom last week: what does an LLM do with the gaps in your specification?\nWe evaluate 2 + 3 * 4 as 14, not 20. What rule is it following, and did anyone ever teach it to you as a computing rule?\n\nLook Ahead\n\nIf AI can write code, why are we about to learn to read it line by line?\nWhat’s the difference between a program storing a value and displaying a value?",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
+      "First contact with coding"
     ]
   },
   {
-    "objectID": "lessons/01b-what-llms-do.html#the-short-version",
-    "href": "lessons/01b-what-llms-do.html#the-short-version",
-    "title": "What does an LLM actually do?",
-    "section": "The short version",
-    "text": "The short version\nA large language model (LLM) does one thing:\n\nGiven some text, predict a plausible next small chunk of text.\n\nThat’s it. Everything else — the code-writing, the explanations, the apparent reasoning — emerges from doing that one thing extremely well, at enormous scale.\n\n\nThe “small chunks” are called tokens — usually a word or piece of a word. thermal might be one token; thermodynamics might be three. (Different than the tokens involved in our standards-based grading scheme!)\nThe model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and importantly for us, billions of lines of code — and adjusting billions (perhaps trillions) of internal numerical knobs until its “next-chunk” predictions got very good. This is what we mean when we talk about a new LLM “model” — there are more parameters (knobs) and updated tunings of those knobs that do a better job of creating accurate/plausible bodies of text.",
+    "objectID": "lessons/02a-first-contact.html#google-colab-edit-code-in-your-browser",
+    "href": "lessons/02a-first-contact.html#google-colab-edit-code-in-your-browser",
+    "title": "First contact with coding",
+    "section": "Google Colab: edit code in your browser",
+    "text": "Google Colab: edit code in your browser\nGo to colab.research.google.com and sign in with your university Google account. Click New notebook. You now have a notebook: a document made of cells, where each cell holds a bit of Python code you can run by pressing Shift+Enter (or the ▶ button).\nType this into the first cell and run it — or, since this page runs Python right here in your browser, you can edit and run the code below (the first run takes a few seconds while Python loads; after that it should be fast):\n\n\n\n\n\n\nThe text should appear below the cell. The print(...) part is a function (a named, reusable action — much more on these in week 3) whose job is to display the thing between the quotes.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
+      "First contact with coding"
     ]
   },
   {
-    "objectID": "lessons/01b-what-llms-do.html#three-consequences",
-    "href": "lessons/01b-what-llms-do.html#three-consequences",
-    "title": "What does an LLM actually do?",
-    "section": "Three consequences",
-    "text": "Three consequences\nEverything strange about LLM behavior falls out of that mechanism.\n\n1. Its answers are plausible, but might not be true\nThe model produces text that is statistically likely to follow your prompt — the text sounds like what the correct answer might sound like. It is not reasoning based on physics, it has read a bunch of text written by humans who reasoned based on physics. Then it realized, statistically, that whenever those humans mention “physics”, “black holes”, and “singularity”, it is probably appropriate to use the word “Hawking”, and a likely word after that is “radiation”.\n\n\nOne concerning thing about LLMs is that they are increasingly being trained on text generated by LLMs — so much internet content is generated by LLMs that the LLMs are reinforcing their own tendencies and possibly that will lead to quality degrading over generations.\nUsually, the most plausible continuation of an engineering question is the correct answer, which is why these tools are often useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn’t apply to the situation (dangerous!), a citation to a paper that doesn’t exist, a recipe with a cup of vanilla instead of a teaspoon. This is often called a hallucination, and the dangerous part is that the LLM can be just as confident about a hallucination as it is about real information.\n\n\n\n\n\n\nImportant\n\n\n\nThere is no tone difference between an LLM being right and an LLM being wrong. Verify!\n\n\n\n\n2. Same prompt, different answers\nPrediction produces a menu of plausible next chunks, each with a probability. By design, the model doesn’t always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.\n\n\nLLMs with a higher “temperature” value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it creates the same output every time.\nThis is why, on Thursday, 15 tables prompting for the same task will produce 15 different programs — different variable names, different structures, sometimes different algorithms, occasionally different answers. Thinking about that is an important aspect of this class!\n\n\n3. A good specification tames the LLM\nA prompt is the text you supply to the LLM, maybe a question. An effective prompt is thoughtful… it’s not like a Google search where you just say some relevant words (“lyrics steely dan”) and then you, yourself, look through the results to find what you are looking for. You should be supplying instructions, relevant context, and constraints.\n\n\nDoes anyone else find it annoying that Google’s first result is now AI? Whenever I don’t know exactly what I am looking for, being able to scan the first few results is usually what it takes to figure it out; and whenever I do know what I am looking for, I am not interested in Gemini’s mediocre summary!\n“Build me a diet plan” is too general to be immediately useful… are you trying to lose weight? Gain weight? Gain muscle? Add more fiber? Eliminate carbs? Allergic to nuts? The LLM will probably follow up with questions like that, and you’ll end up somewhere good, but sometimes it might make assumptions for you that you have to spend time undoing. (“Yuck, it wants me to eat fish three times a week!”)\nRather than arguing with the LLM for 15 minutes, wasting a bunch of water and electricity in the process, you should be thoughtful about your specifications.\n\n\nThe context window is the cap on how much of that text the model can “see” at once — your current prompt, along with (at least some of) your previous questions in the same conversation, any files you’ve included. And maybe you’ve given the LLM some baseline instructions that are automatically applied to all conversations. There is a limit on how much of that information can be included in a given text-generation step, and even if it were all included, the more context it has, the greater chance of getting confused! I suspect part of the model development that is happening is about doing a better job understanding what in the context window is most relevant to your current prompt.",
+    "objectID": "lessons/02a-first-contact.html#variables-giving-numbers-names",
+    "href": "lessons/02a-first-contact.html#variables-giving-numbers-names",
+    "title": "First contact with coding",
+    "section": "Variables: giving numbers names",
+    "text": "Variables: giving numbers names\nA variable is a name attached to a value, so you can use the value by its name:\ng = 9.81        # gravitational acceleration, m/s^2\nh = 3.0         # drop height, m\n\n\nThe text after a # is a code comment — a note for humans that Python ignores. Here, we described the physical meaning of the variables and included the units of the number.\nVariable names can be simple or complex. Probably you will appreciate being able to write a simple, readable equation y=0.5*g*t**2 later in your code, but we also could have defined gravity_earth_surface = 9.81 and then used y=0.5*gravity_earth_surface*t**2 later on.\n\n\n\n\n\n\nTip\n\n\n\nIt is good practice to make the variable names descriptive such that you know what is going on in the equations involving those variables. Something like g in a mechanics-based program is probably fine because we are so used to seeing g in our mechanics equations. But if we had some code that involved gravity on earth and gravity on the moon (for some reason), it is better to write those as g_earth and g_moon instead of g_1 and g_2.\n\n\nThe = sign here does not mean “equals” in the algebra sense. It means “store the value under this name.” This structure conflicts with our experience in math class, for example:\ncount = count + 1\nIf we did algebra on this equation: subtract count from both sides, leaving 0=1… nonsense. But as an instruction, it will take the (current) value of count, add 1, and store the resulting value under the name count (thus replacing the old value stored under that name). This is perfectly acceptable practice, and indeed it is a common ingredient in code.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
+      "First contact with coding"
     ]
   },
   {
-    "objectID": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
-    "href": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
-    "title": "What does an LLM actually do?",
-    "section": "Why is it so good at code, anyway?",
-    "text": "Why is it so good at code, anyway?\nThe biggest reason: the training data included billions of lines of code, much of it from working programs, and a lot of solid documentation from the code creators themselves ( find_peaks). So there is a strong statistical signal that these are very relevant words for this task.\nBut furthermore: code is checkable. Compare\n\n“You can’t fix every problem, so just focus on doing good work in your own corner of it.”\n\nwith\n\n“It is not our part to master all the tides of the world, but to do what is in us for the succour of those years wherein we are set, uprooting the evil in the fields that we know, so that those who live after may have clean earth to till.”\n\nHow can you judge that the first one is “wrong”? Based on our understanding of how LLMs work, every new word/token in that line is a completely reasonable continuation of the sentence. The second one, by Tolkien, is better, but not “more correct”.\nMeanwhile: if code doesn’t run, something is wrong, and we further will get an output from code that can possibly be confirmed/validated against known results. Modern LLMs are able to run code on the cloud to confirm they perform as intended, and they are increasingly willing to compare against test cases for you: if you need some code to find the area under a curve, an LLM might write it, run it, and compare against the known area under \\(y=x\\) from 0 to 1. Basically, the LLMs are doing their own small verification. That probably isn’t sufficient to confirm that the code does what it is supposed to, but it is necessary that the code works for at least that basic problem.\nWe will do our own audit and verification of the code: read through it to make sure it follows a logic we agree with, and test its output in several ways. We may need to iterate — the AI gives us code that seems like it is 90% of the way to succeeding at the job, but there is an error, and so we need to work with the AI to revise. Unlike prose, we can identify specifics about what is wrong and eventually arrive at something that is verified correct.\n\n\nMeanwhile: LLMs are historically mediocre at arithmetic — predicting a text representation of numbers in a calculation is not the same as calculating.",
+    "objectID": "lessons/02a-first-contact.html#a-good-habit-to-get-into-predict-then-run",
+    "href": "lessons/02a-first-contact.html#a-good-habit-to-get-into-predict-then-run",
+    "title": "First contact with coding",
+    "section": "A good habit to get into: predict, then run",
+    "text": "A good habit to get into: predict, then run\nHere is a complete little program. Before you run it, write down what you expect it to display.\n\n\n\n\n\n\n(Sure, you can run it without thinking. I’m not keeping track of what you are doing here… for the sake of your learning, I think you should think! Otherwise this is like the most boring game on the internet: click to see some text.)\n\n\n** is, annoyingly, Python’s “raise to a power.” So x ** 0.5 is a square root. And * must always be written explicitly: 2h will give an error; you need 2 * h instead.\nSome reading help: line 3 computes \\(t = \\sqrt{2h/g}\\), the fall time of an object dropped from height \\(h\\), subject to gravity \\(g\\). So: \\(2 \\times 3 / 9.81 \\approx 0.61\\), and \\(\\sqrt{0.61} \\approx 0.78\\). That is: we predict this code should produce something near 0.78.\nNow run it. It should match, unless you changed something in the code. Verification!",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
+      "First contact with coding"
     ]
   },
   {
-    "objectID": "lessons/01b-what-llms-do.html#the-stance-on-llms-in-this-course",
-    "href": "lessons/01b-what-llms-do.html#the-stance-on-llms-in-this-course",
-    "title": "What does an LLM actually do?",
-    "section": "The stance on LLMs in this course",
-    "text": "The stance on LLMs in this course\nNo doubt, LLMs are tools that can augment your abilities. A few years ago I might have manually combined 40 spreadsheets into one (which maybe would have taken an hour, but was annoying), or I might have written code to do that for me (which probably would have taken four hours to figure out… should have just done it manually arggg). Now I can ask an LLM to give me the Python code to do it, and the project is done in 5 minutes.\nI have become more ambitious and capable in some aspects of my work because I know I can get a head start using AI. But note: I am the one who came up with the idea, and I needed to describe the problem and some of the necessary steps. And, importantly, I am the one responsible if something breaks along the way, and so I need to have a strategy to confirm that everything made it into the finished project successfully.\nI think the following is very much in the spirit of coding in 2026: Think of LLMs as your extremely fast, extremely well-read, overconfident junior collaborator. You can use them to quickly retrieve information, you can ask them to help you write code, they can help troubleshoot problems. But ultimately, you are setting the expectations (specifications), and you are responsible for the project (so you better do some verification). And, further, there will be times when you have to show that you, too, actually know how to do the stuff (the checkpoints).\n\n\nOne more term you’ll see a lot: an agent is capable of actually making changes on your computer — creating new folders, creating/editing files, maybe sending emails — rather than giving you text in a web browser that you have to move around. Still basically a junior collaborator: you still provide the details and check the results, you just have to do less manual labor.\n\nAnswer these:\n\nTwo students give an LLM the identical prompt for a projectile program. Predict: (a) identical code, (b) different code, same numerical answers, (c) different code, possibly different answers. Write one sentence defending your pick.\nThe LLM hands you a projectile program and it runs without any errors, and produces a nice plot. List every distinct reason you can think of that its output might still be wrong.",
+    "objectID": "lessons/02a-first-contact.html#errors-are-data",
+    "href": "lessons/02a-first-contact.html#errors-are-data",
+    "title": "First contact with coding",
+    "section": "Errors are data",
+    "text": "Errors are data\nIn the code above, change t = (2 * h / g) ** 0.5 to t = (2 * h_2 / g) ** 0.5, and run it again. You’ll get an angry red block ending in something like:\nNameError: name 'h_2' is not defined\nTwo things to know about errors:\nThey are normal. Experts probably do make fewer errors, but they don’t make zero errors… and actually, I use errors as a way to write code faster: just write out a sloppy version of the code without expecting it to work, then: run, read and fix the error; run, read and fix the error; run, read and fix the error; and by then I’m probably done. Read the error messages, they usually describe the error and point to where it occurred in the code. Here: this is a NameError because we used a variable name that the program didn’t know.\nThey are the friendly failure mode. It is way more difficult to figure out why code runs successfully, but produces a wrong answer. Error messages are kind of nice because they tell you exactly what is wrong (maybe cryptically)!\n\n\n\n\n\n\nTip\n\n\n\nUnderstanding error messages is a genuinely good use of an LLM: paste the code and the full error, and ask what’s wrong. Verify the explanation makes sense — don’t let the LLM do all your thinking for you!",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "What does an LLM actually do?"
+      "First contact with coding"
     ]
   },
   {
-    "objectID": "info/sidequests.html",
-    "href": "info/sidequests.html",
-    "title": "Side Quests",
-    "section": "",
-    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
-  },
-  {
-    "objectID": "info/sidequests.html#the-menu",
-    "href": "info/sidequests.html#the-menu",
-    "title": "Side Quests",
-    "section": "The menu",
-    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
-  },
-  {
-    "objectID": "info/installing.html",
-    "href": "info/installing.html",
-    "title": "Getting going in your language",
-    "section": "",
-    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
+    "objectID": "lessons/02a-first-contact.html#reading-before-writing",
+    "href": "lessons/02a-first-contact.html#reading-before-writing",
+    "title": "First contact with coding",
+    "section": "Reading before writing",
+    "text": "Reading before writing\nYou now know enough to read simple Python. Predict what this displays before running:\n\n\n\n\n\n\n\n\n\n\n\n\nNoteClick for the answer\n\n\n\n\n\n8 — not 2. Line 2 stored the value 8 under b; it did not create a live mathematical relationship “b is twice a.” When a changed afterward, b is unaware. The code executes top to bottom, each line acting on values as they are at that moment.\n\n\n\n\nOn paper, two things:\n\nYour prediction for what this displays with one sentence of reasoning:\n\nx = 10\ny = x + 5\nx = x + 1\nprint(x)\nprint(y)\n\nAn electric toothbrush draws about 0.3 A of current (\\(I\\)) through 4 ohms of resistance (\\(R\\)); a space heater draws about 12 A through 10 ohms. On paper, set the current and resistance values in the first four lines of your code, then compute and print the power dissipated, \\(P = I^2 R\\), for both devices. Don’t forget to # comment! Write out your hand estimate on the side. Which device do you expect will dissipate more power?",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#python-via-google-colab",
-    "href": "info/installing.html#python-via-google-colab",
-    "title": "Getting going in your language",
-    "section": "Python via Google Colab",
-    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#python-on-your-machine",
-    "href": "info/installing.html#python-on-your-machine",
-    "title": "Getting going in your language",
-    "section": "Python on your machine",
-    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/installing.html#matlab-later-in-the-semester",
-    "href": "info/installing.html#matlab-later-in-the-semester",
-    "title": "Getting going in your language",
-    "section": "MATLAB (later in the semester)",
-    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Getting going in your language"
-    ]
-  },
-  {
-    "objectID": "info/basecamp.html",
-    "href": "info/basecamp.html",
-    "title": "Base Camp",
-    "section": "",
-    "text": "Mondays are an optional session/office hour. The first half of the semester, they are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
-  },
-  {
-    "objectID": "info/basecamp.html#the-sessions",
-    "href": "info/basecamp.html#the-sessions",
-    "title": "Base Camp",
-    "section": "The sessions",
-    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
-  },
-  {
-    "objectID": "info/basecamp.html#practice-library-async-base-camp",
-    "href": "info/basecamp.html#practice-library-async-base-camp",
-    "title": "Base Camp",
-    "section": "Practice library (async Base Camp)",
-    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
-  },
-  {
-    "objectID": "homework/hw1-grade-calculator.html",
-    "href": "homework/hw1-grade-calculator.html",
-    "title": "HW 1 · The grade calculator",
-    "section": "",
-    "text": "Note\n\n\n\nI will add an example solution (to a different problem) soon!",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "HW 1 · The grade calculator"
-    ]
-  },
-  {
-    "objectID": "homework/hw1-grade-calculator.html#scenario",
-    "href": "homework/hw1-grade-calculator.html#scenario",
-    "title": "HW 1 · The grade calculator",
-    "section": "Scenario",
-    "text": "Scenario\nBuild a program that tells a student their letter grade in this course.\nEverything the program needs to know is on the grading page — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "HW 1 · The grade calculator"
-    ]
-  },
-  {
-    "objectID": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
-    "href": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
-    "title": "HW 1 · The grade calculator",
-    "section": "It’s trickier than it looks!",
-    "text": "It’s trickier than it looks!\nAs you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "HW 1 · The grade calculator"
-    ]
-  },
-  {
-    "objectID": "homework/hw1-grade-calculator.html#your-submission",
-    "href": "homework/hw1-grade-calculator.html#your-submission",
-    "title": "HW 1 · The grade calculator",
-    "section": "Your submission",
-    "text": "Your submission\nStep 1 — Specify & prompt. Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…\n… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a print of the result.\nStep 2 — Annotate the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.\nStep 3 — Verify. Hand-compute your predictions before you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.\nStep 4 — Report. One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "HW 1 · The grade calculator"
-    ]
-  },
-  {
-    "objectID": "homework/example-parking-garage.html",
-    "href": "homework/example-parking-garage.html",
-    "title": "An example homework submission",
-    "section": "",
-    "text": "This is an example submission on a different problem to give you an idea of what we expect — think of this as a template.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe commentary boxes are comments I am adding. “The problem” is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "An example homework submission"
-    ]
-  },
-  {
-    "objectID": "homework/example-parking-garage.html#this-is-not-your-homework",
-    "href": "homework/example-parking-garage.html#this-is-not-your-homework",
-    "title": "An example homework submission",
-    "section": "",
-    "text": "This is an example submission on a different problem to give you an idea of what we expect — think of this as a template.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe commentary boxes are comments I am adding. “The problem” is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "An example homework submission"
-    ]
-  },
-  {
-    "objectID": "homework/example-parking-garage.html#the-problem",
-    "href": "homework/example-parking-garage.html#the-problem",
-    "title": "An example homework submission",
-    "section": "The problem",
-    "text": "The problem\nHere is a sign posted at the entrance of a parking garage.\n\nMESA LOT — RATES\n\nFirst 30 minutes: free\nUp to 2 hours: $4\nUp to 5 hours: $9\nOver 5 hours: $16\nDaily maximum: $16 — no vehicle is charged more than this in a 24-hour period\nOvernight surcharge (vehicle present at 3:00 AM): add $10\nDepartmental validation: $3 off\nLost ticket: $25 flat\n\n\nThe gate machine records the time a car enters and the time it leaves, and the attendant can tell you whether the ticket was validated or lost. A driver pulls up to the exit. Write a program that determines what they owe.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "An example homework submission"
-    ]
-  },
-  {
-    "objectID": "homework/example-parking-garage.html#step-1-specification-and-prompt",
-    "href": "homework/example-parking-garage.html#step-1-specification-and-prompt",
-    "title": "An example homework submission",
-    "section": "Step 1 — Specification and prompt",
-    "text": "Step 1 — Specification and prompt\nWhat the program needs to know. Four things that I’ll provide at the top of the script: the time the car entered, the time it left, whether the ticket was validated, and whether it was lost.\nThe awkward decision is how to write a time. I settled on a plain number on a 24-hour clock, in decimal hours — so 11:15 PM is 23.25. Writing 2:30 PM as 14.5 is a little unnatural, and I could have used hours and minutes as separate variables, but then the arithmetic gets messy and I’d be doing conversions by hand every time I tested something.\n\nOutput. One number printed to the screen: the amount owed, in dollars, to the nearest cent.\nDecisions I had to make, because the sign doesn’t say:\n\n\n\n\n\n\n\n\nSituation\nMy ruling\nWhy\n\n\n\n\nExactly 0.5 hours\nFree\nLet’s hope it’s a friendly lot.\n\n\nExactly 2.0 hours\n$4\nSame logic, be consistent.\n\n\nOvernight + the 5-hour rate = $26, above the daily max\nCharge $26\nThe max is about parking rates; the surcharge is a penalty on top. Could go the other way, would need to clarify.\n\n\nValidation and daily max together\nApply validation last, so $16 → $13\nThe discount is something the department gives you, so it should come off whatever you’d otherwise owe.\n\n\nLost ticket + validation\n$25 − $3 = $22\nThe sign doesn’t exempt it.\n\n\nLost ticket + overnight\n$25 flat, no surcharge\n“Flat”.\n\n\nValidation on a free stay\n$0, never negative\n“Parking garages hate this one trick” … program might return -$3!\n\n\nExit time equals entry time\nTreat as an error and say so\nEither they didn’t park or they stayed exactly 24 hours, and I can’t tell which. Not guessing.\n\n\nStay longer than 24 hours\nCan’t be expressed with two clock times, so out of scope\nA consequence of my input choice. If this mattered I’d need a date, not a time.\n\n\nA time outside 0 to 24\nRefuse, with an error\nNot a real clock time — probably a typo.\n\n\n\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis table is a good chunk of the grade. Every row states a ruling, and in cases of ambiguity a choice is made. “I could see it going the other way” is a reasonable addition to your submission. Again, this errs on the side of being over-detailed (with 10 cases)… five cases would probably be enough.\n\n\nMy prompt.\n\nWrite a short Python script (not function, I haven’t learned those yet) that calculates what a driver owes at a parking garage. I want the input values as variables at the top of the script where I can edit them by hand, then the calculation, then a print of the result. Don’t ask for user input.\nThe variables at the top are time_in and time_out, each a number on a 24-hour clock in decimal hours (11:15 PM is 23.25), and validated and lost_ticket, each True or False.\nA car may stay past midnight, so if time_out is less than or equal to time_in, add 24 to time_out before anything else. The duration is then time_out - time_in.\nThe car counts as overnight if it was in the lot at 3:00 AM — that is, if either 3 or 27 falls between time_in and time_out on that adjusted timeline.\nRate tiers by duration: 0 up to and including 0.5 hours is $0. Above 0.5 up to and including 2.0 hours is $4. Above 2.0 up to and including 5.0 hours is $9. Above 5.0 hours is $16.\nThen: if overnight, add $10 — this is allowed to exceed the $16 daily maximum, because the maximum applies to the duration rate only. Then if validated is True, subtract $3, but never below $0.\nIf lost_ticket is True, the charge is $25 flat regardless of duration and regardless of overnight, but validation still applies, giving $22.\nIf either time is outside 0 to 24, or if time_out equals time_in, print a message explaining the problem instead of a price.\nPrint the final amount to the nearest cent, with a dollar sign.\n\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe prompt carries the rulings from the table into the request. It states the boundaries as “up to and including,” names the order of operations explicitly, and says what not to do. Compare it to what most people would send: a photograph of the sign and “write me a program for this.” That version outsources all ten decisions to the LLM, which will make them silently.\nTwo important lines: the midnight rule and the 3-or-27 condition. Neither is on the sign. The student worked out that “present at 3:00 AM” means an interval containing 3 o’clock, and that a car parked from 10 PM to 6 AM lives on a timeline where 3 AM is at hour 27 — and then said so. \nNote also the part about not using functions. An LLM would likely jump to using functions, which is something we don’t know yet — though you can use them, if you have some experience. Telling LLMs what you know is a legitimate and underused aspect of prompting.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "An example homework submission"
-    ]
-  },
-  {
-    "objectID": "homework/example-parking-garage.html#step-2-annotation",
-    "href": "homework/example-parking-garage.html#step-2-annotation",
-    "title": "An example homework submission",
-    "section": "Step 2 — Annotation",
-    "text": "Step 2 — Annotation\nI’ve annotated the returned code in comments. A few lines I want to point out here:\n\n\n\n\n\n\nNoteClick here for the full script the LLM gave me\n\n\n\n\n\nThis is what came back, before I fixed anything — the two bugs from Step 3 are both still in here if you want to hunt for them yourself.\n# --- inputs, edit these by hand ---\ntime_in = 22.0        # 24-hour clock, decimal hours (11:15 PM = 23.25)\ntime_out = 4.0\nvalidated = False\nlost_ticket = False\n# ----------------------------------\n\nif time_in &lt; 0 or time_in &gt; 24 or time_out &lt; 0 or time_out &gt; 24:\n    print(\"Error: times must be between 0 and 24.\")\nelse:\n    if time_out &lt;= time_in:\n        time_out = time_out + 24      # car crossed midnight\n\n    if time_out == time_in:\n        print(\"Error: entry and exit times are the same.\")\n    else:\n        hours = time_out - time_in\n\n        # was the car here at 3 AM? (3 on day one, 27 on day two)\n        overnight = (time_in &lt;= 3 &lt;= time_out) or (time_in &lt;= 27 &lt;= time_out)\n\n        if hours &lt;= 0.5:\n            fee = 0.0\n        elif hours &lt;= 2.0:\n            fee = 4.0\n        elif hours &lt;= 5.0:\n            fee = 9.0\n        else:\n            fee = 16.0\n\n        if lost_ticket:\n            fee = 25.0\n\n        if overnight:\n            fee = fee + 10.0\n\n        if validated:\n            fee = fee - 3.0\n            if fee &lt; 0:\n                fee = 0.0\n\n        print(\"Amount owed: $\" + str(round(fee, 2)))\n\n\n\nif time_out &lt;= time_in:\n    time_out = time_out + 24    # the car crossed midnight\nThis is important for an overnight stay — for a car in at 9 and out at 14, the if condition is false and the line is skipped entirely. After this runs, time_out can be 28, which is not a real clock time… which felt wrong, but after inputting decimal times, we start thinking about durations instead.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis is a “tier three” (excellent) annotation — it doesn’t just say what the line does, it says the student noticed the result stopped looking like a clock time and had to work out why that’s still correct. Nothing in the code marks that shift, so catching it requires actually tracing the logic, not just reading each line in isolation.\n\n\nif hours &lt;= 0.5:\n    fee = 0.0          # exactly 30 min is free\nelif hours &lt;= 2.0:\n    fee = 4.0          # boundary at 2.0 goes to the cheap tier, as I asked\nThe elif chain is checked top to bottom and stops at the first true test, so a 0.4-hour stay never reaches the second line at all. That’s why the tiers can be written as simple &lt;= comparisons without needing to say “and greater than 0.5” — the earlier branch already ate those cases.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis one sits at “tier two” (good) — it’s more than a syntax gloss (“this is an elif”), since it explains why the comparisons can be written so simply. But it stops at describing the mechanism; it doesn’t flag anything the code decided that wasn’t asked for. Tier two is a perfectly acceptable annotation on its own — you don’t need tier three on every line — but a submission that never goes past tier two anywhere is probably not digesting the code completely.\n\n\nif lost_ticket:\n    fee = 25.0\nThis sits after the tier chain, so it overwrites whatever the duration produced. That’s correct behavior but it isn’t what I pictured — I imagined it checking the lost ticket first and skipping the tiers entirely.\n\n\n\n\n\n\nTipCommentary\n\n\n\nTier three again. The discovery is about ordering — the code runs every branch and then overrides the result with a final if statement. Similar to the first annotation, the student noted a design choice the LLM made that the prompt did not specify and talked about it.\nThe three tiers of annotation are something like:\n\nRestating the syntax (“this is an if statement”) is weakest.\nSaying what a line does in the problem’s terms, like the elif note above, is fine.\nAnnotation that also notices something — an ordering, a hidden assumption, a variable that changed what it means — is great.\n\nNot every single line needs to be the third tier.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "An example homework submission"
-    ]
-  },
-  {
-    "objectID": "homework/example-parking-garage.html#step-3-verification",
-    "href": "homework/example-parking-garage.html#step-3-verification",
-    "title": "An example homework submission",
-    "section": "Step 3 — Verification",
-    "text": "Step 3 — Verification\nPredictions computed by hand, written down before running anything.\n\n\n\nin\nout\nvalidated\nlost\nI expect\nCode gave\n?\n\n\n\n\n9.0\n9.5\nno\nno\n$0\n$0\nok\n\n\n13.0\n15.0\nno\nno\n$4\n$4\nok\n\n\n13.0\n15.1\nno\nno\n$9\n$9\nok\n\n\n22.0\n4.0\nno\nno\n$26\n$26\nok\n\n\n8.0\n8.25\nyes\nno\n$0\n$0\nok\n\n\n22.0\n4.0\nyes\nno\n$23\n$23\nok\n\n\n10.0\n13.0\nno\nyes\n$25\n$25\nok\n\n\n22.0\n4.0\nno\nyes\n$25\n$35\nno\n\n\n2.0\n5.0\nno\nno\n$19\n$19\nok\n\n\n8.0\n8.0\nno\nno\nerror\n$26\nno\n\n\n\nRow four is the one I was most worried about and it’s fine: 10 PM to 4 AM, so through 3AM, and it ended up fine. Row nine checks the other 3 AM case — a car that arrives at 2 AM and leaves at 5 AM never crosses midnight at all, but is still there at 3 — and that works too.\nRow eight is a real failure. My spec said a lost ticket is $25 flat regardless of overnight, and the prompt said so, but the if overnight block sits below the lost-ticket line and runs unconditionally, adding $10 to the flat charge. The model wrote the surcharge before it wrote the override and never reconciled them. I found it by testing combinations — lost alone passes, overnight alone passes, only the pair fails. The fix was moving the lost-ticket branch below the surcharge.\nRow ten is subtler and it’s my own fault, not the model’s. I asked for an error when the times are equal, and I also asked for the add-24 rule when time_out &lt;= time_in — and the add-24 rule is written first, so an 8-to-8 stay becomes a 24-hour stay, picks up the overnight surcharge on the way past 3 AM, and prints $26 before the error check ever runs. Two of my own requirements fighting each other. I moved the check above the wraparound.\nOne gripe: running ten cases meant editing four variables at the top and re-running the script ten times, then doing it all again after each fix. Thirty-odd edits and I lost my place twice. There has to be a better way to do this.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis is the best part of the submission and it’s why the predictions have to be written before running. If you fill in the “I expect” column after seeing the output, you will be tempted to agree with the code. Also notice that the interaction bug — two features that are each fine alone and wrong together — is the kind an LLM produces constantly.",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "An example homework submission"
-    ]
-  },
-  {
-    "objectID": "homework/example-parking-garage.html#step-4-report",
-    "href": "homework/example-parking-garage.html#step-4-report",
-    "title": "An example homework submission",
-    "section": "Step 4 — Report",
-    "text": "Step 4 — Report\nWhat this does. Given when a car entered and left the Mesa Lot, whether the ticket was validated, and whether it was lost, this script prints what the driver owes. Times go in as decimal hours on a 24-hour clock, e.g. 11:15 PM is 23.25, and the script handles the midnight wraparound and the 3 AM surcharge question itself.\nWhere I had to decide. The sign leaves a lot open and I ruled on ten cases, listed in Step 1. The three that actually changed the answer: the overnight surcharge stacks on top of the $16 daily maximum, validation comes off last so it applies to whatever you’d otherwise owe, and a lost ticket is $25 flat but still takes the $3 validation discount. I also put anything past 24 hours out of scope, which is a consequence of feeding the program clock times instead of dates.\nWhat went wrong. Two bugs. The model’s: a lost ticket picked up the overnight surcharge anyway, because the surcharge line sits below the override and runs unconditionally — it output $35 where I’d predicted $25. Mine: I asked for an error when the times are equal and for the wraparound whenever time_out &lt;= time_in, and the wraparound runs first, so an 8-to-8 stay quietly became a 24-hour stay and printed $26 instead of an error. Both were one-line moves. The second one is the one is harder to notice.\nProvenance. Claude Sonnet 4.6, prompted 4 September 2026; the full prompt is in Step 1 and the returned code is folded into Step 2.\n\n\n\n\n\n\nTipCommentary\n\n\n\nFour short paragraphs: no abstract, no restated rate table, no walkthrough of the code. The report points at the other steps rather than repeating them — “the three that actually changed the answer” instead of the full list of ten.\nYou don’t want this to be too long — shorter than the specification. The test to apply: could a classmate who never saw the sign read this and know what the program does, what you decided, and what they’d need to rerun it?",
-    "crumbs": [
-      "Home",
-      "Homework",
-      "An example homework submission"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation…\nhow computer logic works…\nand how to interpret code…\nbut we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”1: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, as long as we humans are an active participant in the process.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#the-big-idea",
-    "href": "index.html#the-big-idea",
-    "title": "Welcome",
-    "section": "The big idea",
-    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#how-a-week-works",
-    "href": "index.html#how-a-week-works",
-    "title": "Welcome",
-    "section": "How a week works",
-    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nClass time is mostly group work at the tables. Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you’ll actually implement them.\nGet extra practice on Mondays (optional). Base Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nCheckpoints happen on Tuesdays (weeks 4, 6, 8, 10): twenty-minute “mini-exams”, individual, on paper, with no AI. See the grading page.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#ai-policy",
-    "href": "index.html#ai-policy",
-    "title": "Welcome",
-    "section": "AI policy",
-    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#grading",
-    "href": "index.html#grading",
-    "title": "Welcome",
-    "section": "Grading",
-    "text": "Grading\nThis course uses standards-based grading, based on:\n\na list of specific skills (the standards), each marked Met or Not Yet\nand engagement credits for preparation and in-class work.\n\nThere is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#where-to-go-next",
-    "href": "index.html#where-to-go-next",
-    "title": "Welcome",
-    "section": "Where to go next",
-    "text": "Where to go next\nYour first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the Practice Library if you want to run some code right now in your browser (and let me know if it doesn’t work). If curious, you might browse the Side Quests — a few ideas are already on that page.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "Welcome",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nWe can’t look inside a “black box” to see what is going on.↩︎",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "info/grading.html",
-    "href": "info/grading.html",
-    "title": "How your grade works",
-    "section": "",
-    "text": "Your grade is built from two ingredients, plus the final exam modifier:\nThose two set a floor for your letter grade. The final exam — a written defense of your own project — then decides where inside that letter you land.\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#standards-the-concepts",
-    "href": "info/grading.html#standards-the-concepts",
-    "title": "How your grade works",
-    "section": "Standards: the concepts",
-    "text": "Standards: the concepts\nEvery standard gets multiple opportunities across the semester. The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget convergent standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesday classes (weeks 4, 6, 8, and 10) begin with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. At least one of a convergent standard’s two demonstrations must be in-class. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements and at least a bit of fluency with the language.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#engagement-credits-the-process",
-    "href": "info/grading.html#engagement-credits-the-process",
-    "title": "How your grade works",
-    "section": "Engagement credits: the process",
-    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used to make up some credits).",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#tokens",
-    "href": "info/grading.html#tokens",
-    "title": "How your grade works",
-    "section": "Tokens",
-    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, etc.); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#the-grade-table",
-    "href": "info/grading.html#the-grade-table",
-    "title": "How your grade works",
-    "section": "The grade table",
-    "text": "The grade table\nYour grade floor is the highest row where you meet every requirement in that row:\n\n\n\nFloor\nStandards Met (of 14)\nEngagement credits\n\n\n\n\nA-\n≥ 13\n≥ 40\n\n\nB-\n≥ 11\n≥ 32\n\n\nC-\n≥ 9\n≥ 24\n\n\nD-\n≥ 7\n≥ 16\n\n\n\nMissing the D- row is an F.\nMeeting these requirements earns you the minus grade, the final exam decides whether you stay there or move up.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#the-final-exam",
-    "href": "info/grading.html#the-final-exam",
-    "title": "How your grade works",
-    "section": "The final exam",
-    "text": "The final exam\n\nThe final is a written defense of your own project, assessed as:\n\n\n\nAssessment\nWhat happens\n\n\n\n\nWeak\nYou stay at your floor (e.g. B-)\n\n\nSolid\nUp to the whole grade (e.g. up to a B)\n\n\nDistinguished\nUp to the plus (e.g. up to a B+)\n\n\n\nNote about the ceiling: the university doesn’t issue A+ grades, so at the A- row a solid final and a distinguished final both land on A.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/grading.html#three-worked-examples",
-    "href": "info/grading.html#three-worked-examples",
-    "title": "How your grade works",
-    "section": "Three worked examples",
-    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 13 standards, earns 43 engagement credits, spends one token on an extension during a tough midterm week. Check the A- row: 13 ≥ 13 ✓, 43 ≥ 40 ✓ → floor of A-. Then the final: we might ask to trace the path the data takes through the functions and how something is filtered out, and let’s say Student 1 answers that well → solid → Grade: A.\n\n\nFor Student 1, the two unspent tokens add 2 credits (45), but that doesn’t change anything about the grade.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint, messing up two standards. No big deal — both are re-offered at the week-6 and week-8 checkpoints, and after also succeeding at them in the homework, Student 2 demonstrates each twice by mid-semester. Finishes with 11 standards Met. Then 41 engagement credits, having done the work all semester even while the checkpoints were rough. B- row: 11 ≥ 11 ✓, 41 ≥ 32 ✓ → floor of B-. Note that those 41 credits clear the A- row’s bar, but 11 standards don’t — the floor is the highest row where every requirement is met. Then the defense: Student 2 knows everything about the project, teammates’ files included → distinguished → Grade: B+.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 12 standards Met, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). A- row: 12 &lt; 13 ✗. B- row: 12 ≥ 11 ✓, but 25 &lt; 32 ✗. C- row: 12 ≥ 9 ✓, 25 ≥ 24 ✓ → floor of C-. The defense is, predictably, excellent → distinguished → Grade: C+. Is that harsh for someone with 12 standards and a great defense? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we would be at a B+.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "How your grade works"
-    ]
-  },
-  {
-    "objectID": "info/practice.html",
-    "href": "info/practice.html",
-    "title": "Practice Library",
-    "section": "",
-    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#sandbox",
-    "href": "info/practice.html#sandbox",
-    "title": "Practice Library",
-    "section": "Sandbox",
-    "text": "Sandbox\nNothing to solve — just a scratchpad.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#tracing-weeks-23",
-    "href": "info/practice.html#tracing-weeks-23",
-    "title": "Practice Library",
-    "section": "Tracing (weeks 2–3)",
-    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#functions-week-3",
-    "href": "info/practice.html#functions-week-3",
-    "title": "Practice Library",
-    "section": "Functions (week 3)",
-    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#logic-week-4",
-    "href": "info/practice.html#logic-week-4",
-    "title": "Practice Library",
-    "section": "Logic (week 4)",
-    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#loops-week-5",
-    "href": "info/practice.html#loops-week-5",
-    "title": "Practice Library",
-    "section": "Loops (week 5)",
-    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
-    ]
-  },
-  {
-    "objectID": "info/practice.html#arrays-weeks-56",
-    "href": "info/practice.html#arrays-weeks-56",
-    "title": "Practice Library",
-    "section": "Arrays (weeks 5–6)",
-    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
-    "crumbs": [
-      "Home",
-      "Start Here",
-      "Practice Library"
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "First contact with coding"
     ]
   },
   {
@@ -707,87 +252,626 @@
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html",
-    "href": "lessons/02a-first-contact.html",
-    "title": "First contact with coding",
+    "objectID": "info/practice.html",
+    "href": "info/practice.html",
+    "title": "Practice Library",
     "section": "",
-    "text": "This lesson gets you running Python code in your browser via Google Colab — nothing to install on your computer, nothing to configure, and so we’ll be able to get going very quickly.",
+    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
     "crumbs": [
       "Home",
-      "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact with coding"
+      "Start Here",
+      "Practice Library"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#think-first",
-    "href": "lessons/02a-first-contact.html#think-first",
-    "title": "First contact with coding",
+    "objectID": "info/practice.html#sandbox",
+    "href": "info/practice.html#sandbox",
+    "title": "Practice Library",
+    "section": "Sandbox",
+    "text": "Sandbox\nNothing to solve — just a scratchpad.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#tracing-weeks-23",
+    "href": "info/practice.html#tracing-weeks-23",
+    "title": "Practice Library",
+    "section": "Tracing (weeks 2–3)",
+    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#functions-week-3",
+    "href": "info/practice.html#functions-week-3",
+    "title": "Practice Library",
+    "section": "Functions (week 3)",
+    "text": "Functions (week 3)\nF1. Fill in the blank ______ so the function matches its docstring, then verify it works by running the code.\n\n\n\n\n\n\n\nArea is π r² — and remember Python needs the power written explicitly.\n\n\nreturn 3.14159 * r ** 2      # or: 3.14159 * r * r\n\nF2. Predict what prints.\n\n\n\n\n\n\n\nThe n inside the function is limited in scope. What happens in the function stays in the function — only the return value escapes.\n\n\n1 then 11. The outer n is untouched; add_ten worked on its own local copy and returned the result.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#logic-week-4",
+    "href": "info/practice.html#logic-week-4",
+    "title": "Practice Library",
+    "section": "Logic (week 4)",
+    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#loops-week-5",
+    "href": "info/practice.html#loops-week-5",
+    "title": "Practice Library",
+    "section": "Loops (week 5)",
+    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#arrays-weeks-56",
+    "href": "info/practice.html#arrays-weeks-56",
+    "title": "Practice Library",
+    "section": "Arrays (weeks 5–6)",
+    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/grading.html",
+    "href": "info/grading.html",
+    "title": "How your grade works",
+    "section": "",
+    "text": "Your grade is built from two ingredients, plus the final exam modifier:\nThose two set a floor for your letter grade. The final exam — a written defense of your own project — then decides where inside that letter you land.\nThere are no points, no weighted averages, no partial credit, and no curve. Maybe most interesting: you can recover if you struggle early and still receive an A grade!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#standards-the-concepts",
+    "href": "info/grading.html#standards-the-concepts",
+    "title": "How your grade works",
+    "section": "Standards: the concepts",
+    "text": "Standards: the concepts\nEvery standard gets multiple opportunities across the semester. The rules:\n\nConvergent standards (the ones with checkable right answers) require two successful demonstrations on different occasions.\nDivergent standards (open-ended) require one demonstration at “Meets” quality, with the right to revise and resubmit once per artifact.\n“Not Yet” means you aren’t there yet. But if you are Not Yet on a standard in week 4, then successfully demonstrate it in week 11, the standard is Met and you will receive full credit. (Though don’t forget convergent standards require two successful demonstrations.)\nReassessment happens at the scheduled reappearances of each standard, plus token-purchased retries — see Tokens.\n\n\nCheckpoints\nFour Tuesday classes (weeks 4, 6, 8, and 10) begin with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards and re-offers items from earlier checkpoints. At least one of a convergent standard’s two demonstrations must be in-class. \n\nExpect to produce a short function by hand from a given spec — five lines or so, no AI. Why, in a course that delegates production to LLMs, are we having you write code yourself from scratch? Because verification requires an understanding of coding elements and at least a bit of fluency with the language.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#engagement-credits-the-process",
+    "href": "info/grading.html#engagement-credits-the-process",
+    "title": "How your grade works",
+    "section": "Engagement credits: the process",
+    "text": "Engagement credits: the process\nPart of your grade will be based on before-class preparation and in-class collaboration. These won’t be graded on correctness, and instead are based on good-faith completion:\n\n\n\n\n\n\n\n\nEarned by\nCredits\nRoughly available\n\n\n\n\nBring-to-class item, written on paper, checked at the start of class\n1 each\n~22\n\n\nThursday activity deliverable\n2–3 each\n~24\n\n\nPin-up participation & review quality (weeks 12–13)\n3 each\n6\n\n\nTotal available\n\n~50\n\n\n\nRules: a wrong answer with detailed reasoning earns full credit; a blank or a transparently rushed scribble earns none. Credits are earned in class and can’t be replaced with out of class work (though you can safely miss a few, and tokens can be used to make up some credits).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#tokens",
+    "href": "info/grading.html#tokens",
+    "title": "How your grade works",
+    "section": "Tokens",
+    "text": "Tokens\nEveryone starts the semester with 3 tokens. Spend one for: a 48-hour deadline extension; an excused activity (the engagement credits without attending — illness, interviews, etc.); or one extra reassessment of a convergent standard outside its scheduled windows. No questions asked, no documentation required. Unspent tokens convert to 1 engagement credit each at semester’s end.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#the-grade-table",
+    "href": "info/grading.html#the-grade-table",
+    "title": "How your grade works",
+    "section": "The grade table",
+    "text": "The grade table\nYour grade floor is the highest row where you meet every requirement in that row:\n\n\n\nFloor\nStandards Met (of 14)\nEngagement credits\n\n\n\n\nA-\n≥ 13\n≥ 40\n\n\nB-\n≥ 11\n≥ 32\n\n\nC-\n≥ 9\n≥ 24\n\n\nD-\n≥ 7\n≥ 16\n\n\n\nMissing the D- row is an F.\nMeeting these requirements earns you the minus grade, the final exam decides whether you stay there or move up.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#the-final-exam",
+    "href": "info/grading.html#the-final-exam",
+    "title": "How your grade works",
+    "section": "The final exam",
+    "text": "The final exam\n\nThe final is a written defense of your own project, assessed as:\n\n\n\nAssessment\nWhat happens\n\n\n\n\nWeak\nYou stay at your floor (e.g. B-)\n\n\nSolid\nUp to the whole grade (e.g. up to a B)\n\n\nDistinguished\nUp to the plus (e.g. up to a B+)\n\n\n\nNote about the ceiling: the university doesn’t issue A+ grades, so at the A- row a solid final and a distinguished final both land on A.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "info/grading.html#three-worked-examples",
+    "href": "info/grading.html#three-worked-examples",
+    "title": "How your grade works",
+    "section": "Three worked examples",
+    "text": "Three worked examples\nStudent 1 — the straightforward case. Meets 13 standards, earns 43 engagement credits, spends one token on an extension during a tough midterm week. Check the A- row: 13 ≥ 13 ✓, 43 ≥ 40 ✓ → floor of A-. Then the final: we might ask to trace the path the data takes through the functions and how something is filtered out, and let’s say Student 1 answers that well → solid → Grade: A.\n\n\nFor Student 1, the two unspent tokens add 2 credits (45), but that doesn’t change anything about the grade.\nStudent 2 — the slow start (read this one if you’re nervous). Bombs the first checkpoint, messing up two standards. No big deal — both are re-offered at the week-6 and week-8 checkpoints, and after also succeeding at them in the homework, Student 2 demonstrates each twice by mid-semester. Finishes with 11 standards Met. Then 41 engagement credits, having done the work all semester even while the checkpoints were rough. B- row: 11 ≥ 11 ✓, 41 ≥ 32 ✓ → floor of B-. Note that those 41 credits clear the A- row’s bar, but 11 standards don’t — the floor is the highest row where every requirement is met. Then the defense: Student 2 knows everything about the project, teammates’ files included → distinguished → Grade: B+.\nStudent 3 — the ghost (read this one if you’re planning to skip class). Brilliant, and knows it: 12 standards Met, some on first attempt. But treats class as optional — skips the readings’ commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). A- row: 12 &lt; 13 ✗. B- row: 12 ≥ 11 ✓, but 25 &lt; 32 ✗. C- row: 12 ≥ 9 ✓, 25 ≥ 24 ✓ → floor of C-. The defense is, predictably, excellent → distinguished → Grade: C+. Is that harsh for someone with 12 standards and a great defense? Well, this course is also about the process — prepare, commit, argue, critique. Ten more Thursdays of just participating and we would be at a B+.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "How your grade works"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation…\nhow computer logic works…\nand how to interpret code…\nbut we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”1: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, as long as we humans are an active participant in the process.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#the-big-idea",
+    "href": "index.html#the-big-idea",
+    "title": "Welcome",
+    "section": "The big idea",
+    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#how-a-week-works",
+    "href": "index.html#how-a-week-works",
+    "title": "Welcome",
+    "section": "How a week works",
+    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nClass time is mostly group work at the tables. Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you’ll actually implement them.\nGet extra practice on Mondays (optional). Base Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nCheckpoints happen on Tuesdays (weeks 4, 6, 8, 10): twenty-minute “mini-exams”, individual, on paper, with no AI. See the grading page.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#ai-policy",
+    "href": "index.html#ai-policy",
+    "title": "Welcome",
+    "section": "AI policy",
+    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#grading",
+    "href": "index.html#grading",
+    "title": "Welcome",
+    "section": "Grading",
+    "text": "Grading\nThis course uses standards-based grading, based on:\n\na list of specific skills (the standards), each marked Met or Not Yet\nand engagement credits for preparation and in-class work.\n\nThere is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#where-to-go-next",
+    "href": "index.html#where-to-go-next",
+    "title": "Welcome",
+    "section": "Where to go next",
+    "text": "Where to go next\nYour first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the Practice Library if you want to run some code right now in your browser (and let me know if it doesn’t work). If curious, you might browse the Side Quests — a few ideas are already on that page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Welcome",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nWe can’t look inside a “black box” to see what is going on.↩︎",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html",
+    "href": "homework/example-parking-garage.html",
+    "title": "An example homework submission",
+    "section": "",
+    "text": "This is an example submission on a different problem to give you an idea of what we expect — think of this as a template.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe commentary boxes are comments I am adding. “The problem” is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#this-is-not-your-homework",
+    "href": "homework/example-parking-garage.html#this-is-not-your-homework",
+    "title": "An example homework submission",
+    "section": "",
+    "text": "This is an example submission on a different problem to give you an idea of what we expect — think of this as a template.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe commentary boxes are comments I am adding. “The problem” is what I would give you in the homework, and the hypothetical student submission is the text in Steps 1, 2, 3, and 4. The solution errs on the side of being too detailed and is purposefully imperfect.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#the-problem",
+    "href": "homework/example-parking-garage.html#the-problem",
+    "title": "An example homework submission",
+    "section": "The problem",
+    "text": "The problem\nHere is a sign posted at the entrance of a parking garage.\n\nMESA LOT — RATES\n\nFirst 30 minutes: free\nUp to 2 hours: $4\nUp to 5 hours: $9\nOver 5 hours: $16\nDaily maximum: $16 — no vehicle is charged more than this in a 24-hour period\nOvernight surcharge (vehicle present at 3:00 AM): add $10\nDepartmental validation: $3 off\nLost ticket: $25 flat\n\n\nThe gate machine records the time a car enters and the time it leaves, and the attendant can tell you whether the ticket was validated or lost. A driver pulls up to the exit. Write a program that determines what they owe.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-1-specification-and-prompt",
+    "href": "homework/example-parking-garage.html#step-1-specification-and-prompt",
+    "title": "An example homework submission",
+    "section": "Step 1 — Specification and prompt",
+    "text": "Step 1 — Specification and prompt\nWhat the program needs to know. Four things that I’ll provide at the top of the script: the time the car entered, the time it left, whether the ticket was validated, and whether it was lost.\nThe awkward decision is how to write a time. I settled on a plain number on a 24-hour clock, in decimal hours — so 11:15 PM is 23.25. Writing 2:30 PM as 14.5 is a little unnatural, and I could have used hours and minutes as separate variables, but then the arithmetic gets messy and I’d be doing conversions by hand every time I tested something.\n\nOutput. One number printed to the screen: the amount owed, in dollars, to the nearest cent.\nDecisions I had to make, because the sign doesn’t say:\n\n\n\n\n\n\n\n\nSituation\nMy ruling\nWhy\n\n\n\n\nExactly 0.5 hours\nFree\nLet’s hope it’s a friendly lot.\n\n\nExactly 2.0 hours\n$4\nSame logic, be consistent.\n\n\nOvernight + the 5-hour rate = $26, above the daily max\nCharge $26\nThe max is about parking rates; the surcharge is a penalty on top. Could go the other way, would need to clarify.\n\n\nValidation and daily max together\nApply validation last, so $16 → $13\nThe discount is something the department gives you, so it should come off whatever you’d otherwise owe.\n\n\nLost ticket + validation\n$25 − $3 = $22\nThe sign doesn’t exempt it.\n\n\nLost ticket + overnight\n$25 flat, no surcharge\n“Flat”.\n\n\nValidation on a free stay\n$0, never negative\n“Parking garages hate this one trick” … program might return -$3!\n\n\nExit time equals entry time\nTreat as an error and say so\nEither they didn’t park or they stayed exactly 24 hours, and I can’t tell which. Not guessing.\n\n\nStay longer than 24 hours\nCan’t be expressed with two clock times, so out of scope\nA consequence of my input choice. If this mattered I’d need a date, not a time.\n\n\nA time outside 0 to 24\nRefuse, with an error\nNot a real clock time — probably a typo.\n\n\n\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis table is a good chunk of the grade. Every row states a ruling, and in cases of ambiguity a choice is made. “I could see it going the other way” is a reasonable addition to your submission. Again, this errs on the side of being over-detailed (with 10 cases)… five cases would probably be enough.\n\n\nMy prompt.\n\nWrite a short Python script (not function, I haven’t learned those yet) that calculates what a driver owes at a parking garage. I want the input values as variables at the top of the script where I can edit them by hand, then the calculation, then a print of the result. Don’t ask for user input.\nThe variables at the top are time_in and time_out, each a number on a 24-hour clock in decimal hours (11:15 PM is 23.25), and validated and lost_ticket, each True or False.\nA car may stay past midnight, so if time_out is less than or equal to time_in, add 24 to time_out before anything else. The duration is then time_out - time_in.\nThe car counts as overnight if it was in the lot at 3:00 AM — that is, if either 3 or 27 falls between time_in and time_out on that adjusted timeline.\nRate tiers by duration: 0 up to and including 0.5 hours is $0. Above 0.5 up to and including 2.0 hours is $4. Above 2.0 up to and including 5.0 hours is $9. Above 5.0 hours is $16.\nThen: if overnight, add $10 — this is allowed to exceed the $16 daily maximum, because the maximum applies to the duration rate only. Then if validated is True, subtract $3, but never below $0.\nIf lost_ticket is True, the charge is $25 flat regardless of duration and regardless of overnight, but validation still applies, giving $22.\nIf either time is outside 0 to 24, or if time_out equals time_in, print a message explaining the problem instead of a price.\nPrint the final amount to the nearest cent, with a dollar sign.\n\n\n\n\n\n\n\nTipCommentary\n\n\n\nThe prompt carries the rulings from the table into the request. It states the boundaries as “up to and including,” names the order of operations explicitly, and says what not to do. Compare it to what most people would send: a photograph of the sign and “write me a program for this.” That version outsources all ten decisions to the LLM, which will make them silently.\nTwo important lines: the midnight rule and the 3-or-27 condition. Neither is on the sign. The student worked out that “present at 3:00 AM” means an interval containing 3 o’clock, and that a car parked from 10 PM to 6 AM lives on a timeline where 3 AM is at hour 27 — and then said so. \nNote also the part about not using functions. An LLM would likely jump to using functions, which is something we don’t know yet — though you can use them, if you have some experience. Telling LLMs what you know is a legitimate and underused aspect of prompting.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-2-annotation",
+    "href": "homework/example-parking-garage.html#step-2-annotation",
+    "title": "An example homework submission",
+    "section": "Step 2 — Annotation",
+    "text": "Step 2 — Annotation\nI’ve annotated the returned code in comments. A few lines I want to point out here:\n\n\n\n\n\n\nNoteClick here for the full script the LLM gave me\n\n\n\n\n\nThis is what came back, before I fixed anything — the two bugs from Step 3 are both still in here if you want to hunt for them yourself.\n# --- inputs, edit these by hand ---\ntime_in = 22.0        # 24-hour clock, decimal hours (11:15 PM = 23.25)\ntime_out = 4.0\nvalidated = False\nlost_ticket = False\n# ----------------------------------\n\nif time_in &lt; 0 or time_in &gt; 24 or time_out &lt; 0 or time_out &gt; 24:\n    print(\"Error: times must be between 0 and 24.\")\nelse:\n    if time_out &lt;= time_in:\n        time_out = time_out + 24      # car crossed midnight\n\n    if time_out == time_in:\n        print(\"Error: entry and exit times are the same.\")\n    else:\n        hours = time_out - time_in\n\n        # was the car here at 3 AM? (3 on day one, 27 on day two)\n        overnight = (time_in &lt;= 3 &lt;= time_out) or (time_in &lt;= 27 &lt;= time_out)\n\n        if hours &lt;= 0.5:\n            fee = 0.0\n        elif hours &lt;= 2.0:\n            fee = 4.0\n        elif hours &lt;= 5.0:\n            fee = 9.0\n        else:\n            fee = 16.0\n\n        if lost_ticket:\n            fee = 25.0\n\n        if overnight:\n            fee = fee + 10.0\n\n        if validated:\n            fee = fee - 3.0\n            if fee &lt; 0:\n                fee = 0.0\n\n        print(\"Amount owed: $\" + str(round(fee, 2)))\n\n\n\nif time_out &lt;= time_in:\n    time_out = time_out + 24    # the car crossed midnight\nThis is important for an overnight stay — for a car in at 9 and out at 14, the if condition is false and the line is skipped entirely. After this runs, time_out can be 28, which is not a real clock time… which felt wrong, but after inputting decimal times, we start thinking about durations instead.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis is a “tier three” (excellent) annotation — it doesn’t just say what the line does, it says the student noticed the result stopped looking like a clock time and had to work out why that’s still correct. Nothing in the code marks that shift, so catching it requires actually tracing the logic, not just reading each line in isolation.\n\n\nif hours &lt;= 0.5:\n    fee = 0.0          # exactly 30 min is free\nelif hours &lt;= 2.0:\n    fee = 4.0          # boundary at 2.0 goes to the cheap tier, as I asked\nThe elif chain is checked top to bottom and stops at the first true test, so a 0.4-hour stay never reaches the second line at all. That’s why the tiers can be written as simple &lt;= comparisons without needing to say “and greater than 0.5” — the earlier branch already ate those cases.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis one sits at “tier two” (good) — it’s more than a syntax gloss (“this is an elif”), since it explains why the comparisons can be written so simply. But it stops at describing the mechanism; it doesn’t flag anything the code decided that wasn’t asked for. Tier two is a perfectly acceptable annotation on its own — you don’t need tier three on every line — but a submission that never goes past tier two anywhere is probably not digesting the code completely.\n\n\nif lost_ticket:\n    fee = 25.0\nThis sits after the tier chain, so it overwrites whatever the duration produced. That’s correct behavior but it isn’t what I pictured — I imagined it checking the lost ticket first and skipping the tiers entirely.\n\n\n\n\n\n\nTipCommentary\n\n\n\nTier three again. The discovery is about ordering — the code runs every branch and then overrides the result with a final if statement. Similar to the first annotation, the student noted a design choice the LLM made that the prompt did not specify and talked about it.\nThe three tiers of annotation are something like:\n\nRestating the syntax (“this is an if statement”) is weakest.\nSaying what a line does in the problem’s terms, like the elif note above, is fine.\nAnnotation that also notices something — an ordering, a hidden assumption, a variable that changed what it means — is great.\n\nNot every single line needs to be the third tier.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-3-verification",
+    "href": "homework/example-parking-garage.html#step-3-verification",
+    "title": "An example homework submission",
+    "section": "Step 3 — Verification",
+    "text": "Step 3 — Verification\nPredictions computed by hand, written down before running anything.\n\n\n\nin\nout\nvalidated\nlost\nI expect\nCode gave\n?\n\n\n\n\n9.0\n9.5\nno\nno\n$0\n$0\nok\n\n\n13.0\n15.0\nno\nno\n$4\n$4\nok\n\n\n13.0\n15.1\nno\nno\n$9\n$9\nok\n\n\n22.0\n4.0\nno\nno\n$26\n$26\nok\n\n\n8.0\n8.25\nyes\nno\n$0\n$0\nok\n\n\n22.0\n4.0\nyes\nno\n$23\n$23\nok\n\n\n10.0\n13.0\nno\nyes\n$25\n$25\nok\n\n\n22.0\n4.0\nno\nyes\n$25\n$35\nno\n\n\n2.0\n5.0\nno\nno\n$19\n$19\nok\n\n\n8.0\n8.0\nno\nno\nerror\n$26\nno\n\n\n\nRow four is the one I was most worried about and it’s fine: 10 PM to 4 AM, so through 3AM, and it ended up fine. Row nine checks the other 3 AM case — a car that arrives at 2 AM and leaves at 5 AM never crosses midnight at all, but is still there at 3 — and that works too.\nRow eight is a real failure. My spec said a lost ticket is $25 flat regardless of overnight, and the prompt said so, but the if overnight block sits below the lost-ticket line and runs unconditionally, adding $10 to the flat charge. The model wrote the surcharge before it wrote the override and never reconciled them. I found it by testing combinations — lost alone passes, overnight alone passes, only the pair fails. The fix was moving the lost-ticket branch below the surcharge.\nRow ten is subtler and it’s my own fault, not the model’s. I asked for an error when the times are equal, and I also asked for the add-24 rule when time_out &lt;= time_in — and the add-24 rule is written first, so an 8-to-8 stay becomes a 24-hour stay, picks up the overnight surcharge on the way past 3 AM, and prints $26 before the error check ever runs. Two of my own requirements fighting each other. I moved the check above the wraparound.\nOne gripe: running ten cases meant editing four variables at the top and re-running the script ten times, then doing it all again after each fix. Thirty-odd edits and I lost my place twice. There has to be a better way to do this.\n\n\n\n\n\n\nTipCommentary\n\n\n\nThis is the best part of the submission and it’s why the predictions have to be written before running. If you fill in the “I expect” column after seeing the output, you will be tempted to agree with the code. Also notice that the interaction bug — two features that are each fine alone and wrong together — is the kind an LLM produces constantly.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/example-parking-garage.html#step-4-report",
+    "href": "homework/example-parking-garage.html#step-4-report",
+    "title": "An example homework submission",
+    "section": "Step 4 — Report",
+    "text": "Step 4 — Report\nWhat this does. Given when a car entered and left the Mesa Lot, whether the ticket was validated, and whether it was lost, this script prints what the driver owes. Times go in as decimal hours on a 24-hour clock, e.g. 11:15 PM is 23.25, and the script handles the midnight wraparound and the 3 AM surcharge question itself.\nWhere I had to decide. The sign leaves a lot open and I ruled on ten cases, listed in Step 1. The three that actually changed the answer: the overnight surcharge stacks on top of the $16 daily maximum, validation comes off last so it applies to whatever you’d otherwise owe, and a lost ticket is $25 flat but still takes the $3 validation discount. I also put anything past 24 hours out of scope, which is a consequence of feeding the program clock times instead of dates.\nWhat went wrong. Two bugs. The model’s: a lost ticket picked up the overnight surcharge anyway, because the surcharge line sits below the override and runs unconditionally — it output $35 where I’d predicted $25. Mine: I asked for an error when the times are equal and for the wraparound whenever time_out &lt;= time_in, and the wraparound runs first, so an 8-to-8 stay quietly became a 24-hour stay and printed $26 instead of an error. Both were one-line moves. The second one is the one is harder to notice.\nProvenance. Claude Sonnet 4.6, prompted 4 September 2026; the full prompt is in Step 1 and the returned code is folded into Step 2.\n\n\n\n\n\n\nTipCommentary\n\n\n\nFour short paragraphs: no abstract, no restated rate table, no walkthrough of the code. The report points at the other steps rather than repeating them — “the three that actually changed the answer” instead of the full list of ten.\nYou don’t want this to be too long — shorter than the specification. The test to apply: could a classmate who never saw the sign read this and know what the program does, what you decided, and what they’d need to rerun it?",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "An example homework submission"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html",
+    "href": "homework/hw1-grade-calculator.html",
+    "title": "HW 1 · The grade calculator",
+    "section": "",
+    "text": "Note\n\n\n\nI will add an example solution (to a different problem) soon!",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#scenario",
+    "href": "homework/hw1-grade-calculator.html#scenario",
+    "title": "HW 1 · The grade calculator",
+    "section": "Scenario",
+    "text": "Scenario\nBuild a program that tells a student their letter grade in this course.\nEverything the program needs to know is on the grading page — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
+    "href": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
+    "title": "HW 1 · The grade calculator",
+    "section": "It’s trickier than it looks!",
+    "text": "It’s trickier than it looks!\nAs you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#your-submission",
+    "href": "homework/hw1-grade-calculator.html#your-submission",
+    "title": "HW 1 · The grade calculator",
+    "section": "Your submission",
+    "text": "Your submission\nStep 1 — Specify & prompt. Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…\n… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a print of the result.\nStep 2 — Annotate the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.\nStep 3 — Verify. Hand-compute your predictions before you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.\nStep 4 — Report. One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "info/basecamp.html",
+    "href": "info/basecamp.html",
+    "title": "Base Camp",
+    "section": "",
+    "text": "Mondays are an optional session/office hour. The first half of the semester, they are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
+  },
+  {
+    "objectID": "info/basecamp.html#the-sessions",
+    "href": "info/basecamp.html#the-sessions",
+    "title": "Base Camp",
+    "section": "The sessions",
+    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
+  },
+  {
+    "objectID": "info/basecamp.html#practice-library-async-base-camp",
+    "href": "info/basecamp.html#practice-library-async-base-camp",
+    "title": "Base Camp",
+    "section": "Practice library (async Base Camp)",
+    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+  },
+  {
+    "objectID": "info/installing.html",
+    "href": "info/installing.html",
+    "title": "Getting going in your language",
+    "section": "",
+    "text": "This page contains my recommendations for how to set up your programming environment. You can do this entire course in Google Colab and MATLAB Online — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#python-via-google-colab",
+    "href": "info/installing.html#python-via-google-colab",
+    "title": "Getting going in your language",
+    "section": "Python via Google Colab",
+    "text": "Python via Google Colab\nGo to colab.research.google.com, sign in with your university Google account, click New notebook, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g. a csv) but we will figure it out!\n\n\nWe’ll talk about how to import packages soon… engineers don’t use base Python much, we need to bring in some extra tools.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#python-on-your-machine",
+    "href": "info/installing.html#python-on-your-machine",
+    "title": "Getting going in your language",
+    "section": "Python on your machine",
+    "text": "Python on your machine\nThere are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.\n\nPackage manager\nMy recommendation is to install miniconda — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).\n\n\nThe full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer VS Code, which supports Jupyter Notebooks and has a GitHub integration.\nMiniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. NumPy, matplotlib, and pandas are necessary for this course; this page has the instructions. Note that miniconda still uses conda as the command.\n\n\nWhat are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the Trapezoid Rule for finding the area under a curve, and implemented it into the SciPy package. Now, instead of writing the code from scratch, you can just call that function with trapezoid(y) in your code.\n\npip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.\n\n\n\n\n\n\n\nTip\n\n\n\nSome other packages that might be worth installing:\n\nJupyter is a “notebook” environment that looks a lot like Colab.\nSeaborn is built on-top of matplotlib… it makes really beautiful plots.\nSciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.\nScikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.\n\n\n\n\n\nEditor\nFor the editor, I recommend VS Code — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its Python and Jupyter extensions (VS Code will automatically offer to install them the first time you open a .py or .ipynb file).\n\n\nGitHub is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.\nIf you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)\n\n\n\n\n\n\nNotePython “environments” (optional reading)\n\n\n\n\n\nMany serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.\nIf you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like conda create --name project1 and then conda activate project1 puts you in that environment, and then conda install numpy would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/installing.html#matlab-later-in-the-semester",
+    "href": "info/installing.html#matlab-later-in-the-semester",
+    "title": "Getting going in your language",
+    "section": "MATLAB (later in the semester)",
+    "text": "MATLAB (later in the semester)\nAs a CU student you have free access: create a MathWorks account with your CU email — instructions are here, under the student “How to get it.”\nOnce your account is tied to the school’s license, you can install desktop MATLAB or use MATLAB Online in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.\nBasic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.\nThe MathWorks “MATLAB Onramp” tutorial — find it under Online Training at matlab.mathworks.com — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Getting going in your language"
+    ]
+  },
+  {
+    "objectID": "info/sidequests.html",
+    "href": "info/sidequests.html",
+    "title": "Side Quests",
+    "section": "",
+    "text": "Once Base Camp winds down, Mondays keep going with a new flavor: Side Quests, for anyone who wants to go further than the course goes. Nothing here affects your grade, nothing is secretly required, nobody takes attendance — and by this point in the semester, Mondays are just the day we hang out and build things, which is roughly what engineering departments are for.\nDress rehearsals still claim the Mondays before checkpoints 3 and 4 (weeks 8 and 10); quests fill the rest. Which quests run is up to you — signups on Canvas; a quest runs if ~10 people want it — so consider this page a menu. Pitch new ones anytime; the best quests come from what you ask for. Every quest that runs leaves behind a one-page recipe on this site, so the menu grows into a library."
+  },
+  {
+    "objectID": "info/sidequests.html#the-menu",
+    "href": "info/sidequests.html#the-menu",
+    "title": "Side Quests",
+    "section": "The menu",
+    "text": "The menu\nStarting from scratch. (Timed for week 11, right before project launch.) The blank-page protocol: what to actually do when there’s no template, no starter code, and no instructions — which is your project in four days, and most of your career. The protocol is teachable: restate the problem in one sentence; name inputs and outputs; find the smallest version that could possibly work; build that; grow it. We’ll start something real from nothing, live, mistakes included.\nGit & version control. (Week 12.) How real teams avoid final_v2_ACTUAL_final.py: commits, history, branches, and undo-anything confidence.\nBuild a tiny language model. You’ve directed LLMs all semester; now build the ancestor — a Markov text generator, ~30 lines. Feed it a book from Project Gutenberg, watch it babble plausibly.\nParametric design → 3D print. Code that generates geometry: a bracket with parameterized dimensions, swept over a design variable — and then we print the winner on the College’s machines. It’s HW 3’s parameter sweep made physical: the design space in your hand. (Print queue permitting.)"
+  },
+  {
+    "objectID": "lessons/01b-what-llms-do.html",
+    "href": "lessons/01b-what-llms-do.html",
+    "title": "What does an LLM actually do?",
+    "section": "",
+    "text": "You will use AI consistently in this course and you might have some experience already. (If not, don’t worry!) Let’s spend one lesson on what’s it’s actually doing.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "What does an LLM actually do?"
+    ]
+  },
+  {
+    "objectID": "lessons/01b-what-llms-do.html#think-first",
+    "href": "lessons/01b-what-llms-do.html#think-first",
+    "title": "What does an LLM actually do?",
     "section": "Think First",
-    "text": "Think First\nRecall\n\nFrom last week: what does an LLM do with the gaps in your specification?\nWe evaluate 2 + 3 * 4 as 14, not 20. What rule is it following, and did anyone ever teach it to you as a computing rule?\n\nLook Ahead\n\nIf AI can write code, why are we about to learn to read it line by line?\nWhat’s the difference between a program storing a value and displaying a value?",
+    "text": "Think First\nRecall\n\nYour phone’s keyboard suggests the next word as you type. How do you think it decides what to suggest?\nHave you ever confidently “remembered” something that turned out to be wrong?\n\nLook Ahead\n\nIf two students give an AI the exact same prompt, will they get the exact same code back?\nWhy might an AI be better at writing code than at doing arithmetic?",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact with coding"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#google-colab-edit-code-in-your-browser",
-    "href": "lessons/02a-first-contact.html#google-colab-edit-code-in-your-browser",
-    "title": "First contact with coding",
-    "section": "Google Colab: edit code in your browser",
-    "text": "Google Colab: edit code in your browser\nGo to colab.research.google.com and sign in with your university Google account. Click New notebook. You now have a notebook: a document made of cells, where each cell holds a bit of Python code you can run by pressing Shift+Enter (or the ▶ button).\nType this into the first cell and run it — or, since this page runs Python right here in your browser, you can edit and run the code below (the first run takes a few seconds while Python loads; after that it should be fast):\n\n\n\n\n\n\nThe text should appear below the cell. The print(...) part is a function (a named, reusable action — much more on these in week 3) whose job is to display the thing between the quotes.",
+    "objectID": "lessons/01b-what-llms-do.html#the-short-version",
+    "href": "lessons/01b-what-llms-do.html#the-short-version",
+    "title": "What does an LLM actually do?",
+    "section": "The short version",
+    "text": "The short version\nA large language model (LLM) does one thing:\n\nGiven some text, predict a plausible next small chunk of text.\n\nThat’s it. Everything else — the code-writing, the explanations, the apparent reasoning — emerges from doing that one thing extremely well, at enormous scale.\n\n\nThe “small chunks” are called tokens — usually a word or piece of a word. thermal might be one token; thermodynamics might be three. (Different than the tokens involved in our standards-based grading scheme!)\nThe model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and importantly for us, billions of lines of code — and adjusting billions (perhaps trillions) of internal numerical knobs until its “next-chunk” predictions got very good. This is what we mean when we talk about a new LLM “model” — there are more parameters (knobs) and updated tunings of those knobs that do a better job of creating accurate/plausible bodies of text.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact with coding"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#variables-giving-numbers-names",
-    "href": "lessons/02a-first-contact.html#variables-giving-numbers-names",
-    "title": "First contact with coding",
-    "section": "Variables: giving numbers names",
-    "text": "Variables: giving numbers names\nA variable is a name attached to a value, so you can use the value by its name:\ng = 9.81        # gravitational acceleration, m/s^2\nh = 3.0         # drop height, m\n\n\nThe text after a # is a code comment — a note for humans that Python ignores. Here, we described the physical meaning of the variables and included the units of the number.\nVariable names can be simple or complex. Probably you will appreciate being able to write a simple, readable equation y=0.5*g*t**2 later in your code, but we also could have defined gravity_earth_surface = 9.81 and then used y=0.5*gravity_earth_surface*t**2 later on.\n\n\n\n\n\n\nTip\n\n\n\nIt is good practice to make the variable names descriptive such that you know what is going on in the equations involving those variables. Something like g in a mechanics-based program is probably fine because we are so used to seeing g in our mechanics equations. But if we had some code that involved gravity on earth and gravity on the moon (for some reason), it is better to write those as g_earth and g_moon instead of g_1 and g_2.\n\n\nThe = sign here does not mean “equals” in the algebra sense. It means “store the value under this name.” This structure conflicts with our experience in math class, for example:\ncount = count + 1\nIf we did algebra on this equation: subtract count from both sides, leaving 0=1… nonsense. But as an instruction, it will take the (current) value of count, add 1, and store the resulting value under the name count (thus replacing the old value stored under that name). This is perfectly acceptable practice, and indeed it is a common ingredient in code.",
+    "objectID": "lessons/01b-what-llms-do.html#three-consequences",
+    "href": "lessons/01b-what-llms-do.html#three-consequences",
+    "title": "What does an LLM actually do?",
+    "section": "Three consequences",
+    "text": "Three consequences\nEverything strange about LLM behavior falls out of that mechanism.\n\n1. Its answers are plausible, but might not be true\nThe model produces text that is statistically likely to follow your prompt — the text sounds like what the correct answer might sound like. It is not reasoning based on physics, it has read a bunch of text written by humans who reasoned based on physics. Then it realized, statistically, that whenever those humans mention “physics”, “black holes”, and “singularity”, it is probably appropriate to use the word “Hawking”, and a likely word after that is “radiation”.\n\n\nOne concerning thing about LLMs is that they are increasingly being trained on text generated by LLMs — so much internet content is generated by LLMs that the LLMs are reinforcing their own tendencies and possibly that will lead to quality degrading over generations.\nUsually, the most plausible continuation of an engineering question is the correct answer, which is why these tools are often useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn’t apply to the situation (dangerous!), a citation to a paper that doesn’t exist, a recipe with a cup of vanilla instead of a teaspoon. This is often called a hallucination, and the dangerous part is that the LLM can be just as confident about a hallucination as it is about real information.\n\n\n\n\n\n\nImportant\n\n\n\nThere is no tone difference between an LLM being right and an LLM being wrong. Verify!\n\n\n\n\n2. Same prompt, different answers\nPrediction produces a menu of plausible next chunks, each with a probability. By design, the model doesn’t always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.\n\n\nLLMs with a higher “temperature” value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it creates the same output every time.\nThis is why, on Thursday, 15 tables prompting for the same task will produce 15 different programs — different variable names, different structures, sometimes different algorithms, occasionally different answers. Thinking about that is an important aspect of this class!\n\n\n3. A good specification tames the LLM\nA prompt is the text you supply to the LLM, maybe a question. An effective prompt is thoughtful… it’s not like a Google search where you just say some relevant words (“lyrics steely dan”) and then you, yourself, look through the results to find what you are looking for. You should be supplying instructions, relevant context, and constraints.\n\n\nDoes anyone else find it annoying that Google’s first result is now AI? Whenever I don’t know exactly what I am looking for, being able to scan the first few results is usually what it takes to figure it out; and whenever I do know what I am looking for, I am not interested in Gemini’s mediocre summary!\n“Build me a diet plan” is too general to be immediately useful… are you trying to lose weight? Gain weight? Gain muscle? Add more fiber? Eliminate carbs? Allergic to nuts? The LLM will probably follow up with questions like that, and you’ll end up somewhere good, but sometimes it might make assumptions for you that you have to spend time undoing. (“Yuck, it wants me to eat fish three times a week!”)\nRather than arguing with the LLM for 15 minutes, wasting a bunch of water and electricity in the process, you should be thoughtful about your specifications.\n\n\nThe context window is the cap on how much of that text the model can “see” at once — your current prompt, along with (at least some of) your previous questions in the same conversation, any files you’ve included. And maybe you’ve given the LLM some baseline instructions that are automatically applied to all conversations. There is a limit on how much of that information can be included in a given text-generation step, and even if it were all included, the more context it has, the greater chance of getting confused! I suspect part of the model development that is happening is about doing a better job understanding what in the context window is most relevant to your current prompt.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact with coding"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#a-good-habit-to-get-into-predict-then-run",
-    "href": "lessons/02a-first-contact.html#a-good-habit-to-get-into-predict-then-run",
-    "title": "First contact with coding",
-    "section": "A good habit to get into: predict, then run",
-    "text": "A good habit to get into: predict, then run\nHere is a complete little program. Before you run it, write down what you expect it to display.\n\n\n\n\n\n\n(Sure, you can run it without thinking. I’m not keeping track of what you are doing here… for the sake of your learning, I think you should think! Otherwise this is like the most boring game on the internet: click to see some text.)\n\n\n** is, annoyingly, Python’s “raise to a power.” So x ** 0.5 is a square root. And * must always be written explicitly: 2h will give an error; you need 2 * h instead.\nSome reading help: line 3 computes \\(t = \\sqrt{2h/g}\\), the fall time of an object dropped from height \\(h\\), subject to gravity \\(g\\). So: \\(2 \\times 3 / 9.81 \\approx 0.61\\), and \\(\\sqrt{0.61} \\approx 0.78\\). That is: we predict this code should produce something near 0.78.\nNow run it. It should match, unless you changed something in the code. Verification!",
+    "objectID": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
+    "href": "lessons/01b-what-llms-do.html#why-is-it-so-good-at-code-anyway",
+    "title": "What does an LLM actually do?",
+    "section": "Why is it so good at code, anyway?",
+    "text": "Why is it so good at code, anyway?\nThe biggest reason: the training data included billions of lines of code, much of it from working programs, and a lot of solid documentation from the code creators themselves ( find_peaks). So there is a strong statistical signal that these are very relevant words for this task.\nBut furthermore: code is checkable. Compare\n\n“You can’t fix every problem, so just focus on doing good work in your own corner of it.”\n\nwith\n\n“It is not our part to master all the tides of the world, but to do what is in us for the succour of those years wherein we are set, uprooting the evil in the fields that we know, so that those who live after may have clean earth to till.”\n\nHow can you judge that the first one is “wrong”? Based on our understanding of how LLMs work, every new word/token in that line is a completely reasonable continuation of the sentence. The second one, by Tolkien, is better, but not “more correct”.\nMeanwhile: if code doesn’t run, something is wrong, and we further will get an output from code that can possibly be confirmed/validated against known results. Modern LLMs are able to run code on the cloud to confirm they perform as intended, and they are increasingly willing to compare against test cases for you: if you need some code to find the area under a curve, an LLM might write it, run it, and compare against the known area under \\(y=x\\) from 0 to 1. Basically, the LLMs are doing their own small verification. That probably isn’t sufficient to confirm that the code does what it is supposed to, but it is necessary that the code works for at least that basic problem.\nWe will do our own audit and verification of the code: read through it to make sure it follows a logic we agree with, and test its output in several ways. We may need to iterate — the AI gives us code that seems like it is 90% of the way to succeeding at the job, but there is an error, and so we need to work with the AI to revise. Unlike prose, we can identify specifics about what is wrong and eventually arrive at something that is verified correct.\n\n\nMeanwhile: LLMs are historically mediocre at arithmetic — predicting a text representation of numbers in a calculation is not the same as calculating.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact with coding"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#errors-are-data",
-    "href": "lessons/02a-first-contact.html#errors-are-data",
-    "title": "First contact with coding",
-    "section": "Errors are data",
-    "text": "Errors are data\nIn the code above, change t = (2 * h / g) ** 0.5 to t = (2 * h_2 / g) ** 0.5, and run it again. You’ll get an angry red block ending in something like:\nNameError: name 'h_2' is not defined\nTwo things to know about errors:\nThey are normal. Experts probably do make fewer errors, but they don’t make zero errors… and actually, I use errors as a way to write code faster: just write out a sloppy version of the code without expecting it to work, then: run, read and fix the error; run, read and fix the error; run, read and fix the error; and by then I’m probably done. Read the error messages, they usually describe the error and point to where it occurred in the code. Here: this is a NameError because we used a variable name that the program didn’t know.\nThey are the friendly failure mode. It is way more difficult to figure out why code runs successfully, but produces a wrong answer. Error messages are kind of nice because they tell you exactly what is wrong (maybe cryptically)!\n\n\n\n\n\n\nTip\n\n\n\nUnderstanding error messages is a genuinely good use of an LLM: paste the code and the full error, and ask what’s wrong. Verify the explanation makes sense — don’t let the LLM do all your thinking for you!",
+    "objectID": "lessons/01b-what-llms-do.html#the-stance-on-llms-in-this-course",
+    "href": "lessons/01b-what-llms-do.html#the-stance-on-llms-in-this-course",
+    "title": "What does an LLM actually do?",
+    "section": "The stance on LLMs in this course",
+    "text": "The stance on LLMs in this course\nNo doubt, LLMs are tools that can augment your abilities. A few years ago I might have manually combined 40 spreadsheets into one (which maybe would have taken an hour, but was annoying), or I might have written code to do that for me (which probably would have taken four hours to figure out… should have just done it manually arggg). Now I can ask an LLM to give me the Python code to do it, and the project is done in 5 minutes.\nI have become more ambitious and capable in some aspects of my work because I know I can get a head start using AI. But note: I am the one who came up with the idea, and I needed to describe the problem and some of the necessary steps. And, importantly, I am the one responsible if something breaks along the way, and so I need to have a strategy to confirm that everything made it into the finished project successfully.\nI think the following is very much in the spirit of coding in 2026: Think of LLMs as your extremely fast, extremely well-read, overconfident junior collaborator. You can use them to quickly retrieve information, you can ask them to help you write code, they can help troubleshoot problems. But ultimately, you are setting the expectations (specifications), and you are responsible for the project (so you better do some verification). And, further, there will be times when you have to show that you, too, actually know how to do the stuff (the checkpoints).\n\n\nOne more term you’ll see a lot: an agent is capable of actually making changes on your computer — creating new folders, creating/editing files, maybe sending emails — rather than giving you text in a web browser that you have to move around. Still basically a junior collaborator: you still provide the details and check the results, you just have to do less manual labor.\n\nAnswer these:\n\nTwo students give an LLM the identical prompt for a projectile program. Predict: (a) identical code, (b) different code, same numerical answers, (c) different code, possibly different answers. Write one sentence defending your pick.\nThe LLM hands you a projectile program and it runs without any errors, and produces a nice plot. List every distinct reason you can think of that its output might still be wrong.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact with coding"
+      "What does an LLM actually do?"
     ]
   },
   {
-    "objectID": "lessons/02a-first-contact.html#reading-before-writing",
-    "href": "lessons/02a-first-contact.html#reading-before-writing",
-    "title": "First contact with coding",
-    "section": "Reading before writing",
-    "text": "Reading before writing\nYou now know enough to read simple Python. Predict what this displays before running:\n\n\n\n\n\n\n\n\n\n\n\n\nNoteClick for the answer\n\n\n\n\n\n8 — not 2. Line 2 stored the value 8 under b; it did not create a live mathematical relationship “b is twice a.” When a changed afterward, b is unaware. The code executes top to bottom, each line acting on values as they are at that moment.\n\n\n\n\nOn paper, two things:\n\nYour prediction for what this displays with one sentence of reasoning:\n\nx = 10\ny = x + 5\nx = x + 1\nprint(x)\nprint(y)\n\nAn electric toothbrush draws about 0.3 A of current (\\(I\\)) through 4 ohms of resistance (\\(R\\)); a space heater draws about 12 A through 10 ohms. On paper, set the current and resistance values in the first four lines of your code, then compute and print the power dissipated, \\(P = I^2 R\\), for both devices. Don’t forget to # comment! Write out your hand estimate on the side. Which device do you expect will dissipate more power?",
+    "objectID": "lessons/02b-reading-code.html",
+    "href": "lessons/02b-reading-code.html",
+    "title": "Reading code and conditional statements",
+    "section": "",
+    "text": "Tuesday we ran code and thought about the results, today we are going to focus on how read and understand the code without needing to run it. Included is an example of the spec → prompt → annotate → verify process. Then we go through conditional statements, which bring us to the interesting and sometimes-confusing world of branching logic: if something is True, do this, but if False, do something else.",
     "crumbs": [
       "Home",
       "Phase 0 — Thinking (Weeks 1–2)",
-      "First contact with coding"
+      "Reading code and conditional statements"
+    ]
+  },
+  {
+    "objectID": "lessons/02b-reading-code.html#think-first",
+    "href": "lessons/02b-reading-code.html#think-first",
+    "title": "Reading code and conditional statements",
+    "section": "Think First",
+    "text": "Think First\nRecall\n\nFrom Tuesday: what does = actually do, and why is count = count + 1 not nonsense?\nFrom week 1: what fills the gaps in an under-specified prompt?\n\nLook Ahead\n\nCould you convince someone a program is correct without running it?\nWhat’s the difference between a comment that says what a line does and one that says why it’s there?\nWhat does it mean for a program to “choose” between two different things to do — and how would you trace that choice by hand?",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "Reading code and conditional statements"
+    ]
+  },
+  {
+    "objectID": "lessons/02b-reading-code.html#the-reading-vocabulary",
+    "href": "lessons/02b-reading-code.html#the-reading-vocabulary",
+    "title": "Reading code and conditional statements",
+    "section": "The reading vocabulary",
+    "text": "The reading vocabulary\nYou already know enough Python to read most short engineering scripts. Here’s a beginning inventory:\n\n\nTruthfully, much of what I code is handling arithmetic — nothing fancy at all. Take these numbers, square them and multiply by this constant, and plot the result. You don’t know plotting yet, but you are quickly learning to understand how math is represented in code.\n\n\n\nYou see\nIt means\n\n\n\n\nx = 5\nstore 5 under the name x (“x is assigned 5”)\n\n\nprint(x)\ndisplay the value of x\n\n\nx ** 2, x / y\npower, division\n\n\n# text\ncode comments",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "Reading code and conditional statements"
+    ]
+  },
+  {
+    "objectID": "lessons/02b-reading-code.html#tracing-running-code-in-your-head",
+    "href": "lessons/02b-reading-code.html#tracing-running-code-in-your-head",
+    "title": "Reading code and conditional statements",
+    "section": "Tracing: running code in your head",
+    "text": "Tracing: running code in your head\nTo trace a program, be the computer: go top to bottom, one line at a time, keeping a little table of every variable’s current value. (Run the code after your trace to confirm your suspicions.)\n\n\n\n\n\n\n\n\n\n\n\n\nNoteClick to see the trace\n\n\n\n\n\nAfter line 1: a = 2, with b and c not yet defined. After line 2: a = 2, b = 5. After line 3: a = 20, b = 5. After line 4: c = 25.\n\n\n\nTracing is slow and that’s fine — it’s a verification strategy you’ll only deploy on the sections you aren’t sure about",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "Reading code and conditional statements"
+    ]
+  },
+  {
+    "objectID": "lessons/02b-reading-code.html#annotation",
+    "href": "lessons/02b-reading-code.html#annotation",
+    "title": "Reading code and conditional statements",
+    "section": "Annotation",
+    "text": "Annotation\nWhen an AI hands you code, you will annotate it. That’s not the same as reading the comments the AI already left, it means writing, in your own words, what every line or logical block does and why it’s there. Producing that explanation yourself, not just reading someone else’s, is what actually proves you understand the code.\n\n\n\n\n\n\nImportant\n\n\n\nRule 1: A line you can’t annotate is a line you do not understand.\nRule 2: Annotate the why, not just the what. # convert to liters is better than # multiply by 1000. (The latter is probably a repeat of the code!)",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "Reading code and conditional statements"
+    ]
+  },
+  {
+    "objectID": "lessons/02b-reading-code.html#one-full-lap-the-3d-printer-problem",
+    "href": "lessons/02b-reading-code.html#one-full-lap-the-3d-printer-problem",
+    "title": "Reading code and conditional statements",
+    "section": "One full lap: the 3D-printer problem",
+    "text": "One full lap: the 3D-printer problem\nThe problem: How much filament will it take to 3D-print this part?\nStep 1 — Specification. Inputs — part volume (cm³), infill fraction (0–1), filament diameter (mm). Output — filament length needed, in meters. Assumptions — filament is drawn out as a solid cylinder, no waste from priming or purge lines, infill fraction distributed uniformly. Edge cases — zero diameter will raise a division-by-zero error rather than silently returning a bad result.\n\n\nThe slicer is the software that turns a 3D model into printing instructions. The infill fraction is the fraction of a part’s interior that is plastic — if its value is, say, 0.20, the interior of an apparently solid object is a lattice that is 20% plastic and 80% air.\nStep 2 — The prompt. The spec practically is the prompt:\n\nWrite a Python script that computes the length of filament needed to 3D-print a part. Inputs: part volume in cubic centimeters, infill fraction (0 to 1), and filament diameter in millimeters. Output the filament length in meters including units. Comment each step, including tracking the units/unit conversions along the way.\n\nStep 3 — Annotate what comes back. Suppose the AI returns:\n\n\n\n\n\n\nSome initial good news: the code runs without any error messages, and every line is commented and makes sense. We’ve annotated three lines… these are worth checking: are the conversions and equations correct? They are chances for a silent error that would deliver an incorrect output!\n\n\nYou don’t necessarily need to comment every line, especially if the variable names are intuitive. You also might be able to comment on an entire block at once, or if there are repeated steps just describe the first one, or … . Just make sure your code+comments is understandable!\nStep 4 — Verify. Hand estimate: the printed volume is \\(45 \\times 0.20 = 9\\) cm³ = 9,000 mm³. The filament’s cross-section is roughly \\(\\pi (0.875)^2 \\approx 2.4\\) mm². So the required length is \\(\\approx 9{,}000 / 2.4 \\approx 3{,}750\\) mm \\(\\approx 3.75\\) m. We were careful with units here, good. Edge case: set diameter = 0 and predict what happens before running.\n\n\nYou might ask: why did we write a program, and then calculate it by hand anyway? It’s good to have the confirmation — we might not trust the AI, and we might not trust our algebra, but if they agree we can feel better about both. But more importantly: we will get into functions next week, where we write code that can accept different input values, and maybe we use that function 1000 times on a project. With functions, we’ll check on one or two cases by hand, and if it’s good we can feel OK about using that function for the other 998 cases.\n\nWhen the AI gets it plausibly wrong\nThe AI might return something like\nvolume_filled_mm3 = volume_filled_cm3 * 100    # convert cm^3 to mm^3\n(E.g., centimeters to meters is a factor of 100… maybe it sees cm and conversion and assumes we are going that way.) It runs and reports a filament length of 0.37 m — maybe believable, but wrong by a factor of ten.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "Reading code and conditional statements"
+    ]
+  },
+  {
+    "objectID": "lessons/02b-reading-code.html#one-more-thing-ifelifelse",
+    "href": "lessons/02b-reading-code.html#one-more-thing-ifelifelse",
+    "title": "Reading code and conditional statements",
+    "section": "One more thing: if/elif/else",
+    "text": "One more thing: if/elif/else\nCode tracing through algebra, checking unit conversions and area equations, etc., is important but kind of boring. Let’s go ahead and introduce conditional statements in this reading: they lead to branching… the code takes different paths depending on whether a condition is True or False.\n\nConditions\nConditions are expressions that evaluate to either True or False. Very useful in coding, e.g. if we are doing a fluid mechanics calculation, the pressure-drop equation we use depends on whether the flow is laminar or turbulent. Our code might check “is the flow turbulent?” If False, it will proceed with the laminar equation; if True, it will proceed with the turbulent equation.\nHere are examples of all six basic conditions:\n\n\n\nCondition\nMeaning\n\n\n\n\nx == 5\n“x is equal to 5”\n\n\nb!=3\n“b is not equal to 3”\n\n\na&gt;3\n“a is greater than 3”\n\n\na&gt;=2\n“a is greater than or equal to 2”\n\n\nc&lt;-99\n“c is less than negative 99”\n\n\nc&lt;=8\n“c is less than or equal to 8”\n\n\n\n\n\nThe double equals == is the “conditional equals”, the single equals = is the “assignment equals”. 5=3 will get you an error, but 5==3 will be interpreted as False, and the program will keep running no problem.\nThese conditions evaluate as either True or False:\n\n\n\n\n\n\nConditional statements can also be combined, and in Python it is really nice: we get to use the words and and or. Statements with and or or can still be evaluated as True or False\n\n\nMATLAB, Java, C, C++, and others use && and || for “and” and “or”… not too bad, but not as readable as and and or!\n\n\n\n\n\n\nand we can make it pretty complicated by combining these expressions!\n\n\n\n\n\n\n\n\nif statements\nThese are very readable, so let’s just dive in with a basic example:\n\n\n\n\n\n\nThis is an if statement. If the condition described after the if is True, Python executes the code inside the block that follows; if it is False, it skips it.\n\n\nIn Python, a block is a collection of lines with the same amount of indent level. Python is a unique language in that it defines its blocks based on the indent — in other languages we enclose blocks in braces {} or maybe we introduce a block with an if and end it explicitly with a line that just says end. Many folks enjoy Python because it is uncluttered.\n\n\n\n\n\n\nWarning\n\n\n\nPython’s indented blocks are very nice, the code looks very clean, but you have to be accurate with your spacing. This is fine:\n\n\n\n\n\n\nand this is fine\n\n\n\n\n\n\nbut this will break\n\n\n\n\n\n\n\n\nBe alert for rogue spaces!\n\n\nif/else statements\nThis is pretty intuitive as well:\n\n\n\n\n\n\nThis is an if/else statement: it checks the condition after the if and, if it’s true, it executes the code within the if block but not the code within the else block. If the condition after the if is false it skips the code within the if block and executes the code within the else block.\n\n\nif/elif/else statements\nA third structure:\n\n\nIn Python, elif is “else if”.\n\n\n\n\n\n\nThis is an if/else if/else statement: it checks the condition after the if and, if it is True, it executes the if block then skips the elif and else blocks. If the condition after the if is False, it checks the condition after the elif, and if that is True, it executes the elif block and skips the else block. If both the if and elif conditions are False, it executes the code within the else block.\nI feel like explaining that in a paragraph might have been more confusing than just reading the code!\n\n\n\n\n\n\nImportant\n\n\n\nYou can add more than one elif. The conditions are always checked from top to bottom, and the first one that evaluates as True is the only part of the structure that is actually executed by Python.\nIt is not mandatory to have an else statement. If none of the if/elif conditions are True and there is no else, it is effectively the same as just skipping the whole block. Sometimes that is desired!\n\n\n\n\nNested conditional statements\nBy using two levels of indentation, we can create nested conditional statements. Try to understand the following…\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf the if statement is false, we move on to the elif. If the elif statement is True, we execute its block. Within there, we’ve got another if to consider.\n\n\nThe hardest trace on this page!\n\nBelow is an AI-generated script with three planted flaws: one syntax error (won’t run), one loud error (runs, obviously wrong), and one silent error (runs, plausibly wrong). On paper: annotate every line, name all three flaws, trace the if statement and say whether its warning prints, and state what the correct filament length should be. Don’t run it first, you are here to learn!\nimport math\n\ndiameter     = 1.75    # filament diameter, mm\npart_volume  = 45      # part volume, cm^3\ninfill       = 0.20    # fraction of volume actually printed\nspool_volume = 285     # cm^3 of plastic on a standard 1 kg spool\n\nvolume_filled = part_volume * infill      # cm^3 of plastic actually extruded\nvolume_mm3    = volume_filled * 1000      # convert cm^3 to mm^3\narea          = math.pi * diameter ** 2   # cross-sectional area of filament, mm^2\nlength_mm     = area / volume_mm3         # mm of filament needed\nlength_m      = length_mm / 1000          # convert mm to m\n\nif volume_filled &gt; spool_volume:\n    print(\"warning: volume larger than standard spool size\")\n\nprint(\"Filament needed:\", length_m \"m\")\n\n\n\n\n\nWe’re building a collection of error messages. In class on Tuesday we encountered NameError (used a variable name Python has never seen before), SyntaxError (the code is not valid Python — it can’t run), and TypeError (e.g., we tried to do math with data that was interpreted as text: in 5+“15”, the 15 is text). Setting diameter = 0 back in Step 4 gives a ZeroDivisionError (you asked Python to divide by zero). When we had inconsistent indentation in the if block, we got an IndentationError.",
+    "crumbs": [
+      "Home",
+      "Phase 0 — Thinking (Weeks 1–2)",
+      "Reading code and conditional statements"
     ]
   }
 ]
