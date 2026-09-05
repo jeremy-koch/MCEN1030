@@ -379,11 +379,19 @@ window.Quarto = {
 
 </div>
 <script type="pyodide-1-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZhbGxfdGltZShoLCBnPTkuODEpOlxuICAgIFwiXCJcIlRpbWUgKHMpIGZvciBhbiBvYmplY3QgdG8gZmFsbCBmcm9tIHJlc3QgdGhyb3VnaCBoZWlnaHQgaCAobSkuXCJcIlwiXG4gICAgdCA9ICgyICogaCAvIGcpICoqIDAuNVxuICAgIHJldHVybiB0XG5cbnByaW50KGZhbGxfdGltZSgzLjApKSAgICAgICAgICAjIG91ciB3cmVuY2hcbnByaW50KGZhbGxfdGltZSgzLjAsIDEuNjIpKSAgICAjIHNhbWUgZHJvcCwgb24gdGhlIE1vb24ifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGZhbGxfdGltZShoLCBnPTkuODEpOlxuICAgIFwiXCJcIlRpbWUgKHMpIGZvciBhbiBvYmplY3QgdG8gZmFsbCBmcm9tIHJlc3QgdGhyb3VnaCBoZWlnaHQgaCAobSkuXCJcIlwiXG4gICAgdCA9ICgyICogaCAvIGcpICoqIDAuNVxuICAgIHJldHVybiB0XG5cbnByaW50KGZhbGxfdGltZSgzLjApKSAgICAgICAgICAjIGRyb3AgZnJvbSAzIG1ldGVyc1xucHJpbnQoZmFsbF90aW1lKDMuMCwgMS42MikpICAgICMgc2FtZSBkcm9wLCBvbiB0aGUgTW9vbiJ9
 </script>
 </div>
 <p>This cell is live — feel free to edit it, break it, change the default gravity (Mars has <span class="math inline">\(g = 3.71\)</span>).</p>
-<p>What’s in here: - <code>def</code> is the syntax that starts a function definition. - <code>fall_time</code> is the function name (we choose it). - <code>(h, g=9.81)</code> are the function inputs, with <code>g</code> given a <strong>default</strong> value so callers can omit it. - Then we have an indented block that does the tasks we wrote the function for. Here, just a bit of math. - The triple-quoted line is a <strong>docstring</strong>: the function’s specification, basically a comment that describes the function’s purpose. Technically optional, but a good idea. - <code>return</code> tells us the thing(s) that is (are) output once the function is done with its magic.</p>
+<p>What’s in here:</p>
+<ul>
+<li><code>def</code> is the syntax that starts a function definition.</li>
+<li><code>fall_time</code> is the function name (we choose it).</li>
+<li><code>(h, g=9.81)</code> are the function inputs, with <code>g</code> given a <strong>default</strong> value so callers can omit it. It can be included if you have need to change the parameter value.</li>
+<li>Then we have an indented block that does the tasks we wrote the function for. Here, the function just does a bit of math.</li>
+<li>The triple-quoted line is a <strong>docstring</strong>: the function’s specification, basically a comment that describes the function’s purpose. Technically optional, but a good idea.</li>
+<li><code>return</code> tells us the thing(s) that is (are) output once the function is done with its magic.</li>
+</ul>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Defining a function does not mean the function <strong>runs</strong>. To actually get values from a function, we must <strong>call</strong> it: <code>fall_time(3.0)</code>.</p>
@@ -450,8 +458,9 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGRvdWJsZSh4KTpcbiAg
 </div>
 </div>
 <div class="bring-to-class">
-<p>Pick <strong>one</strong> from the menu — (a) stopping distance for a car under braking, (b) a °F/°C/K temperature converter — and on paper write: the full signature with units, a two-sentence docstring including assumptions, and <strong>one hand-checkable test case with its expected output</strong> (show the arithmetic). Thursday you’ll direct the AI to build it and your committed test case becomes the acceptance test. If the AI’s function fails <em>your</em> test, one of you is wrong — and finding out which is the whole game.</p>
-<p>If you’re picking (a), here’s a refresher in case the pieces are fuzzy. A car doesn’t stop the instant the driver decides to brake — there’s a <strong>reaction time</strong> first, maybe 1.5 s, during which the car just keeps cruising at speed <span class="math inline">\(v\)</span>. That chunk of distance is just speed times time, <span class="math inline">\(d_{\text{reaction}} = v \cdot t_{\text{reaction}}\)</span>. Then the brakes engage and the car decelerates from <span class="math inline">\(v\)</span> to <span class="math inline">\(0\)</span> at some roughly constant deceleration <span class="math inline">\(a\)</span>. This piece comes from the kinematic equation <span class="math inline">\(v_f^2 = v_0^2 - 2ad\)</span> — since we’re solving for where the car finally stops (<span class="math inline">\(v_f = 0\)</span>), it rearranges to <span class="math inline">\(d_{\text{braking}} = v^2 / (2a)\)</span>. Total stopping distance is the sum, <span class="math inline">\(d = d_{\text{reaction}} + d_{\text{braking}}\)</span>. One thing to check before you trust a number out of this: doubling <span class="math inline">\(v\)</span> should more than double <span class="math inline">\(d\)</span>, since <span class="math inline">\(v\)</span> shows up squared in the braking term.</p>
+<p>We’ll think about stopping distance for a car under braking. On paper write: the full signature with units, a two-sentence docstring including assumptions, and <strong>one hand-checkable test case with its expected output</strong> (show the arithmetic).</p>
+<p>And here’s a description that you’ll base your work on: a car doesn’t stop the instant the driver decides to brake — there’s a <strong>reaction time</strong> first, maybe 1.5 s, during which the car just keeps cruising at speed <span class="math inline">\(v\)</span>. That chunk of distance is just speed times time, <span class="math inline">\(d_{\text{reaction}} = v \cdot t_{\text{reaction}}\)</span>. Then the brakes engage and the car decelerates from <span class="math inline">\(v\)</span> to <span class="math inline">\(0\)</span> at a roughly constant deceleration <span class="math inline">\(a\)</span>.</p>
+<p>The kinematic equation is <span class="math inline">\(v_f^2 = v_0^2 - 2ad\)</span>. Since we’re solving for where the car finally stops (<span class="math inline">\(v_f = 0\)</span>), it rearranges to <span class="math inline">\(d_{\text{braking}} = v^2 / (2a)\)</span>. Total stopping distance is the sum, <span class="math inline">\(d = d_{\text{reaction}} + d_{\text{braking}}\)</span>. One thing to check before you trust a number out of this: doubling <span class="math inline">\(v\)</span> should more than double <span class="math inline">\(d\)</span>, since <span class="math inline">\(v\)</span> shows up squared in the braking term.</p>
 </div>
 
 
