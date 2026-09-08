@@ -1,5 +1,5 @@
 ---
-title: "Functions: the contract"
+title: "Functions"
 subtitle: "Week 3 — read before Tuesday"
 ---
 
@@ -102,7 +102,7 @@ print(result)
 
 ## Bring functions and AI together
 
-The workflow that carries the rest of the semester: **spec the function → prompt for it → annotate the body → hand-check it in isolation → use it.** Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.
+The workflow that we'll use for the rest of the semester: **spec the function → prompt for it → annotate the body → hand-check it in isolation → use it.** Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.
 
 ::: {.callout-tip}
 ## Think
@@ -116,3 +116,62 @@ And here's a description that you'll base your work on: a car doesn't stop the i
 
 The kinematic equation is $v_f^2 = v_0^2 - 2ad$. Since we're solving for where the car finally stops ($v_f = 0$), it rearranges to $d_{\text{braking}} = v^2 / (2a)$. Total stopping distance is the sum, $d = d_{\text{reaction}} + d_{\text{braking}}$. One thing to check before you trust a number out of this: doubling $v$ should more than double $d$, since $v$ shows up squared in the braking term.
 :::
+
+
+## In-class work
+
+We will implement the above function in Colab and then explore/understand some of the nuances.
+
+Before each of these experiments, try to guess the behavior.
+
+
+::: {.callout-caution}
+It is not necessarily true that your guess will match the actual behavior. Computers use a different logic than humans — e.g., they go through instructions sequentially and don't have bigger-picture context. And programming languages have to make concessions — e.g. to square a number in Python we use
+
+```python
+x=6
+print(x**2)
+```
+
+It *should* be the case that `x^2` is squaring... and it will be that way in MATLAB. But Python must have reserved the `^` character for something else, so we engineers get to use `**`.
+
+The purpose of this section is to get you familiar with the structure of defining/calling functions and to caution you about some common missteps.
+:::
+
+
+
+Before trying each, go to Runtime → Restart session. (This clears the function from the working memory.)
+
+- Call the function from below the function with numbers as inputs.
+- Call the function with variables as inputs. E.g. define `v_start=50` and use `v_start` in the function call (instead of a plain number). 
+    - **Do you need to call the function with the same variable names as the function uses?**
+- Use the same variable name in the script and the function.
+    - **Convince yourself that the function variables are independent**
+- Call the function from **above** the function definition.
+- Run the cell with the function in it, then run the next cell where you call the function.
+- Run the cell with the function in it, include the function call in the **previous cell** and run it.
+- If your function signature is `stopping_distance(v_0,a,t_reaction=1.5)`, compare `stopping_distance(1,10)`, `stopping_distance(10,1)`, `stopping_distance(a=10,v_0=1)`.
+- Try `stopping_distance(25, reaction=2.0)`.
+- Try `stopping_distance(reaction=2.0,25,10)`.
+
+::: {.callout-important}
+Seeing this behavior yourself is much more instructive than me telling you about it! Programming is best learned actively!
+:::
+
+## Return multiple things
+
+If you finish the above tasks early, here's one more thing to try. We can `return` multiple outputs using
+
+```python
+def some_fxn(x):
+    ...
+    return a,b
+```
+
+and then store those outputs with a similar structure in the call
+
+```python
+out_1,out_2=some_fxn(11)
+```
+
+Write a function that takes in the temperature in degrees Fahrenheit and returns the temperature in degrees Celsius **and** the temperature in Kelvin. Don't use an LLM, you've got this!
