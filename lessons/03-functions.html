@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Functions: the contract – MCEN 1030</title>
+<title>Functions – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -186,7 +186,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Functions: the contract</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Functions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -294,7 +294,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/03-functions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Functions: the contract</span></a>
+ <span class="menu-text">Functions</span></a>
   </div>
 </li>
       </ul>
@@ -338,15 +338,17 @@ window.Quarto = {
   <li><a href="#check-the-function-in-isolation" id="toc-check-the-function-in-isolation" class="nav-link" data-scroll-target="#check-the-function-in-isolation">Check the function in isolation</a></li>
   <li><a href="#local-names-the-functions-private-scratchpad" id="toc-local-names-the-functions-private-scratchpad" class="nav-link" data-scroll-target="#local-names-the-functions-private-scratchpad">Local names: the function’s private scratchpad</a></li>
   <li><a href="#bring-functions-and-ai-together" id="toc-bring-functions-and-ai-together" class="nav-link" data-scroll-target="#bring-functions-and-ai-together">Bring functions and AI together</a></li>
+  <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">In-class work</a></li>
+  <li><a href="#return-multiple-things" id="toc-return-multiple-things" class="nav-link" data-scroll-target="#return-multiple-things">Return multiple things</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Functions: the contract</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Functions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Functions: the contract</h1>
+<h1 class="title">Functions</h1>
 <p class="subtitle lead">Week 3 — read before Tuesday</p>
 </div>
 
@@ -453,7 +455,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGRvdWJsZSh4KTpcbiAg
 </section>
 <section id="bring-functions-and-ai-together" class="level2">
 <h2 class="anchored" data-anchor-id="bring-functions-and-ai-together">Bring functions and AI together</h2>
-<p>The workflow that carries the rest of the semester: <strong>spec the function → prompt for it → annotate the body → hand-check it in isolation → use it.</strong> Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.</p>
+<p>The workflow that we’ll use for the rest of the semester: <strong>spec the function → prompt for it → annotate the body → hand-check it in isolation → use it.</strong> Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -472,6 +474,69 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGRvdWJsZSh4KTpcbiAg
 <p>And here’s a description that you’ll base your work on: a car doesn’t stop the instant the driver decides to brake — there’s a <strong>reaction time</strong> first, maybe 1.5 s, during which the car just keeps cruising at speed <span class="math inline">\(v\)</span>. That chunk of distance is just speed times time, <span class="math inline">\(d_{\text{reaction}} = v \cdot t_{\text{reaction}}\)</span>. Then the brakes engage and the car decelerates from <span class="math inline">\(v\)</span> to <span class="math inline">\(0\)</span> at a roughly constant deceleration <span class="math inline">\(a\)</span>.</p>
 <p>The kinematic equation is <span class="math inline">\(v_f^2 = v_0^2 - 2ad\)</span>. Since we’re solving for where the car finally stops (<span class="math inline">\(v_f = 0\)</span>), it rearranges to <span class="math inline">\(d_{\text{braking}} = v^2 / (2a)\)</span>. Total stopping distance is the sum, <span class="math inline">\(d = d_{\text{reaction}} + d_{\text{braking}}\)</span>. One thing to check before you trust a number out of this: doubling <span class="math inline">\(v\)</span> should more than double <span class="math inline">\(d\)</span>, since <span class="math inline">\(v\)</span> shows up squared in the braking term.</p>
 </div>
+</section>
+<section id="in-class-work" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-work">In-class work</h2>
+<p>We will implement the above function in Colab and then explore/understand some of the nuances.</p>
+<p>Before each of these experiments, try to guess the behavior.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is not necessarily true that your guess will match the actual behavior. Computers use a different logic than humans — e.g., they go through instructions sequentially and don’t have bigger-picture context. And programming languages have to make concessions — e.g.&nbsp;to square a number in Python we use</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">6</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It <em>should</em> be the case that <code>x^2</code> is squaring… and it will be that way in MATLAB. But Python must have reserved the <code>^</code> character for something else, so we engineers get to use <code>**</code>.</p>
+<p>The purpose of this section is to get you familiar with the structure of defining/calling functions and to caution you about some common missteps.</p>
+</div>
+</div>
+<p>Before trying each, go to Runtime → Restart session. (This clears the function from the working memory.)</p>
+<ul>
+<li>Call the function from below the function with numbers as inputs.</li>
+<li>Call the function with variables as inputs. E.g. define <code>v_start=50</code> and use <code>v_start</code> in the function call (instead of a plain number).
+<ul>
+<li><strong>Do you need to call the function with the same variable names as the function uses?</strong></li>
+</ul></li>
+<li>Use the same variable name in the script and the function.
+<ul>
+<li><strong>Convince yourself that the function variables are independent</strong></li>
+</ul></li>
+<li>Call the function from <strong>above</strong> the function definition.</li>
+<li>Run the cell with the function in it, then run the next cell where you call the function.</li>
+<li>Run the cell with the function in it, include the function call in the <strong>previous cell</strong> and run it.</li>
+<li>If your function signature is <code>stopping_distance(v_0,a,t_reaction=1.5)</code>, compare <code>stopping_distance(1,10)</code>, <code>stopping_distance(10,1)</code>, <code>stopping_distance(a=10,v_0=1)</code>.</li>
+<li>Try <code>stopping_distance(25, reaction=2.0)</code>.</li>
+<li>Try <code>stopping_distance(reaction=2.0,25,10)</code>.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Seeing this behavior yourself is much more instructive than me telling you about it! Programming is best learned actively!</p>
+</div>
+</div>
+</section>
+<section id="return-multiple-things" class="level2">
+<h2 class="anchored" data-anchor-id="return-multiple-things">Return multiple things</h2>
+<p>If you finish the above tasks early, here’s one more thing to try. We can <code>return</code> multiple outputs using</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> some_fxn(x):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a,b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and then store those outputs with a similar structure in the call</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>out_1,out_2<span class="op">=</span>some_fxn(<span class="dv">11</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write a function that takes in the temperature in degrees Fahrenheit and returns the temperature in degrees Celsius <strong>and</strong> the temperature in Kelvin. Don’t use an LLM, you’ve got this!</p>
 
 
 <script type="pyodide-data">

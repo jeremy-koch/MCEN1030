@@ -2,85 +2,109 @@
   {
     "objectID": "lessons/03-functions.html",
     "href": "lessons/03-functions.html",
-    "title": "Functions: the contract",
+    "title": "Functions",
     "section": "",
     "text": "Getting an area from a radius, power from a resistance and current, distance traveled from velocity and time… these are calculations engineers do repeatedly. While we could write\n… and then edit that code for every new calculation, we might instead write a function that takes current and resistance as inputs and produces power as an output. Any calculation we use over and over again is a good candidate for turning into a function. We’ll learn about functions in this lesson.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Functions: the contract"
+      "Functions"
     ]
   },
   {
     "objectID": "lessons/03-functions.html#think-first",
     "href": "lessons/03-functions.html#think-first",
-    "title": "Functions: the contract",
+    "title": "Functions",
     "section": "Think First",
     "text": "Think First\nRecall\n\nWeek 1: what are the parts of a complete specification?\nWeek 2: the pool-filling script computed the time to fill one pool. What would you do if your boss asked about 50 different pool designs?\n\nLook Ahead\n\nWhat should happen when a function is defined but never called?\nIf a variable is created inside a function, should the rest of the program be able to see it?",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Functions: the contract"
+      "Functions"
     ]
   },
   {
     "objectID": "lessons/03-functions.html#anatomy-of-a-function",
     "href": "lessons/03-functions.html#anatomy-of-a-function",
-    "title": "Functions: the contract",
+    "title": "Functions",
     "section": "Anatomy of a function",
     "text": "Anatomy of a function\n\n\n\n\n\n\nThis cell is live — feel free to edit it, break it, change the default gravity (Mars has \\(g = 3.71\\)).\nWhat’s in here:\n\ndef is the syntax that starts a function definition.\nfall_time is the function name (we choose it).\n(h, g=9.81) are the function inputs, with g given a default value so callers can omit it. It can be included if you have need to change the parameter value.\nThen we have an indented block that does the tasks we wrote the function for. Here, the function just does a bit of math.\nThe triple-quoted line is a docstring: the function’s specification, basically a comment that describes the function’s purpose. Technically optional, but a good idea.\nreturn tells us the thing(s) that is (are) output once the function is done with its magic.\n\n\n\nDefining a function does not mean the function runs. To actually get values from a function, we must call it: fall_time(3.0).\nCalling it:\nt1 = fall_time(3.0)          # drop from h = 3 m in Earth's gravity\nt2 = fall_time(3.0, 1.62)    # same drop on the Moon\nBefore you run: should it take longer to fall when the gravity is lower? Verification!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Functions: the contract"
+      "Functions"
     ]
   },
   {
     "objectID": "lessons/03-functions.html#the-docstring-is-basically-a-specification",
     "href": "lessons/03-functions.html#the-docstring-is-basically-a-specification",
-    "title": "Functions: the contract",
+    "title": "Functions",
     "section": "The docstring is basically a specification",
     "text": "The docstring is basically a specification\nLook at fall_time(h, g=9.81) and its docstring — you know almost everything about the function from reading it: what goes in, with what units, what comes out, what’s assumed (from rest). A good problem specification practically writes the prompt and the docstring, but you can also ask for a good, detailed docstring in your prompt:\n\nWrite a Python function pressure_drop(L, D, Q) returning the pressure drop in Pa for laminar water flow through a smooth pipe of length L (m), diameter D (m), at flow rate Q (m³/s). Assume 20 °C water. Include a docstring stating the formula and its valid range.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Functions: the contract"
+      "Functions"
     ]
   },
   {
     "objectID": "lessons/03-functions.html#check-the-function-in-isolation",
     "href": "lessons/03-functions.html#check-the-function-in-isolation",
-    "title": "Functions: the contract",
+    "title": "Functions",
     "section": "Check the function in isolation",
     "text": "Check the function in isolation\nBefore a function enters any larger program: call it at least once with a case you can check by hand.\nprint(fall_time(3.0))   # hand estimate said ~0.78 — confirm before proceeding\nNext week we’ll be calling functions inside loops, maybe 100 or 1000 times. Basically impossible to check all of them, but checking one or two… if they work out correctly, that is a good sign.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Functions: the contract"
+      "Functions"
     ]
   },
   {
     "objectID": "lessons/03-functions.html#local-names-the-functions-private-scratchpad",
     "href": "lessons/03-functions.html#local-names-the-functions-private-scratchpad",
-    "title": "Functions: the contract",
+    "title": "Functions",
     "section": "Local names: the function’s private scratchpad",
     "text": "Local names: the function’s private scratchpad\nIt is probably easier to see this than understand an explanation. What do you predict will be printed in the following code?\n\n\n\n\n\n\n\n\n\n\n\n\nNoteClick for the answer\n\n\n\n\n\n5. The result inside double is local — it exists only while the function runs, in the function’s private workspace, and it is a different variable from the “outer” result, despite the shared name. This is a feature, not a hazard: it means you can use a function without knowing or caring what names it uses internally. Functions go inputs → output; the function interior is kept secret from the outside.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Functions: the contract"
+      "Functions"
     ]
   },
   {
     "objectID": "lessons/03-functions.html#bring-functions-and-ai-together",
     "href": "lessons/03-functions.html#bring-functions-and-ai-together",
-    "title": "Functions: the contract",
+    "title": "Functions",
     "section": "Bring functions and AI together",
-    "text": "Bring functions and AI together\nThe workflow that carries the rest of the semester: spec the function → prompt for it → annotate the body → hand-check it in isolation → use it. Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.\n\n\n\n\n\n\nTipThink\n\n\n\nThe docstring says what the function should do. The annotation says what the function actually does. Verification is checking that those two are the same.\n\n\n\nWe’ll think about stopping distance for a car under braking. On paper write: the function definition line, a two-sentence docstring including assumptions and units, and one hand-checkable test case with its expected output (show the arithmetic). You don’t need to code the whole thing.\nAnd here’s a description that you’ll base your work on: a car doesn’t stop the instant the driver decides to brake — there’s a reaction time first, maybe 1.5 s, during which the car just keeps cruising at speed \\(v\\). That chunk of distance is just speed times time, \\(d_{\\text{reaction}} = v \\cdot t_{\\text{reaction}}\\). Then the brakes engage and the car decelerates from \\(v\\) to \\(0\\) at a roughly constant deceleration \\(a\\).\nThe kinematic equation is \\(v_f^2 = v_0^2 - 2ad\\). Since we’re solving for where the car finally stops (\\(v_f = 0\\)), it rearranges to \\(d_{\\text{braking}} = v^2 / (2a)\\). Total stopping distance is the sum, \\(d = d_{\\text{reaction}} + d_{\\text{braking}}\\). One thing to check before you trust a number out of this: doubling \\(v\\) should more than double \\(d\\), since \\(v\\) shows up squared in the braking term.",
+    "text": "Bring functions and AI together\nThe workflow that we’ll use for the rest of the semester: spec the function → prompt for it → annotate the body → hand-check it in isolation → use it. Notice that code production is the only thing delegated to AI, the other things are tasks that you handle, human engineer.\n\n\n\n\n\n\nTipThink\n\n\n\nThe docstring says what the function should do. The annotation says what the function actually does. Verification is checking that those two are the same.\n\n\n\nWe’ll think about stopping distance for a car under braking. On paper write: the function definition line, a two-sentence docstring including assumptions and units, and one hand-checkable test case with its expected output (show the arithmetic). You don’t need to code the whole thing.\nAnd here’s a description that you’ll base your work on: a car doesn’t stop the instant the driver decides to brake — there’s a reaction time first, maybe 1.5 s, during which the car just keeps cruising at speed \\(v\\). That chunk of distance is just speed times time, \\(d_{\\text{reaction}} = v \\cdot t_{\\text{reaction}}\\). Then the brakes engage and the car decelerates from \\(v\\) to \\(0\\) at a roughly constant deceleration \\(a\\).\nThe kinematic equation is \\(v_f^2 = v_0^2 - 2ad\\). Since we’re solving for where the car finally stops (\\(v_f = 0\\)), it rearranges to \\(d_{\\text{braking}} = v^2 / (2a)\\). Total stopping distance is the sum, \\(d = d_{\\text{reaction}} + d_{\\text{braking}}\\). One thing to check before you trust a number out of this: doubling \\(v\\) should more than double \\(d\\), since \\(v\\) shows up squared in the braking term.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Functions: the contract"
+      "Functions"
+    ]
+  },
+  {
+    "objectID": "lessons/03-functions.html#in-class-work",
+    "href": "lessons/03-functions.html#in-class-work",
+    "title": "Functions",
+    "section": "In-class work",
+    "text": "In-class work\nWe will implement the above function in Colab and then explore/understand some of the nuances.\nBefore each of these experiments, try to guess the behavior.\n\n\n\n\n\n\nCaution\n\n\n\nIt is not necessarily true that your guess will match the actual behavior. Computers use a different logic than humans — e.g., they go through instructions sequentially and don’t have bigger-picture context. And programming languages have to make concessions — e.g. to square a number in Python we use\nx=6\nprint(x**2)\nIt should be the case that x^2 is squaring… and it will be that way in MATLAB. But Python must have reserved the ^ character for something else, so we engineers get to use **.\nThe purpose of this section is to get you familiar with the structure of defining/calling functions and to caution you about some common missteps.\n\n\nBefore trying each, go to Runtime → Restart session. (This clears the function from the working memory.)\n\nCall the function from below the function with numbers as inputs.\nCall the function with variables as inputs. E.g. define v_start=50 and use v_start in the function call (instead of a plain number).\n\nDo you need to call the function with the same variable names as the function uses?\n\nUse the same variable name in the script and the function.\n\nConvince yourself that the function variables are independent\n\nCall the function from above the function definition.\nRun the cell with the function in it, then run the next cell where you call the function.\nRun the cell with the function in it, include the function call in the previous cell and run it.\nIf your function signature is stopping_distance(v_0,a,t_reaction=1.5), compare stopping_distance(1,10), stopping_distance(10,1), stopping_distance(a=10,v_0=1).\nTry stopping_distance(25, reaction=2.0).\nTry stopping_distance(reaction=2.0,25,10).\n\n\n\n\n\n\n\nImportant\n\n\n\nSeeing this behavior yourself is much more instructive than me telling you about it! Programming is best learned actively!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions"
+    ]
+  },
+  {
+    "objectID": "lessons/03-functions.html#return-multiple-things",
+    "href": "lessons/03-functions.html#return-multiple-things",
+    "title": "Functions",
+    "section": "Return multiple things",
+    "text": "Return multiple things\nIf you finish the above tasks early, here’s one more thing to try. We can return multiple outputs using\ndef some_fxn(x):\n    ...\n    return a,b\nand then store those outputs with a similar structure in the call\nout_1,out_2=some_fxn(11)\nWrite a function that takes in the temperature in degrees Fahrenheit and returns the temperature in degrees Celsius and the temperature in Kelvin. Don’t use an LLM, you’ve got this!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Functions"
     ]
   },
   {
@@ -723,7 +747,7 @@
     "href": "info/standards.html",
     "title": "The Standards",
     "section": "",
-    "text": "Your grade in this course is built from the fourteen standards below. Each is a specific, demonstrable skill, marked met or not yet — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class checkpoints (weeks 4, 6, 8, 10 — see grading), activity work, and the design project. Convergent standards require at least one in-class demonstration. A standard missed in week 4 and nailed in week 11 is met.\nThe final exam sits outside this list. It doesn’t add standards — it decides where inside your letter grade you land. How that works.\nEach standard carries a tag:",
+    "text": "Your grade in this course is built from the fourteen standards below. Each is a specific, demonstrable skill, marked met or not yet — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class checkpoints (weeks 4, 6, 8, 10 — see grading), activity work, and the design project. Convergent standards require at least one in-class demonstration. A standard missed in week 4 and nailed in week 11 is met.\nEach standard carries a tag:",
     "crumbs": [
       "Home",
       "Start Here",
@@ -747,7 +771,7 @@
     "href": "info/standards.html#process-turn-raw-data-into-meaning",
     "title": "The Standards",
     "section": "Process — turn raw data into meaning",
-    "text": "Process — turn raw data into meaning\nP1 — Write and reuse a function, and check it in isolation against a hand estimate. convergent (At least one P1 demonstration is hand-written at a checkpoint: a short function from a given spec, no AI — the minimum writing fluency that verification rests on.)\nP2 — Run a parameter sweep: one function across many values, results written to a file. convergent\nP3 — Tame a large dataset with pandas: filter, summarize, reduce many rows to a few meaningful numbers. convergent\nP4 — Read code well enough to predict what a short script does, and recognize the shape of a computational project (inputs → script → outputs). convergent",
+    "text": "Process — turn raw data into meaning\nP1 — Write and reuse a function, and check it in isolation against a hand estimate. convergent\nP2 — Run a parameter sweep: one function across many values, results written to a file. convergent\nP3 — Tame a large dataset with pandas: filter, summarize, reduce many rows to a few meaningful numbers. convergent\nP4 — Read code well enough to predict what a short script does, and recognize the shape of a computational project (inputs → script → outputs). convergent",
     "crumbs": [
       "Home",
       "Start Here",
