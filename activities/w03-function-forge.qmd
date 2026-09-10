@@ -1,5 +1,5 @@
 ---
-title: "The function forge"
+title: "Wind farm design"
 subtitle: "Week 3 Thursday · 2 engagement credits"
 ---
 
