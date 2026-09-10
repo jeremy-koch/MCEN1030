@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HW 1 · The grade calculator – MCEN 1030</title>
+<title>The function forge – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -122,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">HW 1 · The grade calculator</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w03-function-forge.html">The function forge</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../activities/w03-function-forge.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/w03-function-forge.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">The function forge</span></a>
   </div>
 </li>
@@ -258,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link active">
+  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HW 1 · The grade calculator</span></a>
   </div>
 </li>
@@ -274,18 +303,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
-  <li><a href="#its-trickier-than-it-looks" id="toc-its-trickier-than-it-looks" class="nav-link" data-scroll-target="#its-trickier-than-it-looks">It’s trickier than it looks!</a></li>
-  <li><a href="#your-submission" id="toc-your-submission" class="nav-link" data-scroll-target="#your-submission">Your submission</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#round-0" id="toc-round-0" class="nav-link" data-scroll-target="#round-0">Round 0</a></li>
+  <li><a href="#round-1-three-specs" id="toc-round-1-three-specs" class="nav-link" data-scroll-target="#round-1-three-specs">Round 1 — three specs</a></li>
+  <li><a href="#round-2-write-and-audit-the-functions" id="toc-round-2-write-and-audit-the-functions" class="nav-link" data-scroll-target="#round-2-write-and-audit-the-functions">Round 2 — write and audit the functions</a>
+  <ul class="collapse">
+  <li><a href="#three-functions" id="toc-three-functions" class="nav-link" data-scroll-target="#three-functions">Three functions?</a></li>
+  </ul></li>
+  <li><a href="#round-3-testing" id="toc-round-3-testing" class="nav-link" data-scroll-target="#round-3-testing">Round 3 — testing</a></li>
+  <li><a href="#deliverable-2-ec-per-person" id="toc-deliverable-2-ec-per-person" class="nav-link" data-scroll-target="#deliverable-2-ec-per-person">Deliverable — 2 EC, per person</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">HW 1 · The grade calculator</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w03-function-forge.html">The function forge</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">HW 1 · The grade calculator</h1>
+<h1 class="title">The function forge</h1>
+<p class="subtitle lead">Week 3 Thursday · 2 engagement credits</p>
 </div>
 
 
@@ -302,35 +338,67 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I will add an example solution (to a different problem) soon!</p>
-</div>
-</div>
-<section id="scenario" class="level2">
-<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
-<p>Build a program that tells a student their letter grade in this course.</p>
-<p>Everything the program needs to know is on the <a href="../info/grading.html">grading page</a> — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.</p>
+<p><strong>Standards seeded:</strong> P1, A1, A4 · <strong>You’ll need:</strong> a laptop with Colab open, and a phone or paper for the hand-checks.</p>
+<p>Today we build three functions that hand results to one another, and then spend some time deciding whether to trust what they say.</p>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
+<p>Your firm is scoping a wind turbine for the eastern plains outside Denver. You need a tool that answers: <strong>for a given rotor diameter and a given wind speed, how much power comes out?</strong></p>
+<p><strong>The swept area.</strong> The blades sweep a circle, and only the wind passing through that circle is available to you. From the rotor diameter <span class="math inline">\(D\)</span>:</p>
+<p><span class="math display">\[
+A = \frac{\pi D^2}{4}
+\]</span></p>
+<p><strong>The power in the wind, and the share you capture.</strong> Moving air has kinetic energy, and the faster it moves the more it carries — dramatically more, because velocity shows up cubed:</p>
+<p><span class="math display">\[
+P = \tfrac{1}{2}\,\rho\,A\,v^3\,C_p
+\]</span></p>
+<p>where <span class="math inline">\(\rho\)</span> is air density and <span class="math inline">\(C_p\)</span> is the fraction of the wind’s energy the turbine actually captures. Take <span class="math inline">\(\rho = 1.0\)</span> kg/m³ for Denver’s thin air as the default value.</p>
+<p><strong>The efficiency, which is not a constant.</strong> Blades are shaped to capture the wind best at <em>one</em> particular speed — too slow and there is no aerodynamic lift; too fast and they stall and spill. So <span class="math inline">\(C_p\)</span> peaks at a design speed and falls off on either side:</p>
+<p><span class="math display">\[
+C_p(v) = C_{p,\text{max}}\left[1 - \left(\frac{v - v_{\text{best}}}{w}\right)^2\right]
+\]</span></p>
+<p>with <span class="math inline">\(C_{p,\text{max}} = 0.45\)</span>, <span class="math inline">\(v_{\text{best}} = 11\)</span> m/s, and <span class="math inline">\(w = 8\)</span> m/s.</p>
 </section>
-<section id="its-trickier-than-it-looks" class="level2">
-<h2 class="anchored" data-anchor-id="its-trickier-than-it-looks">It’s trickier than it looks!</h2>
-<p>As you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.</p>
+<section id="round-0" class="level2">
+<h2 class="anchored" data-anchor-id="round-0">Round 0</h2>
+<p>An LLM was asked for the power function and handed back a number: for a 100 m rotor in a 10 m/s wind, <strong>52 kilowatts</strong>.</p>
+<p>Do you believe it? Discuss with your group</p>
 </section>
-<section id="your-submission" class="level2">
-<h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
-<p><strong>Step 1 — Specify &amp; prompt.</strong> Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…</p>
-<p>… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a <code>print</code> of the result.</p>
-<p><strong>Step 2 — Annotate</strong> the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.</p>
-<p><strong>Step 3 — Verify.</strong> Hand-compute your predictions <em>before</em> you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.</p>
-<p><strong>Step 4 — Report.</strong> One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.</p>
+<section id="round-1-three-specs" class="level2">
+<h2 class="anchored" data-anchor-id="round-1-three-specs">Round 1 — three specs</h2>
+<p>Everyone create a new Colab. Make your first cell a “text” cell, and write specifications for the three functions. <strong>Decide what the required inputs, optional inputs, and outputs are of each function, and pay attention to the units.</strong> You may not agree with your neighbor, but you may both be reasonable.</p>
+<p>Make your second cell a text cell as well, and do a hand-check of the <span class="math inline">\(D = 100\)</span> m case.</p>
+<p>The <strong>area</strong> function you check with a calculator.</p>
+<p>The <strong>efficiency</strong> function you can check against a <em>physical bound</em>. No turbine can capture more than about 59% of the wind’s energy. Any <span class="math inline">\(C_p\)</span> your function returns above 0.59 is wrong. You can calculate it too: what should it give at <span class="math inline">\(v = 11\)</span> m/s?</p>
+<p>The <strong>power</strong> function you check against <em>common sense</em> after plugging-in reasonable values. Real 100 m turbines produce 2–3 MW… it’s understandable if you didn’t know that number today (I didn’t until I wrote this), but with time/experience in engineering you’ll start to have intuition about numbers. Clearly 52 kW is low, and should set off alarm bells!</p>
+</section>
+<section id="round-2-write-and-audit-the-functions" class="level2">
+<h2 class="anchored" data-anchor-id="round-2-write-and-audit-the-functions">Round 2 — write and audit the functions</h2>
+<p>Now prompt for the code (or write it from scratch… good practice). One function at a time or all three at once — your call, and maybe your group tries both ways and you talk about how it went.</p>
+<p>Then <strong>annotate what comes back</strong>: for each function, write one line in your own words describing what it does. Include this as a docstring.</p>
+<section id="three-functions" class="level3">
+<h3 class="anchored" data-anchor-id="three-functions">Three functions?</h3>
+<p>My intention is for you to create three functions. The area one is pretty simple, but the other two contain separate physics and are worth keeping separate. The efficiency function varies between blade designs, and so having that as its own function that is <strong>called</strong> by the power function is better practice.</p>
+<p>So: do you have <strong>three functions</strong>, or did you/the LLM combine them in some way? Add a comment in your code about this.</p>
+</section>
+</section>
+<section id="round-3-testing" class="level2">
+<h2 class="anchored" data-anchor-id="round-3-testing">Round 3 — testing</h2>
+<p>Run your hand-check case. If you get agreement, that is a good step towards verification. If not, track down the error — was it you, or the code?</p>
+<p>Once your chain is verified, run it twice more: <span class="math inline">\(v = 11\)</span> m/s, then <span class="math inline">\(v = 15\)</span> m/s.</p>
+<p>At 15 m/s the turbine is <em>much less efficient</em> — about 0.34 against the peak 0.45… but you should see it makes more power. There’s more energy in a faster wind, and it is worth wasting energy to extract more of it.</p>
+<p>So the most efficient operating point isn’t the most productive one. Where exactly <em>is</em> the best wind speed? Run your code a few times to try to find it, but it is tedious… we’ll talk about strategies for optimizing this soon!</p>
+</section>
+<section id="deliverable-2-ec-per-person" class="level2">
+<h2 class="anchored" data-anchor-id="deliverable-2-ec-per-person">Deliverable — 2 EC, per person</h2>
+<p>Submitted individually this week, not per table. Export a pdf from Colab</p>
+<ul>
+<li>Your three specs, as written <em>before</em> you prompted.</li>
+<li>The prompt you used, plus the model and roughly when you ran it.</li>
+<li>Your annotated code.</li>
+<li>Your hand-check and discussion.</li>
+<li>Discussion of if there were three functions.</li>
+<li>One sentence (add as a text cell at the bottom): something interesting that someone else included in their spec that you left out.</li>
+</ul>
 
 
 <script type="ojs-module-contents">
@@ -355,7 +423,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../homework";
+window._ojs.paths.runtimeToDoc = "../../activities";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;
