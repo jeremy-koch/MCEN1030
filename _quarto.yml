@@ -55,7 +55,7 @@ website:
       - section: "Phase 1 — Vocabulary (Weeks 3–6)"
         contents:
           - lessons/03-functions.qmd
-          # - activities/w03-function-forge.qmd
+          - activities/w03-function-forge.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
