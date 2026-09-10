@@ -409,85 +409,85 @@
   {
     "objectID": "activities/w03-function-forge.html",
     "href": "activities/w03-function-forge.html",
-    "title": "The function forge",
+    "title": "Wind farm design",
     "section": "",
     "text": "Standards seeded: P1, A1, A4 · You’ll need: a laptop with Colab open, and a phone or paper for the hand-checks.\nToday we build three functions that hand results to one another, and then spend some time deciding whether to trust what they say.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "The function forge"
+      "Wind farm design"
     ]
   },
   {
     "objectID": "activities/w03-function-forge.html#the-problem",
     "href": "activities/w03-function-forge.html#the-problem",
-    "title": "The function forge",
+    "title": "Wind farm design",
     "section": "The problem",
     "text": "The problem\nYour firm is scoping a wind turbine for the eastern plains outside Denver. You need a tool that answers: for a given rotor diameter and a given wind speed, how much power comes out?\nThe swept area. The blades sweep a circle, and only the wind passing through that circle is available to you. From the rotor diameter \\(D\\):\n\\[\nA = \\frac{\\pi D^2}{4}\n\\]\nThe power in the wind, and the share you capture. Moving air has kinetic energy, and the faster it moves the more it carries — dramatically more, because velocity shows up cubed:\n\\[\nP = \\tfrac{1}{2}\\,\\rho\\,A\\,v^3\\,C_p\n\\]\nwhere \\(\\rho\\) is air density and \\(C_p\\) is the fraction of the wind’s energy the turbine actually captures. Take \\(\\rho = 1.0\\) kg/m³ for Denver’s thin air as the default value.\nThe efficiency, which is not a constant. Blades are shaped to capture the wind best at one particular speed — too slow and there is no aerodynamic lift; too fast and they stall and spill. So \\(C_p\\) peaks at a design speed and falls off on either side:\n\\[\nC_p(v) = C_{p,\\text{max}}\\left[1 - \\left(\\frac{v - v_{\\text{best}}}{w}\\right)^2\\right]\n\\]\nwith \\(C_{p,\\text{max}} = 0.45\\), \\(v_{\\text{best}} = 11\\) m/s, and \\(w = 8\\) m/s.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "The function forge"
+      "Wind farm design"
     ]
   },
   {
     "objectID": "activities/w03-function-forge.html#round-0",
     "href": "activities/w03-function-forge.html#round-0",
-    "title": "The function forge",
+    "title": "Wind farm design",
     "section": "Round 0",
     "text": "Round 0\nAn LLM was asked for the power function and handed back a number: for a 100 m rotor in a 10 m/s wind, 52 kilowatts.\nDo you believe it? Discuss with your group",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "The function forge"
+      "Wind farm design"
     ]
   },
   {
     "objectID": "activities/w03-function-forge.html#round-1-three-specs",
     "href": "activities/w03-function-forge.html#round-1-three-specs",
-    "title": "The function forge",
+    "title": "Wind farm design",
     "section": "Round 1 — three specs",
     "text": "Round 1 — three specs\nEveryone create a new Colab. Make your first cell a “text” cell, and write specifications for the three functions. Decide what the required inputs, optional inputs, and outputs are of each function, and pay attention to the units. You may not agree with your neighbor, but you may both be reasonable.\nMake your second cell a text cell as well, and do a hand-check of the \\(D = 100\\) m case.\nThe area function you check with a calculator.\nThe efficiency function you can check against a physical bound. No turbine can capture more than about 59% of the wind’s energy. Any \\(C_p\\) your function returns above 0.59 is wrong. You can calculate it too: what should it give at \\(v = 11\\) m/s?\nThe power function you check against common sense after plugging-in reasonable values. Real 100 m turbines produce 2–3 MW… it’s understandable if you didn’t know that number today (I didn’t until I wrote this), but with time/experience in engineering you’ll start to have intuition about numbers. Clearly 52 kW is low, and should set off alarm bells!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "The function forge"
+      "Wind farm design"
     ]
   },
   {
     "objectID": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
     "href": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
-    "title": "The function forge",
+    "title": "Wind farm design",
     "section": "Round 2 — write and audit the functions",
     "text": "Round 2 — write and audit the functions\nNow prompt for the code (or write it from scratch… good practice). One function at a time or all three at once — your call, and maybe your group tries both ways and you talk about how it went.\nThen annotate what comes back: for each function, write one line in your own words describing what it does. Include this as a docstring.\n\nThree functions?\nMy intention is for you to create three functions. The area one is pretty simple, but the other two contain separate physics and are worth keeping separate. The efficiency function varies between blade designs, and so having that as its own function that is called by the power function is better practice.\nSo: do you have three functions, or did you/the LLM combine them in some way? Add a comment in your code about this.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "The function forge"
+      "Wind farm design"
     ]
   },
   {
     "objectID": "activities/w03-function-forge.html#round-3-testing",
     "href": "activities/w03-function-forge.html#round-3-testing",
-    "title": "The function forge",
+    "title": "Wind farm design",
     "section": "Round 3 — testing",
     "text": "Round 3 — testing\nRun your hand-check case. If you get agreement, that is a good step towards verification. If not, track down the error — was it you, or the code?\nOnce your chain is verified, run it twice more: \\(v = 11\\) m/s, then \\(v = 15\\) m/s.\nAt 15 m/s the turbine is much less efficient — about 0.34 against the peak 0.45… but you should see it makes more power. There’s more energy in a faster wind, and it is worth wasting energy to extract more of it.\nSo the most efficient operating point isn’t the most productive one. Where exactly is the best wind speed? Run your code a few times to try to find it, but it is tedious… we’ll talk about strategies for optimizing this soon!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "The function forge"
+      "Wind farm design"
     ]
   },
   {
     "objectID": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
     "href": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
-    "title": "The function forge",
+    "title": "Wind farm design",
     "section": "Deliverable — 2 EC, per person",
     "text": "Deliverable — 2 EC, per person\nSubmitted individually this week, not per table. Export a pdf from Colab\n\nYour three specs, as written before you prompted.\nThe prompt you used, plus the model and roughly when you ran it.\nYour annotated code.\nYour hand-check and discussion.\nDiscussion of if there were three functions.\nOne sentence (add as a text cell at the bottom): something interesting that someone else included in their spec that you left out.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "The function forge"
+      "Wind farm design"
     ]
   },
   {
