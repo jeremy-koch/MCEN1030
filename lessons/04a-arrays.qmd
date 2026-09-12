@@ -3,11 +3,11 @@ title: "Packages and arrays"
 subtitle: "Week 4, Lesson A — read before Tuesday"
 ---
 
-Week 3 ended with a question: we wanted to know which wind speed produced the most power, and the only tool you had available was calling the function over and over by hand.
+Week 3 ended with a question: we wanted to know which wind speed produced the most power, and the only tool we had available was calling the function over and over by hand.
 
-Let's give a bit more narrative: let's suppose we are trying to estimate the amount of energy that would be produced by our turbine, based on wind speed data taken every hour. Calling your function 24 times by hand is... fine. But there is a better approach (and there will be problems in our future that necessitate calling a function 1000 times, so we'll soon *require* a better approach).
+Let's give it a bit more narrative: let's suppose we are trying to estimate the amount of energy that would be produced by our turbine, based on wind speed data taken every hour. Calling your function 24 times by hand is... fine. But there is a better approach (and there will be problems in our future that necessitate calling a function 1000 times, so we'll soon *require* a better approach).
 
-This lesson introduces two ideas that will help us solve this problem: **packages** (code other people already wrote for you) and **arrays** (many numbers stored under one variable name). By the end, those 24 function calls become one line... and then we'll worry about whether to believe it.
+This lesson introduces two ideas that will help us solve this problem: **packages** (code other people already wrote for you) and **arrays** (many numbers stored under one variable name). By the end, those 24 function calls become one line.
 
 ## Think First
 
