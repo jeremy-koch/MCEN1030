@@ -37,14 +37,14 @@ Tentative schedule:
 | 5 | **Loops, arrays & sweeps**. | **Sweep lab**. | P2, S4 |
 | 6 | ✓ **Checkpoint 2**, then **Data in, data out** — files, CSV, and plotting. | **Plot clinic** — make one honest plot, catch one misleading one. | F2, A2 |
 | **Phase 2 — Tools** | | | |
-| 7 | **Pandas**. *(No class Thursday Oct 8.)* | — | P3, F2 |
+| 7 | **Pandas**. | *(No class Thursday Oct 8.)* | P3, F2 |
 | 8 | ✓ **Checkpoint 3**, then **Fetch** — APIs, JSON. | **Data acquisition lab** — a live API. | F1, F2, A3 |
 | 9 | **Simulate I** — time-stepping a model. | **Build-a-model lab** — marching different systems. | S1, S3 |
 | 10 | ✓ **Checkpoint 4**, then **Simulate II** — assumptions, trust, and what-ifs. | **Model critique**. | S2, S3, S4 |
 | **Phase 3 — Integration** | | | |
 | 11 | **Your second language** — MATLAB, translation, and choosing tools. | **Project launch**. | P4, A4 |
 | 12 | **Project studio** — desk crits at tables. | **Pin-up #1** — specs & verification plans on the wall. | S2, A3, A4 |
-| 13 | Project studio — desk crits at tables. | **Pin-up #2** — working artifacts, same-project pairing. | P4, A2, A3 |
+| 13 | **Project studio** — desk crits at tables. | **Pin-up #2** — working artifacts, same-project pairing. | P4, A2, A3 |
 | 14 | **Defense prep** — what it means to know your own project. | **Mock defenses** at tables. | — |
 | Finals | **The Defense** — a written exam about your project: trace it, explain it, predict what breaks. | | the grade modifier |
 
