@@ -26,6 +26,7 @@ activities/w1*
 
 
 lessons/04*
+!lessons/04a-arrays.qmd
 lessons/05*
 lessons/06*
 lessons/07*

@@ -1,0 +1,295 @@
+---
+title: "Packages and arrays"
+subtitle: "Week 4, Lesson A — read before Tuesday"
+---
+
+Week 3 ended with a question: we wanted to know which wind speed produced the most power, and the only tool you had available was calling the function over and over by hand.
+
+Let's give a bit more narrative: let's suppose we are trying to estimate the amount of energy that would be produced by our turbine, based on wind speed data taken every hour. Calling your function 24 times by hand is... fine. But there is a better approach (and there will be problems in our future that necessitate calling a function 1000 times, so we'll soon *require* a better approach).
+
+This lesson introduces two ideas that will help us solve this problem: **packages** (code other people already wrote for you) and **arrays** (many numbers stored under one variable name). By the end, those 24 function calls become one line... and then we'll worry about whether to believe it.
+
+## Think First
+
+Recall
+
+1. Week 3: why did I recommend the efficiency curve $C_p(v)$ be its own function, instead of burying it inside the power function?
+2. Week 3: you hunted for the best wind speed by re-running the code. How many runs did you do before it got old?
+
+Look Ahead
+
+1. What if we had wind speed values measured every minute throughout the day (1440 pieces of data). Can we call the power function 1440 times without having to type 1440 lines?
+2. If a program hands back 1440 answers, how do you check that they're right without reading all 1440?
+
+## Packages: code other people already wrote
+
+Almost nothing you compute as an engineer will be built from scratch. Someone has already written, tested, and optimized code for square roots, statistics, curve fits, plotting, and file reading — and they've collected that code into a **package** you can import and use.
+
+The big one for us is **NumPy**, short for numerical python, which includes pretty much all of the basic mathematical functions used by engineers. Mathematical operations like $\sqrt{x}$ and $\exp{(x)}$ are useful:
+
+```{pyodide}
+import numpy as np
+
+x=4.3
+print(np.sqrt(x))
+print(np.exp(x))
+print(np.pi)
+```
+
+::: {.column-margin}
+I originally planned to hold-off on packages until later, but many of you were importing NumPy to get `np.pi` on Thursday. This nudged me towards introducing this now!
+:::
+
+What did we do here? Step 1 is to `import` the package. It is typical that the very first line of your code is `import numpy as np`. This loads the package so that we can use the tools within it, and the `as np` part gives it a shorter nickname so that we can write `np.sqrt` instead of `numpy.sqrt`. (Everyone uses `np`, so let's copy that convention.)
+
+When it comes to calling the functions within the NumPy package: yes, the `np.` prefix is mandatory. It tells the program to call the function from the NumPy package, not from Python itself. "Base" Python does not have a built-in function called `sqrt`, we have to look within the NumPy package for its `np.sqrt` function.
+
+
+::: {.column-margin}
+There are technically ways to circumvent the `np.` prefix, but they are discouraged.
+:::
+
+::: {.callout-tip}
+## Think
+The `np.sqrt` function has been verified by millions of users over thirty years and it is far more trustworthy than anything you or an LLM will write this semester. While `np.sqrt` is rock-solid, you are still responsible for using it in the right place, with the right data, etc. That is, you'll still need to verify you are using it in the correct way.
+:::
+
+## Lists: several numbers under one name
+
+The biggest thing NumPy gets us is the ability to do math on many numbers at once. In (base) Python we can create a **list** of values by putting the numbers inside square brackets, separated by commas
+
+```{pyodide}
+speeds = [4.5, 6.2, 7.8, 9.1, 10.4, 11.0, 10.2, 8.6]   # m/s, eight hours of wind
+
+print(speeds)
+print(len(speeds))      # how many values?
+print(speeds[0])        # the first one
+print(speeds[4])        # the... fifth one
+```
+
+One thing that is true with both Python lists and NumPy arrays (which we are about to introduce): they are labeled/"indexed" starting with zero. "The first" number in the list above can be retrieved using `speeds[0]`, and so we might say `speeds[4]` is the fifth element. 
+
+::: {.column-margin}
+Thoughtful engineers who use Python a lot will call these the "zeroth" elements and "fourth" elements, or "index zero" and "index four", but it takes a mental shift to be comfortable looking at a list of numbers and then use those names.
+
+By the way: MATLAB counts from 1. I teach in both languages and get tripped up!
+:::
+
+## Lists don't do math
+
+A reasonable expectation: if `speeds` holds three numbers, then `2*speeds` will double the values of those three numbers. Let's find out.
+
+```{pyodide}
+speeds = [4.5, 6.2, 7.8]
+
+print(2 * speeds)       # doubled? let's see
+```
+
+Errr... it tacked-on another copy of the list? Now we have a list with six values (and no error or warning). Cubing fails too
+
+```{pyodide}
+speeds = [4.5, 6.2, 7.8]
+
+print(speeds ** 3)      # cubed? let's see
+```
+
+... but at least it gives us an error message. The moral of this story: engineers use programming to do math, and "base" Python is not ready to handle the type of math we need to do. We need to bring in another tool, or package of tools, to do engineering work. NumPy!
+
+## The NumPy array
+
+A subtle shift in language: NumPy works with **arrays**, and those arrays are going to be able to do the math we hoped Python lists would do:
+
+```{pyodide}
+import numpy as np
+
+speeds = np.array([4.5, 6.2, 7.8, 9.1, 10.4, 11.0, 10.2, 8.6])   # m/s
+
+print(2 * speeds)
+print(speeds ** 3)
+print(np.sqrt(speeds))
+```
+
+Technically we build an array using a Python list: `np.array(...)` is a function that takes as its input a list, here `[4.5, 6.2, 7.8, ...]`. The function turns that input into a NumPy array, and importantly, arrays will do arithmetic **elementwise** — the operation happens to every value at once, and you get an array of results back. If our NumPy array has eight elements and we use `np.sqrt` on it, we are going to get an output with eight elements. 
+
+It is hard to overstate the importance of this. When you go to do an engineering analysis, you might have a huge collection of numbers. You can store that whole list as a NumPy array with a single variable name, `speeds`. Then you can cube **every number in that list** with `speeds**3`. With just a couple more operations (which NumPy has available as built-in functions), you can compute the total amount of kinetic energy passing through your wind turbine in a day. You get to deal with a single variable `speeds` instead of individually process every value within the list!
+
+
+
+## Your week-3 function already works on arrays
+
+
+Here are examples of where you might have landed with the turbine functions from week 3. (Yours may differ in argument order, etc., and that's fine). **Without adjusting anything** we can use a NumPy array as an input and **will get an array of output values**.
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    """Rotor swept area (m^2) for rotor diameter D (m)."""
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Turbine efficiency (dimensionless) at wind speed v (m/s). Peaks at v = 11 m/s."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    """Turbine output in kW at wind speed v (m/s). Denver air, rho = 1.0 kg/m^3."""
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speeds = np.array([4.5, 6.2, 7.8, 9.1, 10.4, 11.0, 10.2, 8.6])
+power = turbine_power(speeds)
+
+print(power)
+```
+
+We wanted to quickly calculate the power from eight wind speeds, created a NumPy array called `speeds` that had eight numbers in it, and passed that into our functions to get eight values of power.
+
+We'll have to be a little bit more careful when the functions get more complicated — e.g., arrays are fussy if you use them with an `if` statement — but this is really powerful!
+
+
+## Reductions: turning many numbers back into one
+
+An array of 8 powers is progress, but nobody wants to read 8 numbers, let alone 24, and definitely not the 60,000 we'll meet in week 7. What we want are the handful of numbers that *answer the question*. Those come from **reductions** — operations that take a whole array and return one value. Let's grab the code from above and add a little bit more:
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    """Rotor swept area (m^2) for rotor diameter D (m)."""
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Turbine efficiency (dimensionless) at wind speed v (m/s). Peaks at v = 11 m/s."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    """Turbine output in kW at wind speed v (m/s). Denver air, rho = 1.0 kg/m^3."""
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speeds = np.array([4.5, 6.2, 7.8, 9.1, 10.4, 11.0, 10.2, 8.6])
+power = turbine_power(speeds)
+
+print(power.sum())        # add every value
+print(power.max())        # the largest
+print(power.min())        # the smallest
+print(power.mean())       # the average
+print(power.argmax())     # WHERE the largest one is (an index, not a value)
+```
+
+Appending `sum`, `max`, `min`, `mean` to the end of a NumPy array does what you'd expect them to: sum the values (to a single number), report the maximum value, report the minimum value, and report the mean (average) value. `argmax` is some new vocabulary: it returns the **index** where the biggest value occurs. So `power.max()` tells you *what* the best hour produced and `power.argmax()` tells you *which hour it was*.
+
+
+::: {.callout-important}
+## A tricky trace that you'll get used to
+Hopefully I'm not throwing too much at you but: we saw above that `speeds[0]` gives us the zeroth number within the array of speeds; `speeds[4]` gives us the "fourth" number in the array. `power.argmax()` will give us the index where the maximum value of power occurs, and so `speeds[power.argmax()]` will tell us the speed at which the maximum value of power occurs! It may seem like a tangled mess right now, but with a bit more experience the logic will become intuitive.
+:::
+
+
+
+
+<!-- **And the day's energy?** Each reading is one hour apart, so each power in kW persisted for 1 hour, which is kW × h = kWh. The sum of the powers *is* the energy in kilowatt-hours: about 9,490 kWh across these eight hours. A quick check on that number — the machine's best possible hour is about 2,350 kW, so eight perfect hours would be ~18,800 kWh. We got roughly half of that, on a day whose wind spent most of its time below the design speed. Plausible. -->
+
+::: {.column-margin}
+Notice we no longer have to inspect the outputs to figure out which is the biggest number, there is a function that does it for us!
+:::
+
+## A good habit: check the extremes
+
+A problem with tools like `.sum`: you aren't checking on every value, so what if there is a bad one?
+
+Weather data conventionally marks missing values with an absurd placeholder like `-999`, e.g. if the sensor is iced-over or the electronics have a hiccup. Computers do exactly what you tell them to do:
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    """Rotor swept area (m^2) for rotor diameter D (m)."""
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Turbine efficiency (dimensionless) at wind speed v (m/s). Peaks at v = 11 m/s."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    """Turbine output in kW at wind speed v (m/s). Denver air, rho = 1.0 kg/m^3."""
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speed_raw = np.array([8.1, 9.3, -999.0, 10.7, 9.8, 7.4])    # six hours, one of them missing
+power = turbine_power(speed_raw)
+
+print(power.sum())
+```
+
+
+The sum comes back as `2.8e+13` — a number with no error message or warning. It has no minus sign, it didn't crash, and a tired engineer copies it into a report. It is 28 trillion kilowatt-hours: about 28,000 TWh, which is very nearly a full year of the entire world's electricity production. I don't think one turbine did this in six hours!
+
+
+::: {.callout-important}
+**Look at the extremes before you trust the sum.** `max()` and `min()` are one line each and they'll be a sanity check when your data sets are too large to look through in detail.
+
+- Is the maximum physically possible? Add the `power.max()` to the code above: huge.
+- Is the minimum physically possible? A negative power means the turbine is *consuming* electricity from the wind.
+- Then `argmax` or `argmin` tells you exactly which reading to go look at.
+:::
+
+
+## Seeing it: a first plot
+
+The second most important package in MCEN 1030 is Matplotlib... I think so-named because it stole a lot of plotting conventions from MATLAB. We'll dive-in to plotting more seriously in a couple weeks, but let's go ahead and introduce the basic functionality now — it will help us to verify that our data is reasonable.
+
+Some of you went ahead and plotted $C_p(v) = 0.45[1 - ((v-11)/8)^2]$ last week (using Desmos or something like that) — that's great! Let's look at it within Python, and we'll need to do another `import` with another nickname:
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Turbine efficiency (dimensionless) at wind speed v (m/s). Peaks at v = 11 m/s."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+v = np.arange(0, 20.5, 0.5)      # wind speeds 0 to 20 m/s, every half m/s
+plt.plot(v, cp(v))
+plt.axhline(0, color="gray", linewidth=0.8)     # mark zero, for reasons
+plt.xlabel("Wind speed (m/s)")
+plt.ylabel("Efficiency $C_p$")
+plt.show()
+```
+
+There's a couple new functions in here:
+- `np.arange(0, 20.5, 0.5)` created an array of wind speeds starting at 0 and taking steps of 0.5 m/s up to (but not including) 20.5 (so it stops at 20.0). In total: 41 values of wind speed stored in an array called `v`.
+- We've seen this before, but quick reminder: `cp(v)` evaluated all 41 wind speeds at once.
+- `plt.plot(v, cp(v))` creates a plot where the x-values are the numbers in `v` and the y-values are the numbers calculated by `cp(v)`.
+
+Concerningly, **the curve goes below zero** on the left side at $v = 3$ m/s, and on the right side at $v = 19$. That is: below 3 m/s the formula reports a *negative* efficiency, which would mean the turbine generating negative power in a light breeze. That is not physically meaningful, it's an example of extrapolating an equation outside its meaningful range. We should be asking what *should* happen at 2 m/s — something is wrong with the equation!
+
+::: {.bring-to-class}
+**(1)** Predict the output of each of these two lines.
+
+```python
+print(2 * [1, 2, 3])
+print(2 * np.array([1, 2, 3]))
+```
+
+**(2)** Here are Boulder's daily highs (°F) for one week in early September:
+
+`[84, 88, 91, 95, 39, 87, 190]`
+
+No computer. Predict what `temps.max()`, `temps.argmax()`, and `temps.mean()` would return.
+:::
+
+::: {.content-hidden}
+**Instructor answer key (planning only — stripped from the rendered site):**
+
+**(1)** `2 * [1, 2, 3]` → `[1, 2, 3, 1, 2, 3]` (list repetition, the silent failure); `2 * np.array([1,2,3])` → `[2 4 6]`. Expect a solid majority to predict `[2,4,6]` for both — that's the productive wrong answer and the revote lands well after one live run.
+
+**(2)** Days in order Mon–Sun: 84, 88, 91, 95, 39, 87, 190. `temps.max()` = **190** at `argmax()` = **6** (Sunday); `temps.mean()` = **96.3°F** — note that this is *hotter than every real day in the set except the bogus one*, so the contamination doesn't stay put in the outlier, it leaks into the summary statistic too. That's worth surfacing explicitly if nobody notices on their own.
+
+Two different species of wrong, and the room should split on which is which: **190°F** is dismissible outright — physically impossible on Earth, no judgment call required. **39°F** is the harder one — an early-September cold snap in Boulder is rare but has genuinely happened, so `min()` flags it but deciding whether it's an error or just weather takes going to check a source, not just eyeballing the number. Don't let the room settle for "both are obviously wrong" — the whole point is that they're not the same kind of wrong. This sets up Tuesday's in-class **Extremes Patrol**: a longer array (15–20 days) with a few planted anomalies of different flavors, hunted with `max`/`min`/`argmax`/`argmin` before anyone trusts `mean()`.
+
+**Teaching numbers for the 8-hour example:** powers (kW) = 54.7, 269.5, 704.4, 1256.6, 1976.6, 2352.1, 1856.6, 1022.8. `sum` = 9,493.3 kWh; `max` = 2,352.1 kW at `argmax` = 5 (v = 11.0, the design speed — satisfying); `min` = 54.7; `mean` = 1,186.7. Hand-check case: index 4, $v = 10.4$ → $C_p = 0.4475$, $P = 1976.6$ kW.
+
+**The −999 demo:** `sum` = 2.808e13 kWh, `max` = 2.808e13 kW at index 2, which is 1.19e10 × nameplate. $C_p(-999) = -7{,}172$. The correct five-hour total with the bad reading removed is **6,531.6 kWh**. If the room wants to know why the bogus value is *positive*: negative $v^3$ times negative $C_p$. Two wrongs make a plausible right, which is the silent-error doctrine in one line of arithmetic.
+
+**Timing (~50 min after the checkpoint):** vote on (1), run it live, 10 min. Arrays + the untouched-week-3-function demo, 15 min. Reductions and the day's energy, 10 min. The −999 demo and the extremes habit, 5 min. The $C_p$ plot, 5 min. Vote on (2) and launch into the Extremes Patrol, 5 min — if you run out of room, the plot is the piece to cut; it reappears Thursday.
+
+**Do not put arrays on Checkpoint 1.** It's the same morning and they'll have had zero class time on this. A loop or array trace is fair game at Checkpoint 2.
+:::
