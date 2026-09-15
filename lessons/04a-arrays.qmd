@@ -293,3 +293,77 @@ Two different species of wrong, and the room should split on which is which: **1
 
 **Do not put arrays on Checkpoint 1.** It's the same morning and they'll have had zero class time on this. A loop or array trace is fair game at Checkpoint 2.
 :::
+
+## In-class work
+
+We're going to revisit the wind turbine, using NumPy arrays in our functions from last week and one new trick: **boolean masking**.
+
+::: {.column-margin}
+A "boolean" is a very fancy name for a `True/False` value. "Masking" is when we cover-up things associated with `False` values and only work with the things associated with `True` values.
+:::
+
+Here's a quick example. Before you run it: what do you think the first `print` statement is going to do? What about the second `print` statement? Are these going to produce results that are the same length?
+
+```{pyodide}
+import numpy as np
+
+speeds = np.array([8.1, 9.3, -999.0, 10.7, 9.8, 7.4])
+
+print(speeds >= 0)          # an array of True/False, same shape as speeds
+print(speeds[speeds >= 0])  # keep only the values where that was True
+```
+
+This is a **boolean mask**. A comparison on a whole array doesn't give you one `True` or `False` back, it gives you an array of them — `True`/`False` is judged for every item in the array. And then indexing the array with an array of `True`/`False` keeps only the positions marked `True`.
+
+::: {.callout-caution}
+Try each of these in Colab, predicting first.
+:::
+
+- Recompute the day's energy with the bad reading masked out: `turbine_power(speeds[speeds >= 0]).sum()`. Compare it to the number the reading's −999 demo produced.
+- Check whether masking silently dropped something: `len(speeds)` before, `len(speeds[speeds >= 0])` after.
+- Combine two conditions with `&` (not `and` — that one doesn't work elementwise): mask a new array of wind speeds down to only the ones inside the turbine's valid operating range from the reading's $C_p$ plot, `3 <= v <= 19`. Something like `mask = (v >= 3) & (v <= 19)`.
+- For the curious: try `speeds[speeds >= 0 and speeds <= 19]` instead of using `&`. Read the error.
+- Try the same trick on the Boulder temperatures from the bring-to-class item: `temps[temps < 150]`. Compute `.mean()` before and after. How much does one bad reading move the average?
+
+::: {.column-margin}
+In Python, the "length" of a list or array is how many elements it contains. In Python, the length of an array `x` is `len(x)`.
+:::
+
+::: {.callout-important}
+Masking is fast and it is *quiet* — you might accidentally drop information you did not intend to, and it won't alert you! A quick way to check how many terms you've dropped is to measure the length with and without the mask using `len(...)`.
+:::
+
+## Challenge: which hours actually matter?
+
+Here's a full 24-hour day for the same turbine, measuring wind speed every hour. (As is usually the case around here: calmer winds overnight and speeds build through the afternoon. Then I've added a sensor glitch and one gust past the model's valid range of 3–19 m/s.)
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                    11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+
+mask = (speeds >= 3) & (speeds <= 19)      # the turbine's valid range: 3 to 19 m/s
+print(mask.sum(), "of", len(speeds), "hours fall between 3 and 19 m/s")
+```
+
+::: {.column-margin}
+A trick: `mask` is an array of `True`/`False`, and Python treats `True` as `1` and `False` as `0`. So `mask.sum()` counts how many were `True`.
+:::
+
+1. Using `speeds[mask]`, compute the total power for the valid speeds only, in kWh. (I guess we'll claim that when the system is overspeeding, we'll stop it, and when it is too low it is just producing zero energy.)
+2. What fraction of that total came from the single best hour? (`power.max() / power.sum()`)
+3. **The hard one.** What fraction came from the *top three* hours combined? You'll need a new function for this: `np.sort(array)` returns the values sorted smallest to largest, so the biggest three are the *last* three: `np.sort(power)[-3:]`. Look up `np.sort` (or ask your favorite LLM to explain it), predict what `[-3:]` does to a sorted array before you run it, then compute the top-3 share of the day's total.
+
+::: {.column-margin}
+We're secretly doing a bit of Calculus here: "total power" will just be the sum of the power values every hour.
+:::
