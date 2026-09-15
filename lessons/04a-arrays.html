@@ -364,7 +364,7 @@ window.Quarto = {
   <li><a href="#a-good-habit-check-the-extremes" id="toc-a-good-habit-check-the-extremes" class="nav-link" data-scroll-target="#a-good-habit-check-the-extremes">A good habit: check the extremes</a></li>
   <li><a href="#seeing-it-a-first-plot" id="toc-seeing-it-a-first-plot" class="nav-link" data-scroll-target="#seeing-it-a-first-plot">Seeing it: a first plot</a></li>
   <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">In-class work</a></li>
-  <li><a href="#challenge-which-hours-actually-matter" id="toc-challenge-which-hours-actually-matter" class="nav-link" data-scroll-target="#challenge-which-hours-actually-matter">Challenge: which hours actually matter?</a></li>
+  <li><a href="#challenge-which-hours-are-most-significant" id="toc-challenge-which-hours-are-most-significant" class="nav-link" data-scroll-target="#challenge-which-hours-are-most-significant">Challenge: which hours are most significant?</a></li>
   </ul>
 </nav>
     </div>
@@ -646,8 +646,8 @@ Important
 </div>
 </div>
 </section>
-<section id="challenge-which-hours-actually-matter" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="challenge-which-hours-actually-matter">Challenge: which hours actually matter?</h2>
+<section id="challenge-which-hours-are-most-significant" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="challenge-which-hours-are-most-significant">Challenge: which hours are most significant?</h2>
 <p>Here’s a full 24-hour day for the same turbine, measuring wind speed every hour. (As is usually the case around here: calmer winds overnight and speeds build through the afternoon. Then I’ve added a sensor glitch and one gust past the model’s valid range of 3–19 m/s.)</p>
 <div>
 <div id="pyodide-11" class="exercise-cell">
@@ -663,13 +663,13 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div></div><ol type="1">
 <li>Using <code>speeds[mask]</code>, compute the total power for the valid speeds only, in kWh. (I guess we’ll claim that when the system is overspeeding, we’ll stop it, and when it is too low it is just producing zero energy.)</li>
 <li>What fraction of that total came from the single best hour? (<code>power.max() / power.sum()</code>)</li>
-<li><strong>The hard one.</strong> What fraction came from the <em>top three</em> hours combined? You’ll need a new function for this: <code>np.sort(array)</code> returns the values sorted smallest to largest, so the biggest three are the <em>last</em> three: <code>np.sort(power)[-3:]</code>. Look up <code>np.sort</code> (or ask your favorite LLM to explain it), predict what <code>[-3:]</code> does to a sorted array before you run it, then compute the top-3 share of the day’s total.</li>
+<li>What fraction came from the <em>top three</em> hours combined? You’ll need a new function for this: <code>np.sort(array)</code> returns the values sorted smallest to largest, so the biggest three are the <em>last</em> three: <code>np.sort(power)[-3:]</code>. Look up <code>np.sort</code> (or ask your favorite LLM to explain it), predict what <code>[-3:]</code> does to a sorted array before you run it, then compute the top-3 share of the day’s total.</li>
 </ol>
 
 
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>We’re secretly doing a bit of Calculus here: “total power” will just be the sum of the power values every hour.</p>
+<p>We’re secretly doing a bit of Calculus here: “total power” will just be the sum of the power values every hour. (There’s an extra multiplicative factor involved but the total power will be proportional to our result.)</p>
 </div></div><script type="pyodide-data">
 eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
 </script>
