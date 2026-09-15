@@ -333,7 +333,7 @@ In Python, the "length" of a list or array is how many elements it contains. In 
 Masking is fast and it is *quiet* — you might accidentally drop information you did not intend to, and it won't alert you! A quick way to check how many terms you've dropped is to measure the length with and without the mask using `len(...)`.
 :::
 
-## Challenge: which hours actually matter?
+## Challenge: which hours are most significant?
 
 Here's a full 24-hour day for the same turbine, measuring wind speed every hour. (As is usually the case around here: calmer winds overnight and speeds build through the afternoon. Then I've added a sensor glitch and one gust past the model's valid range of 3–19 m/s.)
 
@@ -362,8 +362,8 @@ A trick: `mask` is an array of `True`/`False`, and Python treats `True` as `1` a
 
 1. Using `speeds[mask]`, compute the total power for the valid speeds only, in kWh. (I guess we'll claim that when the system is overspeeding, we'll stop it, and when it is too low it is just producing zero energy.)
 2. What fraction of that total came from the single best hour? (`power.max() / power.sum()`)
-3. **The hard one.** What fraction came from the *top three* hours combined? You'll need a new function for this: `np.sort(array)` returns the values sorted smallest to largest, so the biggest three are the *last* three: `np.sort(power)[-3:]`. Look up `np.sort` (or ask your favorite LLM to explain it), predict what `[-3:]` does to a sorted array before you run it, then compute the top-3 share of the day's total.
+3. What fraction came from the *top three* hours combined? You'll need a new function for this: `np.sort(array)` returns the values sorted smallest to largest, so the biggest three are the *last* three: `np.sort(power)[-3:]`. Look up `np.sort` (or ask your favorite LLM to explain it), predict what `[-3:]` does to a sorted array before you run it, then compute the top-3 share of the day's total.
 
 ::: {.column-margin}
-We're secretly doing a bit of Calculus here: "total power" will just be the sum of the power values every hour.
+We're secretly doing a bit of Calculus here: "total power" will just be the sum of the power values every hour. (There's an extra multiplicative factor involved but the total power will be proportional to our result.)
 :::
