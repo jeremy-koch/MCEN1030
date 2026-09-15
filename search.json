@@ -120,6 +120,30 @@
     ]
   },
   {
+    "objectID": "lessons/04a-arrays.html#in-class-work",
+    "href": "lessons/04a-arrays.html#in-class-work",
+    "title": "Packages and arrays",
+    "section": "In-class work",
+    "text": "In-class work\nWe’re going to revisit the wind turbine, using NumPy arrays in our functions from last week and one new trick: boolean masking.\n\n\nA “boolean” is a very fancy name for a True/False value. “Masking” is when we cover-up things associated with False values and only work with the things associated with True values.\nHere’s a quick example. Before you run it: what do you think the first print statement is going to do? What about the second print statement? Are these going to produce results that are the same length?\n\n\n\n\n\n\nThis is a boolean mask. A comparison on a whole array doesn’t give you one True or False back, it gives you an array of them — True/False is judged for every item in the array. And then indexing the array with an array of True/False keeps only the positions marked True.\n\n\n\n\n\n\nCaution\n\n\n\nTry each of these in Colab, predicting first.\n\n\n\nRecompute the day’s energy with the bad reading masked out: turbine_power(speeds[speeds &gt;= 0]).sum(). Compare it to the number the reading’s −999 demo produced.\nCheck whether masking silently dropped something: len(speeds) before, len(speeds[speeds &gt;= 0]) after.\nCombine two conditions with & (not and — that one doesn’t work elementwise): mask a new array of wind speeds down to only the ones inside the turbine’s valid operating range from the reading’s \\(C_p\\) plot, 3 &lt;= v &lt;= 19. Something like mask = (v &gt;= 3) & (v &lt;= 19).\nFor the curious: try speeds[speeds &gt;= 0 and speeds &lt;= 19] instead of using &. Read the error.\nTry the same trick on the Boulder temperatures from the bring-to-class item: temps[temps &lt; 150]. Compute .mean() before and after. How much does one bad reading move the average?\n\n\n\nIn Python, the “length” of a list or array is how many elements it contains. In Python, the length of an array x is len(x).\n\n\n\n\n\n\nImportant\n\n\n\nMasking is fast and it is quiet — you might accidentally drop information you did not intend to, and it won’t alert you! A quick way to check how many terms you’ve dropped is to measure the length with and without the mask using len(...).",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Packages and arrays"
+    ]
+  },
+  {
+    "objectID": "lessons/04a-arrays.html#challenge-which-hours-actually-matter",
+    "href": "lessons/04a-arrays.html#challenge-which-hours-actually-matter",
+    "title": "Packages and arrays",
+    "section": "Challenge: which hours actually matter?",
+    "text": "Challenge: which hours actually matter?\nHere’s a full 24-hour day for the same turbine, measuring wind speed every hour. (As is usually the case around here: calmer winds overnight and speeds build through the afternoon. Then I’ve added a sensor glitch and one gust past the model’s valid range of 3–19 m/s.)\n\n\n\n\n\n\n\n\nA trick: mask is an array of True/False, and Python treats True as 1 and False as 0. So mask.sum() counts how many were True.\n\nUsing speeds[mask], compute the total power for the valid speeds only, in kWh. (I guess we’ll claim that when the system is overspeeding, we’ll stop it, and when it is too low it is just producing zero energy.)\nWhat fraction of that total came from the single best hour? (power.max() / power.sum())\nThe hard one. What fraction came from the top three hours combined? You’ll need a new function for this: np.sort(array) returns the values sorted smallest to largest, so the biggest three are the last three: np.sort(power)[-3:]. Look up np.sort (or ask your favorite LLM to explain it), predict what [-3:] does to a sorted array before you run it, then compute the top-3 share of the day’s total.\n\n\n\n\n\nWe’re secretly doing a bit of Calculus here: “total power” will just be the sum of the power values every hour.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Packages and arrays"
+    ]
+  },
+  {
     "objectID": "lessons/02b-reading-code.html",
     "href": "lessons/02b-reading-code.html",
     "title": "Reading code and conditional statements",
