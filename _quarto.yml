@@ -57,6 +57,8 @@ website:
           - lessons/03-functions.qmd
           - activities/w03-function-forge.qmd
           - lessons/04a-arrays.qmd
+          - lessons/04b-for-loops.qmd
+          # - activities/w04-design-sweep.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
@@ -91,7 +93,7 @@ website:
       #   contents:
       #     - homework/index.qmd
       #     - homework/hw1-grade-calculator.qmd
-      #     - homework/hw2-materials-librarian.qmd
+      #     - homework/hw2-solar-tilt.qmd
       #     - homework/hw3-lightest-beam.qmd
       #     - homework/hw4-siren.qmd
       #     - homework/hw5-wind-farm.qmd

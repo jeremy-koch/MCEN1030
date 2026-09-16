@@ -27,12 +27,16 @@ activities/w1*
 
 lessons/04*
 !lessons/04a-arrays.qmd
+!lessons/04b-for-loops.qmd
 lessons/05*
 lessons/06*
 lessons/07*
 lessons/08*
 lessons/09*
 lessons/1*
+
+lessons/old/
+homework/old/
 
 peer-evaluation.qmd
 CLAUDE.md

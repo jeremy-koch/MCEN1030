@@ -1,0 +1,301 @@
+---
+title: "For loops, and picking things out by index"
+subtitle: "Week 4, Lesson B — read before Thursday"
+---
+
+With NumPy arrays, we were able to take a bunch of wind speeds, throw them into a function we'd already written (with single wind speeds in mind), and get the corresponding power production back.
+
+There's another way we could have done this — a `for` loop. With a `for` loop, we go through the list of values one-by-one and perform the calculation. If that sounds less efficient, that's because it is less efficient... so why would we ever want to use `for`? The answer is that arrays are great at *one calculation, many numbers*, but they are less capable when we need to consider many options and perform many calculations. In our design process, we wouldn't have one turbine with a collection of wind speeds, we'd have five candidate turbines with a collection of wind speeds — which one is best? The `for` loop will help us with this calculation.
+
+## Think First
+
+Recall
+
+1. What does `speeds[power.argmax()]` get you?
+2. What does `speeds[speeds >= 3]` get you?
+
+Look Ahead
+
+1. Suppose you want the total day's energy for five *different* rotor diameters. How many lines of code is that?
+2. If a calculation gives you five answers, one per design, where do those five answers go? They aren't the input array, and they aren't a single number.
+
+## A minimal `for` loop
+
+A `for` loop runs the same indented block once for every item in a collection, in order:
+
+```{pyodide}
+diameters = [80.0, 90.0, 100.0, 110.0, 120.0]
+
+for D in diameters:
+    print("rotor diameter:", D, "m")
+```
+
+How this structure works: it will assign `D` to the "zeroth" value in the `diameters` list, then run through the process in the indented block; then go back to the top of the block and reassign `D` to the "first" value in the `diameters` list, then run through the process in the indented block; then go back to the top of the block and reassign `D` ...
+
+::: {.column-margin}
+Remember: Python indexes from `0`!
+:::
+
+
+## "Wait, couldn't NumPy do that?"
+
+Here is something with a `for` loop
+
+```{pyodide}
+import numpy as np
+
+speeds = np.array([8.1, 9.3, 10.7, 9.8, 7.4])
+
+for v in speeds:
+    if v > 9:
+        print(v)
+```
+
+and here is something very similar without
+
+```{pyodide}
+import numpy as np
+
+speeds = np.array([8.1, 9.3, 10.7, 9.8, 7.4])
+
+print(speeds[speeds > 9])
+```
+
+The first one, with the `for`, is longer to write and longer to run — it is less efficient. So... why do we need `for` loops? I'll try to say something general:
+
+- Arrays are good at holding data and then having math done on them. Very easy to cube every element in a list of 100 speeds in one line: `speeds**3`.
+- Loops are good at going through a collection of cases you are comparing. Five rotor diameters. Twelve tilt angles. Three modeling assumptions. Each pass through the loop produces a whole array's worth of results (and then you've got to figure out what to do from there!).
+
+## Loop over designs, array inside
+
+Let's revisit the turbine calculation:
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    """Rotor swept area (m^2) for rotor diameter D (m)."""
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Turbine efficiency (dimensionless) at wind speed v (m/s). Peaks at v = 11 m/s."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    """Turbine output in kW at wind speed v (m/s). Denver air, rho = 1.0 kg/m^3."""
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+good = speeds[(speeds >= 3) & (speeds <= 19)]     # 17 valid hours, from Tuesday
+
+for D in [80.0, 90.0, 100.0, 110.0, 120.0]:
+    energy = turbine_power(good, D).sum()
+    print(D, "m rotor:", round(energy, 1), "kWh")
+```
+
+What happened on each pass through the `for` loop? The function `turbine_power(good, D)` handed back an array of seventeen powers. Then `.sum()` collapsed those seventeen numbers into one day's energy. Then the loop moved on and did it again for the next diameter, then for the next diameter, and the next. In total we tested five diameters, each time using NumPy arrays+math to do the calculations necessary to get power.
+
+::: {.column-margin}
+Notice we didn't change `turbine_power`. The power of functions, if you are thoughtful about how to build them, is that you can keep the same math inside them and just vary the inputs.
+:::
+
+## Where do the values go?
+
+We've been relying on `print` a lot in this class, because we (humans) can see the answers. We also know we can save the values under a variable name. But now we are going to be producing massive amounts of data — large arrays for each test case... where do we store those values?
+
+
+### Option 1 — grow a list with `append`
+
+Probably the most common method: create an empty **list** and **append** to it as you go through your `for` loop:
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+
+diameters = np.array([80.0, 90.0, 100.0, 110.0, 120.0])
+
+totals = []                                  # an empty list, no elements!
+for D in diameters:
+    totals.append(turbine_power(good, D).sum())    # stick one value on the end
+
+totals = np.array(totals)                    # a list going in, an array coming out
+print(totals)
+```
+
+Three things happened here:
+
+1. `totals = []` makes an empty list *before* the loop — before, because anything created inside the loop would get wiped clean at the top of every pass. 
+2. `totals.append(x)` tacks `x` onto the end, so the list grows by one each time through. 
+3. `np.array(...)` converts the finished list into something we can do math on (recall that Python lists don't cooperate with math).
+
+
+### Option 2 — pre-allocate and fill by index
+
+Before the loop starts, build an array of the right size and fill it with placeholder values. Then each pass through the loop drops its answer into the slot that belongs to it. We know we're testing multiple diameters, each needs a slot — and `np.zeros(len(diameters))` gets that for us.
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+
+diameters = np.array([80.0, 90.0, 100.0, 110.0, 120.0])
+
+totals = np.zeros(len(diameters))        # five slots, one per design, initially populated with zeros
+for i in range(len(diameters)):
+    totals[i] = turbine_power(good, diameters[i]).sum()
+
+print(totals)
+```
+
+Same five numbers, by a different route. Three things happened here too:
+
+1. `totals = np.zeros(len(diameters))` builds the answer array *before* the loop, already the right size. `len(diameters)` is 5, so we get five zeros. Writing `len(diameters)` instead of just `5` means that when you change the list of designs, the answer array changes with it — you don't have to remember to update a number in two places.
+2. `range(len(diameters))` is the sequence `0, 1, 2, 3, 4` — every valid index of `diameters`. So this loop hands us positions rather than values, and we use the position twice.
+3. Every time through the loop, we have set `i` to a particular value: `0`, `1`, `2`, `3`, then `4`. Then `totals[i] = ...` drops one answer into slot `i`. We *read* `diameters[i]` and we *write* `totals[i]`, both at the same index, on the same pass.
+
+That third point explains why we do this: `diameters[2]` is the 100 m rotor and `totals[2]` is what the 100 m rotor made.
+
+
+::: {.callout-caution}
+## Zeros are a real number
+If your loop skips a slot — you looped over `range(4)` when there were five designs, say — the last slot stays zero and there is no warning that you forgot about it.
+
+The safer habit is to prefill with something that can't be mistaken for an answer. `np.full(len(diameters), np.nan)` fills the array with `nan` — "not a number". Any `nan` you fail to overwrite will poison every `sum` and `max` that it is involved in, loudly.
+:::
+
+<!-- ### So which one?
+
+Neither is wrong, and both gave us the same five numbers. Option 1 is what most Python programmers write, and it's what an LLM will hand you nine times out of ten — so you need to be able to *read* it without blinking. But in this course I'd like you *writing* option 2, for a reason that has nothing to do with speed. (Someone will eventually tell you that appending is slow. For Python lists that's basically a myth, inherited from MATLAB where it genuinely is awful. Don't repeat it.)
+
+The reason is this. With `append`, the correspondence between `diameters` and `totals` is an accident of good behavior — it holds only because you appended exactly once per pass, in order, and nothing anywhere checks that you did. Put an `if` in that loop that skips a case, and your two arrays now have different lengths and describe different designs, silently, with no complaint. With pre-allocation, slot 3 is slot 3 forever: the array was born the right size, and `totals[i]` was filled on the pass that read `diameters[i]`. -->
+
+### Option 3 — the list comprehension
+
+There's a third way that is difficult to comprehend but actually quite nice when you get used to it.
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+
+diameters = np.array([80.0, 90.0, 100.0, 110.0, 120.0])
+
+totals = np.array([turbine_power(good, D).sum() for D in diameters])
+
+print(totals)
+```
+
+The whole loop — the empty container, the five passes, the collecting — has collapsed into that one bracketed expression towards the bottom. The trick to reading it is that the `for` is still in there, just moved. Read it back-to-front: *for* each `D` in `diameters`, evaluate `turbine_power(good, D).sum()`, and collect the results in a list. It's the same as Option 1 but very succinct. The square brackets are doing the job that `totals = []` and `.append()` were doing, which is why they're brackets.
+
+::: {.column-margin}
+This is the most *Pythonic* of the three — that's a real word people use, meaning roughly "written the way the language wants to be written."
+:::
+
+Option 3 is beautiful once it starts making sense! But it is dense and hard to read. Get comfortable with the other methods first.
+
+
+
+
+
+
+
+
+
+
+## Indexing: getting one thing back out
+
+Now that we've got a variable that contains all of our values, we can investigate them.
+
+```{pyodide}
+import numpy as np
+
+diameters = np.array([80.0, 90.0, 100.0, 110.0, 120.0])
+totals = np.array([12918.2, 16349.6, 20184.7, 24423.5, 29066.0])   # from the loop above
+
+print(totals[0])          # the zeroth (AKA first one) — for the 80 m rotor
+print(totals[2])
+print(totals[-1])         # the last one, counting backwards
+print(totals.max())       # the biggest value
+print(totals.argmax())    # WHERE the biggest value is
+print(diameters[totals.argmax()])   # which design that was
+```
+
+::: {.column-margin}
+How to interpret the last line of this code:
+
+- `totals.argmax()` is `4` — the index of the largest energy.
+- `diameters[4]` is `120.0` — the design that lives at index 4.
+- So `diameters[totals.argmax()]` is "the diameter belonging to the best result."
+:::
+
+The two arrays are **parallel**: index 3 means the 110 m rotor in `diameters` and it means the 110 m rotor's energy in `totals`, because we built them that way. Keeping parallel arrays lined up is important — if you mask one and forget to mask the other, index 3 no longer means the same design in both, a great way to confuse yourself or create incorrect results!
+
+
+
+::: {.callout-important}
+## Counting from zero, one more time
+There is no `totals[5]` — you'll get an `IndexError`.
+
+Negative indices count from the right: `totals[-1]` is the last one, `totals[-2]` the second-to-last. This is useful: `totals[-1]` looks so much nicer than `totals[len(totals)-1]`.
+:::
+
+
+::: {.bring-to-class}
+**(1)** Trace this by hand and write down the printed value:
+
+```python
+total = 0
+for x in [3, 7, 2, 9, 4]:
+    if x > 4:
+        total = total + x
+print(total)
+```
+
+**(2)** Given these two parallel arrays:
+
+```python
+tilt   = np.array([10, 20, 30, 40, 50])
+output = np.array([277, 301, 315, 320, 315])
+```
+
+Write down what each of these gives you — the value, not a description:
+
+`output[1]`, `output[-1]`, `output.argmax()`, `tilt[output.argmax()]`, and `len(tilt)`.
+
+Then one sentence: if I dropped the first entry from `output` but *not* from `tilt`, what would `tilt[output.argmax()]` report, and would anything warn me?
+:::
