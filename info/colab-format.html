@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>First contact with coding – MCEN 1030</title>
+<title>colab-format – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -190,7 +190,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/02a-first-contact.html">First contact with coding</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Start Here</a></li><li class="breadcrumb-item"><a href="../info/colab-format.html">Submitting Homework</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -257,7 +257,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../info/colab-format.html" class="sidebar-item-text sidebar-link">
+  <a href="../info/colab-format.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Submitting Homework</span></a>
   </div>
 </li>
@@ -286,7 +286,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">First contact with coding</span></a>
   </div>
 </li>
@@ -372,201 +372,281 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
-  <li><a href="#google-colab-edit-code-in-your-browser" id="toc-google-colab-edit-code-in-your-browser" class="nav-link" data-scroll-target="#google-colab-edit-code-in-your-browser">Google Colab: edit code in your browser</a></li>
-  <li><a href="#variables-giving-numbers-names" id="toc-variables-giving-numbers-names" class="nav-link" data-scroll-target="#variables-giving-numbers-names">Variables: giving numbers names</a></li>
-  <li><a href="#a-good-habit-to-get-into-predict-then-run" id="toc-a-good-habit-to-get-into-predict-then-run" class="nav-link" data-scroll-target="#a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</a></li>
-  <li><a href="#errors-are-data" id="toc-errors-are-data" class="nav-link" data-scroll-target="#errors-are-data">Errors are data</a></li>
-  <li><a href="#reading-before-writing" id="toc-reading-before-writing" class="nav-link" data-scroll-target="#reading-before-writing">Reading before writing</a></li>
+  <li><a href="#submitting-homework" id="toc-submitting-homework" class="nav-link active" data-scroll-target="#submitting-homework">Submitting Homework</a>
+  <ul class="collapse">
+  <li><a href="#the-shape-of-a-homework-notebook" id="toc-the-shape-of-a-homework-notebook" class="nav-link" data-scroll-target="#the-shape-of-a-homework-notebook">The shape of a homework notebook</a></li>
+  <li><a href="#some-markdown-tricks" id="toc-some-markdown-tricks" class="nav-link" data-scroll-target="#some-markdown-tricks">Some markdown tricks</a></li>
+  <li><a href="#getting-a-pdf-out" id="toc-getting-a-pdf-out" class="nav-link" data-scroll-target="#getting-a-pdf-out">Getting a PDF out</a>
+  <ul class="collapse">
+  <li><a href="#before-you-run-it" id="toc-before-you-run-it" class="nav-link" data-scroll-target="#before-you-run-it">Before you run it</a></li>
+  </ul></li>
+  <li><a href="#what-to-turn-in" id="toc-what-to-turn-in" class="nav-link" data-scroll-target="#what-to-turn-in">What to turn in</a></li>
+  <li><a href="#things-that-make-pdfs-look-bad" id="toc-things-that-make-pdfs-look-bad" class="nav-link" data-scroll-target="#things-that-make-pdfs-look-bad">Things that make PDFs look bad</a></li>
+  <li><a href="#if-something-breaks" id="toc-if-something-breaks" class="nav-link" data-scroll-target="#if-something-breaks">If something breaks</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Start Here</a></li><li class="breadcrumb-item"><a href="../info/colab-format.html">Submitting Homework</a></li></ol></nav></header>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/02a-first-contact.html">First contact with coding</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">First contact with coding</h1>
-<p class="subtitle lead">Week 2, Lesson A — read before Tuesday</p>
+
+
+
+<section id="submitting-homework" class="level1 page-columns page-full">
+<h1>Submitting Homework</h1>
+<p>This page explains how to set the notebook up so it reads like a report, and how to get a clean PDF out of it.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not use Colab’s File &gt; Print. It is buggy. The render cell below seems to circumvent this and produces good documents.</p>
+</div>
+</div>
+<section id="the-shape-of-a-homework-notebook" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-shape-of-a-homework-notebook">The shape of a homework notebook</h2>
+<p>The very first cell of your notebook should be a text cell that contains this:</p>
+<pre><code># Homework 2 -- Solar Tilt
+Jane Doe
+23 September 2026</code></pre>
+<p>and then a second text cell that contains this</p>
+<pre><code>## Specify &amp; Prompt
+Here's where the first part of your report will go.</code></pre>
+<p>You will have additional text cells: one that begins with <code>## Annotate</code>, one that begins with <code>## Verify</code>, and one that begins with <code>## Report</code>. Interspersed among these will be code cells.</p>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>This lesson gets you running Python code in your browser via Google Colab — nothing to install on your computer, nothing to configure, and so we’ll be able to get going very quickly.</p>
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The <code>#</code> makes a big header, <code>##</code> makes a smaller one. Those four <code>##</code> headers should appear <em>exactly</em> as written — we will use them to find the sections for grading.</p>
+</div></div></section>
+<section id="some-markdown-tricks" class="level2">
+<h2 class="anchored" data-anchor-id="some-markdown-tricks">Some markdown tricks</h2>
+<p>Within the text cells you can do some light formatting:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>To get</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A header</td>
+<td><code>## Verify</code></td>
+</tr>
+<tr class="even">
+<td><em>Italic</em></td>
+<td><code>*italic*</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Bold</strong></td>
+<td><code>**bold**</code></td>
+</tr>
+<tr class="even">
+<td>A bullet list</td>
+<td><code>- item</code> on each line</td>
+</tr>
+<tr class="odd">
+<td>A numbered list</td>
+<td><code>1. item</code> on each line</td>
+</tr>
+<tr class="even">
+<td><code>inline code</code></td>
+<td>backticks around it: <code>`freq_shift`</code></td>
+</tr>
+<tr class="odd">
+<td>Math</td>
+<td><code>$v = 25$ m/s</code> or <code>$$\Delta f = f_0 \frac{v}{c}$$</code> for a displayed equation</td>
+</tr>
+</tbody>
+</table>
+<p>Colab uses LaTeX to create math equations — you can write real equations in your specification instead of describing them in words. Here are three LaTeX bits to start with: <code>$x^2$</code>, <code>$\frac{a}{b}$</code>, and <span class="math inline">\(\cos(\beta)\)</span>.</p>
+</section>
+<section id="getting-a-pdf-out" class="level2">
+<h2 class="anchored" data-anchor-id="getting-a-pdf-out">Getting a PDF out</h2>
+<p>At the very bottom of your notebook, add one code cell and paste in the code below. Change <code>OUTNAME</code> to include your last name.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>If you have never written a line of code before
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>… this course assumes exactly that. Let me mention three things:</p>
-<ol type="1">
-<li>I don’t think the best way to learn programming is to spend time trying to memorize the syntax; memorization will come naturally with experience. The best way to learn is to actually write and think about coding real problems. This page includes a lot of discussion of the syntax, but don’t make flash cards about it or anything like that. We’ll be writing programs soon enough, and you’ll start to recognize the patterns the same way you do with spoken language.</li>
-<li>There is hardly any cost for making a mistake in coding: the program gives an error, and you use the information in the error message to figure out how to fix your code. Students often try to write perfect code immediately, and want to give up if they can’t. <em>Don’t fall into that trap.</em> It is typical for a program to be “wrong” the first 5, 12, or 30 times you run it. You fix the errors and it works!</li>
-<li>Some of your colleagues have some experience with coding, and they might have an easier time with this course (and may ask some advanced questions that I’ll <em>try</em> to answer). Don’t let that discourage you: I am creating this course with the beginner in mind, and so you will get all the information you need to start from scratch. That doesn’t mean it will be easy — learning is always an uncomfortable process! But put forth the effort and you will be in a good place by December.</li>
-</ol>
-</div>
-</div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>What do I mean by “syntax”? A “for loop” in Python looks like <code>for i in items:</code>. That is, we need a <code>for</code>; a variable that changes every time through the “loop”, <code>i</code>; the word <code>in</code>; then the list that the variable is drawn from, <code>items</code>; and then a colon <code>:</code>. This is “the syntax” for a for loop — forgetting any of those things will break the code.</p>
-<p>In MATLAB, the syntax is <code>for i=items</code>… an equals sign <code>=</code> instead of <code>in</code>, no colon needed, and there also needs to be an <code>end</code> at the end of the block. The syntax varies from language to language, and if you switch between languages it can be confusing. But LLMs rarely mess up the syntax… they are a useful tool for getting started on a new project (“I need a python for loop that goes through a list of items”), translating between languages (“turn this python code into matlab code”), and debugging when your syntax is imperfect (“why is this code producing an error?… here is my error message:”).</p>
-</div></div><section id="think-first" class="level2">
-<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
-<p>Recall</p>
-<ol type="1">
-<li>From last week: what does an LLM do with the gaps in your specification?</li>
-<li>We evaluate <code>2 + 3 * 4</code> as 14, not 20. What rule is it following, and did anyone ever teach it to you as a <em>computing</em> rule?</li>
-</ol>
-<p>Look Ahead</p>
-<ol type="1">
-<li>If AI can write code, why are we about to learn to <em>read</em> it line by line?</li>
-<li>What’s the difference between a program <em>storing</em> a value and <em>displaying</em> a value?</li>
-</ol>
-</section>
-<section id="google-colab-edit-code-in-your-browser" class="level2">
-<h2 class="anchored" data-anchor-id="google-colab-edit-code-in-your-browser">Google Colab: edit code in your browser</h2>
-<p>Go to <a href="https://colab.research.google.com">colab.research.google.com</a> and sign in with your university Google account. Click <strong>New notebook</strong>. You now have a <strong>notebook</strong>: a document made of <strong>cells</strong>, where each cell holds a bit of Python code you can run by pressing <strong>Shift+Enter</strong> (or the ▶ button).</p>
-<p>Type this into the first cell and run it — or, since this page runs Python <strong>right here in your browser</strong>, you can edit and run the code below (the first run takes a few seconds while Python loads; after that it should be fast):</p>
-<div>
-<div id="pyodide-1" class="exercise-cell">
-
-</div>
-<script type="pyodide-1-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJoZWxsbywgTUNFTiAxMDMwXCIpIn0=
-</script>
-</div>
-<p>The text should appear below the cell. The <code>print(...)</code> part is a <strong>function</strong> (a named, reusable action — much more on these in week 3) whose job is to display the thing between the quotes.</p>
-</section>
-<section id="variables-giving-numbers-names" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="variables-giving-numbers-names">Variables: giving numbers names</h2>
-<p>A <strong>variable</strong> is a name attached to a value, so you can use the value by its name:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="fl">9.81</span>        <span class="co"># gravitational acceleration, m/s^2</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">3.0</span>         <span class="co"># drop height, m</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>The text after a <code>#</code> is a <strong>code comment</strong> — a note for humans that Python ignores. Here, we described the physical meaning of the variables and included the units of the number.</p>
-</div></div><p>Variable names can be simple or complex. Probably you will appreciate being able to write a simple, readable equation <code>y=0.5*g*t**2</code> later in your code, but we also could have defined <code>gravity_earth_surface = 9.81</code> and then used <code>y=0.5*gravity_earth_surface*t**2</code> later on.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It is good practice to make the variable names descriptive such that you know what is going on in the equations involving those variables. Something like <code>g</code> in a mechanics-based program is probably fine because we are so used to seeing <code>g</code> in our mechanics equations. But if we had some code that involved gravity on earth and gravity on the moon (for some reason), it is better to write those as <code>g_earth</code> and <code>g_moon</code> instead of <code>g_1</code> and <code>g_2</code>.</p>
-</div>
-</div>
-<p>The <code>=</code> sign here does <strong>not</strong> mean “equals” in the algebra sense. It means <strong>“store the value under this name.”</strong> This structure conflicts with our experience in math class, for example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we did algebra on this equation: subtract <code>count</code> from both sides, leaving <code>0=1</code>… nonsense. But as an instruction, it will take the (current) value of <code>count</code>, add <code>1</code>, and store the resulting value under the name <code>count</code> (thus replacing the old value stored under that name). This is perfectly acceptable practice, and indeed it is a common ingredient in code.</p>
-</section>
-<section id="a-good-habit-to-get-into-predict-then-run" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</h2>
-<p>Here is a complete little program. <strong>Before you run it, write down what you expect it to display.</strong></p>
-<div>
-<div id="pyodide-2" class="exercise-cell">
-
-</div>
-<script type="pyodide-2-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZyA9IDkuODFcbmggPSAzLjBcbnQgPSAoMiAqIGggLyBnKSAqKiAwLjVcbnByaW50KHQpIn0=
-</script>
-</div>
-<p>(Sure, you can run it without thinking. I’m not keeping track of what you are doing here… for the sake of your learning, I think you should think! Otherwise this is like the most boring game on the internet: click to see some text.)</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><code>**</code> is, annoyingly, Python’s “raise to a power.” So <code>x ** 0.5</code> is a square root. And <code>*</code> must always be written explicitly: <code>2h</code> will give an error; you need <code>2 * h</code> instead.</p>
-</div></div><p>Some reading help: line 3 computes <span class="math inline">\(t = \sqrt{2h/g}\)</span>, the fall time of an object dropped from height <span class="math inline">\(h\)</span>, subject to gravity <span class="math inline">\(g\)</span>. So: <span class="math inline">\(2 \times 3 / 9.81 \approx 0.61\)</span>, and <span class="math inline">\(\sqrt{0.61} \approx 0.78\)</span>. That is: we predict this code should produce something near <code>0.78</code>.</p>
-<p>Now run it. It should match, unless you changed something in the code. <strong>Verification</strong>!</p>
-</section>
-<section id="errors-are-data" class="level2">
-<h2 class="anchored" data-anchor-id="errors-are-data">Errors are data</h2>
-<p>In the code above, change <code>t = (2 * h / g) ** 0.5</code> to <code>t = (2 * h_2 / g) ** 0.5</code>, and run it again. You’ll get an angry red block ending in something like:</p>
-<pre><code>NameError: name 'h_2' is not defined</code></pre>
-<p>Two things to know about errors:</p>
-<p><strong>They are normal.</strong> Experts probably do make fewer errors, but they don’t make zero errors… and actually, I use errors as a way to write code <em>faster</em>: just write out a sloppy version of the code without expecting it to work, then: run, read and fix the error; run, read and fix the error; run, read and fix the error; and by then I’m probably done. <em>Read the error messages</em>, they usually describe the error and point to where it occurred in the code. Here: this is a <code>NameError</code> because we used a variable name that the program didn’t know.</p>
-<p><strong>They are the friendly failure mode.</strong> It is way more difficult to figure out why code runs successfully, but produces a wrong answer. Error messages are kind of nice because they tell you exactly what is wrong (maybe cryptically)!</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Understanding error messages is a genuinely good use of an LLM: paste the code and the full error, and ask what’s wrong. Verify the explanation makes sense — don’t let the LLM do all your thinking for you!</p>
-</div>
-</div>
-</section>
-<section id="reading-before-writing" class="level2">
-<h2 class="anchored" data-anchor-id="reading-before-writing">Reading before writing</h2>
-<p>You now know enough to <em>read</em> simple Python. Predict what this displays before running:</p>
-<div>
-<div id="pyodide-3" class="exercise-cell">
-
-</div>
-<script type="pyodide-3-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDRcbmIgPSBhICogMlxuYSA9IDFcbnByaW50KGIpIn0=
-</script>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Click for the answer
+<span class="screen-reader-only">Note</span>Click here for the render cell (copy the whole thing)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><code>8</code> — not <code>2</code>. Line 2 stored the <em>value</em> 8 under <code>b</code>; it did not create a live mathematical relationship “b is twice a.” When <code>a</code> changed afterward, <code>b</code> is unaware. The code executes <strong>top to bottom, each line acting on values as they are at that moment</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===== RENDER_CELL — do not edit or move this cell =====</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this LAST. Turns everything above into a PDF and downloads it.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First run in a session takes ~1-2 min (it sets up a renderer on the</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Colab server -- nothing is installed on your computer).</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>OUTNAME <span class="op">=</span> <span class="st">"hw02_lastname"</span>   <span class="co"># &lt;-- put YOUR last name here</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json, glob, os, sys, subprocess</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>src <span class="op">=</span> <span class="st">"/content/_render.ipynb"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>nb <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> google.colab <span class="im">import</span> _message</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    nb <span class="op">=</span> _message.blocking_request(<span class="st">"get_ipynb"</span>, timeout_sec<span class="op">=</span><span class="dv">120</span>)[<span class="st">"ipynb"</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Grabbed the live notebook."</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Couldn't reach the live notebook:"</span>, e)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> nb <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        drive.mount(<span class="st">"/content/drive"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        hits <span class="op">=</span> <span class="bu">sorted</span>(glob.glob(<span class="st">"/content/drive/MyDrive/Colab Notebooks/*.ipynb"</span>),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                      key<span class="op">=</span>os.path.getmtime, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> hits:</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="st">"No .ipynb in MyDrive/Colab Notebooks/"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Using most recent saved notebook:"</span>, hits[<span class="dv">0</span>])</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"(Did you press Ctrl+S / Cmd+S first?)"</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        nb <span class="op">=</span> json.load(<span class="bu">open</span>(hits[<span class="dv">0</span>]))</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">*** Rendering failed:"</span>, e)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"*** Use File &gt; Download &gt; Download .ipynb and upload that."</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"*** You will NOT be penalized. Please email me the error."</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">SystemExit</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>nb[<span class="st">"cells"</span>] <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> nb[<span class="st">"cells"</span>]</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>               <span class="cf">if</span> <span class="st">"RENDER_CELL"</span> <span class="kw">not</span> <span class="kw">in</span> <span class="st">""</span>.join(c.get(<span class="st">"source"</span>, <span class="st">""</span>))]</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(src, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    json.dump(nb, f)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>subprocess.run([<span class="st">"jupyter"</span>, <span class="st">"nbconvert"</span>, <span class="st">"--to"</span>, <span class="st">"html"</span>, src,</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>                <span class="st">"--output"</span>, OUTNAME, <span class="st">"--output-dir"</span>, <span class="st">"/content"</span>])</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>html_path <span class="op">=</span> <span class="ss">f"/content/</span><span class="sc">{</span>OUTNAME<span class="sc">}</span><span class="ss">.html"</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(html_path):</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">*** Conversion failed. Download the .ipynb and upload that instead."</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">SystemExit</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>CSS <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;style&gt;</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="st">@page { size: Letter; margin: 0.7in; }</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="st">body { font-size: 11pt; }</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="st">pre, code, .highlight pre, .jp-InputArea-editor, .CodeMirror {</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="st">  white-space: pre-wrap !important;</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="st">  word-wrap: break-word !important;</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="st">  overflow-wrap: anywhere !important;</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="st">  overflow-x: visible !important;</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="st">.jp-Cell, .jp-CodeCell, .jp-MarkdownCell, .jp-OutputArea-child,</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="st">.cell, .input, .output_area, pre, table, figure, img {</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="st">  break-inside: avoid !important;</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="st">  page-break-inside: avoid !important;</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="st">h1, h2, h3 { page-break-after: avoid; }</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="st">.jp-InputPrompt, .jp-OutputPrompt, .prompt { display: none !important; }</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="st">table {</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="st">  display: block !important; max-width: 100% !important;</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="st">  overflow-x: auto !important; font-size: 8pt !important;</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="st">  border-collapse: collapse !important;</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="st">table th, table td {</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="st">  white-space: normal !important; word-break: break-word !important;</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="st">  padding: 2px 4px !important;</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="st">img, svg { max-width: 100% !important; height: auto !important; }</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/style&gt;</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> <span class="bu">open</span>(html_path, encoding<span class="op">=</span><span class="st">"utf-8"</span>).read()</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> html.replace(<span class="st">"&lt;/head&gt;"</span>, CSS <span class="op">+</span> <span class="st">"&lt;/head&gt;"</span>) <span class="cf">if</span> <span class="st">"&lt;/head&gt;"</span> <span class="kw">in</span> html <span class="cf">else</span> CSS <span class="op">+</span> html</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="bu">open</span>(html_path, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>).write(html)</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>pdf_path <span class="op">=</span> <span class="ss">f"/content/</span><span class="sc">{</span>OUTNAME<span class="sc">}</span><span class="ss">.pdf"</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"/content/_topdf.py"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'''</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="st">import sys</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="st">from playwright.sync_api import sync_playwright</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="st">src, out = sys.argv[1], sys.argv[2]</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="st">with sync_playwright() as p:</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="st">    b = p.chromium.launch()</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="st">    pg = b.new_page()</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="st">    pg.goto("file://" + src, wait_until="networkidle")</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="st">    pg.wait_for_timeout(2500)</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="st">    pg.pdf(path=out, format="Letter", print_background=True,</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="st">           prefer_css_page_size=True,</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="st">           margin={"top":"0","bottom":"0","left":"0","right":"0"})</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="st">    b.close()</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="st">print("PDF written:", out)</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Setting up the renderer (one time per session)..."</span>)</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, <span class="st">"playwright"</span>])</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"playwright"</span>, <span class="st">"install"</span>, <span class="st">"chromium"</span>])</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"playwright"</span>, <span class="st">"install-deps"</span>, <span class="st">"chromium"</span>])</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> subprocess.run([sys.executable, <span class="st">"/content/_topdf.py"</span>, html_path, pdf_path],</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>                   capture_output<span class="op">=</span><span class="va">True</span>, text<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r.stdout[<span class="op">-</span><span class="dv">1500</span>:])</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> r.returncode <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"PDF step failed:</span><span class="ch">\n</span><span class="st">"</span>, r.stderr[<span class="op">-</span><span class="dv">1500</span>:])</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(pdf_path) <span class="kw">and</span> os.path.getsize(pdf_path) <span class="op">&gt;</span> <span class="dv">1000</span>:</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Done. Downloading </span><span class="sc">{</span>OUTNAME<span class="sc">}</span><span class="ss">.pdf -- scroll through it before uploading!"</span>)</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>    files.download(pdf_path)</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Couldn't make the PDF. Downloading HTML instead: open it and print"</span>)</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"to PDF from Chrome (Save as PDF, Background graphics ON)."</span>)</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    files.download(html_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-<div class="bring-to-class">
-<p>On paper, two things:</p>
-<ol type="1">
-<li>Your prediction for what this displays with one sentence of reasoning:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">+</span> <span class="dv">5</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="2" type="1">
-<li>An electric toothbrush draws about 0.3 A of current (<span class="math inline">\(I\)</span>) through 4 ohms of resistance (<span class="math inline">\(R\)</span>); a space heater draws about 12 A through 10 ohms. On paper, set the current and resistance values in the first four lines of your code, then compute and print the power dissipated, <span class="math inline">\(P = I^2 R\)</span>, for <em>both</em> devices. Don’t forget to <code>#</code> comment! Write out your hand estimate on the side. Which device do you expect will dissipate more power?</li>
-</ol>
+<section id="before-you-run-it" class="level3">
+<h3 class="anchored" data-anchor-id="before-you-run-it">Before you run it</h3>
+<p>Go to Runtime &gt; Restart session and run all. This does two things: it confirms your code actually runs start-to-finish (a surprising number of notebooks only work because of something you defined an hour ago and then deleted), and it makes sure every output in the PDF matches the code above it.</p>
+<p>Then run the render cell. It will spend a minute or two setting itself up — that’s happening on Google’s server, not your computer, so nothing gets installed on your machine. Then it downloads a PDF.</p>
+</section>
+</section>
+<section id="what-to-turn-in" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-turn-in">What to turn in</h2>
+<p>We will be grading the PDF that the render cell downloaded. You can upload your notebook itself <strong>as a comment on the assignment</strong>. Get it with File &gt; Download &gt; Download .ipynb. If there is an issue, e.g.&nbsp;the render drops something, you’ll have proof that it was actually in the file.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open the PDF and scroll through it before you upload. If something failed to render I would have to assume you just didn’t do it — you can catch it and save us both some time!</p>
+</div>
+</div>
+</section>
+<section id="things-that-make-pdfs-look-bad" class="level2">
+<h2 class="anchored" data-anchor-id="things-that-make-pdfs-look-bad">Things that make PDFs look bad</h2>
+<ul>
+<li><strong>Don’t dump giant outputs.</strong> We’ll be dealing with large data sets soon — if you print a 60000-row DataFrame, you get a 60000-row DataFrame in your PDF. Use <code>.head()</code>, or better, print the summary you actually care about.</li>
+<li><strong>Wide DataFrames are the worst offender.</strong> Many columns will get squeezed down to tiny text. Either select the columns you need, or transpose with <code>.T</code>.</li>
+<li><strong>Keep code lines under about 80 characters.</strong> Long lines will wrap, which is better than getting chopped off, but wrapped lines are ugly and hard to read. You can adjust this manually, or if you are using an LLM you can add “wrap lines at 80 characters” to your prompt.</li>
+<li><strong>Label your plots.</strong> Axes, units, maybe a legend.</li>
+</ul>
+</section>
+<section id="if-something-breaks" class="level2">
+<h2 class="anchored" data-anchor-id="if-something-breaks">If something breaks</h2>
+<p>The render cell has fallbacks built in, and it tells you what to do at each stage. In order of what it tries: grab your live notebook, then fall back to the saved copy in Drive, then fall back to handing you an HTML file you can print from Chrome yourself.</p>
+<p>If all of that fails just submit the <code>.ipynb</code> and email me the error message. <strong>You will not be penalized for a rendering failure.</strong></p>
 
 
-<script type="pyodide-data">
-eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
-</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
+eyJjb250ZW50cyI6W119
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -580,6 +660,7 @@ eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2RO
 W10=
 </script>
 </section>
+</section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
@@ -587,7 +668,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lessons";
+window._ojs.paths.runtimeToDoc = "../../info";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;

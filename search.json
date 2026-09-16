@@ -542,87 +542,108 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
+    "objectID": "info/basecamp.html",
+    "href": "info/basecamp.html",
+    "title": "Base Camp",
     "section": "",
-    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation…\nhow computer logic works…\nand how to interpret code…\nbut we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”1: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, as long as we humans are an active participant in the process.",
+    "text": "Mondays are an optional session/office hour. The first half of the semester, they are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
+  },
+  {
+    "objectID": "info/basecamp.html#the-sessions",
+    "href": "info/basecamp.html#the-sessions",
+    "title": "Base Camp",
+    "section": "The sessions",
+    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
+  },
+  {
+    "objectID": "info/basecamp.html#practice-library-async-base-camp",
+    "href": "info/basecamp.html#practice-library-async-base-camp",
+    "title": "Base Camp",
+    "section": "Practice library (async Base Camp)",
+    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+  },
+  {
+    "objectID": "homework/hw2-solar-tilt.html",
+    "href": "homework/hw2-solar-tilt.html",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "",
+    "text": "You’re picking a location for a single solar panel on a roof in Boulder. The panel doesn’t track the sun — it gets bolted down once, at one tilt angle, and (hopefully) lasts for years in that position. So we had better pick the correct angle!\nYou will prepare a report in which you pick the best angle. More importantly, you’ll convince the reader that the number you picked is right.\nSee Submitting Homework for information on how to create the report. We are requiring a certain look this time.",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Welcome"
+      "Homework",
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "index.html#the-big-idea",
-    "href": "index.html#the-big-idea",
-    "title": "Welcome",
-    "section": "The big idea",
-    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
+    "objectID": "homework/hw2-solar-tilt.html#scenario",
+    "href": "homework/hw2-solar-tilt.html#scenario",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "",
+    "text": "You’re picking a location for a single solar panel on a roof in Boulder. The panel doesn’t track the sun — it gets bolted down once, at one tilt angle, and (hopefully) lasts for years in that position. So we had better pick the correct angle!\nYou will prepare a report in which you pick the best angle. More importantly, you’ll convince the reader that the number you picked is right.\nSee Submitting Homework for information on how to create the report. We are requiring a certain look this time.",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Welcome"
+      "Homework",
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "index.html#how-a-week-works",
-    "href": "index.html#how-a-week-works",
-    "title": "Welcome",
-    "section": "How a week works",
-    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nClass time is mostly group work at the tables. Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you’ll actually implement them.\nGet extra practice on Mondays (optional). Base Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nCheckpoints happen on Tuesdays (weeks 4, 6, 8, 10): twenty-minute “mini-exams”, individual, on paper, with no AI. See the grading page.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
+    "objectID": "homework/hw2-solar-tilt.html#the-model",
+    "href": "homework/hw2-solar-tilt.html#the-model",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "The model",
+    "text": "The model\nTechnically the panel orientation requires two angular measurements: think about starting with it pointing upwards, and then tilting it until it faces due south (one angular coordinate), and then rotating it around so that it faces east (the second angle). We’ll simplify a bit and focus on just solar noon, eliminating the second angle from our worries.\nA tilted panel collects energy in proportion to how squarely it faces the sun. If the sunlight arrives at an angle \\(\\theta\\) away from straight-on, the panel collects a factor of \\(\\cos\\theta\\) less than it would if the sun were directly overhead of it. Let \\(\\alpha\\) be the sun’s elevation above the horizon and \\(\\beta\\) the panel’s tilt up from horizontal. The sun’s angle from straight-up (the zenith angle) is \\(90° - \\alpha\\), and the panel’s normal is tilted \\(\\beta\\) from straight-up, so\n\\[\n\\theta = \\left|\\,(90° - \\alpha) - \\beta\\,\\right|\n\\]\nand the power the panel produces is\n\\[\nP = G \\cdot A \\cdot \\eta \\cdot \\cos\\theta\n\\]\nwith \\(G\\) the incoming sunlight in W/m², \\(A = 1.6\\) m² the panel area, and \\(\\eta = 0.20\\) the conversion efficiency. Take Denver’s latitude as \\(40°\\)N.\n\n\nThis model ignores diffuse light from the sky, reflection off the roof, the fact that panels get less efficient when hot, and everything that happens away from solar noon.\nTwo notes on using this in code. NumPy’s np.cos expects radians, not degrees, but np.radians(theta) will do the conversion for you. And np.abs gives you the absolute value elementwise on a whole array.",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Welcome"
+      "Homework",
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "index.html#ai-policy",
-    "href": "index.html#ai-policy",
-    "title": "Welcome",
-    "section": "AI policy",
-    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
+    "objectID": "homework/hw2-solar-tilt.html#part-1-build-the-function-and-check-it-by-hand",
+    "href": "homework/hw2-solar-tilt.html#part-1-build-the-function-and-check-it-by-hand",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "Part 1 — Build the function and check it by hand",
+    "text": "Part 1 — Build the function and check it by hand\nWrite panel_power(tilt_deg, elevation_deg) returning watts, with G, A, and \\(\\eta\\) as arguments with sensible defaults. Write a docstring: what goes in, in what units, what comes out.\nThen verify it in isolation before you use it for anything (this is standard P1). On the equinox at Denver, the sun’s noon elevation is \\(\\alpha = 50°\\). Compute \\(P\\) by hand for a tilt of \\(0°\\) and for a tilt of \\(40°\\) — write down the arithmetic, not just the answers — and confirm the function agrees. If it doesn’t, the function is wrong and everything downstream of it is decoration.\n\n\n\n\n\n\nTip\n\n\n\nOne of those two hand cases is arithmetically trivial. That’s a good strategy: pick inputs whose answer you can get without a calculator. You’ll be more inclined to verify the easy cases, and less inclined to make mistakes!",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Welcome"
+      "Homework",
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "index.html#grading",
-    "href": "index.html#grading",
-    "title": "Welcome",
-    "section": "Grading",
-    "text": "Grading\nThis course uses standards-based grading, based on:\n\na list of specific skills (the standards), each marked Met or Not Yet\nand engagement credits for preparation and in-class work.\n\nThere is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
+    "objectID": "homework/hw2-solar-tilt.html#part-2-sweep-the-tilt",
+    "href": "homework/hw2-solar-tilt.html#part-2-sweep-the-tilt",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "Part 2 — Sweep the tilt",
+    "text": "Part 2 — Sweep the tilt\nBuild a NumPy array of tilt angles from \\(0°\\) to \\(90°\\), evaluate panel_power on the whole array in one line, and find the best tilt using argmax. Plot power against tilt, with axis labels and units. There is basically no cost to doing a lot of points here: you could calculate at every degree… 91 points is not that many.\nThen the sanity check:\n\n\n\n\n\n\nImportant\n\n\n\nThere’s a rule of thumb that a fixed panel should be tilted at roughly the site’s latitude. Denver is at 40°N. Does your sweep agree?\nIf it does — say so explicitly, and explain in a sentence or two why the model produces that result, using the geometry above. “It matched” is not the finding; being able to say why it had to match is.\nIf it doesn’t, you have a bug, and the two usual suspects are degrees-versus-radians and a sign error in \\(\\theta\\). Find it. Do not report a number your own physics tells you is wrong.\n\n\nTwo follow-ups, one calculation each:\n\nWinter solstice drops the noon sun to \\(\\alpha = 26.5°\\); summer solstice raises it to \\(73.5°\\). Rerun the sweep for each. Do the best tilts make physical sense to you? What single number is the best tilt tracking, across all three cases?\nExtend your tilt array past \\(90°\\), out to \\(180°\\) — a panel tipped over past vertical until it’s face-down. What does the function report, and is it physically possible? Say what the function should do there and why it doesn’t.",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Welcome"
+      "Homework",
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "index.html#where-to-go-next",
-    "href": "index.html#where-to-go-next",
-    "title": "Welcome",
-    "section": "Where to go next",
-    "text": "Where to go next\nYour first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the Practice Library if you want to run some code right now in your browser (and let me know if it doesn’t work). If curious, you might browse the Side Quests — a few ideas are already on that page.",
+    "objectID": "homework/hw2-solar-tilt.html#part-3-a-real-day-with-real-problems",
+    "href": "homework/hw2-solar-tilt.html#part-3-a-real-day-with-real-problems",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "Part 3 — A real day, with real problems",
+    "text": "Part 3 — A real day, with real problems\nHere are eleven hourly readings from an equinox day in Boulder: the sun’s elevation, and a measurement of the incoming sunlight.\nimport numpy as np\n\nhour       = np.array([7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17])\nelevation  = np.array([11.4, 22.5, 32.8, 41.6, 47.7, 50.0, 47.7, 41.6, 32.8, 22.5, 11.4])\nirradiance = np.array([480., 690., 820., 890., 930., -999., 1800., 870., 760., 610., 390.])\nSet your panel at the best tilt from Part 2 and compute the day’s energy. Because the readings are an hour apart, each power in watts stands for one watt-hour, so the sum of the powers is the day’s energy in watt-hours.\nDo it twice. First, naively — feed the arrays straight in and report the total. Then, honestly — inspect the data first, mask out what shouldn’t be there, and report the total again along with how many readings you dropped and which hours they were.\nSome things to notice and write about:\n\nTwo of those readings are bad, explain why.\nEstablish a physical ceiling for a plausible reading and justify it. Sunlight at the top of the atmosphere is about 1361 W/m², and the atmosphere takes a bite out of that. What’s the most a ground-level pyranometer in Boulder should ever see?\nCompare your two totals. The naive one is not absurd — it won’t be off by a factor of a trillion, it’ll be off by something a tired engineer would sign. Explain how two bad readings conspired to produce a plausible wrong answer. This is the single most important paragraph in the assignment.\nWhen you mask irradiance, what has to happen to elevation? Check that your two arrays are still the same length after masking and say how you checked.\nFinally: your honest total covers nine hours, not eleven. Report it that way. Estimate what the two missing hours were probably worth and say how you estimated — a number with a stated gap beats a number pretending to be complete.",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Welcome"
+      "Homework",
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "Welcome",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nWe can’t look inside a “black box” to see what is going on.↩︎",
+    "objectID": "homework/hw2-solar-tilt.html#your-submission",
+    "href": "homework/hw2-solar-tilt.html#your-submission",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "Your submission",
+    "text": "Your submission\nThe same four steps.\nStep 1 — Specify & prompt. What the program takes in, in what units, what it produces. What counts as a valid tilt, a valid elevation, a valid irradiance reading — and what your program does with a value outside those ranges. You don’t have the tools to enforce those rules yet (that’s next week); you do have to decide them now and write them down. Then your actual LLM prompt, and the model and date.\nStep 2 — Annotate. The returned code, with your comments on it. Say which line does the degrees-to-radians conversion and how you confirmed it’s there. If the AI made a decision you never specified — a default you didn’t ask for, an ordering, a min/max angle — name it.\nStep 3 — Verify. Your Part 1 hand check with the arithmetic shown. Your latitude sanity check with its explanation. Your two Part 3 totals with the discrepancy explained.\nStep 4 — Report. The recommended tilt for a fixed Denver panel, the plot, the day’s energy with its stated gap, and one paragraph on which of your checks you’d have been most embarrassed to skip.\n\n\n\n\n\n\nNoteNo loops required\n\n\n\nEverything here is one function and a NumPy array. If you find yourself writing a for loop over tilt angles, stop — panel_power(tilts) on the whole array already does it, in one line, and doing it the long way is the wrong lesson. Loops earn their keep in HW 3, where we’ll come back to this exact panel and sweep it across the whole year.",
     "crumbs": [
       "Home",
-      "Start Here",
-      "Welcome"
+      "Homework",
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
@@ -842,25 +863,172 @@
     ]
   },
   {
-    "objectID": "info/basecamp.html",
-    "href": "info/basecamp.html",
-    "title": "Base Camp",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
     "section": "",
-    "text": "Mondays are an optional session/office hour. The first half of the semester, they are Base Camp: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!"
+    "text": "Welcome to MCEN 1030: Introduction to Engineering Computing, taught by Professor Jeremy Koch in the Fall 2026 semester.\nWhen I took this course (in Fall 2006… oof), the big challenge for students was to figure out how to use fundamental programming ideas — loops, conditional statements, indexing — to achieve an engineering task. My professor gave very clean problem statements so that we could focus on writing the code, and we spent hours figuring out how to put the ideas in the right order, getting the syntax right, and debugging errors.\nToday, we have AI (artificial intelligence), specifically LLMs (large language models). These have proven to be extremely capable of writing code based on a prompt (natural language instructions). Engineers need some understanding of how computation can be used in their projects, but they are not manually typing in for i in items: anymore… they are writing prompts that include something like “iterate through the items in that list” and having an LLM do the work.\nWhat does that mean for an introduction to engineering computing class, if traditional problems have been conquered by AI? We still need to learn what is possible with computation…\nhow computer logic works…\nand how to interpret code…\nbut we will also learn how to integrate LLMs into our workflow. Importantly, we are not going to treat LLM-generated code as a “black box”1: we need to understand what is going on in our code. After all, if you end up using an LLM-generated result in your job and something explodes, you won’t be able to blame an LLM — it’s your fault!\nFurther, we’ll learn why LLMs are not 100% trustworthy and will see that they, too, often produce broken code. That doesn’t mean we give up on the project — if we understand how to talk about computational ideas, how to interpret results, and how to troubleshoot/debug, we can work with an LLM. The net effect will likely be that we produce better work, faster, as long as we humans are an active participant in the process.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
   },
   {
-    "objectID": "info/basecamp.html#the-sessions",
-    "href": "info/basecamp.html#the-sessions",
-    "title": "Base Camp",
-    "section": "The sessions",
-    "text": "The sessions\nBC1 (Week 1) · The computer itself, and how to talk about code. Before any coding: the computer itself. Browsers vs. apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: how to ask a question about code — the vocabulary (what do you call **, [], :?), the best way to ask a question: what I ran / what I expected / what I got instead."
+    "objectID": "index.html#the-big-idea",
+    "href": "index.html#the-big-idea",
+    "title": "Welcome",
+    "section": "The big idea",
+    "text": "The big idea\nThe process of creating computational tools looks roughly like this:\n\n  The computational pipeline\n  Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.\n  \n    \n      \n    \n  \n  \n    \n    Idea\n    \n    Specification\n    \n    Production\n    \n    Verification\n    \n    Use\n    \n    \n    \n    \n    \n    Adaptation\n  \n\nFor decades, Production — thinking about the code elements, structure, and syntax, and doing the typing — was the bottleneck, and so intro courses like this one spent nearly all their time on it. That bottleneck is gone: AI tools produce working code (from a good description) in seconds. The new bottlenecks are the two highlighted boxes:\nSpecification means describing the problem precisely: the inputs and outputs, what has to happen in the middle, what to do at the edges. If you can’t articulate the problem, no tool — human or AI — can solve it for you.\nVerification means refusing to trust a black box: sanity-checking results against hand estimates, testing edge cases, knowing the ways a program (or a model, or an AI) goes wrong.\nYou will still read and run and modify plenty of code in this course — you can’t verify what you can’t read. But you will be graded on whether you can think computationally: frame a problem, direct the tools, and audit the results. That is what engineers actually do!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
   },
   {
-    "objectID": "info/basecamp.html#practice-library-async-base-camp",
-    "href": "info/basecamp.html#practice-library-async-base-camp",
-    "title": "Base Camp",
-    "section": "Practice library (async Base Camp)",
-    "text": "Practice library (async Base Camp)\nI’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: Practice Library."
+    "objectID": "index.html#how-a-week-works",
+    "href": "index.html#how-a-week-works",
+    "title": "Welcome",
+    "section": "How a week works",
+    "text": "How a week works\nBefore class, you’ll read one lesson on this site (~20 minutes). Most of the code on these pages executes right in your browser and is editable. Every lesson ends with a Bring to class box: one question you answer on paper before you arrive.\n\n\n\nMore serious coding will happen in Google Colab, MATLAB Online, or Python/MATLAB on your own machine — the getting going page has instructions.\nClass time is mostly group work at the tables. Early in the semester, mostly short problems with right answers. Later it shifts toward open-ended problems with design thinking. The readings introduce the concepts, and in class you’ll actually implement them.\nGet extra practice on Mondays (optional). Base Camp early (the beginner on-ramp, checkpoint practice, …), Side Quests later (build a tiny language model, 3D-print a parameter sweep, …). No grades attached.\nCheckpoints happen on Tuesdays (weeks 4, 6, 8, 10): twenty-minute “mini-exams”, individual, on paper, with no AI. See the grading page.\nHomework problems are mostly about real mechanical engineering and will be formatted to include four steps: specify, annotate, verify, report. The homework page explains the format.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#ai-policy",
+    "href": "index.html#ai-policy",
+    "title": "Welcome",
+    "section": "AI policy",
+    "text": "AI policy\nYou are expected to use AI tools in this course. You are also completely responsible for everything they produce for you. Every assignment asks you to show your specification, annotate the generated code, and demonstrate your verification.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#grading",
+    "href": "index.html#grading",
+    "title": "Welcome",
+    "section": "Grading",
+    "text": "Grading\nThis course uses standards-based grading, based on:\n\na list of specific skills (the standards), each marked Met or Not Yet\nand engagement credits for preparation and in-class work.\n\nThere is no partial credit, no point-scrounging, and no penalty for struggling early: you can demonstrate a standard later when it reappears, and your grade is where you end up, not where you started. See the grading page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#where-to-go-next",
+    "href": "index.html#where-to-go-next",
+    "title": "Welcome",
+    "section": "Where to go next",
+    "text": "Where to go next\nYour first reading (for Tuesday) is What do engineers do with computation? You might look at Base Camp if you are new to coding and a bit nervous — the first few sessions designed to start you on the right foot. Try the Practice Library if you want to run some code right now in your browser (and let me know if it doesn’t work). If curious, you might browse the Side Quests — a few ideas are already on that page.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "Welcome",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nWe can’t look inside a “black box” to see what is going on.↩︎",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "info/colab-format.html",
+    "href": "info/colab-format.html",
+    "title": "Submitting Homework",
+    "section": "",
+    "text": "This page explains how to set the notebook up so it reads like a report, and how to get a clean PDF out of it.\n\n\n\n\n\n\nImportant\n\n\n\nDo not use Colab’s File &gt; Print. It is buggy. The render cell below seems to circumvent this and produces good documents.\n\n\n\n\nThe very first cell of your notebook should be a text cell that contains this:\n# Homework 2 -- Solar Tilt\nJane Doe\n23 September 2026\nand then a second text cell that contains this\n## Specify & Prompt\nHere's where the first part of your report will go.\nYou will have additional text cells: one that begins with ## Annotate, one that begins with ## Verify, and one that begins with ## Report. Interspersed among these will be code cells.\n\n\nThe # makes a big header, ## makes a smaller one. Those four ## headers should appear exactly as written — we will use them to find the sections for grading.\n\n\n\nWithin the text cells you can do some light formatting:\n\n\n\n\n\n\n\nTo get\nType\n\n\n\n\nA header\n## Verify\n\n\nItalic\n*italic*\n\n\nBold\n**bold**\n\n\nA bullet list\n- item on each line\n\n\nA numbered list\n1. item on each line\n\n\ninline code\nbackticks around it: `freq_shift`\n\n\nMath\n$v = 25$ m/s or $$\\Delta f = f_0 \\frac{v}{c}$$ for a displayed equation\n\n\n\nColab uses LaTeX to create math equations — you can write real equations in your specification instead of describing them in words. Here are three LaTeX bits to start with: $x^2$, $\\frac{a}{b}$, and \\(\\cos(\\beta)\\).\n\n\n\nAt the very bottom of your notebook, add one code cell and paste in the code below. Change OUTNAME to include your last name.\n\n\n\n\n\n\nNoteClick here for the render cell (copy the whole thing)\n\n\n\n\n\n# ===== RENDER_CELL — do not edit or move this cell =====\n# Run this LAST. Turns everything above into a PDF and downloads it.\n# First run in a session takes ~1-2 min (it sets up a renderer on the\n# Colab server -- nothing is installed on your computer).\n\nOUTNAME = \"hw02_lastname\"   # &lt;-- put YOUR last name here\n\nimport json, glob, os, sys, subprocess\nfrom google.colab import files\n\nsrc = \"/content/_render.ipynb\"\nnb = None\n\ntry:\n    from google.colab import _message\n    nb = _message.blocking_request(\"get_ipynb\", timeout_sec=120)[\"ipynb\"]\n    print(\"Grabbed the live notebook.\")\nexcept Exception as e:\n    print(\"Couldn't reach the live notebook:\", e)\n\nif nb is None:\n    try:\n        from google.colab import drive\n        drive.mount(\"/content/drive\")\n        hits = sorted(glob.glob(\"/content/drive/MyDrive/Colab Notebooks/*.ipynb\"),\n                      key=os.path.getmtime, reverse=True)\n        if not hits:\n            raise FileNotFoundError(\"No .ipynb in MyDrive/Colab Notebooks/\")\n        print(\"Using most recent saved notebook:\", hits[0])\n        print(\"(Did you press Ctrl+S / Cmd+S first?)\")\n        nb = json.load(open(hits[0]))\n    except Exception as e:\n        print(\"\\n*** Rendering failed:\", e)\n        print(\"*** Use File &gt; Download &gt; Download .ipynb and upload that.\")\n        print(\"*** You will NOT be penalized. Please email me the error.\")\n        raise SystemExit\n\nnb[\"cells\"] = [c for c in nb[\"cells\"]\n               if \"RENDER_CELL\" not in \"\".join(c.get(\"source\", \"\"))]\nwith open(src, \"w\") as f:\n    json.dump(nb, f)\n\nsubprocess.run([\"jupyter\", \"nbconvert\", \"--to\", \"html\", src,\n                \"--output\", OUTNAME, \"--output-dir\", \"/content\"])\nhtml_path = f\"/content/{OUTNAME}.html\"\nif not os.path.exists(html_path):\n    print(\"\\n*** Conversion failed. Download the .ipynb and upload that instead.\")\n    raise SystemExit\n\nCSS = \"\"\"\n&lt;style&gt;\n@page { size: Letter; margin: 0.7in; }\nbody { font-size: 11pt; }\npre, code, .highlight pre, .jp-InputArea-editor, .CodeMirror {\n  white-space: pre-wrap !important;\n  word-wrap: break-word !important;\n  overflow-wrap: anywhere !important;\n  overflow-x: visible !important;\n}\n.jp-Cell, .jp-CodeCell, .jp-MarkdownCell, .jp-OutputArea-child,\n.cell, .input, .output_area, pre, table, figure, img {\n  break-inside: avoid !important;\n  page-break-inside: avoid !important;\n}\nh1, h2, h3 { page-break-after: avoid; }\n.jp-InputPrompt, .jp-OutputPrompt, .prompt { display: none !important; }\ntable {\n  display: block !important; max-width: 100% !important;\n  overflow-x: auto !important; font-size: 8pt !important;\n  border-collapse: collapse !important;\n}\ntable th, table td {\n  white-space: normal !important; word-break: break-word !important;\n  padding: 2px 4px !important;\n}\nimg, svg { max-width: 100% !important; height: auto !important; }\n&lt;/style&gt;\n\"\"\"\nhtml = open(html_path, encoding=\"utf-8\").read()\nhtml = html.replace(\"&lt;/head&gt;\", CSS + \"&lt;/head&gt;\") if \"&lt;/head&gt;\" in html else CSS + html\nopen(html_path, \"w\", encoding=\"utf-8\").write(html)\n\npdf_path = f\"/content/{OUTNAME}.pdf\"\n\nwith open(\"/content/_topdf.py\", \"w\") as f:\n    f.write('''\nimport sys\nfrom playwright.sync_api import sync_playwright\nsrc, out = sys.argv[1], sys.argv[2]\nwith sync_playwright() as p:\n    b = p.chromium.launch()\n    pg = b.new_page()\n    pg.goto(\"file://\" + src, wait_until=\"networkidle\")\n    pg.wait_for_timeout(2500)\n    pg.pdf(path=out, format=\"Letter\", print_background=True,\n           prefer_css_page_size=True,\n           margin={\"top\":\"0\",\"bottom\":\"0\",\"left\":\"0\",\"right\":\"0\"})\n    b.close()\nprint(\"PDF written:\", out)\n''')\n\nprint(\"\\nSetting up the renderer (one time per session)...\")\nsubprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", \"playwright\"])\nsubprocess.run([sys.executable, \"-m\", \"playwright\", \"install\", \"chromium\"])\nsubprocess.run([sys.executable, \"-m\", \"playwright\", \"install-deps\", \"chromium\"])\n\nr = subprocess.run([sys.executable, \"/content/_topdf.py\", html_path, pdf_path],\n                   capture_output=True, text=True)\nprint(r.stdout[-1500:])\nif r.returncode != 0:\n    print(\"PDF step failed:\\n\", r.stderr[-1500:])\n\nif os.path.exists(pdf_path) and os.path.getsize(pdf_path) &gt; 1000:\n    print(f\"\\nDone. Downloading {OUTNAME}.pdf -- scroll through it before uploading!\")\n    files.download(pdf_path)\nelse:\n    print(\"\\nCouldn't make the PDF. Downloading HTML instead: open it and print\")\n    print(\"to PDF from Chrome (Save as PDF, Background graphics ON).\")\n    files.download(html_path)\n\n\n\n\n\nGo to Runtime &gt; Restart session and run all. This does two things: it confirms your code actually runs start-to-finish (a surprising number of notebooks only work because of something you defined an hour ago and then deleted), and it makes sure every output in the PDF matches the code above it.\nThen run the render cell. It will spend a minute or two setting itself up — that’s happening on Google’s server, not your computer, so nothing gets installed on your machine. Then it downloads a PDF.\n\n\n\n\nWe will be grading the PDF that the render cell downloaded. You can upload your notebook itself as a comment on the assignment. Get it with File &gt; Download &gt; Download .ipynb. If there is an issue, e.g. the render drops something, you’ll have proof that it was actually in the file.\n\n\n\n\n\n\nWarning\n\n\n\nOpen the PDF and scroll through it before you upload. If something failed to render I would have to assume you just didn’t do it — you can catch it and save us both some time!\n\n\n\n\n\n\nDon’t dump giant outputs. We’ll be dealing with large data sets soon — if you print a 60000-row DataFrame, you get a 60000-row DataFrame in your PDF. Use .head(), or better, print the summary you actually care about.\nWide DataFrames are the worst offender. Many columns will get squeezed down to tiny text. Either select the columns you need, or transpose with .T.\nKeep code lines under about 80 characters. Long lines will wrap, which is better than getting chopped off, but wrapped lines are ugly and hard to read. You can adjust this manually, or if you are using an LLM you can add “wrap lines at 80 characters” to your prompt.\nLabel your plots. Axes, units, maybe a legend.\n\n\n\n\nThe render cell has fallbacks built in, and it tells you what to do at each stage. In order of what it tries: grab your live notebook, then fall back to the saved copy in Drive, then fall back to handing you an HTML file you can print from Chrome yourself.\nIf all of that fails just submit the .ipynb and email me the error message. You will not be penalized for a rendering failure.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Submitting Homework"
+    ]
+  },
+  {
+    "objectID": "info/colab-format.html#the-shape-of-a-homework-notebook",
+    "href": "info/colab-format.html#the-shape-of-a-homework-notebook",
+    "title": "Submitting Homework",
+    "section": "",
+    "text": "The very first cell of your notebook should be a text cell that contains this:\n# Homework 2 -- Solar Tilt\nJane Doe\n23 September 2026\nand then a second text cell that contains this\n## Specify & Prompt\nHere's where the first part of your report will go.\nYou will have additional text cells: one that begins with ## Annotate, one that begins with ## Verify, and one that begins with ## Report. Interspersed among these will be code cells.\n\n\nThe # makes a big header, ## makes a smaller one. Those four ## headers should appear exactly as written — we will use them to find the sections for grading.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Submitting Homework"
+    ]
+  },
+  {
+    "objectID": "info/colab-format.html#some-markdown-tricks",
+    "href": "info/colab-format.html#some-markdown-tricks",
+    "title": "Submitting Homework",
+    "section": "",
+    "text": "Within the text cells you can do some light formatting:\n\n\n\n\n\n\n\nTo get\nType\n\n\n\n\nA header\n## Verify\n\n\nItalic\n*italic*\n\n\nBold\n**bold**\n\n\nA bullet list\n- item on each line\n\n\nA numbered list\n1. item on each line\n\n\ninline code\nbackticks around it: `freq_shift`\n\n\nMath\n$v = 25$ m/s or $$\\Delta f = f_0 \\frac{v}{c}$$ for a displayed equation\n\n\n\nColab uses LaTeX to create math equations — you can write real equations in your specification instead of describing them in words. Here are three LaTeX bits to start with: $x^2$, $\\frac{a}{b}$, and \\(\\cos(\\beta)\\).",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Submitting Homework"
+    ]
+  },
+  {
+    "objectID": "info/colab-format.html#getting-a-pdf-out",
+    "href": "info/colab-format.html#getting-a-pdf-out",
+    "title": "Submitting Homework",
+    "section": "",
+    "text": "At the very bottom of your notebook, add one code cell and paste in the code below. Change OUTNAME to include your last name.\n\n\n\n\n\n\nNoteClick here for the render cell (copy the whole thing)\n\n\n\n\n\n# ===== RENDER_CELL — do not edit or move this cell =====\n# Run this LAST. Turns everything above into a PDF and downloads it.\n# First run in a session takes ~1-2 min (it sets up a renderer on the\n# Colab server -- nothing is installed on your computer).\n\nOUTNAME = \"hw02_lastname\"   # &lt;-- put YOUR last name here\n\nimport json, glob, os, sys, subprocess\nfrom google.colab import files\n\nsrc = \"/content/_render.ipynb\"\nnb = None\n\ntry:\n    from google.colab import _message\n    nb = _message.blocking_request(\"get_ipynb\", timeout_sec=120)[\"ipynb\"]\n    print(\"Grabbed the live notebook.\")\nexcept Exception as e:\n    print(\"Couldn't reach the live notebook:\", e)\n\nif nb is None:\n    try:\n        from google.colab import drive\n        drive.mount(\"/content/drive\")\n        hits = sorted(glob.glob(\"/content/drive/MyDrive/Colab Notebooks/*.ipynb\"),\n                      key=os.path.getmtime, reverse=True)\n        if not hits:\n            raise FileNotFoundError(\"No .ipynb in MyDrive/Colab Notebooks/\")\n        print(\"Using most recent saved notebook:\", hits[0])\n        print(\"(Did you press Ctrl+S / Cmd+S first?)\")\n        nb = json.load(open(hits[0]))\n    except Exception as e:\n        print(\"\\n*** Rendering failed:\", e)\n        print(\"*** Use File &gt; Download &gt; Download .ipynb and upload that.\")\n        print(\"*** You will NOT be penalized. Please email me the error.\")\n        raise SystemExit\n\nnb[\"cells\"] = [c for c in nb[\"cells\"]\n               if \"RENDER_CELL\" not in \"\".join(c.get(\"source\", \"\"))]\nwith open(src, \"w\") as f:\n    json.dump(nb, f)\n\nsubprocess.run([\"jupyter\", \"nbconvert\", \"--to\", \"html\", src,\n                \"--output\", OUTNAME, \"--output-dir\", \"/content\"])\nhtml_path = f\"/content/{OUTNAME}.html\"\nif not os.path.exists(html_path):\n    print(\"\\n*** Conversion failed. Download the .ipynb and upload that instead.\")\n    raise SystemExit\n\nCSS = \"\"\"\n&lt;style&gt;\n@page { size: Letter; margin: 0.7in; }\nbody { font-size: 11pt; }\npre, code, .highlight pre, .jp-InputArea-editor, .CodeMirror {\n  white-space: pre-wrap !important;\n  word-wrap: break-word !important;\n  overflow-wrap: anywhere !important;\n  overflow-x: visible !important;\n}\n.jp-Cell, .jp-CodeCell, .jp-MarkdownCell, .jp-OutputArea-child,\n.cell, .input, .output_area, pre, table, figure, img {\n  break-inside: avoid !important;\n  page-break-inside: avoid !important;\n}\nh1, h2, h3 { page-break-after: avoid; }\n.jp-InputPrompt, .jp-OutputPrompt, .prompt { display: none !important; }\ntable {\n  display: block !important; max-width: 100% !important;\n  overflow-x: auto !important; font-size: 8pt !important;\n  border-collapse: collapse !important;\n}\ntable th, table td {\n  white-space: normal !important; word-break: break-word !important;\n  padding: 2px 4px !important;\n}\nimg, svg { max-width: 100% !important; height: auto !important; }\n&lt;/style&gt;\n\"\"\"\nhtml = open(html_path, encoding=\"utf-8\").read()\nhtml = html.replace(\"&lt;/head&gt;\", CSS + \"&lt;/head&gt;\") if \"&lt;/head&gt;\" in html else CSS + html\nopen(html_path, \"w\", encoding=\"utf-8\").write(html)\n\npdf_path = f\"/content/{OUTNAME}.pdf\"\n\nwith open(\"/content/_topdf.py\", \"w\") as f:\n    f.write('''\nimport sys\nfrom playwright.sync_api import sync_playwright\nsrc, out = sys.argv[1], sys.argv[2]\nwith sync_playwright() as p:\n    b = p.chromium.launch()\n    pg = b.new_page()\n    pg.goto(\"file://\" + src, wait_until=\"networkidle\")\n    pg.wait_for_timeout(2500)\n    pg.pdf(path=out, format=\"Letter\", print_background=True,\n           prefer_css_page_size=True,\n           margin={\"top\":\"0\",\"bottom\":\"0\",\"left\":\"0\",\"right\":\"0\"})\n    b.close()\nprint(\"PDF written:\", out)\n''')\n\nprint(\"\\nSetting up the renderer (one time per session)...\")\nsubprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", \"playwright\"])\nsubprocess.run([sys.executable, \"-m\", \"playwright\", \"install\", \"chromium\"])\nsubprocess.run([sys.executable, \"-m\", \"playwright\", \"install-deps\", \"chromium\"])\n\nr = subprocess.run([sys.executable, \"/content/_topdf.py\", html_path, pdf_path],\n                   capture_output=True, text=True)\nprint(r.stdout[-1500:])\nif r.returncode != 0:\n    print(\"PDF step failed:\\n\", r.stderr[-1500:])\n\nif os.path.exists(pdf_path) and os.path.getsize(pdf_path) &gt; 1000:\n    print(f\"\\nDone. Downloading {OUTNAME}.pdf -- scroll through it before uploading!\")\n    files.download(pdf_path)\nelse:\n    print(\"\\nCouldn't make the PDF. Downloading HTML instead: open it and print\")\n    print(\"to PDF from Chrome (Save as PDF, Background graphics ON).\")\n    files.download(html_path)\n\n\n\n\n\nGo to Runtime &gt; Restart session and run all. This does two things: it confirms your code actually runs start-to-finish (a surprising number of notebooks only work because of something you defined an hour ago and then deleted), and it makes sure every output in the PDF matches the code above it.\nThen run the render cell. It will spend a minute or two setting itself up — that’s happening on Google’s server, not your computer, so nothing gets installed on your machine. Then it downloads a PDF.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Submitting Homework"
+    ]
+  },
+  {
+    "objectID": "info/colab-format.html#what-to-turn-in",
+    "href": "info/colab-format.html#what-to-turn-in",
+    "title": "Submitting Homework",
+    "section": "",
+    "text": "We will be grading the PDF that the render cell downloaded. You can upload your notebook itself as a comment on the assignment. Get it with File &gt; Download &gt; Download .ipynb. If there is an issue, e.g. the render drops something, you’ll have proof that it was actually in the file.\n\n\n\n\n\n\nWarning\n\n\n\nOpen the PDF and scroll through it before you upload. If something failed to render I would have to assume you just didn’t do it — you can catch it and save us both some time!",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Submitting Homework"
+    ]
+  },
+  {
+    "objectID": "info/colab-format.html#things-that-make-pdfs-look-bad",
+    "href": "info/colab-format.html#things-that-make-pdfs-look-bad",
+    "title": "Submitting Homework",
+    "section": "",
+    "text": "Don’t dump giant outputs. We’ll be dealing with large data sets soon — if you print a 60000-row DataFrame, you get a 60000-row DataFrame in your PDF. Use .head(), or better, print the summary you actually care about.\nWide DataFrames are the worst offender. Many columns will get squeezed down to tiny text. Either select the columns you need, or transpose with .T.\nKeep code lines under about 80 characters. Long lines will wrap, which is better than getting chopped off, but wrapped lines are ugly and hard to read. You can adjust this manually, or if you are using an LLM you can add “wrap lines at 80 characters” to your prompt.\nLabel your plots. Axes, units, maybe a legend.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Submitting Homework"
+    ]
+  },
+  {
+    "objectID": "info/colab-format.html#if-something-breaks",
+    "href": "info/colab-format.html#if-something-breaks",
+    "title": "Submitting Homework",
+    "section": "",
+    "text": "The render cell has fallbacks built in, and it tells you what to do at each stage. In order of what it tries: grab your live notebook, then fall back to the saved copy in Drive, then fall back to handing you an HTML file you can print from Chrome yourself.\nIf all of that fails just submit the .ipynb and email me the error message. You will not be penalized for a rendering failure.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Submitting Homework"
+    ]
   },
   {
     "objectID": "info/installing.html",
