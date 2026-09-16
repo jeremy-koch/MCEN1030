@@ -268,7 +268,7 @@ The two arrays are **parallel**: index 3 means the 110 m rotor in `diameters` an
 
 
 ::: {.callout-important}
-## Counting from zero, one more time
+## Reminder: counting from zero
 There is no `totals[5]` — you'll get an `IndexError`.
 
 Negative indices count from the right: `totals[-1]` is the last one, `totals[-2]` the second-to-last. This is useful: `totals[-1]` looks so much nicer than `totals[len(totals)-1]`.
