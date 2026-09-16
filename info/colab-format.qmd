@@ -1,0 +1,213 @@
+# Submitting Homework
+
+This page explains how to set the notebook up so it reads like a report, and how to get a clean PDF out of it.
+
+::: {.callout-important}
+Do not use Colab's File > Print. It is buggy. The render cell below seems to circumvent this and produces good documents.
+:::
+
+## The shape of a homework notebook
+
+The very first cell of your notebook should be a text cell that contains this:
+
+```
+# Homework 2 -- Solar Tilt
+Jane Doe
+23 September 2026
+```
+and then a second text cell that contains this
+```
+## Specify & Prompt
+Here's where the first part of your report will go.
+```
+You will have additional text cells: one that begins with `## Annotate`, one that begins with `## Verify`, and one that begins with `## Report`. Interspersed among these will be code cells. 
+
+::: {.column-margin}
+The `#` makes a big header, `##` makes a smaller one. Those four `##` headers
+should appear *exactly* as written — we will use them to find the sections for grading.
+:::
+
+
+
+## Some markdown tricks
+
+Within the text cells you can do some light formatting:
+
+| To get | Type |
+|---|---|
+| A header | `## Verify` |
+| *Italic* | `*italic*` |
+| **Bold** | `**bold**` |
+| A bullet list | `- item` on each line |
+| A numbered list | `1. item` on each line |
+| `inline code` | backticks around it: `` `freq_shift` `` |
+| Math | `$v = 25$ m/s` or `$$\Delta f = f_0 \frac{v}{c}$$` for a displayed equation |
+
+Colab uses LaTeX to create math equations — you can write real equations in your specification instead of describing them in words. Here are three LaTeX bits to start with: `$x^2$`, `$\frac{a}{b}$`, and $\cos(\beta)$.
+
+
+## Getting a PDF out
+
+At the very bottom of your notebook, add one code cell and paste in the code below. Change `OUTNAME` to include your last name.
+
+
+
+::: {.callout-note collapse="true"}
+### Click here for the render cell (copy the whole thing)
+
+```python
+# ===== RENDER_CELL — do not edit or move this cell =====
+# Run this LAST. Turns everything above into a PDF and downloads it.
+# First run in a session takes ~1-2 min (it sets up a renderer on the
+# Colab server -- nothing is installed on your computer).
+
+OUTNAME = "hw02_lastname"   # <-- put YOUR last name here
+
+import json, glob, os, sys, subprocess
+from google.colab import files
+
+src = "/content/_render.ipynb"
+nb = None
+
+try:
+    from google.colab import _message
+    nb = _message.blocking_request("get_ipynb", timeout_sec=120)["ipynb"]
+    print("Grabbed the live notebook.")
+except Exception as e:
+    print("Couldn't reach the live notebook:", e)
+
+if nb is None:
+    try:
+        from google.colab import drive
+        drive.mount("/content/drive")
+        hits = sorted(glob.glob("/content/drive/MyDrive/Colab Notebooks/*.ipynb"),
+                      key=os.path.getmtime, reverse=True)
+        if not hits:
+            raise FileNotFoundError("No .ipynb in MyDrive/Colab Notebooks/")
+        print("Using most recent saved notebook:", hits[0])
+        print("(Did you press Ctrl+S / Cmd+S first?)")
+        nb = json.load(open(hits[0]))
+    except Exception as e:
+        print("\n*** Rendering failed:", e)
+        print("*** Use File > Download > Download .ipynb and upload that.")
+        print("*** You will NOT be penalized. Please email me the error.")
+        raise SystemExit
+
+nb["cells"] = [c for c in nb["cells"]
+               if "RENDER_CELL" not in "".join(c.get("source", ""))]
+with open(src, "w") as f:
+    json.dump(nb, f)
+
+subprocess.run(["jupyter", "nbconvert", "--to", "html", src,
+                "--output", OUTNAME, "--output-dir", "/content"])
+html_path = f"/content/{OUTNAME}.html"
+if not os.path.exists(html_path):
+    print("\n*** Conversion failed. Download the .ipynb and upload that instead.")
+    raise SystemExit
+
+CSS = """
+<style>
+@page { size: Letter; margin: 0.7in; }
+body { font-size: 11pt; }
+pre, code, .highlight pre, .jp-InputArea-editor, .CodeMirror {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: anywhere !important;
+  overflow-x: visible !important;
+}
+.jp-Cell, .jp-CodeCell, .jp-MarkdownCell, .jp-OutputArea-child,
+.cell, .input, .output_area, pre, table, figure, img {
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}
+h1, h2, h3 { page-break-after: avoid; }
+.jp-InputPrompt, .jp-OutputPrompt, .prompt { display: none !important; }
+table {
+  display: block !important; max-width: 100% !important;
+  overflow-x: auto !important; font-size: 8pt !important;
+  border-collapse: collapse !important;
+}
+table th, table td {
+  white-space: normal !important; word-break: break-word !important;
+  padding: 2px 4px !important;
+}
+img, svg { max-width: 100% !important; height: auto !important; }
+</style>
+"""
+html = open(html_path, encoding="utf-8").read()
+html = html.replace("</head>", CSS + "</head>") if "</head>" in html else CSS + html
+open(html_path, "w", encoding="utf-8").write(html)
+
+pdf_path = f"/content/{OUTNAME}.pdf"
+
+with open("/content/_topdf.py", "w") as f:
+    f.write('''
+import sys
+from playwright.sync_api import sync_playwright
+src, out = sys.argv[1], sys.argv[2]
+with sync_playwright() as p:
+    b = p.chromium.launch()
+    pg = b.new_page()
+    pg.goto("file://" + src, wait_until="networkidle")
+    pg.wait_for_timeout(2500)
+    pg.pdf(path=out, format="Letter", print_background=True,
+           prefer_css_page_size=True,
+           margin={"top":"0","bottom":"0","left":"0","right":"0"})
+    b.close()
+print("PDF written:", out)
+''')
+
+print("\nSetting up the renderer (one time per session)...")
+subprocess.run([sys.executable, "-m", "pip", "install", "-q", "playwright"])
+subprocess.run([sys.executable, "-m", "playwright", "install", "chromium"])
+subprocess.run([sys.executable, "-m", "playwright", "install-deps", "chromium"])
+
+r = subprocess.run([sys.executable, "/content/_topdf.py", html_path, pdf_path],
+                   capture_output=True, text=True)
+print(r.stdout[-1500:])
+if r.returncode != 0:
+    print("PDF step failed:\n", r.stderr[-1500:])
+
+if os.path.exists(pdf_path) and os.path.getsize(pdf_path) > 1000:
+    print(f"\nDone. Downloading {OUTNAME}.pdf -- scroll through it before uploading!")
+    files.download(pdf_path)
+else:
+    print("\nCouldn't make the PDF. Downloading HTML instead: open it and print")
+    print("to PDF from Chrome (Save as PDF, Background graphics ON).")
+    files.download(html_path)
+```
+:::
+
+### Before you run it
+
+Go to Runtime > Restart session and run all. This does two things: it confirms
+your code actually runs start-to-finish (a surprising number of notebooks only
+work because of something you defined an hour ago and then deleted), and it
+makes sure every output in the PDF matches the code above it.
+
+Then run the render cell. It will spend a minute or two setting itself up — that's happening on Google's server, not your computer, so nothing gets installed on your machine. Then it downloads a PDF.
+
+## What to turn in
+
+We will be grading the PDF that the render cell downloaded. You can upload your notebook itself **as a comment on the assignment**. Get it with File > Download > Download .ipynb. If there is an issue, e.g. the render drops something, you'll have proof that it was actually in the file. 
+
+::: {.callout-warning}
+Open the PDF and scroll through it before you upload. If something failed to render I would have to assume you just didn't do it — you can catch it and save us both some time!
+:::
+
+## Things that make PDFs look bad
+
+- **Don't dump giant outputs.** We'll be dealing with large data sets soon — if you print a 60000-row DataFrame, you get a
+  60000-row DataFrame in your PDF. Use `.head()`, or better, print the summary
+  you actually care about.
+- **Wide DataFrames are the worst offender.** Many columns will get squeezed down
+  to tiny text. Either select the columns you need, or transpose with `.T`.
+- **Keep code lines under about 80 characters.** Long lines will wrap, which is
+  better than getting chopped off, but wrapped lines are ugly and hard to read. You can adjust this manually, or if you are using an LLM you can add "wrap lines at 80 characters" to your prompt.
+- **Label your plots.** Axes, units, maybe a legend.
+
+## If something breaks
+
+The render cell has fallbacks built in, and it tells you what to do at each stage. In order of what it tries: grab your live notebook, then fall back to the saved copy in Drive, then fall back to handing you an HTML file you can print from Chrome yourself.
+
+If all of that fails just submit the `.ipynb` and email me the error message. **You will not be penalized for a rendering failure.** 

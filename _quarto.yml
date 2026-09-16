@@ -44,6 +44,7 @@ website:
           - info/grading.qmd
           - info/installing.qmd
           - info/practice.qmd
+          - info/colab-format.qmd
       - section: "Phase 0 — Thinking (Weeks 1–2)"
         contents:
           - lessons/01a-what-engineers-do.qmd
@@ -89,6 +90,7 @@ website:
         contents:
           - homework/example-parking-garage.qmd
           - homework/hw1-grade-calculator.qmd
+          - homework/hw2-solar-tilt.qmd
       # - section: "Homework"
       #   contents:
       #     - homework/index.qmd

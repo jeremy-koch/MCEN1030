@@ -12,6 +12,7 @@ README.md
 /homework/*
 !/homework/example-parking-garage.qmd
 !/homework/hw1-grade-calculator.qmd
+!/homework/hw2-solar-tilt.qmd
 
 
 activities/w01*
