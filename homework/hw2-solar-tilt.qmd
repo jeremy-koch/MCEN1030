@@ -13,7 +13,7 @@ You will prepare a report in which you pick the best angle. More importantly, yo
 
 ## The model
 
-Technically the panel orientation requires two angular measurements: think about starting with it pointing upwards, and then tilting it until it faces due south (one angular coordinate), and then rotating it around so that it faces east (the second angle). We'll simplify a bit and focus on just solar noon, eliminating the second angle from our worries. 
+Technically the panel orientation requires two angular measurements. Think about starting with it pointing upwards, and then tilting it until it faces due south (we adjusted one angular coordinate), and then rotating it around so that it faces east (we adjusted the second angular coordinate). We'll simplify a bit and focus on just solar noon, eliminating the second angle from our worries.
 
 A tilted panel collects energy in proportion to how squarely it faces the sun. If the sunlight arrives at an angle $\theta$ away from straight-on, the panel collects a factor of $\cos\theta$ less than it would if the sun were directly overhead of it. Let $\alpha$ be the sun's **elevation** above the horizon and $\beta$ the panel's **tilt** up from horizontal. The sun's angle from straight-up (the *zenith angle*) is $90° - \alpha$, and the panel's normal is tilted $\beta$ from straight-up, so
 
@@ -27,20 +27,22 @@ $$
 P = G \cdot A \cdot \eta \cdot \cos\theta
 $$
 
-with $G$ the incoming sunlight in W/m², $A = 1.6$ m² the panel area, and $\eta = 0.20$ the conversion efficiency. Take Denver's latitude as $40°$N.
+with $G$ the incoming sunlight in W/m², $A = 1.6$ m² the panel area, and $\eta = 0.20$ the conversion efficiency.
 
 ::: {.column-margin}
-This model ignores diffuse light from the sky, reflection off the roof, the fact that panels get less efficient when hot, and everything that happens away from solar noon.
+This model ignores diffuse light from the sky, reflections off the roof, the fact that panels get less efficient when hot, and everything that happens away from solar noon.
 :::
 
-
+::: {.callout-tip}
 Two notes on using this in code. NumPy's `np.cos` expects **radians**, not degrees, but `np.radians(theta)` will do the conversion for you. And `np.abs` gives you the absolute value elementwise on a whole array.
+:::
+
 
 ## Part 1 — Build the function and check it by hand
 
 Write `panel_power(tilt_deg, elevation_deg)` returning watts, with `G`, `A`, and $\eta$ as arguments with sensible defaults. Write a docstring: what goes in, in what units, what comes out.
 
-Then **verify it in isolation before you use it for anything** (this is standard P1). On the equinox at Denver, the sun's noon elevation is $\alpha = 50°$. Compute $P$ by hand for a tilt of $0°$ and for a tilt of $40°$ — write down the arithmetic, not just the answers — and confirm the function agrees. If it doesn't, the function is wrong and everything downstream of it is decoration.
+Then **verify it in isolation before you use it for anything** (this is standard P1). On the equinox at Boulder, the sun's noon elevation is $\alpha = 50°$. Compute $P$ by hand for a tilt of $0°$ and for a tilt of $40°$ — write down the arithmetic, not just the answers — and confirm the function agrees. If it doesn't, the function is wrong!
 
 ::: {.callout-tip}
 One of those two hand cases is arithmetically trivial. That's a good strategy: pick inputs whose answer you can get without a calculator. You'll be more inclined to verify the easy cases, and less inclined to make mistakes!
@@ -53,19 +55,19 @@ Build a NumPy array of tilt angles from $0°$ to $90°$, evaluate `panel_power` 
 Then the sanity check:
 
 ::: {.callout-important}
-There's a rule of thumb that a fixed panel should be tilted at roughly the site's **latitude**. Denver is at 40°N. Does your sweep agree?
+There's a rule of thumb that a fixed panel should be tilted at roughly the site's **latitude**. Boulder is at 40°N. Does your sweep agree?
 
-If it does — say so explicitly, and explain in a sentence or two *why* the model produces that result, using the geometry above. "It matched" is not the finding; being able to say why it had to match is.
+If it does — say so explicitly, and explain in a sentence or two *why* the model produces that result, using the geometry above. "It matched" is not the finding; being able to say why it had to match is. (Hint: look at the equation.)
 
-If it doesn't, you have a bug, and the two usual suspects are degrees-versus-radians and a sign error in $\theta$. Find it. Do not report a number your own physics tells you is wrong.
+If it doesn't, you have a bug, and the two usual suspects are degrees-versus-radians and a sign error in $\theta$. Find it.
 :::
 
 Two follow-ups, one calculation each:
 
-1. Winter solstice drops the noon sun to $\alpha = 26.5°$; summer solstice raises it to $73.5°$. Rerun the sweep for each. Do the best tilts make physical sense to you? What single number is the best tilt tracking, across all three cases?
+1. Winter solstice drops the noon sun to $\alpha = 26.5°$; summer solstice raises it to $73.5°$. Rerun the sweep for each. Do the best tilts make physical sense to you? Which of the three best tilts would you pick, if you had to pick one?
 2. Extend your tilt array past $90°$, out to $180°$ — a panel tipped over past vertical until it's face-down. What does the function report, and is it physically possible? Say what the function *should* do there and why it doesn't.
 
-## Part 3 — A real day, with real problems
+## Part 3 — A real day
 
 Here are eleven hourly readings from an equinox day in Boulder: the sun's elevation, and a measurement of the incoming sunlight.
 
@@ -83,11 +85,10 @@ Do it twice. **First, naively** — feed the arrays straight in and report the t
 
 Some things to notice and write about:
 
-- Two of those readings are bad, explain why.
-- Establish a physical ceiling for a plausible reading and justify it. Sunlight at the top of the atmosphere is about 1361 W/m², and the atmosphere takes a bite out of that. What's the most a ground-level pyranometer in Boulder should ever see?
-- Compare your two totals. The naive one is **not** absurd — it won't be off by a factor of a trillion, it'll be off by something a tired engineer would sign. Explain how two bad readings conspired to produce a plausible wrong answer. This is the single most important paragraph in the assignment.
+- Two of those readings are bad, explain why. (Hint: sunlight at the top of the atmosphere is about 1361 W/m², and the atmosphere takes a bite out of that.)
+- Compare your two totals. The naive one is **not** absurd — it won't be off by a factor of a trillion. Explain how two bad readings conspired to produce a plausible wrong answer.
 - When you mask `irradiance`, what has to happen to `elevation`? Check that your two arrays are still the same length after masking and say how you checked.
-- Finally: your honest total covers nine hours, not eleven. Report it that way. Estimate what the two missing hours were probably worth and say how you estimated — a number with a stated gap beats a number pretending to be complete.
+- Finally: your honest total covers nine hours, not eleven. Report it that way. Estimate what the two missing hours were probably worth and say how you estimated.
 
 ## Your submission
 
@@ -95,43 +96,8 @@ The same four steps.
 
 **Step 1 — Specify & prompt.** What the program takes in, in what units, what it produces. What counts as a valid tilt, a valid elevation, a valid irradiance reading — and what your program does with a value outside those ranges. You don't have the tools to enforce those rules yet (that's next week); you do have to decide them now and write them down. Then your actual LLM prompt, and the model and date.
 
-**Step 2 — Annotate.** The returned code, with your comments on it. Say which line does the degrees-to-radians conversion and how you confirmed it's there. If the AI made a decision you never specified — a default you didn't ask for, an ordering, a min/max angle — name it.
+**Step 2 — Annotate.** The returned code, with your comments on it. Say which line does the degrees-to-radians conversion and how you confirmed it's there. If the AI made a decision you never specified — a default you didn't ask for, an ordering, setting a min/max angle — talk about it.
 
 **Step 3 — Verify.** Your Part 1 hand check with the arithmetic shown. Your latitude sanity check with its explanation. Your two Part 3 totals with the discrepancy explained.
 
-**Step 4 — Report.** The recommended tilt for a fixed Denver panel, the plot, the day's energy with its stated gap, and one paragraph on which of your checks you'd have been most embarrassed to skip.
-
-::: {.callout-note}
-## No loops required
-Everything here is one function and a NumPy array. If you find yourself writing a `for` loop over tilt angles, stop — `panel_power(tilts)` on the whole array already does it, in one line, and doing it the long way is the wrong lesson. Loops earn their keep in HW 3, where we'll come back to this exact panel and sweep it across the whole year.
-:::
-
-::: {.content-hidden}
-**Instructor key (planning only — stripped from the rendered site):**
-
-**Part 1.** `panel_power(0, 50)` → $\theta = 40°$, $P = 1000 \times 1.6 \times 0.20 \times \cos 40° = 320 \times 0.766 = $ **245.1 W**. `panel_power(40, 50)` → $\theta = 0$, $\cos = 1$, $P = $ **320.0 W** exactly — that's the calculator-free one, and it doubles as the model's ceiling (nothing can exceed $GA\eta$). A student whose function returns 320 at tilt 0 has swapped the subtraction; one who returns ~319.9 at tilt 40 and garbage elsewhere is in radians somewhere.
-
-**Part 2.** `np.arange(0, 90.5, 0.5)` → max **320.0 W at tilt 40.0°**, exactly latitude. The reason it's *exactly* latitude: at equinox the declination is zero, so noon zenith angle equals latitude, and $\theta = 0$ when $\beta$ equals the zenith angle. Worth accepting a range of explanations here, but "the panel is perpendicular to the noon sun" is the floor.
-
-Spot-values for grading: tilt 20 → 300.7 W, tilt 50 → 315.1 W, tilt 90 → 205.7 W. Note the curve is *flat* near the peak — 10° off costs only 6% — which is a nice unprompted observation if anyone makes it, and it's the real reason installers don't agonize over this.
-
-Follow-up 1: Dec 21 ($\alpha = 26.5$) → best tilt **63.5°**; Jun 21 ($\alpha = 73.5$) → best tilt **16.5°**; all three peak at 320.0 W since $\theta$ can always be driven to zero. The number being tracked is the **noon zenith angle** $90° - \alpha$, i.e. latitude ∓ declination (40 + 23.5 = 63.5, 40 − 23.5 = 16.5). Students who spot the ±23.5° are seeing the Earth's axial tilt fall out of their own sweep, which is a good day.
-
-Follow-up 2: past $\theta = 90°$ the cosine goes negative — at tilt 180° the function reports **−245.1 W**, a panel consuming power. It should report **zero**: a panel facing away from the sun produces nothing, it doesn't run backwards. This is the extrapolation trap and it mirrors the $C_p < 0$ beat from the week-4 arrays reading. The fix (clamping at zero) needs machinery they get next week; noticing it is this week's job.
-
-**Part 3.** At tilt 40°:
-
-- Naive total: **2179.9 Wh**. Naive max: 575.5 W at hour 13.
-- The bad readings: hour 12's **−999** is a sensor error code (contributes −319.7 W); hour 13's **1800 W/m²** is a plausible-looking *number* that is physically impossible at the ground (contributes +575.5 W). They **partially cancel**: net +255.8 Wh, so the naive total is only **13% high**. This is the whole point of the assignment. Contrast it explicitly with the week-4 reading's −999 turbine demo, where $v^3$ blew the error up to 28 trillion kWh and nobody could miss it. Here the error is invisible, which makes it the more realistic case.
-- A second catchable flag: 575.5 W exceeds the panel's own physical ceiling of $1.6 \times 1100 \times 0.20 = 352$ W. A student who checks `P.max()` against what the hardware can do catches hour 13 without ever looking at the irradiance array.
-- Honest mask `(irradiance >= 0) & (irradiance <= 1100)` keeps **9 of 11**, dropping hours 12 and 13. Honest total: **1924.1 Wh ≈ 1.92 kWh**. Clean max 297.4 W at hour 11.
-- Physical ceiling justification: 1361 W/m² at the top of the atmosphere, roughly 1000 at sea level with the sun overhead, a bit more at Boulder's altitude and with cloud-edge enhancement — so 1100 is defensible and anything from ~1000 to ~1200 should be accepted with reasoning. Reject an unjustified threshold, accept a justified one I'd have chosen differently.
-- Missing-hours estimate: neighbors suggest ~950 and ~930 W/m², giving **≈601 Wh** for the two lost hours and a full-day estimate near 2.5 kWh. Any method with a stated basis is fine — interpolation, symmetry with the morning, a clear-sky curve.
-- Parallel arrays: `elevation[mask]` and `irradiance[mask]` must both be masked. A student who masks only irradiance gets arrays of length 9 and 11 and will usually get a NumPy broadcast error, which is lucky. A student who masks neither but hand-deletes two entries from one array gets silently wrong answers. `len()` before and after is the asked-for check.
-
-**Grading emphasis.** The naive-versus-honest comparison paragraph and the latitude sanity check are the two places to spend attention. A submission with the right tilt and no explanation of *why* 40° had to be right is weaker than one with a bug that the student caught using the latitude rule and said so.
-
-**Continuity.** HW 3 (assigned week 5, after loops and error handling) reuses `panel_power` unchanged: a `for` loop over months with the declination varying, results to CSV, and `try`/`except` around the bad readings so a year-long sweep doesn't die on one glitched day. Tell students in class to keep the file — this is the same promise the old materials-librarian assignment made to HW 7, now attached to something that earns it.
-
-**Retired:** this replaces `homework/old/hw2-materials-librarian.qmd`, which taught dictionaries before they'd been introduced, forward-referenced the week-8 reading, and claimed P1 without anything numeric to hand-check against.
-:::
+**Step 4 — Report.** The recommended tilt for a fixed Boulder panel, the plot, the day's energy with its stated gap, and one paragraph on which of your checks you'd have been most embarrassed to skip.
