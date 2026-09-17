@@ -345,10 +345,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Standards seeded:</strong> P4, P1, A1 · <strong>You’ll need:</strong> your week-3 turbine functions, your bring-to-class trace.</p>
+<p><strong>Standards seeded:</strong> P4, P1, A1 · <strong>You’ll need:</strong> Colab</p>
 <section id="setting-up" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<p>Everyone starts from the same day of wind — Tuesday’s messy 24 hours, the same sensor glitch and the same out-of-range gust, masked down to the hours the model is valid for.</p>
+<p>Same collection of wind data we’ve been working with, including a sensor glitch and an out-of-range gust. Then masked down to the hours the model is valid for.</p>
 <div>
 <div id="pyodide-1" class="exercise-cell">
 
@@ -357,11 +357,11 @@ ul.task-list li input[type="checkbox"] {
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbmRlZiBzd2VwdF9hcmVhKEQpOlxuICAgIHJldHVybiBucC5waSAqIEQqKjIgLyA0XG5cbmRlZiBjcCh2LCBjcF9tYXg9MC40NSwgdl9iZXN0PTExLCB3PTgpOlxuICAgIFwiXCJcIkVmZmljaWVuY3kgYXQgd2luZCBzcGVlZCB2LiBQZWFrcyBhdCB2ID0gdl9iZXN0LCB0aGUgREVTSUdOIFNQRUVELlwiXCJcIlxuICAgIHJldHVybiBjcF9tYXggKiAoMSAtICgodiAtIHZfYmVzdCkgLyB3KSoqMilcblxuZGVmIHR1cmJpbmVfcG93ZXIodiwgRD0xMDAuMCwgcmhvPTEuMCwgdl9iZXN0PTExKTpcbiAgICByZXR1cm4gMC41ICogcmhvICogc3dlcHRfYXJlYShEKSAqIHYqKjMgKiBjcCh2LCB2X2Jlc3Q9dl9iZXN0KSAvIDEwMDBcblxuc3BlZWRzID0gbnAuYXJyYXkoWzIuMSwgMS44LCAyLjQsIDMuNSwgNC44LCA2LjEsIDcuNCwgOC42LCA5LjUsIDEwLjIsIDEwLjgsIDExLjMsXG4gICAgICAgICAgICAgICAgICAgMTEuNiwgMTEuMCwgMTAuNCwgOS43LCA4LjUsIC05OTkuMCwgNi44LCA1LjIsIDMuOSwgMi42LCAyMC41LCAxLjVdKVxuXG5nb29kID0gc3BlZWRzWyhzcGVlZHMgPj0gMykgJiAoc3BlZWRzIDw9IDE5KV1cbnByaW50KGxlbihnb29kKSwgXCJ2YWxpZCBob3VycyBvZlwiLCBsZW4oc3BlZWRzKSlcbnByaW50KFwibWVhbiB3aW5kIHNwZWVkOlwiLCByb3VuZChnb29kLm1lYW4oKSwgMiksIFwibS9zXCIpIn0=
 </script>
 </div>
-<p>Note the one change from the reading: <code>turbine_power</code> now takes <code>v_best</code>, the wind speed the turbine’s blades are <em>tuned</em> for. That’s a design decision and it’s what we’re going to “sweep” through.</p>
+<p>Note the one change from the reading: <code>turbine_power</code> renamed an input variable to <code>v_best</code>, the wind speed the turbine’s blades are <em>tuned</em> for. This variable is related to the turbine design — we’re going to “sweep” through values for it.</p>
 </section>
 <section id="round-1-warm-up-about-10-minutes" class="level2">
 <h2 class="anchored" data-anchor-id="round-1-warm-up-about-10-minutes">Round 1 — warm-up (about 10 minutes)</h2>
-<p>Reproduce the reading’s diameter sweep, but keep the answers this time. Loop over <code>[80.0, 90.0, 100.0, 110.0, 120.0]</code>, append each day’s energy to a list, convert to an array, and report the winner with <code>diameters[totals.argmax()]</code>.</p>
+<p>Reproduce the reading’s diameter sweep, saving the answers. Loop over <code>[80.0, 90.0, 100.0, 110.0, 120.0]</code>, append each day’s energy to a list, convert to an array, and report the winner with <code>diameters[totals.argmax()]</code>.</p>
 <p>Then answer two questions at your table before you go on:</p>
 <ol type="1">
 <li>The 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)</li>
@@ -371,6 +371,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 <section id="round-2-the-sweep-about-25-minutes" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="round-2-the-sweep-about-25-minutes">Round 2 — the sweep (about 25 minutes)</h2>
 <p><strong>Set the diameter at 100 m.</strong> Now sweep the <strong>design speed</strong> <code>v_best</code> from 6 to 16 m/s in steps of 1, and find the value that maximizes the day’s energy.</p>
+<p><strong>Before you run it, add a prediction to your notebook.</strong> The day’s average wind is 8.19 m/s. What is the best <code>design_speed</code> value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)</p>
 <div>
 <div id="pyodide-2" class="exercise-cell">
 
@@ -382,8 +383,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>If you are using Colab, this cell is mostly the same as the previous one… you can ignore the repeated parts, but the new cell in your notebook should include <code>design_speeds = ...</code> and then the loop you write. <code>np.arange</code> is a better version of Python’s built-in <code>range</code>… <code>print</code> that line to confirm what it does.</p>
-</div></div><p><strong>Before you run it, add a prediction to your notebook.</strong> The day’s average wind is 8.19 m/s. What is the best <code>design_speed</code> value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)</p>
-<p>Then run the sweep and report three things:</p>
+</div></div><p>Run the sweep and report three things in a Colab cell:</p>
 <ol type="1">
 <li>The best design speed, extracted with <code>argmax</code> and an index. (Don’t just go through the printout.)</li>
 <li>How much energy the best design makes versus the worst one. (Do this in the program, not by hand.)</li>
@@ -395,24 +395,24 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>The gap
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The winner is <strong>not</strong> the average wind speed, and it isn’t close. Talk with your table for a few minutes to explain why. Hint: look at the equations.</p>
+<p>The winner is <strong>not</strong> the average wind speed. Talk with your table for a few minutes to explain why. Hint: look at the equations.</p>
 </div>
 </div>
 </section>
 <section id="round-3-break-it-about-15-minutes" class="level2">
 <h2 class="anchored" data-anchor-id="round-3-break-it-about-15-minutes">Round 3 — break it (about 15 minutes)</h2>
-<p>Everyone at your table <strong>pick a different one of the following</strong>. Spend a few minutes on it, then talk about what happened with your table.</p>
+<p>Everyone at your table <strong>pick one of the following</strong>, making sure at least one person does each one. Spend a few minutes on it, then talk about what happened with your table.</p>
 <p><strong>(a) Resolution.</strong> You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you’d choose a step size if you didn’t already know the answer.</p>
 <p><strong>(b) The mask.</strong> Rerun the whole sweep on the <em>unmasked</em> <code>speeds</code> array — glitch, gust, and all. Report the best design speed and the day’s energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you’d have caught it if you didn’t already know the data was dirty.</p>
 <p><strong>(c) Parallel arrays.</strong> Deliberately break the thread: mask <code>good</code> but build your <code>design_speeds</code> array to a different length, or drop one entry from <code>totals</code> after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and “sometimes no” is the whole reason we’re talking about this.</p>
 </section>
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p><strong>Deliverable (2 EC):</strong> your Round 2 code, your written prediction (the wrong one — keep it, it’s evidence you predicted first), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Plus whichever break you ran in Round 3 and what you learned from it.</p>
+<p><strong>Deliverable (2 EC):</strong> your Round 2 code, your written prediction (it’s fine if it’s wrong!), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Some discussion of Round 3, i.e.&nbsp;what you learned. (Include your code for Round 3, even if broken, but you don’t need to include all three.)</p>
 
 
 <script type="pyodide-data">

@@ -819,7 +819,7 @@
     "href": "activities/w04-design-sweep.html",
     "title": "Which design wins?",
     "section": "",
-    "text": "Standards seeded: P4, P1, A1 · You’ll need: your week-3 turbine functions, your bring-to-class trace.",
+    "text": "Standards seeded: P4, P1, A1 · You’ll need: Colab",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
@@ -831,7 +831,7 @@
     "href": "activities/w04-design-sweep.html#setting-up",
     "title": "Which design wins?",
     "section": "Setting up",
-    "text": "Setting up\nEveryone starts from the same day of wind — Tuesday’s messy 24 hours, the same sensor glitch and the same out-of-range gust, masked down to the hours the model is valid for.\n\n\n\n\n\n\nNote the one change from the reading: turbine_power now takes v_best, the wind speed the turbine’s blades are tuned for. That’s a design decision and it’s what we’re going to “sweep” through.",
+    "text": "Setting up\nSame collection of wind data we’ve been working with, including a sensor glitch and an out-of-range gust. Then masked down to the hours the model is valid for.\n\n\n\n\n\n\nNote the one change from the reading: turbine_power renamed an input variable to v_best, the wind speed the turbine’s blades are tuned for. This variable is related to the turbine design — we’re going to “sweep” through values for it.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
@@ -843,7 +843,7 @@
     "href": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
     "title": "Which design wins?",
     "section": "Round 1 — warm-up (about 10 minutes)",
-    "text": "Round 1 — warm-up (about 10 minutes)\nReproduce the reading’s diameter sweep, but keep the answers this time. Loop over [80.0, 90.0, 100.0, 110.0, 120.0], append each day’s energy to a list, convert to an array, and report the winner with diameters[totals.argmax()].\nThen answer two questions at your table before you go on:\n\nThe 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)\nYou should see that the largest diameter wins. If we extended to a diameter of 130.0, would that be even better? 140.0 even better? Why, and what is the model missing/what does the problem statement not include?",
+    "text": "Round 1 — warm-up (about 10 minutes)\nReproduce the reading’s diameter sweep, saving the answers. Loop over [80.0, 90.0, 100.0, 110.0, 120.0], append each day’s energy to a list, convert to an array, and report the winner with diameters[totals.argmax()].\nThen answer two questions at your table before you go on:\n\nThe 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)\nYou should see that the largest diameter wins. If we extended to a diameter of 130.0, would that be even better? 140.0 even better? Why, and what is the model missing/what does the problem statement not include?",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
@@ -855,7 +855,7 @@
     "href": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
     "title": "Which design wins?",
     "section": "Round 2 — the sweep (about 25 minutes)",
-    "text": "Round 2 — the sweep (about 25 minutes)\nSet the diameter at 100 m. Now sweep the design speed v_best from 6 to 16 m/s in steps of 1, and find the value that maximizes the day’s energy.\n\n\n\n\n\n\n\n\nIf you are using Colab, this cell is mostly the same as the previous one… you can ignore the repeated parts, but the new cell in your notebook should include design_speeds = ... and then the loop you write. np.arange is a better version of Python’s built-in range… print that line to confirm what it does.\nBefore you run it, add a prediction to your notebook. The day’s average wind is 8.19 m/s. What is the best design_speed value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)\nThen run the sweep and report three things:\n\nThe best design speed, extracted with argmax and an index. (Don’t just go through the printout.)\nHow much energy the best design makes versus the worst one. (Do this in the program, not by hand.)\nWhether your prediction was right. (It probably wasn’t!)\n\n\n\n\n\n\n\nImportantThe gap\n\n\n\nThe winner is not the average wind speed, and it isn’t close. Talk with your table for a few minutes to explain why. Hint: look at the equations.",
+    "text": "Round 2 — the sweep (about 25 minutes)\nSet the diameter at 100 m. Now sweep the design speed v_best from 6 to 16 m/s in steps of 1, and find the value that maximizes the day’s energy.\nBefore you run it, add a prediction to your notebook. The day’s average wind is 8.19 m/s. What is the best design_speed value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)\n\n\n\n\n\n\n\n\nIf you are using Colab, this cell is mostly the same as the previous one… you can ignore the repeated parts, but the new cell in your notebook should include design_speeds = ... and then the loop you write. np.arange is a better version of Python’s built-in range… print that line to confirm what it does.\nRun the sweep and report three things in a Colab cell:\n\nThe best design speed, extracted with argmax and an index. (Don’t just go through the printout.)\nHow much energy the best design makes versus the worst one. (Do this in the program, not by hand.)\nWhether your prediction was right. (It probably wasn’t!)\n\n\n\n\n\n\n\nImportant\n\n\n\nThe winner is not the average wind speed. Talk with your table for a few minutes to explain why. Hint: look at the equations.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
@@ -867,7 +867,7 @@
     "href": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
     "title": "Which design wins?",
     "section": "Round 3 — break it (about 15 minutes)",
-    "text": "Round 3 — break it (about 15 minutes)\nEveryone at your table pick a different one of the following. Spend a few minutes on it, then talk about what happened with your table.\n(a) Resolution. You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you’d choose a step size if you didn’t already know the answer.\n(b) The mask. Rerun the whole sweep on the unmasked speeds array — glitch, gust, and all. Report the best design speed and the day’s energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you’d have caught it if you didn’t already know the data was dirty.\n(c) Parallel arrays. Deliberately break the thread: mask good but build your design_speeds array to a different length, or drop one entry from totals after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and “sometimes no” is the whole reason we’re talking about this.",
+    "text": "Round 3 — break it (about 15 minutes)\nEveryone at your table pick one of the following, making sure at least one person does each one. Spend a few minutes on it, then talk about what happened with your table.\n(a) Resolution. You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you’d choose a step size if you didn’t already know the answer.\n(b) The mask. Rerun the whole sweep on the unmasked speeds array — glitch, gust, and all. Report the best design speed and the day’s energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you’d have caught it if you didn’t already know the data was dirty.\n(c) Parallel arrays. Deliberately break the thread: mask good but build your design_speeds array to a different length, or drop one entry from totals after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and “sometimes no” is the whole reason we’re talking about this.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
@@ -879,7 +879,7 @@
     "href": "activities/w04-design-sweep.html#deliverables",
     "title": "Which design wins?",
     "section": "Deliverables",
-    "text": "Deliverables\nDeliverable (2 EC): your Round 2 code, your written prediction (the wrong one — keep it, it’s evidence you predicted first), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Plus whichever break you ran in Round 3 and what you learned from it.",
+    "text": "Deliverables\nDeliverable (2 EC): your Round 2 code, your written prediction (it’s fine if it’s wrong!), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Some discussion of Round 3, i.e. what you learned. (Include your code for Round 3, even if broken, but you don’t need to include all three.)",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
