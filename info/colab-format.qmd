@@ -39,7 +39,7 @@ The text cells are actually written in Markdown language, which is plain-text wi
 | **Bold** | `**bold**` |
 | A bullet list | `- item` on each line |
 | A numbered list | `1. item` on each line |
-| A blockquote | `> this would be good for LLM prompts' |
+| A blockquote | `> this would be good for LLM prompts` |
 | `inline code` | backticks around it: `` `freq_shift` `` |
 | Math | `$v = 25$ m/s` or `$$\Delta f = f_0 \frac{v}{c}$$` for a displayed equation |
 
