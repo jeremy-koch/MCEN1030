@@ -1,0 +1,126 @@
+---
+title: "Which design wins?"
+subtitle: "Week 4 Thursday · 2 engagement credits"
+---
+
+**Standards seeded:** P4, P1, A1 · **You'll need:** your week-3 turbine functions, your bring-to-class trace.
+
+## Setting up
+
+Everyone starts from the same day of wind — Tuesday's messy 24 hours, the same sensor glitch and the same out-of-range gust, masked down to the hours the model is valid for.
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Efficiency at wind speed v. Peaks at v = v_best, the DESIGN SPEED."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0, v_best=11):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v, v_best=v_best) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+print(len(good), "valid hours of", len(speeds))
+print("mean wind speed:", round(good.mean(), 2), "m/s")
+```
+
+Note the one change from the reading: `turbine_power` now takes `v_best`, the wind speed the turbine's blades are *tuned* for. That's a design decision and it's what we're going to "sweep" through.
+
+## Round 1 — warm-up (about 10 minutes)
+
+Reproduce the reading's diameter sweep, but keep the answers this time. Loop over `[80.0, 90.0, 100.0, 110.0, 120.0]`, append each day's energy to a list, convert to an array, and report the winner with `diameters[totals.argmax()]`.
+
+Then answer two questions at your table before you go on:
+
+1. The 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)
+2. You should see that the largest diameter wins. If we extended to a diameter of `130.0`, would that be even better? `140.0` even better? Why, and what is the model missing/what does the problem statement not include?
+
+## Round 2 — the sweep (about 25 minutes)
+
+**Set the diameter at 100 m.** Now sweep the **design speed** `v_best` from 6 to 16 m/s in steps of 1, and find the value that maximizes the day's energy.
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0, v_best=11):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v, v_best=v_best) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+
+design_speeds = np.arange(6, 17, 1)
+
+# Your loop here: for each design speed, compute the day's energy, and save it to a variable.
+
+
+
+```
+
+
+::: {.column-margin}
+If you are using Colab, this cell is mostly the same as the previous one... you can ignore the repeated parts, but the new cell in your notebook should include `design_speeds = ...` and then the loop you write. `np.arange` is a better version of Python's built-in `range`... `print` that line to confirm what it does.
+:::
+
+**Before you run it, add a prediction to your notebook.** The day's average wind is 8.19 m/s. What is the best `design_speed` value? (Don't worry if you guess wrong, leave your guess unchanged! It was a guess!)
+
+Then run the sweep and report three things:
+
+1. The best design speed, extracted with `argmax` and an index. (Don't just go through the printout.)
+2. How much energy the best design makes versus the worst one. (Do this in the program, not by hand.)
+3. Whether your prediction was right. (It probably wasn't!)
+
+::: {.callout-important}
+## The gap
+The winner is **not** the average wind speed, and it isn't close. Talk with your table for a few minutes to explain why. Hint: look at the equations.
+:::
+
+## Round 3 — break it (about 15 minutes)
+
+Everyone at your table **pick a different one of the following**. Spend a few minutes on it, then talk about what happened with your table.
+
+**(a) Resolution.** You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you'd choose a step size if you didn't already know the answer.
+
+**(b) The mask.** Rerun the whole sweep on the *unmasked* `speeds` array — glitch, gust, and all. Report the best design speed and the day's energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you'd have caught it if you didn't already know the data was dirty.
+
+**(c) Parallel arrays.** Deliberately break the thread: mask `good` but build your `design_speeds` array to a different length, or drop one entry from `totals` after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and "sometimes no" is the whole reason we're talking about this.
+
+## Deliverables
+
+**Deliverable (2 EC):** your Round 2 code, your written prediction (the wrong one — keep it, it's evidence you predicted first), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Plus whichever break you ran in Round 3 and what you learned from it.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site):**
+
+**Setup numbers:** 17 valid hours of 24. `good.mean()` = **8.194 m/s**. The mask drops the six sub-3 m/s overnight hours, the −999, and the 20.5 gust.
+
+**Round 1 (D sweep, v_best = 11):** 12918.2, 16349.6, 20184.7, 24423.5, 29066.0 kWh. `argmax` = 4 → 120 m. The 2.25 factor is $(120/80)^2$ — energy scales with swept area exactly, and printing `total / swept_area(D)` gives an identical **2.570 kWh/m²** for all five. Someone always asks whether it's really *exactly* 2.25; run the division live. Missing term: cost, mass, blade-tip speed, permitting, the tower. Nothing in the model fights back, so the sweep can't find an optimum. This is the S3-flavored point and it's worth more than the arithmetic.
+
+**Round 2 (v_best sweep, D = 100):** 15166.1, 17506.3, 19178.3, 20182.0, **20517.5**, 20184.7, 19183.7, 17514.5, 15176.9, 12171.2, 8497.2 kWh for v_best = 6…16. `argmax` = 4 → **v_best = 10 m/s**. Best/worst ratio = 20517.5 / 8497.2 ≈ **2.4×**, which is a big deal for one design choice.
+
+**The payoff:** the optimum is the **cube-weighted mean wind speed**, $\sum v^4 / \sum v^3 = 10.002$ m/s, versus a plain mean of 8.194. Because $P \propto v^3$, the windy hours carry almost all the energy, so the blades should be tuned to the windy hours, not to a typical hour. Derivation if a strong table pushes: maximize $\sum v^3 \, C_p(v; v_b)$ over $v_b$; $C_p$ is quadratic in $(v - v_b)$, so $d/dv_b$ gives $\sum v^3 (v - v_b) = 0$, hence $v_b = \sum v^4 / \sum v^3$. That's calculus, so it's strictly optional enrichment — the intuition ("weight each hour by how much energy it carries") is the version everyone gets, and it's sufficient. Do not present the derivation to the room.
+
+Let them be wrong first. Nearly every table predicts ~8. The 0.1-resolution sweep confirms **10.0** exactly, which lands well right after the cube-weighting explanation.
+
+**Round 3(a):** step 0.1 → still 10.0 (the function is smooth and symmetric here, so this one is reassuring rather than dramatic). Step 5 over 6…16 → samples only 6, 11, 16 → reports **11**, off by one full m/s, having stepped clean over the peak. That contrast is the lesson: a coarse sweep doesn't fail loudly, it just returns a nearby wrong answer.
+
+**Round 3(b):** unmasked, the −999 dominates everything — $C_p(-999)$ is about −7172 and $v^3$ is −10⁹, so the product is enormous and *positive*, ~10¹³ kWh at every design speed. The `argmax` becomes meaningless (whichever v_best maximizes the glitch term wins). The 20.5 gust is the subtler damage: it's a real number, physically plausible-looking, outside the model's valid range, and it shifts the optimum upward without any obvious signature. Catch method: `max()`/`min()` on the raw array, which is Tuesday's habit.
+
+**Round 3(c):** mismatched lengths usually *do* error on `np.array(list)` arithmetic — but `diameters[totals.argmax()]` with a too-short `totals` silently returns the wrong design as long as the index is in range. That's the dangerous case and it's the one to project on the screen.
+
+**Timing (~50 min after the opening vote and the reading's leftovers):** Round 1, 10 min. Round 2 prediction + sweep, 15 min. The gap discussion, 8 min — protect this, it's the best conversation of the day. Round 3, 12 min. Synthesis, 5 min.
+
+**If you're running long,** cut Round 1 to a demo from the front (the numbers are in the reading anyway) and protect Round 2's prediction-then-gap arc. Round 2 is the activity; Round 1 is the ramp.
+:::

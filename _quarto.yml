@@ -59,7 +59,7 @@ website:
           - activities/w03-function-forge.qmd
           - lessons/04a-arrays.qmd
           - lessons/04b-for-loops.qmd
-          # - activities/w04-design-sweep.qmd
+          - activities/w04-design-sweep.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
