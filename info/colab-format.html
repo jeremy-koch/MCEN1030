@@ -331,6 +331,12 @@ window.Quarto = {
  <span class="menu-text">For loops, and picking things out by index</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w04-design-sweep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Which design wins?</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -375,7 +381,7 @@ window.Quarto = {
   <li><a href="#submitting-homework" id="toc-submitting-homework" class="nav-link active" data-scroll-target="#submitting-homework">Submitting Homework</a>
   <ul class="collapse">
   <li><a href="#the-shape-of-a-homework-notebook" id="toc-the-shape-of-a-homework-notebook" class="nav-link" data-scroll-target="#the-shape-of-a-homework-notebook">The shape of a homework notebook</a></li>
-  <li><a href="#some-markdown-tricks" id="toc-some-markdown-tricks" class="nav-link" data-scroll-target="#some-markdown-tricks">Some markdown tricks</a></li>
+  <li><a href="#some-markdown-tricks" id="toc-some-markdown-tricks" class="nav-link" data-scroll-target="#some-markdown-tricks">Some Markdown tricks</a></li>
   <li><a href="#getting-a-pdf-out" id="toc-getting-a-pdf-out" class="nav-link" data-scroll-target="#getting-a-pdf-out">Getting a PDF out</a>
   <ul class="collapse">
   <li><a href="#before-you-run-it" id="toc-before-you-run-it" class="nav-link" data-scroll-target="#before-you-run-it">Before you run it</a></li>
@@ -413,7 +419,7 @@ Important
 <h2 class="anchored" data-anchor-id="the-shape-of-a-homework-notebook">The shape of a homework notebook</h2>
 <p>The very first cell of your notebook should be a text cell that contains this:</p>
 <pre><code># Homework 2 -- Solar Tilt
-Jane Doe
+Your Name
 23 September 2026</code></pre>
 <p>and then a second text cell that contains this</p>
 <pre><code>## Specify &amp; Prompt
@@ -421,11 +427,11 @@ Here's where the first part of your report will go.</code></pre>
 <p>You will have additional text cells: one that begins with <code>## Annotate</code>, one that begins with <code>## Verify</code>, and one that begins with <code>## Report</code>. Interspersed among these will be code cells.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>The <code>#</code> makes a big header, <code>##</code> makes a smaller one. Those four <code>##</code> headers should appear <em>exactly</em> as written — we will use them to find the sections for grading.</p>
+<p>The <code>#</code> makes a big header, <code>##</code> makes a smaller one.</p>
 </div></div></section>
 <section id="some-markdown-tricks" class="level2">
-<h2 class="anchored" data-anchor-id="some-markdown-tricks">Some markdown tricks</h2>
-<p>Within the text cells you can do some light formatting:</p>
+<h2 class="anchored" data-anchor-id="some-markdown-tricks">Some Markdown tricks</h2>
+<p>The text cells are actually written in Markdown language, which is plain-text with some light formatting possibilities:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -468,11 +474,12 @@ Here's where the first part of your report will go.</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Colab uses LaTeX to create math equations — you can write real equations in your specification instead of describing them in words. Here are three LaTeX bits to start with: <code>$x^2$</code>, <code>$\frac{a}{b}$</code>, and <span class="math inline">\(\cos(\beta)\)</span>.</p>
+<p>If you bring in a line of code in your annotation section, you should write it within <code>`these backticks`</code>.</p>
+<p>Colab uses LaTeX to create math equations — you can write real equations in your specification instead of describing them in words. Here are three LaTeX bits to start with: <code>$x^2$</code>, <code>$\frac{a}{b}$</code>, and <code>$\cos(\beta)$</code>. (They make <span class="math inline">\(x^2\)</span>, <span class="math inline">\(\frac{a}{b}\)</span>, and <span class="math inline">\(\cos(\beta)\)</span> and should look like what you see here… I am writing this site in Markdown.)</p>
 </section>
 <section id="getting-a-pdf-out" class="level2">
 <h2 class="anchored" data-anchor-id="getting-a-pdf-out">Getting a PDF out</h2>
-<p>At the very bottom of your notebook, add one code cell and paste in the code below. Change <code>OUTNAME</code> to include your last name.</p>
+<p>At the very bottom of your notebook, add one code cell and paste in the code below. (You can copy it with the clipboard icon on the top-right of the code.) Change <code>OUTNAME</code> to include your last name.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -626,7 +633,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Open the PDF and scroll through it before you upload. If something failed to render I would have to assume you just didn’t do it — you can catch it and save us both some time!</p>
+<p>Open the PDF and scroll through it before you upload. If something failed to render I would have to assume you just didn’t do it — you can catch it and save us both some time! Make some quick edits, and the second time you run the render cell it should be faster.</p>
 </div>
 </div>
 </section>
@@ -635,13 +642,13 @@ Warning
 <ul>
 <li><strong>Don’t dump giant outputs.</strong> We’ll be dealing with large data sets soon — if you print a 60000-row DataFrame, you get a 60000-row DataFrame in your PDF. Use <code>.head()</code>, or better, print the summary you actually care about.</li>
 <li><strong>Wide DataFrames are the worst offender.</strong> Many columns will get squeezed down to tiny text. Either select the columns you need, or transpose with <code>.T</code>.</li>
-<li><strong>Keep code lines under about 80 characters.</strong> Long lines will wrap, which is better than getting chopped off, but wrapped lines are ugly and hard to read. You can adjust this manually, or if you are using an LLM you can add “wrap lines at 80 characters” to your prompt.</li>
+<li><strong>Keep code lines under about 80 characters.</strong> Long lines will wrap, which is better than getting chopped off, but wrapped lines are hard to read. You can adjust this manually, or if you are using an LLM you can add “wrap lines at 80 characters” to your prompt.</li>
 <li><strong>Label your plots.</strong> Axes, units, maybe a legend.</li>
 </ul>
 </section>
 <section id="if-something-breaks" class="level2">
 <h2 class="anchored" data-anchor-id="if-something-breaks">If something breaks</h2>
-<p>The render cell has fallbacks built in, and it tells you what to do at each stage. In order of what it tries: grab your live notebook, then fall back to the saved copy in Drive, then fall back to handing you an HTML file you can print from Chrome yourself.</p>
+<p>The render cell has fallbacks built in, and it tells you what to do at each stage. It tries to: grab your live notebook, then falls back to the saved copy in Drive, then falls back to handing you an HTML file. If the process fails the first few steps but still generates an HTML file, you can open it with Chrome and print to PDF. (With Safari it can be printed as well but it loses some of its automatic formatting — it prints the window as it sees it, which means that it might stretch/shrink things from browser to paper. Might still be OK.)</p>
 <p>If all of that fails just submit the <code>.ipynb</code> and email me the error message. <strong>You will not be penalized for a rendering failure.</strong></p>
 
 
