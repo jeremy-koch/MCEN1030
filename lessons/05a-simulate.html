@@ -416,7 +416,7 @@ window.Quarto = {
 </header>
 
 
-<p>Last week we used <code>for</code> loops to compare designs: five rotor diameters and eleven blade designs, encapsulated in elevent <code>v_best</code> values. The order didn’t matter: we could have swept the diameters backwards, or shuffled them, and every answer would have come out the same. The passes through the loop were independent.</p>
+<p>Last week we used <code>for</code> loops to compare designs: five rotor diameters, and eleven blade designs, one per <code>v_best</code> value. The order didn’t matter: we could have swept the diameters backwards, or shuffled them, and every answer would have come out the same. The passes through the loop were independent.</p>
 <p>This week we add one wrinkle: <strong>what if each pass needs to know what the last pass worked out?</strong> Last week: the loop evaluated a formula many times; today: the loop <em>builds an answer that has no formula</em>. If you’ve ever heard someone say the computer is simulating a result, this is it!</p>
 <section id="think-first" class="level2">
 <h2 class="anchored" data-anchor-id="think-first">Think First</h2>
@@ -455,18 +455,18 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidG90YWwgPSAwXG5mb3IgeCBp
 t = \sqrt{\frac{2h}{g}}
 \]</span></p>
 <p>to describe how long a dropped object takes to fall. That is a “formula”, but it is very idealized, notably neglecting drag. Many times in engineering, we don’t have an explicit formula that connects an input to an output, but we do have a rule that we can use computationally to get an approximation of the connection.</p>
-<p>Let’s keep thinking about the drop time, and we will build up to something more complex by Thursday. Suppose I tell you a ball is 10 m high and, at that moment, falling at 3 m/s. Where is it one tenth of a second from now? You might note</p>
+<p>Let’s keep thinking about the drop time, and we will build up to something more complex by Thursday. Suppose I tell you a ball is 10 m high and, at that moment, falling at 3 m/s. If we measure <span class="math inline">\(y\)</span> upward from the ground, then falling means <span class="math inline">\(v = -3\)</span> m/s. Where is it one tenth of a second from now? You might note</p>
 <p><span class="math display">\[
-\Delta y = (3\text{ m/s})(0.1\text{ s}) = 0.3\text{ m lower}
+\Delta y = (-3\text{ m/s})(0.1\text{ s}) = -0.3\text{ m}
 \]</span></p>
-<p>and that would be pretty close, although the ball does speed up during that interval (because gravity manifests as an acceleration). We could write these rules generally as</p>
+<p>— three tenths of a meter lower than it started — and that would be pretty close, although the ball does speed up during that interval (because gravity manifests as an acceleration). We could write these rules generally as</p>
 <p><span class="math display">\[
 \begin{align*}
 y_{\text{new}} &amp;= y + v\,\Delta t \\
 v_{\text{new}} &amp;= v + a\,\Delta t
 \end{align*}
 \]</span></p>
-<p>The first of these equations says: your new position is your old position plus however far you travelled. The second says the same thing about speed: your new velocity is your old velocity plus however much gravity changed it. If we wanted to predict how far you’ve moved, we could calculate these two things over and over again, keeping track of the position <span class="math inline">\(y\)</span> and velocity <span class="math inline">\(v\)</span> after every “time step” <span class="math inline">\(\Delta t\)</span>. Do it a few hundred times and you can trace the trajectory of a falling object.</p>
+<p>The first of these equations says: your new position is your old position plus however far you traveled. The second says the same thing about speed: your new velocity is your old velocity plus however much gravity changed it. If we wanted to predict how far you’ve moved, we could calculate these two things over and over again, keeping track of the position <span class="math inline">\(y\)</span> and velocity <span class="math inline">\(v\)</span> after every “time step” <span class="math inline">\(\Delta t\)</span>. Do it a few hundred times and you can trace the trajectory of a falling object.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -496,7 +496,7 @@ Tip
 </section>
 <section id="keeping-track" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="keeping-track">Keeping track</h2>
-<p>Those two lines are each an <strong>accumulator</strong>: <code>y = y + something</code>, <code>v = v + something</code> — same idea as <code>total = total + x</code>. The only difference is that now there are two of them and they rely on each other.</p>
+<p>Those two rules are each an <strong>accumulator</strong>: <code>y = y + something</code>, <code>v = v + something</code> — same idea as <code>total = total + x</code>. The only difference is that now there are two of them and they rely on each other.</p>
 <p>We’ll keep track of the values of these two things in NumPy arrays, and we’ll need to <em>read</em> element <code>i</code> in order to <em>write</em> element <code>i+1</code>. Here is how we build it:</p>
 <div>
 <div id="pyodide-2" class="exercise-cell">
@@ -525,7 +525,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </script>
 </div>
 <p>Does this match expectation? The speed should increase with time, as gravity causes an acceleration. This will manifest as a curve that starts flat and then steepens.</p>
-<p>What might be unexpected: the object punches through <span class="math inline">\(y=0\)</span> and ends up thirty-two metres underground.</p>
+<p>What might be unexpected: the object punches through <span class="math inline">\(y=0\)</span> and ends up thirty-two meters underground.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -536,8 +536,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Nowhere in those five lines did we mention that the ground exists, or that balls stop at it. We told the program one thing — <em>gravity pulls down</em>.</p>
-<p>A simulation a small set of rules we chose… the computer does exactly what we tell it to do. If we don’t tell it about the ground, it doesn’t do anything about the ground!</p>
+<p>Nowhere in that loop did we mention that the ground exists, or that balls stop at it. We told the program one thing — <em>gravity pulls down</em>.</p>
+<p>A simulation is a small set of rules we chose… the computer does exactly what we tell it to do. If we don’t tell it about the ground, it doesn’t do anything about the ground!</p>
 </div>
 </div>
 </section>
@@ -556,7 +556,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div>
 <p>Two things to note:</p>
 <p><strong>Smaller steps, smaller error</strong>. At <code>dt = 0.5</code> we’re off by 2.45 m, terrible; at <code>dt = 0.01</code> we’re off by 5 cm. The price for taking smaller steps is taking more steps, but the computer doesn’t mind.</p>
-<p><strong>But the velocity is exactly right at every step size</strong>. We move by <span class="math inline">\(-9.810\)</span> in every row… gravity is constant, so <code>v = v - g*dt</code> isn’t an approximation at all; it’s exact. Velocity is <em>not</em> constant during a step, though, and <code>y = y + v*dt</code> pretends it is: we use the speed from the <em>start</em> of the step for the whole step, so we under-count the distance fallen and our ball sits a little too high.</p>
+<p><strong>But the velocity is exactly right at every step size</strong>. The velocity comes out to <span class="math inline">\(-9.810\)</span> in every row… gravity is constant, so <code>v = v - g*dt</code> isn’t an approximation at all; it’s exact. Velocity is <em>not</em> constant during a step, though, and <code>y = y + v*dt</code> pretends it is: we use the speed from the <em>start</em> of the step for the whole step, so we under-count the distance fallen and our ball sits a little too high.</p>
 <p>So this new method works, but why bother when the formula is exact and easier to program? Because <strong>the formula only exists for the idealized problem.</strong> The equation <span class="math inline">\(y = h_0 - \frac12 g t^2\)</span> is true <em>because</em> the acceleration is constant — if the acceleration depends on anything, the simple formula is no longer applicable. But… the loop method doesn’t even notice! Just tell your code the new value for <code>a</code> and it is ready to go!</p>
 <p>Why would it change? Most notably: air resistance — air pushes back harder the faster you go, so the acceleration depends on the velocity… but the velocity depends on the acceleration… which depends on the velocity. For our time-stepper it’s <strong>one extra line</strong>, inside the body we already wrote.</p>
 <div class="bring-to-class">
@@ -596,7 +596,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </tbody>
 </table>
 <p><strong>(2)</strong> Using <code>dt = 0.5</code>, our stepped ball first reaches the ground somewhere around <span class="math inline">\(t = 2.0\)</span> s. The real answer is 1.43 s. Our simulation is too slow by a lot.</p>
-<p>Give <strong>two different reasons</strong> the stepped answer came out too big.</p>
+<p>Give <strong>two different reasons</strong> the stepped answer came out too big. They are genuinely separate problems, and one of them has nothing to do with the physics.</p>
 </div>
 
 
