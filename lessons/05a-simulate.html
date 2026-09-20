@@ -388,10 +388,8 @@ window.Quarto = {
   <li><a href="#you-have-already-written-a-loop-that-remembers" id="toc-you-have-already-written-a-loop-that-remembers" class="nav-link" data-scroll-target="#you-have-already-written-a-loop-that-remembers">You have already written a loop that remembers</a></li>
   <li><a href="#a-rule-instead-of-a-formula" id="toc-a-rule-instead-of-a-formula" class="nav-link" data-scroll-target="#a-rule-instead-of-a-formula">A rule instead of a formula</a></li>
   <li><a href="#keeping-track" id="toc-keeping-track" class="nav-link" data-scroll-target="#keeping-track">Keeping track</a></li>
-  <li><a href="#lets-look-at-it" id="toc-lets-look-at-it" class="nav-link" data-scroll-target="#lets-look-at-it">Let’s look at it</a></li>
+  <li><a href="#lets-plot-it" id="toc-lets-plot-it" class="nav-link" data-scroll-target="#lets-plot-it">Let’s plot it</a></li>
   <li><a href="#is-any-of-this-right" id="toc-is-any-of-this-right" class="nav-link" data-scroll-target="#is-any-of-this-right">Is any of this right?</a></li>
-  <li><a href="#what-we-are-secretly-doing" id="toc-what-we-are-secretly-doing" class="nav-link" data-scroll-target="#what-we-are-secretly-doing">What we are secretly doing</a></li>
-  <li><a href="#so-why-not-just-use-the-formula" id="toc-so-why-not-just-use-the-formula" class="nav-link" data-scroll-target="#so-why-not-just-use-the-formula">So why not just use the formula?</a></li>
   </ul>
 </nav>
     </div>
@@ -418,8 +416,8 @@ window.Quarto = {
 </header>
 
 
-<p>Last week we used <code>for</code> loops to compare designs: five rotor diameters and eleven <code>v_best</code> values. The order didn’t matter: we could have swept the diameters backwards, or shuffled them, and every answer would have come out the same. The passes through the loop were independent.</p>
-<p>This week we add one wrinkle: <strong>what if each pass needs to know what the last pass worked out?</strong> Last week: the loop evaluated a formula many times; today: the loop <em>builds an answer that has no formula</em>. If you’ve ever heard someone say the computer is simulating a result, that is this!</p>
+<p>Last week we used <code>for</code> loops to compare designs: five rotor diameters and eleven blade designs, encapsulated in elevent <code>v_best</code> values. The order didn’t matter: we could have swept the diameters backwards, or shuffled them, and every answer would have come out the same. The passes through the loop were independent.</p>
+<p>This week we add one wrinkle: <strong>what if each pass needs to know what the last pass worked out?</strong> Last week: the loop evaluated a formula many times; today: the loop <em>builds an answer that has no formula</em>. If you’ve ever heard someone say the computer is simulating a result, this is it!</p>
 <section id="think-first" class="level2">
 <h2 class="anchored" data-anchor-id="think-first">Think First</h2>
 <p>Recall</p>
@@ -448,7 +446,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidG90YWwgPSAwXG5mb3IgeCBp
 <p>In this reading we’re going to accumulate something more interesting than a running <code>total</code>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>A loop variable that carries information from one pass to the next is often called a <strong>state</strong>. It’s the program’s memory of where it has got to.</p>
+<p>A loop variable that carries information from one pass to the next is often called a <strong>state</strong>. It’s the program’s memory of where it has gotten to.</p>
 </div></div></section>
 <section id="a-rule-instead-of-a-formula" class="level2">
 <h2 class="anchored" data-anchor-id="a-rule-instead-of-a-formula">A rule instead of a formula</h2>
@@ -456,10 +454,10 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidG90YWwgPSAwXG5mb3IgeCBp
 <p><span class="math display">\[
 t = \sqrt{\frac{2h}{g}}
 \]</span></p>
-<p>to describe how long a dropped object takes to fall. That is a “formula” for the time, but it is very idealized, notably neglecting drag. Many times in engineering, we don’t have an explicit formula that connects an input to an output, but we do have a rule that we can use computationally to get an approximation.</p>
-<p>Let’s keep thinking about the drop time, and we will build up to something more complex by Thursday. Suppose I tell you a ball is 10 m up and, right now, falling at 3 m/s. Where is it one tenth of a second from now? You might note</p>
+<p>to describe how long a dropped object takes to fall. That is a “formula”, but it is very idealized, notably neglecting drag. Many times in engineering, we don’t have an explicit formula that connects an input to an output, but we do have a rule that we can use computationally to get an approximation of the connection.</p>
+<p>Let’s keep thinking about the drop time, and we will build up to something more complex by Thursday. Suppose I tell you a ball is 10 m high and, at that moment, falling at 3 m/s. Where is it one tenth of a second from now? You might note</p>
 <p><span class="math display">\[
-\Delta d = (3\text{ m/s})(0.1\text{ s}) = 0.3\text{ m lower}
+\Delta y = (3\text{ m/s})(0.1\text{ s}) = 0.3\text{ m lower}
 \]</span></p>
 <p>and that would be pretty close, although the ball does speed up during that interval (because gravity manifests as an acceleration). We could write these rules generally as</p>
 <p><span class="math display">\[
@@ -468,7 +466,7 @@ y_{\text{new}} &amp;= y + v\,\Delta t \\
 v_{\text{new}} &amp;= v + a\,\Delta t
 \end{align*}
 \]</span></p>
-<p>The first says: your new position is your old position plus however far you travelled. The second says the same thing about speed: your new velocity is your old velocity plus however much gravity changed it. If we wanted to predict how far you’ve moved, we could calculate these two things over and over again, keeping track of the position <span class="math inline">\(y\)</span> and velocity <span class="math inline">\(v\)</span> after every “time step” <span class="math inline">\(\Delta t\)</span>. Do it a few hundred times and you can trace the trajectory of a falling object.</p>
+<p>The first of these equations says: your new position is your old position plus however far you travelled. The second says the same thing about speed: your new velocity is your old velocity plus however much gravity changed it. If we wanted to predict how far you’ve moved, we could calculate these two things over and over again, keeping track of the position <span class="math inline">\(y\)</span> and velocity <span class="math inline">\(v\)</span> after every “time step” <span class="math inline">\(\Delta t\)</span>. Do it a few hundred times and you can trace the trajectory of a falling object.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -492,13 +490,13 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Pay attention to signs! If <span class="math inline">\(y\)</span> is measured <strong>upward</strong> from the ground, and then the object falls with gravity, the acceleration <span class="math inline">\(a = -9.81\)</span> m/s².<span class="math inline">\(v\)</span> will be <strong>negative</strong>, as will be the velocity <span class="math inline">\(v\)</span>. More important than memorizing conventions is <strong>paying attention to the physics</strong> and making sure it matches with your intuition.</p>
+<p>Pay attention to signs! If <span class="math inline">\(y\)</span> is measured <strong>upward</strong> from the ground, and then the object falls with gravity, the acceleration <span class="math inline">\(a = -9.81\)</span> m/s² is negative! The velocity <span class="math inline">\(v\)</span> will also be <strong>negative</strong>. More important than memorizing conventions is <strong>paying attention to the physics</strong> and making sure it matches with your intuition.</p>
 </div>
 </div>
 </section>
 <section id="keeping-track" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="keeping-track">Keeping track</h2>
-<p>Those two lines are each an <strong>accumulator</strong> — <code>y = y + something</code>, <code>v = v + something</code> — same idea as <code>total = total + x</code>. The only difference is that now there are two of them and they feed each other.</p>
+<p>Those two lines are each an <strong>accumulator</strong>: <code>y = y + something</code>, <code>v = v + something</code> — same idea as <code>total = total + x</code>. The only difference is that now there are two of them and they rely on each other.</p>
 <p>We’ll keep track of the values of these two things in NumPy arrays, and we’ll need to <em>read</em> element <code>i</code> in order to <em>write</em> element <code>i+1</code>. Here is how we build it:</p>
 <div>
 <div id="pyodide-2" class="exercise-cell">
@@ -510,14 +508,14 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>With this scheme, the first time step leaves us at the original value of <span class="math inline">\(y\)</span>. This isn’t a bug — our initial value of <span class="math inline">\(v\)</span> is zero, and in this discrete approximation of real physical behavior, that causes <span class="math inline">\(y\)</span> to be the same in its first two values.</p>
+<p>With this scheme, the first time step forward leaves us at the original value of <span class="math inline">\(y\)</span>. This isn’t a bug — our initial value of <span class="math inline">\(v\)</span> is zero, and in this discrete approximation of real physical behavior, that causes <span class="math inline">\(y\)</span> to be the same in its first two values.</p>
 </div></div><p>A few notes:</p>
-<p><strong><code>n_steps + 1</code> slots for <code>n_steps</code> steps.</strong> Taking 30 steps means starting in one state, then moving to 30 new states. Off-by-one errors are common!</p>
+<p><strong>There are <code>n_steps + 1</code> slots for <code>n_steps</code> steps.</strong> Taking 30 steps means starting in one state, then moving to 30 new states. Off-by-one errors are common!</p>
 <p><strong>Element zero is the initial condition.</strong> <code>y[0] = 10.0</code> is not a calculation, it’s an input: we say that it starts at a height of 10.</p>
 <p><strong>The loop reads <code>i</code> and writes <code>i+1</code>.</strong> This can’t be done with a NumPy array operation, no matter how clever. <code>y[i+1]</code> needs <code>v[i]</code>, which needed <code>v[i-1]</code>… all the way back to the beginning. NumPy can do a million multiplications at once because none are dependent on each other. Here, the dominoes have to fall in order.</p>
 </section>
-<section id="lets-look-at-it" class="level2">
-<h2 class="anchored" data-anchor-id="lets-look-at-it">Let’s look at it</h2>
+<section id="lets-plot-it" class="level2">
+<h2 class="anchored" data-anchor-id="lets-plot-it">Let’s plot it</h2>
 <div>
 <div id="pyodide-3" class="exercise-cell">
 
@@ -526,8 +524,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmcsIGR0LCBuX3N0ZXBzID0gOS44MSwgMC4xLCAzMFxueSA9IG5wLnplcm9zKG5fc3RlcHMgKyAxKTsgdiA9IG5wLnplcm9zKG5fc3RlcHMgKyAxKVxudCA9IG5wLmFyYW5nZShuX3N0ZXBzICsgMSkgKiBkdFxueVswXSA9IDEwLjBcblxuZm9yIGkgaW4gcmFuZ2Uobl9zdGVwcyk6XG4gICAgeVtpKzFdID0geVtpXSArIHZbaV0gKiBkdFxuICAgIHZbaSsxXSA9IHZbaV0gLSBnICogZHRcblxucGx0LnBsb3QodCwgeSwgXCJvLVwiKVxucGx0LmF4aGxpbmUoMCwgY29sb3I9XCJncmF5XCIsIGxpbmV3aWR0aD0wLjgpICAgICMgdGhlIGdyb3VuZFxucGx0LnhsYWJlbChcIlRpbWUgKHMpXCIpXG5wbHQueWxhYmVsKFwiSGVpZ2h0IChtKVwiKVxucGx0LnNob3coKVxuXG5wcmludChcImhlaWdodCBhdCB0aGUgbGFzdCBzdGVwOlwiLCByb3VuZCh5Wy0xXSwgMiksIFwibVwiKSJ9
 </script>
 </div>
-<p>A curve that starts flat and steepens — which is right, a dropped ball covers very little ground in the first tenth of a second and a lot in the last. So far so good.</p>
-<p>And then it goes straight through the floor and ends up thirty-two metres underground.</p>
+<p>Does this match expectation? The speed should increase with time, as gravity causes an acceleration. This will manifest as a curve that starts flat and then steepens.</p>
+<p>What might be unexpected: the object punches through <span class="math inline">\(y=0\)</span> and ends up thirty-two metres underground.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -538,18 +536,14 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is worth more than the laugh. Nowhere in those five lines did we mention that the ground exists, or that balls stop at it. We told the program one thing — <em>gravity pulls down</em> — and it did that, faithfully, forever.</p>
-<p>A simulation is not a little copy of reality that we can interrogate. It’s a small set of rules we chose, executed exactly. Every single thing it doesn’t know is a thing we didn’t say. The floor. The air. The ball squashing. All absent, because we never wrote them down.</p>
-<p>Getting good at this is mostly getting good at asking <em>what did I leave out, and does it matter here?</em> — and we’ll do that properly on Thursday.</p>
+<p>Nowhere in those five lines did we mention that the ground exists, or that balls stop at it. We told the program one thing — <em>gravity pulls down</em>.</p>
+<p>A simulation a small set of rules we chose… the computer does exactly what we tell it to do. If we don’t tell it about the ground, it doesn’t do anything about the ground!</p>
 </div>
 </div>
-<p>For now we’ll just… not look past the landing. (We could tell the loop to stop when <code>y</code> goes negative, but we’d have to invent some new machinery to do it, and I’d rather let you feel the need for it first.)</p>
 </section>
-<section id="is-any-of-this-right" class="level2 page-columns page-full">
+<section id="is-any-of-this-right" class="level2">
 <h2 class="anchored" data-anchor-id="is-any-of-this-right">Is any of this right?</h2>
-<p>Fair question. We built this out of a rule I waved my hands at, and the ball is currently buried. Why should we believe a word of it?</p>
-<p>Because for <em>this</em> problem — falling with no air — there is a formula, and we can check ourselves against it. That’s the whole point of trying the method first on a problem we can already solve.</p>
-<p>After falling freely for time <span class="math inline">\(t\)</span> from rest at height <span class="math inline">\(h_0\)</span>:</p>
+<p>A verification question! We have been assuming no air resistance — in such a case there is a formula we can check against:</p>
 <p><span class="math display">\[y = h_0 - \tfrac{1}{2} g t^2\]</span></p>
 <p>At <span class="math inline">\(t = 1.0\)</span> s from 10 m, that’s <span class="math inline">\(10 - 0.5(9.81)(1) = 5.095\)</span> m. Let’s see what our stepper says, at a few different step sizes.</p>
 <div>
@@ -560,28 +554,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbmRlZiBkcm9wKGR0LCB0X2ZpbmFsPTEuMCwgaDA9MTAuMCwgZz05LjgxKTpcbiAgICBcIlwiXCJIZWlnaHQgYWZ0ZXIgdF9maW5hbCBzZWNvbmRzLCBzdGVwcGVkIHdpdGggc3RlcCBzaXplIGR0LlwiXCJcIlxuICAgIG4gPSBpbnQocm91bmQodF9maW5hbCAvIGR0KSlcbiAgICB5ID0gbnAuemVyb3MobiArIDEpOyB2ID0gbnAuemVyb3MobiArIDEpXG4gICAgeVswXSA9IGgwXG4gICAgZm9yIGkgaW4gcmFuZ2Uobik6XG4gICAgICAgIHlbaSsxXSA9IHlbaV0gKyB2W2ldICogZHRcbiAgICAgICAgdltpKzFdID0gdltpXSAtIGcgKiBkdFxuICAgIHJldHVybiB5Wy0xXSwgdlstMV1cblxuZXhhY3QgPSAxMC4wIC0gMC41ICogOS44MSAqIDEuMCoqMlxucHJpbnQoZlwiZXhhY3Q6ICB5ID0ge2V4YWN0Oi40Zn0gbSwgIHYgPSB7LTkuODE6LjNmfSBtL3NcXG5cIilcblxuZm9yIGR0IGluIFswLjUsIDAuMjUsIDAuMSwgMC4wNSwgMC4wMV06XG4gICAgeV9lbmQsIHZfZW5kID0gZHJvcChkdClcbiAgICBwcmludChmXCJkdCA9IHtkdDo8NX0gIHkgPSB7eV9lbmQ6Ny40Zn0gIChvZmYgYnkge3lfZW5kLWV4YWN0OisuNGZ9KSAgIHYgPSB7dl9lbmQ6Ny4zZn1cIikifQ==
 </script>
 </div>
-<p>Two things fall out of that table, and the second one is the interesting one.</p>
-<p><strong>Smaller steps, smaller error</strong> — and not vaguely: halve <code>dt</code> and you roughly halve the error. At <code>dt = 0.5</code> we’re off by 2.45 m, which is terrible. At <code>dt = 0.01</code> we’re off by 5 cm. So accuracy is a dial we control, and the price of turning it is just more steps, which the computer does not mind.</p>
-<p><strong>The velocity is exactly right at every step size.</strong> Look at the last column: <span class="math inline">\(-9.810\)</span>, every time, no matter how coarse the steps. But the position is wrong. Why the difference?</p>
-<p>Because gravity is constant — the acceleration really <em>is</em> <span class="math inline">\(-9.81\)</span> for the whole step, so <code>v = v - g*dt</code> is not an approximation at all. It’s exact. The velocity, though, is <em>not</em> constant during a step, and <code>y = y + v*dt</code> pretends it is. We use the speed the ball had at the <em>start</em> of the step and apply it across the whole step, so we consistently under-count the distance fallen. That’s why our simulated ball is always a little too high.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Which is the same thing you noticed in the very first printout, when <code>y</code> refused to move for a whole tenth of a second. That was this error, at its most visible.</p>
-</div></div><p>That is a genuinely satisfying moment, I think: we predicted the shape of our own mistake from understanding the method, and the numbers agreed.</p>
-</section>
-<section id="what-we-are-secretly-doing" class="level2">
-<h2 class="anchored" data-anchor-id="what-we-are-secretly-doing">What we are secretly doing</h2>
-<p>A quiet aside, because it’s nice and because it’ll come back.</p>
-<p>Each step adds <code>v * dt</code> to the height. Draw the velocity against time and <code>v * dt</code> is the area of a skinny rectangle — height <span class="math inline">\(v\)</span>, width <span class="math inline">\(\Delta t\)</span>. Our loop is adding up a few hundred of those rectangles, and the total is how far the ball moved.</p>
-<p>So “add up a lot of thin rectangles to get the area under a curve” and “step a simulation forward in time” are the same operation wearing different hats. Making <code>dt</code> smaller makes the rectangles skinnier, which is why the answer gets better. If you’ve met integration, that’s what this is; if you haven’t, you haven’t missed anything — you just did it.</p>
-</section>
-<section id="so-why-not-just-use-the-formula" class="level2">
-<h2 class="anchored" data-anchor-id="so-why-not-just-use-the-formula">So why not just use the formula?</h2>
-<p>Honest question, and for a ball falling in a vacuum the formula wins. It’s exact, it’s instant, and it doesn’t need thirty lines of Python.</p>
-<p>The reason we’re doing it the hard way is that the formula is <em>fragile</em>. It exists because the acceleration is constant. Change that — even slightly — and the formula is gone, while the loop doesn’t even notice.</p>
-<p>Here’s the change we’ll make on Thursday. Add air resistance: the ball pushes through air, the air pushes back, and it pushes back <em>harder the faster you go</em>. Now the acceleration depends on the velocity, which depends on the acceleration, and <span class="math inline">\(y = h_0 - \frac12 g t^2\)</span> is worthless.</p>
-<p>For our stepper, it’s one line. Not a new method, not a new loop — one line, inside the body we already wrote.</p>
-<p>To sharpen the point, here’s what we’re chasing. Drop a balloon from 10 m. The formula says it lands in <strong>1.43 seconds</strong>. A balloon actually takes about <strong>6.6 seconds</strong> — more than four times as long. The formula you were taught isn’t slightly off for a balloon, it’s wrong by a factor of four and a half, and it gives you no warning whatsoever.</p>
+<p>Two things to note:</p>
+<p><strong>Smaller steps, smaller error</strong>. At <code>dt = 0.5</code> we’re off by 2.45 m, terrible; at <code>dt = 0.01</code> we’re off by 5 cm. The price for taking smaller steps is taking more steps, but the computer doesn’t mind.</p>
+<p><strong>But the velocity is exactly right at every step size</strong>. We move by <span class="math inline">\(-9.810\)</span> in every row… gravity is constant, so <code>v = v - g*dt</code> isn’t an approximation at all; it’s exact. Velocity is <em>not</em> constant during a step, though, and <code>y = y + v*dt</code> pretends it is: we use the speed from the <em>start</em> of the step for the whole step, so we under-count the distance fallen and our ball sits a little too high.</p>
+<p>So this new method works, but why bother when the formula is exact and easier to program? Because <strong>the formula only exists for the idealized problem.</strong> The equation <span class="math inline">\(y = h_0 - \frac12 g t^2\)</span> is true <em>because</em> the acceleration is constant — if the acceleration depends on anything, the simple formula is no longer applicable. But… the loop method doesn’t even notice! Just tell your code the new value for <code>a</code> and it is ready to go!</p>
+<p>Why would it change? Most notably: air resistance — air pushes back harder the faster you go, so the acceleration depends on the velocity… but the velocity depends on the acceleration… which depends on the velocity. For our time-stepper it’s <strong>one extra line</strong>, inside the body we already wrote.</p>
 <div class="bring-to-class">
 <p>On paper, before you run anything.</p>
 <p><strong>(1)</strong> Trace this by hand. Fill in the table for three steps and commit to the numbers.</p>
@@ -619,7 +596,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </tbody>
 </table>
 <p><strong>(2)</strong> Using <code>dt = 0.5</code>, our stepped ball first reaches the ground somewhere around <span class="math inline">\(t = 2.0\)</span> s. The real answer is 1.43 s. Our simulation is too slow by a lot.</p>
-<p>Give <strong>two different reasons</strong> the stepped answer came out too big. They are genuinely separate problems, and one of them has nothing to do with how the physics was approximated.</p>
+<p>Give <strong>two different reasons</strong> the stepped answer came out too big.</p>
 </div>
 
 
