@@ -3,7 +3,7 @@ title: "A loop that remembers — simulating a falling ball"
 subtitle: "Week 5, Lesson A — read before Tuesday"
 ---
 
-Last week we used `for` loops to compare designs: five rotor diameters and eleven blade designs, encapsulated in elevent `v_best` values. The order didn't matter: we could have swept the diameters backwards, or shuffled them, and every answer would have come out the same. The passes through the loop were independent.
+Last week we used `for` loops to compare designs: five rotor diameters, and eleven blade designs, one per `v_best` value. The order didn't matter: we could have swept the diameters backwards, or shuffled them, and every answer would have come out the same. The passes through the loop were independent.
 
 This week we add one wrinkle: **what if each pass needs to know what the last pass worked out?** Last week: the loop evaluated a formula many times; today: the loop *builds an answer that has no formula*. If you've ever heard someone say the computer is simulating a result, this is it!
 
@@ -49,13 +49,13 @@ $$
 
 to describe how long a dropped object takes to fall. That is a "formula", but it is very idealized, notably neglecting drag. Many times in engineering, we don't have an explicit formula that connects an input to an output, but we do have a rule that we can use computationally to get an approximation of the connection.
 
-Let's keep thinking about the drop time, and we will build up to something more complex by Thursday. Suppose I tell you a ball is 10 m high and, at that moment, falling at 3 m/s. Where is it one tenth of a second from now? You might note
+Let's keep thinking about the drop time, and we will build up to something more complex by Thursday. Suppose I tell you a ball is 10 m high and, at that moment, falling at 3 m/s. If we measure $y$ upward from the ground, then falling means $v = -3$ m/s. Where is it one tenth of a second from now? You might note
 
 $$
-\Delta y = (3\text{ m/s})(0.1\text{ s}) = 0.3\text{ m lower}
+\Delta y = (-3\text{ m/s})(0.1\text{ s}) = -0.3\text{ m}
 $$
 
-and that would be pretty close, although the ball does speed up during that interval (because gravity manifests as an acceleration). We could write these rules generally as
+— three tenths of a meter lower than it started — and that would be pretty close, although the ball does speed up during that interval (because gravity manifests as an acceleration). We could write these rules generally as
 
 $$
 \begin{align*}
@@ -64,7 +64,7 @@ v_{\text{new}} &= v + a\,\Delta t
 \end{align*}
 $$
 
-The first of these equations says: your new position is your old position plus however far you travelled. The second says the same thing about speed: your new velocity is your old velocity plus however much gravity changed it. If we wanted to predict how far you've moved, we could calculate these two things over and over again, keeping track of the position $y$ and velocity $v$ after every "time step" $\Delta t$. Do it a few hundred times and you can trace the trajectory of a falling object.
+The first of these equations says: your new position is your old position plus however far you traveled. The second says the same thing about speed: your new velocity is your old velocity plus however much gravity changed it. If we wanted to predict how far you've moved, we could calculate these two things over and over again, keeping track of the position $y$ and velocity $v$ after every "time step" $\Delta t$. Do it a few hundred times and you can trace the trajectory of a falling object.
 
 ::: {.callout-important}
 Notice the speed changes each time we do the calculation, and so the displacement $y_\text{new}-y$ will change as well (assuming the same $\Delta t$).
@@ -77,7 +77,7 @@ Pay attention to signs! If $y$ is measured **upward** from the ground, and then 
 
 ## Keeping track
 
-Those two lines are each an **accumulator**: `y = y + something`, `v = v + something` — same idea as `total = total + x`. The only difference is that now there are two of them and they rely on each other. 
+Those two rules are each an **accumulator**: `y = y + something`, `v = v + something` — same idea as `total = total + x`. The only difference is that now there are two of them and they rely on each other. 
 
 We'll keep track of the values of these two things in NumPy arrays, and we'll need to *read* element `i` in order to *write* element `i+1`. Here is how we build it:
 
@@ -143,13 +143,13 @@ print("height at the last step:", round(y[-1], 2), "m")
 
 Does this match expectation? The speed should increase with time, as gravity causes an acceleration. This will manifest as a curve that starts flat and then steepens. 
 
-What might be unexpected: the object punches through $y=0$ and ends up thirty-two metres underground.
+What might be unexpected: the object punches through $y=0$ and ends up thirty-two meters underground.
 
 ::: {.callout-important}
 ## The model knows only what you told it
-Nowhere in those five lines did we mention that the ground exists, or that balls stop at it. We told the program one thing — *gravity pulls down*.
+Nowhere in that loop did we mention that the ground exists, or that balls stop at it. We told the program one thing — *gravity pulls down*.
 
-A simulation a small set of rules we chose... the computer does exactly what we tell it to do. If we don't tell it about the ground, it doesn't do anything about the ground!
+A simulation is a small set of rules we chose... the computer does exactly what we tell it to do. If we don't tell it about the ground, it doesn't do anything about the ground!
 :::
 
 
@@ -186,7 +186,7 @@ Two things to note:
 
 **Smaller steps, smaller error**. At `dt = 0.5` we're off by 2.45 m, terrible; at `dt = 0.01` we're off by 5 cm. The price for taking smaller steps is taking more steps, but the computer doesn't mind.
 
-**But the velocity is exactly right at every step size**. We move by $-9.810$ in every row... gravity is constant, so `v = v - g*dt` isn't an approximation at all; it's exact. Velocity is *not* constant during a step, though, and `y = y + v*dt` pretends it is: we use the speed from the *start* of the step for the whole step, so we under-count the distance fallen and our ball sits a little too high.
+**But the velocity is exactly right at every step size**. The velocity comes out to $-9.810$ in every row... gravity is constant, so `v = v - g*dt` isn't an approximation at all; it's exact. Velocity is *not* constant during a step, though, and `y = y + v*dt` pretends it is: we use the speed from the *start* of the step for the whole step, so we under-count the distance fallen and our ball sits a little too high.
 
 So this new method works, but why bother when the formula is exact and easier to program? Because **the formula only exists for the idealized problem.** The equation $y = h_0 - \frac12 g t^2$ is true *because* the acceleration is constant — if the acceleration depends on anything, the simple formula is no longer applicable. But... the loop method doesn't even notice! Just tell your code the new value for `a` and it is ready to go!
 
@@ -215,7 +215,7 @@ for i in range(3):
 
 **(2)** Using `dt = 0.5`, our stepped ball first reaches the ground somewhere around $t = 2.0$ s. The real answer is 1.43 s. Our simulation is too slow by a lot.
 
-Give **two different reasons** the stepped answer came out too big.
+Give **two different reasons** the stepped answer came out too big. They are genuinely separate problems, and one of them has nothing to do with the physics.
 :::
 
 
@@ -244,19 +244,19 @@ The load-bearing surprise is step 1: **`y` does not move**, because `v` is still
 
 That second point is why the convergence table in the reading measures `y` at a fixed `t = 1.0` rather than measuring the landing time — landing time is quantized in units of `dt` and muddies the picture. If a sharp student asks why we didn't just tabulate the fall time, that's the answer, and it's worth giving.
 
-**Convergence numbers (y at t = 1.0 s, exact 5.0950 m):** dt = 0.5 → 7.5475 (+2.4525); 0.25 → 6.3212 (+1.2262); 0.1 → 5.5855 (+0.4905); 0.05 → 5.3403 (+0.2453); 0.01 → 5.1441 (+0.0491). Halving `dt` halves the error, cleanly, at every level. State that as an observation from their own data — do **not** introduce order-of-accuracy, stability, or method names. Formal numerical methods is a downstream course and we agreed not to encroach.
+**Convergence numbers (y at t = 1.0 s, exact 5.0950 m):** dt = 0.5 → 7.5475 (+2.4525); 0.25 → 6.3212 (+1.2262); 0.1 → 5.5855 (+0.4905); 0.05 → 5.3403 (+0.2453); 0.01 → 5.1441 (+0.0491). Halving `dt` halves the error cleanly at every level. The reading deliberately doesn't say so — it claims only "smaller steps, smaller error" — but if a table notices the pattern, confirm it as an observation from their own data and stop there. Do **not** introduce order-of-accuracy, stability, or method names. Formal numerical methods is a downstream course and we agreed not to encroach.
 
 **`v` is exact at every `dt`** (−9.810 throughout) because acceleration is genuinely constant, so `v = v - g*dt` is not an approximation. Position is wrong because velocity isn't constant across a step. This is the best explanatory beat in the lesson — it predicts the *sign* of the error before you measure it — and it's worth protecting if you're short on time.
 
 **The 30-step plot:** ends at `y = -32.674` m at t = 3.0 s (exact free fall would be −34.145). First step with `y <= 0` is index 15, i.e. t = 1.50 s; exact landing is 1.4278 s with impact 14.007 m/s.
 
-**Thursday's hook (don't spoil the mechanism):** balloon, 10 m, quadratic drag with `k/m` ≈ 4.09 → terminal velocity 1.55 m/s, fall time **6.57 s** vs the formula's 1.43 s. The `dt` demo on Thursday is spectacular for a balloon: at `dt = 0.2` it lands at 8.4 s looking plausible; at `dt = 0.3` the balloon travels *upward*, reaches 239 m, and hits 7×10¹¹ m/s. Ping-pong balls and tennis balls do **not** blow up this way (quadratic drag self-stabilises) — the balloon's high `k/m` is what makes the demo work, so don't swap the object.
+**Thursday's hook (don't spoil the mechanism):** balloon, 10 m, quadratic drag with `k/m` ≈ 4.09 → terminal velocity 1.55 m/s, fall time **6.57 s** vs the formula's 1.43 s. The `dt` demo on Thursday is spectacular for a balloon: at `dt = 0.2` it lands at 8.4 s looking plausible; at `dt = 0.3` the balloon travels *upward*, reaches 239 m, and hits 7×10¹¹ m/s. Ping-pong balls and tennis balls do **not** blow up this way (quadratic drag self-stabilizes) — the balloon's high `k/m` is what makes the demo work, so don't swap the object.
 
 **Timing (~75 min, no checkpoint):** the accumulator callback and the "loop that remembers" framing, 10 min. The rule and the sign convention, 10 min. Writing it down — the pre-allocated loop, the frozen first step, and the reads-`i`-writes-`i+1` point, 20 min. Plot and falling through the floor, 12 min. "Is any of this right?" end to end — convergence table, the exact-velocity explanation, and the pivot to why we bother — 23 min. Protect the last third: the point of the day is that the loop absorbs physics the formula cannot, and it's the last thing they'll hear before the balloon tease.
 
 The frozen first step is best done live: run the cell, let someone notice, and only then explain. If nobody notices, ask "how far did it fall in the first tenth of a second?" It's the same observation the convergence table pays off twenty minutes later, so it's worth the wait.
 
-**Cut first if short on time:** the sum-of-rectangles margin note. It's free enrichment and nothing downstream depends on it — it reappears whenever we get to areas. Next after that, the list of things that break the formula (wind, thinning air, a parachute); one example is enough to make the point if you're squeezed.
+**Cut first if short on time:** the ten-step printed table can be shown rather than dwelt on, and the `dt = 0.25` and `0.05` rows of the convergence table add nothing the other three don't. Do not cut the balloon tease at the end — it's the only concrete number Thursday is built on.
 
 **Do not** introduce `while` here. "Stop when it hits the ground" is the obvious next want, and letting them feel that itch for a week is the motivation for the tool. The reading deliberately names the problem and declines to solve it.
 :::
