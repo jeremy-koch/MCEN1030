@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What do engineers do with computation? – MCEN 1030</title>
+<title>A loop that remembers — simulating a falling ball – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -190,7 +190,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">What do engineers do with computation?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/05a-simulate.html">A loop that remembers — simulating a falling ball</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -274,7 +274,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What do engineers do with computation?</span></a>
   </div>
 </li>
@@ -339,7 +339,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/05a-simulate.html" class="sidebar-item-text sidebar-link">
+  <a href="../lessons/05a-simulate.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">A loop that remembers — simulating a falling ball</span></a>
   </div>
 </li>
@@ -385,21 +385,23 @@ window.Quarto = {
    
   <ul>
   <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
-  <li><a href="#four-things-you-may-not-know-are-possible-with-computation" id="toc-four-things-you-may-not-know-are-possible-with-computation" class="nav-link" data-scroll-target="#four-things-you-may-not-know-are-possible-with-computation">Four things you may not know are possible with computation</a></li>
-  <li><a href="#the-pipeline" id="toc-the-pipeline" class="nav-link" data-scroll-target="#the-pipeline">The pipeline</a></li>
-  <li><a href="#specification-means-describing-the-problem-completely" id="toc-specification-means-describing-the-problem-completely" class="nav-link" data-scroll-target="#specification-means-describing-the-problem-completely">Specification means describing the problem completely</a></li>
-  <li><a href="#verification-means-confirming-a-program-does-what-you-intended" id="toc-verification-means-confirming-a-program-does-what-you-intended" class="nav-link" data-scroll-target="#verification-means-confirming-a-program-does-what-you-intended">Verification means confirming a program does what you intended</a></li>
-  <li><a href="#the-map-of-this-course" id="toc-the-map-of-this-course" class="nav-link" data-scroll-target="#the-map-of-this-course">The map of this course</a></li>
+  <li><a href="#you-have-already-written-a-loop-that-remembers" id="toc-you-have-already-written-a-loop-that-remembers" class="nav-link" data-scroll-target="#you-have-already-written-a-loop-that-remembers">You have already written a loop that remembers</a></li>
+  <li><a href="#a-rule-instead-of-a-formula" id="toc-a-rule-instead-of-a-formula" class="nav-link" data-scroll-target="#a-rule-instead-of-a-formula">A rule instead of a formula</a></li>
+  <li><a href="#keeping-track" id="toc-keeping-track" class="nav-link" data-scroll-target="#keeping-track">Keeping track</a></li>
+  <li><a href="#lets-look-at-it" id="toc-lets-look-at-it" class="nav-link" data-scroll-target="#lets-look-at-it">Let’s look at it</a></li>
+  <li><a href="#is-any-of-this-right" id="toc-is-any-of-this-right" class="nav-link" data-scroll-target="#is-any-of-this-right">Is any of this right?</a></li>
+  <li><a href="#what-we-are-secretly-doing" id="toc-what-we-are-secretly-doing" class="nav-link" data-scroll-target="#what-we-are-secretly-doing">What we are secretly doing</a></li>
+  <li><a href="#so-why-not-just-use-the-formula" id="toc-so-why-not-just-use-the-formula" class="nav-link" data-scroll-target="#so-why-not-just-use-the-formula">So why not just use the formula?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">What do engineers do with computation?</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/05a-simulate.html">A loop that remembers — simulating a falling ball</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">What do engineers do with computation?</h1>
-<p class="subtitle lead">Week 1, Lesson A — read before Tuesday</p>
+<h1 class="title">A loop that remembers — simulating a falling ball</h1>
+<p class="subtitle lead">Week 5, Lesson A — read before Tuesday</p>
 </div>
 
 
@@ -416,109 +418,57 @@ window.Quarto = {
 </header>
 
 
-<p>We’re starting with computational thinking, not coding. What is actually possible with computation? What does a computer need from you to do something useful? How can you tell if a calculation is trustworthy? These are things we’ll be thinking about all semester, but we’ll introduce them here.</p>
+<p>Last week we used <code>for</code> loops to compare designs: five rotor diameters and eleven <code>v_best</code> values. The order didn’t matter: we could have swept the diameters backwards, or shuffled them, and every answer would have come out the same. The passes through the loop were independent.</p>
+<p>This week we add one wrinkle: <strong>what if each pass needs to know what the last pass worked out?</strong> Last week: the loop evaluated a formula many times; today: the loop <em>builds an answer that has no formula</em>. If you’ve ever heard someone say the computer is simulating a result, that is this!</p>
 <section id="think-first" class="level2">
 <h2 class="anchored" data-anchor-id="think-first">Think First</h2>
 <p>Recall</p>
 <ol type="1">
-<li>Think of a time you gave someone instructions (directions to your house, a recipe, rules to a game) and they got it wrong. Whose fault was it?</li>
-<li>In high school physics, you checked answers by asking “is this number reasonable?” — a car going 900 m/s is probably a mistake. What was that process like… what were you recalling, what did you do when you realized the answer was ridiculous?</li>
+<li>Last Thursday: in <code>totals[i] = turbine_power(good, diameters[i]).sum()</code>, could you have run the five passes in any order? Would the answers change?</li>
+<li>Also last Thursday: the bring-to-class had you trace <code>total = total + x</code> inside a loop. Did that loop’s passes depend on each other?</li>
 </ol>
 <p>Look Ahead</p>
 <ol type="1">
-<li>If an AI can write working code from a plain-English description in five seconds, what’s left for the engineer to do?</li>
-<li>What would it take for you to trust a program you didn’t write?</li>
+<li>If you know where a ball is right now, and how fast it’s falling right now, could you guess where it’ll be a tenth of a second from now? How wrong would that guess be?</li>
+<li>Our ball is going to fall. What in the code is going to tell it that the ground exists?</li>
 </ol>
 </section>
-<section id="four-things-you-may-not-know-are-possible-with-computation" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="four-things-you-may-not-know-are-possible-with-computation">Four things you may not know are possible with computation</h2>
-<p><strong>Predict every outcome of a process.</strong> Write a function that models something — the stress in a bracket, the temperature of a battery — then use that function 100 times with 100 different inputs and write every result to a file. Runtime: about one second. You have just explored the entire design space of a product before building anything.</p>
+<section id="you-have-already-written-a-loop-that-remembers" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="you-have-already-written-a-loop-that-remembers">You have already written a loop that remembers</h2>
+<p>Here’s last Thursday’s bring-to-class:</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidG90YWwgPSAwXG5mb3IgeCBpbiBbMywgNywgMiwgOSwgNF06XG4gICAgaWYgeCA+IDQ6XG4gICAgICAgIHRvdGFsID0gdG90YWwgKyB4XG5wcmludCh0b3RhbCkifQ==
+</script>
+</div>
+<p>The result: <code>16</code>. Importantly, <code>total = total + x</code> reaches back and uses the value <code>total</code> from the <em>previous</em> pass, along with a new number <code>x</code>, to calculate a new value for <code>total</code>. For this example, the order doesn’t actually matter — addition doesn’t care about order — but the spirit was there: we were working with an <strong>accumulator</strong> where we built-up a value step-by-step using a <code>for</code> loop.</p>
+<p>In this reading we’re going to accumulate something more interesting than a running <code>total</code>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>A <strong>function</strong> has a very similar meaning in this class as it did in algebra: there are inputs, and there are outputs. An example: we might want to calculate the area of a triangle. We’d write a function with inputs <code>base</code> and <code>height</code>, and the output is the area. In Python, this would look like</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> triangle_area(base, height):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> base <span class="op">*</span> height</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we “called” this function and provided values for <code>base</code> and <code>height</code>, it would “return” the area of the triangle. We’ll talk about this structure a lot more in two weeks.</p>
-</div></div><p><strong>Handle data at engineering scale.</strong> A test rig logging 100 readings per second produces 360,000 rows an hour. Excel is not going to help you here. The tools in this course handle that with ease.</p>
-<p><strong>Collect and process real engineering data.</strong> From a few lines of code you can pull the live position of the International Space Station, read the accelerometer inside your own phone, or send a question to an AI and use its answer <em>inside your program</em>.</p>
-<p><strong>Solve the unsolvable.</strong> Most real equations in engineering have no analytical solution. Many of those problems can be solved numerically in 10 lines of code.</p>
-</section>
-<section id="the-pipeline" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-pipeline">The pipeline</h2>
-<p>Creating a computational tool looks something like this:</p>
-<svg viewbox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" style="max-width:700px; width:100%; height:auto;">
-  <title>The computational pipeline</title>
-  <desc>Five boxes in a row: Idea, Specification, Production, Verification, Use, connected by arrows. A curved arrow labeled Adaptation loops from Use back to Specification.</desc>
-  <defs>
-    <marker id="arr2" markerwidth="8" markerheight="6" refx="8" refy="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 z" fill="#2b2b2b"></path>
-    </marker>
-  </defs>
-  <g font-family="sans-serif" font-size="14" text-anchor="middle">
-    <rect x="5" y="40" width="90" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="50" y="65">Idea</text>
-    <rect x="135" y="40" width="120" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"></rect>
-    <text x="195" y="65">Specification</text>
-    <rect x="295" y="40" width="110" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="350" y="65">Production</text>
-    <rect x="445" y="40" width="110" height="40" rx="6" fill="#fbf7ec" stroke="#8a6d1f" stroke-width="2.5"></rect>
-    <text x="500" y="65">Verification</text>
-    <rect x="595" y="40" width="90" height="40" rx="6" fill="#ffffff" stroke="#2b2b2b" stroke-width="1.5"></rect>
-    <text x="640" y="65">Use</text>
-    <line x1="95" y1="60" x2="133" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <line x1="255" y1="60" x2="293" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <line x1="405" y1="60" x2="443" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <line x1="555" y1="60" x2="593" y2="60" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></line>
-    <path d="M 640 82 Q 640 130 420 130 Q 195 130 195 84" fill="none" stroke="#2b2b2b" stroke-width="1.5" marker-end="url(#arr2)"></path>
-    <text x="420" y="122" font-style="italic" font-size="13">Adaptation</text>
-  </g>
-</svg>
-<p>The <strong>idea</strong> is always the hard part. Then, at least for the seventy years after that, <strong>production</strong> was the bottleneck: writing correct code takes time, and intro courses like this one were traditionally spent almost entirely on how to write correct code.</p>
-<p>That era is over. AI tools now produce working code <strong>from a good description</strong> in seconds. Production has, for most everyday engineering purposes, been solved.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="https://en.wikipedia.org/wiki/John_Backus">John Backus</a> thought of himself as a bad <a href="https://en.wikipedia.org/wiki/Assembly_language">assembly-language</a> coder, so in the 1950s he created <a href="https://en.wikipedia.org/wiki/Fortran">FORTRAN</a>. The history of computer science is a story of making code less abstract, and LLMs might be the next step.</p>
-</div></div><p>What should be the focus today?</p>
-</section>
-<section id="specification-means-describing-the-problem-completely" class="level2">
-<h2 class="anchored" data-anchor-id="specification-means-describing-the-problem-completely">Specification means describing the problem completely</h2>
-<p>… the inputs, the outputs, what should happen in between, and what should happen at the edges. It sounds trivial, but it is where real engineering projects most often fail: whether it’s an AI, a contractor, or a teammate who is helping with the task, <strong>every gap in your specification gets filled with an assumption</strong>. If your specification doesn’t mention a material, maybe the ideal gas assumption is made — problematic when you are talking about oil flowing through a pipeline!</p>
-<p>Think about asking a question like…</p>
-<blockquote class="blockquote">
-<p>“Tell me the average temperature in Boulder.”</p>
-</blockquote>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What details do you actually need to provide?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Average over <em>what</em> — the whole century of records, one year, one month? Average of the daily highs, the daily lows, or the midpoint between them (which is what “average temperature” usually means, but maybe you are concerned with human comfort and thus should pay attention to the extremes)? What about the days the weather station didn’t report anything? There are plenty of those if we’re looking back to the 1890s. In the raw file, a missing day might not be blank, it might be recorded as <code>-9999</code>. Hand that to a basic Python program for computing the average and you might “learn” that the average temperature is about −270 °C. And, a classic problem even for humans: What are the units?</p>
-</div>
-</div>
-</div>
-<p>Now a different kind of gap. Compare these two problem statements:</p>
-<blockquote class="blockquote">
-<p><strong>A.</strong> “Write a function <code>freq_shift(t, U, x0, y0, c, f)</code> that returns the apparent frequency of a moving siren at each time in the array <code>t</code>, and plots it against time.”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>B.</strong> “Write a program that would allow you to determine the velocity (speed and direction) of a siren.”</p>
-</blockquote>
-<p>Statement A is a <em>completed specification</em> — someone already did all the thinking, and you’re just following instructions. Statement B is a <em>problem</em>. To attack B, you have to decide: what are the inputs my team has access to/ability to control? (A recording? Frequency-vs-time data? Hypothetical object speeds?) What physics connects frequency to velocity? What are the unknowns? What should the program output, and in what form? What if the data is noisy?</p>
-<p>In the old version of this course, where we focused on code production, I’d give you Statement A. (Indeed, this was a homework problem last year.) In this version, where we augment our work with LLMs, you might get Statement B. Importantly: in real engineering, no one will hand you Statement A, especially now that LLMs make short work of the ensuing code. <strong>Producing Statement A from Statement B is the job.</strong></p>
-</section>
-<section id="verification-means-confirming-a-program-does-what-you-intended" class="level2">
-<h2 class="anchored" data-anchor-id="verification-means-confirming-a-program-does-what-you-intended">Verification means confirming a program does what you intended</h2>
-<p>… and notably: not assuming that the product given to you by a colleague or LLM is correct. This semester we will verify our code with:</p>
-<p>The <strong>hand estimate</strong>: before running anything, compute a rough expected answer for a simple case. A dropped wrench falls 3 meters in about <span class="math inline">\(t = \sqrt{2h/g} \approx \sqrt{2(3~\text{m})/(9.8~\text{m/s}^2)} \approx 0.8\)</span> seconds. If the program says 12 seconds, the program is wrong. If it says 0.78 seconds, that’s a good sign.</p>
-<p>The <strong>edge case</strong>: what happens at zero? At a negative input? When the file is empty? What should happen in these cases?</p>
-<p>The <strong>intuition check</strong>: you have years of physical intuition — heavier things don’t fall faster, sirens sound higher approaching than receding, hot coffee cools to room temperature over several minutes but won’t drop below room temperature. That intuition is a verification instrument. Perhaps unexpectedly: we will be practicing our physical intuition in this programming course!</p>
+<p>A loop variable that carries information from one pass to the next is often called a <strong>state</strong>. It’s the program’s memory of where it has got to.</p>
+</div></div></section>
+<section id="a-rule-instead-of-a-formula" class="level2">
+<h2 class="anchored" data-anchor-id="a-rule-instead-of-a-formula">A rule instead of a formula</h2>
+<p>In several places on this webpage, we’ve been using</p>
+<p><span class="math display">\[
+t = \sqrt{\frac{2h}{g}}
+\]</span></p>
+<p>to describe how long a dropped object takes to fall. That is a “formula” for the time, but it is very idealized, notably neglecting drag. Many times in engineering, we don’t have an explicit formula that connects an input to an output, but we do have a rule that we can use computationally to get an approximation.</p>
+<p>Let’s keep thinking about the drop time, and we will build up to something more complex by Thursday. Suppose I tell you a ball is 10 m up and, right now, falling at 3 m/s. Where is it one tenth of a second from now? You might note</p>
+<p><span class="math display">\[
+\Delta d = (3\text{ m/s})(0.1\text{ s}) = 0.3\text{ m lower}
+\]</span></p>
+<p>and that would be pretty close, although the ball does speed up during that interval (because gravity manifests as an acceleration). We could write these rules generally as</p>
+<p><span class="math display">\[
+\begin{align*}
+y_{\text{new}} &amp;= y + v\,\Delta t \\
+v_{\text{new}} &amp;= v + a\,\Delta t
+\end{align*}
+\]</span></p>
+<p>The first says: your new position is your old position plus however far you travelled. The second says the same thing about speed: your new velocity is your old velocity plus however much gravity changed it. If we wanted to predict how far you’ve moved, we could calculate these two things over and over again, keeping track of the position <span class="math inline">\(y\)</span> and velocity <span class="math inline">\(v\)</span> after every “time step” <span class="math inline">\(\Delta t\)</span>. Do it a few hundred times and you can trace the trajectory of a falling object.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -529,28 +479,155 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>An AI will hand you code that runs yet is confidently, invisibly wrong — it flipped a sign, used the wrong equation because you forgot to specify one, assumed Celsius when the data was in Fahrenheit. It will not warn you. <strong>“It ran without errors” and “it is correct” are entirely different claims</strong>.</p>
+<p>Notice the speed changes each time we do the calculation, and so the displacement <span class="math inline">\(y_\text{new}-y\)</span> will change as well (assuming the same <span class="math inline">\(\Delta t\)</span>).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pay attention to signs! If <span class="math inline">\(y\)</span> is measured <strong>upward</strong> from the ground, and then the object falls with gravity, the acceleration <span class="math inline">\(a = -9.81\)</span> m/s².<span class="math inline">\(v\)</span> will be <strong>negative</strong>, as will be the velocity <span class="math inline">\(v\)</span>. More important than memorizing conventions is <strong>paying attention to the physics</strong> and making sure it matches with your intuition.</p>
 </div>
 </div>
 </section>
-<section id="the-map-of-this-course" class="level2">
-<h2 class="anchored" data-anchor-id="the-map-of-this-course">The map of this course</h2>
-<p>Four verbs describe what engineers do with computation, and they outline this course:</p>
-<ol type="1">
-<li><strong>Fetch</strong> — get real data into (and out of) your programs: sensors, files, the internet.</li>
-<li><strong>Process</strong> — turn raw data into meaningful quantities: functions, sweeps, big datasets.</li>
-<li><strong>Simulate</strong> — build models, make predictions, ask “what if,” and know when not to believe yourself.</li>
-<li><strong>Analyze</strong> — communicate findings honestly: good plots that lead to good understanding, defensible conclusions that lead to engineering decisions.</li>
-</ol>
-<p>We’ll spend the most explicit time on Process and Simulate; Fetch and Analyze are woven through everything. The <a href="../info/standards.html">standards page</a> lists what you’ll be able to do under each verb.</p>
+<section id="keeping-track" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="keeping-track">Keeping track</h2>
+<p>Those two lines are each an <strong>accumulator</strong> — <code>y = y + something</code>, <code>v = v + something</code> — same idea as <code>total = total + x</code>. The only difference is that now there are two of them and they feed each other.</p>
+<p>We’ll keep track of the values of these two things in NumPy arrays, and we’ll need to <em>read</em> element <code>i</code> in order to <em>write</em> element <code>i+1</code>. Here is how we build it:</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbmcgPSA5LjgxXG5kdCA9IDAuMVxubl9zdGVwcyA9IDMwXG5cbnkgPSBucC56ZXJvcyhuX3N0ZXBzICsgMSkgICAgICAjIG9uZSBtb3JlIHNsb3QgdGhhbiBzdGVwczogd2UgbmVlZCBzb21ld2hlcmUgdG8gcHV0IHRoZSBzdGFydFxudiA9IG5wLnplcm9zKG5fc3RlcHMgKyAxKVxudCA9IG5wLmFyYW5nZShuX3N0ZXBzICsgMSkgKiBkdFxuXG55WzBdID0gMTAuMCAgICAgICAgICAgICAgICAgICAgIyB0aGUgaW5pdGlhbCBjb25kaXRpb246IHdoZXJlIHdlIGxldCBnb1xudlswXSA9IDAuMFxuXG5mb3IgaSBpbiByYW5nZShuX3N0ZXBzKTpcbiAgICB5W2krMV0gPSB5W2ldICsgdltpXSAqIGR0ICAgICAgIyBtb3ZlLCB1c2luZyB0aGUgc3BlZWQgd2UgaGF2ZSByaWdodCBub3dcbiAgICB2W2krMV0gPSB2W2ldIC0gZyAqIGR0ICAgICAgICAgIyB0aGVuIGxldCBncmF2aXR5IGNoYW5nZSB0aGF0IHNwZWVkXG5cbmZvciBpIGluIHJhbmdlKDUpOlxuICAgIHByaW50KGZcInQgPSB7dFtpXTouMWZ9IHMgICB5ID0ge3lbaV06Ni4zZn0gbSAgIHYgPSB7dltpXTo3LjNmfSBtL3NcIikifQ==
+</script>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>With this scheme, the first time step leaves us at the original value of <span class="math inline">\(y\)</span>. This isn’t a bug — our initial value of <span class="math inline">\(v\)</span> is zero, and in this discrete approximation of real physical behavior, that causes <span class="math inline">\(y\)</span> to be the same in its first two values.</p>
+</div></div><p>A few notes:</p>
+<p><strong><code>n_steps + 1</code> slots for <code>n_steps</code> steps.</strong> Taking 30 steps means starting in one state, then moving to 30 new states. Off-by-one errors are common!</p>
+<p><strong>Element zero is the initial condition.</strong> <code>y[0] = 10.0</code> is not a calculation, it’s an input: we say that it starts at a height of 10.</p>
+<p><strong>The loop reads <code>i</code> and writes <code>i+1</code>.</strong> This can’t be done with a NumPy array operation, no matter how clever. <code>y[i+1]</code> needs <code>v[i]</code>, which needed <code>v[i-1]</code>… all the way back to the beginning. NumPy can do a million multiplications at once because none are dependent on each other. Here, the dominoes have to fall in order.</p>
+</section>
+<section id="lets-look-at-it" class="level2">
+<h2 class="anchored" data-anchor-id="lets-look-at-it">Let’s look at it</h2>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmcsIGR0LCBuX3N0ZXBzID0gOS44MSwgMC4xLCAzMFxueSA9IG5wLnplcm9zKG5fc3RlcHMgKyAxKTsgdiA9IG5wLnplcm9zKG5fc3RlcHMgKyAxKVxudCA9IG5wLmFyYW5nZShuX3N0ZXBzICsgMSkgKiBkdFxueVswXSA9IDEwLjBcblxuZm9yIGkgaW4gcmFuZ2Uobl9zdGVwcyk6XG4gICAgeVtpKzFdID0geVtpXSArIHZbaV0gKiBkdFxuICAgIHZbaSsxXSA9IHZbaV0gLSBnICogZHRcblxucGx0LnBsb3QodCwgeSwgXCJvLVwiKVxucGx0LmF4aGxpbmUoMCwgY29sb3I9XCJncmF5XCIsIGxpbmV3aWR0aD0wLjgpICAgICMgdGhlIGdyb3VuZFxucGx0LnhsYWJlbChcIlRpbWUgKHMpXCIpXG5wbHQueWxhYmVsKFwiSGVpZ2h0IChtKVwiKVxucGx0LnNob3coKVxuXG5wcmludChcImhlaWdodCBhdCB0aGUgbGFzdCBzdGVwOlwiLCByb3VuZCh5Wy0xXSwgMiksIFwibVwiKSJ9
+</script>
+</div>
+<p>A curve that starts flat and steepens — which is right, a dropped ball covers very little ground in the first tenth of a second and a lot in the last. So far so good.</p>
+<p>And then it goes straight through the floor and ends up thirty-two metres underground.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The model knows only what you told it
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is worth more than the laugh. Nowhere in those five lines did we mention that the ground exists, or that balls stop at it. We told the program one thing — <em>gravity pulls down</em> — and it did that, faithfully, forever.</p>
+<p>A simulation is not a little copy of reality that we can interrogate. It’s a small set of rules we chose, executed exactly. Every single thing it doesn’t know is a thing we didn’t say. The floor. The air. The ball squashing. All absent, because we never wrote them down.</p>
+<p>Getting good at this is mostly getting good at asking <em>what did I leave out, and does it matter here?</em> — and we’ll do that properly on Thursday.</p>
+</div>
+</div>
+<p>For now we’ll just… not look past the landing. (We could tell the loop to stop when <code>y</code> goes negative, but we’d have to invent some new machinery to do it, and I’d rather let you feel the need for it first.)</p>
+</section>
+<section id="is-any-of-this-right" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="is-any-of-this-right">Is any of this right?</h2>
+<p>Fair question. We built this out of a rule I waved my hands at, and the ball is currently buried. Why should we believe a word of it?</p>
+<p>Because for <em>this</em> problem — falling with no air — there is a formula, and we can check ourselves against it. That’s the whole point of trying the method first on a problem we can already solve.</p>
+<p>After falling freely for time <span class="math inline">\(t\)</span> from rest at height <span class="math inline">\(h_0\)</span>:</p>
+<p><span class="math display">\[y = h_0 - \tfrac{1}{2} g t^2\]</span></p>
+<p>At <span class="math inline">\(t = 1.0\)</span> s from 10 m, that’s <span class="math inline">\(10 - 0.5(9.81)(1) = 5.095\)</span> m. Let’s see what our stepper says, at a few different step sizes.</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbmRlZiBkcm9wKGR0LCB0X2ZpbmFsPTEuMCwgaDA9MTAuMCwgZz05LjgxKTpcbiAgICBcIlwiXCJIZWlnaHQgYWZ0ZXIgdF9maW5hbCBzZWNvbmRzLCBzdGVwcGVkIHdpdGggc3RlcCBzaXplIGR0LlwiXCJcIlxuICAgIG4gPSBpbnQocm91bmQodF9maW5hbCAvIGR0KSlcbiAgICB5ID0gbnAuemVyb3MobiArIDEpOyB2ID0gbnAuemVyb3MobiArIDEpXG4gICAgeVswXSA9IGgwXG4gICAgZm9yIGkgaW4gcmFuZ2Uobik6XG4gICAgICAgIHlbaSsxXSA9IHlbaV0gKyB2W2ldICogZHRcbiAgICAgICAgdltpKzFdID0gdltpXSAtIGcgKiBkdFxuICAgIHJldHVybiB5Wy0xXSwgdlstMV1cblxuZXhhY3QgPSAxMC4wIC0gMC41ICogOS44MSAqIDEuMCoqMlxucHJpbnQoZlwiZXhhY3Q6ICB5ID0ge2V4YWN0Oi40Zn0gbSwgIHYgPSB7LTkuODE6LjNmfSBtL3NcXG5cIilcblxuZm9yIGR0IGluIFswLjUsIDAuMjUsIDAuMSwgMC4wNSwgMC4wMV06XG4gICAgeV9lbmQsIHZfZW5kID0gZHJvcChkdClcbiAgICBwcmludChmXCJkdCA9IHtkdDo8NX0gIHkgPSB7eV9lbmQ6Ny40Zn0gIChvZmYgYnkge3lfZW5kLWV4YWN0OisuNGZ9KSAgIHYgPSB7dl9lbmQ6Ny4zZn1cIikifQ==
+</script>
+</div>
+<p>Two things fall out of that table, and the second one is the interesting one.</p>
+<p><strong>Smaller steps, smaller error</strong> — and not vaguely: halve <code>dt</code> and you roughly halve the error. At <code>dt = 0.5</code> we’re off by 2.45 m, which is terrible. At <code>dt = 0.01</code> we’re off by 5 cm. So accuracy is a dial we control, and the price of turning it is just more steps, which the computer does not mind.</p>
+<p><strong>The velocity is exactly right at every step size.</strong> Look at the last column: <span class="math inline">\(-9.810\)</span>, every time, no matter how coarse the steps. But the position is wrong. Why the difference?</p>
+<p>Because gravity is constant — the acceleration really <em>is</em> <span class="math inline">\(-9.81\)</span> for the whole step, so <code>v = v - g*dt</code> is not an approximation at all. It’s exact. The velocity, though, is <em>not</em> constant during a step, and <code>y = y + v*dt</code> pretends it is. We use the speed the ball had at the <em>start</em> of the step and apply it across the whole step, so we consistently under-count the distance fallen. That’s why our simulated ball is always a little too high.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Which is the same thing you noticed in the very first printout, when <code>y</code> refused to move for a whole tenth of a second. That was this error, at its most visible.</p>
+</div></div><p>That is a genuinely satisfying moment, I think: we predicted the shape of our own mistake from understanding the method, and the numbers agreed.</p>
+</section>
+<section id="what-we-are-secretly-doing" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-are-secretly-doing">What we are secretly doing</h2>
+<p>A quiet aside, because it’s nice and because it’ll come back.</p>
+<p>Each step adds <code>v * dt</code> to the height. Draw the velocity against time and <code>v * dt</code> is the area of a skinny rectangle — height <span class="math inline">\(v\)</span>, width <span class="math inline">\(\Delta t\)</span>. Our loop is adding up a few hundred of those rectangles, and the total is how far the ball moved.</p>
+<p>So “add up a lot of thin rectangles to get the area under a curve” and “step a simulation forward in time” are the same operation wearing different hats. Making <code>dt</code> smaller makes the rectangles skinnier, which is why the answer gets better. If you’ve met integration, that’s what this is; if you haven’t, you haven’t missed anything — you just did it.</p>
+</section>
+<section id="so-why-not-just-use-the-formula" class="level2">
+<h2 class="anchored" data-anchor-id="so-why-not-just-use-the-formula">So why not just use the formula?</h2>
+<p>Honest question, and for a ball falling in a vacuum the formula wins. It’s exact, it’s instant, and it doesn’t need thirty lines of Python.</p>
+<p>The reason we’re doing it the hard way is that the formula is <em>fragile</em>. It exists because the acceleration is constant. Change that — even slightly — and the formula is gone, while the loop doesn’t even notice.</p>
+<p>Here’s the change we’ll make on Thursday. Add air resistance: the ball pushes through air, the air pushes back, and it pushes back <em>harder the faster you go</em>. Now the acceleration depends on the velocity, which depends on the acceleration, and <span class="math inline">\(y = h_0 - \frac12 g t^2\)</span> is worthless.</p>
+<p>For our stepper, it’s one line. Not a new method, not a new loop — one line, inside the body we already wrote.</p>
+<p>To sharpen the point, here’s what we’re chasing. Drop a balloon from 10 m. The formula says it lands in <strong>1.43 seconds</strong>. A balloon actually takes about <strong>6.6 seconds</strong> — more than four times as long. The formula you were taught isn’t slightly off for a balloon, it’s wrong by a factor of four and a half, and it gives you no warning whatsoever.</p>
 <div class="bring-to-class">
-<p>On paper (yes, actual paper), write a specification — 5 to 10 sentences — for this problem: <em>a program that tells a student the fastest walking route between two buildings on campus.</em> Your spec must state the inputs, the outputs, and <strong>at least three edge cases</strong> with what should happen in each.</p>
-<p>Class opens with tables exchanging specs and hunting for the gaps.</p>
+<p>On paper, before you run anything.</p>
+<p><strong>(1)</strong> Trace this by hand. Fill in the table for three steps and commit to the numbers.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> y <span class="op">+</span> v <span class="op">*</span> dt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> v <span class="op">-</span> <span class="fl">9.81</span> <span class="op">*</span> dt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>after step</th>
+<th><code>y</code></th>
+<th><code>v</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>(2)</strong> Using <code>dt = 0.5</code>, our stepped ball first reaches the ground somewhere around <span class="math inline">\(t = 2.0\)</span> s. The real answer is 1.43 s. Our simulation is too slow by a lot.</p>
+<p>Give <strong>two different reasons</strong> the stepped answer came out too big. They are genuinely separate problems, and one of them has nothing to do with how the physics was approximated.</p>
 </div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
