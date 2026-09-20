@@ -44,7 +44,7 @@ A loop variable that carries information from one pass to the next is often call
 In several places on this webpage, we've been using 
 
 $$
-t =
+t = \sqrt{\frac{2h}{g}}
 $$
 
 to describe how long a dropped object takes to fall. That is a "formula" for the time, but it is very idealized, notably neglecting drag. Many times in engineering, we don't have an explicit formula that connects an input to an output, but we do have a rule that we can use computationally to get an approximation.
@@ -115,9 +115,7 @@ A few notes:
 
 **The loop reads `i` and writes `i+1`.** This can't be done with a NumPy array operation, no matter how clever. `y[i+1]` needs `v[i]`, which needed `v[i-1]`... all the way back to the beginning. NumPy can do a million multiplications at once because none are dependent on each other. Here, the dominoes have to fall in order.
 
-::: {.column-margin}
-This is also why we spent time on pre-allocation rather than `append`. `y[i+1] = y[i] + ...` says exactly what it means. The `append` version would have you reaching backwards with `y[-1]`, which works but reads like a riddle.
-:::
+
 
 ## Let's look at it
 
