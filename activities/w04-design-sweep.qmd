@@ -131,7 +131,7 @@ diameters=[80.0, 90.0, 100.0, 110.0, 120.0]
 totals=[] # initialize an empty list
 
 for d in diameters:
-    totals.append(turbine_power(good,D=d))
+    totals.append(turbine_power(good,D=d).sum())
 
 totals=np.array(totals)             # annoying step: converts python list to numpy array
 
@@ -167,7 +167,7 @@ design_speeds=np.arange(6,17,1)
 totals=[] # initialize an empty list
 
 for v in design_speeds:
-    totals.append(turbine_power(good,D=100.0,v_best=v))
+    totals.append(turbine_power(good,D=100.0,v_best=v).sum())
 
 totals=np.array(totals)
 
