@@ -390,6 +390,11 @@ window.Quarto = {
   <li><a href="#keeping-track" id="toc-keeping-track" class="nav-link" data-scroll-target="#keeping-track">Keeping track</a></li>
   <li><a href="#lets-plot-it" id="toc-lets-plot-it" class="nav-link" data-scroll-target="#lets-plot-it">Let’s plot it</a></li>
   <li><a href="#is-any-of-this-right" id="toc-is-any-of-this-right" class="nav-link" data-scroll-target="#is-any-of-this-right">Is any of this right?</a></li>
+  <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">In-class work</a>
+  <ul class="collapse">
+  <li><a href="#throw-it-up" id="toc-throw-it-up" class="nav-link" data-scroll-target="#throw-it-up">Throw it up</a></li>
+  </ul></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -598,9 +603,67 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 <p><strong>(2)</strong> Using <code>dt = 0.5</code>, our stepped ball first reaches the ground somewhere around <span class="math inline">\(t = 2.0\)</span> s. The real answer is 1.43 s. Our simulation is too slow by a lot.</p>
 <p>Give <strong>two different reasons</strong> the stepped answer came out too big. They are genuinely separate problems, and one of them has nothing to do with the physics.</p>
 </div>
+</section>
+<section id="in-class-work" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-work">In-class work</h2>
+<p>In the reading we checked our loop against a formula, and it held up. Now let’s ask it different things. Try each of these in Colab, grab code snippets from this reading and others if needed.</p>
+<p>We won’t be turning this in — this is your opportunity to cement your understanding by working through some ideas with your colleagues (and the CAs/TAs, and me).</p>
+<section id="throw-it-up" class="level3">
+<h3 class="anchored" data-anchor-id="throw-it-up">Throw it up</h3>
+<p>Copy the code from <a href="#lets-plot-it">Let’s plot it</a> into Colab, and change it so that:</p>
+<ul>
+<li>the ball starts at about hand height, <strong>1.5 m</strong>, instead of 10 m;</li>
+<li>instead of being dropped, it’s thrown <strong>upward at 10 m/s</strong>. (Up is positive — so what’s the sign of <code>v[0]</code>?);</li>
+<li>the time step is <strong>ten times smaller</strong> than the reading used. How many steps do you now need to cover the same three seconds?</li>
+</ul>
+<p>Run it and plot it. Here’s a basic plot of two arrays of the same size:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.plot(t, y)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (s)"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Height (m)"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The ball goes up, slows down, stops, and comes back down. Now, some questions.</p>
+<p><strong>When is the ball highest, and how high does it get?</strong> <code>argmax</code> gives you the <em>index</em> of the biggest value, and that same index works in any array that lines up with it:</p>
+<p><strong>What is the velocity at that moment?</strong> (What should it be?)</p>
+<p><strong>Check the peak time with algebra.</strong> Gravity takes 9.81 m/s of speed away every second. How long until your 10 m/s is used up? Does the simulation agree?</p>
+<p><strong>When does it land?</strong> Masking keeps only the entries where a condition is true:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>above <span class="op">=</span> y <span class="op">&gt;</span> <span class="dv">0</span>          <span class="co"># True wherever the ball is above the ground</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t[above]               <span class="co"># only the times when the ball was above the ground</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <em>last</em> of those times is (just about) when it landed. How do you get the last element of an array?</p>
+<p><strong>Throw it downward instead.</strong> What’s the one change? Predict whether it lands sooner or later than simply dropping it from 1.5 m, then check.</p>
+</section>
+</section>
+<section id="challenge" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="challenge">Challenge</h2>
+<p><strong>Which angle throws the farthest?</strong></p>
+<p>Now throw the ball forward <em>and</em> up, at an angle <span class="math inline">\(\theta\)</span> above the ground. The ball moves in two directions at once, so it needs a position and a velocity in each: <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, <span class="math inline">\(v_x\)</span> and <span class="math inline">\(v_y\)</span>. The rules are the same ones as before, written out once for each direction:</p>
+<p><span class="math display">\[
+\begin{align*}
+x_{\text{new}} &amp;= x + v_x\,\Delta t &amp; y_{\text{new}} &amp;= y + v_y\,\Delta t \\
+v_{x,\text{new}} &amp;= v_x + a_x\,\Delta t &amp; v_{y,\text{new}} &amp;= v_y + a_y\,\Delta t
+\end{align*}
+\]</span></p>
+<p>Vertically nothing has changed: <span class="math inline">\(a_y = -g\)</span>. If we are ignoring drag, there is no acceleration in the <span class="math inline">\(x\)</span>-direction: <span class="math inline">\(a_x=0\)</span>.</p>
+<p>Throwing at speed <span class="math inline">\(v_0\)</span> and angle <span class="math inline">\(\theta\)</span> splits the throw into a sideways part and an upward part:</p>
+<p><span class="math display">\[
+v_{x} = v_0 \cos\theta, \qquad v_{y} = v_0 \sin\theta \qquad \text{(at the start)}
+\]</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>As in HW 2, NumPy’s <code>cos</code> and <code>sin</code> want radians. <code>np.radians</code> converts degree measurements to radians, or you can start thinking in radians!</p>
+</div></div><ol type="1">
+<li><p><strong>Build it.</strong> Throw from the ground at 10 m/s and 30°. Plot the path of the ball — <code>y</code> against <code>x</code>. Where does it land?</p></li>
+<li><p><strong>Check it against physics.</strong> A 30° throw and a 60° throw should land in the same place: one goes low and ends fast, the other high and takes a bit longer slow. Do yours? How close is “the same”?</p></li>
+<li><p><strong>Sweep it.</strong> Put your throw inside a function, <code>landing_distance(angle)</code>, that returns where the ball lands. Then run it for every angle from 5° to 85°, keep the answers in a pre-allocated array, and use <code>argmax</code> to find the best angle. Plot distance against angle.</p></li>
+<li><p><strong>Question the famous answer.</strong> Everything so far launched from the ground. Launch from hand height, 1.5 m — then from the top of a 10 m building. Does the best angle stay the same?</p></li>
+</ol>
 
 
-<script type="pyodide-data">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A loop inside a loop is called a <strong>nested</strong> loop. The inner one always runs to completion before the outer one takes its next step.</p>
+</div></div><script type="pyodide-data">
 eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
 </script>
 <script type="ojs-module-contents">
