@@ -99,6 +99,95 @@ Everyone at your table **pick one of the following**, making sure at least one p
 
 **Deliverable (2 EC):** your Round 2 code, your written prediction (it's fine if it's wrong!), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Some discussion of Round 3, i.e. what you learned. (Include your code for Round 3, even if broken, but you don't need to include all three.)
 
+
+
+
+## Solutions
+
+### Round 1
+
+To scan through all the diameters, we take the given code and add a bit:
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Efficiency at wind speed v. Peaks at v = v_best, the DESIGN SPEED."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0, v_best=11):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v, v_best=v_best) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+
+diameters=[80.0, 90.0, 100.0, 110.0, 120.0]
+
+totals=[] # initialize an empty list
+
+for d in diameters:
+    totals.append(turbine_power(good,D=d))
+
+totals=np.array(totals)             # annoying step: converts python list to numpy array
+
+print(diameters[totals.argmax()])   # totals.argmax() gives the index of the biggest total,
+                                    # then print the diameter at that index
+
+```
+
+### Round 2
+
+Set the diameter at `100.0`, then scan through values of `v_best`. Note that we are reproducing the functions here, for this web-based Python calculator, but in your Colab **you don't need to recreate the functions in each cell**.
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    """Efficiency at wind speed v. Peaks at v = v_best, the DESIGN SPEED."""
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0, v_best=11):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v, v_best=v_best) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+
+design_speeds=np.arange(6,17,1)
+
+totals=[] # initialize an empty list
+
+for v in design_speeds:
+    totals.append(turbine_power(good,D=100.0,v_best=v))
+
+totals=np.array(totals)
+
+print(design_speeds[totals.argmax()])
+print(totals.max()/totals.min())
+```
+
+We see that the best value for `design_speeds` is not the average wind speed — this is because `v_best` is describing the **most efficient** situation for the turbine, not the most energy collected by the turbine. It is more efficient to get 40% of 1000, but 10% of 1,000,000 is more energy. (Numbers made up for dramatic effect!)
+
+
+### Round 3
+
+Briefly:
+
+**(a) Resolution.** Choosing a smaller step size improves the resolution of the calculation, at the cost of taking a longer time to complete (often not a big deal — these calculations finish in seconds, maybe, not hours). Choosing a larger step size might mean you step over the correct value. (There are also concerns regarding stability that you will learn about in Computational Methods!)
+
+**(b) The mask.** Our energy equation has us cubing the velocity... cubing `-999.0` gives us a very large negative number, but `C_p` also gives a negative number. So we land with something positive — no negative sign to warn us something is suspicious! We could catch this by doing an initial inspection on the data: `speeds.max()`, `speeds.min()` would give us the complete range of the data.
+
+**(c) Parallel arrays.** When plotting two arrays together, if the arrays are different lengths, you will get an error. But, e.g., looking at `diameters[totals.argmax()]`, where for whatever reason `totals` is a different length than `diameters`... that's trouble!
+
 ::: {.content-hidden}
 **Instructor key (planning only — stripped from the rendered site):**
 

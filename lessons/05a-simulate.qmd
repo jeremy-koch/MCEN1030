@@ -249,9 +249,9 @@ plt.show()
 
 The ball goes up, slows down, stops, and comes back down. Now, some questions.
 
-**When is the ball highest, and how high does it get?** `argmax` gives you the *index* of the biggest value, and that same index works in any array that lines up with it:
+**When is the ball highest, and how high does it get?** Remember: `argmax` gives you the *index* of the biggest value.
 
-**What is the velocity at that moment?** (What should it be?)
+**What is the velocity at that moment?** First think about what it should be!
 
 **Check the peak time with algebra.** Gravity takes 9.81 m/s of speed away every second. How long until your 10 m/s is used up? Does the simulation agree?
 
@@ -264,11 +264,11 @@ t[above]               # only the times when the ball was above the ground
 
 The *last* of those times is (just about) when it landed. How do you get the last element of an array?
 
-**Throw it downward instead.** What's the one change? Predict whether it lands sooner or later than simply dropping it from 1.5 m, then check.
+**Throw it downward instead.** What's the one change?
 
 ## Challenge
 
-**Which angle throws the farthest?**
+**Which angle throws the ball farthest?**
 
 Now throw the ball forward *and* up, at an angle $\theta$ above the ground. The ball moves in two directions at once, so it needs a position and a velocity in each: $x$ and $y$, $v_x$ and $v_y$. The rules are the same ones as before, written out once for each direction:
 
@@ -295,7 +295,7 @@ As in HW 2, NumPy's `cos` and `sin` want radians. `np.radians` converts degree m
 
 1. **Build it.** Throw from the ground at 10 m/s and 30°. Plot the path of the ball — `y` against `x`. Where does it land?
 
-2. **Check it against physics.** A 30° throw and a 60° throw should land in the same place: one goes low and ends fast, the other high and takes a bit longer slow. Do yours? How close is "the same"?
+2. **Check it against physics.** A 30° throw and a 60° throw should land in the same place (assuming no drag). Do yours? How close is "the same"?
 
 3. **Sweep it.** Put your throw inside a function, `landing_distance(angle)`, that returns where the ball lands. Then run it for every angle from 5° to 85°, keep the answers in a pre-allocated array, and use `argmax` to find the best angle. Plot distance against angle.
 
