@@ -221,42 +221,86 @@ Give **two different reasons** the stepped answer came out too big. They are gen
 
 
 
+## In-class work
+
+In the reading we checked our loop against a formula, and it held up. Now let's ask it different things. Try each of these in Colab, grab code snippets from this reading and others if needed.
+
+We won't be turning this in — this is your opportunity to cement your understanding by working through some ideas with your colleagues (and the CAs/TAs, and me). 
+
+
+### Throw it up
+
+Copy the code from [Let's plot it](#lets-plot-it) into Colab, and change it so that:
+
+- the ball starts at about hand height, **1.5 m**, instead of 10 m;
+- instead of being dropped, it's thrown **upward at 10 m/s**. (Up is positive — so what's the sign of `v[0]`?);
+- the time step is **ten times smaller** than the reading used. How many steps do you now need to cover the same three seconds?
+
+Run it and plot it. Here's a basic plot of two arrays of the same size:
+
+```python
+import matplotlib.pyplot as plt
+
+plt.plot(t, y)
+plt.xlabel("Time (s)")
+plt.ylabel("Height (m)")
+plt.show()
+```
+
+The ball goes up, slows down, stops, and comes back down. Now, some questions.
+
+**When is the ball highest, and how high does it get?** `argmax` gives you the *index* of the biggest value, and that same index works in any array that lines up with it:
+
+**What is the velocity at that moment?** (What should it be?)
+
+**Check the peak time with algebra.** Gravity takes 9.81 m/s of speed away every second. How long until your 10 m/s is used up? Does the simulation agree?
+
+**When does it land?** Masking keeps only the entries where a condition is true:
+
+```python
+above = y > 0          # True wherever the ball is above the ground
+t[above]               # only the times when the ball was above the ground
+```
+
+The *last* of those times is (just about) when it landed. How do you get the last element of an array?
+
+**Throw it downward instead.** What's the one change? Predict whether it lands sooner or later than simply dropping it from 1.5 m, then check.
+
+## Challenge
+
+**Which angle throws the farthest?**
+
+Now throw the ball forward *and* up, at an angle $\theta$ above the ground. The ball moves in two directions at once, so it needs a position and a velocity in each: $x$ and $y$, $v_x$ and $v_y$. The rules are the same ones as before, written out once for each direction:
+
+$$
+\begin{align*}
+x_{\text{new}} &= x + v_x\,\Delta t & y_{\text{new}} &= y + v_y\,\Delta t \\
+v_{x,\text{new}} &= v_x + a_x\,\Delta t & v_{y,\text{new}} &= v_y + a_y\,\Delta t
+\end{align*}
+$$
+
+Vertically nothing has changed: $a_y = -g$. If we are ignoring drag, there is no acceleration in the $x$-direction: $a_x=0$. 
 
 
 
+Throwing at speed $v_0$ and angle $\theta$ splits the throw into a sideways part and an upward part:
 
+$$
+v_{x} = v_0 \cos\theta, \qquad v_{y} = v_0 \sin\theta \qquad \text{(at the start)}
+$$
 
+::: {.column-margin}
+As in HW 2, NumPy's `cos` and `sin` want radians. `np.radians` converts degree measurements to radians, or you can start thinking in radians!
+:::
 
+1. **Build it.** Throw from the ground at 10 m/s and 30°. Plot the path of the ball — `y` against `x`. Where does it land?
 
+2. **Check it against physics.** A 30° throw and a 60° throw should land in the same place: one goes low and ends fast, the other high and takes a bit longer slow. Do yours? How close is "the same"?
 
+3. **Sweep it.** Put your throw inside a function, `landing_distance(angle)`, that returns where the ball lands. Then run it for every angle from 5° to 85°, keep the answers in a pre-allocated array, and use `argmax` to find the best angle. Plot distance against angle.
 
-::: {.content-hidden}
-**Instructor answer key (planning only — stripped from the rendered site):**
+4. **Question the famous answer.** Everything so far launched from the ground. Launch from hand height, 1.5 m — then from the top of a 10 m building. Does the best angle stay the same?
 
-**(1)** step 1: `y = 10.0000`, `v = -4.905`. step 2: `y = 7.5475`, `v = -9.810`. step 3: `y = 2.6425`, `v = -14.715`.
-
-The load-bearing surprise is step 1: **`y` does not move**, because `v` is still 0 when the position line runs. Expect a solid chunk of the room to write `y = 7.5475` for step 1 — they've swapped the order, updating `v` first and then using the new `v` for `y`. That's not a silly mistake, it's a different (and actually slightly *better*) method, so don't just mark it wrong: it gets 7.5475, 5.0950, 2.6425 for the three positions and is closer to the exact 5.095 at t = 1.0. The point to draw out is that **the order of two lines changed the answer**, which is shocking the first time and never stops being true. Resist naming these as Euler variants; the names are Computational Methods' business.
-
-**(2)** The two reasons, and the second is the one they usually miss:
-
-- **The method under-counts.** Each step uses the start-of-step velocity across the whole step, so the ball falls less far than it really would, stays too high, and takes too long to arrive. This is the same effect as the frozen first step.
-- **We only check at step boundaries.** With `dt = 0.5` we can only ever report a landing at 0.5, 1.0, 1.5, 2.0 — the true 1.43 s is invisible to us, and gets rounded up to the next step we happen to look at. Even a *perfect* method would report 1.5 s here.
-
-That second point is why the convergence table in the reading measures `y` at a fixed `t = 1.0` rather than measuring the landing time — landing time is quantized in units of `dt` and muddies the picture. If a sharp student asks why we didn't just tabulate the fall time, that's the answer, and it's worth giving.
-
-**Convergence numbers (y at t = 1.0 s, exact 5.0950 m):** dt = 0.5 → 7.5475 (+2.4525); 0.25 → 6.3212 (+1.2262); 0.1 → 5.5855 (+0.4905); 0.05 → 5.3403 (+0.2453); 0.01 → 5.1441 (+0.0491). Halving `dt` halves the error cleanly at every level. The reading deliberately doesn't say so — it claims only "smaller steps, smaller error" — but if a table notices the pattern, confirm it as an observation from their own data and stop there. Do **not** introduce order-of-accuracy, stability, or method names. Formal numerical methods is a downstream course and we agreed not to encroach.
-
-**`v` is exact at every `dt`** (−9.810 throughout) because acceleration is genuinely constant, so `v = v - g*dt` is not an approximation. Position is wrong because velocity isn't constant across a step. This is the best explanatory beat in the lesson — it predicts the *sign* of the error before you measure it — and it's worth protecting if you're short on time.
-
-**The 30-step plot:** ends at `y = -32.674` m at t = 3.0 s (exact free fall would be −34.145). First step with `y <= 0` is index 15, i.e. t = 1.50 s; exact landing is 1.4278 s with impact 14.007 m/s.
-
-**Thursday's hook (don't spoil the mechanism):** balloon, 10 m, quadratic drag with `k/m` ≈ 4.09 → terminal velocity 1.55 m/s, fall time **6.57 s** vs the formula's 1.43 s. The `dt` demo on Thursday is spectacular for a balloon: at `dt = 0.2` it lands at 8.4 s looking plausible; at `dt = 0.3` the balloon travels *upward*, reaches 239 m, and hits 7×10¹¹ m/s. Ping-pong balls and tennis balls do **not** blow up this way (quadratic drag self-stabilizes) — the balloon's high `k/m` is what makes the demo work, so don't swap the object.
-
-**Timing (~75 min, no checkpoint):** the accumulator callback and the "loop that remembers" framing, 10 min. The rule and the sign convention, 10 min. Writing it down — the pre-allocated loop, the frozen first step, and the reads-`i`-writes-`i+1` point, 20 min. Plot and falling through the floor, 12 min. "Is any of this right?" end to end — convergence table, the exact-velocity explanation, and the pivot to why we bother — 23 min. Protect the last third: the point of the day is that the loop absorbs physics the formula cannot, and it's the last thing they'll hear before the balloon tease.
-
-The frozen first step is best done live: run the cell, let someone notice, and only then explain. If nobody notices, ask "how far did it fall in the first tenth of a second?" It's the same observation the convergence table pays off twenty minutes later, so it's worth the wait.
-
-**Cut first if short on time:** the ten-step printed table can be shown rather than dwelt on, and the `dt = 0.25` and `0.05` rows of the convergence table add nothing the other three don't. Do not cut the balloon tease at the end — it's the only concrete number Thursday is built on.
-
-**Do not** introduce `while` here. "Stop when it hits the ground" is the obvious next want, and letting them feel that itch for a week is the motivation for the tool. The reading deliberately names the problem and declines to solve it.
+::: {.column-margin}
+A loop inside a loop is called a **nested** loop. The inner one always runs to completion before the outer one takes its next step.
 :::
