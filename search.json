@@ -820,7 +820,7 @@
     "href": "activities/w05-drag-lab.html#deliverables",
     "title": "Adding drag",
     "section": "Deliverables",
-    "text": "Deliverables\n(2 EC):\n\nRound 1: your drop function, and the k_over_m = 0 check with its output.\nRound 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.\nRound 3: your dt table with both columns, and your answer to question 2.\nRound 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs. &lt;!–\nYour phone prediction: both numbers and the percentage.\nSave your balloon run to a file and include the first five rows:\n\nnp.savetxt(\"balloon.csv\", np.column_stack([t, y, v]),\n           delimiter=\",\", header=\"t_s,y_m,v_ms\", comments=\"\")\nThat file is the first thing you’ve made that another program could read. We’ll pick it up on Tuesday. –&gt;",
+    "text": "Deliverables\n(2 EC):\n\nRound 1: your drop function, and the k_over_m = 0 check with its output.\nRound 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.\nRound 3: your dt table with both columns, and your answer to question 2.\nRound 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
