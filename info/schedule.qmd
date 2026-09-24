@@ -34,7 +34,7 @@ Tentative schedule:
 | **Phase 1 — Vocabulary** | | | |
 | 3 | [Functions](../lessons/03-functions.qmd) — inputs, outputs, and the docstring as a specification. | [Wind farm design](../activities/w03-function-forge.qmd). | P1, A4 |
 | 4 | ✓ **Checkpoint 1**, then [Packages & arrays](../lessons/04a-arrays.qmd) — NumPy, elementwise math. | [For loops & indexing](../lessons/04b-for-loops.qmd) — comparing designs, one case at a time. Then [Which design wins?](../activities/w04-design-sweep.qmd) *Homework:* [HW 2 · Which way should the panel point?](../homework/hw2-solar-tilt.qmd) | P4, P1 |
-| 5 | [A loop that remembers](../lessons/05a-simulate.qmd) — simulating a falling ball. | [Adding drag](../activities/w05-drag-lab.qmd) — when the formula runs out. *Homework:* [HW 3 · The firing card](../homework/hw3-potato-cannon.qmd). | S1, S2, S3, A1 |
+| 5 | [A loop that remembers](../lessons/05a-simulate.qmd) — simulating a falling ball. | [Adding drag](../activities/w05-drag-lab.qmd) — when the formula runs out. *Homework:* [HW 3 · The potato cannon](../homework/hw3-potato-cannon.qmd). | S1, S2, S3, A1 |
 | 6 | ✓ **Checkpoint 2**, then **Data in, data out** — files, CSV, and plotting. | **Plot clinic** — make one honest plot, catch one misleading one. | F2, A2 |
 | **Phase 2 — Tools** | | | |
 | 7 | **Pandas**. | *(No class Thursday Oct 8.)* | P3, F2 |

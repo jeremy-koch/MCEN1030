@@ -1,5 +1,5 @@
 ---
-title: "HW 3 · The firing card"
+title: "HW 3 · The potato cannon"
 subtitle: "Anchor week 5 · Standards: P1, P2, S4, A4"
 ---
 
