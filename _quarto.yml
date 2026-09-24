@@ -93,6 +93,7 @@ website:
           - homework/example-parking-garage.qmd
           - homework/hw1-grade-calculator.qmd
           - homework/hw2-solar-tilt.qmd
+          - homework/hw3-potato-cannon.qmd
       # - section: "Homework"
       #   contents:
       #     - homework/index.qmd
