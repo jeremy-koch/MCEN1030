@@ -7,7 +7,7 @@ subtitle: "Anchor week 5 · Standards: P1, P2, S4, A4"
 
 Your engineering club has a potato cannon. It launches a 5 cm × 8 cm cylinder of potato at about **75 m/s**, and it sits on a pivot so you can set the tube's angle above the ground. The club has put flags out on a field at 50 m, 75 m, 100 m, and so on out to 300 m, and wants to land a potato next to each one.
 
-Nobody wants to find the right angle by trial and error, so you'll make a **launch card**: a small table taped to the PVC tube that says, for each distance, what angle to set. You'll prepare a report with the card, and more importantly, you'll convince the reader that the card is right.
+You don't want to waste time with trial-and-error, so you'll make a **launch card**: a small table taped to the PVC tube that says, for each distance, what angle to set. You'll prepare a report with the card.
 
 ::: {.column-margin}
 This is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute cannon trajectory tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.
@@ -32,7 +32,7 @@ v_{x,\text{new}} &= v_x + a_x\,\Delta t & v_{y,\text{new}} &= v_y + a_y\,\Delta 
 \end{align*}
 $$
 
-with drag pushing straight backward along the path:
+with drag pushing backwards along the path:
 
 $$
 a_x = -\frac{k}{m}\,v_x\,|V|, \qquad a_y = -g - \frac{k}{m}\,v_y\,|V|, \qquad |V| = \sqrt{v_x^2 + v_y^2}
@@ -52,7 +52,7 @@ Write `landing_distance(angle_deg, ...)`, which returns how far away the potato 
 
 Two problems will come up right away. Neither has a single right answer, and both belong in your specification (see Step 1 below):
 
-- **The stepper never lands exactly on the ground.** One step the potato is above it, the next step it's below. So which $x$ is "where it landed"?
+- **The stepper never lands exactly on the ground.** On one step the potato is above it, the next step it's below. So which $x$ is "where it landed"?
 - **You have to pick `n_steps`.** What if the potato is still in the air when the loop runs out? The function has to do *something*... decide what.
 
 Then **check it in isolation, before you use it for anything** (P1). With drag turned off, the range has a formula:
@@ -72,7 +72,7 @@ Then the sanity check:
 ::: {.callout-important}
 Without drag, the best angle should be 45°, and 30° and 60° should tie. Does your no-drag curve do that? If it doesn't, stop here and find the problem.
 
-With drag, the best angle moves. Compare your 30° and 60° launches. Without drag they tie. With drag, one of them is better. Speculate why.
+With drag, the best angle is different. Compare your 30° and 60° launches. Without drag they tie. With drag, one of them is better. Speculate why the better one is better.
 :::
 
 
@@ -82,17 +82,15 @@ The club's flags are at 50, 75, 100, ... 300 m, every 25 m. Your code has to fin
 
 You already have what you need: your sweep is a list of angles paired with where they land. Reading it in the other direction ("I want to land *here*, so which angle?") turns your range-vs-angle data into a launch card. Try plotting it that way: distance across the bottom, angle up the side.
 
-Here's the catch. You *could* squint at that plot, or scroll through your sweep output, and copy eleven angles onto paper with a pencil. Don't. Next month the club will put a new valve on the cannon and it'll launch at 80 m/s, and the whole card will be wrong. If your card came from a pencil, you're starting over. If it came from code, you change one number and rerun.
-
-So build the card the same way you built the sweep, in two pieces:
+You *should not* just squint at that plot or scroll through your sweep output to find the angles, and then write them down with a pencil. Build the card the same way you built the sweep, in two pieces:
 
 - **One function that sets up one launch.** Write `launch_angle(distance, ...)`. It takes the distance to a flag and returns the angle to set. It'll probably use your sweep's angles and ranges as inputs. This is the same move as `landing_distance`, just run backward: that one answers "where does this angle land?", and this one answers "what angle lands here?"
-- **One loop that fills in the card.** Make an array of slots with `np.zeros(len(distances))`, loop over the distances, call `launch_angle` for each, and drop each answer into its slot, just like the diameter sweep in [For loops & indexing](../lessons/04b-for-loops.qmd). Then print the card as a tidy table, one row per flag, with f-strings the way we printed the falling ball's first few steps in [A loop that remembers](../lessons/05a-simulate.qmd). The format code sets the decimal places (`{angle:.1f}` gives one, `{angle:.0f}` gives none), and that choice will come back in Part 4. The printout is what gets taped to the outside of the pipe.
+- **One loop that fills in the card.** Make an array of slots with `np.zeros(len(distances))`, loop over the distances, call `launch_angle` for each, and drop each answer into its slot, just like the diameter sweep in [For loops & indexing](../lessons/04b-for-loops.qmd). Then print the card as a tidy table, one row per flag, with f-strings the way we printed the falling ball's first few steps in [A loop that remembers](../lessons/05a-simulate.qmd). The format code sets the decimal places (`{angle:.1f}` gives one, `{angle:.0f}` gives none).
 
 When you're done, test it for real: change the launch speed to 80 m/s in *one* place, rerun, and watch a new card come out. If that takes more than one edit, you're not quite there. Change it back to 75 m/s for your report.
 
 ::: {.callout-tip}
-A place to start for `launch_angle`: `np.argmin(np.abs(ranges - distance))` gives the index of the sweep point whose range is closest to `distance`. But look at your plot from Part 2 first. Most distances show up *twice* on that curve, and that one line doesn't know it. Your function has to pick one on purpose.
+A place to start for `launch_angle`: `np.argmin(np.abs(ranges - distance))` gives the index of the sweep point whose range is closest to `distance`. But look at your plot from Part 2 first. Most distances show up *twice* on that curve, and that one line doesn't know it. Your function has to pick one.
 :::
 
 <!-- Then find out what drag is worth. For each flag, use the no-drag formula from Part 1 to get the angle you'd set if you ignored the air. Run that angle through your drag model. Where does the potato actually land? Put those numbers on your card too (a separate column works well), so you can see how far off the textbook answer is. -->
@@ -101,19 +99,19 @@ A place to start for `launch_angle`: `np.argmin(np.abs(ranges - distance))` give
 
 Potato cannons aren't precise. The launch speed changes from launch to launch, maybe by ±5 m/s, depending on how tightly the potato fits and how much pressure was built up. The angle adjustment is probably a bit imprecise too... ±1° is probably beyond the precision of an engineering student pointing some PVC pipe in a dirt field.
 
-Pick the 200 m flag. Launch at your card's angle at 70 and 80 m/s: where does it land? Then launch at your angle ±1° (at 75 m/s). Which matters more, the speed wobble or the angle wobble?
+Pick the angle that gets you to the 200 m flag. Launch at your card's angle at 70 and 80 m/s: where does it actually land? Then go back to 75 m/s and adjust the angle by ±1°: where does it actually land? Which matters more, the speed error or the angle error?
 
 <!-- Given that, how many decimal places should the angles on your card have? Is it worth printing 16.2° instead of 16°? -->
 
 ## Your submission
 
 
-**Step 1 — Specify & prompt.** This is the heart of this assignment. The stepper is eight lines you (mostly) already wrote. The specification is everything around it, and every item below is a decision the stepper doesn't make for you. Your spec has to make each one, in writing:
+**Step 1 — Specify & prompt.** This is the heart of this assignment. The stepper is eight lines you (mostly) already wrote. The specification is everything around it:
 
 - `landing_distance`: inputs, units, defaults, and what it returns. What counts as a valid angle? What does it do at 0°? At 90°? At −10°?
 - What "where it landed" means, given that the stepper jumps past the ground.
 - How many steps you simulate, how you picked that number, and what the function does if the potato hasn't landed yet.
-- Your time step, and how you'll show it's small enough.
+- Your time step.
 - Your sweep spacing. Why whole degrees (or why not)?
 - `launch_angle`: inputs, units, and what it returns. When a distance can be reached at two angles, which one does it return, and why? What does it return for a flag the cannon can't reach?
 - What the card looks like: its columns, its units, and how many decimal places.
@@ -122,7 +120,7 @@ Then your actual LLM prompt, with the model name and date.
 
 **Step 2 — Annotate.** For each decision in your spec, point to the line that carries it out. Find the drag lines and confirm that $|V|$ is the *total* speed, not a separate speed for each direction. If the AI made a decision you never specified (a default, a cutoff, which of the two angles it returns), talk about it.
 
-**Step 3 — Verify.** The Part 1 checks: the range formula at 45° (with arithmetic), the 30°/60° tie, and the halved-`dt` comparison. The no-drag 45° from your sweep. Then spot-check the card: pick one row, run that angle through `landing_distance`, and show it lands where the card says. And show the 80 m/s card you generated from a one-number change. It should reach farther than the 75 m/s card, so sanity-check that it does.
+**Step 3 — Verify.** The Part 1 checks: the range formula at 45° (with arithmetic), the 30°/60° tie, and the halved-`dt` comparison. The no-drag 45° from your sweep. Then spot-check the card: pick one row, run that angle through `landing_distance`, and show it lands where the card says.
 
 **Step 4 — Report.** The launch card, as a table and as a plot. The best angle with drag, and your best explanation of why it isn't 45°. Some discussion of how precise your card should be, referencing your results from Part 4. (That is, if your angle is accurate to ±1°, and your velocity is accurate to ±5 m/s, what is the ± on your distance?)
 <!-- And one paragraph: which decision in your spec most changed the numbers on your card, and which one turned out not to matter? -->
