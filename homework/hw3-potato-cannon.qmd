@@ -5,12 +5,12 @@ subtitle: "Anchor week 5 · Standards: P1, P2, S4, A4"
 
 ## Scenario
 
-Your engineering club has a potato cannon. It launches a 5 cm × 8 cm potato slug at about **75 m/s**, and it sits on a pivot so you can set the barrel's angle above the ground. The club wants to hit targets set out on a field: 50 m, 75 m, 100 m, and so on out to 300 m.
+Your engineering club has a potato cannon. It launches a 5 cm × 8 cm cylinder of potato at about **75 m/s**, and it sits on a pivot so you can set the tube's angle above the ground. The club has put flags out on a field at 50 m, 75 m, 100 m, and so on out to 300 m, and wants to land a potato next to each one.
 
-Nobody wants to aim by trial and error, so you'll make a **firing card**: a small table taped to the barrel that says, for each target distance, what angle to set. You'll prepare a report with the card, and more importantly, you'll convince the reader that the card is right.
+Nobody wants to find the right angle by trial and error, so you'll make a **launch card**: a small table taped to the PVC tube that says, for each distance, what angle to set. You'll prepare a report with the card, and more importantly, you'll convince the reader that the card is right.
 
 ::: {.column-margin}
-This is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute artillery firing tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.
+This is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute cannon trajectory tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.
 :::
 
 **See [Submitting Homework](../info/colab-format.qmd) for how to set up the report. Same look as HW 2.**
@@ -46,9 +46,9 @@ The model ignores wind, the potato's spin and tumble, and the fact that no two p
 
 You may have written the stepper, or most of it, already. **This assignment isn't about the stepper.** It's about everything you have to build around the simulation.
 
-## Part 1 — One shot, as a function
+## Part 1 — One launch, as a function
 
-Write `landing_distance(angle_deg, ...)`, which returns how far downrange the potato lands, in meters. Speed, $k/m$, and time step should all be inputs with sensible defaults. Write a docstring.
+Write `landing_distance(angle_deg, ...)`, which returns how far away the potato lands, in meters. Speed, $k/m$, and time step should all be inputs with sensible defaults. Write a docstring.
 
 Two problems will come up right away. Neither has a single right answer, and both belong in your specification (see Step 1 below):
 
@@ -72,36 +72,36 @@ Then the sanity check:
 ::: {.callout-important}
 Without drag, the best angle should be 45°, and 30° and 60° should tie. Does your no-drag curve do that? If it doesn't, stop here and find the problem.
 
-With drag, the best angle moves. Compare your 30° and 60° shots. Without drag they tie. With drag, one of them is better. Speculate why.
+With drag, the best angle moves. Compare your 30° and 60° launches. Without drag they tie. With drag, one of them is better. Speculate why.
 :::
 
 
 ## Part 3 — Make the card
 
-The club's targets are at 50, 75, 100, ... 300 m, every 25 m. Your code has to find the angle for each one.
+The club's flags are at 50, 75, 100, ... 300 m, every 25 m. Your code has to find the angle for each one.
 
-You already have what you need: your sweep is a list of angles paired with where they land. Reading it in the other direction ("I want to land *here*, so which angle?") turns your range-vs-angle data into a firing card. Try plotting it that way: target distance across the bottom, angle up the side.
+You already have what you need: your sweep is a list of angles paired with where they land. Reading it in the other direction ("I want to land *here*, so which angle?") turns your range-vs-angle data into a launch card. Try plotting it that way: distance across the bottom, angle up the side.
 
-Here's the catch. You *could* squint at that plot, or scroll through your sweep output, and copy eleven angles onto paper with a pencil. Don't. Next month the club will put a new valve on the cannon and it'll fire at 80 m/s, and the whole card will be wrong. If your card came from a pencil, you're starting over. If it came from code, you change one number and rerun.
+Here's the catch. You *could* squint at that plot, or scroll through your sweep output, and copy eleven angles onto paper with a pencil. Don't. Next month the club will put a new valve on the cannon and it'll launch at 80 m/s, and the whole card will be wrong. If your card came from a pencil, you're starting over. If it came from code, you change one number and rerun.
 
 So build the card the same way you built the sweep, in two pieces:
 
-- **One function that aims one shot.** Write `firing_angle(target, ...)`. It takes a target distance and returns the angle to set. It'll probably use your sweep's angles and ranges as inputs. This is the same move as `landing_distance`, just run backward: that one answers "where does this angle land?", and this one answers "what angle lands here?"
-- **One loop that fills in the card.** Loop over the targets, call `firing_angle` for each, and collect the results. Then save the finished card to its own CSV file (`np.savetxt`, like Thursday). That file is what gets printed and taped to the barrel.
+- **One function that sets up one launch.** Write `launch_angle(distance, ...)`. It takes the distance to a flag and returns the angle to set. It'll probably use your sweep's angles and ranges as inputs. This is the same move as `landing_distance`, just run backward: that one answers "where does this angle land?", and this one answers "what angle lands here?"
+- **One loop that fills in the card.** Make an array of slots with `np.zeros(len(distances))`, loop over the distances, call `launch_angle` for each, and drop each answer into its slot, just like the diameter sweep in [For loops & indexing](../lessons/04b-for-loops.qmd). Then print the card as a tidy table, one row per flag, with f-strings the way we printed the falling ball's first few steps in [A loop that remembers](../lessons/05a-simulate.qmd). The format code sets the decimal places (`{angle:.1f}` gives one, `{angle:.0f}` gives none), and that choice will come back in Part 4. The printout is what gets taped to the outside of the pipe.
 
 When you're done, test it for real: change the launch speed to 80 m/s in *one* place, rerun, and watch a new card come out. If that takes more than one edit, you're not quite there. Change it back to 75 m/s for your report.
 
 ::: {.callout-tip}
-A place to start for `firing_angle`: `np.argmin(np.abs(ranges - target))` gives the index of the sweep point whose range is closest to `target`. But look at your plot from Part 2 first. Most distances show up *twice* on that curve, and that one line doesn't know it. Your function has to pick one on purpose.
+A place to start for `launch_angle`: `np.argmin(np.abs(ranges - distance))` gives the index of the sweep point whose range is closest to `distance`. But look at your plot from Part 2 first. Most distances show up *twice* on that curve, and that one line doesn't know it. Your function has to pick one on purpose.
 :::
 
-<!-- Then find out what drag is worth. For each target, use the no-drag formula from Part 1 to get the angle you'd set if you ignored the air. Fire that angle through your drag model. Where does the potato actually land? Put those numbers on your card too (a separate column works well), so you can see how far off the textbook answer is. -->
+<!-- Then find out what drag is worth. For each flag, use the no-drag formula from Part 1 to get the angle you'd set if you ignored the air. Run that angle through your drag model. Where does the potato actually land? Put those numbers on your card too (a separate column works well), so you can see how far off the textbook answer is. -->
 
 ## Part 4 — How much should you trust the card?
 
-Potato cannons aren't precise. The launch speed changes from shot to shot, maybe by ±5 m/s, depending on how tightly the potato fits and how much pressure was built up. The angle adjustment is probably a bit imprecise too... ±1° is probably beyond the precision of an engineering student aiming some PVC pipe in a dirt field.
+Potato cannons aren't precise. The launch speed changes from launch to launch, maybe by ±5 m/s, depending on how tightly the potato fits and how much pressure was built up. The angle adjustment is probably a bit imprecise too... ±1° is probably beyond the precision of an engineering student pointing some PVC pipe in a dirt field.
 
-Pick the 200 m target. Fire your card's angle at 70 and 80 m/s: where does it land? Then fire it at your angle ±1° (at 75 m/s). Which matters more, the speed wobble or the aiming wobble?
+Pick the 200 m flag. Launch at your card's angle at 70 and 80 m/s: where does it land? Then launch at your angle ±1° (at 75 m/s). Which matters more, the speed wobble or the angle wobble?
 
 <!-- Given that, how many decimal places should the angles on your card have? Is it worth printing 16.2° instead of 16°? -->
 
@@ -115,16 +115,16 @@ Pick the 200 m target. Fire your card's angle at 70 and 80 m/s: where does it la
 - How many steps you simulate, how you picked that number, and what the function does if the potato hasn't landed yet.
 - Your time step, and how you'll show it's small enough.
 - Your sweep spacing. Why whole degrees (or why not)?
-- `firing_angle`: inputs, units, and what it returns. When a distance can be hit at two angles, which one does it return, and why? What does it return for a target the cannon can't reach?
+- `launch_angle`: inputs, units, and what it returns. When a distance can be reached at two angles, which one does it return, and why? What does it return for a flag the cannon can't reach?
 - What the card looks like: its columns, its units, and how many decimal places.
 
 Then your actual LLM prompt, with the model name and date.
 
 **Step 2 — Annotate.** For each decision in your spec, point to the line that carries it out. Find the drag lines and confirm that $|V|$ is the *total* speed, not a separate speed for each direction. If the AI made a decision you never specified (a default, a cutoff, which of the two angles it returns), talk about it.
 
-**Step 3 — Verify.** The Part 1 checks: the range formula at 45° (with arithmetic), the 30°/60° tie, and the halved-`dt` comparison. The no-drag 45° from your sweep. Then spot-check the card: pick one row, fire that angle through `landing_distance`, and show it lands where the card says. And show the 80 m/s card you generated from a one-number change. It should reach farther than the 75 m/s card, so sanity-check that it does.
+**Step 3 — Verify.** The Part 1 checks: the range formula at 45° (with arithmetic), the 30°/60° tie, and the halved-`dt` comparison. The no-drag 45° from your sweep. Then spot-check the card: pick one row, run that angle through `landing_distance`, and show it lands where the card says. And show the 80 m/s card you generated from a one-number change. It should reach farther than the 75 m/s card, so sanity-check that it does.
 
-**Step 4 — Report.** The firing card, as a table and as a plot. The best angle with drag, and your best explanation of why it isn't 45°. Some discussion of how precise your card should be, referencing your results from Part 4. (That is, if your angle is accurate to ±1°, and your velocity is accurate to ±5 m/s, what is the ± on your distance?)
+**Step 4 — Report.** The launch card, as a table and as a plot. The best angle with drag, and your best explanation of why it isn't 45°. Some discussion of how precise your card should be, referencing your results from Part 4. (That is, if your angle is accurate to ±1°, and your velocity is accurate to ±5 m/s, what is the ± on your distance?)
 <!-- And one paragraph: which decision in your spec most changed the numbers on your card, and which one turned out not to matter? -->
 
 <!-- How far off the no-drag angles land.  -->
@@ -138,11 +138,11 @@ Everything at $v_0 = 75$, $k/m = 0.00289$, `dt = 0.01`, from the ground.
 
 dt convergence with drag, 39°: 276.0 (0.05), 276.6 (0.01), 276.5 (0.001). No instability anywhere in this problem. Don't let anyone expect a Round 3 blowup here.
 
-**Part 2.** Best angle with drag **39°** → 276.6 m (a 0.1° sweep says 39.4°). No drag: 45° → 573.8 m. The drag curve is very flat on top: 35° → 274.0, 39° → 276.6, 45° → 272.7. So 39° and 45° differ by 4 m out of 277 m. (The drag lab key quotes 40° → 276.5 m with a last-point-above-ground landing. Same flat top, not a disagreement.) That's worth pointing out if someone gets excited about the "right" answer. With drag, 30° → 265.1 m and 60° → 226.5 m, so the high shot loses more. The intuition I'd accept: the high shot spends longer in the air, so drag works on it longer, and it comes down steeply, so it trades distance for height it can't use. Grade the reasoning, not a proof.
+**Part 2.** Best angle with drag **39°** → 276.6 m (a 0.1° sweep says 39.4°). No drag: 45° → 573.8 m. The drag curve is very flat on top: 35° → 274.0, 39° → 276.6, 45° → 272.7. So 39° and 45° differ by 4 m out of 277 m. (The drag lab key quotes 40° → 276.5 m with a last-point-above-ground landing. Same flat top, not a disagreement.) That's worth pointing out if someone gets excited about the "right" answer. With drag, 30° → 265.1 m and 60° → 226.5 m, so the high launch loses more. The intuition I'd accept: the high launch spends longer in the air, so drag works on it longer, and it comes down steeply, so it trades distance for height it can't use. Grade the reasoning, not a proof.
 
 **Part 3.** Low branch / high branch:
 
-| target | low | high |
+| distance | low | high |
 |---|---|---|
 | 50 | 2.7° | 84.6° |
 | 100 | 6.1° | 79.0° |
@@ -152,13 +152,13 @@ dt convergence with drag, 39°: 276.0 (0.05), 276.6 (0.01), 276.5 (0.001). No in
 | 275 | 35.8° | 43.0° |
 | 300 | unreachable (max ≈ 277 m) | |
 
-The whole-degree nearest-point method matches the low column to the nearest degree. The 300 m row is deliberate. It's the unreachable-target spec item happening for real, and `argmin` will cheerfully return the angle of the *longest* shot without complaint. That's the best A4 catch available in the assignment. The 275 m row shows the branches merging near the peak: tiny change in distance, big change in angle.
+The whole-degree nearest-point method matches the low column to the nearest degree. The 300 m row is deliberate. It's the unreachable-flag spec item happening for real, and `argmin` will cheerfully return the angle of the *longest* launch without complaint. That's the best A4 catch available in the assignment. The 275 m row shows the branches merging near the peak: tiny change in distance, big change in angle.
 
-The 80 m/s card (low branch, 50–275 m): 2.4, 3.8, 5.4, 7.1, 9.1, 11.4, 14.0, 17.2, 21.1, 26.6°. Every angle drops, which is the sanity check. Max range goes to 296.4 m (still at 39°), so **300 m is still unreachable**, and that's a nice surprise. A 7% faster launch buys only 7% more range, not the 14% the no-drag $v_0^2$ scaling promises. If a student's 80 m/s card suddenly fills in the 300 m row, their unreachable-target handling is probably broken. The real test is whether the card regenerates from one edit. If they had to touch the sweep, the function defaults, *and* the loop, that's worth a comment, not a penalty.
+The 80 m/s card (low branch, 50–275 m): 2.4, 3.8, 5.4, 7.1, 9.1, 11.4, 14.0, 17.2, 21.1, 26.6°. Every angle drops, which is the sanity check. Max range goes to 296.4 m (still at 39°), so **300 m is still unreachable**, and that's a nice surprise. A 7% faster launch buys only 7% more range, not the 14% the no-drag $v_0^2$ scaling promises. If a student's 80 m/s card suddenly fills in the 300 m row, their unreachable-flag handling is probably broken. The real test is whether the card regenerates from one edit. If they had to touch the sweep, the function defaults, *and* the loop, that's worth a comment, not a penalty.
 
 The `argmin` gotcha, checked: over the full 1–89° whole-degree sweep, the one-liner returns 85, 82, 79, 76, 73, 69, 65, **20**, 54, 43, 39° for 50–300 m. That's mostly the *high* branch, with the 225 m row jumping to the low one, because 20° happens to land 2 m closer. A card that flips branches from one row to the next is a spec failure, not a coding one. It's also exactly what an unaudited AI answer will produce.
 
-**Part 4.** 200 m target at 16.2°: 70/75/80 m/s → 182/200/218 m (±18 m). Angle ±1° at 75 m/s → 193/201/208 m (about ±7 m). Speed wobble wins by more than 2×, so **whole degrees** is the honest precision and 16.2° is false precision. The high branch at 65.0° gives 186/200/213 m, slightly less speed-sensitive. Either branch is defensible on the card; grade the argument. (A good one for low: shorter flight, less time for wind. A good one for high: somewhat less sensitive to speed, and it clears obstacles.)
+**Part 4.** 200 m flag at 16.2°: 70/75/80 m/s → 182/200/218 m (±18 m). Angle ±1° at 75 m/s → 193/201/208 m (about ±7 m). Speed wobble wins by more than 2×, so **whole degrees** is the honest precision and 16.2° is false precision. The high branch at 65.0° gives 186/200/213 m, slightly less speed-sensitive. Either branch is defensible on the card; grade the argument. (A good one for low: shorter flight, less time for wind. A good one for high: somewhat less sensitive to speed, and it clears obstacles.)
 
 **Where students will struggle:** the inversion. Some will try to solve for angle algebraically, which can't be done with drag, and that's the point. The Part 3 tip steers them toward reading the sweep in the other direction. If someone uses `np.interp`, that's fine, but only on one branch at a time: it needs increasing x-values, and the full curve isn't.
 :::

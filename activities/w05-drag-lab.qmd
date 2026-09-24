@@ -108,7 +108,7 @@ You may see `nan` appear — "not a number." It means the arithmetic got to the 
 
 ## Round 4 — the potato leaves the building (about 20 minutes)
 
-Everything so far has fallen straight down. Tuesday's Challenge threw a ball forward and up. Let's do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato jammed in one end and a burst of hot pressurized gas behind it. Launch speeds of 50–100 m/s are typical; we'll use **75 m/s**. (Nobody is allowed to build one, officially.)
+Everything so far has fallen straight down. Tuesday's Challenge threw a ball forward and up. Let's do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato in one end and a tank of compressed air behind it. Launch speeds of 50–100 m/s are typical; we'll use **75 m/s**. (Nobody is allowed to build one, officially.)
 
 Drag in two directions needs one new idea. How hard the air pushes depends on how fast the potato is moving *through the air*, which is its total speed. Which way it pushes is straight backward along the path. Split that one push into a sideways piece and an upward piece and you get
 
@@ -128,7 +128,7 @@ import matplotlib.pyplot as plt
 
 g = 9.81
 
-def shot(v0, angle_deg, k_over_m, dt=0.01, n_steps=1500):
+def launch(v0, angle_deg, k_over_m, dt=0.01, n_steps=1500):
     """Launch from the ground at v0 (m/s), angle_deg above horizontal.
     Returns t, x, y, vx, vy arrays."""
     theta = np.radians(angle_deg)
@@ -146,11 +146,11 @@ def shot(v0, angle_deg, k_over_m, dt=0.01, n_steps=1500):
         vy[i+1] = vy[i] + ay * dt
     return t, x, y, vx, vy
 
-t, x, y, vx, vy = shot(75, 40, 0.0)
+t, x, y, vx, vy = launch(75, 40, 0.0)
 print("lands at x =", round(x[y >= 0][-1], 1), "m")
 ```
 
-Our potato is a 5 cm × 8 cm slug, about 0.17 kg, with $k/m = 0.00289$.
+Our potato is a 5 cm × 8 cm cylinder, about 0.17 kg, with $k/m = 0.00289$.
 
 1. **Add drag, then turn it off.** Put the two formulas into the loop. Then run it with `k_over_m = 0` at 40° and compare to the no-drag range formula, $R = v_0^2 \sin(2\theta)/g$.
 
@@ -162,7 +162,7 @@ Our potato is a 5 cm × 8 cm slug, about 0.17 kg, with $k/m = 0.00289$.
 
 5. **Compare the landing speed to the launch speed, with and without drag.** The no-drag potato lands at exactly its launch speed. Why does it have to? Then use what you found in Round 2 to work out the potato's terminal velocity. Our launch speed is *above* it. What does that say about the first second of the flight?
 
-Tuesday's Challenge found that 45° throws farthest, when there's no air. Drag just took about half our range at 40°. Is 45° still the best angle? **Don't answer that at your table. That's HW 3.**
+Tuesday's Challenge found that 45° throws farthest, when there's no air. Drag just took about half our range at 40°. Is 45° still the best angle? **Don't answer that at your table. That's HW 3**, where you'll build a launch card for the club's cannon.
 
 
 
@@ -174,3 +174,68 @@ Tuesday's Challenge found that 45° throws farthest, when there's no air. Drag j
 - Round 2: the four-object comparison, the balloon's velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.
 - Round 3: your `dt` table with both columns, and your answer to question 2.
 - Round 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site):**
+
+**Round 1.** `k_over_m = 0` → lands 1.429 s, impact −14.018 m/s at fine `dt` (exact: 1.4278 s, −14.007). A student whose zero-drag case doesn't reproduce Tuesday has a sign error in the drag term — the usual one is `+ k_over_m * v * abs(v)`, which *accelerates* the fall and is obvious immediately, because the balloon then beats the steel ball to the ground.
+
+**Round 2 numbers (10 m, Denver `rho = 1.0`):**
+
+| object | $k/m$ | fall time | impact | $v_{\text{term}}$ |
+|---|---|---|---|---|
+| no drag | 0 | 1.428 s | −14.007 | — |
+| balloon | 4.091 | **6.568 s** | −1.549 | 1.55 |
+| steel ball | 0.00191 | 1.433 s | −13.880 | 71.64 |
+| phone (flat) | 0.0332 | — | — | 17.20 |
+
+The balloon is 4.60× the no-drag time; the steel ball is 0.36% longer. That's the entire S2 lesson in two rows of a table.
+
+**Q1 answer.** The deciding quantity is $k/m$ — drag force per unit mass, i.e. how much air-push the object has to carry per kilogram of itself. The more useful equivalent framing: **compare terminal velocity to the speed it would have reached anyway.** The steel ball would hit at 14 m/s and its terminal velocity is 71.6 m/s, so it never gets near the regime where drag bites. The balloon's terminal velocity is 1.55 m/s and it arrives there almost immediately. Accept either, but push toward the second — it's the version they can apply to a brand-new object in five seconds.
+
+**Q2/Q3.** The balloon's velocity flattens to a constant −1.55 m/s and stays. Setting $a = 0$ gives $v = -\sqrt{gm/k} = -1.549$ m/s, *exactly* the impact speed, because the balloon reaches terminal velocity in well under a second and then coasts the rest of the way. They are discovering terminal velocity from their own plot rather than being told about it — don't pre-empt it, and don't use the term until a table says the thing first.
+
+**Round 3 (balloon, 10 m):**
+
+| `dt` | lands | impact speed |
+|---|---|---|
+| 0.01 | 6.57 s | −1.549 |
+| 0.05 | 6.60 s | −1.549 |
+| 0.1 | 6.60 s | −1.549 |
+| 0.2 | 8.40 s | −0.697 |
+| 0.3 | **1.80 s** | **+7.1×10¹¹** |
+| 0.5 | 2.00 s | +2.0×10⁷ |
+
+The `dt = 0.3` row is the centerpiece — put it on the projector. It reports a landing at 1.80 s, which is *closer to the no-drag answer they began the day with* and therefore looks more reasonable than the correct 6.57 s. Only the impact speed gives it away. A student who printed one number and stopped would have taken this home believing it. That's the answer to Q2, and it's the most valuable thing in the period.
+
+Physically (Q3): at `dt = 0.3` the balloon travels **upward**, climbs to about 239 m, and then diverges. The one-sentence explanation if asked: over a third of a second we held the drag force fixed at its start-of-step value while the balloon sped up, so we applied far too much drag, overshot past zero into a positive velocity — and from there the error fed itself. Keep it at exactly that. No stability criterion, no method names; formal numerical methods belongs to Computational Methods and we agreed not to encroach.
+
+`dt = 0.2` is the subtle sibling — lands, at a plausible 8.4 s, wrong by 28%, no alarm of any kind. Worth ten seconds after the 0.3 spectacle.
+
+**Why a balloon and not a ping-pong ball:** quadratic drag is self-stabilizing at low $k/m$, so a ping-pong ball degrades gracefully and never blows up — I checked. The balloon's $k/m$ of 4.09 is what makes the demo work. Don't swap the object.
+
+**Phone prediction:** from 1.5 m, no drag 0.5530 s, with drag 0.5590 s — **1.08% longer**. The intended realisation is that 6 ms is well below what they'll resolve by eye in a phyphox trace, so the no-drag model is the right model for next week's measurement. That's S2 again, used *prospectively* to justify a simplification before making it, which is the grown-up version of the skill.
+
+**Round 4 (potato, 75 m/s, 40°, `dt = 0.01`, landing = last point with `y >= 0`):**
+
+| | lands | peak height | peak at (fraction of range) | flight time | landing speed | landing angle |
+|---|---|---|---|---|---|---|
+| no drag | 564.8 m | 118.7 m | 0.50 | 9.83 s | 75.0 m/s | 40° |
+| drag, $k/m = 0.00289$ | 276.5 m | 77.2 m | 0.57 | 7.87 s | 40.4 m/s | 56° |
+
+Range formula at 40°: 564.7 m, so the drag-off check agrees to within a tenth of a meter. Potato numbers: 5 cm × 8 cm cylinder at 1080 kg/m³ → 0.170 kg; $k = \frac12(1.0)(0.5)(\pi \cdot 0.025^2) = 4.91\times10^{-4}$, the same $\rho$ and $C_d$ as the table.
+
+Q2 estimate: $\frac{k}{m}v_0^2 = 0.00289 \times 5625 \approx 16$ m/s², about 1.7 g. So drag is *bigger than gravity* at launch, and they should expect a large effect before they run anything. That's the Round 2 lesson applied to a new object, with nothing but algebra.
+
+Q5: no drag lands at launch speed because the path is the launch played backwards (don't go near energy unless someone brings it up). Terminal velocity $\sqrt{g/(k/m)} = 58$ m/s. Launch speed is above that, so for the first stretch drag is *slowing the potato down along its path* harder than gravity pulls it. Nothing in Round 2 ever started above terminal velocity, so this is a new situation built from old pieces. It lands at 40 m/s, below terminal, because it never falls far enough to get back up to 58.
+
+The shortcut error (`vx*abs(vx)` in each direction) is the most likely mistake, and I wouldn't try to catch it in class: the drag-off check can't see it, since both versions agree at k = 0. The margin note is there to head it off. If a table has it anyway, the tell is a range that's about 11% too long: 307 m instead of 277.
+
+Q4, where the cliffhanger comes from: the drag path is lopsided. It peaks past the midpoint and comes down steeper than it went up. **Don't let anyone sweep angles.** The best angle is 39° (HW 3), and if the room works that out today, the homework loses its main discovery.
+
+**Timing (~75 min):** Round 1 plus the turn-it-off check, 10 min. Round 2, 25 min — protect the velocity plot and question 1, that's the day. Round 3, 15 min. Round 4, 20 min. Phone prediction, 5 min at the end.
+
+**If short on time:** cut Round 3 to a front-of-room demo of the `dt = 0.3` case. It's dramatic enough to survive being shown rather than done, and Round 2 holds the transferable idea. Round 4 can shrink to questions 1–3 (drag-off check, the estimate, one plot), since those are what HW 3 builds on.
+
+**Next Tuesday** (Checkpoint 2, then data in/out) is their first contact with files. The `savetxt` task was cut from today, so don't mention CSVs here; writing *and* reading files both start Tuesday. HW 3 is built to need only printing, not files. The phone prediction waits for the phyphox drop in week 9.
+:::
