@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting going in your language – MCEN 1030</title>
+<title>Adding drag – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -79,6 +114,35 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -126,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Start Here</a></li><li class="breadcrumb-item"><a href="../info/installing.html">Getting going in your language</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w05-drag-lab.html">Adding drag</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -181,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../info/installing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../info/installing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting going in your language</span></a>
   </div>
 </li>
@@ -281,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../activities/w05-drag-lab.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/w05-drag-lab.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Adding drag</span></a>
   </div>
 </li>
@@ -326,23 +390,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#python-via-google-colab" id="toc-python-via-google-colab" class="nav-link active" data-scroll-target="#python-via-google-colab">Python via Google Colab</a></li>
-  <li><a href="#python-on-your-machine" id="toc-python-on-your-machine" class="nav-link" data-scroll-target="#python-on-your-machine">Python on your machine</a>
-  <ul class="collapse">
-  <li><a href="#package-manager" id="toc-package-manager" class="nav-link" data-scroll-target="#package-manager">Package manager</a></li>
-  <li><a href="#editor" id="toc-editor" class="nav-link" data-scroll-target="#editor">Editor</a></li>
-  </ul></li>
-  <li><a href="#matlab-later-in-the-semester" id="toc-matlab-later-in-the-semester" class="nav-link" data-scroll-target="#matlab-later-in-the-semester">MATLAB (later in the semester)</a></li>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
+  <li><a href="#round-1-add-one-line-about-10-minutes" id="toc-round-1-add-one-line-about-10-minutes" class="nav-link" data-scroll-target="#round-1-add-one-line-about-10-minutes">Round 1 — add one line (about 10 minutes)</a></li>
+  <li><a href="#round-2-same-code-two-different-answers-about-25-minutes" id="toc-round-2-same-code-two-different-answers-about-25-minutes" class="nav-link" data-scroll-target="#round-2-same-code-two-different-answers-about-25-minutes">Round 2 — same code, two different answers (about 25 minutes)</a></li>
+  <li><a href="#round-3-break-it-about-15-minutes" id="toc-round-3-break-it-about-15-minutes" class="nav-link" data-scroll-target="#round-3-break-it-about-15-minutes">Round 3 — break it (about 15 minutes)</a></li>
+  <li><a href="#round-4-the-potato-leaves-the-building-about-20-minutes" id="toc-round-4-the-potato-leaves-the-building-about-20-minutes" class="nav-link" data-scroll-target="#round-4-the-potato-leaves-the-building-about-20-minutes">Round 4 — the potato leaves the building (about 20 minutes)</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Start Here</a></li><li class="breadcrumb-item"><a href="../info/installing.html">Getting going in your language</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w05-drag-lab.html">Adding drag</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Getting going in your language</h1>
-<p class="subtitle lead">Google Colab first, then VS Code (or whatever!)</p>
+<h1 class="title">Adding drag</h1>
+<p class="subtitle lead">Week 5 Thursday · 2 engagement credits</p>
 </div>
 
 
@@ -359,30 +422,42 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page contains my recommendations for how to set up your programming environment. <strong>You can do this entire course in Google Colab and MATLAB Online</strong> — nothing to install, works on any machine. But at some point you might decide running Python/MATLAB on your own machine is a good idea. Programs run faster, you can see all the files in a project easier, and it just feels better to have everything in a real editor.</p>
-<section id="python-via-google-colab" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="python-via-google-colab">Python via Google Colab</h2>
-<p>Go to <a href="https://colab.research.google.com">colab.research.google.com</a>, sign in with your university Google account, click <strong>New notebook</strong>, and… that’s it. Python runs on Google’s computers; NumPy, matplotlib, and pandas are pre-installed. Notebooks are saved on your Google Drive. It is a little bit clumsy to handle files (e.g.&nbsp;a csv) but we will figure it out!</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>We’ll talk about how to <strong>import</strong> packages soon… engineers don’t use base Python much, we need to bring in some extra tools.</p>
-</div></div></section>
-<section id="python-on-your-machine" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="python-on-your-machine">Python on your machine</h2>
-<p>There are multiple avenues here, and if you are confident enough to find your own way (e.g., with pip), I believe in you. In general, there are two things you’ll need to do: install Python+a package manager, and install an editor.</p>
-<section id="package-manager" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="package-manager">Package manager</h3>
-<p>My recommendation is to <a href="https://www.anaconda.com/docs/getting-started/miniconda/install">install <strong>miniconda</strong></a> — NOT the full Anaconda (which you can find nearby if you really want to, but I’m not linking it).</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>The full Anaconda is attractive: it has everything you will need in one install, but also a lot of unnecessary stuff. I grew to hate the navigator and the way it insisted on cross-checking all the packages every time I updated, and so I “downgraded” to miniconda (which still cross-checks, but there are way fewer packages). Additionally, I am not fond of the IDEs (Integrated Development Environment) that come with Anaconda. I much prefer <a href="https://code.visualstudio.com">VS Code</a>, which supports Jupyter Notebooks and has a GitHub integration.</p>
-</div></div><p>Miniconda installs Python, but otherwise I think there are zero packages, so you’ll install what you need from the command line. <strong>NumPy, matplotlib, and pandas</strong> are necessary for this course; <a href="https://www.anaconda.com/docs/getting-started/working-with-conda/packages/install-packages">this page has the instructions</a>. Note that miniconda still uses <code>conda</code> as the command.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>What are “packages”? They are collections Python files that include useful Python functions that can be “called”. For example: someone has already written an implementation of the <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">Trapezoid Rule</a> for finding the area under a curve, and implemented it <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapezoid.html">into the SciPy package</a>. Now, instead of writing the code from scratch, you can just call that function with <code>trapezoid(y)</code> in your code.</p>
-</div><div class="">
-<p>pip is another package-management option — not that different from conda. If you have reason to go that way, do it; plenty of tutorials around.</p>
-</div></div>
+<p><strong>Standards seeded:</strong> S1, S2, S3, A1 · <strong>You’ll need:</strong> Colab, Tuesday’s stepper</p>
+<p>Tuesday we built a <code>for</code> loop to do some time stepping, applying it to a situation that we could solve theoretically. So… what was the point? Today we’re going to add some additional terms that make it so that there is no theoretical solution. But those additional terms make the calculations more accurate… so, as engineers, we want to include them!</p>
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
+<p>For anything bigger than a raindrop, the force of drag is proportional to the <strong>square</strong> of the speed. It is indeed a force, so it manifests through the acceleration term (<span class="math inline">\(F=ma\)</span>, right?):</p>
+<p><span class="math display">\[
+a = -g - \frac{k}{m}\,v\,|v|
+\]</span></p>
+<p>The <span class="math inline">\(v\,|v|\)</span> looks strange, but it’s just <span class="math inline">\(v^2\)</span> with the sign of <span class="math inline">\(v\)</span> still present — drag always pushes <em>against</em> you, so when you’re falling (negative <span class="math inline">\(v\)</span>) that term comes out positive.</p>
+<p>The parameter <span class="math inline">\(k\)</span> bundles together the air density, the object’s cross-sectional area, and how streamlined it is. We’ll go ahead and assume some values for three different items:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">object</th>
+<th style="text-align: right;"><span class="math inline">\(m\)</span> (kg)</th>
+<th style="text-align: right;"><span class="math inline">\(k\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">balloon (25 cm)</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.01227</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">steel ball (2.5 cm)</td>
+<td style="text-align: right;">0.0642</td>
+<td style="text-align: right;">0.000123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">phone, falling flat</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.0063</td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -393,52 +468,136 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Some other packages that might be worth installing:</p>
-<ul>
-<li>Jupyter is a “notebook” environment that looks a lot like Colab.</li>
-<li>Seaborn is built on-top of matplotlib… it makes really beautiful plots.</li>
-<li>SciPy is a toolbox of numerical routines — differential equation solvers, integrators, etc. It is a very large package but has a lot of very good tools that are used in engineering.</li>
-<li>Scikit-learn is a good machine learning toolbox, we might use it in a Machine Learning Side Quest.</li>
-</ul>
+<p>Below we’ll use a single variable called <code>k_over_m</code>. Let Python do the math for you: <code>k_over_m=0.01227/0.003</code>. Or even better: <code>k_over_m=k_balloon/m_balloon</code>.</p>
 </div>
 </div>
 </section>
-<section id="editor" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="editor">Editor</h3>
-<p>For the editor, I recommend <a href="https://code.visualstudio.com"><strong>VS Code</strong></a> — it supports Jupyter notebooks (and it’s notebook interface is better than the default Jupyter interface), has an integrated terminal, and has GitHub integration. Install VS Code, then its <em>Python</em> and <em>Jupyter</em> extensions (VS Code will automatically offer to install them the first time you open a <code>.py</code> or <code>.ipynb</code> file).</p>
+<section id="round-1-add-one-line-about-10-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="round-1-add-one-line-about-10-minutes">Round 1 — add one line (about 10 minutes)</h2>
+<p>So everyone starts from the same place, here’s Tuesday’s loop with no drag, already wrapped in a function. It’s the same code as the reading, with the acceleration pulled out into its own line <code>a</code> (so there’s an obvious spot to change) and a <code>k_over_m</code> input that doesn’t do anything yet. Copy it into Colab and run it.</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
 
-<div class="no-row-height column-margin column-container"><div class="">
-<p><a href="https://github.com">GitHub</a> is a website that hosts code projects (“repositories”) so you can save your work, track changes over time, and share it with others.</p>
-</div></div><p>If you would like to install a different editor, and feel confident in doing so, go ahead! One example: Google Antigravity is apparently quite similar to VS Code. (I haven’t tried it yet!)</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmcgPSA5LjgxXG5cbmRlZiBkcm9wKGgwLCBrX292ZXJfbSwgZHQ9MC4wMDUsIG5fc3RlcHM9NDAwMCk6XG4gICAgXCJcIlwiRHJvcCBmcm9tIGgwIChtKSB3aXRoIGRyYWcgay9tLiBSZXR1cm5zIHQsIHksIHYgYXJyYXlzLlwiXCJcIlxuICAgIHkgPSBucC56ZXJvcyhuX3N0ZXBzICsgMSlcbiAgICB2ID0gbnAuemVyb3Mobl9zdGVwcyArIDEpXG4gICAgdCA9IG5wLmFyYW5nZShuX3N0ZXBzICsgMSkgKiBkdFxuICAgIHlbMF0gPSBoMFxuICAgIGZvciBpIGluIHJhbmdlKG5fc3RlcHMpOlxuICAgICAgICBhID0gLWcgICAgICAgICAgICAgICAgICAgICAgICMgPC0tIGRyYWcgZ29lcyBoZXJlXG4gICAgICAgIHlbaSsxXSA9IHlbaV0gKyB2W2ldICogZHRcbiAgICAgICAgdltpKzFdID0gdltpXSArIGEgKiBkdFxuICAgIHJldHVybiB0LCB5LCB2XG5cbnQsIHksIHYgPSBkcm9wKDEwLjAsIDAuMClcbnByaW50KFwibGFuZHMgYXQ6XCIsIHJvdW5kKHRbeSA8PSAwXVswXSwgMyksIFwic1wiKSBcbnByaW50KFwiaGl0cyBhdDogXCIsIHJvdW5kKHZbeSA8PSAwXVswXSwgMyksIFwibS9zXCIpIn0=
+</script>
+</div>
+<p>A 10 m drop lands in 1.43 s at about −14 m/s. Now add drag according to the equation above. Don’t forget: your velocity array has an index.</p>
+<p><strong>Then set <code>k_over_m = 0</code> and run it.</strong> The results should be the same as if <span class="math inline">\(a=-g\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Python “environments” (optional reading)
+Important
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Many serious programmers insist each project should have its own “environment” with a unique set of packages. For example, TensorFlow apparently does not play nice with NumPy version 2.0 or higher, and so folks who use TensorFlow will likely have an isolated environment for it where NumPy 1.9x is installed. (Even after reverting to NumPy 1.9x, I still couldn’t get TensorFlow to work, but that is beside the point!) For this class, it should not be a big deal to work entirely in the base environment.</p>
-<p>If you do want to create separate environments, e.g., one for each project, you can. From the command line, you would start with something like <code>conda create --name project1</code> and then <code>conda activate project1</code> puts you in that environment, and then <code>conda install numpy</code> would get you numpy in just that environment. You need to install packages in each environment – if you have three environments set up on your machine, you might technically have NumPy installed three times.</p>
-</div>
+<p>What is <code>round(t[y &lt;= 0][0], 3)</code> doing?</p>
 </div>
 </div>
 </section>
+<section id="round-2-same-code-two-different-answers-about-25-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="round-2-same-code-two-different-answers-about-25-minutes">Round 2 — same code, two different answers (about 25 minutes)</h2>
+<p>Run your code with all three objects from the table, plus the no-drag case, all from 10 m. Get the four fall times and four impact speeds somewhere you can compare them side by side (e.g., create a text cell after your code and record the results, maybe even as a Markdown table).</p>
+<p>Three things to work out with your colleagues:</p>
+<ol type="1">
+<li><p><strong>The balloon takes about 4.6× as long as the no-drag formula predicts. The steel ball takes 0.4% longer.</strong> Same code, same height, same air. What is it about the two objects that produces such wildly different verdicts? (Look at <span class="math inline">\(k/m\)</span>, and say what it means physically.)</p></li>
+<li><p><strong>Plot <code>v</code> against <code>t</code> for the balloon.</strong> Describe the shape in words — then talk about <em>why</em> it happens. Look at the acceleration formula and ask what value of <span class="math inline">\(v\)</span> makes <span class="math inline">\(a = 0\)</span>.</p></li>
+<li><p>Compare the balloon’s impact speed to the value of <span class="math inline">\(v\)</span> you just found. Same number? Should they be?</p></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>One of my favorite quotes: “All models are wrong, but some are useful.” (From the statistician George Box.)</p>
+<p>Models, by definition, are approximations of reality. We hopefully capture the relevant effects to make a good prediction, but we leave some details out — e.g., is it helpful to know the temperature of the object when determining its fall time? Where the surface imperfections are? Precisely how many nitrogen molecules are disturbed, and their speeds before and after? Probably not… even though they might affect the result in some (tiny) way.</p>
+<p>Ignoring air resistance is <em>perfectly good engineering</em> for the steel ball — being right to within 0.4% and avoiding the nonlinear term is an excellent trade. But, applied to the balloon, our prediction is wrong by a factor of four and a half.</p>
+<p>So “is it okay to ignore air resistance?” has no general answer. <strong>“Is it okay to ignore air resistance for this object, over this distance, at the precision I need?”</strong> has an answer — and you can compute it instead of guessing!</p>
+</div>
+</div>
 </section>
-<section id="matlab-later-in-the-semester" class="level2">
-<h2 class="anchored" data-anchor-id="matlab-later-in-the-semester">MATLAB (later in the semester)</h2>
-<p>As a CU student you have free access: create a MathWorks account with your CU email — instructions are <a href="https://oit.colorado.edu/software-hardware/software-catalog/matlab">here</a>, under the student “How to get it.”</p>
-<p>Once your account is tied to the school’s license, you can install desktop MATLAB <strong>or</strong> use <a href="https://matlab.mathworks.com">MATLAB Online</a> in the browser — students have used both, and you can hop back and forth. I like the immediacy of a local install and it runs a bit faster; Online gives you your code from any computer. For our purposes, either is fine.</p>
-<p>Basic MATLAB is all this course needs; no toolboxes required. Later MCEN courses will have you using toolboxes like Simulink (used in System Dynamics) — you can add those anytime, no need to install now.</p>
-<p>The MathWorks “<strong>MATLAB Onramp</strong>” tutorial — find it under Online Training at <a href="https://matlab.mathworks.com">matlab.mathworks.com</a> — is genuinely good and takes about two hours. We won’t be using MATLAB until the second half of the course.</p>
+<section id="round-3-break-it-about-15-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="round-3-break-it-about-15-minutes">Round 3 — break it (about 15 minutes)</h2>
+<p>On Tuesday a smaller <code>dt</code> gave a better answer. Run the balloon from 10 m at <code>dt =</code> 0.01, 0.05, 0.1, 0.2, 0.3 and 0.5. For each, report <strong>both</strong> the landing time and the impact speed.</p>
+<p>Then, on paper:</p>
+<ol type="1">
+<li>At which <code>dt</code> does the answer stop being merely inaccurate and start being nonsense? How did you decide?</li>
+<li>One of those runs reports a landing time that looks <strong>more</strong> believable than the correct answer, while its impact speed is absurd. Which one?</li>
+<li>Plot <code>y</code> against <code>t</code> for the worst case. Describe, physically, what your balloon does. Would you have caught that from the numbers alone?</li>
+</ol>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may see <code>nan</code> appear — “not a number.” It means the arithmetic got to the poin that the computer cannot represent it anymore. That is not a Python bug, but does mean something went wrong with the calculation!</p>
+</div>
+</div>
+</section>
+<section id="round-4-the-potato-leaves-the-building-about-20-minutes" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="round-4-the-potato-leaves-the-building-about-20-minutes">Round 4 — the potato leaves the building (about 20 minutes)</h2>
+<p>Everything so far has fallen straight down. Tuesday’s Challenge threw a ball forward and up. Let’s do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato jammed in one end and a burst of hot pressurized gas behind it. Launch speeds of 50–100 m/s are typical; we’ll use <strong>75 m/s</strong>. (Nobody is allowed to build one, officially.)</p>
+<p>Drag in two directions needs one new idea. How hard the air pushes depends on how fast the potato is moving <em>through the air</em>, which is its total speed. Which way it pushes is straight backward along the path. Split that one push into a sideways piece and an upward piece and you get</p>
+<p><span class="math display">\[
+a_x = -\frac{k}{m}\,v_x\,|V|, \qquad a_y = -g - \frac{k}{m}\,v_y\,|V|, \qquad |V| = \sqrt{v_x^2 + v_y^2}
+\]</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The tempting shortcut is <span class="math inline">\(v_x|v_x|\)</span> in the first formula and <span class="math inline">\(v_y|v_y|\)</span> in the second, but that is not correct!</p>
+</div></div><p>Here’s Tuesday’s two-direction throw with no drag, so everyone starts from the same place:</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmcgPSA5LjgxXG5cbmRlZiBzaG90KHYwLCBhbmdsZV9kZWcsIGtfb3Zlcl9tLCBkdD0wLjAxLCBuX3N0ZXBzPTE1MDApOlxuICAgIFwiXCJcIkxhdW5jaCBmcm9tIHRoZSBncm91bmQgYXQgdjAgKG0vcyksIGFuZ2xlX2RlZyBhYm92ZSBob3Jpem9udGFsLlxuICAgIFJldHVybnMgdCwgeCwgeSwgdngsIHZ5IGFycmF5cy5cIlwiXCJcbiAgICB0aGV0YSA9IG5wLnJhZGlhbnMoYW5nbGVfZGVnKVxuICAgIHQgPSBucC5hcmFuZ2Uobl9zdGVwcyArIDEpICogZHRcbiAgICB4ID0gbnAuemVyb3Mobl9zdGVwcyArIDEpOyAgeSA9IG5wLnplcm9zKG5fc3RlcHMgKyAxKVxuICAgIHZ4ID0gbnAuemVyb3Mobl9zdGVwcyArIDEpOyB2eSA9IG5wLnplcm9zKG5fc3RlcHMgKyAxKVxuICAgIHZ4WzBdID0gdjAgKiBucC5jb3ModGhldGEpXG4gICAgdnlbMF0gPSB2MCAqIG5wLnNpbih0aGV0YSlcbiAgICBmb3IgaSBpbiByYW5nZShuX3N0ZXBzKTpcbiAgICAgICAgYXggPSAwLjAgICAgICAgICAgIyA8LS0gZHJhZyBnb2VzIGhlcmVcbiAgICAgICAgYXkgPSAtZyAgICAgICAgICAgIyA8LS0gYW5kIGhlcmVcbiAgICAgICAgeFtpKzFdID0geFtpXSArIHZ4W2ldICogZHRcbiAgICAgICAgeVtpKzFdID0geVtpXSArIHZ5W2ldICogZHRcbiAgICAgICAgdnhbaSsxXSA9IHZ4W2ldICsgYXggKiBkdFxuICAgICAgICB2eVtpKzFdID0gdnlbaV0gKyBheSAqIGR0XG4gICAgcmV0dXJuIHQsIHgsIHksIHZ4LCB2eVxuXG50LCB4LCB5LCB2eCwgdnkgPSBzaG90KDc1LCA0MCwgMC4wKVxucHJpbnQoXCJsYW5kcyBhdCB4ID1cIiwgcm91bmQoeFt5ID49IDBdWy0xXSwgMSksIFwibVwiKSJ9
+</script>
+</div>
+<p>Our potato is a 5 cm × 8 cm slug, about 0.17 kg, with <span class="math inline">\(k/m = 0.00289\)</span>.</p>
+<ol type="1">
+<li><p><strong>Add drag, then turn it off.</strong> Put the two formulas into the loop. Then run it with <code>k_over_m = 0</code> at 40° and compare to the no-drag range formula, <span class="math inline">\(R = v_0^2 \sin(2\theta)/g\)</span>.</p></li>
+<li><p><strong>Estimate before you run.</strong> Right at launch, how big is the drag acceleration, <span class="math inline">\(\frac{k}{m} v_0^2\)</span>, compared to <span class="math inline">\(g\)</span>? Based on Round 2, should drag matter a little or a lot?</p></li>
+<li><p><strong>See the trajectory.</strong> Run the potato at 75 m/s and 40°, with and without drag, and plot both paths on the same axes: <code>y</code> against <code>x</code>, keeping only the points above ground. Add <code>plt.gca().set_aspect("equal")</code> so that one meter up looks the same as one meter across.</p></li>
+<li><p><strong>Describe the difference.</strong> How much shorter is it? The no-drag path is symmetric: is the drag path? Where is its highest point, and how steeply does it come down compared to how it went up?</p></li>
+<li><p><strong>Compare the landing speed to the launch speed, with and without drag.</strong> The no-drag potato lands at exactly its launch speed. Why does it have to? Then use what you found in Round 2 to work out the potato’s terminal velocity. Our launch speed is <em>above</em> it. What does that say about the first second of the flight?</p></li>
+</ol>
+<p>Tuesday’s Challenge found that 45° throws farthest, when there’s no air. Drag just took about half our range at 40°. Is 45° still the best angle? <strong>Don’t answer that at your table. That’s HW 3.</strong></p>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p><strong>(2 EC):</strong></p>
+<ul>
+<li>Round 1: your <code>drop</code> function, and the <code>k_over_m = 0</code> check with its output.</li>
+<li>Round 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.</li>
+<li>Round 3: your <code>dt</code> table with both columns, and your answer to question 2.</li>
+<li>Round 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs. &lt;!–</li>
+<li>Your phone prediction: both numbers and the percentage.</li>
+<li>Save your balloon run to a file and include the first five rows:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>np.savetxt(<span class="st">"balloon.csv"</span>, np.column_stack([t, y, v]),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>           delimiter<span class="op">=</span><span class="st">","</span>, header<span class="op">=</span><span class="st">"t_s,y_m,v_ms"</span>, comments<span class="op">=</span><span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That file is the first thing you’ve made that another program could read. We’ll pick it up on Tuesday. –&gt;</p>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -459,7 +618,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../info";
+window._ojs.paths.runtimeToDoc = "../../activities";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;

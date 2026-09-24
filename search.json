@@ -472,7 +472,7 @@
     "href": "info/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Read the lesson before the class it’s listed under.\n\n\n\n\n\n\nNoteCheckpoints\n\n\n\nThe ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the grading page.\n\n\n\n\n\n\n\n\nNoteHomework\n\n\n\nHomework sets are assigned in weeks 2, 4, 5, 6, 7, 8, 9, 10, and 11.\n\n\n\n\n\n\n\n\nNoteBase Camp/Side Quest Sessions\n\n\n\n… happen on Mondays: Base Camp/Side Quests. (Optional.)\n\n\nTentative schedule:\n\n\n\n\n\n\n\n\n\nWeek\nTuesday\nThursday\nStandards\n\n\n\n\nPhase 0 — Thinking\n\n\n\n\n\n1\nWhat do engineers do with computation? — specification, verification.\nWhat does an LLM actually do?.\n—\n\n\n2\nFirst contact with coding — Colab, variables, predict-then-run, errors as data.\nReading code & conditionals — tracing, annotation, if/elif/else.\nP4, A1\n\n\nPhase 1 — Vocabulary\n\n\n\n\n\n3\nFunctions — inputs, outputs, and the docstring as a specification.\nWind farm design.\nP1, A4\n\n\n4\n✓ Checkpoint 1, then Packages & arrays — NumPy, elementwise math.\nFor loops & indexing — comparing designs, one case at a time. Then Which design wins?\nP4, P1\n\n\n5\nA loop that remembers — simulating a falling ball.\nDrag lab — when the formula runs out.\nS1, S2, S3, A1\n\n\n6\n✓ Checkpoint 2, then Data in, data out — files, CSV, and plotting.\nPlot clinic — make one honest plot, catch one misleading one.\nF2, A2\n\n\nPhase 2 — Tools\n\n\n\n\n\n7\nPandas.\n(No class Thursday Oct 8.)\nP3, F2\n\n\n8\n✓ Checkpoint 3, then Fetch — APIs, JSON, and what to do when a request fails (try/except/raise).\nData acquisition lab — a live API.\nF1, F2, A3\n\n\n9\nBack to the model — revisiting the falling ball with real data in hand.\nModel meets measurement — phone drop vs. simulation.\nS1, S3, A3\n\n\n10\n✓ Checkpoint 4, then Simulate II — assumptions, trust, and what-ifs.\nModel critique.\nS2, S3, S4\n\n\nPhase 3 — Integration\n\n\n\n\n\n11\nYour second language — MATLAB, translation, and choosing tools.\nProject launch.\nP4, A4\n\n\n12\nProject studio — desk crits at tables.\nPin-up #1 — specs & verification plans on the wall.\nS2, A3, A4\n\n\n13\nProject studio — desk crits at tables.\nPin-up #2 — working artifacts, same-project pairing.\nP4, A2, A3\n\n\n14\nDefense prep — what it means to know your own project.\nMock defenses at tables.\n—\n\n\nFinals\nThe Defense — a written exam about your project: trace it, explain it, predict what breaks.\n\nthe grade modifier",
+    "text": "Read the lesson before the class it’s listed under.\n\n\n\n\n\n\nNoteCheckpoints\n\n\n\nThe ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the grading page.\n\n\n\n\n\n\n\n\nNoteHomework\n\n\n\nHomework sets are assigned in weeks 2, 4, 5, 6, 7, 8, 9, 10, and 11.\n\n\n\n\n\n\n\n\nNoteBase Camp/Side Quest Sessions\n\n\n\n… happen on Mondays: Base Camp/Side Quests. (Optional.)\n\n\nTentative schedule:\n\n\n\n\n\n\n\n\n\nWeek\nTuesday\nThursday\nStandards\n\n\n\n\nPhase 0 — Thinking\n\n\n\n\n\n1\nWhat do engineers do with computation? — specification, verification.\nWhat does an LLM actually do?.\n—\n\n\n2\nFirst contact with coding — Colab, variables, predict-then-run, errors as data.\nReading code & conditionals — tracing, annotation, if/elif/else.\nP4, A1\n\n\nPhase 1 — Vocabulary\n\n\n\n\n\n3\nFunctions — inputs, outputs, and the docstring as a specification.\nWind farm design.\nP1, A4\n\n\n4\n✓ Checkpoint 1, then Packages & arrays — NumPy, elementwise math.\nFor loops & indexing — comparing designs, one case at a time. Then Which design wins?\nP4, P1\n\n\n5\nA loop that remembers — simulating a falling ball.\nAdding drag — when the formula runs out.\nS1, S2, S3, A1\n\n\n6\n✓ Checkpoint 2, then Data in, data out — files, CSV, and plotting.\nPlot clinic — make one honest plot, catch one misleading one.\nF2, A2\n\n\nPhase 2 — Tools\n\n\n\n\n\n7\nPandas.\n(No class Thursday Oct 8.)\nP3, F2\n\n\n8\n✓ Checkpoint 3, then Fetch — APIs, JSON, and what to do when a request fails (try/except/raise).\nData acquisition lab — a live API.\nF1, F2, A3\n\n\n9\nBack to the model — revisiting the falling ball with real data in hand.\nModel meets measurement — phone drop vs. simulation.\nS1, S3, A3\n\n\n10\n✓ Checkpoint 4, then Simulate II — assumptions, trust, and what-ifs.\nModel critique.\nS2, S3, S4\n\n\nPhase 3 — Integration\n\n\n\n\n\n11\nYour second language — MATLAB, translation, and choosing tools.\nProject launch.\nP4, A4\n\n\n12\nProject studio — desk crits at tables.\nPin-up #1 — specs & verification plans on the wall.\nS2, A3, A4\n\n\n13\nProject studio — desk crits at tables.\nPin-up #2 — working artifacts, same-project pairing.\nP4, A2, A3\n\n\n14\nDefense prep — what it means to know your own project.\nMock defenses at tables.\n—\n\n\nFinals\nThe Defense — a written exam about your project: trace it, explain it, predict what breaks.\n\nthe grade modifier",
     "crumbs": [
       "Home",
       "Start Here",
@@ -744,87 +744,87 @@
     ]
   },
   {
-    "objectID": "activities/w04-design-sweep.html",
-    "href": "activities/w04-design-sweep.html",
-    "title": "Which design wins?",
+    "objectID": "activities/w05-drag-lab.html",
+    "href": "activities/w05-drag-lab.html",
+    "title": "Adding drag",
     "section": "",
-    "text": "Standards seeded: P4, P1, A1 · You’ll need: Colab",
+    "text": "Standards seeded: S1, S2, S3, A1 · You’ll need: Colab, Tuesday’s stepper\nTuesday we built a for loop to do some time stepping, applying it to a situation that we could solve theoretically. So… what was the point? Today we’re going to add some additional terms that make it so that there is no theoretical solution. But those additional terms make the calculations more accurate… so, as engineers, we want to include them!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
+      "Adding drag"
     ]
   },
   {
-    "objectID": "activities/w04-design-sweep.html#setting-up",
-    "href": "activities/w04-design-sweep.html#setting-up",
-    "title": "Which design wins?",
+    "objectID": "activities/w05-drag-lab.html#setting-up",
+    "href": "activities/w05-drag-lab.html#setting-up",
+    "title": "Adding drag",
     "section": "Setting up",
-    "text": "Setting up\nSame collection of wind data we’ve been working with, including a sensor glitch and an out-of-range gust. Then masked down to the hours the model is valid for.\n\n\n\n\n\n\nNote the one change from the reading: turbine_power renamed an input variable to v_best, the wind speed the turbine’s blades are tuned for. This variable is related to the turbine design — we’re going to “sweep” through values for it.",
+    "text": "Setting up\nFor anything bigger than a raindrop, the force of drag is proportional to the square of the speed. It is indeed a force, so it manifests through the acceleration term (\\(F=ma\\), right?):\n\\[\na = -g - \\frac{k}{m}\\,v\\,|v|\n\\]\nThe \\(v\\,|v|\\) looks strange, but it’s just \\(v^2\\) with the sign of \\(v\\) still present — drag always pushes against you, so when you’re falling (negative \\(v\\)) that term comes out positive.\nThe parameter \\(k\\) bundles together the air density, the object’s cross-sectional area, and how streamlined it is. We’ll go ahead and assume some values for three different items:\n\n\n\nobject\n\\(m\\) (kg)\n\\(k\\)\n\n\n\n\nballoon (25 cm)\n0.003\n0.01227\n\n\nsteel ball (2.5 cm)\n0.0642\n0.000123\n\n\nphone, falling flat\n0.19\n0.0063\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nBelow we’ll use a single variable called k_over_m. Let Python do the math for you: k_over_m=0.01227/0.003. Or even better: k_over_m=k_balloon/m_balloon.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
+      "Adding drag"
     ]
   },
   {
-    "objectID": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
-    "href": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
-    "title": "Which design wins?",
-    "section": "Round 1 — warm-up (about 10 minutes)",
-    "text": "Round 1 — warm-up (about 10 minutes)\nReproduce the reading’s diameter sweep, saving the answers. Loop over [80.0, 90.0, 100.0, 110.0, 120.0], append each day’s energy to a list, convert to an array, and report the winner with diameters[totals.argmax()].\nThen answer two questions at your table before you go on:\n\nThe 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)\nYou should see that the largest diameter wins. If we extended to a diameter of 130.0, would that be even better? 140.0 even better? Why, and what is the model missing/what does the problem statement not include?",
+    "objectID": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
+    "href": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
+    "title": "Adding drag",
+    "section": "Round 1 — add one line (about 10 minutes)",
+    "text": "Round 1 — add one line (about 10 minutes)\nSo everyone starts from the same place, here’s Tuesday’s loop with no drag, already wrapped in a function. It’s the same code as the reading, with the acceleration pulled out into its own line a (so there’s an obvious spot to change) and a k_over_m input that doesn’t do anything yet. Copy it into Colab and run it.\n\n\n\n\n\n\nA 10 m drop lands in 1.43 s at about −14 m/s. Now add drag according to the equation above. Don’t forget: your velocity array has an index.\nThen set k_over_m = 0 and run it. The results should be the same as if \\(a=-g\\).\n\n\n\n\n\n\nImportant\n\n\n\nWhat is round(t[y &lt;= 0][0], 3) doing?",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
+      "Adding drag"
     ]
   },
   {
-    "objectID": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
-    "href": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
-    "title": "Which design wins?",
-    "section": "Round 2 — the sweep (about 25 minutes)",
-    "text": "Round 2 — the sweep (about 25 minutes)\nSet the diameter at 100 m. Now sweep the design speed v_best from 6 to 16 m/s in steps of 1, and find the value that maximizes the day’s energy.\nBefore you run it, add a prediction to your notebook. The day’s average wind is 8.19 m/s. What is the best design_speed value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)\n\n\n\n\n\n\n\n\nIf you are using Colab, this cell is mostly the same as the previous one… you can ignore the repeated parts, but the new cell in your notebook should include design_speeds = ... and then the loop you write. np.arange is a better version of Python’s built-in range… print that line to confirm what it does.\nRun the sweep and report three things in a Colab cell:\n\nThe best design speed, extracted with argmax and an index. (Don’t just go through the printout.)\nHow much energy the best design makes versus the worst one. (Do this in the program, not by hand.)\nWhether your prediction was right. (It probably wasn’t!)\n\n\n\n\n\n\n\nImportant\n\n\n\nThe winner is not the average wind speed. Talk with your table for a few minutes to explain why. Hint: look at the equations.",
+    "objectID": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
+    "href": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
+    "title": "Adding drag",
+    "section": "Round 2 — same code, two different answers (about 25 minutes)",
+    "text": "Round 2 — same code, two different answers (about 25 minutes)\nRun your code with all three objects from the table, plus the no-drag case, all from 10 m. Get the four fall times and four impact speeds somewhere you can compare them side by side (e.g., create a text cell after your code and record the results, maybe even as a Markdown table).\nThree things to work out with your colleagues:\n\nThe balloon takes about 4.6× as long as the no-drag formula predicts. The steel ball takes 0.4% longer. Same code, same height, same air. What is it about the two objects that produces such wildly different verdicts? (Look at \\(k/m\\), and say what it means physically.)\nPlot v against t for the balloon. Describe the shape in words — then talk about why it happens. Look at the acceleration formula and ask what value of \\(v\\) makes \\(a = 0\\).\nCompare the balloon’s impact speed to the value of \\(v\\) you just found. Same number? Should they be?\n\n\n\n\n\n\n\nImportant\n\n\n\nOne of my favorite quotes: “All models are wrong, but some are useful.” (From the statistician George Box.)\nModels, by definition, are approximations of reality. We hopefully capture the relevant effects to make a good prediction, but we leave some details out — e.g., is it helpful to know the temperature of the object when determining its fall time? Where the surface imperfections are? Precisely how many nitrogen molecules are disturbed, and their speeds before and after? Probably not… even though they might affect the result in some (tiny) way.\nIgnoring air resistance is perfectly good engineering for the steel ball — being right to within 0.4% and avoiding the nonlinear term is an excellent trade. But, applied to the balloon, our prediction is wrong by a factor of four and a half.\nSo “is it okay to ignore air resistance?” has no general answer. “Is it okay to ignore air resistance for this object, over this distance, at the precision I need?” has an answer — and you can compute it instead of guessing!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
+      "Adding drag"
     ]
   },
   {
-    "objectID": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
-    "href": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
-    "title": "Which design wins?",
+    "objectID": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
+    "href": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
+    "title": "Adding drag",
     "section": "Round 3 — break it (about 15 minutes)",
-    "text": "Round 3 — break it (about 15 minutes)\nEveryone at your table pick one of the following, making sure at least one person does each one. Spend a few minutes on it, then talk about what happened with your table.\n(a) Resolution. You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you’d choose a step size if you didn’t already know the answer.\n(b) The mask. Rerun the whole sweep on the unmasked speeds array — glitch, gust, and all. Report the best design speed and the day’s energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you’d have caught it if you didn’t already know the data was dirty.\n(c) Parallel arrays. Deliberately break the thread: mask good but build your design_speeds array to a different length, or drop one entry from totals after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and “sometimes no” is the whole reason we’re talking about this.",
+    "text": "Round 3 — break it (about 15 minutes)\nOn Tuesday a smaller dt gave a better answer. Run the balloon from 10 m at dt = 0.01, 0.05, 0.1, 0.2, 0.3 and 0.5. For each, report both the landing time and the impact speed.\nThen, on paper:\n\nAt which dt does the answer stop being merely inaccurate and start being nonsense? How did you decide?\nOne of those runs reports a landing time that looks more believable than the correct answer, while its impact speed is absurd. Which one?\nPlot y against t for the worst case. Describe, physically, what your balloon does. Would you have caught that from the numbers alone?\n\n\n\n\n\n\n\nCaution\n\n\n\nYou may see nan appear — “not a number.” It means the arithmetic got to the poin that the computer cannot represent it anymore. That is not a Python bug, but does mean something went wrong with the calculation!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
+      "Adding drag"
     ]
   },
   {
-    "objectID": "activities/w04-design-sweep.html#deliverables",
-    "href": "activities/w04-design-sweep.html#deliverables",
-    "title": "Which design wins?",
+    "objectID": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
+    "href": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
+    "title": "Adding drag",
+    "section": "Round 4 — the potato leaves the building (about 20 minutes)",
+    "text": "Round 4 — the potato leaves the building (about 20 minutes)\nEverything so far has fallen straight down. Tuesday’s Challenge threw a ball forward and up. Let’s do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato jammed in one end and a burst of hot pressurized gas behind it. Launch speeds of 50–100 m/s are typical; we’ll use 75 m/s. (Nobody is allowed to build one, officially.)\nDrag in two directions needs one new idea. How hard the air pushes depends on how fast the potato is moving through the air, which is its total speed. Which way it pushes is straight backward along the path. Split that one push into a sideways piece and an upward piece and you get\n\\[\na_x = -\\frac{k}{m}\\,v_x\\,|V|, \\qquad a_y = -g - \\frac{k}{m}\\,v_y\\,|V|, \\qquad |V| = \\sqrt{v_x^2 + v_y^2}\n\\]\n\n\nThe tempting shortcut is \\(v_x|v_x|\\) in the first formula and \\(v_y|v_y|\\) in the second, but that is not correct!\nHere’s Tuesday’s two-direction throw with no drag, so everyone starts from the same place:\n\n\n\n\n\n\nOur potato is a 5 cm × 8 cm slug, about 0.17 kg, with \\(k/m = 0.00289\\).\n\nAdd drag, then turn it off. Put the two formulas into the loop. Then run it with k_over_m = 0 at 40° and compare to the no-drag range formula, \\(R = v_0^2 \\sin(2\\theta)/g\\).\nEstimate before you run. Right at launch, how big is the drag acceleration, \\(\\frac{k}{m} v_0^2\\), compared to \\(g\\)? Based on Round 2, should drag matter a little or a lot?\nSee the trajectory. Run the potato at 75 m/s and 40°, with and without drag, and plot both paths on the same axes: y against x, keeping only the points above ground. Add plt.gca().set_aspect(\"equal\") so that one meter up looks the same as one meter across.\nDescribe the difference. How much shorter is it? The no-drag path is symmetric: is the drag path? Where is its highest point, and how steeply does it come down compared to how it went up?\nCompare the landing speed to the launch speed, with and without drag. The no-drag potato lands at exactly its launch speed. Why does it have to? Then use what you found in Round 2 to work out the potato’s terminal velocity. Our launch speed is above it. What does that say about the first second of the flight?\n\nTuesday’s Challenge found that 45° throws farthest, when there’s no air. Drag just took about half our range at 40°. Is 45° still the best angle? Don’t answer that at your table. That’s HW 3.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#deliverables",
+    "href": "activities/w05-drag-lab.html#deliverables",
+    "title": "Adding drag",
     "section": "Deliverables",
-    "text": "Deliverables\nDeliverable (2 EC): your Round 2 code, your written prediction (it’s fine if it’s wrong!), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Some discussion of Round 3, i.e. what you learned. (Include your code for Round 3, even if broken, but you don’t need to include all three.)",
+    "text": "Deliverables\n(2 EC):\n\nRound 1: your drop function, and the k_over_m = 0 check with its output.\nRound 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.\nRound 3: your dt table with both columns, and your answer to question 2.\nRound 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs. &lt;!–\nYour phone prediction: both numbers and the percentage.\nSave your balloon run to a file and include the first five rows:\n\nnp.savetxt(\"balloon.csv\", np.column_stack([t, y, v]),\n           delimiter=\",\", header=\"t_s,y_m,v_ms\", comments=\"\")\nThat file is the first thing you’ve made that another program could read. We’ll pick it up on Tuesday. –&gt;",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html#solutions",
-    "href": "activities/w04-design-sweep.html#solutions",
-    "title": "Which design wins?",
-    "section": "Solutions",
-    "text": "Solutions\n\nRound 1\nTo scan through all the diameters, we take the given code and add a bit:\n\n\n\n\n\n\n\n\nRound 2\nSet the diameter at 100.0, then scan through values of v_best. Note that we are reproducing the functions here, for this web-based Python calculator, but in your Colab you don’t need to recreate the functions in each cell.\n\n\n\n\n\n\nWe see that the best value for design_speeds is not the average wind speed — this is because v_best is describing the most efficient situation for the turbine, not the most energy collected by the turbine. It is more efficient to get 40% of 1000, but 10% of 1,000,000 is more energy. (Numbers made up for dramatic effect!)\n\n\nRound 3\nBriefly:\n(a) Resolution. Choosing a smaller step size improves the resolution of the calculation, at the cost of taking a longer time to complete (often not a big deal — these calculations finish in seconds, maybe, not hours). Choosing a larger step size might mean you step over the correct value. (There are also concerns regarding stability that you will learn about in Computational Methods!)\n(b) The mask. Our energy equation has us cubing the velocity… cubing -999.0 gives us a very large negative number, but C_p also gives a negative number. So we land with something positive — no negative sign to warn us something is suspicious! We could catch this by doing an initial inspection on the data: speeds.max(), speeds.min() would give us the complete range of the data.\n(c) Parallel arrays. When plotting two arrays together, if the arrays are different lengths, you will get an error. But, e.g., looking at diameters[totals.argmax()], where for whatever reason totals is a different length than diameters… that’s trouble!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
+      "Adding drag"
     ]
   },
   {
@@ -909,6 +909,90 @@
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
       "Wind farm design"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html",
+    "href": "activities/w04-design-sweep.html",
+    "title": "Which design wins?",
+    "section": "",
+    "text": "Standards seeded: P4, P1, A1 · You’ll need: Colab",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#setting-up",
+    "href": "activities/w04-design-sweep.html#setting-up",
+    "title": "Which design wins?",
+    "section": "Setting up",
+    "text": "Setting up\nSame collection of wind data we’ve been working with, including a sensor glitch and an out-of-range gust. Then masked down to the hours the model is valid for.\n\n\n\n\n\n\nNote the one change from the reading: turbine_power renamed an input variable to v_best, the wind speed the turbine’s blades are tuned for. This variable is related to the turbine design — we’re going to “sweep” through values for it.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
+    "href": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
+    "title": "Which design wins?",
+    "section": "Round 1 — warm-up (about 10 minutes)",
+    "text": "Round 1 — warm-up (about 10 minutes)\nReproduce the reading’s diameter sweep, saving the answers. Loop over [80.0, 90.0, 100.0, 110.0, 120.0], append each day’s energy to a list, convert to an array, and report the winner with diameters[totals.argmax()].\nThen answer two questions at your table before you go on:\n\nThe 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)\nYou should see that the largest diameter wins. If we extended to a diameter of 130.0, would that be even better? 140.0 even better? Why, and what is the model missing/what does the problem statement not include?",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
+    "href": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
+    "title": "Which design wins?",
+    "section": "Round 2 — the sweep (about 25 minutes)",
+    "text": "Round 2 — the sweep (about 25 minutes)\nSet the diameter at 100 m. Now sweep the design speed v_best from 6 to 16 m/s in steps of 1, and find the value that maximizes the day’s energy.\nBefore you run it, add a prediction to your notebook. The day’s average wind is 8.19 m/s. What is the best design_speed value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)\n\n\n\n\n\n\n\n\nIf you are using Colab, this cell is mostly the same as the previous one… you can ignore the repeated parts, but the new cell in your notebook should include design_speeds = ... and then the loop you write. np.arange is a better version of Python’s built-in range… print that line to confirm what it does.\nRun the sweep and report three things in a Colab cell:\n\nThe best design speed, extracted with argmax and an index. (Don’t just go through the printout.)\nHow much energy the best design makes versus the worst one. (Do this in the program, not by hand.)\nWhether your prediction was right. (It probably wasn’t!)\n\n\n\n\n\n\n\nImportant\n\n\n\nThe winner is not the average wind speed. Talk with your table for a few minutes to explain why. Hint: look at the equations.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
+    "href": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
+    "title": "Which design wins?",
+    "section": "Round 3 — break it (about 15 minutes)",
+    "text": "Round 3 — break it (about 15 minutes)\nEveryone at your table pick one of the following, making sure at least one person does each one. Spend a few minutes on it, then talk about what happened with your table.\n(a) Resolution. You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you’d choose a step size if you didn’t already know the answer.\n(b) The mask. Rerun the whole sweep on the unmasked speeds array — glitch, gust, and all. Report the best design speed and the day’s energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you’d have caught it if you didn’t already know the data was dirty.\n(c) Parallel arrays. Deliberately break the thread: mask good but build your design_speeds array to a different length, or drop one entry from totals after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and “sometimes no” is the whole reason we’re talking about this.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#deliverables",
+    "href": "activities/w04-design-sweep.html#deliverables",
+    "title": "Which design wins?",
+    "section": "Deliverables",
+    "text": "Deliverables\nDeliverable (2 EC): your Round 2 code, your written prediction (it’s fine if it’s wrong!), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Some discussion of Round 3, i.e. what you learned. (Include your code for Round 3, even if broken, but you don’t need to include all three.)",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#solutions",
+    "href": "activities/w04-design-sweep.html#solutions",
+    "title": "Which design wins?",
+    "section": "Solutions",
+    "text": "Solutions\n\nRound 1\nTo scan through all the diameters, we take the given code and add a bit:\n\n\n\n\n\n\n\n\nRound 2\nSet the diameter at 100.0, then scan through values of v_best. Note that we are reproducing the functions here, for this web-based Python calculator, but in your Colab you don’t need to recreate the functions in each cell.\n\n\n\n\n\n\nWe see that the best value for design_speeds is not the average wind speed — this is because v_best is describing the most efficient situation for the turbine, not the most energy collected by the turbine. It is more efficient to get 40% of 1000, but 10% of 1,000,000 is more energy. (Numbers made up for dramatic effect!)\n\n\nRound 3\nBriefly:\n(a) Resolution. Choosing a smaller step size improves the resolution of the calculation, at the cost of taking a longer time to complete (often not a big deal — these calculations finish in seconds, maybe, not hours). Choosing a larger step size might mean you step over the correct value. (There are also concerns regarding stability that you will learn about in Computational Methods!)\n(b) The mask. Our energy equation has us cubing the velocity… cubing -999.0 gives us a very large negative number, but C_p also gives a negative number. So we land with something positive — no negative sign to warn us something is suspicious! We could catch this by doing an initial inspection on the data: speeds.max(), speeds.min() would give us the complete range of the data.\n(c) Parallel arrays. When plotting two arrays together, if the arrays are different lengths, you will get an error. But, e.g., looking at diameters[totals.argmax()], where for whatever reason totals is a different length than diameters… that’s trouble!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
     ]
   },
   {
