@@ -696,303 +696,87 @@
     ]
   },
   {
-    "objectID": "homework/hw1-grade-calculator.html",
-    "href": "homework/hw1-grade-calculator.html",
-    "title": "HW 1 · The grade calculator",
+    "objectID": "homework/hw2-solar-tilt.html",
+    "href": "homework/hw2-solar-tilt.html",
+    "title": "HW 2 · Which way should the panel point?",
     "section": "",
-    "text": "Note\n\n\n\nI will add an example solution (to a different problem) soon!",
+    "text": "You’re picking a location for a single solar panel on a roof in Boulder. The panel doesn’t track the sun — it gets bolted down once, at one tilt angle, and (hopefully) lasts for years in that position. So we had better pick the correct angle!\nYou will prepare a report in which you pick the best angle. More importantly, you’ll convince the reader that the number you picked is right.\nSee Submitting Homework for information on how to create the report. We are requiring a certain look this time.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 1 · The grade calculator"
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "homework/hw1-grade-calculator.html#scenario",
-    "href": "homework/hw1-grade-calculator.html#scenario",
-    "title": "HW 1 · The grade calculator",
-    "section": "Scenario",
-    "text": "Scenario\nBuild a program that tells a student their letter grade in this course.\nEverything the program needs to know is on the grading page — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.",
+    "objectID": "homework/hw2-solar-tilt.html#scenario",
+    "href": "homework/hw2-solar-tilt.html#scenario",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "",
+    "text": "You’re picking a location for a single solar panel on a roof in Boulder. The panel doesn’t track the sun — it gets bolted down once, at one tilt angle, and (hopefully) lasts for years in that position. So we had better pick the correct angle!\nYou will prepare a report in which you pick the best angle. More importantly, you’ll convince the reader that the number you picked is right.\nSee Submitting Homework for information on how to create the report. We are requiring a certain look this time.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 1 · The grade calculator"
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
-    "href": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
-    "title": "HW 1 · The grade calculator",
-    "section": "It’s trickier than it looks!",
-    "text": "It’s trickier than it looks!\nAs you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.",
+    "objectID": "homework/hw2-solar-tilt.html#the-model",
+    "href": "homework/hw2-solar-tilt.html#the-model",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "The model",
+    "text": "The model\nTechnically the panel orientation requires two angular measurements. Think about starting with it pointing upwards, and then tilting it until it faces due south (we adjusted one angular coordinate), and then rotating it around so that it faces east (we adjusted the second angular coordinate). We’ll simplify a bit and focus on just solar noon, eliminating the second angle from our worries.\nA tilted panel collects energy in proportion to how squarely it faces the sun. If the sunlight arrives at an angle \\(\\theta\\) away from straight-on, the panel collects a factor of \\(\\cos\\theta\\) less than it would if the sun were directly overhead of it. Let \\(\\alpha\\) be the sun’s elevation above the horizon and \\(\\beta\\) the panel’s tilt up from horizontal. The sun’s angle from straight-up (the zenith angle) is \\(90° - \\alpha\\), and the panel’s normal is tilted \\(\\beta\\) from straight-up, so\n\\[\n\\theta = \\left|\\,(90° - \\alpha) - \\beta\\,\\right|\n\\]\nand the power the panel produces is\n\\[\nP = G \\cdot A \\cdot \\eta \\cdot \\cos\\theta\n\\]\nwith \\(G\\) the incoming sunlight in W/m², \\(A = 1.6\\) m² the panel area, and \\(\\eta = 0.20\\) the conversion efficiency.\n\n\nThis model ignores diffuse light from the sky, reflections off the roof, the fact that panels get less efficient when hot, and everything that happens away from solar noon.\n\n\n\n\n\n\nTip\n\n\n\nTwo notes on using this in code. NumPy’s np.cos expects radians, not degrees, but np.radians(theta) will do the conversion for you. And np.abs gives you the absolute value elementwise on a whole array.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 1 · The grade calculator"
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
-    "objectID": "homework/hw1-grade-calculator.html#your-submission",
-    "href": "homework/hw1-grade-calculator.html#your-submission",
-    "title": "HW 1 · The grade calculator",
+    "objectID": "homework/hw2-solar-tilt.html#part-1-build-the-function-and-check-it-by-hand",
+    "href": "homework/hw2-solar-tilt.html#part-1-build-the-function-and-check-it-by-hand",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "Part 1 — Build the function and check it by hand",
+    "text": "Part 1 — Build the function and check it by hand\nWrite panel_power(tilt_deg, elevation_deg) returning watts, with G, A, and \\(\\eta\\) as arguments with sensible defaults. Write a docstring: what goes in, in what units, what comes out.\nThen verify it in isolation before you use it for anything (this is standard P1). On the equinox at Boulder, the sun’s noon elevation is \\(\\alpha = 50°\\). Compute \\(P\\) by hand for a tilt of \\(0°\\) and for a tilt of \\(40°\\) — write down the arithmetic, not just the answers — and confirm the function agrees. If it doesn’t, the function is wrong!\n\n\n\n\n\n\nTip\n\n\n\nOne of those two hand cases is arithmetically trivial. That’s a good strategy: pick inputs whose answer you can get without a calculator. You’ll be more inclined to verify the easy cases, and less inclined to make mistakes!",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 2 · Which way should the panel point?"
+    ]
+  },
+  {
+    "objectID": "homework/hw2-solar-tilt.html#part-2-sweep-the-tilt",
+    "href": "homework/hw2-solar-tilt.html#part-2-sweep-the-tilt",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "Part 2 — Sweep the tilt",
+    "text": "Part 2 — Sweep the tilt\nBuild a NumPy array of tilt angles from \\(0°\\) to \\(90°\\), evaluate panel_power on the whole array in one line, and find the best tilt using argmax. Plot power against tilt, with axis labels and units. There is basically no cost to doing a lot of points here: you could calculate at every degree… 91 points is not that many.\nThen the sanity check:\n\n\n\n\n\n\nImportant\n\n\n\nThere’s a rule of thumb that a fixed panel should be tilted at roughly the site’s latitude. Boulder is at 40°N. Does your sweep agree?\nIf it does — say so explicitly, and explain in a sentence or two why the model produces that result, using the geometry above. “It matched” is not the finding; being able to say why it had to match is. (Hint: look at the equation.)\nIf it doesn’t, you have a bug, and the two usual suspects are degrees-versus-radians and a sign error in \\(\\theta\\). Find it.\n\n\nTwo follow-ups, one calculation each:\n\nWinter solstice drops the noon sun to \\(\\alpha = 26.5°\\); summer solstice raises it to \\(73.5°\\). Rerun the sweep for each. Do the best tilts make physical sense to you? Which of the three best tilts would you pick, if you had to pick one?\nExtend your tilt array past \\(90°\\), out to \\(180°\\) — a panel tipped over past vertical until it’s face-down. What does the function report, and is it physically possible? Say what the function should do there and why it doesn’t.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 2 · Which way should the panel point?"
+    ]
+  },
+  {
+    "objectID": "homework/hw2-solar-tilt.html#part-3-a-real-day",
+    "href": "homework/hw2-solar-tilt.html#part-3-a-real-day",
+    "title": "HW 2 · Which way should the panel point?",
+    "section": "Part 3 — A real day",
+    "text": "Part 3 — A real day\nHere are eleven hourly readings from an equinox day in Boulder: the sun’s elevation, and a measurement of the incoming sunlight.\nimport numpy as np\n\nhour       = np.array([7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17])\nelevation  = np.array([11.4, 22.5, 32.8, 41.6, 47.7, 50.0, 47.7, 41.6, 32.8, 22.5, 11.4])\nirradiance = np.array([480., 690., 820., 890., 930., -999., 1800., 870., 760., 610., 390.])\nSet your panel at the best tilt from Part 2 and compute the day’s energy. Because the readings are an hour apart, each power in watts stands for one watt-hour, so the sum of the powers is the day’s energy in watt-hours.\nDo it twice. First, naively — feed the arrays straight in and report the total. Then, honestly — inspect the data first, mask out what shouldn’t be there, and report the total again along with how many readings you dropped and which hours they were.\nSome things to notice and write about:\n\nTwo of those readings are bad, explain why. (Hint: sunlight at the top of the atmosphere is about 1361 W/m², and the atmosphere takes a bite out of that.)\nCompare your two totals. The naive one is not absurd — it won’t be off by a factor of a trillion. Explain how two bad readings conspired to produce a plausible wrong answer.\nWhen you mask irradiance, what has to happen to elevation? Check that your two arrays are still the same length after masking and say how you checked.\nFinally: your honest total covers nine hours, not eleven. Report it that way. Estimate what the two missing hours were probably worth and say how you estimated.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 2 · Which way should the panel point?"
+    ]
+  },
+  {
+    "objectID": "homework/hw2-solar-tilt.html#your-submission",
+    "href": "homework/hw2-solar-tilt.html#your-submission",
+    "title": "HW 2 · Which way should the panel point?",
     "section": "Your submission",
-    "text": "Your submission\nStep 1 — Specify & prompt. Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…\n… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a print of the result.\nStep 2 — Annotate the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.\nStep 3 — Verify. Hand-compute your predictions before you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.\nStep 4 — Report. One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.",
+    "text": "Your submission\nThe same four steps.\nStep 1 — Specify & prompt. What the program takes in, in what units, what it produces. What counts as a valid tilt, a valid elevation, a valid irradiance reading — and what your program does with a value outside those ranges. You don’t have the tools to enforce those rules yet (that’s next week); you do have to decide them now and write them down. Then your actual LLM prompt, and the model and date.\nStep 2 — Annotate. The returned code, with your comments on it. Say which line does the degrees-to-radians conversion and how you confirmed it’s there. If the AI made a decision you never specified — a default you didn’t ask for, an ordering, setting a min/max angle — talk about it.\nStep 3 — Verify. Your Part 1 hand check with the arithmetic shown. Your latitude sanity check with its explanation. Your two Part 3 totals with the discrepancy explained.\nStep 4 — Report. The recommended tilt for a fixed Boulder panel, the plot, the day’s energy with its stated gap, and one paragraph on which of your checks you’d have been most embarrassed to skip.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 1 · The grade calculator"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html",
-    "href": "activities/w05-drag-lab.html",
-    "title": "Adding drag",
-    "section": "",
-    "text": "Standards seeded: S1, S2, S3, A1 · You’ll need: Colab, Tuesday’s stepper\nTuesday we built a for loop to do some time stepping, applying it to a situation that we could solve theoretically. So… what was the point? Today we’re going to add some additional terms that make it so that there is no theoretical solution. But those additional terms make the calculations more accurate… so, as engineers, we want to include them!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html#setting-up",
-    "href": "activities/w05-drag-lab.html#setting-up",
-    "title": "Adding drag",
-    "section": "Setting up",
-    "text": "Setting up\nFor anything bigger than a raindrop, the force of drag is proportional to the square of the speed. It is indeed a force, so it manifests through the acceleration term (\\(F=ma\\), right?):\n\\[\na = -g - \\frac{k}{m}\\,v\\,|v|\n\\]\nThe \\(v\\,|v|\\) looks strange, but it’s just \\(v^2\\) with the sign of \\(v\\) still present — drag always pushes against you, so when you’re falling (negative \\(v\\)) that term comes out positive.\nThe parameter \\(k\\) bundles together the air density, the object’s cross-sectional area, and how streamlined it is. We’ll go ahead and assume some values for three different items:\n\n\n\nobject\n\\(m\\) (kg)\n\\(k\\)\n\n\n\n\nballoon (25 cm)\n0.003\n0.01227\n\n\nsteel ball (2.5 cm)\n0.0642\n0.000123\n\n\nphone, falling flat\n0.19\n0.0063\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nBelow we’ll use a single variable called k_over_m. Let Python do the math for you: k_over_m=0.01227/0.003. Or even better: k_over_m=k_balloon/m_balloon.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
-    "href": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
-    "title": "Adding drag",
-    "section": "Round 1 — add one line (about 10 minutes)",
-    "text": "Round 1 — add one line (about 10 minutes)\nSo everyone starts from the same place, here’s Tuesday’s loop with no drag, already wrapped in a function. It’s the same code as the reading, with the acceleration pulled out into its own line a (so there’s an obvious spot to change) and a k_over_m input that doesn’t do anything yet. Copy it into Colab and run it.\n\n\n\n\n\n\nA 10 m drop lands in 1.43 s at about −14 m/s. Now add drag according to the equation above. Don’t forget: your velocity array has an index.\nThen set k_over_m = 0 and run it. The results should be the same as if \\(a=-g\\).\n\n\n\n\n\n\nImportant\n\n\n\nWhat is round(t[y &lt;= 0][0], 3) doing?",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
-    "href": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
-    "title": "Adding drag",
-    "section": "Round 2 — same code, two different answers (about 25 minutes)",
-    "text": "Round 2 — same code, two different answers (about 25 minutes)\nRun your code with all three objects from the table, plus the no-drag case, all from 10 m. Get the four fall times and four impact speeds somewhere you can compare them side by side (e.g., create a text cell after your code and record the results, maybe even as a Markdown table).\nThree things to work out with your colleagues:\n\nThe balloon takes about 4.6× as long as the no-drag formula predicts. The steel ball takes 0.4% longer. Same code, same height, same air. What is it about the two objects that produces such wildly different verdicts? (Look at \\(k/m\\), and say what it means physically.)\nPlot v against t for the balloon. Describe the shape in words — then talk about why it happens. Look at the acceleration formula and ask what value of \\(v\\) makes \\(a = 0\\).\nCompare the balloon’s impact speed to the value of \\(v\\) you just found. Same number? Should they be?\n\n\n\n\n\n\n\nImportant\n\n\n\nOne of my favorite quotes: “All models are wrong, but some are useful.” (From the statistician George Box.)\nModels, by definition, are approximations of reality. We hopefully capture the relevant effects to make a good prediction, but we leave some details out — e.g., is it helpful to know the temperature of the object when determining its fall time? Where the surface imperfections are? Precisely how many nitrogen molecules are disturbed, and their speeds before and after? Probably not… even though they might affect the result in some (tiny) way.\nIgnoring air resistance is perfectly good engineering for the steel ball — being right to within 0.4% and avoiding the nonlinear term is an excellent trade. But, applied to the balloon, our prediction is wrong by a factor of four and a half.\nSo “is it okay to ignore air resistance?” has no general answer. “Is it okay to ignore air resistance for this object, over this distance, at the precision I need?” has an answer — and you can compute it instead of guessing!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
-    "href": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
-    "title": "Adding drag",
-    "section": "Round 3 — break it (about 15 minutes)",
-    "text": "Round 3 — break it (about 15 minutes)\nOn Tuesday a smaller dt gave a better answer. Run the balloon from 10 m at dt = 0.01, 0.05, 0.1, 0.2, 0.3 and 0.5. For each, report both the landing time and the impact speed.\nThen, on paper:\n\nAt which dt does the answer stop being merely inaccurate and start being nonsense? How did you decide?\nOne of those runs reports a landing time that looks more believable than the correct answer, while its impact speed is absurd. Which one?\nPlot y against t for the worst case. Describe, physically, what your balloon does. Would you have caught that from the numbers alone?\n\n\n\n\n\n\n\nCaution\n\n\n\nYou may see nan appear — “not a number.” It means the arithmetic got to the poin that the computer cannot represent it anymore. That is not a Python bug, but does mean something went wrong with the calculation!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
-    "href": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
-    "title": "Adding drag",
-    "section": "Round 4 — the potato leaves the building (about 20 minutes)",
-    "text": "Round 4 — the potato leaves the building (about 20 minutes)\nEverything so far has fallen straight down. Tuesday’s Challenge threw a ball forward and up. Let’s do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato jammed in one end and a burst of hot pressurized gas behind it. Launch speeds of 50–100 m/s are typical; we’ll use 75 m/s. (Nobody is allowed to build one, officially.)\nDrag in two directions needs one new idea. How hard the air pushes depends on how fast the potato is moving through the air, which is its total speed. Which way it pushes is straight backward along the path. Split that one push into a sideways piece and an upward piece and you get\n\\[\na_x = -\\frac{k}{m}\\,v_x\\,|V|, \\qquad a_y = -g - \\frac{k}{m}\\,v_y\\,|V|, \\qquad |V| = \\sqrt{v_x^2 + v_y^2}\n\\]\n\n\nThe tempting shortcut is \\(v_x|v_x|\\) in the first formula and \\(v_y|v_y|\\) in the second, but that is not correct!\nHere’s Tuesday’s two-direction throw with no drag, so everyone starts from the same place:\n\n\n\n\n\n\nOur potato is a 5 cm × 8 cm slug, about 0.17 kg, with \\(k/m = 0.00289\\).\n\nAdd drag, then turn it off. Put the two formulas into the loop. Then run it with k_over_m = 0 at 40° and compare to the no-drag range formula, \\(R = v_0^2 \\sin(2\\theta)/g\\).\nEstimate before you run. Right at launch, how big is the drag acceleration, \\(\\frac{k}{m} v_0^2\\), compared to \\(g\\)? Based on Round 2, should drag matter a little or a lot?\nSee the trajectory. Run the potato at 75 m/s and 40°, with and without drag, and plot both paths on the same axes: y against x, keeping only the points above ground. Add plt.gca().set_aspect(\"equal\") so that one meter up looks the same as one meter across.\nDescribe the difference. How much shorter is it? The no-drag path is symmetric: is the drag path? Where is its highest point, and how steeply does it come down compared to how it went up?\nCompare the landing speed to the launch speed, with and without drag. The no-drag potato lands at exactly its launch speed. Why does it have to? Then use what you found in Round 2 to work out the potato’s terminal velocity. Our launch speed is above it. What does that say about the first second of the flight?\n\nTuesday’s Challenge found that 45° throws farthest, when there’s no air. Drag just took about half our range at 40°. Is 45° still the best angle? Don’t answer that at your table. That’s HW 3.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html#deliverables",
-    "href": "activities/w05-drag-lab.html#deliverables",
-    "title": "Adding drag",
-    "section": "Deliverables",
-    "text": "Deliverables\n(2 EC):\n\nRound 1: your drop function, and the k_over_m = 0 check with its output.\nRound 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.\nRound 3: your dt table with both columns, and your answer to question 2.\nRound 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html",
-    "href": "activities/w03-function-forge.html",
-    "title": "Wind farm design",
-    "section": "",
-    "text": "Standards seeded: P1, A1, A4 · You’ll need: a laptop with Colab open, and a phone or paper for the hand-checks.\nToday we build three functions that hand results to one another, and then spend some time deciding whether to trust what they say.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#the-problem",
-    "href": "activities/w03-function-forge.html#the-problem",
-    "title": "Wind farm design",
-    "section": "The problem",
-    "text": "The problem\nYour firm is scoping a wind turbine for the eastern plains outside Denver. You need a tool that answers: for a given rotor diameter and a given wind speed, how much power comes out?\nThe swept area. The blades sweep a circle, and only the wind passing through that circle is available to you. From the rotor diameter \\(D\\):\n\\[\nA = \\frac{\\pi D^2}{4}\n\\]\nThe power in the wind, and the share you capture. Moving air has kinetic energy, and the faster it moves the more it carries — dramatically more, because velocity shows up cubed:\n\\[\nP = \\tfrac{1}{2}\\,\\rho\\,A\\,v^3\\,C_p\n\\]\nwhere \\(\\rho\\) is air density and \\(C_p\\) is the fraction of the wind’s energy the turbine actually captures. Take \\(\\rho = 1.0\\) kg/m³ for Denver’s thin air as the default value.\nThe efficiency, which is not a constant. Blades are shaped to capture the wind best at one particular speed — too slow and there is no aerodynamic lift; too fast and they stall and spill. So \\(C_p\\) peaks at a design speed and falls off on either side:\n\\[\nC_p(v) = C_{p,\\text{max}}\\left[1 - \\left(\\frac{v - v_{\\text{best}}}{w}\\right)^2\\right]\n\\]\nwith \\(C_{p,\\text{max}} = 0.45\\), \\(v_{\\text{best}} = 11\\) m/s, and \\(w = 8\\) m/s.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-0",
-    "href": "activities/w03-function-forge.html#round-0",
-    "title": "Wind farm design",
-    "section": "Round 0",
-    "text": "Round 0\nAn LLM was asked for the power function and handed back a number: for a 100 m rotor in a 10 m/s wind, 52 kilowatts.\nDo you believe it? Discuss with your group",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-1-three-specs",
-    "href": "activities/w03-function-forge.html#round-1-three-specs",
-    "title": "Wind farm design",
-    "section": "Round 1 — three specs",
-    "text": "Round 1 — three specs\nEveryone create a new Colab. Make your first cell a “text” cell, and write specifications for the three functions. Decide what the required inputs, optional inputs, and outputs are of each function, and pay attention to the units. You may not agree with your neighbor, but you may both be reasonable.\nMake your second cell a text cell as well, and do a hand-check of the \\(D = 100\\) m case.\nThe area function you check with a calculator.\nThe efficiency function you can check against a physical bound. No turbine can capture more than about 59% of the wind’s energy. Any \\(C_p\\) your function returns above 0.59 is wrong. You can calculate it too: what should it give at \\(v = 11\\) m/s?\nThe power function you check against common sense after plugging-in reasonable values. Real 100 m turbines produce 2–3 MW… it’s understandable if you didn’t know that number today (I didn’t until I wrote this), but with time/experience in engineering you’ll start to have intuition about numbers. Clearly 52 kW is low, and should set off alarm bells!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
-    "href": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
-    "title": "Wind farm design",
-    "section": "Round 2 — write and audit the functions",
-    "text": "Round 2 — write and audit the functions\nNow prompt for the code (or write it from scratch… good practice). One function at a time or all three at once — your call, and maybe your group tries both ways and you talk about how it went.\nThen annotate what comes back: for each function, write one line in your own words describing what it does. Include this as a docstring.\n\nThree functions?\nMy intention is for you to create three functions. The area one is pretty simple, but the other two contain separate physics and are worth keeping separate. The efficiency function varies between blade designs, and so having that as its own function that is called by the power function is better practice.\nSo: do you have three functions, or did you/the LLM combine them in some way? Add a comment in your code about this.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-3-testing",
-    "href": "activities/w03-function-forge.html#round-3-testing",
-    "title": "Wind farm design",
-    "section": "Round 3 — testing",
-    "text": "Round 3 — testing\nRun your hand-check case. If you get agreement, that is a good step towards verification. If not, track down the error — was it you, or the code?\nOnce your chain is verified, run it twice more: \\(v = 11\\) m/s, then \\(v = 15\\) m/s.\nAt 15 m/s the turbine is much less efficient — about 0.34 against the peak 0.45… but you should see it makes more power. There’s more energy in a faster wind, and it is worth wasting energy to extract more of it.\nSo the most efficient operating point isn’t the most productive one. Where exactly is the best wind speed? Run your code a few times to try to find it, but it is tedious… we’ll talk about strategies for optimizing this soon!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
-    "href": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
-    "title": "Wind farm design",
-    "section": "Deliverable — 2 EC, per person",
-    "text": "Deliverable — 2 EC, per person\nSubmitted individually this week, not per table. Export a pdf from Colab\n\nYour three specs, as written before you prompted.\nThe prompt you used, plus the model and roughly when you ran it.\nYour annotated code.\nYour hand-check and discussion.\nDiscussion of if there were three functions.\nOne sentence (add as a text cell at the bottom): something interesting that someone else included in their spec that you left out.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html",
-    "href": "activities/w04-design-sweep.html",
-    "title": "Which design wins?",
-    "section": "",
-    "text": "Standards seeded: P4, P1, A1 · You’ll need: Colab",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html#setting-up",
-    "href": "activities/w04-design-sweep.html#setting-up",
-    "title": "Which design wins?",
-    "section": "Setting up",
-    "text": "Setting up\nSame collection of wind data we’ve been working with, including a sensor glitch and an out-of-range gust. Then masked down to the hours the model is valid for.\n\n\n\n\n\n\nNote the one change from the reading: turbine_power renamed an input variable to v_best, the wind speed the turbine’s blades are tuned for. This variable is related to the turbine design — we’re going to “sweep” through values for it.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
-    "href": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
-    "title": "Which design wins?",
-    "section": "Round 1 — warm-up (about 10 minutes)",
-    "text": "Round 1 — warm-up (about 10 minutes)\nReproduce the reading’s diameter sweep, saving the answers. Loop over [80.0, 90.0, 100.0, 110.0, 120.0], append each day’s energy to a list, convert to an array, and report the winner with diameters[totals.argmax()].\nThen answer two questions at your table before you go on:\n\nThe 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)\nYou should see that the largest diameter wins. If we extended to a diameter of 130.0, would that be even better? 140.0 even better? Why, and what is the model missing/what does the problem statement not include?",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
-    "href": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
-    "title": "Which design wins?",
-    "section": "Round 2 — the sweep (about 25 minutes)",
-    "text": "Round 2 — the sweep (about 25 minutes)\nSet the diameter at 100 m. Now sweep the design speed v_best from 6 to 16 m/s in steps of 1, and find the value that maximizes the day’s energy.\nBefore you run it, add a prediction to your notebook. The day’s average wind is 8.19 m/s. What is the best design_speed value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)\n\n\n\n\n\n\n\n\nIf you are using Colab, this cell is mostly the same as the previous one… you can ignore the repeated parts, but the new cell in your notebook should include design_speeds = ... and then the loop you write. np.arange is a better version of Python’s built-in range… print that line to confirm what it does.\nRun the sweep and report three things in a Colab cell:\n\nThe best design speed, extracted with argmax and an index. (Don’t just go through the printout.)\nHow much energy the best design makes versus the worst one. (Do this in the program, not by hand.)\nWhether your prediction was right. (It probably wasn’t!)\n\n\n\n\n\n\n\nImportant\n\n\n\nThe winner is not the average wind speed. Talk with your table for a few minutes to explain why. Hint: look at the equations.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
-    "href": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
-    "title": "Which design wins?",
-    "section": "Round 3 — break it (about 15 minutes)",
-    "text": "Round 3 — break it (about 15 minutes)\nEveryone at your table pick one of the following, making sure at least one person does each one. Spend a few minutes on it, then talk about what happened with your table.\n(a) Resolution. You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you’d choose a step size if you didn’t already know the answer.\n(b) The mask. Rerun the whole sweep on the unmasked speeds array — glitch, gust, and all. Report the best design speed and the day’s energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you’d have caught it if you didn’t already know the data was dirty.\n(c) Parallel arrays. Deliberately break the thread: mask good but build your design_speeds array to a different length, or drop one entry from totals after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and “sometimes no” is the whole reason we’re talking about this.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html#deliverables",
-    "href": "activities/w04-design-sweep.html#deliverables",
-    "title": "Which design wins?",
-    "section": "Deliverables",
-    "text": "Deliverables\nDeliverable (2 EC): your Round 2 code, your written prediction (it’s fine if it’s wrong!), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Some discussion of Round 3, i.e. what you learned. (Include your code for Round 3, even if broken, but you don’t need to include all three.)",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
-    ]
-  },
-  {
-    "objectID": "activities/w04-design-sweep.html#solutions",
-    "href": "activities/w04-design-sweep.html#solutions",
-    "title": "Which design wins?",
-    "section": "Solutions",
-    "text": "Solutions\n\nRound 1\nTo scan through all the diameters, we take the given code and add a bit:\n\n\n\n\n\n\n\n\nRound 2\nSet the diameter at 100.0, then scan through values of v_best. Note that we are reproducing the functions here, for this web-based Python calculator, but in your Colab you don’t need to recreate the functions in each cell.\n\n\n\n\n\n\nWe see that the best value for design_speeds is not the average wind speed — this is because v_best is describing the most efficient situation for the turbine, not the most energy collected by the turbine. It is more efficient to get 40% of 1000, but 10% of 1,000,000 is more energy. (Numbers made up for dramatic effect!)\n\n\nRound 3\nBriefly:\n(a) Resolution. Choosing a smaller step size improves the resolution of the calculation, at the cost of taking a longer time to complete (often not a big deal — these calculations finish in seconds, maybe, not hours). Choosing a larger step size might mean you step over the correct value. (There are also concerns regarding stability that you will learn about in Computational Methods!)\n(b) The mask. Our energy equation has us cubing the velocity… cubing -999.0 gives us a very large negative number, but C_p also gives a negative number. So we land with something positive — no negative sign to warn us something is suspicious! We could catch this by doing an initial inspection on the data: speeds.max(), speeds.min() would give us the complete range of the data.\n(c) Parallel arrays. When plotting two arrays together, if the arrays are different lengths, you will get an error. But, e.g., looking at diameters[totals.argmax()], where for whatever reason totals is a different length than diameters… that’s trouble!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Which design wins?"
+      "HW 2 · Which way should the panel point?"
     ]
   },
   {
@@ -1080,87 +864,399 @@
     ]
   },
   {
-    "objectID": "homework/hw2-solar-tilt.html",
-    "href": "homework/hw2-solar-tilt.html",
-    "title": "HW 2 · Which way should the panel point?",
+    "objectID": "activities/w04-design-sweep.html",
+    "href": "activities/w04-design-sweep.html",
+    "title": "Which design wins?",
     "section": "",
-    "text": "You’re picking a location for a single solar panel on a roof in Boulder. The panel doesn’t track the sun — it gets bolted down once, at one tilt angle, and (hopefully) lasts for years in that position. So we had better pick the correct angle!\nYou will prepare a report in which you pick the best angle. More importantly, you’ll convince the reader that the number you picked is right.\nSee Submitting Homework for information on how to create the report. We are requiring a certain look this time.",
+    "text": "Standards seeded: P4, P1, A1 · You’ll need: Colab",
     "crumbs": [
       "Home",
-      "Homework",
-      "HW 2 · Which way should the panel point?"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
     ]
   },
   {
-    "objectID": "homework/hw2-solar-tilt.html#scenario",
-    "href": "homework/hw2-solar-tilt.html#scenario",
-    "title": "HW 2 · Which way should the panel point?",
+    "objectID": "activities/w04-design-sweep.html#setting-up",
+    "href": "activities/w04-design-sweep.html#setting-up",
+    "title": "Which design wins?",
+    "section": "Setting up",
+    "text": "Setting up\nSame collection of wind data we’ve been working with, including a sensor glitch and an out-of-range gust. Then masked down to the hours the model is valid for.\n\n\n\n\n\n\nNote the one change from the reading: turbine_power renamed an input variable to v_best, the wind speed the turbine’s blades are tuned for. This variable is related to the turbine design — we’re going to “sweep” through values for it.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
+    "href": "activities/w04-design-sweep.html#round-1-warm-up-about-10-minutes",
+    "title": "Which design wins?",
+    "section": "Round 1 — warm-up (about 10 minutes)",
+    "text": "Round 1 — warm-up (about 10 minutes)\nReproduce the reading’s diameter sweep, saving the answers. Loop over [80.0, 90.0, 100.0, 110.0, 120.0], append each day’s energy to a list, convert to an array, and report the winner with diameters[totals.argmax()].\nThen answer two questions at your table before you go on:\n\nThe 120 m rotor beats the 80 m rotor by a factor of 2.25. Where does 2.25 come from? (Hint: look at the equations.)\nYou should see that the largest diameter wins. If we extended to a diameter of 130.0, would that be even better? 140.0 even better? Why, and what is the model missing/what does the problem statement not include?",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
+    "href": "activities/w04-design-sweep.html#round-2-the-sweep-about-25-minutes",
+    "title": "Which design wins?",
+    "section": "Round 2 — the sweep (about 25 minutes)",
+    "text": "Round 2 — the sweep (about 25 minutes)\nSet the diameter at 100 m. Now sweep the design speed v_best from 6 to 16 m/s in steps of 1, and find the value that maximizes the day’s energy.\nBefore you run it, add a prediction to your notebook. The day’s average wind is 8.19 m/s. What is the best design_speed value? (Don’t worry if you guess wrong, leave your guess unchanged! It was a guess!)\n\n\n\n\n\n\n\n\nIf you are using Colab, this cell is mostly the same as the previous one… you can ignore the repeated parts, but the new cell in your notebook should include design_speeds = ... and then the loop you write. np.arange is a better version of Python’s built-in range… print that line to confirm what it does.\nRun the sweep and report three things in a Colab cell:\n\nThe best design speed, extracted with argmax and an index. (Don’t just go through the printout.)\nHow much energy the best design makes versus the worst one. (Do this in the program, not by hand.)\nWhether your prediction was right. (It probably wasn’t!)\n\n\n\n\n\n\n\nImportant\n\n\n\nThe winner is not the average wind speed. Talk with your table for a few minutes to explain why. Hint: look at the equations.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
+    "href": "activities/w04-design-sweep.html#round-3-break-it-about-15-minutes",
+    "title": "Which design wins?",
+    "section": "Round 3 — break it (about 15 minutes)",
+    "text": "Round 3 — break it (about 15 minutes)\nEveryone at your table pick one of the following, making sure at least one person does each one. Spend a few minutes on it, then talk about what happened with your table.\n(a) Resolution. You swept in steps of 1 m/s. Redo it in steps of 0.1. Does the answer move? Now do it in steps of 5. Does the sweep still find the maximum, or does it step straight over it? Write one sentence on how you’d choose a step size if you didn’t already know the answer.\n(b) The mask. Rerun the whole sweep on the unmasked speeds array — glitch, gust, and all. Report the best design speed and the day’s energy. Both numbers are garbage; say precisely which bad reading did which damage, and how you’d have caught it if you didn’t already know the data was dirty.\n(c) Parallel arrays. Deliberately break the thread: mask good but build your design_speeds array to a different length, or drop one entry from totals after the loop. Find out what Python does. Does it error? Sometimes yes, sometimes no — and “sometimes no” is the whole reason we’re talking about this.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#deliverables",
+    "href": "activities/w04-design-sweep.html#deliverables",
+    "title": "Which design wins?",
+    "section": "Deliverables",
+    "text": "Deliverables\nDeliverable (2 EC): your Round 2 code, your written prediction (it’s fine if it’s wrong!), the best design speed with the index arithmetic that produced it, and a short paragraph explaining the gap between your prediction and the answer. Some discussion of Round 3, i.e. what you learned. (Include your code for Round 3, even if broken, but you don’t need to include all three.)",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w04-design-sweep.html#solutions",
+    "href": "activities/w04-design-sweep.html#solutions",
+    "title": "Which design wins?",
+    "section": "Solutions",
+    "text": "Solutions\n\nRound 1\nTo scan through all the diameters, we take the given code and add a bit:\n\n\n\n\n\n\n\n\nRound 2\nSet the diameter at 100.0, then scan through values of v_best. Note that we are reproducing the functions here, for this web-based Python calculator, but in your Colab you don’t need to recreate the functions in each cell.\n\n\n\n\n\n\nWe see that the best value for design_speeds is not the average wind speed — this is because v_best is describing the most efficient situation for the turbine, not the most energy collected by the turbine. It is more efficient to get 40% of 1000, but 10% of 1,000,000 is more energy. (Numbers made up for dramatic effect!)\n\n\nRound 3\nBriefly:\n(a) Resolution. Choosing a smaller step size improves the resolution of the calculation, at the cost of taking a longer time to complete (often not a big deal — these calculations finish in seconds, maybe, not hours). Choosing a larger step size might mean you step over the correct value. (There are also concerns regarding stability that you will learn about in Computational Methods!)\n(b) The mask. Our energy equation has us cubing the velocity… cubing -999.0 gives us a very large negative number, but C_p also gives a negative number. So we land with something positive — no negative sign to warn us something is suspicious! We could catch this by doing an initial inspection on the data: speeds.max(), speeds.min() would give us the complete range of the data.\n(c) Parallel arrays. When plotting two arrays together, if the arrays are different lengths, you will get an error. But, e.g., looking at diameters[totals.argmax()], where for whatever reason totals is a different length than diameters… that’s trouble!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Which design wins?"
+    ]
+  },
+  {
+    "objectID": "activities/w03-function-forge.html",
+    "href": "activities/w03-function-forge.html",
+    "title": "Wind farm design",
     "section": "",
-    "text": "You’re picking a location for a single solar panel on a roof in Boulder. The panel doesn’t track the sun — it gets bolted down once, at one tilt angle, and (hopefully) lasts for years in that position. So we had better pick the correct angle!\nYou will prepare a report in which you pick the best angle. More importantly, you’ll convince the reader that the number you picked is right.\nSee Submitting Homework for information on how to create the report. We are requiring a certain look this time.",
+    "text": "Standards seeded: P1, A1, A4 · You’ll need: a laptop with Colab open, and a phone or paper for the hand-checks.\nToday we build three functions that hand results to one another, and then spend some time deciding whether to trust what they say.",
     "crumbs": [
       "Home",
-      "Homework",
-      "HW 2 · Which way should the panel point?"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "homework/hw2-solar-tilt.html#the-model",
-    "href": "homework/hw2-solar-tilt.html#the-model",
-    "title": "HW 2 · Which way should the panel point?",
-    "section": "The model",
-    "text": "The model\nTechnically the panel orientation requires two angular measurements. Think about starting with it pointing upwards, and then tilting it until it faces due south (we adjusted one angular coordinate), and then rotating it around so that it faces east (we adjusted the second angular coordinate). We’ll simplify a bit and focus on just solar noon, eliminating the second angle from our worries.\nA tilted panel collects energy in proportion to how squarely it faces the sun. If the sunlight arrives at an angle \\(\\theta\\) away from straight-on, the panel collects a factor of \\(\\cos\\theta\\) less than it would if the sun were directly overhead of it. Let \\(\\alpha\\) be the sun’s elevation above the horizon and \\(\\beta\\) the panel’s tilt up from horizontal. The sun’s angle from straight-up (the zenith angle) is \\(90° - \\alpha\\), and the panel’s normal is tilted \\(\\beta\\) from straight-up, so\n\\[\n\\theta = \\left|\\,(90° - \\alpha) - \\beta\\,\\right|\n\\]\nand the power the panel produces is\n\\[\nP = G \\cdot A \\cdot \\eta \\cdot \\cos\\theta\n\\]\nwith \\(G\\) the incoming sunlight in W/m², \\(A = 1.6\\) m² the panel area, and \\(\\eta = 0.20\\) the conversion efficiency.\n\n\nThis model ignores diffuse light from the sky, reflections off the roof, the fact that panels get less efficient when hot, and everything that happens away from solar noon.\n\n\n\n\n\n\nTip\n\n\n\nTwo notes on using this in code. NumPy’s np.cos expects radians, not degrees, but np.radians(theta) will do the conversion for you. And np.abs gives you the absolute value elementwise on a whole array.",
+    "objectID": "activities/w03-function-forge.html#the-problem",
+    "href": "activities/w03-function-forge.html#the-problem",
+    "title": "Wind farm design",
+    "section": "The problem",
+    "text": "The problem\nYour firm is scoping a wind turbine for the eastern plains outside Denver. You need a tool that answers: for a given rotor diameter and a given wind speed, how much power comes out?\nThe swept area. The blades sweep a circle, and only the wind passing through that circle is available to you. From the rotor diameter \\(D\\):\n\\[\nA = \\frac{\\pi D^2}{4}\n\\]\nThe power in the wind, and the share you capture. Moving air has kinetic energy, and the faster it moves the more it carries — dramatically more, because velocity shows up cubed:\n\\[\nP = \\tfrac{1}{2}\\,\\rho\\,A\\,v^3\\,C_p\n\\]\nwhere \\(\\rho\\) is air density and \\(C_p\\) is the fraction of the wind’s energy the turbine actually captures. Take \\(\\rho = 1.0\\) kg/m³ for Denver’s thin air as the default value.\nThe efficiency, which is not a constant. Blades are shaped to capture the wind best at one particular speed — too slow and there is no aerodynamic lift; too fast and they stall and spill. So \\(C_p\\) peaks at a design speed and falls off on either side:\n\\[\nC_p(v) = C_{p,\\text{max}}\\left[1 - \\left(\\frac{v - v_{\\text{best}}}{w}\\right)^2\\right]\n\\]\nwith \\(C_{p,\\text{max}} = 0.45\\), \\(v_{\\text{best}} = 11\\) m/s, and \\(w = 8\\) m/s.",
     "crumbs": [
       "Home",
-      "Homework",
-      "HW 2 · Which way should the panel point?"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "homework/hw2-solar-tilt.html#part-1-build-the-function-and-check-it-by-hand",
-    "href": "homework/hw2-solar-tilt.html#part-1-build-the-function-and-check-it-by-hand",
-    "title": "HW 2 · Which way should the panel point?",
-    "section": "Part 1 — Build the function and check it by hand",
-    "text": "Part 1 — Build the function and check it by hand\nWrite panel_power(tilt_deg, elevation_deg) returning watts, with G, A, and \\(\\eta\\) as arguments with sensible defaults. Write a docstring: what goes in, in what units, what comes out.\nThen verify it in isolation before you use it for anything (this is standard P1). On the equinox at Boulder, the sun’s noon elevation is \\(\\alpha = 50°\\). Compute \\(P\\) by hand for a tilt of \\(0°\\) and for a tilt of \\(40°\\) — write down the arithmetic, not just the answers — and confirm the function agrees. If it doesn’t, the function is wrong!\n\n\n\n\n\n\nTip\n\n\n\nOne of those two hand cases is arithmetically trivial. That’s a good strategy: pick inputs whose answer you can get without a calculator. You’ll be more inclined to verify the easy cases, and less inclined to make mistakes!",
+    "objectID": "activities/w03-function-forge.html#round-0",
+    "href": "activities/w03-function-forge.html#round-0",
+    "title": "Wind farm design",
+    "section": "Round 0",
+    "text": "Round 0\nAn LLM was asked for the power function and handed back a number: for a 100 m rotor in a 10 m/s wind, 52 kilowatts.\nDo you believe it? Discuss with your group",
     "crumbs": [
       "Home",
-      "Homework",
-      "HW 2 · Which way should the panel point?"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "homework/hw2-solar-tilt.html#part-2-sweep-the-tilt",
-    "href": "homework/hw2-solar-tilt.html#part-2-sweep-the-tilt",
-    "title": "HW 2 · Which way should the panel point?",
-    "section": "Part 2 — Sweep the tilt",
-    "text": "Part 2 — Sweep the tilt\nBuild a NumPy array of tilt angles from \\(0°\\) to \\(90°\\), evaluate panel_power on the whole array in one line, and find the best tilt using argmax. Plot power against tilt, with axis labels and units. There is basically no cost to doing a lot of points here: you could calculate at every degree… 91 points is not that many.\nThen the sanity check:\n\n\n\n\n\n\nImportant\n\n\n\nThere’s a rule of thumb that a fixed panel should be tilted at roughly the site’s latitude. Boulder is at 40°N. Does your sweep agree?\nIf it does — say so explicitly, and explain in a sentence or two why the model produces that result, using the geometry above. “It matched” is not the finding; being able to say why it had to match is. (Hint: look at the equation.)\nIf it doesn’t, you have a bug, and the two usual suspects are degrees-versus-radians and a sign error in \\(\\theta\\). Find it.\n\n\nTwo follow-ups, one calculation each:\n\nWinter solstice drops the noon sun to \\(\\alpha = 26.5°\\); summer solstice raises it to \\(73.5°\\). Rerun the sweep for each. Do the best tilts make physical sense to you? Which of the three best tilts would you pick, if you had to pick one?\nExtend your tilt array past \\(90°\\), out to \\(180°\\) — a panel tipped over past vertical until it’s face-down. What does the function report, and is it physically possible? Say what the function should do there and why it doesn’t.",
+    "objectID": "activities/w03-function-forge.html#round-1-three-specs",
+    "href": "activities/w03-function-forge.html#round-1-three-specs",
+    "title": "Wind farm design",
+    "section": "Round 1 — three specs",
+    "text": "Round 1 — three specs\nEveryone create a new Colab. Make your first cell a “text” cell, and write specifications for the three functions. Decide what the required inputs, optional inputs, and outputs are of each function, and pay attention to the units. You may not agree with your neighbor, but you may both be reasonable.\nMake your second cell a text cell as well, and do a hand-check of the \\(D = 100\\) m case.\nThe area function you check with a calculator.\nThe efficiency function you can check against a physical bound. No turbine can capture more than about 59% of the wind’s energy. Any \\(C_p\\) your function returns above 0.59 is wrong. You can calculate it too: what should it give at \\(v = 11\\) m/s?\nThe power function you check against common sense after plugging-in reasonable values. Real 100 m turbines produce 2–3 MW… it’s understandable if you didn’t know that number today (I didn’t until I wrote this), but with time/experience in engineering you’ll start to have intuition about numbers. Clearly 52 kW is low, and should set off alarm bells!",
     "crumbs": [
       "Home",
-      "Homework",
-      "HW 2 · Which way should the panel point?"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "homework/hw2-solar-tilt.html#part-3-a-real-day",
-    "href": "homework/hw2-solar-tilt.html#part-3-a-real-day",
-    "title": "HW 2 · Which way should the panel point?",
-    "section": "Part 3 — A real day",
-    "text": "Part 3 — A real day\nHere are eleven hourly readings from an equinox day in Boulder: the sun’s elevation, and a measurement of the incoming sunlight.\nimport numpy as np\n\nhour       = np.array([7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17])\nelevation  = np.array([11.4, 22.5, 32.8, 41.6, 47.7, 50.0, 47.7, 41.6, 32.8, 22.5, 11.4])\nirradiance = np.array([480., 690., 820., 890., 930., -999., 1800., 870., 760., 610., 390.])\nSet your panel at the best tilt from Part 2 and compute the day’s energy. Because the readings are an hour apart, each power in watts stands for one watt-hour, so the sum of the powers is the day’s energy in watt-hours.\nDo it twice. First, naively — feed the arrays straight in and report the total. Then, honestly — inspect the data first, mask out what shouldn’t be there, and report the total again along with how many readings you dropped and which hours they were.\nSome things to notice and write about:\n\nTwo of those readings are bad, explain why. (Hint: sunlight at the top of the atmosphere is about 1361 W/m², and the atmosphere takes a bite out of that.)\nCompare your two totals. The naive one is not absurd — it won’t be off by a factor of a trillion. Explain how two bad readings conspired to produce a plausible wrong answer.\nWhen you mask irradiance, what has to happen to elevation? Check that your two arrays are still the same length after masking and say how you checked.\nFinally: your honest total covers nine hours, not eleven. Report it that way. Estimate what the two missing hours were probably worth and say how you estimated.",
+    "objectID": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
+    "href": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
+    "title": "Wind farm design",
+    "section": "Round 2 — write and audit the functions",
+    "text": "Round 2 — write and audit the functions\nNow prompt for the code (or write it from scratch… good practice). One function at a time or all three at once — your call, and maybe your group tries both ways and you talk about how it went.\nThen annotate what comes back: for each function, write one line in your own words describing what it does. Include this as a docstring.\n\nThree functions?\nMy intention is for you to create three functions. The area one is pretty simple, but the other two contain separate physics and are worth keeping separate. The efficiency function varies between blade designs, and so having that as its own function that is called by the power function is better practice.\nSo: do you have three functions, or did you/the LLM combine them in some way? Add a comment in your code about this.",
     "crumbs": [
       "Home",
-      "Homework",
-      "HW 2 · Which way should the panel point?"
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "homework/hw2-solar-tilt.html#your-submission",
-    "href": "homework/hw2-solar-tilt.html#your-submission",
-    "title": "HW 2 · Which way should the panel point?",
+    "objectID": "activities/w03-function-forge.html#round-3-testing",
+    "href": "activities/w03-function-forge.html#round-3-testing",
+    "title": "Wind farm design",
+    "section": "Round 3 — testing",
+    "text": "Round 3 — testing\nRun your hand-check case. If you get agreement, that is a good step towards verification. If not, track down the error — was it you, or the code?\nOnce your chain is verified, run it twice more: \\(v = 11\\) m/s, then \\(v = 15\\) m/s.\nAt 15 m/s the turbine is much less efficient — about 0.34 against the peak 0.45… but you should see it makes more power. There’s more energy in a faster wind, and it is worth wasting energy to extract more of it.\nSo the most efficient operating point isn’t the most productive one. Where exactly is the best wind speed? Run your code a few times to try to find it, but it is tedious… we’ll talk about strategies for optimizing this soon!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
+    ]
+  },
+  {
+    "objectID": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
+    "href": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
+    "title": "Wind farm design",
+    "section": "Deliverable — 2 EC, per person",
+    "text": "Deliverable — 2 EC, per person\nSubmitted individually this week, not per table. Export a pdf from Colab\n\nYour three specs, as written before you prompted.\nThe prompt you used, plus the model and roughly when you ran it.\nYour annotated code.\nYour hand-check and discussion.\nDiscussion of if there were three functions.\nOne sentence (add as a text cell at the bottom): something interesting that someone else included in their spec that you left out.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html",
+    "href": "activities/w05-drag-lab.html",
+    "title": "Adding drag",
+    "section": "",
+    "text": "Standards seeded: S1, S2, S3, A1 · You’ll need: Colab, Tuesday’s stepper\nTuesday we built a for loop to do some time stepping, applying it to a situation that we could solve theoretically. So… what was the point? Today we’re going to add some additional terms that make it so that there is no theoretical solution. But those additional terms make the calculations more accurate… so, as engineers, we want to include them!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#setting-up",
+    "href": "activities/w05-drag-lab.html#setting-up",
+    "title": "Adding drag",
+    "section": "Setting up",
+    "text": "Setting up\nFor anything bigger than a raindrop, the force of drag is proportional to the square of the speed. It is indeed a force, so it manifests through the acceleration term (\\(F=ma\\), right?):\n\\[\na = -g - \\frac{k}{m}\\,v\\,|v|\n\\]\nThe \\(v\\,|v|\\) looks strange, but it’s just \\(v^2\\) with the sign of \\(v\\) still present — drag always pushes against you, so when you’re falling (negative \\(v\\)) that term comes out positive.\nThe parameter \\(k\\) bundles together the air density, the object’s cross-sectional area, and how streamlined it is. We’ll go ahead and assume some values for three different items:\n\n\n\nobject\n\\(m\\) (kg)\n\\(k\\)\n\n\n\n\nballoon (25 cm)\n0.003\n0.01227\n\n\nsteel ball (2.5 cm)\n0.0642\n0.000123\n\n\nphone, falling flat\n0.19\n0.0063\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nBelow we’ll use a single variable called k_over_m. Let Python do the math for you: k_over_m=0.01227/0.003. Or even better: k_over_m=k_balloon/m_balloon.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
+    "href": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
+    "title": "Adding drag",
+    "section": "Round 1 — add one line (about 10 minutes)",
+    "text": "Round 1 — add one line (about 10 minutes)\nSo everyone starts from the same place, here’s Tuesday’s loop with no drag, already wrapped in a function. It’s the same code as the reading, with the acceleration pulled out into its own line a (so there’s an obvious spot to change) and a k_over_m input that doesn’t do anything yet. Copy it into Colab and run it.\n\n\n\n\n\n\nA 10 m drop lands in 1.43 s at about −14 m/s. Now add drag according to the equation above. Don’t forget: your velocity array has an index.\nThen set k_over_m = 0 and run it. The results should be the same as if \\(a=-g\\).\n\n\n\n\n\n\nImportant\n\n\n\nWhat is round(t[y &lt;= 0][0], 3) doing?",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
+    "href": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
+    "title": "Adding drag",
+    "section": "Round 2 — same code, two different answers (about 25 minutes)",
+    "text": "Round 2 — same code, two different answers (about 25 minutes)\nRun your code with all three objects from the table, plus the no-drag case, all from 10 m. Get the four fall times and four impact speeds somewhere you can compare them side by side (e.g., create a text cell after your code and record the results, maybe even as a Markdown table).\nThree things to work out with your colleagues:\n\nThe balloon takes about 4.6× as long as the no-drag formula predicts. The steel ball takes 0.4% longer. Same code, same height, same air. What is it about the two objects that produces such wildly different verdicts? (Look at \\(k/m\\), and say what it means physically.)\nPlot v against t for the balloon. Describe the shape in words — then talk about why it happens. Look at the acceleration formula and ask what value of \\(v\\) makes \\(a = 0\\).\nCompare the balloon’s impact speed to the value of \\(v\\) you just found. Same number? Should they be?\n\n\n\n\n\n\n\nImportant\n\n\n\nOne of my favorite quotes: “All models are wrong, but some are useful.” (From the statistician George Box.)\nModels, by definition, are approximations of reality. We hopefully capture the relevant effects to make a good prediction, but we leave some details out — e.g., is it helpful to know the temperature of the object when determining its fall time? Where the surface imperfections are? Precisely how many nitrogen molecules are disturbed, and their speeds before and after? Probably not… even though they might affect the result in some (tiny) way.\nIgnoring air resistance is perfectly good engineering for the steel ball — being right to within 0.4% and avoiding the nonlinear term is an excellent trade. But, applied to the balloon, our prediction is wrong by a factor of four and a half.\nSo “is it okay to ignore air resistance?” has no general answer. “Is it okay to ignore air resistance for this object, over this distance, at the precision I need?” has an answer — and you can compute it instead of guessing!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
+    "href": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
+    "title": "Adding drag",
+    "section": "Round 3 — break it (about 15 minutes)",
+    "text": "Round 3 — break it (about 15 minutes)\nOn Tuesday a smaller dt gave a better answer. Run the balloon from 10 m at dt = 0.01, 0.05, 0.1, 0.2, 0.3 and 0.5. For each, report both the landing time and the impact speed.\nThen, on paper:\n\nAt which dt does the answer stop being merely inaccurate and start being nonsense? How did you decide?\nOne of those runs reports a landing time that looks more believable than the correct answer, while its impact speed is absurd. Which one?\nPlot y against t for the worst case. Describe, physically, what your balloon does. Would you have caught that from the numbers alone?\n\n\n\n\n\n\n\nCaution\n\n\n\nYou may see nan appear — “not a number.” It means the arithmetic got to the poin that the computer cannot represent it anymore. That is not a Python bug, but does mean something went wrong with the calculation!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
+    "href": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
+    "title": "Adding drag",
+    "section": "Round 4 — the potato leaves the building (about 20 minutes)",
+    "text": "Round 4 — the potato leaves the building (about 20 minutes)\nEverything so far has fallen straight down. Tuesday’s Challenge threw a ball forward and up. Let’s do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato jammed in one end and a burst of hot pressurized gas behind it. Launch speeds of 50–100 m/s are typical; we’ll use 75 m/s. (Nobody is allowed to build one, officially.)\nDrag in two directions needs one new idea. How hard the air pushes depends on how fast the potato is moving through the air, which is its total speed. Which way it pushes is straight backward along the path. Split that one push into a sideways piece and an upward piece and you get\n\\[\na_x = -\\frac{k}{m}\\,v_x\\,|V|, \\qquad a_y = -g - \\frac{k}{m}\\,v_y\\,|V|, \\qquad |V| = \\sqrt{v_x^2 + v_y^2}\n\\]\n\n\nThe tempting shortcut is \\(v_x|v_x|\\) in the first formula and \\(v_y|v_y|\\) in the second, but that is not correct!\nHere’s Tuesday’s two-direction throw with no drag, so everyone starts from the same place:\n\n\n\n\n\n\nOur potato is a 5 cm × 8 cm slug, about 0.17 kg, with \\(k/m = 0.00289\\).\n\nAdd drag, then turn it off. Put the two formulas into the loop. Then run it with k_over_m = 0 at 40° and compare to the no-drag range formula, \\(R = v_0^2 \\sin(2\\theta)/g\\).\nEstimate before you run. Right at launch, how big is the drag acceleration, \\(\\frac{k}{m} v_0^2\\), compared to \\(g\\)? Based on Round 2, should drag matter a little or a lot?\nSee the trajectory. Run the potato at 75 m/s and 40°, with and without drag, and plot both paths on the same axes: y against x, keeping only the points above ground. Add plt.gca().set_aspect(\"equal\") so that one meter up looks the same as one meter across.\nDescribe the difference. How much shorter is it? The no-drag path is symmetric: is the drag path? Where is its highest point, and how steeply does it come down compared to how it went up?\nCompare the landing speed to the launch speed, with and without drag. The no-drag potato lands at exactly its launch speed. Why does it have to? Then use what you found in Round 2 to work out the potato’s terminal velocity. Our launch speed is above it. What does that say about the first second of the flight?\n\nTuesday’s Challenge found that 45° throws farthest, when there’s no air. Drag just took about half our range at 40°. Is 45° still the best angle? Don’t answer that at your table. That’s HW 3.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#deliverables",
+    "href": "activities/w05-drag-lab.html#deliverables",
+    "title": "Adding drag",
+    "section": "Deliverables",
+    "text": "Deliverables\n(2 EC):\n\nRound 1: your drop function, and the k_over_m = 0 check with its output.\nRound 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.\nRound 3: your dt table with both columns, and your answer to question 2.\nRound 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html",
+    "href": "homework/hw1-grade-calculator.html",
+    "title": "HW 1 · The grade calculator",
+    "section": "",
+    "text": "Note\n\n\n\nI will add an example solution (to a different problem) soon!",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#scenario",
+    "href": "homework/hw1-grade-calculator.html#scenario",
+    "title": "HW 1 · The grade calculator",
+    "section": "Scenario",
+    "text": "Scenario\nBuild a program that tells a student their letter grade in this course.\nEverything the program needs to know is on the grading page — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
+    "href": "homework/hw1-grade-calculator.html#its-trickier-than-it-looks",
+    "title": "HW 1 · The grade calculator",
+    "section": "It’s trickier than it looks!",
+    "text": "It’s trickier than it looks!\nAs you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw1-grade-calculator.html#your-submission",
+    "href": "homework/hw1-grade-calculator.html#your-submission",
+    "title": "HW 1 · The grade calculator",
     "section": "Your submission",
-    "text": "Your submission\nThe same four steps.\nStep 1 — Specify & prompt. What the program takes in, in what units, what it produces. What counts as a valid tilt, a valid elevation, a valid irradiance reading — and what your program does with a value outside those ranges. You don’t have the tools to enforce those rules yet (that’s next week); you do have to decide them now and write them down. Then your actual LLM prompt, and the model and date.\nStep 2 — Annotate. The returned code, with your comments on it. Say which line does the degrees-to-radians conversion and how you confirmed it’s there. If the AI made a decision you never specified — a default you didn’t ask for, an ordering, setting a min/max angle — talk about it.\nStep 3 — Verify. Your Part 1 hand check with the arithmetic shown. Your latitude sanity check with its explanation. Your two Part 3 totals with the discrepancy explained.\nStep 4 — Report. The recommended tilt for a fixed Boulder panel, the plot, the day’s energy with its stated gap, and one paragraph on which of your checks you’d have been most embarrassed to skip.",
+    "text": "Your submission\nStep 1 — Specify & prompt. Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…\n… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a print of the result.\nStep 2 — Annotate the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.\nStep 3 — Verify. Hand-compute your predictions before you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.\nStep 4 — Report. One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 2 · Which way should the panel point?"
+      "HW 1 · The grade calculator"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html",
+    "href": "homework/hw3-potato-cannon.html",
+    "title": "HW 3 · The firing card",
+    "section": "",
+    "text": "Your engineering club has a potato cannon. It launches a 5 cm × 8 cm potato slug at about 75 m/s, and it sits on a pivot so you can set the barrel’s angle above the ground. The club wants to hit targets set out on a field: 50 m, 75 m, 100 m, and so on out to 300 m.\nNobody wants to aim by trial and error, so you’ll make a firing card: a small table taped to the barrel that says, for each target distance, what angle to set. You’ll prepare a report with the card, and more importantly, you’ll convince the reader that the card is right.\n\n\nThis is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute artillery firing tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.\nSee Submitting Homework for how to set up the report. Same look as HW 2.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html#scenario",
+    "href": "homework/hw3-potato-cannon.html#scenario",
+    "title": "HW 3 · The firing card",
+    "section": "",
+    "text": "Your engineering club has a potato cannon. It launches a 5 cm × 8 cm potato slug at about 75 m/s, and it sits on a pivot so you can set the barrel’s angle above the ground. The club wants to hit targets set out on a field: 50 m, 75 m, 100 m, and so on out to 300 m.\nNobody wants to aim by trial and error, so you’ll make a firing card: a small table taped to the barrel that says, for each target distance, what angle to set. You’ll prepare a report with the card, and more importantly, you’ll convince the reader that the card is right.\n\n\nThis is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute artillery firing tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.\nSee Submitting Homework for how to set up the report. Same look as HW 2.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html#the-model",
+    "href": "homework/hw3-potato-cannon.html#the-model",
+    "title": "HW 3 · The firing card",
+    "section": "The model",
+    "text": "The model\nYou can start with Thursday’s Round 4. The potato starts on the ground at speed \\(v_0\\) and angle \\(\\theta\\) above horizontal:\n\\[\nv_x = v_0 \\cos\\theta, \\qquad v_y = v_0 \\sin\\theta \\qquad \\text{(at the start)}\n\\]\nand at every time step,\n\\[\n\\begin{align*}\nx_{\\text{new}} &= x + v_x\\,\\Delta t & y_{\\text{new}} &= y + v_y\\,\\Delta t \\\\\nv_{x,\\text{new}} &= v_x + a_x\\,\\Delta t & v_{y,\\text{new}} &= v_y + a_y\\,\\Delta t\n\\end{align*}\n\\]\nwith drag pushing straight backward along the path:\n\\[\na_x = -\\frac{k}{m}\\,v_x\\,|V|, \\qquad a_y = -g - \\frac{k}{m}\\,v_y\\,|V|, \\qquad |V| = \\sqrt{v_x^2 + v_y^2}\n\\]\nFor our potato, \\(k/m = 0.00289\\) (per meter), and \\(g = 9.81\\) m/s².\n\n\nThe model ignores wind, the potato’s spin and tumble, and the fact that no two potatoes are the same shape.\nYou may have written the stepper, or most of it, already. This assignment isn’t about the stepper. It’s about everything you have to build around the simulation.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html#part-1-one-shot-as-a-function",
+    "href": "homework/hw3-potato-cannon.html#part-1-one-shot-as-a-function",
+    "title": "HW 3 · The firing card",
+    "section": "Part 1 — One shot, as a function",
+    "text": "Part 1 — One shot, as a function\nWrite landing_distance(angle_deg, ...), which returns how far downrange the potato lands, in meters. Speed, \\(k/m\\), and time step should all be inputs with sensible defaults. Write a docstring.\nTwo problems will come up right away. Neither has a single right answer, and both belong in your specification (see Step 1 below):\n\nThe stepper never lands exactly on the ground. One step the potato is above it, the next step it’s below. So which \\(x\\) is “where it landed”?\nYou have to pick n_steps. What if the potato is still in the air when the loop runs out? The function has to do something… decide what.\n\nThen check it in isolation, before you use it for anything (P1). With drag turned off, the range has a formula:\n\\[\nR = \\frac{v_0^2 \\sin(2\\theta)}{g}\n\\]\nCheck your function against it at 45° (show the arithmetic in your cell), then at 30° and 60°, which should tie. Then turn drag back on, run it to get a preliminary number, and run it again with half the time step. Does the landing distance change? By how much? Your time step dt is small enough when it stops having a noticeable effect on the result.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html#part-2-sweep-the-angle",
+    "href": "homework/hw3-potato-cannon.html#part-2-sweep-the-angle",
+    "title": "HW 3 · The firing card",
+    "section": "Part 2 — Sweep the angle",
+    "text": "Part 2 — Sweep the angle\nRun landing_distance for every whole-degree angle from 1° to 89°, with drag and without. Plot both range-vs-angle curves on one set of axes and find the best angle for each.\nThen the sanity check:\n\n\n\n\n\n\nImportant\n\n\n\nWithout drag, the best angle should be 45°, and 30° and 60° should tie. Does your no-drag curve do that? If it doesn’t, stop here and find the problem.\nWith drag, the best angle moves. Compare your 30° and 60° shots. Without drag they tie. With drag, one of them is better. Speculate why.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html#part-3-make-the-card",
+    "href": "homework/hw3-potato-cannon.html#part-3-make-the-card",
+    "title": "HW 3 · The firing card",
+    "section": "Part 3 — Make the card",
+    "text": "Part 3 — Make the card\nThe club’s targets are at 50, 75, 100, … 300 m, every 25 m. Your code has to find the angle for each one.\nYou already have what you need: your sweep is a list of angles paired with where they land. Reading it in the other direction (“I want to land here, so which angle?”) turns your range-vs-angle data into a firing card. Try plotting it that way: target distance across the bottom, angle up the side.\nHere’s the catch. You could squint at that plot, or scroll through your sweep output, and copy eleven angles onto paper with a pencil. Don’t. Next month the club will put a new valve on the cannon and it’ll fire at 80 m/s, and the whole card will be wrong. If your card came from a pencil, you’re starting over. If it came from code, you change one number and rerun.\nSo build the card the same way you built the sweep, in two pieces:\n\nOne function that aims one shot. Write firing_angle(target, ...). It takes a target distance and returns the angle to set. It’ll probably use your sweep’s angles and ranges as inputs. This is the same move as landing_distance, just run backward: that one answers “where does this angle land?”, and this one answers “what angle lands here?”\nOne loop that fills in the card. Loop over the targets, call firing_angle for each, and collect the results. Then save the finished card to its own CSV file (np.savetxt, like Thursday). That file is what gets printed and taped to the barrel.\n\nWhen you’re done, test it for real: change the launch speed to 80 m/s in one place, rerun, and watch a new card come out. If that takes more than one edit, you’re not quite there. Change it back to 75 m/s for your report.\n\n\n\n\n\n\nTip\n\n\n\nA place to start for firing_angle: np.argmin(np.abs(ranges - target)) gives the index of the sweep point whose range is closest to target. But look at your plot from Part 2 first. Most distances show up twice on that curve, and that one line doesn’t know it. Your function has to pick one on purpose.",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html#part-4-how-much-should-you-trust-the-card",
+    "href": "homework/hw3-potato-cannon.html#part-4-how-much-should-you-trust-the-card",
+    "title": "HW 3 · The firing card",
+    "section": "Part 4 — How much should you trust the card?",
+    "text": "Part 4 — How much should you trust the card?\nPotato cannons aren’t precise. The launch speed changes from shot to shot, maybe by ±5 m/s, depending on how tightly the potato fits and how much pressure was built up. The angle adjustment is probably a bit imprecise too… ±1° is probably beyond the precision of an engineering student aiming some PVC pipe in a dirt field.\nPick the 200 m target. Fire your card’s angle at 70 and 80 m/s: where does it land? Then fire it at your angle ±1° (at 75 m/s). Which matters more, the speed wobble or the aiming wobble?",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
+    ]
+  },
+  {
+    "objectID": "homework/hw3-potato-cannon.html#your-submission",
+    "href": "homework/hw3-potato-cannon.html#your-submission",
+    "title": "HW 3 · The firing card",
+    "section": "Your submission",
+    "text": "Your submission\nStep 1 — Specify & prompt. This is the heart of this assignment. The stepper is eight lines you (mostly) already wrote. The specification is everything around it, and every item below is a decision the stepper doesn’t make for you. Your spec has to make each one, in writing:\n\nlanding_distance: inputs, units, defaults, and what it returns. What counts as a valid angle? What does it do at 0°? At 90°? At −10°?\nWhat “where it landed” means, given that the stepper jumps past the ground.\nHow many steps you simulate, how you picked that number, and what the function does if the potato hasn’t landed yet.\nYour time step, and how you’ll show it’s small enough.\nYour sweep spacing. Why whole degrees (or why not)?\nfiring_angle: inputs, units, and what it returns. When a distance can be hit at two angles, which one does it return, and why? What does it return for a target the cannon can’t reach?\nWhat the card looks like: its columns, its units, and how many decimal places.\n\nThen your actual LLM prompt, with the model name and date.\nStep 2 — Annotate. For each decision in your spec, point to the line that carries it out. Find the drag lines and confirm that \\(|V|\\) is the total speed, not a separate speed for each direction. If the AI made a decision you never specified (a default, a cutoff, which of the two angles it returns), talk about it.\nStep 3 — Verify. The Part 1 checks: the range formula at 45° (with arithmetic), the 30°/60° tie, and the halved-dt comparison. The no-drag 45° from your sweep. Then spot-check the card: pick one row, fire that angle through landing_distance, and show it lands where the card says. And show the 80 m/s card you generated from a one-number change. It should reach farther than the 75 m/s card, so sanity-check that it does.\nStep 4 — Report. The firing card, as a table and as a plot. The best angle with drag, and your best explanation of why it isn’t 45°. Some discussion of how precise your card should be, referencing your results from Part 4. (That is, if your angle is accurate to ±1°, and your velocity is accurate to ±5 m/s, what is the ± on your distance?)",
+    "crumbs": [
+      "Home",
+      "Homework",
+      "HW 3 · The firing card"
     ]
   },
   {

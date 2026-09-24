@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HW 1 · The grade calculator – MCEN 1030</title>
+<title>HW 3 · The firing card – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,10 +79,39 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -126,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">HW 1 · The grade calculator</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw3-potato-cannon.html">HW 3 · The firing card</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -304,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link active">
+  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HW 1 · The grade calculator</span></a>
   </div>
 </li>
@@ -316,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw3-potato-cannon.html" class="sidebar-item-text sidebar-link">
+  <a href="../homework/hw3-potato-cannon.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">HW 3 · The firing card</span></a>
   </div>
 </li>
@@ -333,17 +362,22 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
-  <li><a href="#its-trickier-than-it-looks" id="toc-its-trickier-than-it-looks" class="nav-link" data-scroll-target="#its-trickier-than-it-looks">It’s trickier than it looks!</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#part-1-one-shot-as-a-function" id="toc-part-1-one-shot-as-a-function" class="nav-link" data-scroll-target="#part-1-one-shot-as-a-function">Part 1 — One shot, as a function</a></li>
+  <li><a href="#part-2-sweep-the-angle" id="toc-part-2-sweep-the-angle" class="nav-link" data-scroll-target="#part-2-sweep-the-angle">Part 2 — Sweep the angle</a></li>
+  <li><a href="#part-3-make-the-card" id="toc-part-3-make-the-card" class="nav-link" data-scroll-target="#part-3-make-the-card">Part 3 — Make the card</a></li>
+  <li><a href="#part-4-how-much-should-you-trust-the-card" id="toc-part-4-how-much-should-you-trust-the-card" class="nav-link" data-scroll-target="#part-4-how-much-should-you-trust-the-card">Part 4 — How much should you trust the card?</a></li>
   <li><a href="#your-submission" id="toc-your-submission" class="nav-link" data-scroll-target="#your-submission">Your submission</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw1-grade-calculator.html">HW 1 · The grade calculator</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw3-potato-cannon.html">HW 3 · The firing card</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">HW 1 · The grade calculator</h1>
+<h1 class="title">HW 3 · The firing card</h1>
+<p class="subtitle lead">Anchor week 5 · Standards: P1, P2, S4, A4</p>
 </div>
 
 
@@ -360,35 +394,120 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="scenario" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>Your engineering club has a potato cannon. It launches a 5 cm × 8 cm potato slug at about <strong>75 m/s</strong>, and it sits on a pivot so you can set the barrel’s angle above the ground. The club wants to hit targets set out on a field: 50 m, 75 m, 100 m, and so on out to 300 m.</p>
+<p>Nobody wants to aim by trial and error, so you’ll make a <strong>firing card</strong>: a small table taped to the barrel that says, for each target distance, what angle to set. You’ll prepare a report with the card, and more importantly, you’ll convince the reader that the card is right.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>This is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute artillery firing tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.</p>
+</div></div><p><strong>See <a href="../info/colab-format.html">Submitting Homework</a> for how to set up the report. Same look as HW 2.</strong></p>
+</section>
+<section id="the-model" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
+<p>You can start with <a href="../activities/w05-drag-lab.html">Thursday’s Round 4</a>. The potato starts on the ground at speed <span class="math inline">\(v_0\)</span> and angle <span class="math inline">\(\theta\)</span> above horizontal:</p>
+<p><span class="math display">\[
+v_x = v_0 \cos\theta, \qquad v_y = v_0 \sin\theta \qquad \text{(at the start)}
+\]</span></p>
+<p>and at every time step,</p>
+<p><span class="math display">\[
+\begin{align*}
+x_{\text{new}} &amp;= x + v_x\,\Delta t &amp; y_{\text{new}} &amp;= y + v_y\,\Delta t \\
+v_{x,\text{new}} &amp;= v_x + a_x\,\Delta t &amp; v_{y,\text{new}} &amp;= v_y + a_y\,\Delta t
+\end{align*}
+\]</span></p>
+<p>with drag pushing straight backward along the path:</p>
+<p><span class="math display">\[
+a_x = -\frac{k}{m}\,v_x\,|V|, \qquad a_y = -g - \frac{k}{m}\,v_y\,|V|, \qquad |V| = \sqrt{v_x^2 + v_y^2}
+\]</span></p>
+<p>For our potato, <span class="math inline">\(k/m = 0.00289\)</span> (per meter), and <span class="math inline">\(g = 9.81\)</span> m/s².</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The model ignores wind, the potato’s spin and tumble, and the fact that no two potatoes are the same shape.</p>
+</div></div><p>You may have written the stepper, or most of it, already. <strong>This assignment isn’t about the stepper.</strong> It’s about everything you have to build around the simulation.</p>
+</section>
+<section id="part-1-one-shot-as-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-one-shot-as-a-function">Part 1 — One shot, as a function</h2>
+<p>Write <code>landing_distance(angle_deg, ...)</code>, which returns how far downrange the potato lands, in meters. Speed, <span class="math inline">\(k/m\)</span>, and time step should all be inputs with sensible defaults. Write a docstring.</p>
+<p>Two problems will come up right away. Neither has a single right answer, and both belong in your specification (see Step 1 below):</p>
+<ul>
+<li><strong>The stepper never lands exactly on the ground.</strong> One step the potato is above it, the next step it’s below. So which <span class="math inline">\(x\)</span> is “where it landed”?</li>
+<li><strong>You have to pick <code>n_steps</code>.</strong> What if the potato is still in the air when the loop runs out? The function has to do <em>something</em>… decide what.</li>
+</ul>
+<p>Then <strong>check it in isolation, before you use it for anything</strong> (P1). With drag turned off, the range has a formula:</p>
+<p><span class="math display">\[
+R = \frac{v_0^2 \sin(2\theta)}{g}
+\]</span></p>
+<p>Check your function against it at 45° (show the arithmetic in your cell), then at 30° and 60°, which should tie. Then turn drag back on, run it to get a preliminary number, and run it again with <strong>half the time step</strong>. Does the landing distance change? By how much? Your time step <code>dt</code> is small enough when it stops having a noticeable effect on the result.</p>
+</section>
+<section id="part-2-sweep-the-angle" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-sweep-the-angle">Part 2 — Sweep the angle</h2>
+<p>Run <code>landing_distance</code> for every whole-degree angle from 1° to 89°, with drag and without. Plot both range-vs-angle curves on one set of axes and find the best angle for each.</p>
+<p>Then the sanity check:</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>I will add an example solution (to a different problem) soon!</p>
+<p>Without drag, the best angle should be 45°, and 30° and 60° should tie. Does your no-drag curve do that? If it doesn’t, stop here and find the problem.</p>
+<p>With drag, the best angle moves. Compare your 30° and 60° shots. Without drag they tie. With drag, one of them is better. Speculate why.</p>
 </div>
 </div>
-<section id="scenario" class="level2">
-<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
-<p>Build a program that tells a student their letter grade in this course.</p>
-<p>Everything the program needs to know is on the <a href="../info/grading.html">grading page</a> — standards, engagement credits, tokens, and the table summarizing how they translate to grades. Deciding what your program actually asks for is part of your job: read the grading page the way you’d read a client’s description of a problem, not a spec someone already wrote for you.</p>
 </section>
-<section id="its-trickier-than-it-looks" class="level2">
-<h2 class="anchored" data-anchor-id="its-trickier-than-it-looks">It’s trickier than it looks!</h2>
-<p>As you write your problem specifications, you’ll run into questions that require careful answers. What happens right at a threshold — 13 standards, or exactly 40 engagement credits? What does an unspent token do to that count, and when? If a student misses the D— row (an F, by the rules), and then somehow gives a distinguished final defense, does that do anything for them? (Our school does not grant F+ grades!) These are edge cases. If there is anything ambiguous, state your interpretation in the spec.</p>
+<section id="part-3-make-the-card" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-make-the-card">Part 3 — Make the card</h2>
+<p>The club’s targets are at 50, 75, 100, … 300 m, every 25 m. Your code has to find the angle for each one.</p>
+<p>You already have what you need: your sweep is a list of angles paired with where they land. Reading it in the other direction (“I want to land <em>here</em>, so which angle?”) turns your range-vs-angle data into a firing card. Try plotting it that way: target distance across the bottom, angle up the side.</p>
+<p>Here’s the catch. You <em>could</em> squint at that plot, or scroll through your sweep output, and copy eleven angles onto paper with a pencil. Don’t. Next month the club will put a new valve on the cannon and it’ll fire at 80 m/s, and the whole card will be wrong. If your card came from a pencil, you’re starting over. If it came from code, you change one number and rerun.</p>
+<p>So build the card the same way you built the sweep, in two pieces:</p>
+<ul>
+<li><strong>One function that aims one shot.</strong> Write <code>firing_angle(target, ...)</code>. It takes a target distance and returns the angle to set. It’ll probably use your sweep’s angles and ranges as inputs. This is the same move as <code>landing_distance</code>, just run backward: that one answers “where does this angle land?”, and this one answers “what angle lands here?”</li>
+<li><strong>One loop that fills in the card.</strong> Loop over the targets, call <code>firing_angle</code> for each, and collect the results. Then save the finished card to its own CSV file (<code>np.savetxt</code>, like Thursday). That file is what gets printed and taped to the barrel.</li>
+</ul>
+<p>When you’re done, test it for real: change the launch speed to 80 m/s in <em>one</em> place, rerun, and watch a new card come out. If that takes more than one edit, you’re not quite there. Change it back to 75 m/s for your report.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A place to start for <code>firing_angle</code>: <code>np.argmin(np.abs(ranges - target))</code> gives the index of the sweep point whose range is closest to <code>target</code>. But look at your plot from Part 2 first. Most distances show up <em>twice</em> on that curve, and that one line doesn’t know it. Your function has to pick one on purpose.</p>
+</div>
+</div>
+<!-- Then find out what drag is worth. For each target, use the no-drag formula from Part 1 to get the angle you'd set if you ignored the air. Fire that angle through your drag model. Where does the potato actually land? Put those numbers on your card too (a separate column works well), so you can see how far off the textbook answer is. -->
+</section>
+<section id="part-4-how-much-should-you-trust-the-card" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-how-much-should-you-trust-the-card">Part 4 — How much should you trust the card?</h2>
+<p>Potato cannons aren’t precise. The launch speed changes from shot to shot, maybe by ±5 m/s, depending on how tightly the potato fits and how much pressure was built up. The angle adjustment is probably a bit imprecise too… ±1° is probably beyond the precision of an engineering student aiming some PVC pipe in a dirt field.</p>
+<p>Pick the 200 m target. Fire your card’s angle at 70 and 80 m/s: where does it land? Then fire it at your angle ±1° (at 75 m/s). Which matters more, the speed wobble or the aiming wobble?</p>
+<!-- Given that, how many decimal places should the angles on your card have? Is it worth printing 16.2° instead of 16°? -->
 </section>
 <section id="your-submission" class="level2">
 <h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
-<p><strong>Step 1 — Specify &amp; prompt.</strong> Every input your program needs, in your own words — names, types, valid ranges — and where each one comes from on the grading page. Output format. Every edge case you dream up, each with your decision and a sentence of reasoning. This should be separate from your LLM prompt…</p>
-<p>… but then also include your LLM prompt, which will indeed contain a lot of the same information. (See the example, when I post it.) Ask for a Python script: a handful of variables set at the top that you can edit by hand, the calculation, then a <code>print</code> of the result.</p>
-<p><strong>Step 2 — Annotate</strong> the returned code. For a line of the grade-table logic, say which case it’s catching and why it’s there. If you notice something the code decided that you never specified — an order of checks, an assumption — say so.</p>
-<p><strong>Step 3 — Verify.</strong> Hand-compute your predictions <em>before</em> you run anything, for at least four cases, and write them down first. Include at least one boundary-exact case (a student sitting precisely on a row’s threshold) and one that depends on token conversion — a student whose credit count only clears a threshold once their leftover tokens are added in. Report what actually happened, including anything that surprised you.</p>
-<p><strong>Step 4 — Report.</strong> One page: your spec, your four-plus test cases with results, your edge-case rulings, and one sentence on the ambiguity you found most interesting. Include the model, roughly when you ran it, and the prompt itself.</p>
+<p><strong>Step 1 — Specify &amp; prompt.</strong> This is the heart of this assignment. The stepper is eight lines you (mostly) already wrote. The specification is everything around it, and every item below is a decision the stepper doesn’t make for you. Your spec has to make each one, in writing:</p>
+<ul>
+<li><code>landing_distance</code>: inputs, units, defaults, and what it returns. What counts as a valid angle? What does it do at 0°? At 90°? At −10°?</li>
+<li>What “where it landed” means, given that the stepper jumps past the ground.</li>
+<li>How many steps you simulate, how you picked that number, and what the function does if the potato hasn’t landed yet.</li>
+<li>Your time step, and how you’ll show it’s small enough.</li>
+<li>Your sweep spacing. Why whole degrees (or why not)?</li>
+<li><code>firing_angle</code>: inputs, units, and what it returns. When a distance can be hit at two angles, which one does it return, and why? What does it return for a target the cannon can’t reach?</li>
+<li>What the card looks like: its columns, its units, and how many decimal places.</li>
+</ul>
+<p>Then your actual LLM prompt, with the model name and date.</p>
+<p><strong>Step 2 — Annotate.</strong> For each decision in your spec, point to the line that carries it out. Find the drag lines and confirm that <span class="math inline">\(|V|\)</span> is the <em>total</em> speed, not a separate speed for each direction. If the AI made a decision you never specified (a default, a cutoff, which of the two angles it returns), talk about it.</p>
+<p><strong>Step 3 — Verify.</strong> The Part 1 checks: the range formula at 45° (with arithmetic), the 30°/60° tie, and the halved-<code>dt</code> comparison. The no-drag 45° from your sweep. Then spot-check the card: pick one row, fire that angle through <code>landing_distance</code>, and show it lands where the card says. And show the 80 m/s card you generated from a one-number change. It should reach farther than the 75 m/s card, so sanity-check that it does.</p>
+<p><strong>Step 4 — Report.</strong> The firing card, as a table and as a plot. The best angle with drag, and your best explanation of why it isn’t 45°. Some discussion of how precise your card should be, referencing your results from Part 4. (That is, if your angle is accurate to ±1°, and your velocity is accurate to ±5 m/s, what is the ± on your distance?) <!-- And one paragraph: which decision in your spec most changed the numbers on your card, and which one turned out not to matter? --></p>
+<!-- How far off the no-drag angles land.  -->
 
 
 <script type="ojs-module-contents">
