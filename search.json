@@ -472,7 +472,7 @@
     "href": "info/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Read the lesson before the class it’s listed under.\n\n\n\n\n\n\nNoteCheckpoints\n\n\n\nThe ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the grading page.\n\n\n\n\n\n\n\n\nNoteHomework\n\n\n\nHomework sets are assigned in weeks 2, 4, 5, 6, 7, 8, 9, 10, and 11.\n\n\n\n\n\n\n\n\nNoteBase Camp/Side Quest Sessions\n\n\n\n… happen on Mondays: Base Camp/Side Quests. (Optional.)\n\n\nTentative schedule:\n\n\n\n\n\n\n\n\n\nWeek\nTuesday\nThursday\nStandards\n\n\n\n\nPhase 0 — Thinking\n\n\n\n\n\n1\nWhat do engineers do with computation? — specification, verification.\nWhat does an LLM actually do?.\n—\n\n\n2\nFirst contact with coding — Colab, variables, predict-then-run, errors as data.\nReading code & conditionals — tracing, annotation, if/elif/else. Homework: HW 1 · The grade calculator.\nP4, A1\n\n\nPhase 1 — Vocabulary\n\n\n\n\n\n3\nFunctions — inputs, outputs, and the docstring as a specification.\nWind farm design.\nP1, A4\n\n\n4\n✓ Checkpoint 1, then Packages & arrays — NumPy, elementwise math.\nFor loops & indexing — comparing designs, one case at a time. Then Which design wins? Homework: HW 2 · Which way should the panel point?\nP4, P1\n\n\n5\nA loop that remembers — simulating a falling ball.\nAdding drag — when the formula runs out. Homework: HW 3 · The firing card.\nS1, S2, S3, A1\n\n\n6\n✓ Checkpoint 2, then Data in, data out — files, CSV, and plotting.\nPlot clinic — make one honest plot, catch one misleading one.\nF2, A2\n\n\nPhase 2 — Tools\n\n\n\n\n\n7\nPandas.\n(No class Thursday Oct 8.)\nP3, F2\n\n\n8\n✓ Checkpoint 3, then Fetch — APIs, JSON, and what to do when a request fails (try/except/raise).\nData acquisition lab — a live API.\nF1, F2, A3\n\n\n9\nBack to the model — revisiting the falling ball with real data in hand.\nModel meets measurement — phone drop vs. simulation.\nS1, S3, A3\n\n\n10\n✓ Checkpoint 4, then Simulate II — assumptions, trust, and what-ifs.\nModel critique.\nS2, S3, S4\n\n\nPhase 3 — Integration\n\n\n\n\n\n11\nYour second language — MATLAB, translation, and choosing tools.\nProject launch.\nP4, A4\n\n\n12\nProject studio — desk crits at tables.\nPin-up #1 — specs & verification plans on the wall.\nS2, A3, A4\n\n\n13\nProject studio — desk crits at tables.\nPin-up #2 — working artifacts, same-project pairing.\nP4, A2, A3\n\n\n14\nDefense prep — what it means to know your own project.\nMock defenses at tables.\n—\n\n\nFinals\nThe Defense — a written exam about your project: trace it, explain it, predict what breaks.\n\nthe grade modifier",
+    "text": "Read the lesson before the class it’s listed under.\n\n\n\n\n\n\nNoteCheckpoints\n\n\n\nThe ✓ marks: those Tuesdays open with a ~20-minute individual, on-paper, no-AI checkpoint covering recent convergent standards and re-offering earlier ones. Details on the grading page.\n\n\n\n\n\n\n\n\nNoteHomework\n\n\n\nHomework sets are assigned in weeks 2, 4, 5, 6, 7, 8, 9, 10, and 11.\n\n\n\n\n\n\n\n\nNoteBase Camp/Side Quest Sessions\n\n\n\n… happen on Mondays: Base Camp/Side Quests. (Optional.)\n\n\nTentative schedule:\n\n\n\n\n\n\n\n\n\nWeek\nTuesday\nThursday\nStandards\n\n\n\n\nPhase 0 — Thinking\n\n\n\n\n\n1\nWhat do engineers do with computation? — specification, verification.\nWhat does an LLM actually do?.\n—\n\n\n2\nFirst contact with coding — Colab, variables, predict-then-run, errors as data.\nReading code & conditionals — tracing, annotation, if/elif/else. Homework: HW 1 · The grade calculator.\nP4, A1\n\n\nPhase 1 — Vocabulary\n\n\n\n\n\n3\nFunctions — inputs, outputs, and the docstring as a specification.\nWind farm design.\nP1, A4\n\n\n4\n✓ Checkpoint 1, then Packages & arrays — NumPy, elementwise math.\nFor loops & indexing — comparing designs, one case at a time. Then Which design wins? Homework: HW 2 · Which way should the panel point?\nP4, P1\n\n\n5\nA loop that remembers — simulating a falling ball.\nAdding drag — when the formula runs out. Homework: HW 3 · The potato cannon.\nS1, S2, S3, A1\n\n\n6\n✓ Checkpoint 2, then Data in, data out — files, CSV, and plotting.\nPlot clinic — make one honest plot, catch one misleading one.\nF2, A2\n\n\nPhase 2 — Tools\n\n\n\n\n\n7\nPandas.\n(No class Thursday Oct 8.)\nP3, F2\n\n\n8\n✓ Checkpoint 3, then Fetch — APIs, JSON, and what to do when a request fails (try/except/raise).\nData acquisition lab — a live API.\nF1, F2, A3\n\n\n9\nBack to the model — revisiting the falling ball with real data in hand.\nModel meets measurement — phone drop vs. simulation.\nS1, S3, A3\n\n\n10\n✓ Checkpoint 4, then Simulate II — assumptions, trust, and what-ifs.\nModel critique.\nS2, S3, S4\n\n\nPhase 3 — Integration\n\n\n\n\n\n11\nYour second language — MATLAB, translation, and choosing tools.\nProject launch.\nP4, A4\n\n\n12\nProject studio — desk crits at tables.\nPin-up #1 — specs & verification plans on the wall.\nS2, A3, A4\n\n\n13\nProject studio — desk crits at tables.\nPin-up #2 — working artifacts, same-project pairing.\nP4, A2, A3\n\n\n14\nDefense prep — what it means to know your own project.\nMock defenses at tables.\n—\n\n\nFinals\nThe Defense — a written exam about your project: trace it, explain it, predict what breaks.\n\nthe grade modifier",
     "crumbs": [
       "Home",
       "Start Here",
@@ -1166,97 +1166,97 @@
   {
     "objectID": "homework/hw3-potato-cannon.html",
     "href": "homework/hw3-potato-cannon.html",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "",
     "text": "Your engineering club has a potato cannon. It launches a 5 cm × 8 cm potato slug at about 75 m/s, and it sits on a pivot so you can set the barrel’s angle above the ground. The club wants to hit targets set out on a field: 50 m, 75 m, 100 m, and so on out to 300 m.\nNobody wants to aim by trial and error, so you’ll make a firing card: a small table taped to the barrel that says, for each target distance, what angle to set. You’ll prepare a report with the card, and more importantly, you’ll convince the reader that the card is right.\n\n\nThis is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute artillery firing tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.\nSee Submitting Homework for how to set up the report. Same look as HW 2.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
     "objectID": "homework/hw3-potato-cannon.html#scenario",
     "href": "homework/hw3-potato-cannon.html#scenario",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "",
     "text": "Your engineering club has a potato cannon. It launches a 5 cm × 8 cm potato slug at about 75 m/s, and it sits on a pivot so you can set the barrel’s angle above the ground. The club wants to hit targets set out on a field: 50 m, 75 m, 100 m, and so on out to 300 m.\nNobody wants to aim by trial and error, so you’ll make a firing card: a small table taped to the barrel that says, for each target distance, what angle to set. You’ll prepare a report with the card, and more importantly, you’ll convince the reader that the card is right.\n\n\nThis is a very old job for computers. ENIAC, one of the first electronic computers, was built in the 1940s to compute artillery firing tables for the US Army. A person with a desk calculator needed roughly a day for a single trajectory. Your sweep will do almost two hundred of them in about a second.\nSee Submitting Homework for how to set up the report. Same look as HW 2.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
     "objectID": "homework/hw3-potato-cannon.html#the-model",
     "href": "homework/hw3-potato-cannon.html#the-model",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "The model",
     "text": "The model\nYou can start with Thursday’s Round 4. The potato starts on the ground at speed \\(v_0\\) and angle \\(\\theta\\) above horizontal:\n\\[\nv_x = v_0 \\cos\\theta, \\qquad v_y = v_0 \\sin\\theta \\qquad \\text{(at the start)}\n\\]\nand at every time step,\n\\[\n\\begin{align*}\nx_{\\text{new}} &= x + v_x\\,\\Delta t & y_{\\text{new}} &= y + v_y\\,\\Delta t \\\\\nv_{x,\\text{new}} &= v_x + a_x\\,\\Delta t & v_{y,\\text{new}} &= v_y + a_y\\,\\Delta t\n\\end{align*}\n\\]\nwith drag pushing straight backward along the path:\n\\[\na_x = -\\frac{k}{m}\\,v_x\\,|V|, \\qquad a_y = -g - \\frac{k}{m}\\,v_y\\,|V|, \\qquad |V| = \\sqrt{v_x^2 + v_y^2}\n\\]\nFor our potato, \\(k/m = 0.00289\\) (per meter), and \\(g = 9.81\\) m/s².\n\n\nThe model ignores wind, the potato’s spin and tumble, and the fact that no two potatoes are the same shape.\nYou may have written the stepper, or most of it, already. This assignment isn’t about the stepper. It’s about everything you have to build around the simulation.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
     "objectID": "homework/hw3-potato-cannon.html#part-1-one-shot-as-a-function",
     "href": "homework/hw3-potato-cannon.html#part-1-one-shot-as-a-function",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "Part 1 — One shot, as a function",
     "text": "Part 1 — One shot, as a function\nWrite landing_distance(angle_deg, ...), which returns how far downrange the potato lands, in meters. Speed, \\(k/m\\), and time step should all be inputs with sensible defaults. Write a docstring.\nTwo problems will come up right away. Neither has a single right answer, and both belong in your specification (see Step 1 below):\n\nThe stepper never lands exactly on the ground. One step the potato is above it, the next step it’s below. So which \\(x\\) is “where it landed”?\nYou have to pick n_steps. What if the potato is still in the air when the loop runs out? The function has to do something… decide what.\n\nThen check it in isolation, before you use it for anything (P1). With drag turned off, the range has a formula:\n\\[\nR = \\frac{v_0^2 \\sin(2\\theta)}{g}\n\\]\nCheck your function against it at 45° (show the arithmetic in your cell), then at 30° and 60°, which should tie. Then turn drag back on, run it to get a preliminary number, and run it again with half the time step. Does the landing distance change? By how much? Your time step dt is small enough when it stops having a noticeable effect on the result.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
     "objectID": "homework/hw3-potato-cannon.html#part-2-sweep-the-angle",
     "href": "homework/hw3-potato-cannon.html#part-2-sweep-the-angle",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "Part 2 — Sweep the angle",
     "text": "Part 2 — Sweep the angle\nRun landing_distance for every whole-degree angle from 1° to 89°, with drag and without. Plot both range-vs-angle curves on one set of axes and find the best angle for each.\nThen the sanity check:\n\n\n\n\n\n\nImportant\n\n\n\nWithout drag, the best angle should be 45°, and 30° and 60° should tie. Does your no-drag curve do that? If it doesn’t, stop here and find the problem.\nWith drag, the best angle moves. Compare your 30° and 60° shots. Without drag they tie. With drag, one of them is better. Speculate why.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
     "objectID": "homework/hw3-potato-cannon.html#part-3-make-the-card",
     "href": "homework/hw3-potato-cannon.html#part-3-make-the-card",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "Part 3 — Make the card",
     "text": "Part 3 — Make the card\nThe club’s targets are at 50, 75, 100, … 300 m, every 25 m. Your code has to find the angle for each one.\nYou already have what you need: your sweep is a list of angles paired with where they land. Reading it in the other direction (“I want to land here, so which angle?”) turns your range-vs-angle data into a firing card. Try plotting it that way: target distance across the bottom, angle up the side.\nHere’s the catch. You could squint at that plot, or scroll through your sweep output, and copy eleven angles onto paper with a pencil. Don’t. Next month the club will put a new valve on the cannon and it’ll fire at 80 m/s, and the whole card will be wrong. If your card came from a pencil, you’re starting over. If it came from code, you change one number and rerun.\nSo build the card the same way you built the sweep, in two pieces:\n\nOne function that aims one shot. Write firing_angle(target, ...). It takes a target distance and returns the angle to set. It’ll probably use your sweep’s angles and ranges as inputs. This is the same move as landing_distance, just run backward: that one answers “where does this angle land?”, and this one answers “what angle lands here?”\nOne loop that fills in the card. Loop over the targets, call firing_angle for each, and collect the results. Then save the finished card to its own CSV file (np.savetxt, like Thursday). That file is what gets printed and taped to the barrel.\n\nWhen you’re done, test it for real: change the launch speed to 80 m/s in one place, rerun, and watch a new card come out. If that takes more than one edit, you’re not quite there. Change it back to 75 m/s for your report.\n\n\n\n\n\n\nTip\n\n\n\nA place to start for firing_angle: np.argmin(np.abs(ranges - target)) gives the index of the sweep point whose range is closest to target. But look at your plot from Part 2 first. Most distances show up twice on that curve, and that one line doesn’t know it. Your function has to pick one on purpose.",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
     "objectID": "homework/hw3-potato-cannon.html#part-4-how-much-should-you-trust-the-card",
     "href": "homework/hw3-potato-cannon.html#part-4-how-much-should-you-trust-the-card",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "Part 4 — How much should you trust the card?",
     "text": "Part 4 — How much should you trust the card?\nPotato cannons aren’t precise. The launch speed changes from shot to shot, maybe by ±5 m/s, depending on how tightly the potato fits and how much pressure was built up. The angle adjustment is probably a bit imprecise too… ±1° is probably beyond the precision of an engineering student aiming some PVC pipe in a dirt field.\nPick the 200 m target. Fire your card’s angle at 70 and 80 m/s: where does it land? Then fire it at your angle ±1° (at 75 m/s). Which matters more, the speed wobble or the aiming wobble?",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
     "objectID": "homework/hw3-potato-cannon.html#your-submission",
     "href": "homework/hw3-potato-cannon.html#your-submission",
-    "title": "HW 3 · The firing card",
+    "title": "HW 3 · The potato cannon",
     "section": "Your submission",
     "text": "Your submission\nStep 1 — Specify & prompt. This is the heart of this assignment. The stepper is eight lines you (mostly) already wrote. The specification is everything around it, and every item below is a decision the stepper doesn’t make for you. Your spec has to make each one, in writing:\n\nlanding_distance: inputs, units, defaults, and what it returns. What counts as a valid angle? What does it do at 0°? At 90°? At −10°?\nWhat “where it landed” means, given that the stepper jumps past the ground.\nHow many steps you simulate, how you picked that number, and what the function does if the potato hasn’t landed yet.\nYour time step, and how you’ll show it’s small enough.\nYour sweep spacing. Why whole degrees (or why not)?\nfiring_angle: inputs, units, and what it returns. When a distance can be hit at two angles, which one does it return, and why? What does it return for a target the cannon can’t reach?\nWhat the card looks like: its columns, its units, and how many decimal places.\n\nThen your actual LLM prompt, with the model name and date.\nStep 2 — Annotate. For each decision in your spec, point to the line that carries it out. Find the drag lines and confirm that \\(|V|\\) is the total speed, not a separate speed for each direction. If the AI made a decision you never specified (a default, a cutoff, which of the two angles it returns), talk about it.\nStep 3 — Verify. The Part 1 checks: the range formula at 45° (with arithmetic), the 30°/60° tie, and the halved-dt comparison. The no-drag 45° from your sweep. Then spot-check the card: pick one row, fire that angle through landing_distance, and show it lands where the card says. And show the 80 m/s card you generated from a one-number change. It should reach farther than the 75 m/s card, so sanity-check that it does.\nStep 4 — Report. The firing card, as a table and as a plot. The best angle with drag, and your best explanation of why it isn’t 45°. Some discussion of how precise your card should be, referencing your results from Part 4. (That is, if your angle is accurate to ±1°, and your velocity is accurate to ±5 m/s, what is the ± on your distance?)",
     "crumbs": [
       "Home",
       "Homework",
-      "HW 3 · The firing card"
+      "HW 3 · The potato cannon"
     ]
   },
   {
