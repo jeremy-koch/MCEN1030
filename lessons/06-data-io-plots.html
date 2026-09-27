@@ -406,7 +406,7 @@ window.Quarto = {
   <li><a href="#writing-a-file" id="toc-writing-a-file" class="nav-link" data-scroll-target="#writing-a-file">Writing a file</a></li>
   <li><a href="#where-did-the-file-go" id="toc-where-did-the-file-go" class="nav-link" data-scroll-target="#where-did-the-file-go">Where did the file go?</a></li>
   <li><a href="#reading-it-back" id="toc-reading-it-back" class="nav-link" data-scroll-target="#reading-it-back">Reading it back</a></li>
-  <li><a href="#plotting-data-not-formulas" id="toc-plotting-data-not-formulas" class="nav-link" data-scroll-target="#plotting-data-not-formulas">Plotting data, not formulas</a></li>
+  <li><a href="#plotting-data" id="toc-plotting-data" class="nav-link" data-scroll-target="#plotting-data">Plotting data</a></li>
   <li><a href="#honest-plots" id="toc-honest-plots" class="nav-link" data-scroll-target="#honest-plots">Honest plots</a></li>
   <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">In-class work</a></li>
   </ul>
@@ -461,7 +461,10 @@ window.Quarto = {
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbmRlZiBzd2VwdF9hcmVhKEQpOlxuICAgIHJldHVybiBucC5waSAqIEQqKjIgLyA0XG5cbmRlZiBjcCh2LCBjcF9tYXg9MC40NSwgdl9iZXN0PTExLCB3PTgpOlxuICAgIHJldHVybiBjcF9tYXggKiAoMSAtICgodiAtIHZfYmVzdCkgLyB3KSoqMilcblxuZGVmIHR1cmJpbmVfcG93ZXIodiwgRD0xMDAuMCwgcmhvPTEuMCwgdl9iZXN0PTExKTpcbiAgICByZXR1cm4gMC41ICogcmhvICogc3dlcHRfYXJlYShEKSAqIHYqKjMgKiBjcCh2LCB2X2Jlc3Q9dl9iZXN0KSAvIDEwMDBcblxuc3BlZWRzID0gbnAuYXJyYXkoWzIuMSwgMS44LCAyLjQsIDMuNSwgNC44LCA2LjEsIDcuNCwgOC42LCA5LjUsIDEwLjIsIDEwLjgsIDExLjMsXG4gICAgICAgICAgICAgICAgICAgMTEuNiwgMTEuMCwgMTAuNCwgOS43LCA4LjUsIC05OTkuMCwgNi44LCA1LjIsIDMuOSwgMi42LCAyMC41LCAxLjVdKVxuZ29vZCA9IHNwZWVkc1soc3BlZWRzID49IDMpICYgKHNwZWVkcyA8PSAxOSldXG5cbmRlc2lnbl9zcGVlZHMgPSBucC5hcmFuZ2UoNiwgMTcsIDEpXG50b3RhbHMgPSBucC56ZXJvcyhsZW4oZGVzaWduX3NwZWVkcykpXG5mb3IgaSBpbiByYW5nZShsZW4oZGVzaWduX3NwZWVkcykpOlxuICAgIHRvdGFsc1tpXSA9IHR1cmJpbmVfcG93ZXIoZ29vZCwgdl9iZXN0PWRlc2lnbl9zcGVlZHNbaV0pLnN1bSgpXG5cbiMgdGhlIG5ldyBwYXJ0OiB3cml0ZSBib3RoIGFycmF5cyB0byBhIGZpbGUsIHNpZGUgYnkgc2lkZVxubnAuc2F2ZXR4dChcImRlc2lnbl9zd2VlcC5jc3ZcIixcbiAgICAgICAgICAgbnAuY29sdW1uX3N0YWNrKFtkZXNpZ25fc3BlZWRzLCB0b3RhbHNdKSxcbiAgICAgICAgICAgZGVsaW1pdGVyPVwiLFwiLFxuICAgICAgICAgICBoZWFkZXI9XCJ2X2Jlc3RfbV9wZXJfcyxlbmVyZ3lfa1doXCIsXG4gICAgICAgICAgIGNvbW1lbnRzPVwiXCIsXG4gICAgICAgICAgIGZtdD1cIiUuMWZcIilcblxucHJpbnQob3BlbihcImRlc2lnbl9zd2VlcC5jc3ZcIikucmVhZCgpKSAgICAgIyBwZWVrIGluc2lkZSB0aGUgZmlsZSB3ZSBqdXN0IG1hZGUifQ==
 </script>
 </div>
-<p>Within the <code>np.savetxt</code> call:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>This might not look very different from what we’ve been doing, but there is something extra happening in the background. I guess pyodide, the tool that is running code on this website, is saving a temporary file called “design_sweep.csv”, and then openining it and displaying the results. In Colab it is clearer that a file is created, and you can download it.</p>
+</div></div><p>Within the <code>np.savetxt</code> function call:</p>
 <ul>
 <li><code>"design_sweep.csv"</code> is the file’s name. It is common to save arrays in a “comma-separated values” (csv) format.</li>
 <li><code>np.column_stack([design_speeds, totals])</code> puts two parallel arrays together side by side as two columns. One row holds, for example, <code>design_speeds[4]</code> <em>and</em> <code>totals[4]</code>.</li>
@@ -490,7 +493,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div>
 <div class="callout-body-container callout-body">
 <p>The files in Colab’s panel exist for a short while — Google will remove them and reclaim the space if you go idle for a while or close the notebook. If you want to keep a file, hover over it, click the three dots, and <strong>Download</strong>.</p>
-<p>The reverse also works: to use a file you have, drag it onto that Files panel, or use the upload button at the top of the panel. It then is in <code>/content</code> and you can refer to it by name. It will also vanish when the session ends, so expect to upload it again next time.</p>
+<p>The reverse also works: to use a file you have, drag it onto that Files panel, or use the upload button at the top of the panel. It then is in <code>/content</code> and you can refer to it by name. It will also vanish when the session ends, so you’ll need to upload it again next time.</p>
 </div>
 </div>
 
@@ -505,15 +508,15 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 
 </div>
 <script type="pyodide-2-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbiMgKHJlY3JlYXRlIHRoZSBmaWxlIHNvIHRoaXMgY2VsbCBzdGFuZHMgb24gaXRzIG93bilcbm9wZW4oXCJkZXNpZ25fc3dlZXAuY3N2XCIsIFwid1wiKS53cml0ZShcIlwiXCJ2X2Jlc3RfbV9wZXJfcyxlbmVyZ3lfa1doXG42LjAsMTUxNjYuMVxuNy4wLDE3NTA2LjNcbjguMCwxOTE3OC4zXG45LjAsMjAxODIuMFxuMTAuMCwyMDUxNy41XG4xMS4wLDIwMTg0LjdcbjEyLjAsMTkxODMuN1xuMTMuMCwxNzUxNC41XG4xNC4wLDE1MTc2LjlcbjE1LjAsMTIxNzEuMlxuMTYuMCw4NDk3LjJcblwiXCJcIilcblxuZGF0YSA9IG5wLmxvYWR0eHQoXCJkZXNpZ25fc3dlZXAuY3N2XCIsIGRlbGltaXRlcj1cIixcIiwgc2tpcHJvd3M9MSlcblxucHJpbnQoZGF0YS5zaGFwZSkgICAgICAgIyAocm93cywgY29sdW1ucylcbnByaW50KGRhdGFbNCwgMV0pICAgICAgICMgcm93IDQsIGNvbHVtbiAxXG5wcmludChkYXRhWzosIDBdKSAgICAgICAjIGV2ZXJ5IHJvdywgY29sdW1uIDAifQ==
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbiMgKHJlY3JlYXRlIHRoZSBmaWxlIHNvIHRoaXMgY2VsbCBzdGFuZHMgb24gaXRzIG93bilcbm9wZW4oXCJkZXNpZ25fc3dlZXAuY3N2XCIsIFwid1wiKS53cml0ZShcIlwiXCJ2X2Jlc3RfbV9wZXJfcyxlbmVyZ3lfa1doXG42LjAsMTUxNjYuMVxuNy4wLDE3NTA2LjNcbjguMCwxOTE3OC4zXG45LjAsMjAxODIuMFxuMTAuMCwyMDUxNy41XG4xMS4wLDIwMTg0LjdcbjEyLjAsMTkxODMuN1xuMTMuMCwxNzUxNC41XG4xNC4wLDE1MTc2LjlcbjE1LjAsMTIxNzEuMlxuMTYuMCw4NDk3LjJcblwiXCJcIilcblxuIyB0aGlzIGlzIHRoZSBuZXcgc3R1ZmYuLi5cbmRhdGEgPSBucC5sb2FkdHh0KFwiZGVzaWduX3N3ZWVwLmNzdlwiLCBkZWxpbWl0ZXI9XCIsXCIsIHNraXByb3dzPTEpXG5cbnByaW50KGRhdGEuc2hhcGUpICAgICAgICMgKHJvd3MsIGNvbHVtbnMpXG5wcmludChkYXRhWzQsIDFdKSAgICAgICAjIHJvdyA0LCBjb2x1bW4gMVxucHJpbnQoZGF0YVs6LCAwXSkgICAgICAgIyBldmVyeSByb3csIGNvbHVtbiAwIn0=
 </script>
 </div>
 <p>Two new things here. First, <code>skiprows=1</code> tells <code>loadtxt</code> to skip the header line, because “v_best_m_per_s” is not a number, and <code>loadtxt</code> only reads numbers.</p>
 <p>Second, <code>data</code> is a <strong>two-dimensional array</strong> — a grid, 11 rows by 2 columns, which is what <code>data.shape</code> reports. To get one value out of a grid we need two indices, row then column: <code>data[4, 1]</code> is row 4, column 1, which is the energy for the 10 m/s design. The colon means “all of them,” so <code>data[:, 0]</code> reads as “every row, column 0” — the whole design-speed column.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Still counting from zero! Column 0 is the first column. Row 0 is the first row of <em>numbers</em>, since the header was skipped.</p>
-</div></div><p>In practice we usually pull the columns apart right away and give them names, which gets us right back to the parallel arrays we know:</p>
+<p>We are still counting from zero! Column 0 is the first column. Row 0 is the first row of <em>numbers</em>, since the header was skipped.</p>
+</div></div><p>In practice we usually pull the columns apart right away and give them variable names, which gets us right back to the parallel arrays we know:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v_best <span class="op">=</span> data[:, <span class="dv">0</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> data[:, <span class="dv">1</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v_best[energy.argmax()])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -546,11 +549,11 @@ Tip
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p><code>loadtxt</code> only reads numbers. A file with words or dates in it (a column like <code>2026-09-10</code>, say) will make it choke. That’s a real limitation, and next week’s tool fixes it.</p>
+<p><code>loadtxt</code> only reads numbers. A file with words or dates in it (a column like <code>2026-09-10</code>, say) will cause problems.</p>
 </div></div></section>
-<section id="plotting-data-not-formulas" class="level2">
-<h2 class="anchored" data-anchor-id="plotting-data-not-formulas">Plotting data, not formulas</h2>
-<p>We’ve plotted some functions: <span class="math inline">\(C_p(v)\)</span>, the falling ball. Plotting data works the same way, but might involve a couple different choices. Here are some Boulder temperatures, including a bad reading:</p>
+<section id="plotting-data" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-data">Plotting data</h2>
+<p>We’ve plotted some functions, e.g.&nbsp;<span class="math inline">\(C_p(v)\)</span> and the falling ball. Plotting data works the same way, but might involve a couple different choices. Here are some Boulder temperatures, including a bad reading:</p>
 <div>
 <div id="pyodide-3" class="exercise-cell">
 
@@ -562,8 +565,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 <p>When we plot the data, the bad reading is obvious: it is the extreme outlier. A plot is a verification tool that looks at every row at once! So: <strong>plot the raw data before you process it.</strong></p>
 <p>A few standard choices when we plot data:</p>
 <ul>
-<li><strong>Markers, not lines, for measurements.</strong> <code>"o"</code> draws a dot at each data point and nothing in between. Our data collection is discrete, and so the representation of the data should be as well. (Theoretical equations or modeling equations can be solid lines because they are continuous.)</li>
-<li><strong>Labels with units.</strong></li>
+<li><strong>Markers, not lines, for measurements.</strong> <code>"o"</code> draws a dot at each data point with nothing in between. Our data collection is discrete, and so the representation of the data should be as well. (Theoretical equations or modeling equations can be solid lines because they are continuous.)</li>
+<li><strong>Labels with units.</strong> In many fields it is standard to report units you would not expect. For example, refrigerators are often measured in BTUs instead of the SI unit J. Don’t assume SI units — report the units in your plot!</li>
 <li><strong>A legend when there’s more than one thing.</strong> <code>label=</code> on each <code>plot</code> call, then <code>plt.legend()</code>. Or, if possible, add annotation arrows and label the data directly.</li>
 </ul>
 <p>A plot can be an output file too. <code>plt.savefig("boulder_sept.png", dpi=200)</code>, placed <em>before</em> <code>plt.show()</code>, writes the figure to Colab’s Files panel. You can download it and put it in a report.</p>
@@ -579,7 +582,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbm1vbnRocyA9IFtcIkphblwiLCBcIkZlYlwiLCBcIk1hclwiLCBcIkFwclwiLCBcIk1heVwiLCBcIkp1blwiXVxuZWZmID0gbnAuYXJyYXkoWzk0LjEsIDk0LjMsIDk0LjIsIDk0LjYsIDk0LjUsIDk0LjhdKSAgICAgIyBwZXJjZW50XG5cbmZpZywgKGF4MSwgYXgyKSA9IHBsdC5zdWJwbG90cygxLCAyLCBmaWdzaXplPSgxMCwgMy41KSlcblxuIyBsZWZ0OiBob25lc3RcbmF4MS5wbG90KG1vbnRocywgZWZmLCBcIm9cIiwgY29sb3I9XCIjMmI2Y2IwXCIpXG5heDEuc2V0X3lsaW0oMCwgMTAwKVxuYXgxLnNldF95bGFiZWwoXCJNb3RvciBlZmZpY2llbmN5ICglKVwiKVxuYXgxLnNldF94bGFiZWwoXCJNb250aCAoMjAyNilcIilcbmF4MS5zZXRfdGl0bGUoXCJNb3RvciBlZmZpY2llbmN5LCBKYW7igJNKdW5cIilcblxuIyByaWdodDogdGhlIHNhbWUgbnVtYmVycywgZHJlc3NlZCB0byBkZWNlaXZlXG5heDIucGxvdChtb250aHMsIGVmZiwgXCJvLVwiLCBjb2xvcj1cIiNjNTMwMzBcIiwgbGluZXdpZHRoPTQpXG5heDIuc2V0X3lsaW0oOTQuMCwgOTQuOSkgICAgICAgICAgICAgICAgICAgICAgICAjIHRoZSB0cnVuY2F0aW9uXG5heDIuc2V0X3lsYWJlbChcIkVmZmljaWVuY3lcIikgICAgICAgICAgICAgICAgICAgICAjIHVuaXRzIHF1aWV0bHkgZ29uZVxuYXgyLnNldF90aXRsZShcIkVmZmljaWVuY3kgU1VSR0VTIGluIFEyIVwiKSAgICAgICAgIyBhbiBlZGl0b3JpYWwgdGl0bGVcblxucGx0LnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
 </script>
 </div>
-<p>On the left, the y-axis spans 0 to 100%, and the story is <em>basically flat: a stable motor drifting up by half a percent.</em> On the right, the axis spans 94.0 to 94.9%, the line is thick and red, the title sets misleading expectations, and the units have quietly disappeared. The story there is <em>dramatic improvement.</em> <strong>Neither plot contains a false number.</strong> I think the second one is still untruthful!</p>
+<p>On the left, the y-axis spans 0 to 100%, and the story is <em>basically flat: a stable motor drifting up by half a percent.</em> On the right, the axis spans 94.0 to 94.9%, the line is thick and red, the title sets misleading expectations, and the units have disappeared. The claimed story is that there has been a <em>dramatic improvement.</em> <strong>Neither plot contains a false number.</strong> I think the second one is still untruthful!</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -594,7 +597,7 @@ Caution
 </div>
 </div>
 <p>Axis truncation is one way to make a misleading plot. Some other ways: a cherry-picked range (start the x-axis right after the bad quarter), missing units, two y-axes scaled to make unrelated things look correlated, 3D bars whose volumes exaggerate the differences.</p>
-<p>As engineers, we should strive to produce plots that tell an accurate story. That includes being honest about bad data and uncertainty! We’ll also be on the receiving-end of misleading plots and need to understand what the true story is so we can make good decisions!</p>
+<p>As engineers, we should strive to produce plots that tell an accurate story. That includes being honest about bad data and uncertainty! We’ll also be on the receiving end of misleading plots and need to understand what the true story is so we can make good decisions.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -609,7 +612,7 @@ Caution
 </div>
 </div>
 <div class="bring-to-class">
-<p><strong>(1)</strong> Here is the complete text of a file called <code>drop_log.csv</code>:</p>
+<p>Here is the complete text of a file called <code>drop_log.csv</code>:</p>
 <pre><code>time_s,height_m
 0.0,2.00
 0.1,1.95
@@ -617,7 +620,7 @@ Caution
 0.3,1.56</code></pre>
 <p>and it’s read in with</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.loadtxt(<span class="st">"drop_log.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skiprows<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>No computer. Write down what each of these gives you — the value, not a description: <code>data.shape</code>, <code>data[2, 1]</code>, <code>data[:, 0]</code>, and <code>data[-1, 1]</code>.</p>
+<p>No computer. Write down what each of these gives you (the value): <code>data.shape</code>, <code>data[2, 1]</code>, <code>data[:, 0]</code>, and <code>data[-1, 1]</code>.</p>
 <p>Then one sentence: what would happen if <code>skiprows=1</code> were left out? <!-- 
 **(2) For Thursday:** find a plot out in the world — a news article, an ad, social media, a product page — that you judge **misleading**, and bring it (a screenshot or link on your phone is fine). On paper, two sentences: what technique makes it misleading, and what an honest version would look like. Thursday we'll make one honest and one deliberately misleading plot of the same data, and other tables will try to catch the trick. Yes, we're teaching you to lie with plots, once, under supervision, so you'll spot it for the rest of your life. --></p>
 </div>
