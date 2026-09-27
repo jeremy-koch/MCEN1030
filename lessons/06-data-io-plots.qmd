@@ -55,7 +55,12 @@ np.savetxt("design_sweep.csv",
 print(open("design_sweep.csv").read())     # peek inside the file we just made
 ```
 
-Within the `np.savetxt` call:
+::: {.column-margin}
+This might not look very different from what we've been doing, but there is something extra happening in the background. I guess pyodide, the tool that is running code on this website, is saving a temporary file called "design_sweep.csv", and then openining it and displaying the results. In Colab it is clearer that a file is created, and you can download it.
+:::
+
+
+Within the `np.savetxt` function call:
 
 - `"design_sweep.csv"` is the file's name. It is common to save arrays in a "comma-separated values" (csv) format. 
 - `np.column_stack([design_speeds, totals])` puts two parallel arrays together side by side as two columns. One row holds, for example, `design_speeds[4]` *and* `totals[4]`.
@@ -80,7 +85,7 @@ In Colab, that folder is `/content`: if you want to see what is in it, click the
 ## Colab's files are temporary
 The files in Colab's panel exist for a short while — Google will remove them and reclaim the space if you go idle for a while or close the notebook. If you want to keep a file, hover over it, click the three dots, and **Download**.
 
-The reverse also works: to use a file you have, drag it onto that Files panel, or use the upload button at the top of the panel. It then is in `/content` and you can refer to it by name. It will also vanish when the session ends, so expect to upload it again next time.
+The reverse also works: to use a file you have, drag it onto that Files panel, or use the upload button at the top of the panel. It then is in `/content` and you can refer to it by name. It will also vanish when the session ends, so you'll need to upload it again next time.
 :::
 
 ::: {.column-margin}
@@ -109,6 +114,7 @@ open("design_sweep.csv", "w").write("""v_best_m_per_s,energy_kWh
 16.0,8497.2
 """)
 
+# this is the new stuff...
 data = np.loadtxt("design_sweep.csv", delimiter=",", skiprows=1)
 
 print(data.shape)       # (rows, columns)
@@ -121,10 +127,10 @@ Two new things here. First, `skiprows=1` tells `loadtxt` to skip the header line
 Second, `data` is a **two-dimensional array** — a grid, 11 rows by 2 columns, which is what `data.shape` reports. To get one value out of a grid we need two indices, row then column: `data[4, 1]` is row 4, column 1, which is the energy for the 10 m/s design. The colon means "all of them," so `data[:, 0]` reads as "every row, column 0" — the whole design-speed column.
 
 ::: {.column-margin}
-Still counting from zero! Column 0 is the first column. Row 0 is the first row of *numbers*, since the header was skipped.
+We are still counting from zero! Column 0 is the first column. Row 0 is the first row of *numbers*, since the header was skipped.
 :::
 
-In practice we usually pull the columns apart right away and give them names, which gets us right back to the parallel arrays we know:
+In practice we usually pull the columns apart right away and give them variable names, which gets us right back to the parallel arrays we know:
 
 ```python
 v_best = data[:, 0]
@@ -144,14 +150,14 @@ Check out the file before computing anything: What are the columns, what are the
 :::
 
 ::: {.column-margin}
-`loadtxt` only reads numbers. A file with words or dates in it (a column like `2026-09-10`, say) will make it choke. That's a real limitation, and next week's tool fixes it.
+`loadtxt` only reads numbers. A file with words or dates in it (a column like `2026-09-10`, say) will cause problems.
 :::
 
 
 
-## Plotting data, not formulas
+## Plotting data
 
-We've plotted some functions: $C_p(v)$, the falling ball. Plotting data works the same way, but might involve a couple different choices. Here are some Boulder temperatures, including a bad reading:
+We've plotted some functions, e.g. $C_p(v)$ and the falling ball. Plotting data works the same way, but might involve a couple different choices. Here are some Boulder temperatures, including a bad reading:
 
 ```{pyodide}
 import numpy as np
@@ -189,8 +195,8 @@ When we plot the data, the bad reading is obvious: it is the extreme outlier. A 
 
 A few standard choices when we plot data:
 
-- **Markers, not lines, for measurements.** `"o"` draws a dot at each data point and nothing in between. Our data collection is discrete, and so the representation of the data should be as well. (Theoretical equations or modeling equations can be solid lines because they are continuous.)
-- **Labels with units.** 
+- **Markers, not lines, for measurements.** `"o"` draws a dot at each data point with nothing in between. Our data collection is discrete, and so the representation of the data should be as well. (Theoretical equations or modeling equations can be solid lines because they are continuous.)
+- **Labels with units.** In many fields it is standard to report units you would not expect. For example, refrigerators are often measured in BTUs instead of the SI unit J. Don't assume SI units — report the units in your plot!
 - **A legend when there's more than one thing.** `label=` on each `plot` call, then `plt.legend()`. Or, if possible, add annotation arrows and label the data directly. 
 
 
@@ -227,7 +233,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-On the left, the y-axis spans 0 to 100%, and the story is *basically flat: a stable motor drifting up by half a percent.* On the right, the axis spans 94.0 to 94.9%, the line is thick and red, the title sets misleading expectations, and the units have quietly disappeared. The story there is *dramatic improvement.* **Neither plot contains a false number.** I think the second one is still untruthful!
+On the left, the y-axis spans 0 to 100%, and the story is *basically flat: a stable motor drifting up by half a percent.* On the right, the axis spans 94.0 to 94.9%, the line is thick and red, the title sets misleading expectations, and the units have disappeared. The claimed story is that there has been a *dramatic improvement.* **Neither plot contains a false number.** I think the second one is still untruthful!
 
 ::: {.callout-caution}
 Try it: change the honest plot's `set_ylim(0, 100)` to `set_ylim(90, 100)`, then `(94, 95)`.
@@ -235,7 +241,7 @@ Try it: change the honest plot's `set_ylim(0, 100)` to `set_ylim(90, 100)`, then
 
 Axis truncation is one way to make a misleading plot. Some other ways: a cherry-picked range (start the x-axis right after the bad quarter), missing units, two y-axes scaled to make unrelated things look correlated, 3D bars whose volumes exaggerate the differences. 
 
-As engineers, we should strive to produce plots that tell an accurate story. That includes being honest about bad data and uncertainty! We'll also be on the receiving-end of misleading plots and need to understand what the true story is so we can make good decisions!
+As engineers, we should strive to produce plots that tell an accurate story. That includes being honest about bad data and uncertainty! We'll also be on the receiving end of misleading plots and need to understand what the true story is so we can make good decisions.
 
 ::: {.callout-tip}
 ## Think
@@ -244,7 +250,7 @@ Is a truncated axis *always* dishonest? A half-percent drift might actually matt
 
 
 ::: {.bring-to-class}
-**(1)** Here is the complete text of a file called `drop_log.csv`:
+Here is the complete text of a file called `drop_log.csv`:
 
 ```
 time_s,height_m
@@ -260,7 +266,7 @@ and it's read in with
 data = np.loadtxt("drop_log.csv", delimiter=",", skiprows=1)
 ```
 
-No computer. Write down what each of these gives you — the value, not a description: `data.shape`, `data[2, 1]`, `data[:, 0]`, and `data[-1, 1]`.
+No computer. Write down what each of these gives you (the value): `data.shape`, `data[2, 1]`, `data[:, 0]`, and `data[-1, 1]`.
 
 Then one sentence: what would happen if `skiprows=1` were left out?
 <!-- 
