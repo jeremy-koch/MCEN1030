@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HW 2 · Which way should the panel point? – MCEN 1030</title>
+<title>Data in, data out — and honest plots – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -190,7 +190,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw2-solar-tilt.html">HW 2 · Which way should the panel point?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/06-data-io-plots.html">Data in, data out — and honest plots</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -351,7 +351,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/06-data-io-plots.html" class="sidebar-item-text sidebar-link">
+  <a href="../lessons/06-data-io-plots.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Data in, data out — and honest plots</span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw2-solar-tilt.html" class="sidebar-item-text sidebar-link active">
+  <a href="../homework/hw2-solar-tilt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HW 2 · Which way should the panel point?</span></a>
   </div>
 </li>
@@ -402,22 +402,23 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
-  <li><a href="#part-1-build-the-function-and-check-it-by-hand" id="toc-part-1-build-the-function-and-check-it-by-hand" class="nav-link" data-scroll-target="#part-1-build-the-function-and-check-it-by-hand">Part 1 — Build the function and check it by hand</a></li>
-  <li><a href="#part-2-sweep-the-tilt" id="toc-part-2-sweep-the-tilt" class="nav-link" data-scroll-target="#part-2-sweep-the-tilt">Part 2 — Sweep the tilt</a></li>
-  <li><a href="#part-3-a-real-day" id="toc-part-3-a-real-day" class="nav-link" data-scroll-target="#part-3-a-real-day">Part 3 — A real day</a></li>
-  <li><a href="#your-submission" id="toc-your-submission" class="nav-link" data-scroll-target="#your-submission">Your submission</a></li>
+  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
+  <li><a href="#writing-a-file" id="toc-writing-a-file" class="nav-link" data-scroll-target="#writing-a-file">Writing a file</a></li>
+  <li><a href="#where-did-the-file-go" id="toc-where-did-the-file-go" class="nav-link" data-scroll-target="#where-did-the-file-go">Where did the file go?</a></li>
+  <li><a href="#reading-it-back" id="toc-reading-it-back" class="nav-link" data-scroll-target="#reading-it-back">Reading it back</a></li>
+  <li><a href="#plotting-data-not-formulas" id="toc-plotting-data-not-formulas" class="nav-link" data-scroll-target="#plotting-data-not-formulas">Plotting data, not formulas</a></li>
+  <li><a href="#honest-plots" id="toc-honest-plots" class="nav-link" data-scroll-target="#honest-plots">Honest plots</a></li>
+  <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">In-class work</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw2-solar-tilt.html">HW 2 · Which way should the panel point?</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../lessons/06-data-io-plots.html">Data in, data out — and honest plots</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">HW 2 · Which way should the panel point?</h1>
-<p class="subtitle lead">Anchor week 4 · Standards: P1, P4, A1, A4</p>
+<h1 class="title">Data in, data out — and honest plots</h1>
+<p class="subtitle lead">Week 6 — read before Tuesday</p>
 </div>
 
 
@@ -434,45 +435,102 @@ window.Quarto = {
 </header>
 
 
-<section id="scenario" class="level2">
-<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
-<p>You’re picking a location for a single solar panel on a roof in Boulder. The panel doesn’t track the sun — it gets bolted down once, at one tilt angle, and (hopefully) lasts for years in that position. So we had better pick the correct angle!</p>
-<p>You will prepare a report in which you pick the best angle. More importantly, you’ll convince the reader that the number you picked is right.</p>
-<p><strong>See <a href="../info/colab-format.html">Submitting Homework</a> for information on how to create the report. We are requiring a certain look this time.</strong></p>
+<p>Every number we’ve computed with so far, we typed into the program. The 24 hours of wind speed, the balloon’s <span class="math inline">\(k/m\)</span>, even the “sensor glitch” at −999 was manually typed-in. Real data doesn’t arrive that way. It arrives as a <strong>file</strong> — from a sensor, a colleague, a government agency — and it’s usually far too long to type.</p>
+<p>This week we’re going to learn how to get numbers out of a program and into a file, and then how to get numbers from a file into a program. We’ll also talk about plotting, which we’ve been doing informally for a couple weeks but will be more detailed about now. Notably, we’ll talk about what good, honest plots look like, and how the default settings in our programming languages don’t really get us there. (And LLMs still do a bad job creating plots, in my opinion!)</p>
+<section id="think-first" class="level2">
+<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
+<p>Recall</p>
+<ol type="1">
+<li>In Colab, if you walk away for a couple hours, come back, and run a cell that uses a variable from earlier… what happens? Where did the variable go?</li>
+<li>Week 4: <code>diameters</code> and <code>totals</code> were <em>parallel</em> arrays. What does that mean, and what breaks if they get out of line?</li>
+</ol>
+<p>Look Ahead</p>
+<ol type="1">
+<li>If your program’s results need to be saved and sent to a colleague’s computer, how do we do that?</li>
+<li>Can a plot be technically accurate and still be misleading?</li>
+</ol>
 </section>
-<section id="the-model" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-model">The model</h2>
-<p>Technically the panel orientation requires two angular measurements. Think about starting with it pointing upwards, and then tilting it until it faces due south (we adjusted one angular coordinate), and then rotating it around so that it faces east (we adjusted the second angular coordinate). We’ll simplify a bit and focus on just solar noon, eliminating the second angle from our worries.</p>
-<p>A tilted panel collects energy in proportion to how squarely it faces the sun. If the sunlight arrives at an angle <span class="math inline">\(\theta\)</span> away from straight-on, the panel collects a factor of <span class="math inline">\(\cos\theta\)</span> less than it would if the sun were directly overhead of it. Let <span class="math inline">\(\alpha\)</span> be the sun’s <strong>elevation</strong> above the horizon and <span class="math inline">\(\beta\)</span> the panel’s <strong>tilt</strong> up from horizontal. The sun’s angle from straight-up (the <em>zenith angle</em>) is <span class="math inline">\(90° - \alpha\)</span>, and the panel’s normal is tilted <span class="math inline">\(\beta\)</span> from straight-up, so</p>
-<p><span class="math display">\[
-\theta = \left|\,(90° - \alpha) - \beta\,\right|
-\]</span></p>
-<p>and the power the panel produces is</p>
-<p><span class="math display">\[
-P = G \cdot A \cdot \eta \cdot \cos\theta
-\]</span></p>
-<p>with <span class="math inline">\(G\)</span> the incoming sunlight in W/m², <span class="math inline">\(A = 1.6\)</span> m² the panel area, and <span class="math inline">\(\eta = 0.20\)</span> the conversion efficiency.</p>
+<section id="writing-a-file" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="writing-a-file">Writing a file</h2>
+<p>Let’s start with results we already have. Here’s the design-speed sweep from week 4’s activity: eleven blade designs, one day’s energy for each. We’ll compute it exactly as before, and then add one line at the end.</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbmRlZiBzd2VwdF9hcmVhKEQpOlxuICAgIHJldHVybiBucC5waSAqIEQqKjIgLyA0XG5cbmRlZiBjcCh2LCBjcF9tYXg9MC40NSwgdl9iZXN0PTExLCB3PTgpOlxuICAgIHJldHVybiBjcF9tYXggKiAoMSAtICgodiAtIHZfYmVzdCkgLyB3KSoqMilcblxuZGVmIHR1cmJpbmVfcG93ZXIodiwgRD0xMDAuMCwgcmhvPTEuMCwgdl9iZXN0PTExKTpcbiAgICByZXR1cm4gMC41ICogcmhvICogc3dlcHRfYXJlYShEKSAqIHYqKjMgKiBjcCh2LCB2X2Jlc3Q9dl9iZXN0KSAvIDEwMDBcblxuc3BlZWRzID0gbnAuYXJyYXkoWzIuMSwgMS44LCAyLjQsIDMuNSwgNC44LCA2LjEsIDcuNCwgOC42LCA5LjUsIDEwLjIsIDEwLjgsIDExLjMsXG4gICAgICAgICAgICAgICAgICAgMTEuNiwgMTEuMCwgMTAuNCwgOS43LCA4LjUsIC05OTkuMCwgNi44LCA1LjIsIDMuOSwgMi42LCAyMC41LCAxLjVdKVxuZ29vZCA9IHNwZWVkc1soc3BlZWRzID49IDMpICYgKHNwZWVkcyA8PSAxOSldXG5cbmRlc2lnbl9zcGVlZHMgPSBucC5hcmFuZ2UoNiwgMTcsIDEpXG50b3RhbHMgPSBucC56ZXJvcyhsZW4oZGVzaWduX3NwZWVkcykpXG5mb3IgaSBpbiByYW5nZShsZW4oZGVzaWduX3NwZWVkcykpOlxuICAgIHRvdGFsc1tpXSA9IHR1cmJpbmVfcG93ZXIoZ29vZCwgdl9iZXN0PWRlc2lnbl9zcGVlZHNbaV0pLnN1bSgpXG5cbiMgdGhlIG5ldyBwYXJ0OiB3cml0ZSBib3RoIGFycmF5cyB0byBhIGZpbGUsIHNpZGUgYnkgc2lkZVxubnAuc2F2ZXR4dChcImRlc2lnbl9zd2VlcC5jc3ZcIixcbiAgICAgICAgICAgbnAuY29sdW1uX3N0YWNrKFtkZXNpZ25fc3BlZWRzLCB0b3RhbHNdKSxcbiAgICAgICAgICAgZGVsaW1pdGVyPVwiLFwiLFxuICAgICAgICAgICBoZWFkZXI9XCJ2X2Jlc3RfbV9wZXJfcyxlbmVyZ3lfa1doXCIsXG4gICAgICAgICAgIGNvbW1lbnRzPVwiXCIsXG4gICAgICAgICAgIGZtdD1cIiUuMWZcIilcblxucHJpbnQob3BlbihcImRlc2lnbl9zd2VlcC5jc3ZcIikucmVhZCgpKSAgICAgIyBwZWVrIGluc2lkZSB0aGUgZmlsZSB3ZSBqdXN0IG1hZGUifQ==
+</script>
+</div>
+<p>Within the <code>np.savetxt</code> call:</p>
+<ul>
+<li><code>"design_sweep.csv"</code> is the file’s name. It is common to save arrays in a “comma-separated values” (csv) format.</li>
+<li><code>np.column_stack([design_speeds, totals])</code> puts two parallel arrays together side by side as two columns. One row holds, for example, <code>design_speeds[4]</code> <em>and</em> <code>totals[4]</code>.</li>
+<li><code>delimiter=","</code> puts a comma between the values in a row.</li>
+<li><code>header="..."</code> writes a first line naming the columns. This is your chance to give some details about the file contents — e.g., it might be a good idea to put the units in the names. A column called <code>energy</code> would leave the next reader guessing whether it’s kWh, MWh, or joules.</li>
+<li><code>comments=""</code> — see the margin.</li>
+<li><code>fmt="%.1f"</code> says “write each number with one digit after the decimal point.”</li>
+</ul>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>This model ignores diffuse light from the sky, reflections off the roof, the fact that panels get less efficient when hot, and everything that happens away from solar noon.</p>
-</div></div><div class="callout callout-style-default callout-tip callout-titled">
+<p>By default, <code>savetxt</code> puts <code>#</code> in front of the header line, marking it as a comment. NumPy is happy with that. Most other programs (Excel, pandas next week) are not, and they’ll think the first column is named <code># v_best_m_per_s</code>. Setting <code>comments=""</code> turns that off.</p>
+</div></div><p>Then <code>print(open(...).read())</code> allows us to see the file on this webpage. In Colab you can just double-click the file to look at it (more on where it lives in a moment).</p>
+</section>
+<section id="where-did-the-file-go" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="where-did-the-file-go">Where did the file go?</h2>
+<p>A file lives in a <strong>folder</strong>, and its full address is called its <strong>path</strong>. Something like <code>/content/design_sweep.csv</code> means “the file <code>design_sweep.csv</code> inside the folder <code>content</code>.” When we wrote just <code>"design_sweep.csv"</code> with no folder, Python put it in whatever folder it was <em>currently working in</em>.</p>
+<p>In Colab, that folder is <code>/content</code>: if you want to see what is in it, click the <strong>folder icon</strong> in the left sidebar. <code>design_sweep.csv</code> will be there after you run the code. Double-click it to see the contents.</p>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Important</span>Colab’s files are temporary
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Two notes on using this in code. NumPy’s <code>np.cos</code> expects <strong>radians</strong>, not degrees, but <code>np.radians(theta)</code> will do the conversion for you. And <code>np.abs</code> gives you the absolute value elementwise on a whole array.</p>
+<p>The files in Colab’s panel exist for a short while — Google will remove them and reclaim the space if you go idle for a while or close the notebook. If you want to keep a file, hover over it, click the three dots, and <strong>Download</strong>.</p>
+<p>The reverse also works: to use a file you have, drag it onto that Files panel, or use the upload button at the top of the panel. It then is in <code>/content</code> and you can refer to it by name. It will also vanish when the session ends, so expect to upload it again next time.</p>
 </div>
 </div>
-</section>
-<section id="part-1-build-the-function-and-check-it-by-hand" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-build-the-function-and-check-it-by-hand">Part 1 — Build the function and check it by hand</h2>
-<p>Write <code>panel_power(tilt_deg, elevation_deg)</code> returning watts, with <code>G</code>, <code>A</code>, and <span class="math inline">\(\eta\)</span> as arguments with sensible defaults. Write a docstring: what goes in, in what units, what comes out.</p>
-<p>Then <strong>verify it in isolation before you use it for anything</strong> (this is standard P1). On the equinox at Boulder, the sun’s noon elevation is <span class="math inline">\(\alpha = 50°\)</span>. Compute <span class="math inline">\(P\)</span> by hand for a tilt of <span class="math inline">\(0°\)</span> and for a tilt of <span class="math inline">\(40°\)</span> — write down the arithmetic, not just the answers — and confirm the function agrees. If it doesn’t, the function is wrong!</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>There’s a more permanent option: connecting Colab to your Google Drive, so files live in Drive instead.</p>
+</div></div></section>
+<section id="reading-it-back" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="reading-it-back">Reading it back</h2>
+<p>Now the other direction. <code>np.loadtxt</code> reads a CSV of numbers into an array:</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5cbiMgKHJlY3JlYXRlIHRoZSBmaWxlIHNvIHRoaXMgY2VsbCBzdGFuZHMgb24gaXRzIG93bilcbm9wZW4oXCJkZXNpZ25fc3dlZXAuY3N2XCIsIFwid1wiKS53cml0ZShcIlwiXCJ2X2Jlc3RfbV9wZXJfcyxlbmVyZ3lfa1doXG42LjAsMTUxNjYuMVxuNy4wLDE3NTA2LjNcbjguMCwxOTE3OC4zXG45LjAsMjAxODIuMFxuMTAuMCwyMDUxNy41XG4xMS4wLDIwMTg0LjdcbjEyLjAsMTkxODMuN1xuMTMuMCwxNzUxNC41XG4xNC4wLDE1MTc2LjlcbjE1LjAsMTIxNzEuMlxuMTYuMCw4NDk3LjJcblwiXCJcIilcblxuZGF0YSA9IG5wLmxvYWR0eHQoXCJkZXNpZ25fc3dlZXAuY3N2XCIsIGRlbGltaXRlcj1cIixcIiwgc2tpcHJvd3M9MSlcblxucHJpbnQoZGF0YS5zaGFwZSkgICAgICAgIyAocm93cywgY29sdW1ucylcbnByaW50KGRhdGFbNCwgMV0pICAgICAgICMgcm93IDQsIGNvbHVtbiAxXG5wcmludChkYXRhWzosIDBdKSAgICAgICAjIGV2ZXJ5IHJvdywgY29sdW1uIDAifQ==
+</script>
+</div>
+<p>Two new things here. First, <code>skiprows=1</code> tells <code>loadtxt</code> to skip the header line, because “v_best_m_per_s” is not a number, and <code>loadtxt</code> only reads numbers.</p>
+<p>Second, <code>data</code> is a <strong>two-dimensional array</strong> — a grid, 11 rows by 2 columns, which is what <code>data.shape</code> reports. To get one value out of a grid we need two indices, row then column: <code>data[4, 1]</code> is row 4, column 1, which is the energy for the 10 m/s design. The colon means “all of them,” so <code>data[:, 0]</code> reads as “every row, column 0” — the whole design-speed column.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Still counting from zero! Column 0 is the first column. Row 0 is the first row of <em>numbers</em>, since the header was skipped.</p>
+</div></div><p>In practice we usually pull the columns apart right away and give them names, which gets us right back to the parallel arrays we know:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v_best <span class="op">=</span> data[:, <span class="dv">0</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> data[:, <span class="dv">1</span>]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v_best[energy.argmax()])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With this data now part of our program, we can do any sort of calculation we need to. Calculate the average, the max, the sum, etc.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try deleting <code>skiprows=1</code> from the cell above… you’ll get an error message.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -483,64 +541,127 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>One of those two hand cases is arithmetically trivial. That’s a good strategy: pick inputs whose answer you can get without a calculator. You’ll be more inclined to verify the easy cases, and less inclined to make mistakes!</p>
+<p>Check out the file before computing anything: What are the columns, what are the units, does anything look strange?</p>
 </div>
 </div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><code>loadtxt</code> only reads numbers. A file with words or dates in it (a column like <code>2026-09-10</code>, say) will make it choke. That’s a real limitation, and next week’s tool fixes it.</p>
+</div></div></section>
+<section id="plotting-data-not-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-data-not-formulas">Plotting data, not formulas</h2>
+<p>We’ve plotted some functions: <span class="math inline">\(C_p(v)\)</span>, the falling ball. Plotting data works the same way, but might involve a couple different choices. Here are some Boulder temperatures, including a bad reading:</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbm9wZW4oXCJib3VsZGVyX3NlcHQuY3N2XCIsIFwid1wiKS53cml0ZShcIlwiXCJkYXksaGlnaF9GLGxvd19GXG4xLDg2LDU1XG4yLDg4LDU3XG4zLDg0LDU0XG40LDc5LDUwXG41LDgyLDUyXG42LDg1LDU1XG43LDg3LDU2XG44LDg5LDU4XG45LDkwLDU5XG4xMCwtOTk5LDU3XG4xMSw4Myw1M1xuMTIsNzYsNDhcbjEzLDcyLDQ1XG4xNCw3OCw0OVxuXCJcIlwiKVxuXG5kYXRhID0gbnAubG9hZHR4dChcImJvdWxkZXJfc2VwdC5jc3ZcIiwgZGVsaW1pdGVyPVwiLFwiLCBza2lwcm93cz0xKVxuZGF5LCBoaWdoLCBsb3cgPSBkYXRhWzosIDBdLCBkYXRhWzosIDFdLCBkYXRhWzosIDJdXG5cbnBsdC5wbG90KGRheSwgaGlnaCwgXCJvXCIsIGxhYmVsPVwiZGFpbHkgaGlnaFwiKVxucGx0LnBsb3QoZGF5LCBsb3csIFwic1wiLCBsYWJlbD1cImRhaWx5IGxvd1wiKVxucGx0LnhsYWJlbChcIkRheSBvZiBTZXB0ZW1iZXIgMjAyNlwiKVxucGx0LnlsYWJlbChcIlRlbXBlcmF0dXJlICjCsEYpXCIpXG5wbHQubGVnZW5kKClcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+<p>When we plot the data, the bad reading is obvious: it is the extreme outlier. A plot is a verification tool that looks at every row at once! So: <strong>plot the raw data before you process it.</strong></p>
+<p>A few standard choices when we plot data:</p>
+<ul>
+<li><strong>Markers, not lines, for measurements.</strong> <code>"o"</code> draws a dot at each data point and nothing in between. Our data collection is discrete, and so the representation of the data should be as well. (Theoretical equations or modeling equations can be solid lines because they are continuous.)</li>
+<li><strong>Labels with units.</strong></li>
+<li><strong>A legend when there’s more than one thing.</strong> <code>label=</code> on each <code>plot</code> call, then <code>plt.legend()</code>. Or, if possible, add annotation arrows and label the data directly.</li>
+</ul>
+<p>A plot can be an output file too. <code>plt.savefig("boulder_sept.png", dpi=200)</code>, placed <em>before</em> <code>plt.show()</code>, writes the figure to Colab’s Files panel. You can download it and put it in a report.</p>
 </section>
-<section id="part-2-sweep-the-tilt" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-sweep-the-tilt">Part 2 — Sweep the tilt</h2>
-<p>Build a NumPy array of tilt angles from <span class="math inline">\(0°\)</span> to <span class="math inline">\(90°\)</span>, evaluate <code>panel_power</code> on the whole array in one line, and find the best tilt using <code>argmax</code>. Plot power against tilt, with axis labels and units. There is basically no cost to doing a lot of points here: you could calculate at every degree… 91 points is not that many.</p>
-<p>Then the sanity check:</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="honest-plots" class="level2">
+<h2 class="anchored" data-anchor-id="honest-plots">Honest plots</h2>
+<p>Here are the <strong>same six data points</strong> plotted twice: a motor’s efficiency, measured monthly.</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbm1vbnRocyA9IFtcIkphblwiLCBcIkZlYlwiLCBcIk1hclwiLCBcIkFwclwiLCBcIk1heVwiLCBcIkp1blwiXVxuZWZmID0gbnAuYXJyYXkoWzk0LjEsIDk0LjMsIDk0LjIsIDk0LjYsIDk0LjUsIDk0LjhdKSAgICAgIyBwZXJjZW50XG5cbmZpZywgKGF4MSwgYXgyKSA9IHBsdC5zdWJwbG90cygxLCAyLCBmaWdzaXplPSgxMCwgMy41KSlcblxuIyBsZWZ0OiBob25lc3RcbmF4MS5wbG90KG1vbnRocywgZWZmLCBcIm9cIiwgY29sb3I9XCIjMmI2Y2IwXCIpXG5heDEuc2V0X3lsaW0oMCwgMTAwKVxuYXgxLnNldF95bGFiZWwoXCJNb3RvciBlZmZpY2llbmN5ICglKVwiKVxuYXgxLnNldF94bGFiZWwoXCJNb250aCAoMjAyNilcIilcbmF4MS5zZXRfdGl0bGUoXCJNb3RvciBlZmZpY2llbmN5LCBKYW7igJNKdW5cIilcblxuIyByaWdodDogdGhlIHNhbWUgbnVtYmVycywgZHJlc3NlZCB0byBkZWNlaXZlXG5heDIucGxvdChtb250aHMsIGVmZiwgXCJvLVwiLCBjb2xvcj1cIiNjNTMwMzBcIiwgbGluZXdpZHRoPTQpXG5heDIuc2V0X3lsaW0oOTQuMCwgOTQuOSkgICAgICAgICAgICAgICAgICAgICAgICAjIHRoZSB0cnVuY2F0aW9uXG5heDIuc2V0X3lsYWJlbChcIkVmZmljaWVuY3lcIikgICAgICAgICAgICAgICAgICAgICAjIHVuaXRzIHF1aWV0bHkgZ29uZVxuYXgyLnNldF90aXRsZShcIkVmZmljaWVuY3kgU1VSR0VTIGluIFEyIVwiKSAgICAgICAgIyBhbiBlZGl0b3JpYWwgdGl0bGVcblxucGx0LnRpZ2h0X2xheW91dCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+<p>On the left, the y-axis spans 0 to 100%, and the story is <em>basically flat: a stable motor drifting up by half a percent.</em> On the right, the axis spans 94.0 to 94.9%, the line is thick and red, the title sets misleading expectations, and the units have quietly disappeared. The story there is <em>dramatic improvement.</em> <strong>Neither plot contains a false number.</strong> I think the second one is still untruthful!</p>
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There’s a rule of thumb that a fixed panel should be tilted at roughly the site’s <strong>latitude</strong>. Boulder is at 40°N. Does your sweep agree?</p>
-<p>If it does — say so explicitly, and explain in a sentence or two <em>why</em> the model produces that result, using the geometry above. “It matched” is not the finding; being able to say why it had to match is. (Hint: look at the equation.)</p>
-<p>If it doesn’t, you have a bug, and the two usual suspects are degrees-versus-radians and a sign error in <span class="math inline">\(\theta\)</span>. Find it.</p>
+<p>Try it: change the honest plot’s <code>set_ylim(0, 100)</code> to <code>set_ylim(90, 100)</code>, then <code>(94, 95)</code>.</p>
 </div>
 </div>
-<p>Two follow-ups, one calculation each:</p>
-<ol type="1">
-<li>Winter solstice drops the noon sun to <span class="math inline">\(\alpha = 26.5°\)</span>; summer solstice raises it to <span class="math inline">\(73.5°\)</span>. Rerun the sweep for each. Do the best tilts make physical sense to you? Which of the three best tilts would you pick, if you had to pick one?</li>
-<li>Extend your tilt array past <span class="math inline">\(90°\)</span>, out to <span class="math inline">\(180°\)</span> — a panel tipped over past vertical until it’s face-down. What does the function report, and is it physically possible? Say what the function <em>should</em> do there and why it doesn’t.</li>
-</ol>
+<p>Axis truncation is one way to make a misleading plot. Some other ways: a cherry-picked range (start the x-axis right after the bad quarter), missing units, two y-axes scaled to make unrelated things look correlated, 3D bars whose volumes exaggerate the differences.</p>
+<p>As engineers, we should strive to produce plots that tell an accurate story. That includes being honest about bad data and uncertainty! We’ll also be on the receiving-end of misleading plots and need to understand what the true story is so we can make good decisions!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Think
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is a truncated axis <em>always</em> dishonest? A half-percent drift might actually matter — maybe it is something wearing-in and we are monitoring to make sure it is following the typical pattern. In such a case, it may be a good (honest) idea to say what is happening: “note: y-axis spans 94–95% to show the drift over one month of use.”</p>
+</div>
+</div>
+<div class="bring-to-class">
+<p><strong>(1)</strong> Here is the complete text of a file called <code>drop_log.csv</code>:</p>
+<pre><code>time_s,height_m
+0.0,2.00
+0.1,1.95
+0.2,1.80
+0.3,1.56</code></pre>
+<p>and it’s read in with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.loadtxt(<span class="st">"drop_log.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skiprows<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No computer. Write down what each of these gives you — the value, not a description: <code>data.shape</code>, <code>data[2, 1]</code>, <code>data[:, 0]</code>, and <code>data[-1, 1]</code>.</p>
+<p>Then one sentence: what would happen if <code>skiprows=1</code> were left out? <!-- 
+**(2) For Thursday:** find a plot out in the world — a news article, an ad, social media, a product page — that you judge **misleading**, and bring it (a screenshot or link on your phone is fine). On paper, two sentences: what technique makes it misleading, and what an honest version would look like. Thursday we'll make one honest and one deliberately misleading plot of the same data, and other tables will try to catch the trick. Yes, we're teaching you to lie with plots, once, under supervision, so you'll spot it for the rest of your life. --></p>
+</div>
 </section>
-<section id="part-3-a-real-day" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-a-real-day">Part 3 — A real day</h2>
-<p>Here are eleven hourly readings from an equinox day in Boulder: the sun’s elevation, and a measurement of the incoming sunlight.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>hour       <span class="op">=</span> np.array([<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>])</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>elevation  <span class="op">=</span> np.array([<span class="fl">11.4</span>, <span class="fl">22.5</span>, <span class="fl">32.8</span>, <span class="fl">41.6</span>, <span class="fl">47.7</span>, <span class="fl">50.0</span>, <span class="fl">47.7</span>, <span class="fl">41.6</span>, <span class="fl">32.8</span>, <span class="fl">22.5</span>, <span class="fl">11.4</span>])</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>irradiance <span class="op">=</span> np.array([<span class="fl">480.</span>, <span class="fl">690.</span>, <span class="fl">820.</span>, <span class="fl">890.</span>, <span class="fl">930.</span>, <span class="op">-</span><span class="fl">999.</span>, <span class="fl">1800.</span>, <span class="fl">870.</span>, <span class="fl">760.</span>, <span class="fl">610.</span>, <span class="fl">390.</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Set your panel at the best tilt from Part 2 and compute the day’s energy. Because the readings are an hour apart, each power in watts stands for one watt-hour, so the sum of the powers is the day’s energy in watt-hours.</p>
-<p>Do it twice. <strong>First, naively</strong> — feed the arrays straight in and report the total. <strong>Then, honestly</strong> — inspect the data first, mask out what shouldn’t be there, and report the total again along with how many readings you dropped and which hours they were.</p>
-<p>Some things to notice and write about:</p>
-<ul>
-<li>Two of those readings are bad, explain why. (Hint: sunlight at the top of the atmosphere is about 1361 W/m², and the atmosphere takes a bite out of that.)</li>
-<li>Compare your two totals. The naive one is <strong>not</strong> absurd — it won’t be off by a factor of a trillion. Explain how two bad readings conspired to produce a plausible wrong answer.</li>
-<li>When you mask <code>irradiance</code>, what has to happen to <code>elevation</code>? Check that your two arrays are still the same length after masking and say how you checked.</li>
-<li>Finally: your honest total covers nine hours, not eleven. Report it that way. Estimate what the two missing hours were probably worth and say how you estimated.</li>
-</ul>
-</section>
-<section id="your-submission" class="level2">
-<h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
-<p>The same four steps.</p>
-<p><strong>Step 1 — Specify &amp; prompt.</strong> What the program takes in, in what units, what it produces. What counts as a valid tilt, a valid elevation, a valid irradiance reading — and what your program does with a value outside those ranges. You don’t have the tools to enforce those rules yet (that’s next week); you do have to decide them now and write them down. Then your actual LLM prompt, and the model and date.</p>
-<p><strong>Step 2 — Annotate.</strong> The returned code, with your comments on it. Say which line does the degrees-to-radians conversion and how you confirmed it’s there. If the AI made a decision you never specified — a default you didn’t ask for, an ordering, setting a min/max angle — talk about it.</p>
-<p><strong>Step 3 — Verify.</strong> Your Part 1 hand check with the arithmetic shown. Your latitude sanity check with its explanation. Your two Part 3 totals with the discrepancy explained.</p>
-<p><strong>Step 4 — Report.</strong> The recommended tilt for a fixed Boulder panel, the plot, the day’s energy with its stated gap, and one paragraph on which of your checks you’d have been most embarrassed to skip.</p>
+<section id="in-class-work" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-work">In-class work</h2>
+<p>Will be added on Tuesday morning.</p>
+<!-- Last Thursday you ran the drag simulation for four objects and wrote the results down by hand. Let's do it properly this time: many objects, results to a file, and the file handed to someone else. -->
+<!-- ::: {.callout-caution}
+Try each of these in Colab. Grab your `drop` function from [last Thursday](../activities/w05-drag-lab.qmd).
+::: -->
+<!-- 1. **Sweep it.** Run your `drop` function from 10 m for 26 values of `k_over_m`, from 0 to 5: `np.linspace(0, 5, 26)`. For each one, record the fall time and the impact speed in pre-allocated arrays. (This is a parameter sweep, just like week 4, with a simulation inside the loop instead of a formula.)
+2. **Write it.** Save all three arrays to `drag_sweep.csv` with a header that names each column *and its units*. Double-click the file in Colab's Files panel and check that it's what you meant to write.
+3. **Trade it.** Download your file and send it to the person next to you (email, AirDrop, whatever works). Upload theirs into *your* Colab.
+4. **Read theirs.** Load it and plot fall time against $k/m$, with markers, labels, and units. Mark roughly where the balloon, the phone, and the steel ball sit on the curve.
+5. **Talk about the handoff.** Could you use your neighbor's file without asking them anything? If you had to ask something (which column is which? are those speeds negative?), that question is a gap in *their header*. Fix yours.
+
+::: {.column-margin}
+The steel ball and the phone will be scrunched up against the left edge. That's not a mistake; their $k/m$ is tiny compared to the balloon's. Whether that plot needs a different x-axis to be *useful* is a fair question.
+::: -->
+<!-- ## Challenge
+
+**How many digits should a file keep?**
+
+Rerun the week 4 design sweep at a finer resolution, `np.arange(6, 16.05, 0.1)`, which is 101 designs. Save it three ways and look at each file:
+
+- with no `fmt` at all (NumPy's default);
+- with `fmt="%.0f"` (no decimals);
+- with `fmt="%.1f"`.
+
+Then read each one back and find the best design speed.
+
+One of these files is technically perfect and nearly unreadable. One of them destroys the thing we swept (look at the first column!). Which is which? And what's a *rule* you could use to pick `fmt` for data you haven't seen before?
+
+::: {.content-hidden}
+**Challenge key:** the default writes `6.099999999999999645e+00,1.543021242189367149e+04`: eighteen significant figures of floating-point fuzz (and `arange` doesn't land exactly on 10.0; it lands on 9.999999999999986). This is A3's "false precision" in its purest form. `%.0f` rounds the design speeds to integers, so ten consecutive rows all read `10` with *different* energies. The file now claims the same design produced ten different answers, and the sweep resolution is gone. `argmax` still finds a row labeled 10, so the winner looks right for the wrong reason. `%.1f` matches the resolution of the sweep. A usable rule of thumb: keep enough digits to resolve whatever you varied (the step size), and for outputs, about as many as your model or measurement can honestly support. Don't go all-out on calculus-flavored error analysis; this is the judgment version.
+::: -->
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -561,7 +682,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../homework";
+window._ojs.paths.runtimeToDoc = "../../lessons";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;
