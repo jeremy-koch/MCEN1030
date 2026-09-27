@@ -1,0 +1,322 @@
+---
+title: "Data in, data out — and honest plots"
+subtitle: "Week 6 — read before Tuesday"
+---
+
+Every number we've computed with so far, we typed into the program. The 24 hours of wind speed, the balloon's $k/m$, even the "sensor glitch" at −999 was manually typed-in. Real data doesn't arrive that way. It arrives as a **file** — from a sensor, a colleague, a government agency — and it's usually far too long to type.
+
+This week we're going to learn how to get numbers out of a program and into a file, and then how to get numbers from a file into a program. We'll also talk about plotting, which we've been doing informally for a couple weeks but will be more detailed about now. Notably, we'll talk about what good, honest plots look like, and how the default settings in our programming languages don't really get us there. (And LLMs still do a bad job creating plots, in my opinion!)
+
+## Think First
+
+Recall
+
+1. In Colab, if you walk away for a couple hours, come back, and run a cell that uses a variable from earlier... what happens? Where did the variable go?
+2. Week 4: `diameters` and `totals` were *parallel* arrays. What does that mean, and what breaks if they get out of line?
+
+Look Ahead
+
+1. If your program's results need to be saved and sent to a colleague's computer, how do we do that?
+2. Can a plot be technically accurate and still be misleading?
+
+## Writing a file
+
+Let's start with results we already have. Here's the design-speed sweep from week 4's activity: eleven blade designs, one day's energy for each. We'll compute it exactly as before, and then add one line at the end.
+
+```{pyodide}
+import numpy as np
+
+def swept_area(D):
+    return np.pi * D**2 / 4
+
+def cp(v, cp_max=0.45, v_best=11, w=8):
+    return cp_max * (1 - ((v - v_best) / w)**2)
+
+def turbine_power(v, D=100.0, rho=1.0, v_best=11):
+    return 0.5 * rho * swept_area(D) * v**3 * cp(v, v_best=v_best) / 1000
+
+speeds = np.array([2.1, 1.8, 2.4, 3.5, 4.8, 6.1, 7.4, 8.6, 9.5, 10.2, 10.8, 11.3,
+                   11.6, 11.0, 10.4, 9.7, 8.5, -999.0, 6.8, 5.2, 3.9, 2.6, 20.5, 1.5])
+good = speeds[(speeds >= 3) & (speeds <= 19)]
+
+design_speeds = np.arange(6, 17, 1)
+totals = np.zeros(len(design_speeds))
+for i in range(len(design_speeds)):
+    totals[i] = turbine_power(good, v_best=design_speeds[i]).sum()
+
+# the new part: write both arrays to a file, side by side
+np.savetxt("design_sweep.csv",
+           np.column_stack([design_speeds, totals]),
+           delimiter=",",
+           header="v_best_m_per_s,energy_kWh",
+           comments="",
+           fmt="%.1f")
+
+print(open("design_sweep.csv").read())     # peek inside the file we just made
+```
+
+Within the `np.savetxt` call:
+
+- `"design_sweep.csv"` is the file's name. It is common to save arrays in a "comma-separated values" (csv) format. 
+- `np.column_stack([design_speeds, totals])` puts two parallel arrays together side by side as two columns. One row holds, for example, `design_speeds[4]` *and* `totals[4]`.
+- `delimiter=","` puts a comma between the values in a row.
+- `header="..."` writes a first line naming the columns. This is your chance to give some details about the file contents — e.g., it might be a good idea to put the units in the names. A column called `energy` would leave the next reader guessing whether it's kWh, MWh, or joules.
+- `comments=""` — see the margin.
+- `fmt="%.1f"` says "write each number with one digit after the decimal point."
+
+::: {.column-margin}
+By default, `savetxt` puts `# ` in front of the header line, marking it as a comment. NumPy is happy with that. Most other programs (Excel, pandas next week) are not, and they'll think the first column is named `# v_best_m_per_s`. Setting `comments=""` turns that off.
+:::
+
+Then `print(open(...).read())` allows us to see the file on this webpage. In Colab you can just double-click the file to look at it (more on where it lives in a moment).
+
+## Where did the file go?
+
+A file lives in a **folder**, and its full address is called its **path**. Something like `/content/design_sweep.csv` means "the file `design_sweep.csv` inside the folder `content`." When we wrote just `"design_sweep.csv"` with no folder, Python put it in whatever folder it was *currently working in*.
+
+In Colab, that folder is `/content`: if you want to see what is in it, click the **folder icon** in the left sidebar. `design_sweep.csv` will be there after you run the code. Double-click it to see the contents.
+
+::: {.callout-important}
+## Colab's files are temporary
+The files in Colab's panel exist for a short while — Google will remove them and reclaim the space if you go idle for a while or close the notebook. If you want to keep a file, hover over it, click the three dots, and **Download**.
+
+The reverse also works: to use a file you have, drag it onto that Files panel, or use the upload button at the top of the panel. It then is in `/content` and you can refer to it by name. It will also vanish when the session ends, so expect to upload it again next time.
+:::
+
+::: {.column-margin}
+There's a more permanent option: connecting Colab to your Google Drive, so files live in Drive instead.
+:::
+
+## Reading it back
+
+Now the other direction. `np.loadtxt` reads a CSV of numbers into an array:
+
+```{pyodide}
+import numpy as np
+
+# (recreate the file so this cell stands on its own)
+open("design_sweep.csv", "w").write("""v_best_m_per_s,energy_kWh
+6.0,15166.1
+7.0,17506.3
+8.0,19178.3
+9.0,20182.0
+10.0,20517.5
+11.0,20184.7
+12.0,19183.7
+13.0,17514.5
+14.0,15176.9
+15.0,12171.2
+16.0,8497.2
+""")
+
+data = np.loadtxt("design_sweep.csv", delimiter=",", skiprows=1)
+
+print(data.shape)       # (rows, columns)
+print(data[4, 1])       # row 4, column 1
+print(data[:, 0])       # every row, column 0
+```
+
+Two new things here. First, `skiprows=1` tells `loadtxt` to skip the header line, because "v_best_m_per_s" is not a number, and `loadtxt` only reads numbers.
+
+Second, `data` is a **two-dimensional array** — a grid, 11 rows by 2 columns, which is what `data.shape` reports. To get one value out of a grid we need two indices, row then column: `data[4, 1]` is row 4, column 1, which is the energy for the 10 m/s design. The colon means "all of them," so `data[:, 0]` reads as "every row, column 0" — the whole design-speed column.
+
+::: {.column-margin}
+Still counting from zero! Column 0 is the first column. Row 0 is the first row of *numbers*, since the header was skipped.
+:::
+
+In practice we usually pull the columns apart right away and give them names, which gets us right back to the parallel arrays we know:
+
+```python
+v_best = data[:, 0]
+energy = data[:, 1]
+print(v_best[energy.argmax()])
+```
+
+With this data now part of our program, we can do any sort of calculation we need to. Calculate the average, the max, the sum, etc.
+
+::: {.callout-caution}
+Try deleting `skiprows=1` from the cell above... you'll get an error message.
+:::
+
+
+::: {.callout-tip}
+Check out the file before computing anything: What are the columns, what are the units, does anything look strange?
+:::
+
+::: {.column-margin}
+`loadtxt` only reads numbers. A file with words or dates in it (a column like `2026-09-10`, say) will make it choke. That's a real limitation, and next week's tool fixes it.
+:::
+
+
+
+## Plotting data, not formulas
+
+We've plotted some functions: $C_p(v)$, the falling ball. Plotting data works the same way, but might involve a couple different choices. Here are some Boulder temperatures, including a bad reading:
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+open("boulder_sept.csv", "w").write("""day,high_F,low_F
+1,86,55
+2,88,57
+3,84,54
+4,79,50
+5,82,52
+6,85,55
+7,87,56
+8,89,58
+9,90,59
+10,-999,57
+11,83,53
+12,76,48
+13,72,45
+14,78,49
+""")
+
+data = np.loadtxt("boulder_sept.csv", delimiter=",", skiprows=1)
+day, high, low = data[:, 0], data[:, 1], data[:, 2]
+
+plt.plot(day, high, "o", label="daily high")
+plt.plot(day, low, "s", label="daily low")
+plt.xlabel("Day of September 2026")
+plt.ylabel("Temperature (°F)")
+plt.legend()
+plt.show()
+```
+
+When we plot the data, the bad reading is obvious: it is the extreme outlier. A plot is a verification tool that looks at every row at once! So: **plot the raw data before you process it.**
+
+A few standard choices when we plot data:
+
+- **Markers, not lines, for measurements.** `"o"` draws a dot at each data point and nothing in between. Our data collection is discrete, and so the representation of the data should be as well. (Theoretical equations or modeling equations can be solid lines because they are continuous.)
+- **Labels with units.** 
+- **A legend when there's more than one thing.** `label=` on each `plot` call, then `plt.legend()`. Or, if possible, add annotation arrows and label the data directly. 
+
+
+
+A plot can be an output file too. `plt.savefig("boulder_sept.png", dpi=200)`, placed *before* `plt.show()`, writes the figure to Colab's Files panel. You can download it and put it in a report.
+
+## Honest plots
+
+Here are the **same six data points** plotted twice: a motor's efficiency, measured monthly.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+eff = np.array([94.1, 94.3, 94.2, 94.6, 94.5, 94.8])     # percent
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 3.5))
+
+# left: honest
+ax1.plot(months, eff, "o", color="#2b6cb0")
+ax1.set_ylim(0, 100)
+ax1.set_ylabel("Motor efficiency (%)")
+ax1.set_xlabel("Month (2026)")
+ax1.set_title("Motor efficiency, Jan–Jun")
+
+# right: the same numbers, dressed to deceive
+ax2.plot(months, eff, "o-", color="#c53030", linewidth=4)
+ax2.set_ylim(94.0, 94.9)                        # the truncation
+ax2.set_ylabel("Efficiency")                     # units quietly gone
+ax2.set_title("Efficiency SURGES in Q2!")        # an editorial title
+
+plt.tight_layout()
+plt.show()
+```
+
+On the left, the y-axis spans 0 to 100%, and the story is *basically flat: a stable motor drifting up by half a percent.* On the right, the axis spans 94.0 to 94.9%, the line is thick and red, the title sets misleading expectations, and the units have quietly disappeared. The story there is *dramatic improvement.* **Neither plot contains a false number.** I think the second one is still untruthful!
+
+::: {.callout-caution}
+Try it: change the honest plot's `set_ylim(0, 100)` to `set_ylim(90, 100)`, then `(94, 95)`.
+:::
+
+Axis truncation is one way to make a misleading plot. Some other ways: a cherry-picked range (start the x-axis right after the bad quarter), missing units, two y-axes scaled to make unrelated things look correlated, 3D bars whose volumes exaggerate the differences. 
+
+As engineers, we should strive to produce plots that tell an accurate story. That includes being honest about bad data and uncertainty! We'll also be on the receiving-end of misleading plots and need to understand what the true story is so we can make good decisions!
+
+::: {.callout-tip}
+## Think
+Is a truncated axis *always* dishonest? A half-percent drift might actually matter — maybe it is something wearing-in and we are monitoring to make sure it is following the typical pattern. In such a case, it may be a good (honest) idea to say what is happening: "note: y-axis spans 94–95% to show the drift over one month of use." 
+:::
+
+
+::: {.bring-to-class}
+**(1)** Here is the complete text of a file called `drop_log.csv`:
+
+```
+time_s,height_m
+0.0,2.00
+0.1,1.95
+0.2,1.80
+0.3,1.56
+```
+
+and it's read in with
+
+```python
+data = np.loadtxt("drop_log.csv", delimiter=",", skiprows=1)
+```
+
+No computer. Write down what each of these gives you — the value, not a description: `data.shape`, `data[2, 1]`, `data[:, 0]`, and `data[-1, 1]`.
+
+Then one sentence: what would happen if `skiprows=1` were left out?
+<!-- 
+**(2) For Thursday:** find a plot out in the world — a news article, an ad, social media, a product page — that you judge **misleading**, and bring it (a screenshot or link on your phone is fine). On paper, two sentences: what technique makes it misleading, and what an honest version would look like. Thursday we'll make one honest and one deliberately misleading plot of the same data, and other tables will try to catch the trick. Yes, we're teaching you to lie with plots, once, under supervision, so you'll spot it for the rest of your life. -->
+:::
+
+::: {.content-hidden}
+**Instructor answer key (planning only — stripped from the rendered site):**
+
+**Bring-to-class (1):** `data.shape` → `(4, 2)`; `data[2, 1]` → `1.8` (row 2 is the *third* number row: t = 0.2); `data[:, 0]` → `[0. 0.1 0.2 0.3]`; `data[-1, 1]` → `1.56`. Without `skiprows=1`: `ValueError: could not convert string 'time_s' to float64 at row 0, column 1`. The predictable split on the vote is whether `data[2, 1]` counts the header as row 0: expect a good third to say `1.95`. That's the productive wrong answer, and it's exactly the F2 skill. Run it live. Bonus for a strong table: it's a free-fall drop (0.05, 0.20, 0.44 m fallen ≈ ½·9.81·t²), so the file passes a physics sanity check too.
+
+**Numbers on the page (all checked):** design sweep winner `v_best = 10.0` at 20,517.5 kWh, same as the w04 key. Boulder: `high.mean()` = **5.71 °F** with the −999; masked mean **83.0 °F** over 13 days; hottest day = **9** (90 °F). Note the glitch is a *low* outlier, so `argmax` is unaffected, but `mean` and `min` are not. Worth saying out loud, because it's a counterexample to "the glitch always shows up in max."
+
+**Colab realities to check the morning of:** the Files panel icon and the Download menu both move around in Colab's UI every so often. Click through once before class. Uploaded files are wiped when the runtime recycles, and students *will* lose their uploaded HW 4 CSV between sessions; the callout warns them, but expect the question anyway.
+
+**Why `comments=""`:** without it, `loadtxt` round-trips fine (it skips `#` lines by default), which hides the problem until week 7, when `pd.read_csv` names the first column `# v_best_m_per_s`. Heading it off now is cheaper.
+
+**Scope decisions:** no pandas (week 7 needs to hit the wall by hand first). No `csv` module or `with open(...)` for writing: `savetxt`/`loadtxt` are enough for numeric files, and the `open(...).read()` peeks are only there to show the text. No `genfromtxt`: it handles missing values more gracefully, but that robustness hides the −999 lesson.
+
+**Timing (~50 min after the checkpoint):** vote on (1) and run it, 10 min. Write/look/read round trip, live, 10 min. Boulder file: look first, the 5.7 °F mean, the plot, 10 min. Honest-plot pair and the `ylim` slider moment, 15 min. Launch the in-class trade, 5 min (it finishes at tables or as warm-up Thursday if short). If time runs short, cut the in-class trade to "write your file and read it back yourself." The neighbor swap is better, but the round trip is the core.
+:::
+
+## In-class work
+
+Will be added on Tuesday morning.
+
+<!-- Last Thursday you ran the drag simulation for four objects and wrote the results down by hand. Let's do it properly this time: many objects, results to a file, and the file handed to someone else. -->
+
+<!-- ::: {.callout-caution}
+Try each of these in Colab. Grab your `drop` function from [last Thursday](../activities/w05-drag-lab.qmd).
+::: -->
+
+<!-- 1. **Sweep it.** Run your `drop` function from 10 m for 26 values of `k_over_m`, from 0 to 5: `np.linspace(0, 5, 26)`. For each one, record the fall time and the impact speed in pre-allocated arrays. (This is a parameter sweep, just like week 4, with a simulation inside the loop instead of a formula.)
+2. **Write it.** Save all three arrays to `drag_sweep.csv` with a header that names each column *and its units*. Double-click the file in Colab's Files panel and check that it's what you meant to write.
+3. **Trade it.** Download your file and send it to the person next to you (email, AirDrop, whatever works). Upload theirs into *your* Colab.
+4. **Read theirs.** Load it and plot fall time against $k/m$, with markers, labels, and units. Mark roughly where the balloon, the phone, and the steel ball sit on the curve.
+5. **Talk about the handoff.** Could you use your neighbor's file without asking them anything? If you had to ask something (which column is which? are those speeds negative?), that question is a gap in *their header*. Fix yours.
+
+::: {.column-margin}
+The steel ball and the phone will be scrunched up against the left edge. That's not a mistake; their $k/m$ is tiny compared to the balloon's. Whether that plot needs a different x-axis to be *useful* is a fair question.
+::: -->
+
+<!-- ## Challenge
+
+**How many digits should a file keep?**
+
+Rerun the week 4 design sweep at a finer resolution, `np.arange(6, 16.05, 0.1)`, which is 101 designs. Save it three ways and look at each file:
+
+- with no `fmt` at all (NumPy's default);
+- with `fmt="%.0f"` (no decimals);
+- with `fmt="%.1f"`.
+
+Then read each one back and find the best design speed.
+
+One of these files is technically perfect and nearly unreadable. One of them destroys the thing we swept (look at the first column!). Which is which? And what's a *rule* you could use to pick `fmt` for data you haven't seen before?
+
+::: {.content-hidden}
+**Challenge key:** the default writes `6.099999999999999645e+00,1.543021242189367149e+04`: eighteen significant figures of floating-point fuzz (and `arange` doesn't land exactly on 10.0; it lands on 9.999999999999986). This is A3's "false precision" in its purest form. `%.0f` rounds the design speeds to integers, so ten consecutive rows all read `10` with *different* energies. The file now claims the same design produced ten different answers, and the sweep resolution is gone. `argmax` still finds a row labeled 10, so the winner looks right for the wrong reason. `%.1f` matches the resolution of the sweep. A usable rule of thumb: keep enough digits to resolve whatever you varied (the step size), and for outputs, about as many as your model or measurement can honestly support. Don't go all-out on calculus-flavored error analysis; this is the judgment version.
+::: -->
