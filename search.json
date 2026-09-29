@@ -88,7 +88,19 @@
     "href": "lessons/06-data-io-plots.html#in-class-work",
     "title": "Data in, data out — and honest plots",
     "section": "In-class work",
-    "text": "In-class work\nWill be added on Tuesday morning.",
+    "text": "In-class work\nLast Thursday you ran the drag simulation for four objects and recorded the results down by hand. Let’s do it properly this time: many objects, write the results to a file, and then hand the file to someone else.\n\n\n\n\n\n\nCautionInstructions\n\n\n\nGrab your drop function from last Thursday then try each of these in Colab.\n\n\n\nSweep it. Run your drop function from a height of 10 m for 26 values of k_over_m, from 0 to 5: np.linspace(0, 5, 26). For each one, record the fall time and the impact speed in pre-allocated arrays.\nWrite it. Save all three arrays to drag_sweep.csv with a header that names each column and its units. Double-click the file in Colab’s Files panel and check that it’s what you meant to write.\nTrade it. Download your file and send it to the person next to you (email, AirDrop, whatever works). Upload theirs into your Colab.\nRead theirs. Load it and plot fall time against \\(k/m\\), with markers, labels, and units. Mark roughly where the balloon, the phone, and the steel ball sit on the curve.\nTalk about the handoff. Could you use your neighbor’s file without asking them anything? If you had to ask something (which column is which? are those speeds negative?), that question is a gap in their header. Fix yours.\n\n\n\nThe steel ball and the phone will be scrunched up against the left edge. That’s not a mistake — their \\(k/m\\) is tiny compared to the balloon’s. Whether that plot needs a different x-axis to be useful is a fair question… or you could replace plt.plot(...) with plt.semilogx(...).",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Data in, data out — and honest plots"
+    ]
+  },
+  {
+    "objectID": "lessons/06-data-io-plots.html#challenge",
+    "href": "lessons/06-data-io-plots.html#challenge",
+    "title": "Data in, data out — and honest plots",
+    "section": "Challenge",
+    "text": "Challenge\nHow many digits should a file keep?\nRerun the week 4 design sweep at a finer resolution, np.arange(6, 16.05, 0.1), which is 101 designs. Save it three ways and look at each file:\n\nwith no fmt at all (NumPy’s default);\nwith fmt=\"%.0f\" (no decimals);\nwith fmt=\"%.1f\".\n\nThen read each one back and find the best design speed.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",

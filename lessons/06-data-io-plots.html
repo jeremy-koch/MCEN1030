@@ -409,6 +409,7 @@ window.Quarto = {
   <li><a href="#plotting-data" id="toc-plotting-data" class="nav-link" data-scroll-target="#plotting-data">Plotting data</a></li>
   <li><a href="#honest-plots" id="toc-honest-plots" class="nav-link" data-scroll-target="#honest-plots">Honest plots</a></li>
   <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">In-class work</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul>
 </nav>
     </div>
@@ -625,39 +626,43 @@ Caution
 **(2) For Thursday:** find a plot out in the world — a news article, an ad, social media, a product page — that you judge **misleading**, and bring it (a screenshot or link on your phone is fine). On paper, two sentences: what technique makes it misleading, and what an honest version would look like. Thursday we'll make one honest and one deliberately misleading plot of the same data, and other tables will try to catch the trick. Yes, we're teaching you to lie with plots, once, under supervision, so you'll spot it for the rest of your life. --></p>
 </div>
 </section>
-<section id="in-class-work" class="level2">
+<section id="in-class-work" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="in-class-work">In-class work</h2>
-<p>Will be added on Tuesday morning.</p>
-<!-- Last Thursday you ran the drag simulation for four objects and wrote the results down by hand. Let's do it properly this time: many objects, results to a file, and the file handed to someone else. -->
-<!-- ::: {.callout-caution}
-Try each of these in Colab. Grab your `drop` function from [last Thursday](../activities/w05-drag-lab.qmd).
-::: -->
-<!-- 1. **Sweep it.** Run your `drop` function from 10 m for 26 values of `k_over_m`, from 0 to 5: `np.linspace(0, 5, 26)`. For each one, record the fall time and the impact speed in pre-allocated arrays. (This is a parameter sweep, just like week 4, with a simulation inside the loop instead of a formula.)
-2. **Write it.** Save all three arrays to `drag_sweep.csv` with a header that names each column *and its units*. Double-click the file in Colab's Files panel and check that it's what you meant to write.
-3. **Trade it.** Download your file and send it to the person next to you (email, AirDrop, whatever works). Upload theirs into *your* Colab.
-4. **Read theirs.** Load it and plot fall time against $k/m$, with markers, labels, and units. Mark roughly where the balloon, the phone, and the steel ball sit on the curve.
-5. **Talk about the handoff.** Could you use your neighbor's file without asking them anything? If you had to ask something (which column is which? are those speeds negative?), that question is a gap in *their header*. Fix yours.
+<p>Last Thursday you ran the drag simulation for four objects and recorded the results down by hand. Let’s do it properly this time: many objects, write the results to a file, and then hand the file to someone else.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Instructions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Grab your <code>drop</code> function from <a href="../activities/w05-drag-lab.html">last Thursday</a> then try each of these in Colab.</p>
+</div>
+</div>
+<ol type="1">
+<li><strong>Sweep it.</strong> Run your <code>drop</code> function from a height of 10 m for 26 values of <code>k_over_m</code>, from 0 to 5: <code>np.linspace(0, 5, 26)</code>. For each one, record the fall time and the impact speed in pre-allocated arrays.</li>
+<li><strong>Write it.</strong> Save all three arrays to <code>drag_sweep.csv</code> with a header that names each column <em>and its units</em>. Double-click the file in Colab’s Files panel and check that it’s what you meant to write.</li>
+<li><strong>Trade it.</strong> Download your file and send it to the person next to you (email, AirDrop, whatever works). Upload theirs into <em>your</em> Colab.</li>
+<li><strong>Read theirs.</strong> Load it and plot fall time against <span class="math inline">\(k/m\)</span>, with markers, labels, and units. Mark roughly where the balloon, the phone, and the steel ball sit on the curve.</li>
+<li><strong>Talk about the handoff.</strong> Could you use your neighbor’s file without asking them anything? If you had to ask something (which column is which? are those speeds negative?), that question is a gap in <em>their header</em>. Fix yours.</li>
+</ol>
 
-::: {.column-margin}
-The steel ball and the phone will be scrunched up against the left edge. That's not a mistake; their $k/m$ is tiny compared to the balloon's. Whether that plot needs a different x-axis to be *useful* is a fair question.
-::: -->
-<!-- ## Challenge
-
-**How many digits should a file keep?**
-
-Rerun the week 4 design sweep at a finer resolution, `np.arange(6, 16.05, 0.1)`, which is 101 designs. Save it three ways and look at each file:
-
-- with no `fmt` at all (NumPy's default);
-- with `fmt="%.0f"` (no decimals);
-- with `fmt="%.1f"`.
-
-Then read each one back and find the best design speed.
-
-One of these files is technically perfect and nearly unreadable. One of them destroys the thing we swept (look at the first column!). Which is which? And what's a *rule* you could use to pick `fmt` for data you haven't seen before?
-
-::: {.content-hidden}
-**Challenge key:** the default writes `6.099999999999999645e+00,1.543021242189367149e+04`: eighteen significant figures of floating-point fuzz (and `arange` doesn't land exactly on 10.0; it lands on 9.999999999999986). This is A3's "false precision" in its purest form. `%.0f` rounds the design speeds to integers, so ten consecutive rows all read `10` with *different* energies. The file now claims the same design produced ten different answers, and the sweep resolution is gone. `argmax` still finds a row labeled 10, so the winner looks right for the wrong reason. `%.1f` matches the resolution of the sweep. A usable rule of thumb: keep enough digits to resolve whatever you varied (the step size), and for outputs, about as many as your model or measurement can honestly support. Don't go all-out on calculus-flavored error analysis; this is the judgment version.
-::: -->
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The steel ball and the phone will be scrunched up against the left edge. That’s not a mistake — their <span class="math inline">\(k/m\)</span> is tiny compared to the balloon’s. Whether that plot needs a different x-axis to be <em>useful</em> is a fair question… or you could replace <code>plt.plot(...)</code> with <code>plt.semilogx(...)</code>.</p>
+</div></div></section>
+<section id="challenge" class="level2">
+<h2 class="anchored" data-anchor-id="challenge">Challenge</h2>
+<p><strong>How many digits should a file keep?</strong></p>
+<p>Rerun the week 4 design sweep at a finer resolution, <code>np.arange(6, 16.05, 0.1)</code>, which is 101 designs. Save it three ways and look at each file:</p>
+<ul>
+<li>with no <code>fmt</code> at all (NumPy’s default);</li>
+<li>with <code>fmt="%.0f"</code> (no decimals);</li>
+<li>with <code>fmt="%.1f"</code>.</li>
+</ul>
+<p>Then read each one back and find the best design speed.</p>
 
 
 <script type="pyodide-data">
