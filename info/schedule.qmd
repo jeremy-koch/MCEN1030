@@ -29,23 +29,24 @@ Tentative schedule:
 | Week | Tuesday | Thursday | Standards |
 |:----:|:--------|:---------|:------------------|
 | **Phase 0 — Thinking** | | | |
-| 1 | [What do engineers do with computation?](../lessons/01a-what-engineers-do.qmd) — specification, verification. | [What does an LLM actually do?](../lessons/01b-what-llms-do.qmd). | — |
-| 2 | [First contact with coding](../lessons/02a-first-contact.qmd) — Colab, variables, predict-then-run, errors as data. | [Reading code & conditionals](../lessons/02b-reading-code.qmd) — tracing, annotation, `if`/`elif`/`else`. *Homework:* [HW 1 · The grade calculator](../homework/hw1-grade-calculator.qmd). | P4, A1 |
+| 1 | **Aug 25**<br>[What do engineers do with computation?](../lessons/01a-what-engineers-do.qmd) — specification, verification. | **Aug 27**<br>[What does an LLM actually do?](../lessons/01b-what-llms-do.qmd). | — |
+| 2 | **Sep 1**<br>[First contact with coding](../lessons/02a-first-contact.qmd) — Colab, variables, predict-then-run, errors as data. | **Sep 3**<br>[Reading code & conditionals](../lessons/02b-reading-code.qmd) — tracing, annotation, `if`/`elif`/`else`. *Homework:* [HW 1 · The grade calculator](../homework/hw1-grade-calculator.qmd). | P4, A1 |
 | **Phase 1 — Vocabulary** | | | |
-| 3 | [Functions](../lessons/03-functions.qmd) — inputs, outputs, and the docstring as a specification. | [Wind farm design](../activities/w03-function-forge.qmd). | P1, A4 |
-| 4 | ✓ **Checkpoint 1**, then [Packages & arrays](../lessons/04a-arrays.qmd) — NumPy, elementwise math. | [For loops & indexing](../lessons/04b-for-loops.qmd) — comparing designs, one case at a time. Then [Which design wins?](../activities/w04-design-sweep.qmd) *Homework:* [HW 2 · Which way should the panel point?](../homework/hw2-solar-tilt.qmd) | P4, P1 |
-| 5 | [A loop that remembers](../lessons/05a-simulate.qmd) — simulating a falling ball. | [Adding drag](../activities/w05-drag-lab.qmd) — when the formula runs out. *Homework:* [HW 3 · The potato cannon](../homework/hw3-potato-cannon.qmd). | S1, S2, S3, A1 |
-| 6 | ✓ **Checkpoint 2**, then **Data in, data out** — files, CSV, and plotting. | **Plot clinic** — make one honest plot, catch one misleading one. | F2, A2 |
+| 3 | **Sep 8**<br>[Functions](../lessons/03-functions.qmd) — inputs, outputs, and the docstring as a specification. | **Sep 10**<br>[Wind farm design](../activities/w03-function-forge.qmd). | P1, A4 |
+| 4 | **Sep 15**<br>✓ **Checkpoint 1**, then [Packages & arrays](../lessons/04a-arrays.qmd) — NumPy, elementwise math. | **Sep 17**<br>[For loops & indexing](../lessons/04b-for-loops.qmd) — comparing designs, one case at a time. Then [Which design wins?](../activities/w04-design-sweep.qmd) *Homework:* [HW 2 · Which way should the panel point?](../homework/hw2-solar-tilt.qmd) | P4, P1 |
+| 5 | **Sep 22**<br>[A loop that remembers](../lessons/05a-simulate.qmd) — simulating a falling ball. | **Sep 24**<br>[Adding drag](../activities/w05-drag-lab.qmd) — when the formula runs out. *Homework:* [HW 3 · The potato cannon](../homework/hw3-potato-cannon.qmd). | S1, S2, S3, A1 |
+| 6 | **Sep 29**<br>✓ **Checkpoint 2**, then **Data in, data out** — files, CSV, and plotting. | **Oct 1**<br>**Plot clinic** — make one honest plot, catch one misleading one. | F2, A2 |
 | **Phase 2 — Tools** | | | |
-| 7 | **Pandas**. | *(No class Thursday Oct 8.)* | P3, F2 |
-| 8 | ✓ **Checkpoint 3**, then **Fetch** — APIs, JSON, and what to do when a request fails (`try`/`except`/`raise`). | **Data acquisition lab** — a live API. | F1, F2, A3 |
-| 9 | **Back to the model** — revisiting the falling ball with real data in hand. | **Model meets measurement** — phone drop vs. simulation. | S1, S3, A3 |
-| 10 | ✓ **Checkpoint 4**, then **Simulate II** — assumptions, trust, and what-ifs. | **Model critique**. | S2, S3, S4 |
+| 7 | **Oct 6**<br>**Pandas**. | **Oct 8**<br>*(No class.)* | P3, F2 |
+| 8 | **Oct 13**<br>✓ **Checkpoint 3**, then **Fetch** — APIs, JSON, and what to do when a request fails (`try`/`except`/`raise`). | **Oct 15**<br>**Data acquisition lab** — a live API. | F1, F2, A3 |
+| 9 | **Oct 20**<br>**Back to the model** — revisiting the falling ball with real data in hand. | **Oct 22**<br>**Model meets measurement** — phone drop vs. simulation. | S1, S3, A3 |
+| 10 | **Oct 27**<br>✓ **Checkpoint 4**, then **Simulate II** — assumptions, trust, and what-ifs. | **Oct 29**<br>**Model critique**. | S2, S3, S4 |
 | **Phase 3 — Integration** | | | |
-| 11 | **Your second language** — MATLAB, translation, and choosing tools. | **Project launch**. | P4, A4 |
-| 12 | **Project studio** — desk crits at tables. | **Pin-up #1** — specs & verification plans on the wall. | S2, A3, A4 |
-| 13 | **Project studio** — desk crits at tables. | **Pin-up #2** — working artifacts, same-project pairing. | P4, A2, A3 |
-| 14 | **Defense prep** — what it means to know your own project. | **Mock defenses** at tables. | — |
+| 11 | **Nov 3**<br>**Your second language** — MATLAB, translation, and choosing tools. | **Nov 5**<br>**Project launch**. | P4, A4 |
+| 12 | **Nov 10**<br>**Project studio** — desk crits at tables. | **Nov 12**<br>**Pin-up #1** — specs & verification plans on the wall. | S2, A3, A4 |
+| 13 | **Nov 17**<br>**Project studio** — desk crits at tables. | **Nov 19**<br>**Pin-up #2** — working artifacts, same-project pairing. | P4, A2, A3 |
+| | **Nov 24 & 26**<br>*Thanksgiving break — no class.* | | |
+| 14 | **Dec 1**<br>**Defense prep** — what it means to know your own project. | **Dec 3**<br>**Mock defenses** at tables. | — |
 | Finals | **The Defense** — a written exam about your project: trace it, explain it, predict what breaks. | | the grade modifier |
 
 : {tbl-colwidths="[6,34,34,26]"}
