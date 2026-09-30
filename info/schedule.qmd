@@ -30,11 +30,11 @@ Tentative schedule:
 |:----:|:--------|:---------|:------------------|
 | **Phase 0 — Thinking** | | | |
 | 1 | **Aug 25**<br>[What do engineers do with computation?](../lessons/01a-what-engineers-do.qmd) — specification, verification. | **Aug 27**<br>[What does an LLM actually do?](../lessons/01b-what-llms-do.qmd). | — |
-| 2 | **Sep 1**<br>[First contact with coding](../lessons/02a-first-contact.qmd) — Colab, variables, predict-then-run, errors as data. | **Sep 3**<br>[Reading code & conditionals](../lessons/02b-reading-code.qmd) — tracing, annotation, `if`/`elif`/`else`. *Homework:* [HW 1 · The grade calculator](../homework/hw1-grade-calculator.qmd). | P4, A1 |
+| 2 | **Sep 1**<br>[First contact with coding](../lessons/02a-first-contact.qmd) — Colab, variables, predict-then-run, errors as data. | **Sep 3**<br>[Reading code & conditionals](../lessons/02b-reading-code.qmd) — tracing, annotation, `if`/`elif`/`else`.<br><br>*Homework:* [HW 1 · The grade calculator](../homework/hw1-grade-calculator.qmd). | P4, A1 |
 | **Phase 1 — Vocabulary** | | | |
 | 3 | **Sep 8**<br>[Functions](../lessons/03-functions.qmd) — inputs, outputs, and the docstring as a specification. | **Sep 10**<br>[Wind farm design](../activities/w03-function-forge.qmd). | P1, A4 |
-| 4 | **Sep 15**<br>✓ **Checkpoint 1**, then [Packages & arrays](../lessons/04a-arrays.qmd) — NumPy, elementwise math. | **Sep 17**<br>[For loops & indexing](../lessons/04b-for-loops.qmd) — comparing designs, one case at a time. Then [Which design wins?](../activities/w04-design-sweep.qmd) *Homework:* [HW 2 · Which way should the panel point?](../homework/hw2-solar-tilt.qmd) | P4, P1 |
-| 5 | **Sep 22**<br>[A loop that remembers](../lessons/05a-simulate.qmd) — simulating a falling ball. | **Sep 24**<br>[Adding drag](../activities/w05-drag-lab.qmd) — when the formula runs out. *Homework:* [HW 3 · The potato cannon](../homework/hw3-potato-cannon.qmd). | S1, S2, S3, A1 |
+| 4 | **Sep 15**<br>✓ **Checkpoint 1**, then [Packages & arrays](../lessons/04a-arrays.qmd) — NumPy, elementwise math. | **Sep 17**<br>[For loops & indexing](../lessons/04b-for-loops.qmd) — comparing designs, one case at a time. Then [Which design wins?](../activities/w04-design-sweep.qmd)<br><br>*Homework:* [HW 2 · Which way should the panel point?](../homework/hw2-solar-tilt.qmd) | P4, P1 |
+| 5 | **Sep 22**<br>[A loop that remembers](../lessons/05a-simulate.qmd) — simulating a falling ball. | **Sep 24**<br>[Adding drag](../activities/w05-drag-lab.qmd) — when the formula runs out.<br><br>*Homework:* [HW 3 · The potato cannon](../homework/hw3-potato-cannon.qmd). | S1, S2, S3, A1 |
 | 6 | **Sep 29**<br>✓ **Checkpoint 2**, then **Data in, data out** — files, CSV, and plotting. | **Oct 1**<br>**Plot clinic** — make one honest plot, catch one misleading one. | F2, A2 |
 | **Phase 2 — Tools** | | | |
 | 7 | **Oct 6**<br>**Pandas**. | **Oct 8**<br>*(No class.)* | P3, F2 |
