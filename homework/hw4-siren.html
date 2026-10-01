@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wind farm design – MCEN 1030</title>
+<title>HW 4 · The siren – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -155,7 +155,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w03-function-forge.html">Wind farm design</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw4-siren.html">HW 4 · The siren</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -280,7 +280,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../activities/w03-function-forge.html" class="sidebar-item-text sidebar-link active">
+  <a href="../activities/w03-function-forge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wind farm design</span></a>
   </div>
 </li>
@@ -363,7 +363,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw4-siren.html" class="sidebar-item-text sidebar-link">
+  <a href="../homework/hw4-siren.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">HW 4 · The siren</span></a>
   </div>
 </li>
@@ -379,25 +379,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-problem" id="toc-the-problem" class="nav-link active" data-scroll-target="#the-problem">The problem</a></li>
-  <li><a href="#round-0" id="toc-round-0" class="nav-link" data-scroll-target="#round-0">Round 0</a></li>
-  <li><a href="#round-1-three-specs" id="toc-round-1-three-specs" class="nav-link" data-scroll-target="#round-1-three-specs">Round 1 — three specs</a></li>
-  <li><a href="#round-2-write-and-audit-the-functions" id="toc-round-2-write-and-audit-the-functions" class="nav-link" data-scroll-target="#round-2-write-and-audit-the-functions">Round 2 — write and audit the functions</a>
-  <ul class="collapse">
-  <li><a href="#three-functions" id="toc-three-functions" class="nav-link" data-scroll-target="#three-functions">Three functions?</a></li>
-  </ul></li>
-  <li><a href="#round-3-testing" id="toc-round-3-testing" class="nav-link" data-scroll-target="#round-3-testing">Round 3 — testing</a></li>
-  <li><a href="#deliverable-2-ec-per-person" id="toc-deliverable-2-ec-per-person" class="nav-link" data-scroll-target="#deliverable-2-ec-per-person">Deliverable — 2 EC, per person</a></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#part-1-look-first" id="toc-part-1-look-first" class="nav-link" data-scroll-target="#part-1-look-first">Part 1 — Look first</a></li>
+  <li><a href="#part-2-the-model-as-a-function" id="toc-part-2-the-model-as-a-function" class="nav-link" data-scroll-target="#part-2-the-model-as-a-function">Part 2 — The model as a function</a></li>
+  <li><a href="#part-3-an-estimate-with-no-fitting-at-all" id="toc-part-3-an-estimate-with-no-fitting-at-all" class="nav-link" data-scroll-target="#part-3-an-estimate-with-no-fitting-at-all">Part 3 — An estimate with no fitting at all</a></li>
+  <li><a href="#part-4-the-sweep-as-a-search" id="toc-part-4-the-sweep-as-a-search" class="nav-link" data-scroll-target="#part-4-the-sweep-as-a-search">Part 4 — The sweep as a search</a></li>
+  <li><a href="#part-5-how-sure-are-you" id="toc-part-5-how-sure-are-you" class="nav-link" data-scroll-target="#part-5-how-sure-are-you">Part 5 — How sure are you?</a></li>
+  <li><a href="#your-submission" id="toc-your-submission" class="nav-link" data-scroll-target="#your-submission">Your submission</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w03-function-forge.html">Wind farm design</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw4-siren.html">HW 4 · The siren</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Wind farm design</h1>
-<p class="subtitle lead">Week 3 Thursday · 2 engagement credits</p>
+<h1 class="title">HW 4 · The siren</h1>
+<p class="subtitle lead">Anchor week 6 · Standards: P2, A1, A2, A4</p>
 </div>
 
 
@@ -414,71 +414,153 @@ window.Quarto = {
 </header>
 
 
-<p><strong>Standards seeded:</strong> P1, A1, A4 · <strong>You’ll need:</strong> a laptop with Colab open, and a phone or paper for the hand-checks.</p>
-<p>Today we build three functions that hand results to one another, and then spend some time deciding whether to trust what they say.</p>
-<section id="the-problem" class="level2">
-<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
-<p>Your firm is scoping a wind turbine for the eastern plains outside Denver. You need a tool that answers: <strong>for a given rotor diameter and a given wind speed, how much power comes out?</strong></p>
-<p><strong>The swept area.</strong> The blades sweep a circle, and only the wind passing through that circle is available to you. From the rotor diameter <span class="math inline">\(D\)</span>:</p>
+<section id="scenario" class="level2">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>A microphone was sitting in a field, set back some distance from a straight road, while an ambulance drove past. You know the sound: the pitch is high on the way in and drops as the ambulance goes by. Someone has already done the hard work and turned the audio recording into a file of pitch (frequency) against time. Your job is to answer one question: <strong>how fast was the ambulance going?</strong> And there are some other things we can learn from the data.</p>
+<p><strong>See <a href="../info/colab-format.html">Submitting Homework</a> for how to set up the report. Same look as HW 2 and HW 3.</strong></p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p><a href="../data/siren_frequency.csv"><code>siren_frequency.csv</code></a>, with columns <code>time_s</code> and <code>frequency_Hz</code>. Download it and upload it to Colab’s Files panel, the way we did in <a href="../lessons/06-data-io-plots.html">week 6</a>. (Colab forgets uploaded files between sessions so you’ll probably have to upload it multiple times.) Like real data, it’s noisy.</p>
+</section>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
+<p>A siren that’s coming toward you sounds higher than it really is, and one that’s moving away sounds lower. If a siren moves at speed <span class="math inline">\(U\)</span> along a straight road, emits a true frequency <span class="math inline">\(f_0\)</span>, and passes closest to the microphone at time <span class="math inline">\(t_{pass}\)</span>, at a distance <span class="math inline">\(y_0\)</span>, then the microphone hears</p>
 <p><span class="math display">\[
-A = \frac{\pi D^2}{4}
+f_{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos\theta(t) = \frac{-U\,(t - t_{pass})}{\sqrt{U^2 (t-t_{pass})^2 + y_0^2}}
 \]</span></p>
-<p><strong>The power in the wind, and the share you capture.</strong> Moving air has kinetic energy, and the faster it moves the more it carries — dramatically more, because velocity shows up cubed:</p>
-<p><span class="math display">\[
-P = \tfrac{1}{2}\,\rho\,A\,v^3\,C_p
-\]</span></p>
-<p>where <span class="math inline">\(\rho\)</span> is air density and <span class="math inline">\(C_p\)</span> is the fraction of the wind’s energy the turbine actually captures. Take <span class="math inline">\(\rho = 1.0\)</span> kg/m³ for Denver’s thin air as the default value.</p>
-<p><strong>The efficiency, which is not a constant.</strong> Blades are shaped to capture the wind best at <em>one</em> particular speed — too slow and there is no aerodynamic lift; too fast and they stall and spill. So <span class="math inline">\(C_p\)</span> peaks at a design speed and falls off on either side:</p>
-<p><span class="math display">\[
-C_p(v) = C_{p,\text{max}}\left[1 - \left(\frac{v - v_{\text{best}}}{w}\right)^2\right]
-\]</span></p>
-<p>with <span class="math inline">\(C_{p,\text{max}} = 0.45\)</span>, <span class="math inline">\(v_{\text{best}} = 11\)</span> m/s, and <span class="math inline">\(w = 8\)</span> m/s.</p>
-</section>
-<section id="round-0" class="level2">
-<h2 class="anchored" data-anchor-id="round-0">Round 0</h2>
-<p>An LLM was asked for the power function and handed back a number: for a 100 m rotor in a 10 m/s wind, <strong>52 kilowatts</strong>.</p>
-<p>Do you believe it? Discuss with your group</p>
-</section>
-<section id="round-1-three-specs" class="level2">
-<h2 class="anchored" data-anchor-id="round-1-three-specs">Round 1 — three specs</h2>
-<p>Everyone create a new Colab. Make your first cell a “text” cell, and write specifications for the three functions. <strong>Decide what the required inputs, optional inputs, and outputs are of each function, and pay attention to the units.</strong> You may not agree with your neighbor, but you may both be reasonable.</p>
-<p>Make your second cell a text cell as well, and do a hand-check of the <span class="math inline">\(D = 100\)</span> m case.</p>
-<p>The <strong>area</strong> function you check with a calculator.</p>
-<p>The <strong>efficiency</strong> function you can check against a <em>physical bound</em>. No turbine can capture more than about 59% of the wind’s energy. Any <span class="math inline">\(C_p\)</span> your function returns above 0.59 is wrong. You can calculate it too: what should it give at <span class="math inline">\(v = 11\)</span> m/s?</p>
-<p>The <strong>power</strong> function you check against <em>common sense</em> after plugging-in reasonable values. Real 100 m turbines produce 2–3 MW… it’s understandable if you didn’t know that number today (I didn’t until I wrote this), but with time/experience in engineering you’ll start to have intuition about numbers. Clearly 52 kW is low, and should set off alarm bells!</p>
-</section>
-<section id="round-2-write-and-audit-the-functions" class="level2">
-<h2 class="anchored" data-anchor-id="round-2-write-and-audit-the-functions">Round 2 — write and audit the functions</h2>
-<p>Now prompt for the code (or write it from scratch… good practice). One function at a time or all three at once — your call, and maybe your group tries both ways and you talk about how it went.</p>
-<p>Then <strong>annotate what comes back</strong>: for each function, write one line in your own words describing what it does. Include this as a docstring.</p>
-<section id="three-functions" class="level3">
-<h3 class="anchored" data-anchor-id="three-functions">Three functions?</h3>
-<p>My intention is for you to create three functions. The area one is pretty simple, but the other two contain separate physics and are worth keeping separate. The efficiency function varies between blade designs, and so having that as its own function that is <strong>called</strong> by the power function is better practice.</p>
-<p>So: do you have <strong>three functions</strong>, or did you/the LLM combine them in some way? Add a comment in your code about this.</p>
-</section>
-</section>
-<section id="round-3-testing" class="level2">
-<h2 class="anchored" data-anchor-id="round-3-testing">Round 3 — testing</h2>
-<p>Run your hand-check case. If you get agreement, that is a good step towards verification. If not, track down the error — was it you, or the code?</p>
-<p>Once your chain is verified, run it twice more: <span class="math inline">\(v = 11\)</span> m/s, then <span class="math inline">\(v = 15\)</span> m/s.</p>
-<p>At 15 m/s the turbine is <em>much less efficient</em> — about 0.34 against the peak 0.45… but you should see it makes more power. There’s more energy in a faster wind, and it is worth wasting energy to extract more of it.</p>
-<p>So the most efficient operating point isn’t the most productive one. Where exactly <em>is</em> the best wind speed? Run your code a few times to try to find it, but it is tedious… we’ll talk about strategies for optimizing this soon!</p>
-</section>
-<section id="deliverable-2-ec-per-person" class="level2">
-<h2 class="anchored" data-anchor-id="deliverable-2-ec-per-person">Deliverable — 2 EC, per person</h2>
-<p>Submitted individually this week, not per table. Export a pdf from Colab</p>
+<p>where <span class="math inline">\(c = 343\)</span> m/s is the speed of sound. Let’s confirm this equation matches our intuition:</p>
 <ul>
-<li>Your three specs, as written <em>before</em> you prompted.</li>
-<li>The prompt you used, plus the model and roughly when you ran it.</li>
-<li>Your annotated code.</li>
-<li>Your hand-check and discussion.</li>
-<li>Discussion of if there were three functions.</li>
-<li>One sentence (add as a text cell at the bottom): something interesting that someone else included in their spec that you left out.</li>
+<li>Long before the pass, <span class="math inline">\(t - t_{pass}\)</span> is a large negative number, so <span class="math inline">\(\cos\theta \approx +1\)</span>, the denominator is a bit <em>less</em> than 1, and <span class="math inline">\(f_{obs}\)</span> is a bit <em>more</em> than <span class="math inline">\(f_0\)</span>. Approaching, higher pitch. ✓</li>
+<li>Long after the pass, <span class="math inline">\(\cos\theta \approx -1\)</span> and the pitch is lower. ✓</li>
+<li>Right at <span class="math inline">\(t_{pass}\)</span>, <span class="math inline">\(\cos\theta = 0\)</span> and we hear exactly <span class="math inline">\(f_0\)</span>.</li>
 </ul>
+<p>Count the unknowns: <span class="math inline">\(U\)</span>, <span class="math inline">\(f_0\)</span>, <span class="math inline">\(y_0\)</span>, <span class="math inline">\(t_{pass}\)</span>… four things we don’t know, but we’ll figure them out from the data.</p>
+</section>
+<section id="part-1-look-first" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-look-first">Part 1 — Look first</h2>
+<p>Load the file and plot it: markers, not lines, since these are measurements; labels with units. Before any fitting, just look at it and write down what you see.</p>
+<p>Two of the four unknowns can be read nearly straight off this plot. Which two, and roughly what are their values? (Hint: what can we learn from the middle?) Reading them by eye is fine. Write both readings in a text cell, with units. You’ll use them in Part 4.</p>
+</section>
+<section id="part-2-the-model-as-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-the-model-as-a-function">Part 2 — The model as a function</h2>
+<p>Write <code>siren_freq(t, U, f0, y0, t_pass)</code>, which returns the predicted frequency at each time in the array <code>t</code>. Write a docstring with units.</p>
+<p>Check it in isolation before you trust it. Use these made-up values, <em>not</em> the siren data: <span class="math inline">\(U = 20\)</span> m/s, <span class="math inline">\(f_0 = 500\)</span> Hz, <span class="math inline">\(y_0 = 10\)</span> m, <span class="math inline">\(t_{pass} = 3\)</span> s. Then do three checks, each in its own code cell:</p>
+<ol type="1">
+<li>Call the function at <code>t = 3</code> and confirm it returns 500.</li>
+<li>Call it at <code>t = -1000</code> and <code>t = 1000</code>, stand-ins for “long before” and “long after.” Work out <span class="math inline">\(f_0 / (1 - U/c)\)</span> and <span class="math inline">\(f_0 / (1 + U/c)\)</span> with a calculator, show the arithmetic in a text cell, and compare.</li>
+<li>Plot it for <code>t = np.linspace(0, 6, 200)</code> and confirm the curve goes <em>down</em> as time goes on, not up.</li>
+</ol>
+</section>
+<section id="part-3-an-estimate-with-no-fitting-at-all" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-an-estimate-with-no-fitting-at-all">Part 3 — An estimate with no fitting at all</h2>
+<p>Before we build anything clever, let’s get a number we can check against.</p>
+<p>Far from the pass, the curve levels off into two flat stretches: a high one on the way in and a low one on the way out. Write code to do some averaging: take the mean of the first 20 frequencies and call it <span class="math inline">\(f_+\)</span>. Take the mean of the last 20 and call it <span class="math inline">\(f_-\)</span>. That’s one line each, using slicing (<code>[:20]</code> and <code>[-20:]</code>) and <code>.mean()</code> from <a href="../lessons/04a-arrays.html">week 4</a>. Print both.</p>
+<p>Now go back to the two limits in the model, <span class="math inline">\(f_+ = f_0/(1 - U/c)\)</span> and <span class="math inline">\(f_- = f_0/(1 + U/c)\)</span>. That’s two equations with two unknowns (<span class="math inline">\(U\)</span> and <span class="math inline">\(f_0\)</span>). Solve them for <span class="math inline">\(U\)</span> <em>and</em> <span class="math inline">\(f_0\)</span> using algebra, not code. Write the steps in a text cell, then plug in your <span class="math inline">\(f_+\)</span> and <span class="math inline">\(f_-\)</span> with one line of Python each. Write down both estimates.</p>
+</section>
+<section id="part-4-the-sweep-as-a-search" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-the-sweep-as-a-search">Part 4 — The sweep as a search</h2>
+<p>We will write a basic “fitting” process to determine the “best fit to the data”. The idea is to guess <span class="math inline">\(U\)</span>, <span class="math inline">\(f_0\)</span>, <span class="math inline">\(y_0\)</span>, and <span class="math inline">\(t_{pass}\)</span>, and then see how well the resulting equation replicates the data. Then guess another set of values and check, then guess another set and check… . It won’t be random guessing though — we will be systematic, sweeping through a reasonable range for the values. The tricky thing is: we need a way to score the guesses so that we can identify the best one.</p>
+<p>Let’s do the following:</p>
+<ul>
+<li><p><strong>Decide on a way to keep score.</strong> For one set of guesses, run <code>siren_freq</code> at every time in the file and compare it with the measured frequencies. Boil the mismatch down to <em>one number</em>, where smaller means better. How you calculate that number is up to you (it’s a spec decision).</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Simply adding up the differences doesn’t work — positive and negative differences cancel each other out.</p>
+</div>
+</div></li>
+<li><p><strong>Make the problem smaller.</strong> If we did a sweep over all four unknowns, with 40 possible values each, it would be 2.5 million guesses. That is not that crazy, but let’s simplify: we’ll hold <span class="math inline">\(t_{pass}\)</span> and <span class="math inline">\(f_0\)</span> fixed. Use your Part 1 estimate for <span class="math inline">\(t_{pass}\)</span>. For <span class="math inline">\(f_0\)</span>, use either your Part 1 estimate or the value your Part 3 algebra gives, and say which in your spec. Now you only have to sweep <span class="math inline">\(U\)</span> and <span class="math inline">\(y_0\)</span>.</p></li>
+<li><p><strong>Create a “nested loop”.</strong> We can put a <code>for</code> loop inside a <code>for</code> loop:</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZm9yIGkgaW4gWzMsNCw1XTpcbiAgICBmb3IgaiBpbiBbMTAwLDIwMCwzMDBdOlxuICAgICAgICBwcmludChpK2opIn0=
+</script>
+</div>
+<p>Let’s do that: loop over <span class="math inline">\(U\)</span>, and loop over <span class="math inline">\(y_0\)</span> inside that loop. Every <span class="math inline">\((U,y_0)\)</span> pair needs a score. As you go, keep track of the best score so far and the <span class="math inline">\(U\)</span> and <span class="math inline">\(y_0\)</span> that produced it.</p></li>
+</ul>
+<p>Choosing the search ranges is part of your spec. Part 3 tells you roughly where <span class="math inline">\(U\)</span> is, so search around it. For <span class="math inline">\(y_0\)</span>, the plot won’t tell you directly. The microphone was “set back some distance” from the road, which could mean 1 m or 100 m. You can always start with something coarse and run a finer sweep around the best spot afterward.</p>
+<p>Write the sweep results to a file, <code>siren_sweep.csv</code>: three columns (<span class="math inline">\(U\)</span>, <span class="math inline">\(y_0\)</span>, score) with units in the header, and <strong>one row per guess</strong>. A 40 × 40 sweep, for example, is a 1,600-row file (plus header).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The nested loop makes this slightly awkward, because <code>i</code> alone no longer tells you which row you’re on. One way: pre-allocate three arrays of length (number of <span class="math inline">\(U\)</span> values) × (number of <span class="math inline">\(y_0\)</span> values). Then initialize a counter <code>k = 0</code> before the loops, fill slot <code>k</code> of each array, and do <code>k = k + 1</code> as the very last step in the inner loop.</p>
+</div>
+</div>
+<p>Then <code>np.savetxt</code> the three arrays side by side. Peek at the first few lines only, e.g.&nbsp;<code>print(open("siren_sweep.csv").read()[:200])</code>. Printing thousands of rows will turn into dozens of pages of numbers in your PDF.</p>
+</section>
+<section id="part-5-how-sure-are-you" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-how-sure-are-you">Part 5 — How sure are you?</h2>
+<p>Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these two questions:</p>
+<ol type="1">
+<li><strong>How good is the best fit?</strong> Compare two numbers, both in Hz:
+<ul>
+<li><em>The noise.</em> Run <code>.std()</code> on the first 20 frequencies. (The <em>standard deviation</em>: roughly, how far a typical point sits from the average of its neighbors. New function, same idea as <code>.mean()</code>.)</li>
+<li><em>The fit’s typical miss.</em> At your best <span class="math inline">\(U\)</span> and <span class="math inline">\(y_0\)</span>, compute the differences between model and data, square them, take the mean, then the square root. (If that’s what your score already was, you’re done. If you picked a different score, compute this one anyway so the two numbers are comparable.)</li>
+</ul>
+Are they about the same size, or is the miss clearly bigger? If it’s clearly bigger, something in your model is a little off. Which of the two values you held fixed is the likeliest culprit, and why? (Answering that is required. Actually re-sweeping to fix it is optional.)</li>
+<li><strong>Which parameter is the fit least sure about?</strong> Make two plots. First, hold <span class="math inline">\(U\)</span> at its best value and plot the score against <span class="math inline">\(y_0\)</span>. Second, hold <span class="math inline">\(y_0\)</span> at its best value and plot the score against <span class="math inline">\(U\)</span>. You can pull these from your sweep file, or recompute along each line with a finer step (which gives a smoother plot). On each, find how far you can move away from the best value before the score gets 10% worse than the best score. Write that as a percentage of the best value, e.g.&nbsp;“±4%.” The parameter with the bigger percentage is the one that is less certain.</li>
+</ol>
+</section>
+<section id="your-submission" class="level2">
+<h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
+<p><strong>Step 1 — Specify &amp; prompt.</strong> Your spec covers the decisions, not the formula:</p>
+<ul>
+<li><code>siren_freq</code>: inputs, units, what it returns. Does it take one time or a whole array?</li>
+<li>Which two unknowns you read off the plot, how you read them, and what values you got. Which <span class="math inline">\(f_0\)</span> you’re holding fixed in Part 4 (Part 1 reading or Part 3 value).</li>
+<li>Your score: which single number, and why that one?</li>
+<li>Your search: the range and step size for <span class="math inline">\(U\)</span> and for <span class="math inline">\(y_0\)</span>, and why. How many guesses is that in total?</li>
+<li>What gets written to <code>siren_sweep.csv</code>, and what the header says.</li>
+<li>The final plot: what’s on it, and how data and model are shown differently.</li>
+</ul>
+<p>Then your actual LLM prompt, with the model name and date.</p>
+<p><strong>Step 2 — Annotate.</strong> At least <strong>six</strong> annotations. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it carries out. Five of them must be:</p>
+<ol type="1">
+<li>the <span class="math inline">\(\cos\theta\)</span> line. Check its sign against the “approaching means higher” argument above. A flipped sign produces a curve that goes the wrong way <em>and still looks like a perfectly reasonable curve</em>.</li>
+<li>the line that computes the score;</li>
+<li>the lines that set the search ranges for <span class="math inline">\(U\)</span> and <span class="math inline">\(y_0\)</span>;</li>
+<li>the line where the best-so-far gets updated. What condition triggers it?</li>
+<li>the line that writes <code>siren_sweep.csv</code>.</li>
+</ol>
+<p>The sixth is your choice. If the AI made a decision you didn’t specify (a search range, a score, a fixed value, a default), that’s a good choice. You can do more than six.</p>
+<p><strong>Step 3 — Verify.</strong> Three things:</p>
+<ol type="1">
+<li>The three Part 2 checks, with the arithmetic shown.</li>
+<li>Your Part 3 algebra, your estimate of <span class="math inline">\(U\)</span>, and your sweep’s best <span class="math inline">\(U\)</span> side by side. Do they agree to within a few percent? If not, which one do you believe, and why?</li>
+<li>The mph check: your best <span class="math inline">\(U\)</span> in mph, and one sentence on whether that’s believable for an ambulance.</li>
+</ol>
+<p><strong>Step 4 — Report.</strong> Five things:</p>
+<ol type="1">
+<li>The data-plus-fit plot.</li>
+<li>A small table of your best values for all four unknowns, with units. Mark which ones came from the sweep and which you held fixed.</li>
+<li>One sentence per value on how many digits you actually believe, using your Part 5 evidence.</li>
+<li>Your answers to the two Part 5 questions, with the numbers and plots that back them up.</li>
+<li>The “can and can’t” question: from this file, what can you say about how the ambulance was moving, and what can’t you say? At least two things for each.</li>
+</ol>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -499,7 +581,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../activities";
+window._ojs.paths.runtimeToDoc = "../../homework";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;
