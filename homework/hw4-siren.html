@@ -397,7 +397,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw4-siren.html">HW 4 · The siren</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">HW 4 · The siren</h1>
-<p class="subtitle lead">Anchor week 6 · Standards: P2, A1, A2, A4</p>
+<p class="subtitle lead">Anchor week 6 · Tentative standards: P2, A3, A4</p>
 </div>
 
 
@@ -422,20 +422,33 @@ window.Quarto = {
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <p><a href="../data/siren_frequency.csv"><code>siren_frequency.csv</code></a>, with columns <code>time_s</code> and <code>frequency_Hz</code>. Download it and upload it to Colab’s Files panel, the way we did in <a href="../lessons/06-data-io-plots.html">week 6</a>. (Colab forgets uploaded files between sessions so you’ll probably have to upload it multiple times.) Like real data, it’s noisy.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Right-click <a href="../data/siren_frequency.csv"><code>siren_frequency.csv</code></a> and choose “Download linked file” or similar.</p>
+</div>
+</div>
 </section>
 <section id="the-model" class="level2">
 <h2 class="anchored" data-anchor-id="the-model">The model</h2>
-<p>A siren that’s coming toward you sounds higher than it really is, and one that’s moving away sounds lower. If a siren moves at speed <span class="math inline">\(U\)</span> along a straight road, emits a true frequency <span class="math inline">\(f_0\)</span>, and passes closest to the microphone at time <span class="math inline">\(t_{pass}\)</span>, at a distance <span class="math inline">\(y_0\)</span>, then the microphone hears</p>
+<p>A siren that’s coming toward you sounds higher than it really is, and one that’s moving away sounds lower. If a siren moves at speed <span class="math inline">\(U\)</span> along a straight road, emits a true frequency <span class="math inline">\(f_0\)</span>, and passes closest to the microphone at time <span class="math inline">\(t_\text{pass}\)</span>, at a distance <span class="math inline">\(y_0\)</span>, then the microphone hears an “observed frequency”</p>
 <p><span class="math display">\[
-f_{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos\theta(t) = \frac{-U\,(t - t_{pass})}{\sqrt{U^2 (t-t_{pass})^2 + y_0^2}}
+f_\text{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos(\theta(t)) = \frac{-U\,(t - t_\text{pass})}{\sqrt{U^2 (t-t_\text{pass})^2 + y_0^2}}
 \]</span></p>
 <p>where <span class="math inline">\(c = 343\)</span> m/s is the speed of sound. Let’s confirm this equation matches our intuition:</p>
 <ul>
-<li>Long before the pass, <span class="math inline">\(t - t_{pass}\)</span> is a large negative number, so <span class="math inline">\(\cos\theta \approx +1\)</span>, the denominator is a bit <em>less</em> than 1, and <span class="math inline">\(f_{obs}\)</span> is a bit <em>more</em> than <span class="math inline">\(f_0\)</span>. Approaching, higher pitch. ✓</li>
+<li>Long before the pass, <span class="math inline">\(t - t_\text{pass}\)</span> is a large negative number, so <span class="math inline">\(\cos\theta \approx +1\)</span>, the denominator is a bit <em>less</em> than 1, and <span class="math inline">\(f_\text{obs}\)</span> is a bit <em>more</em> than <span class="math inline">\(f_0\)</span>. Approaching, higher pitch. ✓</li>
 <li>Long after the pass, <span class="math inline">\(\cos\theta \approx -1\)</span> and the pitch is lower. ✓</li>
-<li>Right at <span class="math inline">\(t_{pass}\)</span>, <span class="math inline">\(\cos\theta = 0\)</span> and we hear exactly <span class="math inline">\(f_0\)</span>.</li>
+<li>Right at <span class="math inline">\(t_\text{pass}\)</span>, <span class="math inline">\(\cos\theta = 0\)</span> and we hear exactly <span class="math inline">\(f_0\)</span>.</li>
 </ul>
-<p>Count the unknowns: <span class="math inline">\(U\)</span>, <span class="math inline">\(f_0\)</span>, <span class="math inline">\(y_0\)</span>, <span class="math inline">\(t_{pass}\)</span>… four things we don’t know, but we’ll figure them out from the data.</p>
+<p>Count the unknowns: <span class="math inline">\(U\)</span>, <span class="math inline">\(f_0\)</span>, <span class="math inline">\(y_0\)</span>, <span class="math inline">\(t_\text{pass}\)</span>… four things we don’t know, but we’ll figure them out from the data.</p>
 </section>
 <section id="part-1-look-first" class="level2">
 <h2 class="anchored" data-anchor-id="part-1-look-first">Part 1 — Look first</h2>
@@ -445,7 +458,7 @@ f_{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos\theta(t) = \
 <section id="part-2-the-model-as-a-function" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-the-model-as-a-function">Part 2 — The model as a function</h2>
 <p>Write <code>siren_freq(t, U, f0, y0, t_pass)</code>, which returns the predicted frequency at each time in the array <code>t</code>. Write a docstring with units.</p>
-<p>Check it in isolation before you trust it. Use these made-up values, <em>not</em> the siren data: <span class="math inline">\(U = 20\)</span> m/s, <span class="math inline">\(f_0 = 500\)</span> Hz, <span class="math inline">\(y_0 = 10\)</span> m, <span class="math inline">\(t_{pass} = 3\)</span> s. Then do three checks, each in its own code cell:</p>
+<p>Check it in isolation before you trust it. Use these made-up values, <em>not</em> the siren data: <span class="math inline">\(U = 20\)</span> m/s, <span class="math inline">\(f_0 = 500\)</span> Hz, <span class="math inline">\(y_0 = 10\)</span> m, <span class="math inline">\(t_\text{pass} = 3\)</span> s. Then do three checks, each in its own code cell:</p>
 <ol type="1">
 <li>Call the function at <code>t = 3</code> and confirm it returns 500.</li>
 <li>Call it at <code>t = -1000</code> and <code>t = 1000</code>, stand-ins for “long before” and “long after.” Work out <span class="math inline">\(f_0 / (1 - U/c)\)</span> and <span class="math inline">\(f_0 / (1 + U/c)\)</span> with a calculator, show the arithmetic in a text cell, and compare.</li>
@@ -460,7 +473,7 @@ f_{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos\theta(t) = \
 </section>
 <section id="part-4-the-sweep-as-a-search" class="level2">
 <h2 class="anchored" data-anchor-id="part-4-the-sweep-as-a-search">Part 4 — The sweep as a search</h2>
-<p>We will write a basic “fitting” process to determine the “best fit to the data”. The idea is to guess <span class="math inline">\(U\)</span>, <span class="math inline">\(f_0\)</span>, <span class="math inline">\(y_0\)</span>, and <span class="math inline">\(t_{pass}\)</span>, and then see how well the resulting equation replicates the data. Then guess another set of values and check, then guess another set and check… . It won’t be random guessing though — we will be systematic, sweeping through a reasonable range for the values. The tricky thing is: we need a way to score the guesses so that we can identify the best one.</p>
+<p>We will write a basic “fitting” process to determine the “best fit to the data”. The idea is to guess <span class="math inline">\(U\)</span>, <span class="math inline">\(f_0\)</span>, <span class="math inline">\(y_0\)</span>, and <span class="math inline">\(t_\text{pass}\)</span>, and then see how well the resulting equation replicates the data. Then guess another set of values and check, then guess another set and check… . It won’t be random guessing though — we will be systematic, sweeping through a reasonable range for the values. The tricky thing is: we need a way to score the guesses so that we can identify the best one.</p>
 <p>Let’s do the following:</p>
 <ul>
 <li><p><strong>Decide on a way to keep score.</strong> For one set of guesses, run <code>siren_freq</code> at every time in the file and compare it with the measured frequencies. Boil the mismatch down to <em>one number</em>, where smaller means better. How you calculate that number is up to you (it’s a spec decision).</p>
@@ -477,7 +490,7 @@ Caution
 <p>Simply adding up the differences doesn’t work — positive and negative differences cancel each other out.</p>
 </div>
 </div></li>
-<li><p><strong>Make the problem smaller.</strong> If we did a sweep over all four unknowns, with 40 possible values each, it would be 2.5 million guesses. That is not that crazy, but let’s simplify: we’ll hold <span class="math inline">\(t_{pass}\)</span> and <span class="math inline">\(f_0\)</span> fixed. Use your Part 1 estimate for <span class="math inline">\(t_{pass}\)</span>. For <span class="math inline">\(f_0\)</span>, use either your Part 1 estimate or the value your Part 3 algebra gives, and say which in your spec. Now you only have to sweep <span class="math inline">\(U\)</span> and <span class="math inline">\(y_0\)</span>.</p></li>
+<li><p><strong>Make the problem smaller.</strong> If we did a sweep over all four unknowns, with 40 possible values each, it would be 2.5 million guesses. That is not that crazy, but let’s simplify: we’ll hold <span class="math inline">\(t_\text{pass}\)</span> and <span class="math inline">\(f_0\)</span> fixed. Use your Part 1 estimate for <span class="math inline">\(t_\text{pass}\)</span>. For <span class="math inline">\(f_0\)</span>, use either your Part 1 estimate or the value your Part 3 algebra gives, and say which in your spec. Now you only have to sweep <span class="math inline">\(U\)</span> and <span class="math inline">\(y_0\)</span>.</p></li>
 <li><p><strong>Create a “nested loop”.</strong> We can put a <code>for</code> loop inside a <code>for</code> loop:</p>
 <div>
 <div id="pyodide-1" class="exercise-cell">
@@ -508,7 +521,7 @@ Tip
 </section>
 <section id="part-5-how-sure-are-you" class="level2">
 <h2 class="anchored" data-anchor-id="part-5-how-sure-are-you">Part 5 — How sure are you?</h2>
-<p>Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these two questions:</p>
+<p>Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these three questions:</p>
 <ol type="1">
 <li><strong>How good is the best fit?</strong> Compare two numbers, both in Hz:
 <ul>
@@ -517,6 +530,7 @@ Tip
 </ul>
 Are they about the same size, or is the miss clearly bigger? If it’s clearly bigger, something in your model is a little off. Which of the two values you held fixed is the likeliest culprit, and why? (Answering that is required. Actually re-sweeping to fix it is optional.)</li>
 <li><strong>Which parameter is the fit least sure about?</strong> Make two plots. First, hold <span class="math inline">\(U\)</span> at its best value and plot the score against <span class="math inline">\(y_0\)</span>. Second, hold <span class="math inline">\(y_0\)</span> at its best value and plot the score against <span class="math inline">\(U\)</span>. You can pull these from your sweep file, or recompute along each line with a finer step (which gives a smoother plot). On each, find how far you can move away from the best value before the score gets 10% worse than the best score. Write that as a percentage of the best value, e.g.&nbsp;“±4%.” The parameter with the bigger percentage is the one that is less certain.</li>
+<li>Based on our data and the fit to the observed frequency equation, what do we know about how the ambulance was moving? What things do we not know — i.e., what aspects of the motion are not captured in the data?</li>
 </ol>
 </section>
 <section id="your-submission" class="level2">
@@ -551,8 +565,8 @@ Are they about the same size, or is the miss clearly bigger? If it’s clearly b
 <li>The data-plus-fit plot.</li>
 <li>A small table of your best values for all four unknowns, with units. Mark which ones came from the sweep and which you held fixed.</li>
 <li>One sentence per value on how many digits you actually believe, using your Part 5 evidence.</li>
-<li>Your answers to the two Part 5 questions, with the numbers and plots that back them up.</li>
-<li>The “can and can’t” question: from this file, what can you say about how the ambulance was moving, and what can’t you say? At least two things for each.</li>
+<li>Your answers to the three Part 5 questions, with the numbers and plots that back them up.</li>
+<li>On the question of what we know and don’t know from the data, include at least two things for each.</li>
 </ol>
 
 
