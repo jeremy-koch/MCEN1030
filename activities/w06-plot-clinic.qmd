@@ -194,13 +194,13 @@ Every number here is true. The y-axis starts at zero, there are units, and the b
 
 **2. Look at the boring plot and talk at your table.** What *is* the story here? What would a reader take away if all they saw was this? What's the most interesting true thing in the data, and what's the most tempting false thing?
 
-**3. Make the interesting plot.** Now open your slip.
+**3. Make the interesting plot.**
 
 - **Honest tables:** make the true takeaway jump off the page. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding.
 - **Misleading tables:** make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). (That is, o typing in fake values!) But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look reasonable.
 
 
-**4. Put both plots in the class slide deck**, on your dataset's two slides: the interesting plot on the first, the boring plot on the second. In the browser you can right-click (or long-press on an iPad) the plot and copy the image.
+**4. Deliver the interesting plot to Canvas** as an image file. In the browser you can right-click (or long-press on an iPad) the plot and download the image.
 
 ::: {.callout-tip}
 ## Stuck?
@@ -210,7 +210,7 @@ Here are some questions that help from either side. What would change if the y-a
 
 ## Deliverable (2 EC)
 
-Your table's two plots (boring and interesting).
+Your table's **interesting** plot.
 
 ## Datasets
 
