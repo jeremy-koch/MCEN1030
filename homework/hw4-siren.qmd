@@ -1,0 +1,167 @@
+---
+title: "HW 4 · The siren"
+subtitle: "Anchor week 6 · Standards: P2, A1, A2, A4"
+---
+
+
+## Scenario
+
+A microphone was sitting in a field, set back some distance from a straight road, while an ambulance drove past. You know the sound: the pitch is high on the way in and drops as the ambulance goes by. Someone has already done the hard work and turned the audio recording into a file of pitch (frequency) against time. Your job is to answer one question: **how fast was the ambulance going?** And there are some other things we can learn from the data.
+
+**See [Submitting Homework](../info/colab-format.qmd) for how to set up the report. Same look as HW 2 and HW 3.**
+
+## Data
+
+[`siren_frequency.csv`](../data/siren_frequency.csv), with columns `time_s` and `frequency_Hz`. Download it and upload it to Colab's Files panel, the way we did in [week 6](../lessons/06-data-io-plots.qmd). (Colab forgets uploaded files between sessions so you'll probably have to upload it multiple times.) Like real data, it's noisy.
+
+
+
+## The model
+
+A siren that's coming toward you sounds higher than it really is, and one that's moving away sounds lower. If a siren moves at speed $U$ along a straight road, emits a true frequency $f_0$, and passes closest to the microphone at time $t_{pass}$, at a distance $y_0$, then the microphone hears
+
+$$
+f_{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos\theta(t) = \frac{-U\,(t - t_{pass})}{\sqrt{U^2 (t-t_{pass})^2 + y_0^2}}
+$$
+
+where $c = 343$ m/s is the speed of sound. Let's confirm this equation matches our intuition: 
+
+- Long before the pass, $t - t_{pass}$ is a large negative number, so $\cos\theta \approx +1$, the denominator is a bit *less* than 1, and $f_{obs}$ is a bit *more* than $f_0$. Approaching, higher pitch. ✓
+- Long after the pass, $\cos\theta \approx -1$ and the pitch is lower. ✓ 
+- Right at $t_{pass}$, $\cos\theta = 0$ and we hear exactly $f_0$.
+
+
+Count the unknowns: $U$, $f_0$, $y_0$, $t_{pass}$... four things we don't know, but we'll figure them out from the data.
+
+## Part 1 — Look first
+
+Load the file and plot it: markers, not lines, since these are measurements; labels with units. Before any fitting, just look at it and write down what you see.
+
+Two of the four unknowns can be read nearly straight off this plot. Which two, and roughly what are their values? (Hint: what can we learn from the middle?) Reading them by eye is fine. Write both readings in a text cell, with units. You'll use them in Part 4.
+
+## Part 2 — The model as a function
+
+Write `siren_freq(t, U, f0, y0, t_pass)`, which returns the predicted frequency at each time in the array `t`. Write a docstring with units.
+
+Check it in isolation before you trust it. Use these made-up values, *not* the siren data: $U = 20$ m/s, $f_0 = 500$ Hz, $y_0 = 10$ m, $t_{pass} = 3$ s. Then do three checks, each in its own code cell:
+
+1. Call the function at `t = 3` and confirm it returns 500.
+2. Call it at `t = -1000` and `t = 1000`, stand-ins for "long before" and "long after." Work out $f_0 / (1 - U/c)$ and $f_0 / (1 + U/c)$ with a calculator, show the arithmetic in a text cell, and compare.
+3. Plot it for `t = np.linspace(0, 6, 200)` and confirm the curve goes *down* as time goes on, not up.
+
+## Part 3 — An estimate with no fitting at all
+
+Before we build anything clever, let's get a number we can check against.
+
+Far from the pass, the curve levels off into two flat stretches: a high one on the way in and a low one on the way out. Write code to do some averaging: take the mean of the first 20 frequencies and call it $f_+$. Take the mean of the last 20 and call it $f_-$. That's one line each, using slicing (`[:20]` and `[-20:]`) and `.mean()` from [week 4](../lessons/04a-arrays.qmd). Print both.
+
+Now go back to the two limits in the model, $f_+ = f_0/(1 - U/c)$ and $f_- = f_0/(1 + U/c)$. That's two equations with two unknowns ($U$ and $f_0$). Solve them for $U$ *and* $f_0$ using algebra, not code. Write the steps in a text cell, then plug in your $f_+$ and $f_-$ with one line of Python each. Write down both estimates.
+
+
+## Part 4 — The sweep as a search
+
+We will write a basic "fitting" process to determine the "best fit to the data". The idea is to guess $U$, $f_0$, $y_0$, and $t_{pass}$, and then see how well the resulting equation replicates the data. Then guess another set of values and check, then guess another set and check... . It won't be random guessing though — we will be systematic, sweeping through a reasonable range for the values. The tricky thing is: we need a way to score the guesses so that we can identify the best one.
+
+Let's do the following:
+
+- **Decide on a way to keep score.** For one set of guesses, run `siren_freq` at every time in the file and compare it with the measured frequencies. Boil the mismatch down to *one number*, where smaller means better. How you calculate that number is up to you (it's a spec decision).
+
+
+  ::: {.callout-caution}
+  Simply adding up the differences doesn't work — positive and negative differences cancel each other out.
+  :::
+
+
+- **Make the problem smaller.** If we did a sweep over all four unknowns, with 40 possible values each, it would be 2.5 million guesses. That is not that crazy, but let's simplify: we'll hold $t_{pass}$ and $f_0$ fixed. Use your Part 1 estimate for $t_{pass}$. For $f_0$, use either your Part 1 estimate or the value your Part 3 algebra gives, and say which in your spec. Now you only have to sweep $U$ and $y_0$.
+- **Create a "nested loop".** We can put a `for` loop inside a `for` loop:
+
+  ```{pyodide}
+  for i in [3,4,5]:
+      for j in [100,200,300]:
+          print(i+j)
+  ```
+
+  Let's do that: loop over $U$, and loop over $y_0$ inside that loop. Every $(U,y_0)$ pair needs a score. As you go, keep track of the best score so far and the $U$ and $y_0$ that produced it.
+
+Choosing the search ranges is part of your spec. Part 3 tells you roughly where $U$ is, so search around it. For $y_0$, the plot won't tell you directly. The microphone was "set back some distance" from the road, which could mean 1 m or 100 m. You can always start with something coarse and run a finer sweep around the best spot afterward. 
+
+Write the sweep results to a file, `siren_sweep.csv`: three columns ($U$, $y_0$, score) with units in the header, and **one row per guess**. A 40 × 40 sweep, for example, is a 1,600-row file (plus header). 
+
+
+::: {.callout-tip}
+The nested loop makes this slightly awkward, because `i` alone no longer tells you which row you're on. One way: pre-allocate three arrays of length (number of $U$ values) × (number of $y_0$ values). Then initialize a counter `k = 0` before the loops, fill slot `k` of each array, and do `k = k + 1` as the very last step in the inner loop.
+:::
+
+Then `np.savetxt` the three arrays side by side. Peek at the first few lines only, e.g. `print(open("siren_sweep.csv").read()[:200])`. Printing thousands of rows will turn into dozens of pages of numbers in your PDF.
+
+
+
+## Part 5 — How sure are you?
+
+Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these two questions:
+
+1. **How good is the best fit?** Compare two numbers, both in Hz:
+    - *The noise.* Run `.std()` on the first 20 frequencies. (The *standard deviation*: roughly, how far a typical point sits from the average of its neighbors. New function, same idea as `.mean()`.)
+    - *The fit's typical miss.* At your best $U$ and $y_0$, compute the differences between model and data, square them, take the mean, then the square root. (If that's what your score already was, you're done. If you picked a different score, compute this one anyway so the two numbers are comparable.)
+
+    Are they about the same size, or is the miss clearly bigger? If it's clearly bigger, something in your model is a little off. Which of the two values you held fixed is the likeliest culprit, and why? (Answering that is required. Actually re-sweeping to fix it is optional.)
+2. **Which parameter is the fit least sure about?** Make two plots. First, hold $U$ at its best value and plot the score against $y_0$. Second, hold $y_0$ at its best value and plot the score against $U$. You can pull these from your sweep file, or recompute along each line with a finer step (which gives a smoother plot). On each, find how far you can move away from the best value before the score gets 10% worse than the best score. Write that as a percentage of the best value, e.g. "±4%." The parameter with the bigger percentage is the one that is less certain.
+
+## Your submission
+
+**Step 1 — Specify & prompt.** Your spec covers the decisions, not the formula:
+
+- `siren_freq`: inputs, units, what it returns. Does it take one time or a whole array?
+- Which two unknowns you read off the plot, how you read them, and what values you got. Which $f_0$ you're holding fixed in Part 4 (Part 1 reading or Part 3 value).
+- Your score: which single number, and why that one?
+- Your search: the range and step size for $U$ and for $y_0$, and why. How many guesses is that in total?
+- What gets written to `siren_sweep.csv`, and what the header says.
+- The final plot: what's on it, and how data and model are shown differently.
+
+Then your actual LLM prompt, with the model name and date.
+
+**Step 2 — Annotate.** At least **six** annotations. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it carries out. Five of them must be:
+
+1. the $\cos\theta$ line. Check its sign against the "approaching means higher" argument above. A flipped sign produces a curve that goes the wrong way *and still looks like a perfectly reasonable curve*.
+2. the line that computes the score;
+3. the lines that set the search ranges for $U$ and $y_0$;
+4. the line where the best-so-far gets updated. What condition triggers it?
+5. the line that writes `siren_sweep.csv`.
+
+The sixth is your choice. If the AI made a decision you didn't specify (a search range, a score, a fixed value, a default), that's a good choice. You can do more than six.
+
+**Step 3 — Verify.** Three things:
+
+1. The three Part 2 checks, with the arithmetic shown.
+2. Your Part 3 algebra, your estimate of $U$, and your sweep's best $U$ side by side. Do they agree to within a few percent? If not, which one do you believe, and why?
+3. The mph check: your best $U$ in mph, and one sentence on whether that's believable for an ambulance.
+
+**Step 4 — Report.** Five things:
+
+1. The data-plus-fit plot.
+2. A small table of your best values for all four unknowns, with units. Mark which ones came from the sweep and which you held fixed.
+3. One sentence per value on how many digits you actually believe, using your Part 5 evidence.
+4. Your answers to the two Part 5 questions, with the numbers and plots that back them up.
+5. The "can and can't" question: from this file, what can you say about how the ambulance was moving, and what can't you say? At least two things for each.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site):**
+
+**Truth:** U = **25.0 m/s** (56 mph, a reasonable ambulance speed), f0 = 700 Hz, y0 = 30 m, t_pass = 4.0 s, noise σ = 1.5 Hz, 401 points from t = 0 to 8 s. Generator: `instructor/data_generators.py`, seed 1030.
+
+**Part 2.** With U = 20, f0 = 500, y0 = 10, t_pass = 3: t = 3 → 500.0 exactly. t = −1000 → 530.96, and 500/(1 − 20/343) = 530.96. t = 1000 → 472.45, and 500/(1 + 20/343) = 472.45. They match to the second decimal.
+
+**Part 1.** Reading t_pass as "where the curve crosses the middle" gives ~3.9–4.0 s. Reading f0 by eye as the middle of the two flat stretches gives ~703 Hz, about 3 Hz high. That matters in Part 5.
+
+**Part 3.** First and last 20 points: f₊ = **752.5**, f₋ = **654.2** Hz. (f₊ − f₋)/(f₊ + f₋) = U/c, which gives U = 343 · 98.3 / 1406.7 ≈ **24.0 m/s**. It comes out a bit low because the ends of the recording aren't fully flat: at t = 0 the ambulance is 100 m away with y0 = 30 m, so cos θ ≈ 0.96, not 1. A student who notices the curve is still sloping slightly at the edges and says so has done excellent A1 work. The same algebra gives f0 = 2/(1/f₊ + 1/f₋), the *harmonic* mean, = **699.9 Hz**. The plain average is 703.4 Hz, high by a factor of 1/(1 − (U/c)²). Students are asked for both, so they'll find this. A student who notices it differs from their eye reading of ~703 Hz is already halfway to Part 5 Q1.
+
+**Part 4.** With t_pass = 4.0 fixed, a U × y0 grid finds: with the Part 3 value f0 = 699.7, (25.0, 30) at RMS 1.53 Hz; with the by-eye f0 = 703.2, (24.5, 29) at RMS **3.46 Hz**. Both choices are allowed, and they lead to different (both correct) Part 5 Q1 answers. The raw sum of residuals doesn't just fail, it points the wrong way. With f0 = 703 fixed, it's ~1,170 Hz at the best fit (25, 31) but only ~500 at (15, 31), a terrible fit with RMS 20 Hz. A student who minimizes it gets a confidently wrong answer. Grid size for 15–35 m/s at 0.5 and 5–100 m at 1 m: ~3,900 evaluations, which is instant.
+
+**Part 5, Q1.** `.std()` of the first 20 points is **1.74 Hz** (last 20: 1.82). That's a bit above the true σ = 1.5, because of the leftover slope. With the Part 3 f0, the RMS miss is 1.53 Hz, about the same as the noise, so the answer is "the fit is as good as the data allows." With the by-eye f0 = 703.2, the miss is 3.46 Hz, about twice the noise. That's the tell that f0 is off, and f0 is the culprit to name (t_pass read by eye is usually close enough). Sweeping f0 as well (698–706 Hz) recovers 701 Hz and an RMS of ~1.67. Full four-parameter least squares (checked): U = 25.08 ± 0.08, f0 = 700.12 ± 0.10, y0 = 30.7 ± 0.4, t_pass = 3.995 ± 0.006.
+
+**Part 5, Q2.** **y0 is the least certain.** Using the page's "10% worse" test: with f0 = 699.7, U is good to ±1.2% and y0 to ±5.7%. With f0 = 703.2, U is good to ±2.9% and y0 to ±13%. Either way, y0 is roughly 5× looser. (Full least-squares puts it at ±1.3% vs U's ±0.3%, the same ranking.) The more interesting reason: U and y0 are strongly correlated (0.89). With f0 = 703.2 fixed, the valley runs diagonally. As U goes 23 → 27, the best y0 slides 23 → 42 m and the RMS only changes 3.9 → 3.45 → 3.95. A faster ambulance makes the drop steeper, and a farther one makes it gentler, so the two partly cancel. A faster, farther ambulance gives nearly the same curve as a slower, closer one. That's the physical explanation to hope for, but "it's a long valley along y0" with evidence is full credit. An answer of "t_pass, because it's hard to read" is wrong but reasonable. Grade the evidence.
+
+**Can / can't.** Can: the speed, the direction along the road relative to the mic (high → low means approaching → receding, so it passed during the recording), the time of passing, and the closest distance (roughly). Can't: which way the road points on a map, which side of the mic the ambulance was on, or whether it sped up or slowed down (the model assumes constant U, and a fit that looks good doesn't prove that assumption). A student who says "the siren's true pitch" is in the can column is right.
+
+**Where students will struggle:** the score. Some will add up raw differences, and that score prefers bad fits (see Part 4 above). The hint steers them away, and a student who tries it and reports the wrong winner has done good A4 work. Tracking the best pair inside nested loops is new bookkeeping. `np.argmin` on a 2-D array returns a flattened index, which will confuse anyone who uses it without `np.unravel_index`. Both approaches are fine, but make sure they check which is which. Also the edge-of-range check: if a sweep (AI-written or not) stops below 25 m/s, the "best" answer is sitting right at the top of the range, which is the catch we want them to make.
+:::
