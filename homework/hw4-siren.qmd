@@ -15,23 +15,28 @@ A microphone was sitting in a field, set back some distance from a straight road
 [`siren_frequency.csv`](../data/siren_frequency.csv), with columns `time_s` and `frequency_Hz`. Download it and upload it to Colab's Files panel, the way we did in [week 6](../lessons/06-data-io-plots.qmd). (Colab forgets uploaded files between sessions so you'll probably have to upload it multiple times.) Like real data, it's noisy.
 
 
+::: {.callout-tip}
+Right-click [`siren_frequency.csv`](../data/siren_frequency.csv) and choose "Download linked file" or similar.
+:::
+
+
 
 ## The model
 
-A siren that's coming toward you sounds higher than it really is, and one that's moving away sounds lower. If a siren moves at speed $U$ along a straight road, emits a true frequency $f_0$, and passes closest to the microphone at time $t_{pass}$, at a distance $y_0$, then the microphone hears
+A siren that's coming toward you sounds higher than it really is, and one that's moving away sounds lower. If a siren moves at speed $U$ along a straight road, emits a true frequency $f_0$, and passes closest to the microphone at time $t_\text{pass}$, at a distance $y_0$, then the microphone hears an "observed frequency"
 
 $$
-f_{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos\theta(t) = \frac{-U\,(t - t_{pass})}{\sqrt{U^2 (t-t_{pass})^2 + y_0^2}}
+f_\text{obs}(t) = \frac{f_0}{1 - \dfrac{U}{c}\cos\theta(t)}, \qquad \cos(\theta(t)) = \frac{-U\,(t - t_\text{pass})}{\sqrt{U^2 (t-t_\text{pass})^2 + y_0^2}}
 $$
 
 where $c = 343$ m/s is the speed of sound. Let's confirm this equation matches our intuition: 
 
-- Long before the pass, $t - t_{pass}$ is a large negative number, so $\cos\theta \approx +1$, the denominator is a bit *less* than 1, and $f_{obs}$ is a bit *more* than $f_0$. Approaching, higher pitch. ✓
+- Long before the pass, $t - t_\text{pass}$ is a large negative number, so $\cos\theta \approx +1$, the denominator is a bit *less* than 1, and $f_\text{obs}$ is a bit *more* than $f_0$. Approaching, higher pitch. ✓
 - Long after the pass, $\cos\theta \approx -1$ and the pitch is lower. ✓ 
-- Right at $t_{pass}$, $\cos\theta = 0$ and we hear exactly $f_0$.
+- Right at $t_\text{pass}$, $\cos\theta = 0$ and we hear exactly $f_0$.
 
 
-Count the unknowns: $U$, $f_0$, $y_0$, $t_{pass}$... four things we don't know, but we'll figure them out from the data.
+Count the unknowns: $U$, $f_0$, $y_0$, $t_\text{pass}$... four things we don't know, but we'll figure them out from the data.
 
 ## Part 1 — Look first
 
@@ -43,7 +48,7 @@ Two of the four unknowns can be read nearly straight off this plot. Which two, a
 
 Write `siren_freq(t, U, f0, y0, t_pass)`, which returns the predicted frequency at each time in the array `t`. Write a docstring with units.
 
-Check it in isolation before you trust it. Use these made-up values, *not* the siren data: $U = 20$ m/s, $f_0 = 500$ Hz, $y_0 = 10$ m, $t_{pass} = 3$ s. Then do three checks, each in its own code cell:
+Check it in isolation before you trust it. Use these made-up values, *not* the siren data: $U = 20$ m/s, $f_0 = 500$ Hz, $y_0 = 10$ m, $t_\text{pass} = 3$ s. Then do three checks, each in its own code cell:
 
 1. Call the function at `t = 3` and confirm it returns 500.
 2. Call it at `t = -1000` and `t = 1000`, stand-ins for "long before" and "long after." Work out $f_0 / (1 - U/c)$ and $f_0 / (1 + U/c)$ with a calculator, show the arithmetic in a text cell, and compare.
@@ -60,7 +65,7 @@ Now go back to the two limits in the model, $f_+ = f_0/(1 - U/c)$ and $f_- = f_0
 
 ## Part 4 — The sweep as a search
 
-We will write a basic "fitting" process to determine the "best fit to the data". The idea is to guess $U$, $f_0$, $y_0$, and $t_{pass}$, and then see how well the resulting equation replicates the data. Then guess another set of values and check, then guess another set and check... . It won't be random guessing though — we will be systematic, sweeping through a reasonable range for the values. The tricky thing is: we need a way to score the guesses so that we can identify the best one.
+We will write a basic "fitting" process to determine the "best fit to the data". The idea is to guess $U$, $f_0$, $y_0$, and $t_\text{pass}$, and then see how well the resulting equation replicates the data. Then guess another set of values and check, then guess another set and check... . It won't be random guessing though — we will be systematic, sweeping through a reasonable range for the values. The tricky thing is: we need a way to score the guesses so that we can identify the best one.
 
 Let's do the following:
 
@@ -72,7 +77,7 @@ Let's do the following:
   :::
 
 
-- **Make the problem smaller.** If we did a sweep over all four unknowns, with 40 possible values each, it would be 2.5 million guesses. That is not that crazy, but let's simplify: we'll hold $t_{pass}$ and $f_0$ fixed. Use your Part 1 estimate for $t_{pass}$. For $f_0$, use either your Part 1 estimate or the value your Part 3 algebra gives, and say which in your spec. Now you only have to sweep $U$ and $y_0$.
+- **Make the problem smaller.** If we did a sweep over all four unknowns, with 40 possible values each, it would be 2.5 million guesses. That is not that crazy, but let's simplify: we'll hold $t_\text{pass}$ and $f_0$ fixed. Use your Part 1 estimate for $t_\text{pass}$. For $f_0$, use either your Part 1 estimate or the value your Part 3 algebra gives, and say which in your spec. Now you only have to sweep $U$ and $y_0$.
 - **Create a "nested loop".** We can put a `for` loop inside a `for` loop:
 
   ```{pyodide}
@@ -98,7 +103,7 @@ Then `np.savetxt` the three arrays side by side. Peek at the first few lines onl
 
 ## Part 5 — How sure are you?
 
-Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these two questions:
+Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these three  questions:
 
 1. **How good is the best fit?** Compare two numbers, both in Hz:
     - *The noise.* Run `.std()` on the first 20 frequencies. (The *standard deviation*: roughly, how far a typical point sits from the average of its neighbors. New function, same idea as `.mean()`.)
@@ -106,6 +111,7 @@ Plot the data and your best-fit curve together: data as markers, model as a line
 
     Are they about the same size, or is the miss clearly bigger? If it's clearly bigger, something in your model is a little off. Which of the two values you held fixed is the likeliest culprit, and why? (Answering that is required. Actually re-sweeping to fix it is optional.)
 2. **Which parameter is the fit least sure about?** Make two plots. First, hold $U$ at its best value and plot the score against $y_0$. Second, hold $y_0$ at its best value and plot the score against $U$. You can pull these from your sweep file, or recompute along each line with a finer step (which gives a smoother plot). On each, find how far you can move away from the best value before the score gets 10% worse than the best score. Write that as a percentage of the best value, e.g. "±4%." The parameter with the bigger percentage is the one that is less certain.
+3. Based on our data and the fit to the observed frequency equation, what do we know about how the ambulance was moving? What things do we not know — i.e., what aspects of the motion are not captured in the data?
 
 ## Your submission
 
