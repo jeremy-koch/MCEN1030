@@ -1,6 +1,6 @@
 ---
 title: "HW 4 · The siren"
-subtitle: "Anchor week 6 · Standards: P2, A1, A2, A4"
+subtitle: "Anchor week 6 · Tentative standards: P2, A3, A4"
 ---
 
 
@@ -103,7 +103,7 @@ Then `np.savetxt` the three arrays side by side. Peek at the first few lines onl
 
 ## Part 5 — How sure are you?
 
-Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these three  questions:
+Plot the data and your best-fit curve together: data as markers, model as a line. Then answer these three questions:
 
 1. **How good is the best fit?** Compare two numbers, both in Hz:
     - *The noise.* Run `.std()` on the first 20 frequencies. (The *standard deviation*: roughly, how far a typical point sits from the average of its neighbors. New function, same idea as `.mean()`.)
@@ -147,8 +147,8 @@ The sixth is your choice. If the AI made a decision you didn't specify (a search
 1. The data-plus-fit plot.
 2. A small table of your best values for all four unknowns, with units. Mark which ones came from the sweep and which you held fixed.
 3. One sentence per value on how many digits you actually believe, using your Part 5 evidence.
-4. Your answers to the two Part 5 questions, with the numbers and plots that back them up.
-5. The "can and can't" question: from this file, what can you say about how the ambulance was moving, and what can't you say? At least two things for each.
+4. Your answers to the three Part 5 questions, with the numbers and plots that back them up.
+5. On the question of what we know and don't know from the data, include at least two things for each.
 
 ::: {.content-hidden}
 **Instructor key (planning only — stripped from the rendered site):**
