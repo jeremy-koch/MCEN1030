@@ -57,15 +57,15 @@ plt.tight_layout()                         # stop labels from overlapping
 plt.show()
 ```
 
-We'll also want a few NumPy moves for reshaping the data before it gets plotted. For example, `y[x >= 2000]` keeps only the values where the matching `x` is at least 2000; `np.mean(y)` averages; `np.cumsum(y)` gives a running total; and `np.argsort(y)` gives the order that would sort `y`. Doing arithmetic on whole arrays (like `100 * (y - y[0]) / y[0]` for percent change since the first value) is fair game too.
+We'll also want to know a few NumPy moves for reshaping the data before it gets plotted. For example, `y[x >= 2000]` keeps only the values where the matching `x` is at least 2000; `np.mean(y)` averages; `np.cumsum(y)` gives a running total; and `np.argsort(y)` gives the order that would sort `y`. Doing arithmetic on whole arrays (like `100 * (y - y[0]) / y[0]` for percent change since the first value) may be of interest to you too.
 
 ::: {.column-margin}
-AI is welcome today for the *syntax*: "how do I put an arrow on a matplotlib plot?" is a perfectly good question to ask it. The *choices* (what to zoom, what to label, what story to tell) are the part we're practicing, so those are yours.
+AI is welcome for the *syntax*: "how do I put an arrow on a matplotlib plot?" is a perfectly good question to ask it.
 :::
 
-## An example we made earlier
+## An example
 
-Before you get your own dataset, let's do one together, all the way through. We'll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here's the boring plot:
+We'll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here's the boring plot:
 
 ```{pyodide}
 import numpy as np
@@ -85,9 +85,9 @@ plt.legend()
 plt.show()
 ```
 
-OK... so what's the story? The orange hump is the sun and the other curve is the people. Look closer and we can see the panels make *way* more than the house needs around noon, but the house's big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.
+OK... so what's the story? Look closer and we can see the panels make *way* more than the house needs around noon, but the house's big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.
 
-That's the finding we want someone to walk away with, so let's build the plot around it. This one pulls out a lot of tricks. None of them is required, but they're all good to know exist:
+That's the finding we want someone to walk away with, so let's build the plot around it. This one pulls out a lot of tricks.
 
 ```{pyodide}
 import numpy as np
@@ -140,20 +140,20 @@ plt.show()
 ```
 
 ::: {.column-margin}
-The kWh numbers come from `.sum()`. Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total. That's area-as-a-sum-of-rectangles, doing actual work.
+The kWh numbers come from `.sum()`. Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total.
 :::
 
-A tour of what's going on in there:
+What's going on in there:
 
-- **`fill_between`** colors the space between the two curves, with `where=` choosing which stretches get which color. The shaded *area* is energy, so the reader can literally see that there's a lot more gold than purple.
+- **`fill_between`** colors the space between the two curves, with `where=` choosing which stretches get which color. The shaded *area* is energy, so the reader can see that there's a lot more gold than purple.
 - **`axvspan`** shades nighttime gray, so we don't need to explain why the solar is zero from 7 pm to 7 am. `zorder=0` puts it behind everything else.
 - **Direct labels** (`plt.text`) sit right next to each curve, so the reader never has to glance back and forth at a legend.
 - **`annotate`** points an arrow at the one data point we want people to notice.
-- **Custom ticks** say "noon" and "6 pm" instead of 12 and 18. Small thing, but nobody has to translate.
-- **The title states the finding** instead of the topic. "Solar output and house use" makes the reader do the work. "The panels make plenty, just not when the house wants it" tells them what they're looking at, and then the plot backs it up.
+- **Custom ticks** say "noon" and "6 pm" instead of 12 and 18. Small thing, but no translation necessary.
+- **The title states the finding** instead of just restating the axes. "Solar output and house use" makes it so the reader has to figure out why they are being shown the data. "The panels make plenty, just not when the house wants it" tells them what they're looking at.
 - **No top and right box lines** (`spines`). This is pure taste, but it makes the plot feel less cluttered.
 
-Is it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title. I think it passes.
+Is it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title.
 
 Now the evil twin. Same data, and it looks at least as responsible:
 
@@ -183,46 +183,34 @@ plt.tight_layout()
 plt.show()
 ```
 
-Every number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But "solar-powered" suggests the house runs on sunshine, and the hourly plot says that's not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. Adding up the whole day threw away the one dimension where the story lives... time. (This is not a hypothetical trick, by the way. "Net" claims like this are everywhere. They aren't *wrong*, exactly. They're just answering a different question than the one you think you're reading.)
+Every number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But "solar-powered" suggests the house runs on sunshine, and the hourly plot says that's not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. ("Net" claims like this are everywhere. They aren't *wrong*, but they might not answer the question you should be asking.)
 
-::: {.column-margin}
-If we were the honest table, our sentence might be: "Hourly averages from one sunny day. Shading shows when the house sent power to the grid vs. bought it." If we were the misleading table: "Daily totals hide that the house buys ~60% of its electricity at night. The hourly version shows it."
-:::
+
 
 ## The plan
 
-We have about 40 minutes of making, and then the reveal.
 
-**1. Open your dataset** (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell. Out comes the **boring plot**: markers, labels, units, and nothing else. This is our control, and we'll leave it alone. It's the plot a skeptic would make if they had nothing to prove.
+**1. Open your dataset** (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell to see the **boring plot**: markers, labels, units, and nothing else.
 
-**2. Look at the boring plot and talk at your table.** What *is* the story here? What would a reader take away if all they saw was this? What's the most interesting true thing in the data, and what's the most tempting false thing? Both tables — honest and misleading — need to answer both questions. You can't hide the truth well if you don't know what it is.
+**2. Look at the boring plot and talk at your table.** What *is* the story here? What would a reader take away if all they saw was this? What's the most interesting true thing in the data, and what's the most tempting false thing?
 
 **3. Make the interesting plot.** Now open your slip.
 
-- **Honest tables:** make the true takeaway jump off the page. Honest doesn't mean timid. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding. Every choice you make should survive a skeptic who has seen the boring plot.
-- **Misleading tables:** make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). No typing in fake values. But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look *responsible*.
+- **Honest tables:** make the true takeaway jump off the page. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding.
+- **Misleading tables:** make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). (That is, o typing in fake values!) But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look reasonable.
 
-**4. Write one sentence on paper**, and keep it face-down until the reveal:
 
-- Honest tables: the disclosure you'd put under the plot in a real report. For example, "The y-axis starts at 22 °C, room temperature, because that's where both mugs end up."
-- Misleading tables: the trick, and what an honest version would show. For example, "We only plotted March through August, which hides that this happens every year."
-
-**5. Put both plots in the class slide deck**, on your dataset's two slides: the interesting plot on the first, the boring plot on the second. In the browser you can right-click (or long-press on an iPad) the plot and copy the image. A screenshot works too.
+**4. Put both plots in the class slide deck**, on your dataset's two slides: the interesting plot on the first, the boring plot on the second. In the browser you can right-click (or long-press on an iPad) the plot and copy the image.
 
 ::: {.callout-tip}
 ## Stuck?
 Here are some questions that help from either side. What would change if the y-axis started at zero? What if we only saw half of the x-range? Is there a number that everything should be compared to: a threshold, a prediction, room temperature, last year? Would percent change tell a different story than raw numbers? Is anything in this dataset tiny compared to everything else?
 :::
 
-## The reveal
-
-For each dataset, we'll put the interesting plot on the screen for about ten seconds. You vote: thumbs up if you believe it, thumbs down if you think you're being played. Then we flip to the boring plot, and the table reads its sentence.
-
-Keep score in your head if you like. The misleading plots that fooled the most people and the honest plots that the most people trusted are both winners. More interesting, though, are the misses: an honest plot that the room *didn't* trust, or a misleading one that everybody bought. What was it about that plot?
 
 ## Deliverable (2 EC)
 
-Your table's two plots (boring and interesting) plus your one sentence. Everyone at the table submits the same thing.
+Your table's two plots (boring and interesting).
 
 ## Datasets
 
