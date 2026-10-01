@@ -1,0 +1,597 @@
+---
+title: "Plot clinic"
+subtitle: "Week 6 Thursday · 2 engagement credits"
+---
+
+Activity for Thursday's class. (Not a reading.)
+
+<!-- 
+On Tuesday we plotted the same six motor-efficiency numbers twice and got two completely different stories. Neither plot contained a false number. Today we scale that up: every table gets its own dataset and a secret mission, and in the last part of class we'll try to figure out which tables were telling the truth.
+
+The mission comes on a folded slip of paper. Some tables are **honest**: find the real story in the data and make it impossible to miss. Some tables are **misleading**: make the room believe something the data doesn't actually support, without changing a single number. Don't show your slip to the other tables. 
+
+Here's the twist that makes this work: **both kinds of table win the same way — by getting the room to believe their plot.** A misleading plot that's obviously misleading fools nobody. An honest plot that's as dull as the default fails to make its point. So the honest tables and the misleading tables are going to end up using many of the *same* tools, like zooming the axis, adding annotations, choosing a range, or writing a punchy title. The only difference is whether a skeptic who saw all the data would agree with the story. -->
+
+## A matplotlib cheat sheet
+
+The full set of official cheat sheets lives at [matplotlib.org/cheatsheets](https://matplotlib.org/cheatsheets/). They're dense, but they're great for "I know there's a way to do this, what's it called?"
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8, 4))                 # width, height (inches); call this before plotting
+
+# drawing the data
+plt.plot(x, y, "o")                        # markers only: "o" dots, "s" squares, "^" triangles
+plt.plot(x, y, "o-")                       # markers joined by lines
+plt.plot(x, y, "o", color="firebrick", markersize=8, linewidth=3, label="Route A")
+plt.bar(names, heights)                    # bar chart; plt.barh(...) for sideways bars
+plt.scatter(x, y)                          # another way to get dots
+
+# words
+plt.xlabel("Time (min)")                   # always with units!
+plt.ylabel("Temperature (°C)")
+plt.title("Coffee cools faster in ceramic")
+plt.legend()                               # shows each plot's label=...
+plt.text(20, 65, "some words")             # words at the point (x=20, y=65)
+plt.annotate("windows opened", xy=(50, 1250), xytext=(55, 1150),
+             arrowprops=dict(arrowstyle="->"))   # words with an arrow pointing at xy
+
+# the axes
+plt.xlim(0, 40)                            # which part of the x-axis shows
+plt.ylim(0, 100)                           # which part of the y-axis shows
+plt.yscale("log")                          # logarithmic y-axis
+plt.xticks(rotation=45)                    # tilt the x labels so long names fit
+plt.grid(True)
+
+# reference lines and shading
+plt.axhline(1000, color="gray", linestyle="--")   # horizontal line at y = 1000
+plt.axvline(50, color="gray", linestyle=":")      # vertical line at x = 50
+plt.axhspan(20, 30, alpha=0.2)                    # shaded band from y = 20 to y = 30
+
+# a second y-axis on the right side (things plotted after this use it)
+ax2 = plt.gca().twinx()
+
+plt.tight_layout()                         # stop labels from overlapping
+plt.show()
+```
+
+We'll also want a few NumPy moves for reshaping the data before it gets plotted. For example, `y[x >= 2000]` keeps only the values where the matching `x` is at least 2000; `np.mean(y)` averages; `np.cumsum(y)` gives a running total; and `np.argsort(y)` gives the order that would sort `y`. Doing arithmetic on whole arrays (like `100 * (y - y[0]) / y[0]` for percent change since the first value) is fair game too.
+
+::: {.column-margin}
+AI is welcome today for the *syntax*: "how do I put an arrow on a matplotlib plot?" is a perfectly good question to ask it. The *choices* (what to zoom, what to label, what story to tell) are the part we're practicing, so those are yours.
+:::
+
+## An example we made earlier
+
+Before you get your own dataset, let's do one together, all the way through. We'll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here's the boring plot:
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+hour = np.arange(24)      # 0 = midnight to 1 am, 12 = noon to 1 pm, ...
+solar_kW = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 1.6, 3.3, 4.1, 4.9,
+                     5.3, 5.3, 4.8, 4.1, 3.0, 1.6, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0])
+use_kW = np.array([0.5, 0.5, 0.7, 0.5, 0.5, 0.8, 1.2, 1.8, 1.4, 0.7, 0.8, 0.9,
+                   0.6, 0.9, 0.7, 0.7, 1.3, 1.9, 2.9, 2.8, 1.9, 0.9, 0.7, 0.6])
+
+plt.plot(hour, solar_kW, "o", label="solar output")
+plt.plot(hour, use_kW, "s", label="house use")
+plt.xlabel("Hour of the day")
+plt.ylabel("Power (kW)")
+plt.legend()
+plt.show()
+```
+
+OK... so what's the story? The orange hump is the sun and the other curve is the people. Look closer and we can see the panels make *way* more than the house needs around noon, but the house's big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.
+
+That's the finding we want someone to walk away with, so let's build the plot around it. This one pulls out a lot of tricks. None of them is required, but they're all good to know exist:
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+hour = np.arange(24)      # 0 = midnight to 1 am, 12 = noon to 1 pm, ...
+solar_kW = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 1.6, 3.3, 4.1, 4.9,
+                     5.3, 5.3, 4.8, 4.1, 3.0, 1.6, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0])
+use_kW = np.array([0.5, 0.5, 0.7, 0.5, 0.5, 0.8, 1.2, 1.8, 1.4, 0.7, 0.8, 0.9,
+                   0.6, 0.9, 0.7, 0.7, 1.3, 1.9, 2.9, 2.8, 1.9, 0.9, 0.7, 0.6])
+
+# each hourly reading is the average kW over that hour, so kW x 1 h = kWh
+sent = np.clip(solar_kW - use_kW, 0, None).sum()      # solar the house couldn't use
+bought = np.clip(use_kW - solar_kW, 0, None).sum()    # power the house had to buy
+
+plt.figure(figsize=(9, 4.5))
+
+# night, shaded gray, behind everything else (zorder=0)
+plt.axvspan(0, 7, color="0.92", zorder=0)
+plt.axvspan(19, 23, color="0.92", zorder=0)
+
+# color the gap between the curves, one color for each direction
+plt.fill_between(hour, use_kW, solar_kW, where=solar_kW > use_kW,
+                 color="gold", alpha=0.35, interpolate=True)
+plt.fill_between(hour, use_kW, solar_kW, where=use_kW > solar_kW,
+                 color="slateblue", alpha=0.3, interpolate=True)
+
+plt.plot(hour, solar_kW, "o-", color="darkorange", linewidth=2.5)
+plt.plot(hour, use_kW, "o-", color="black", linewidth=1.5, markersize=4)
+
+# label the lines directly instead of making the reader decode a legend
+plt.text(13.3, 5.35, "solar output", color="darkorange", fontsize=11, weight="bold")
+plt.text(21.2, 1.15, "house use", fontsize=11)
+plt.text(12.5, 2.6, f"extra solar\nsent to the grid\n{sent:.1f} kWh", ha="center", fontsize=10)
+plt.text(3.5, 2.0, f"bought from\nthe grid\n{bought:.1f} kWh", ha="center",
+         color="slateblue", fontsize=10)
+plt.annotate("dinner, just after sunset", xy=(18, 2.9), xytext=(18.4, 4.2),
+             arrowprops=dict(arrowstyle="->"), fontsize=10)
+
+plt.xticks([0, 6, 12, 18, 23], ["midnight", "6 am", "noon", "6 pm", "11 pm"])
+plt.xlim(0, 23)
+plt.ylim(0, 6)
+plt.ylabel("Power (kW)")
+plt.title("The panels make plenty, just not when the house wants it", loc="left")
+
+ax = plt.gca()
+ax.spines[["top", "right"]].set_visible(False)       # drop the box around the plot
+plt.tight_layout()
+plt.show()
+```
+
+::: {.column-margin}
+The kWh numbers come from `.sum()`. Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total. That's area-as-a-sum-of-rectangles, doing actual work.
+:::
+
+A tour of what's going on in there:
+
+- **`fill_between`** colors the space between the two curves, with `where=` choosing which stretches get which color. The shaded *area* is energy, so the reader can literally see that there's a lot more gold than purple.
+- **`axvspan`** shades nighttime gray, so we don't need to explain why the solar is zero from 7 pm to 7 am. `zorder=0` puts it behind everything else.
+- **Direct labels** (`plt.text`) sit right next to each curve, so the reader never has to glance back and forth at a legend.
+- **`annotate`** points an arrow at the one data point we want people to notice.
+- **Custom ticks** say "noon" and "6 pm" instead of 12 and 18. Small thing, but nobody has to translate.
+- **The title states the finding** instead of the topic. "Solar output and house use" makes the reader do the work. "The panels make plenty, just not when the house wants it" tells them what they're looking at, and then the plot backs it up.
+- **No top and right box lines** (`spines`). This is pure taste, but it makes the plot feel less cluttered.
+
+Is it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title. I think it passes.
+
+Now the evil twin. Same data, and it looks at least as responsible:
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+hour = np.arange(24)      # 0 = midnight to 1 am, 12 = noon to 1 pm, ...
+solar_kW = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 1.6, 3.3, 4.1, 4.9,
+                     5.3, 5.3, 4.8, 4.1, 3.0, 1.6, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0])
+use_kW = np.array([0.5, 0.5, 0.7, 0.5, 0.5, 0.8, 1.2, 1.8, 1.4, 0.7, 0.8, 0.9,
+                   0.6, 0.9, 0.7, 0.7, 1.3, 1.9, 2.9, 2.8, 1.9, 0.9, 0.7, 0.6])
+
+made = solar_kW.sum()     # kWh over the whole day
+used = use_kW.sum()
+
+plt.figure(figsize=(5, 4.5))
+plt.bar(["used by\nthe house", "made by\nthe panels"], [used, made],
+        color=["0.6", "darkorange"], width=0.6)
+plt.text(0, used + 0.8, f"{used:.1f} kWh", ha="center")
+plt.text(1, made + 0.8, f"{made:.1f} kWh", ha="center")
+plt.ylabel("Energy over one day (kWh)")
+plt.ylim(0, 45)
+plt.title(f"This house is {100 * made / used:.0f}% solar-powered", loc="left")
+plt.gca().spines[["top", "right"]].set_visible(False)
+plt.tight_layout()
+plt.show()
+```
+
+Every number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But "solar-powered" suggests the house runs on sunshine, and the hourly plot says that's not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. Adding up the whole day threw away the one dimension where the story lives... time. (This is not a hypothetical trick, by the way. "Net" claims like this are everywhere. They aren't *wrong*, exactly. They're just answering a different question than the one you think you're reading.)
+
+::: {.column-margin}
+If we were the honest table, our sentence might be: "Hourly averages from one sunny day. Shading shows when the house sent power to the grid vs. bought it." If we were the misleading table: "Daily totals hide that the house buys ~60% of its electricity at night. The hourly version shows it."
+:::
+
+## The plan
+
+We have about 40 minutes of making, and then the reveal.
+
+**1. Open your dataset** (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell. Out comes the **boring plot**: markers, labels, units, and nothing else. This is our control, and we'll leave it alone. It's the plot a skeptic would make if they had nothing to prove.
+
+**2. Look at the boring plot and talk at your table.** What *is* the story here? What would a reader take away if all they saw was this? What's the most interesting true thing in the data, and what's the most tempting false thing? Both tables — honest and misleading — need to answer both questions. You can't hide the truth well if you don't know what it is.
+
+**3. Make the interesting plot.** Now open your slip.
+
+- **Honest tables:** make the true takeaway jump off the page. Honest doesn't mean timid. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding. Every choice you make should survive a skeptic who has seen the boring plot.
+- **Misleading tables:** make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). No typing in fake values. But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look *responsible*.
+
+**4. Write one sentence on paper**, and keep it face-down until the reveal:
+
+- Honest tables: the disclosure you'd put under the plot in a real report. For example, "The y-axis starts at 22 °C, room temperature, because that's where both mugs end up."
+- Misleading tables: the trick, and what an honest version would show. For example, "We only plotted March through August, which hides that this happens every year."
+
+**5. Put both plots in the class slide deck**, on your dataset's two slides: the interesting plot on the first, the boring plot on the second. In the browser you can right-click (or long-press on an iPad) the plot and copy the image. A screenshot works too.
+
+::: {.callout-tip}
+## Stuck?
+Here are some questions that help from either side. What would change if the y-axis started at zero? What if we only saw half of the x-range? Is there a number that everything should be compared to: a threshold, a prediction, room temperature, last year? Would percent change tell a different story than raw numbers? Is anything in this dataset tiny compared to everything else?
+:::
+
+## The reveal
+
+For each dataset, we'll put the interesting plot on the screen for about ten seconds. You vote: thumbs up if you believe it, thumbs down if you think you're being played. Then we flip to the boring plot, and the table reads its sentence.
+
+Keep score in your head if you like. The misleading plots that fooled the most people and the honest plots that the most people trusted are both winners. More interesting, though, are the misses: an honest plot that the room *didn't* trust, or a misleading one that everybody bought. What was it about that plot?
+
+## Deliverable (2 EC)
+
+Your table's two plots (boring and interesting) plus your one sentence. Everyone at the table submits the same thing.
+
+## Datasets
+
+All fifteen datasets are realistic but **made up for today**. Each cell below is ready to run here in the browser, or you can copy it into Colab.
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 1 — Boulder's yearly average temperature
+
+The average air temperature in Boulder for each year from 1950 to 2024, in °F. Each number is an
+average over all 365 days, so a single hot week barely moves it.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+year = np.arange(1950, 2025)
+temp_F = np.array([51.4, 52.0, 51.4, 51.7, 51.4, 50.7, 51.6, 51.3, 51.5, 51.3,
+                   50.2, 52.2, 52.8, 52.1, 51.1, 51.3, 50.5, 50.7, 52.3, 53.3,
+                   50.5, 53.0, 51.3, 51.3, 51.0, 51.5, 52.0, 52.0, 52.1, 51.8,
+                   52.1, 52.0, 50.7, 53.3, 52.4, 52.9, 51.8, 51.2, 52.8, 52.6,
+                   53.1, 51.4, 52.3, 51.9, 52.6, 52.8, 51.9, 52.8, 51.4, 52.9,
+                   50.6, 52.3, 52.3, 54.0, 54.4, 53.3, 51.9, 52.8, 51.6, 53.4,
+                   54.4, 51.7, 55.2, 52.3, 53.9, 51.3, 50.5, 52.6, 52.2, 52.0,
+                   52.8, 52.2, 54.5, 52.4, 53.3])
+
+# the boring plot
+plt.plot(year, temp_F, "o")
+plt.xlabel("Year")
+plt.ylabel("Yearly average temperature (°F)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 2 — A laptop battery getting older
+
+One laptop's battery health, checked every 3 months from new: how much charge the battery can hold,
+as a percent of what it held on day one. Most manufacturers consider a battery "worn out" and worth
+replacing below 80%.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+age_months = np.array([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36])
+health_pct = np.array([100.0, 98.7, 96.0, 94.8, 92.6, 91.4, 89.7, 87.9, 86.3, 84.1, 82.4, 82.1, 80.3])
+
+# the boring plot
+plt.plot(age_months, health_pct, "o")
+plt.xlabel("Laptop age (months)")
+plt.ylabel("Battery health (% of original)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 3 — Two coffee mugs
+
+Coffee poured at 85 °C into a regular ceramic mug and into a double-walled steel travel mug (lid
+off, same room), with a thermometer reading every 2 minutes for 40 minutes. The room is 22 °C.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+time_min = np.array([0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40])
+ceramic_C = np.array([85.0, 80.7, 76.7, 72.2, 68.6, 65.6, 63.4, 60.7, 58.1, 54.9, 53.4,
+                      50.5, 48.9, 46.7, 44.5, 43.1, 42.3, 41.2, 39.3, 38.4, 36.8])
+steel_C = np.array([85.0, 84.2, 83.0, 83.1, 81.5, 80.4, 80.2, 79.3, 78.2, 77.4, 76.6,
+                    75.8, 74.8, 74.1, 73.9, 73.0, 71.9, 71.1, 71.0, 69.8, 68.7])
+
+# the boring plot
+plt.plot(time_min, ceramic_C, "o", label="ceramic")
+plt.plot(time_min, steel_C, "s", label="steel")
+plt.xlabel("Time since pouring (min)")
+plt.ylabel("Coffee temperature (°C)")
+plt.legend()
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 4 — Two bike routes to campus
+
+One student biked to campus by two different routes and timed each trip, for 20 school days per
+route. Route A is the road; Route B is the creek path. Times are in minutes.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+trip = np.arange(1, 21)
+route_A_min = np.array([22.5, 23.0, 21.5, 21.0, 28.5, 27.0, 22.5, 26.0, 22.0, 21.0,
+                        22.5, 22.0, 25.0, 24.0, 31.5, 25.5, 25.5, 23.5, 28.5, 20.5])
+route_B_min = np.array([22.5, 22.5, 21.0, 23.0, 20.5, 22.0, 27.0, 22.5, 22.0, 23.5,
+                        22.5, 22.5, 22.5, 21.5, 20.5, 25.5, 24.0, 21.0, 25.0, 22.0])
+
+# the boring plot
+plt.plot(trip, route_A_min, "o", label="Route A (road)")
+plt.plot(trip, route_B_min, "s", label="Route B (creek path)")
+plt.xlabel("Trip number")
+plt.ylabel("Commute time (min)")
+plt.legend()
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 5 — Where a home's electricity goes
+
+A year of electricity use in one all-electric Colorado home (it has a heat pump instead of a gas
+furnace), split up by what used it, in kilowatt-hours per year. The categories are listed
+alphabetically, which is how the utility's report listed them.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+use = ["cooking", "electronics", "heating & cooling", "laundry", "lighting", "other", "phone chargers", "refrigerator", "water heating"]
+energy_kWh = np.array([450, 820, 5300, 690, 480, 910, 9, 610, 2350])
+
+# the boring plot
+plt.bar(use, energy_kWh)
+plt.xticks(rotation=45, ha="right")
+plt.ylabel("Energy per year (kWh)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 6 — Speed bumps on a neighborhood street
+
+A residential street with a 25 mph speed limit. A radar sign logged every car, and these are the
+average speeds for each week, 10 weeks before and 10 weeks after the city installed speed bumps. The
+bumps went in during week 0 (no data that week). Neighbors are split on whether the bumps were worth
+it.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+week = np.array([-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+avg_speed_mph = np.array([33.6, 36.2, 34.7, 34.7, 33.1, 32.7, 34.4, 35.0, 33.9, 33.6,
+                          30.7, 31.5, 31.6, 31.6, 30.9, 29.9, 29.9, 31.6, 31.5, 30.0])
+speed_limit_mph = 25
+
+# the boring plot
+plt.plot(week, avg_speed_mph, "o")
+plt.xlabel("Week (speed bumps installed in week 0)")
+plt.ylabel("Average speed (mph)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 7 — 3D-printed bracket strength
+
+A small bracket, 3D-printed at different infill percentages (how solid the inside is: 10% is mostly
+air, 100% is solid plastic). Three brackets were printed at each setting and pulled until they
+broke. We have the breaking force, in newtons, and the print time for each, in minutes.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+infill_pct = np.array([10, 10, 10, 20, 20, 20, 30, 30, 30, 40, 40, 40, 50, 50, 50,
+                       60, 60, 60, 70, 70, 70, 80, 80, 80, 90, 90, 90, 100, 100, 100])
+break_force_N = np.array([696, 612, 760, 760, 733, 879, 1026, 1000, 977, 1080, 1067, 1119, 1198, 1129, 1133,
+                          1186, 1187, 1208, 1218, 1131, 1190, 1198, 1241, 1292, 1172, 1227, 1302, 1242, 1182, 1369])
+print_time_min = np.array([32, 32, 32, 41, 41, 41, 50, 50, 50, 60, 60, 60, 70, 70, 70,
+                           79, 79, 79, 88, 88, 88, 98, 98, 98, 108, 108, 108, 117, 117, 117])
+
+# the boring plot
+plt.plot(infill_pct, break_force_N, "o")
+plt.xlabel("Infill (%)")
+plt.ylabel("Breaking force (N)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 8 — Fuel economy vs. speed
+
+A midsize gas car driven at steady speeds on a flat test track, with fuel economy measured at each
+speed, in miles per gallon. Higher mpg means less fuel for the same trip.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+speed_mph = np.array([25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80])
+fuel_economy_mpg = np.array([29.9, 31.1, 33.8, 34.9, 35.8, 36.4, 35.8, 34.6, 33.7, 31.7, 29.0, 25.9])
+
+# the boring plot
+plt.plot(speed_mph, fuel_economy_mpg, "o")
+plt.xlabel("Speed (mph)")
+plt.ylabel("Fuel economy (mpg)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 9 — E-scooter rides
+
+Rides taken on a city's shared e-scooter program each month, January 2023 through December 2024. The
+operator is trying to convince the city council to renew its contract.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+month_number = np.arange(1, 25)     # 1 = Jan 2023, 24 = Dec 2024
+rides = np.array([4750, 5180, 5580, 7910, 10060, 12790, 14990, 15710, 14870, 12990, 9910, 7830,
+                  6400, 5770, 7980, 8790, 11660, 12270, 14290, 12860, 10240, 9130, 6400, 4410])
+
+# the boring plot
+plt.plot(month_number, rides, "o")
+plt.xlabel("Month (1 = Jan 2023)")
+plt.ylabel("Rides that month")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 10 — Air in a full classroom
+
+Carbon dioxide level in a packed 75-minute class, measured every 5 minutes, in parts per million
+(ppm). Outdoor air is about 420 ppm, and many building guidelines aim to keep rooms under about 1000
+ppm, above which people start to feel drowsy and unfocused. Someone opened the windows partway
+through.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+time_min = np.array([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75])
+co2_ppm = np.array([460, 560, 680, 780, 890, 970, 1030, 1090, 1150, 1220, 1250, 960, 820, 720, 660, 630])
+
+# the boring plot
+plt.plot(time_min, co2_ppm, "o")
+plt.xlabel("Time since class started (min)")
+plt.ylabel("CO₂ (ppm)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 11 — Snowfall at a ski area
+
+Total snowfall for each ski season at one Colorado ski area, from the 1985 season to the 2024
+season, in inches. (The '1985 season' is the winter that started in fall 1985.)
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+season = np.array([1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994,
+                   1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004,
+                   2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014,
+                   2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024])
+snowfall_in = np.array([379, 311, 288, 272, 358, 290, 323, 353, 271, 247,
+                        157, 299, 178, 416, 176, 168, 195, 257, 242, 381,
+                        208, 417, 369, 374, 373, 526, 330, 340, 309, 339,
+                        197, 264, 337, 259, 98, 280, 246, 279, 255, 264])
+
+# the boring plot
+plt.plot(season, snowfall_in, "o")
+plt.xlabel("Season (starting year)")
+plt.ylabel("Total snowfall (in)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 12 — Heat pump in the cold
+
+A heat pump heats a house by moving heat in from outside air, even cold air. Its COP (coefficient of
+performance) is the units of heat delivered per unit of electricity used: COP = 3 means 3 kWh of
+heat for every 1 kWh from the wall. An ordinary electric space heater has a COP of exactly 1. These
+are one cold-climate heat pump's COPs at different outdoor temperatures, in °F.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+outdoor_F = np.array([-10, -5, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50])
+cop = np.array([1.65, 1.89, 2.08, 2.32, 2.43, 2.74, 2.97, 3.14, 3.39, 3.62, 3.74, 4.14, 4.23])
+
+# the boring plot
+plt.plot(outdoor_F, cop, "o")
+plt.xlabel("Outdoor temperature (°F)")
+plt.ylabel("COP (heat out / electricity in)")
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 13 — Chargers and burritos
+
+Two things measured each year in one Colorado county, 2012 to 2024: the number of public EV charging
+ports, and the average price of a burrito at local restaurants, in dollars.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+year = np.array([2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024])
+ev_ports = np.array([31, 45, 54, 87, 113, 125, 159, 191, 230, 280, 363, 442, 557])
+burrito_usd = np.array([7.10, 7.65, 7.91, 8.32, 8.80, 9.06, 9.23, 9.81, 10.14, 10.50, 11.25, 11.56, 12.31])
+
+# the boring plot
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 3.5))
+ax1.plot(year, ev_ports, "o")
+ax1.set_xlabel("Year")
+ax1.set_ylabel("Public EV charging ports")
+ax2.plot(year, burrito_usd, "s")
+ax2.set_xlabel("Year")
+ax2.set_ylabel("Average burrito price ($)")
+plt.tight_layout()
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 14 — Rooftop solar in two towns
+
+New rooftop solar systems installed each year in two Colorado towns, 2019 to 2024. Town A has about
+98,000 people. Town B has about 1,200.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+year = np.array([2019, 2020, 2021, 2022, 2023, 2024])
+town_A_installs = np.array([412, 397, 441, 468, 455, 493])
+town_B_installs = np.array([2, 1, 3, 4, 6, 9])
+pop_A = 98000
+pop_B = 1200
+
+# the boring plot
+plt.plot(year, town_A_installs, "o", label="Town A")
+plt.plot(year, town_B_installs, "s", label="Town B")
+plt.xlabel("Year")
+plt.ylabel("New rooftop solar installs")
+plt.legend()
+plt.show()
+```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Dataset 15 — Stopping a car
+
+How far a car travels between the moment a hazard appears and the moment it's stopped, measured on a
+dry test track at different speeds, in feet. It comes in two parts: the reaction distance (the car
+keeps going while the driver notices and moves their foot to the brake) and the braking distance
+(brakes on, slowing to a stop). For scale, a car is about 15 ft long.
+
+```{pyodide}
+import numpy as np
+import matplotlib.pyplot as plt
+
+speed_mph = np.array([20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70])
+reaction_ft = np.array([45, 55, 65, 78, 89, 98, 105, 124, 125, 136, 149])
+braking_ft = np.array([20, 30, 43, 56, 79, 99, 122, 151, 186, 196, 243])
+
+# the boring plot
+plt.plot(speed_mph, reaction_ft + braking_ft, "o")
+plt.xlabel("Speed (mph)")
+plt.ylabel("Total stopping distance (ft)")
+plt.show()
+```
+:::

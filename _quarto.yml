@@ -63,6 +63,7 @@ website:
           - lessons/05a-simulate.qmd
           - activities/w05-drag-lab.qmd
           - lessons/06-data-io-plots.qmd
+          - activities/w06-plot-clinic.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
