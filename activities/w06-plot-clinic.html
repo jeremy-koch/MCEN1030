@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Plot clinic – MCEN 1030</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-94b905098ad5a37535b9565e9e1531fb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MCEN 1030</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/standards.html"> 
+<span class="menu-text">Standards</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/basecamp.html"> 
+<span class="menu-text">Base Camp</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w06-plot-clinic.html">Plot clinic</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Standards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How your grade works</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/installing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going in your language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/colab-format.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Submitting Homework</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Phase 0 — Thinking (Weeks 1–2)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What do engineers do with computation?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What does an LLM actually do?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">First contact with coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02b-reading-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading code and conditional statements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Phase 1 — Vocabulary (Weeks 3–6)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w03-function-forge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind farm design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04a-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages and arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04b-for-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">For loops, and picking things out by index</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w04-design-sweep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Which design wins?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05a-simulate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A loop that remembers — simulating a falling ball</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w05-drag-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding drag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-data-io-plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data in, data out — and honest plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w06-plot-clinic.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Plot clinic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/example-parking-garage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An example homework submission</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 1 · The grade calculator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw2-solar-tilt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 2 · Which way should the panel point?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw3-potato-cannon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 3 · The potato cannon</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-matplotlib-cheat-sheet" id="toc-a-matplotlib-cheat-sheet" class="nav-link active" data-scroll-target="#a-matplotlib-cheat-sheet">A matplotlib cheat sheet</a></li>
+  <li><a href="#an-example-we-made-earlier" id="toc-an-example-we-made-earlier" class="nav-link" data-scroll-target="#an-example-we-made-earlier">An example we made earlier</a></li>
+  <li><a href="#the-plan" id="toc-the-plan" class="nav-link" data-scroll-target="#the-plan">The plan</a></li>
+  <li><a href="#the-reveal" id="toc-the-reveal" class="nav-link" data-scroll-target="#the-reveal">The reveal</a></li>
+  <li><a href="#deliverable-2-ec" id="toc-deliverable-2-ec" class="nav-link" data-scroll-target="#deliverable-2-ec">Deliverable (2 EC)</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/03-functions.html">Phase 1 — Vocabulary (Weeks 3–6)</a></li><li class="breadcrumb-item"><a href="../activities/w06-plot-clinic.html">Plot clinic</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Plot clinic</h1>
+<p class="subtitle lead">Week 6 Thursday · 2 engagement credits</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Activity for Thursday’s class. (Not a reading.)</p>
+<!-- 
+On Tuesday we plotted the same six motor-efficiency numbers twice and got two completely different stories. Neither plot contained a false number. Today we scale that up: every table gets its own dataset and a secret mission, and in the last part of class we'll try to figure out which tables were telling the truth.
+
+The mission comes on a folded slip of paper. Some tables are **honest**: find the real story in the data and make it impossible to miss. Some tables are **misleading**: make the room believe something the data doesn't actually support, without changing a single number. Don't show your slip to the other tables. 
+
+Here's the twist that makes this work: **both kinds of table win the same way — by getting the room to believe their plot.** A misleading plot that's obviously misleading fools nobody. An honest plot that's as dull as the default fails to make its point. So the honest tables and the misleading tables are going to end up using many of the *same* tools, like zooming the axis, adding annotations, choosing a range, or writing a punchy title. The only difference is whether a skeptic who saw all the data would agree with the story. -->
+<section id="a-matplotlib-cheat-sheet" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="a-matplotlib-cheat-sheet">A matplotlib cheat sheet</h2>
+<p>The full set of official cheat sheets lives at <a href="https://matplotlib.org/cheatsheets/">matplotlib.org/cheatsheets</a>. They’re dense, but they’re great for “I know there’s a way to do this, what’s it called?”</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))                 <span class="co"># width, height (inches); call this before plotting</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">"o"</span>)                        <span class="co"># markers only: "o" dots, "s" squares, "^" triangles</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">"o-"</span>)                       <span class="co"># markers joined by lines</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">"o"</span>, color<span class="op">=</span><span class="st">"firebrick"</span>, markersize<span class="op">=</span><span class="dv">8</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"Route A"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.bar(names, heights)                    <span class="co"># bar chart; plt.barh(...) for sideways bars</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)                          <span class="co"># another way to get dots</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># words</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (min)"</span>)                   <span class="co"># always with units!</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Temperature (°C)"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Coffee cools faster in ceramic"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.legend()                               <span class="co"># shows each plot's label=...</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="dv">20</span>, <span class="dv">65</span>, <span class="st">"some words"</span>)             <span class="co"># words at the point (x=20, y=65)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="st">"windows opened"</span>, xy<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">1250</span>), xytext<span class="op">=</span>(<span class="dv">55</span>, <span class="dv">1150</span>),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>             arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>))   <span class="co"># words with an arrow pointing at xy</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># the axes</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">40</span>)                            <span class="co"># which part of the x-axis shows</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">100</span>)                           <span class="co"># which part of the y-axis shows</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)                          <span class="co"># logarithmic y-axis</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)                    <span class="co"># tilt the x labels so long names fit</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># reference lines and shading</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">1000</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)   <span class="co"># horizontal line at y = 1000</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">50</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">":"</span>)      <span class="co"># vertical line at x = 50</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.axhspan(<span class="dv">20</span>, <span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)                    <span class="co"># shaded band from y = 20 to y = 30</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># a second y-axis on the right side (things plotted after this use it)</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.gca().twinx()</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()                         <span class="co"># stop labels from overlapping</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We’ll also want a few NumPy moves for reshaping the data before it gets plotted. For example, <code>y[x &gt;= 2000]</code> keeps only the values where the matching <code>x</code> is at least 2000; <code>np.mean(y)</code> averages; <code>np.cumsum(y)</code> gives a running total; and <code>np.argsort(y)</code> gives the order that would sort <code>y</code>. Doing arithmetic on whole arrays (like <code>100 * (y - y[0]) / y[0]</code> for percent change since the first value) is fair game too.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>AI is welcome today for the <em>syntax</em>: “how do I put an arrow on a matplotlib plot?” is a perfectly good question to ask it. The <em>choices</em> (what to zoom, what to label, what story to tell) are the part we’re practicing, so those are yours.</p>
+</div></div></section>
+<section id="an-example-we-made-earlier" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="an-example-we-made-earlier">An example we made earlier</h2>
+<p>Before you get your own dataset, let’s do one together, all the way through. We’ll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here’s the boring plot:</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmhvdXIgPSBucC5hcmFuZ2UoMjQpICAgICAgIyAwID0gbWlkbmlnaHQgdG8gMSBhbSwgMTIgPSBub29uIHRvIDEgcG0sIC4uLlxuc29sYXJfa1cgPSBucC5hcnJheShbMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjEsIDEuNiwgMy4zLCA0LjEsIDQuOSxcbiAgICAgICAgICAgICAgICAgICAgIDUuMywgNS4zLCA0LjgsIDQuMSwgMy4wLCAxLjYsIDAuMiwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjBdKVxudXNlX2tXID0gbnAuYXJyYXkoWzAuNSwgMC41LCAwLjcsIDAuNSwgMC41LCAwLjgsIDEuMiwgMS44LCAxLjQsIDAuNywgMC44LCAwLjksXG4gICAgICAgICAgICAgICAgICAgMC42LCAwLjksIDAuNywgMC43LCAxLjMsIDEuOSwgMi45LCAyLjgsIDEuOSwgMC45LCAwLjcsIDAuNl0pXG5cbnBsdC5wbG90KGhvdXIsIHNvbGFyX2tXLCBcIm9cIiwgbGFiZWw9XCJzb2xhciBvdXRwdXRcIilcbnBsdC5wbG90KGhvdXIsIHVzZV9rVywgXCJzXCIsIGxhYmVsPVwiaG91c2UgdXNlXCIpXG5wbHQueGxhYmVsKFwiSG91ciBvZiB0aGUgZGF5XCIpXG5wbHQueWxhYmVsKFwiUG93ZXIgKGtXKVwiKVxucGx0LmxlZ2VuZCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+<p>OK… so what’s the story? The orange hump is the sun and the other curve is the people. Look closer and we can see the panels make <em>way</em> more than the house needs around noon, but the house’s big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.</p>
+<p>That’s the finding we want someone to walk away with, so let’s build the plot around it. This one pulls out a lot of tricks. None of them is required, but they’re all good to know exist:</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmhvdXIgPSBucC5hcmFuZ2UoMjQpICAgICAgIyAwID0gbWlkbmlnaHQgdG8gMSBhbSwgMTIgPSBub29uIHRvIDEgcG0sIC4uLlxuc29sYXJfa1cgPSBucC5hcnJheShbMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjEsIDEuNiwgMy4zLCA0LjEsIDQuOSxcbiAgICAgICAgICAgICAgICAgICAgIDUuMywgNS4zLCA0LjgsIDQuMSwgMy4wLCAxLjYsIDAuMiwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjBdKVxudXNlX2tXID0gbnAuYXJyYXkoWzAuNSwgMC41LCAwLjcsIDAuNSwgMC41LCAwLjgsIDEuMiwgMS44LCAxLjQsIDAuNywgMC44LCAwLjksXG4gICAgICAgICAgICAgICAgICAgMC42LCAwLjksIDAuNywgMC43LCAxLjMsIDEuOSwgMi45LCAyLjgsIDEuOSwgMC45LCAwLjcsIDAuNl0pXG5cbiMgZWFjaCBob3VybHkgcmVhZGluZyBpcyB0aGUgYXZlcmFnZSBrVyBvdmVyIHRoYXQgaG91ciwgc28ga1cgeCAxIGggPSBrV2hcbnNlbnQgPSBucC5jbGlwKHNvbGFyX2tXIC0gdXNlX2tXLCAwLCBOb25lKS5zdW0oKSAgICAgICMgc29sYXIgdGhlIGhvdXNlIGNvdWxkbid0IHVzZVxuYm91Z2h0ID0gbnAuY2xpcCh1c2Vfa1cgLSBzb2xhcl9rVywgMCwgTm9uZSkuc3VtKCkgICAgIyBwb3dlciB0aGUgaG91c2UgaGFkIHRvIGJ1eVxuXG5wbHQuZmlndXJlKGZpZ3NpemU9KDksIDQuNSkpXG5cbiMgbmlnaHQsIHNoYWRlZCBncmF5LCBiZWhpbmQgZXZlcnl0aGluZyBlbHNlICh6b3JkZXI9MClcbnBsdC5heHZzcGFuKDAsIDcsIGNvbG9yPVwiMC45MlwiLCB6b3JkZXI9MClcbnBsdC5heHZzcGFuKDE5LCAyMywgY29sb3I9XCIwLjkyXCIsIHpvcmRlcj0wKVxuXG4jIGNvbG9yIHRoZSBnYXAgYmV0d2VlbiB0aGUgY3VydmVzLCBvbmUgY29sb3IgZm9yIGVhY2ggZGlyZWN0aW9uXG5wbHQuZmlsbF9iZXR3ZWVuKGhvdXIsIHVzZV9rVywgc29sYXJfa1csIHdoZXJlPXNvbGFyX2tXID4gdXNlX2tXLFxuICAgICAgICAgICAgICAgICBjb2xvcj1cImdvbGRcIiwgYWxwaGE9MC4zNSwgaW50ZXJwb2xhdGU9VHJ1ZSlcbnBsdC5maWxsX2JldHdlZW4oaG91ciwgdXNlX2tXLCBzb2xhcl9rVywgd2hlcmU9dXNlX2tXID4gc29sYXJfa1csXG4gICAgICAgICAgICAgICAgIGNvbG9yPVwic2xhdGVibHVlXCIsIGFscGhhPTAuMywgaW50ZXJwb2xhdGU9VHJ1ZSlcblxucGx0LnBsb3QoaG91ciwgc29sYXJfa1csIFwiby1cIiwgY29sb3I9XCJkYXJrb3JhbmdlXCIsIGxpbmV3aWR0aD0yLjUpXG5wbHQucGxvdChob3VyLCB1c2Vfa1csIFwiby1cIiwgY29sb3I9XCJibGFja1wiLCBsaW5ld2lkdGg9MS41LCBtYXJrZXJzaXplPTQpXG5cbiMgbGFiZWwgdGhlIGxpbmVzIGRpcmVjdGx5IGluc3RlYWQgb2YgbWFraW5nIHRoZSByZWFkZXIgZGVjb2RlIGEgbGVnZW5kXG5wbHQudGV4dCgxMy4zLCA1LjM1LCBcInNvbGFyIG91dHB1dFwiLCBjb2xvcj1cImRhcmtvcmFuZ2VcIiwgZm9udHNpemU9MTEsIHdlaWdodD1cImJvbGRcIilcbnBsdC50ZXh0KDIxLjIsIDEuMTUsIFwiaG91c2UgdXNlXCIsIGZvbnRzaXplPTExKVxucGx0LnRleHQoMTIuNSwgMi42LCBmXCJleHRyYSBzb2xhclxcbnNlbnQgdG8gdGhlIGdyaWRcXG57c2VudDouMWZ9IGtXaFwiLCBoYT1cImNlbnRlclwiLCBmb250c2l6ZT0xMClcbnBsdC50ZXh0KDMuNSwgMi4wLCBmXCJib3VnaHQgZnJvbVxcbnRoZSBncmlkXFxue2JvdWdodDouMWZ9IGtXaFwiLCBoYT1cImNlbnRlclwiLFxuICAgICAgICAgY29sb3I9XCJzbGF0ZWJsdWVcIiwgZm9udHNpemU9MTApXG5wbHQuYW5ub3RhdGUoXCJkaW5uZXIsIGp1c3QgYWZ0ZXIgc3Vuc2V0XCIsIHh5PSgxOCwgMi45KSwgeHl0ZXh0PSgxOC40LCA0LjIpLFxuICAgICAgICAgICAgIGFycm93cHJvcHM9ZGljdChhcnJvd3N0eWxlPVwiLT5cIiksIGZvbnRzaXplPTEwKVxuXG5wbHQueHRpY2tzKFswLCA2LCAxMiwgMTgsIDIzXSwgW1wibWlkbmlnaHRcIiwgXCI2IGFtXCIsIFwibm9vblwiLCBcIjYgcG1cIiwgXCIxMSBwbVwiXSlcbnBsdC54bGltKDAsIDIzKVxucGx0LnlsaW0oMCwgNilcbnBsdC55bGFiZWwoXCJQb3dlciAoa1cpXCIpXG5wbHQudGl0bGUoXCJUaGUgcGFuZWxzIG1ha2UgcGxlbnR5LCBqdXN0IG5vdCB3aGVuIHRoZSBob3VzZSB3YW50cyBpdFwiLCBsb2M9XCJsZWZ0XCIpXG5cbmF4ID0gcGx0LmdjYSgpXG5heC5zcGluZXNbW1widG9wXCIsIFwicmlnaHRcIl1dLnNldF92aXNpYmxlKEZhbHNlKSAgICAgICAjIGRyb3AgdGhlIGJveCBhcm91bmQgdGhlIHBsb3RcbnBsdC50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The kWh numbers come from <code>.sum()</code>. Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total. That’s area-as-a-sum-of-rectangles, doing actual work.</p>
+</div></div><p>A tour of what’s going on in there:</p>
+<ul>
+<li><strong><code>fill_between</code></strong> colors the space between the two curves, with <code>where=</code> choosing which stretches get which color. The shaded <em>area</em> is energy, so the reader can literally see that there’s a lot more gold than purple.</li>
+<li><strong><code>axvspan</code></strong> shades nighttime gray, so we don’t need to explain why the solar is zero from 7 pm to 7 am. <code>zorder=0</code> puts it behind everything else.</li>
+<li><strong>Direct labels</strong> (<code>plt.text</code>) sit right next to each curve, so the reader never has to glance back and forth at a legend.</li>
+<li><strong><code>annotate</code></strong> points an arrow at the one data point we want people to notice.</li>
+<li><strong>Custom ticks</strong> say “noon” and “6 pm” instead of 12 and 18. Small thing, but nobody has to translate.</li>
+<li><strong>The title states the finding</strong> instead of the topic. “Solar output and house use” makes the reader do the work. “The panels make plenty, just not when the house wants it” tells them what they’re looking at, and then the plot backs it up.</li>
+<li><strong>No top and right box lines</strong> (<code>spines</code>). This is pure taste, but it makes the plot feel less cluttered.</li>
+</ul>
+<p>Is it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title. I think it passes.</p>
+<p>Now the evil twin. Same data, and it looks at least as responsible:</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmhvdXIgPSBucC5hcmFuZ2UoMjQpICAgICAgIyAwID0gbWlkbmlnaHQgdG8gMSBhbSwgMTIgPSBub29uIHRvIDEgcG0sIC4uLlxuc29sYXJfa1cgPSBucC5hcnJheShbMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjEsIDEuNiwgMy4zLCA0LjEsIDQuOSxcbiAgICAgICAgICAgICAgICAgICAgIDUuMywgNS4zLCA0LjgsIDQuMSwgMy4wLCAxLjYsIDAuMiwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjBdKVxudXNlX2tXID0gbnAuYXJyYXkoWzAuNSwgMC41LCAwLjcsIDAuNSwgMC41LCAwLjgsIDEuMiwgMS44LCAxLjQsIDAuNywgMC44LCAwLjksXG4gICAgICAgICAgICAgICAgICAgMC42LCAwLjksIDAuNywgMC43LCAxLjMsIDEuOSwgMi45LCAyLjgsIDEuOSwgMC45LCAwLjcsIDAuNl0pXG5cbm1hZGUgPSBzb2xhcl9rVy5zdW0oKSAgICAgIyBrV2ggb3ZlciB0aGUgd2hvbGUgZGF5XG51c2VkID0gdXNlX2tXLnN1bSgpXG5cbnBsdC5maWd1cmUoZmlnc2l6ZT0oNSwgNC41KSlcbnBsdC5iYXIoW1widXNlZCBieVxcbnRoZSBob3VzZVwiLCBcIm1hZGUgYnlcXG50aGUgcGFuZWxzXCJdLCBbdXNlZCwgbWFkZV0sXG4gICAgICAgIGNvbG9yPVtcIjAuNlwiLCBcImRhcmtvcmFuZ2VcIl0sIHdpZHRoPTAuNilcbnBsdC50ZXh0KDAsIHVzZWQgKyAwLjgsIGZcInt1c2VkOi4xZn0ga1doXCIsIGhhPVwiY2VudGVyXCIpXG5wbHQudGV4dCgxLCBtYWRlICsgMC44LCBmXCJ7bWFkZTouMWZ9IGtXaFwiLCBoYT1cImNlbnRlclwiKVxucGx0LnlsYWJlbChcIkVuZXJneSBvdmVyIG9uZSBkYXkgKGtXaClcIilcbnBsdC55bGltKDAsIDQ1KVxucGx0LnRpdGxlKGZcIlRoaXMgaG91c2UgaXMgezEwMCAqIG1hZGUgLyB1c2VkOi4wZn0lIHNvbGFyLXBvd2VyZWRcIiwgbG9jPVwibGVmdFwiKVxucGx0LmdjYSgpLnNwaW5lc1tbXCJ0b3BcIiwgXCJyaWdodFwiXV0uc2V0X3Zpc2libGUoRmFsc2UpXG5wbHQudGlnaHRfbGF5b3V0KClcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+<p>Every number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But “solar-powered” suggests the house runs on sunshine, and the hourly plot says that’s not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. Adding up the whole day threw away the one dimension where the story lives… time. (This is not a hypothetical trick, by the way. “Net” claims like this are everywhere. They aren’t <em>wrong</em>, exactly. They’re just answering a different question than the one you think you’re reading.)</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>If we were the honest table, our sentence might be: “Hourly averages from one sunny day. Shading shows when the house sent power to the grid vs.&nbsp;bought it.” If we were the misleading table: “Daily totals hide that the house buys ~60% of its electricity at night. The hourly version shows it.”</p>
+</div></div></section>
+<section id="the-plan" class="level2">
+<h2 class="anchored" data-anchor-id="the-plan">The plan</h2>
+<p>We have about 40 minutes of making, and then the reveal.</p>
+<p><strong>1. Open your dataset</strong> (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell. Out comes the <strong>boring plot</strong>: markers, labels, units, and nothing else. This is our control, and we’ll leave it alone. It’s the plot a skeptic would make if they had nothing to prove.</p>
+<p><strong>2. Look at the boring plot and talk at your table.</strong> What <em>is</em> the story here? What would a reader take away if all they saw was this? What’s the most interesting true thing in the data, and what’s the most tempting false thing? Both tables — honest and misleading — need to answer both questions. You can’t hide the truth well if you don’t know what it is.</p>
+<p><strong>3. Make the interesting plot.</strong> Now open your slip.</p>
+<ul>
+<li><strong>Honest tables:</strong> make the true takeaway jump off the page. Honest doesn’t mean timid. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding. Every choice you make should survive a skeptic who has seen the boring plot.</li>
+<li><strong>Misleading tables:</strong> make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). No typing in fake values. But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look <em>responsible</em>.</li>
+</ul>
+<p><strong>4. Write one sentence on paper</strong>, and keep it face-down until the reveal:</p>
+<ul>
+<li>Honest tables: the disclosure you’d put under the plot in a real report. For example, “The y-axis starts at 22 °C, room temperature, because that’s where both mugs end up.”</li>
+<li>Misleading tables: the trick, and what an honest version would show. For example, “We only plotted March through August, which hides that this happens every year.”</li>
+</ul>
+<p><strong>5. Put both plots in the class slide deck</strong>, on your dataset’s two slides: the interesting plot on the first, the boring plot on the second. In the browser you can right-click (or long-press on an iPad) the plot and copy the image. A screenshot works too.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Stuck?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here are some questions that help from either side. What would change if the y-axis started at zero? What if we only saw half of the x-range? Is there a number that everything should be compared to: a threshold, a prediction, room temperature, last year? Would percent change tell a different story than raw numbers? Is anything in this dataset tiny compared to everything else?</p>
+</div>
+</div>
+</section>
+<section id="the-reveal" class="level2">
+<h2 class="anchored" data-anchor-id="the-reveal">The reveal</h2>
+<p>For each dataset, we’ll put the interesting plot on the screen for about ten seconds. You vote: thumbs up if you believe it, thumbs down if you think you’re being played. Then we flip to the boring plot, and the table reads its sentence.</p>
+<p>Keep score in your head if you like. The misleading plots that fooled the most people and the honest plots that the most people trusted are both winners. More interesting, though, are the misses: an honest plot that the room <em>didn’t</em> trust, or a misleading one that everybody bought. What was it about that plot?</p>
+</section>
+<section id="deliverable-2-ec" class="level2">
+<h2 class="anchored" data-anchor-id="deliverable-2-ec">Deliverable (2 EC)</h2>
+<p>Your table’s two plots (boring and interesting) plus your one sentence. Everyone at the table submits the same thing.</p>
+</section>
+<section id="datasets" class="level2">
+<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
+<p>All fifteen datasets are realistic but <strong>made up for today</strong>. Each cell below is ready to run here in the browser, or you can copy it into Colab.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 1 — Boulder’s yearly average temperature
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The average air temperature in Boulder for each year from 1950 to 2024, in °F. Each number is an average over all 365 days, so a single hot week barely moves it.</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnllYXIgPSBucC5hcmFuZ2UoMTk1MCwgMjAyNSlcbnRlbXBfRiA9IG5wLmFycmF5KFs1MS40LCA1Mi4wLCA1MS40LCA1MS43LCA1MS40LCA1MC43LCA1MS42LCA1MS4zLCA1MS41LCA1MS4zLFxuICAgICAgICAgICAgICAgICAgIDUwLjIsIDUyLjIsIDUyLjgsIDUyLjEsIDUxLjEsIDUxLjMsIDUwLjUsIDUwLjcsIDUyLjMsIDUzLjMsXG4gICAgICAgICAgICAgICAgICAgNTAuNSwgNTMuMCwgNTEuMywgNTEuMywgNTEuMCwgNTEuNSwgNTIuMCwgNTIuMCwgNTIuMSwgNTEuOCxcbiAgICAgICAgICAgICAgICAgICA1Mi4xLCA1Mi4wLCA1MC43LCA1My4zLCA1Mi40LCA1Mi45LCA1MS44LCA1MS4yLCA1Mi44LCA1Mi42LFxuICAgICAgICAgICAgICAgICAgIDUzLjEsIDUxLjQsIDUyLjMsIDUxLjksIDUyLjYsIDUyLjgsIDUxLjksIDUyLjgsIDUxLjQsIDUyLjksXG4gICAgICAgICAgICAgICAgICAgNTAuNiwgNTIuMywgNTIuMywgNTQuMCwgNTQuNCwgNTMuMywgNTEuOSwgNTIuOCwgNTEuNiwgNTMuNCxcbiAgICAgICAgICAgICAgICAgICA1NC40LCA1MS43LCA1NS4yLCA1Mi4zLCA1My45LCA1MS4zLCA1MC41LCA1Mi42LCA1Mi4yLCA1Mi4wLFxuICAgICAgICAgICAgICAgICAgIDUyLjgsIDUyLjIsIDU0LjUsIDUyLjQsIDUzLjNdKVxuXG4jIHRoZSBib3JpbmcgcGxvdFxucGx0LnBsb3QoeWVhciwgdGVtcF9GLCBcIm9cIilcbnBsdC54bGFiZWwoXCJZZWFyXCIpXG5wbHQueWxhYmVsKFwiWWVhcmx5IGF2ZXJhZ2UgdGVtcGVyYXR1cmUgKMKwRilcIilcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 2 — A laptop battery getting older
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One laptop’s battery health, checked every 3 months from new: how much charge the battery can hold, as a percent of what it held on day one. Most manufacturers consider a battery “worn out” and worth replacing below 80%.</p>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmFnZV9tb250aHMgPSBucC5hcnJheShbMCwgMywgNiwgOSwgMTIsIDE1LCAxOCwgMjEsIDI0LCAyNywgMzAsIDMzLCAzNl0pXG5oZWFsdGhfcGN0ID0gbnAuYXJyYXkoWzEwMC4wLCA5OC43LCA5Ni4wLCA5NC44LCA5Mi42LCA5MS40LCA4OS43LCA4Ny45LCA4Ni4zLCA4NC4xLCA4Mi40LCA4Mi4xLCA4MC4zXSlcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KGFnZV9tb250aHMsIGhlYWx0aF9wY3QsIFwib1wiKVxucGx0LnhsYWJlbChcIkxhcHRvcCBhZ2UgKG1vbnRocylcIilcbnBsdC55bGFiZWwoXCJCYXR0ZXJ5IGhlYWx0aCAoJSBvZiBvcmlnaW5hbClcIilcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 3 — Two coffee mugs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Coffee poured at 85 °C into a regular ceramic mug and into a double-walled steel travel mug (lid off, same room), with a thermometer reading every 2 minutes for 40 minutes. The room is 22 °C.</p>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnRpbWVfbWluID0gbnAuYXJyYXkoWzAsIDIsIDQsIDYsIDgsIDEwLCAxMiwgMTQsIDE2LCAxOCwgMjAsIDIyLCAyNCwgMjYsIDI4LCAzMCwgMzIsIDM0LCAzNiwgMzgsIDQwXSlcbmNlcmFtaWNfQyA9IG5wLmFycmF5KFs4NS4wLCA4MC43LCA3Ni43LCA3Mi4yLCA2OC42LCA2NS42LCA2My40LCA2MC43LCA1OC4xLCA1NC45LCA1My40LFxuICAgICAgICAgICAgICAgICAgICAgIDUwLjUsIDQ4LjksIDQ2LjcsIDQ0LjUsIDQzLjEsIDQyLjMsIDQxLjIsIDM5LjMsIDM4LjQsIDM2LjhdKVxuc3RlZWxfQyA9IG5wLmFycmF5KFs4NS4wLCA4NC4yLCA4My4wLCA4My4xLCA4MS41LCA4MC40LCA4MC4yLCA3OS4zLCA3OC4yLCA3Ny40LCA3Ni42LFxuICAgICAgICAgICAgICAgICAgICA3NS44LCA3NC44LCA3NC4xLCA3My45LCA3My4wLCA3MS45LCA3MS4xLCA3MS4wLCA2OS44LCA2OC43XSlcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KHRpbWVfbWluLCBjZXJhbWljX0MsIFwib1wiLCBsYWJlbD1cImNlcmFtaWNcIilcbnBsdC5wbG90KHRpbWVfbWluLCBzdGVlbF9DLCBcInNcIiwgbGFiZWw9XCJzdGVlbFwiKVxucGx0LnhsYWJlbChcIlRpbWUgc2luY2UgcG91cmluZyAobWluKVwiKVxucGx0LnlsYWJlbChcIkNvZmZlZSB0ZW1wZXJhdHVyZSAowrBDKVwiKVxucGx0LmxlZ2VuZCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 4 — Two bike routes to campus
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One student biked to campus by two different routes and timed each trip, for 20 school days per route. Route A is the road; Route B is the creek path. Times are in minutes.</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnRyaXAgPSBucC5hcmFuZ2UoMSwgMjEpXG5yb3V0ZV9BX21pbiA9IG5wLmFycmF5KFsyMi41LCAyMy4wLCAyMS41LCAyMS4wLCAyOC41LCAyNy4wLCAyMi41LCAyNi4wLCAyMi4wLCAyMS4wLFxuICAgICAgICAgICAgICAgICAgICAgICAgMjIuNSwgMjIuMCwgMjUuMCwgMjQuMCwgMzEuNSwgMjUuNSwgMjUuNSwgMjMuNSwgMjguNSwgMjAuNV0pXG5yb3V0ZV9CX21pbiA9IG5wLmFycmF5KFsyMi41LCAyMi41LCAyMS4wLCAyMy4wLCAyMC41LCAyMi4wLCAyNy4wLCAyMi41LCAyMi4wLCAyMy41LFxuICAgICAgICAgICAgICAgICAgICAgICAgMjIuNSwgMjIuNSwgMjIuNSwgMjEuNSwgMjAuNSwgMjUuNSwgMjQuMCwgMjEuMCwgMjUuMCwgMjIuMF0pXG5cbiMgdGhlIGJvcmluZyBwbG90XG5wbHQucGxvdCh0cmlwLCByb3V0ZV9BX21pbiwgXCJvXCIsIGxhYmVsPVwiUm91dGUgQSAocm9hZClcIilcbnBsdC5wbG90KHRyaXAsIHJvdXRlX0JfbWluLCBcInNcIiwgbGFiZWw9XCJSb3V0ZSBCIChjcmVlayBwYXRoKVwiKVxucGx0LnhsYWJlbChcIlRyaXAgbnVtYmVyXCIpXG5wbHQueWxhYmVsKFwiQ29tbXV0ZSB0aW1lIChtaW4pXCIpXG5wbHQubGVnZW5kKClcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 5 — Where a home’s electricity goes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A year of electricity use in one all-electric Colorado home (it has a heat pump instead of a gas furnace), split up by what used it, in kilowatt-hours per year. The categories are listed alphabetically, which is how the utility’s report listed them.</p>
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnVzZSA9IFtcImNvb2tpbmdcIiwgXCJlbGVjdHJvbmljc1wiLCBcImhlYXRpbmcgJiBjb29saW5nXCIsIFwibGF1bmRyeVwiLCBcImxpZ2h0aW5nXCIsIFwib3RoZXJcIiwgXCJwaG9uZSBjaGFyZ2Vyc1wiLCBcInJlZnJpZ2VyYXRvclwiLCBcIndhdGVyIGhlYXRpbmdcIl1cbmVuZXJneV9rV2ggPSBucC5hcnJheShbNDUwLCA4MjAsIDUzMDAsIDY5MCwgNDgwLCA5MTAsIDksIDYxMCwgMjM1MF0pXG5cbiMgdGhlIGJvcmluZyBwbG90XG5wbHQuYmFyKHVzZSwgZW5lcmd5X2tXaClcbnBsdC54dGlja3Mocm90YXRpb249NDUsIGhhPVwicmlnaHRcIilcbnBsdC55bGFiZWwoXCJFbmVyZ3kgcGVyIHllYXIgKGtXaClcIilcbnBsdC5zaG93KCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 6 — Speed bumps on a neighborhood street
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A residential street with a 25 mph speed limit. A radar sign logged every car, and these are the average speeds for each week, 10 weeks before and 10 weeks after the city installed speed bumps. The bumps went in during week 0 (no data that week). Neighbors are split on whether the bumps were worth it.</p>
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbndlZWsgPSBucC5hcnJheShbLTEwLCAtOSwgLTgsIC03LCAtNiwgLTUsIC00LCAtMywgLTIsIC0xLCAxLCAyLCAzLCA0LCA1LCA2LCA3LCA4LCA5LCAxMF0pXG5hdmdfc3BlZWRfbXBoID0gbnAuYXJyYXkoWzMzLjYsIDM2LjIsIDM0LjcsIDM0LjcsIDMzLjEsIDMyLjcsIDM0LjQsIDM1LjAsIDMzLjksIDMzLjYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDMwLjcsIDMxLjUsIDMxLjYsIDMxLjYsIDMwLjksIDI5LjksIDI5LjksIDMxLjYsIDMxLjUsIDMwLjBdKVxuc3BlZWRfbGltaXRfbXBoID0gMjVcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KHdlZWssIGF2Z19zcGVlZF9tcGgsIFwib1wiKVxucGx0LnhsYWJlbChcIldlZWsgKHNwZWVkIGJ1bXBzIGluc3RhbGxlZCBpbiB3ZWVrIDApXCIpXG5wbHQueWxhYmVsKFwiQXZlcmFnZSBzcGVlZCAobXBoKVwiKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 7 — 3D-printed bracket strength
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A small bracket, 3D-printed at different infill percentages (how solid the inside is: 10% is mostly air, 100% is solid plastic). Three brackets were printed at each setting and pulled until they broke. We have the breaking force, in newtons, and the print time for each, in minutes.</p>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmluZmlsbF9wY3QgPSBucC5hcnJheShbMTAsIDEwLCAxMCwgMjAsIDIwLCAyMCwgMzAsIDMwLCAzMCwgNDAsIDQwLCA0MCwgNTAsIDUwLCA1MCxcbiAgICAgICAgICAgICAgICAgICAgICAgNjAsIDYwLCA2MCwgNzAsIDcwLCA3MCwgODAsIDgwLCA4MCwgOTAsIDkwLCA5MCwgMTAwLCAxMDAsIDEwMF0pXG5icmVha19mb3JjZV9OID0gbnAuYXJyYXkoWzY5NiwgNjEyLCA3NjAsIDc2MCwgNzMzLCA4NzksIDEwMjYsIDEwMDAsIDk3NywgMTA4MCwgMTA2NywgMTExOSwgMTE5OCwgMTEyOSwgMTEzMyxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgMTE4NiwgMTE4NywgMTIwOCwgMTIxOCwgMTEzMSwgMTE5MCwgMTE5OCwgMTI0MSwgMTI5MiwgMTE3MiwgMTIyNywgMTMwMiwgMTI0MiwgMTE4MiwgMTM2OV0pXG5wcmludF90aW1lX21pbiA9IG5wLmFycmF5KFszMiwgMzIsIDMyLCA0MSwgNDEsIDQxLCA1MCwgNTAsIDUwLCA2MCwgNjAsIDYwLCA3MCwgNzAsIDcwLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgNzksIDc5LCA3OSwgODgsIDg4LCA4OCwgOTgsIDk4LCA5OCwgMTA4LCAxMDgsIDEwOCwgMTE3LCAxMTcsIDExN10pXG5cbiMgdGhlIGJvcmluZyBwbG90XG5wbHQucGxvdChpbmZpbGxfcGN0LCBicmVha19mb3JjZV9OLCBcIm9cIilcbnBsdC54bGFiZWwoXCJJbmZpbGwgKCUpXCIpXG5wbHQueWxhYmVsKFwiQnJlYWtpbmcgZm9yY2UgKE4pXCIpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 8 — Fuel economy vs.&nbsp;speed
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A midsize gas car driven at steady speeds on a flat test track, with fuel economy measured at each speed, in miles per gallon. Higher mpg means less fuel for the same trip.</p>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnNwZWVkX21waCA9IG5wLmFycmF5KFsyNSwgMzAsIDM1LCA0MCwgNDUsIDUwLCA1NSwgNjAsIDY1LCA3MCwgNzUsIDgwXSlcbmZ1ZWxfZWNvbm9teV9tcGcgPSBucC5hcnJheShbMjkuOSwgMzEuMSwgMzMuOCwgMzQuOSwgMzUuOCwgMzYuNCwgMzUuOCwgMzQuNiwgMzMuNywgMzEuNywgMjkuMCwgMjUuOV0pXG5cbiMgdGhlIGJvcmluZyBwbG90XG5wbHQucGxvdChzcGVlZF9tcGgsIGZ1ZWxfZWNvbm9teV9tcGcsIFwib1wiKVxucGx0LnhsYWJlbChcIlNwZWVkIChtcGgpXCIpXG5wbHQueWxhYmVsKFwiRnVlbCBlY29ub215IChtcGcpXCIpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 9 — E-scooter rides
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Rides taken on a city’s shared e-scooter program each month, January 2023 through December 2024. The operator is trying to convince the city council to renew its contract.</p>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbm1vbnRoX251bWJlciA9IG5wLmFyYW5nZSgxLCAyNSkgICAgICMgMSA9IEphbiAyMDIzLCAyNCA9IERlYyAyMDI0XG5yaWRlcyA9IG5wLmFycmF5KFs0NzUwLCA1MTgwLCA1NTgwLCA3OTEwLCAxMDA2MCwgMTI3OTAsIDE0OTkwLCAxNTcxMCwgMTQ4NzAsIDEyOTkwLCA5OTEwLCA3ODMwLFxuICAgICAgICAgICAgICAgICAgNjQwMCwgNTc3MCwgNzk4MCwgODc5MCwgMTE2NjAsIDEyMjcwLCAxNDI5MCwgMTI4NjAsIDEwMjQwLCA5MTMwLCA2NDAwLCA0NDEwXSlcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KG1vbnRoX251bWJlciwgcmlkZXMsIFwib1wiKVxucGx0LnhsYWJlbChcIk1vbnRoICgxID0gSmFuIDIwMjMpXCIpXG5wbHQueWxhYmVsKFwiUmlkZXMgdGhhdCBtb250aFwiKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 10 — Air in a full classroom
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Carbon dioxide level in a packed 75-minute class, measured every 5 minutes, in parts per million (ppm). Outdoor air is about 420 ppm, and many building guidelines aim to keep rooms under about 1000 ppm, above which people start to feel drowsy and unfocused. Someone opened the windows partway through.</p>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnRpbWVfbWluID0gbnAuYXJyYXkoWzAsIDUsIDEwLCAxNSwgMjAsIDI1LCAzMCwgMzUsIDQwLCA0NSwgNTAsIDU1LCA2MCwgNjUsIDcwLCA3NV0pXG5jbzJfcHBtID0gbnAuYXJyYXkoWzQ2MCwgNTYwLCA2ODAsIDc4MCwgODkwLCA5NzAsIDEwMzAsIDEwOTAsIDExNTAsIDEyMjAsIDEyNTAsIDk2MCwgODIwLCA3MjAsIDY2MCwgNjMwXSlcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KHRpbWVfbWluLCBjbzJfcHBtLCBcIm9cIilcbnBsdC54bGFiZWwoXCJUaW1lIHNpbmNlIGNsYXNzIHN0YXJ0ZWQgKG1pbilcIilcbnBsdC55bGFiZWwoXCJDT+KCgiAocHBtKVwiKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 11 — Snowfall at a ski area
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Total snowfall for each ski season at one Colorado ski area, from the 1985 season to the 2024 season, in inches. (The ‘1985 season’ is the winter that started in fall 1985.)</p>
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnNlYXNvbiA9IG5wLmFycmF5KFsxOTg1LCAxOTg2LCAxOTg3LCAxOTg4LCAxOTg5LCAxOTkwLCAxOTkxLCAxOTkyLCAxOTkzLCAxOTk0LFxuICAgICAgICAgICAgICAgICAgIDE5OTUsIDE5OTYsIDE5OTcsIDE5OTgsIDE5OTksIDIwMDAsIDIwMDEsIDIwMDIsIDIwMDMsIDIwMDQsXG4gICAgICAgICAgICAgICAgICAgMjAwNSwgMjAwNiwgMjAwNywgMjAwOCwgMjAwOSwgMjAxMCwgMjAxMSwgMjAxMiwgMjAxMywgMjAxNCxcbiAgICAgICAgICAgICAgICAgICAyMDE1LCAyMDE2LCAyMDE3LCAyMDE4LCAyMDE5LCAyMDIwLCAyMDIxLCAyMDIyLCAyMDIzLCAyMDI0XSlcbnNub3dmYWxsX2luID0gbnAuYXJyYXkoWzM3OSwgMzExLCAyODgsIDI3MiwgMzU4LCAyOTAsIDMyMywgMzUzLCAyNzEsIDI0NyxcbiAgICAgICAgICAgICAgICAgICAgICAgIDE1NywgMjk5LCAxNzgsIDQxNiwgMTc2LCAxNjgsIDE5NSwgMjU3LCAyNDIsIDM4MSxcbiAgICAgICAgICAgICAgICAgICAgICAgIDIwOCwgNDE3LCAzNjksIDM3NCwgMzczLCA1MjYsIDMzMCwgMzQwLCAzMDksIDMzOSxcbiAgICAgICAgICAgICAgICAgICAgICAgIDE5NywgMjY0LCAzMzcsIDI1OSwgOTgsIDI4MCwgMjQ2LCAyNzksIDI1NSwgMjY0XSlcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KHNlYXNvbiwgc25vd2ZhbGxfaW4sIFwib1wiKVxucGx0LnhsYWJlbChcIlNlYXNvbiAoc3RhcnRpbmcgeWVhcilcIilcbnBsdC55bGFiZWwoXCJUb3RhbCBzbm93ZmFsbCAoaW4pXCIpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 12 — Heat pump in the cold
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A heat pump heats a house by moving heat in from outside air, even cold air. Its COP (coefficient of performance) is the units of heat delivered per unit of electricity used: COP = 3 means 3 kWh of heat for every 1 kWh from the wall. An ordinary electric space heater has a COP of exactly 1. These are one cold-climate heat pump’s COPs at different outdoor temperatures, in °F.</p>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbm91dGRvb3JfRiA9IG5wLmFycmF5KFstMTAsIC01LCAwLCA1LCAxMCwgMTUsIDIwLCAyNSwgMzAsIDM1LCA0MCwgNDUsIDUwXSlcbmNvcCA9IG5wLmFycmF5KFsxLjY1LCAxLjg5LCAyLjA4LCAyLjMyLCAyLjQzLCAyLjc0LCAyLjk3LCAzLjE0LCAzLjM5LCAzLjYyLCAzLjc0LCA0LjE0LCA0LjIzXSlcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KG91dGRvb3JfRiwgY29wLCBcIm9cIilcbnBsdC54bGFiZWwoXCJPdXRkb29yIHRlbXBlcmF0dXJlICjCsEYpXCIpXG5wbHQueWxhYmVsKFwiQ09QIChoZWF0IG91dCAvIGVsZWN0cmljaXR5IGluKVwiKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 13 — Chargers and burritos
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Two things measured each year in one Colorado county, 2012 to 2024: the number of public EV charging ports, and the average price of a burrito at local restaurants, in dollars.</p>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnllYXIgPSBucC5hcnJheShbMjAxMiwgMjAxMywgMjAxNCwgMjAxNSwgMjAxNiwgMjAxNywgMjAxOCwgMjAxOSwgMjAyMCwgMjAyMSwgMjAyMiwgMjAyMywgMjAyNF0pXG5ldl9wb3J0cyA9IG5wLmFycmF5KFszMSwgNDUsIDU0LCA4NywgMTEzLCAxMjUsIDE1OSwgMTkxLCAyMzAsIDI4MCwgMzYzLCA0NDIsIDU1N10pXG5idXJyaXRvX3VzZCA9IG5wLmFycmF5KFs3LjEwLCA3LjY1LCA3LjkxLCA4LjMyLCA4LjgwLCA5LjA2LCA5LjIzLCA5LjgxLCAxMC4xNCwgMTAuNTAsIDExLjI1LCAxMS41NiwgMTIuMzFdKVxuXG4jIHRoZSBib3JpbmcgcGxvdFxuZmlnLCAoYXgxLCBheDIpID0gcGx0LnN1YnBsb3RzKDEsIDIsIGZpZ3NpemU9KDEwLCAzLjUpKVxuYXgxLnBsb3QoeWVhciwgZXZfcG9ydHMsIFwib1wiKVxuYXgxLnNldF94bGFiZWwoXCJZZWFyXCIpXG5heDEuc2V0X3lsYWJlbChcIlB1YmxpYyBFViBjaGFyZ2luZyBwb3J0c1wiKVxuYXgyLnBsb3QoeWVhciwgYnVycml0b191c2QsIFwic1wiKVxuYXgyLnNldF94bGFiZWwoXCJZZWFyXCIpXG5heDIuc2V0X3lsYWJlbChcIkF2ZXJhZ2UgYnVycml0byBwcmljZSAoJClcIilcbnBsdC50aWdodF9sYXlvdXQoKVxucGx0LnNob3coKSJ9
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 14 — Rooftop solar in two towns
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>New rooftop solar systems installed each year in two Colorado towns, 2019 to 2024. Town A has about 98,000 people. Town B has about 1,200.</p>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnllYXIgPSBucC5hcnJheShbMjAxOSwgMjAyMCwgMjAyMSwgMjAyMiwgMjAyMywgMjAyNF0pXG50b3duX0FfaW5zdGFsbHMgPSBucC5hcnJheShbNDEyLCAzOTcsIDQ0MSwgNDY4LCA0NTUsIDQ5M10pXG50b3duX0JfaW5zdGFsbHMgPSBucC5hcnJheShbMiwgMSwgMywgNCwgNiwgOV0pXG5wb3BfQSA9IDk4MDAwXG5wb3BfQiA9IDEyMDBcblxuIyB0aGUgYm9yaW5nIHBsb3RcbnBsdC5wbG90KHllYXIsIHRvd25fQV9pbnN0YWxscywgXCJvXCIsIGxhYmVsPVwiVG93biBBXCIpXG5wbHQucGxvdCh5ZWFyLCB0b3duX0JfaW5zdGFsbHMsIFwic1wiLCBsYWJlbD1cIlRvd24gQlwiKVxucGx0LnhsYWJlbChcIlllYXJcIilcbnBsdC55bGFiZWwoXCJOZXcgcm9vZnRvcCBzb2xhciBpbnN0YWxsc1wiKVxucGx0LmxlZ2VuZCgpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dataset 15 — Stopping a car
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>How far a car travels between the moment a hazard appears and the moment it’s stopped, measured on a dry test track at different speeds, in feet. It comes in two parts: the reaction distance (the car keeps going while the driver notices and moves their foot to the brake) and the braking distance (brakes on, slowing to a stop). For scale, a car is about 15 ft long.</p>
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbnNwZWVkX21waCA9IG5wLmFycmF5KFsyMCwgMjUsIDMwLCAzNSwgNDAsIDQ1LCA1MCwgNTUsIDYwLCA2NSwgNzBdKVxucmVhY3Rpb25fZnQgPSBucC5hcnJheShbNDUsIDU1LCA2NSwgNzgsIDg5LCA5OCwgMTA1LCAxMjQsIDEyNSwgMTM2LCAxNDldKVxuYnJha2luZ19mdCA9IG5wLmFycmF5KFsyMCwgMzAsIDQzLCA1NiwgNzksIDk5LCAxMjIsIDE1MSwgMTg2LCAxOTYsIDI0M10pXG5cbiMgdGhlIGJvcmluZyBwbG90XG5wbHQucGxvdChzcGVlZF9tcGgsIHJlYWN0aW9uX2Z0ICsgYnJha2luZ19mdCwgXCJvXCIpXG5wbHQueGxhYmVsKFwiU3BlZWQgKG1waClcIilcbnBsdC55bGFiZWwoXCJUb3RhbCBzdG9wcGluZyBkaXN0YW5jZSAoZnQpXCIpXG5wbHQuc2hvdygpIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE3LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE1LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTQtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xNCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTMtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMyA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTExLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTEtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl85ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzkgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzggPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl83ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS03LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzcgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzcsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl82ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzYgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS01LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzUgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzUsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl80ID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS00LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzQgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../activities";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jeremy-koch\.github\.io\/MCEN1030\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
