@@ -380,9 +380,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#a-matplotlib-cheat-sheet" id="toc-a-matplotlib-cheat-sheet" class="nav-link active" data-scroll-target="#a-matplotlib-cheat-sheet">A matplotlib cheat sheet</a></li>
-  <li><a href="#an-example-we-made-earlier" id="toc-an-example-we-made-earlier" class="nav-link" data-scroll-target="#an-example-we-made-earlier">An example we made earlier</a></li>
+  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example">An example</a></li>
   <li><a href="#the-plan" id="toc-the-plan" class="nav-link" data-scroll-target="#the-plan">The plan</a></li>
-  <li><a href="#the-reveal" id="toc-the-reveal" class="nav-link" data-scroll-target="#the-reveal">The reveal</a></li>
   <li><a href="#deliverable-2-ec" id="toc-deliverable-2-ec" class="nav-link" data-scroll-target="#deliverable-2-ec">Deliverable (2 EC)</a></li>
   <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a></li>
   </ul>
@@ -459,14 +458,14 @@ Here's the twist that makes this work: **both kinds of table win the same way �
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()                         <span class="co"># stop labels from overlapping</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>We’ll also want a few NumPy moves for reshaping the data before it gets plotted. For example, <code>y[x &gt;= 2000]</code> keeps only the values where the matching <code>x</code> is at least 2000; <code>np.mean(y)</code> averages; <code>np.cumsum(y)</code> gives a running total; and <code>np.argsort(y)</code> gives the order that would sort <code>y</code>. Doing arithmetic on whole arrays (like <code>100 * (y - y[0]) / y[0]</code> for percent change since the first value) is fair game too.</p>
+<p>We’ll also want to know a few NumPy moves for reshaping the data before it gets plotted. For example, <code>y[x &gt;= 2000]</code> keeps only the values where the matching <code>x</code> is at least 2000; <code>np.mean(y)</code> averages; <code>np.cumsum(y)</code> gives a running total; and <code>np.argsort(y)</code> gives the order that would sort <code>y</code>. Doing arithmetic on whole arrays (like <code>100 * (y - y[0]) / y[0]</code> for percent change since the first value) may be of interest to you too.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>AI is welcome today for the <em>syntax</em>: “how do I put an arrow on a matplotlib plot?” is a perfectly good question to ask it. The <em>choices</em> (what to zoom, what to label, what story to tell) are the part we’re practicing, so those are yours.</p>
+<p>AI is welcome for the <em>syntax</em>: “how do I put an arrow on a matplotlib plot?” is a perfectly good question to ask it.</p>
 </div></div></section>
-<section id="an-example-we-made-earlier" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="an-example-we-made-earlier">An example we made earlier</h2>
-<p>Before you get your own dataset, let’s do one together, all the way through. We’ll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here’s the boring plot:</p>
+<section id="an-example" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="an-example">An example</h2>
+<p>We’ll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here’s the boring plot:</p>
 <div>
 <div id="pyodide-1" class="exercise-cell">
 
@@ -475,8 +474,8 @@ Here's the twist that makes this work: **both kinds of table win the same way �
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmhvdXIgPSBucC5hcmFuZ2UoMjQpICAgICAgIyAwID0gbWlkbmlnaHQgdG8gMSBhbSwgMTIgPSBub29uIHRvIDEgcG0sIC4uLlxuc29sYXJfa1cgPSBucC5hcnJheShbMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjEsIDEuNiwgMy4zLCA0LjEsIDQuOSxcbiAgICAgICAgICAgICAgICAgICAgIDUuMywgNS4zLCA0LjgsIDQuMSwgMy4wLCAxLjYsIDAuMiwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjBdKVxudXNlX2tXID0gbnAuYXJyYXkoWzAuNSwgMC41LCAwLjcsIDAuNSwgMC41LCAwLjgsIDEuMiwgMS44LCAxLjQsIDAuNywgMC44LCAwLjksXG4gICAgICAgICAgICAgICAgICAgMC42LCAwLjksIDAuNywgMC43LCAxLjMsIDEuOSwgMi45LCAyLjgsIDEuOSwgMC45LCAwLjcsIDAuNl0pXG5cbnBsdC5wbG90KGhvdXIsIHNvbGFyX2tXLCBcIm9cIiwgbGFiZWw9XCJzb2xhciBvdXRwdXRcIilcbnBsdC5wbG90KGhvdXIsIHVzZV9rVywgXCJzXCIsIGxhYmVsPVwiaG91c2UgdXNlXCIpXG5wbHQueGxhYmVsKFwiSG91ciBvZiB0aGUgZGF5XCIpXG5wbHQueWxhYmVsKFwiUG93ZXIgKGtXKVwiKVxucGx0LmxlZ2VuZCgpXG5wbHQuc2hvdygpIn0=
 </script>
 </div>
-<p>OK… so what’s the story? The orange hump is the sun and the other curve is the people. Look closer and we can see the panels make <em>way</em> more than the house needs around noon, but the house’s big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.</p>
-<p>That’s the finding we want someone to walk away with, so let’s build the plot around it. This one pulls out a lot of tricks. None of them is required, but they’re all good to know exist:</p>
+<p>OK… so what’s the story? Look closer and we can see the panels make <em>way</em> more than the house needs around noon, but the house’s big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.</p>
+<p>That’s the finding we want someone to walk away with, so let’s build the plot around it. This one pulls out a lot of tricks.</p>
 <div>
 <div id="pyodide-2" class="exercise-cell">
 
@@ -487,18 +486,18 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>The kWh numbers come from <code>.sum()</code>. Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total. That’s area-as-a-sum-of-rectangles, doing actual work.</p>
-</div></div><p>A tour of what’s going on in there:</p>
+<p>The kWh numbers come from <code>.sum()</code>. Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total.</p>
+</div></div><p>What’s going on in there:</p>
 <ul>
-<li><strong><code>fill_between</code></strong> colors the space between the two curves, with <code>where=</code> choosing which stretches get which color. The shaded <em>area</em> is energy, so the reader can literally see that there’s a lot more gold than purple.</li>
+<li><strong><code>fill_between</code></strong> colors the space between the two curves, with <code>where=</code> choosing which stretches get which color. The shaded <em>area</em> is energy, so the reader can see that there’s a lot more gold than purple.</li>
 <li><strong><code>axvspan</code></strong> shades nighttime gray, so we don’t need to explain why the solar is zero from 7 pm to 7 am. <code>zorder=0</code> puts it behind everything else.</li>
 <li><strong>Direct labels</strong> (<code>plt.text</code>) sit right next to each curve, so the reader never has to glance back and forth at a legend.</li>
 <li><strong><code>annotate</code></strong> points an arrow at the one data point we want people to notice.</li>
-<li><strong>Custom ticks</strong> say “noon” and “6 pm” instead of 12 and 18. Small thing, but nobody has to translate.</li>
-<li><strong>The title states the finding</strong> instead of the topic. “Solar output and house use” makes the reader do the work. “The panels make plenty, just not when the house wants it” tells them what they’re looking at, and then the plot backs it up.</li>
+<li><strong>Custom ticks</strong> say “noon” and “6 pm” instead of 12 and 18. Small thing, but no translation necessary.</li>
+<li><strong>The title states the finding</strong> instead of just restating the axes. “Solar output and house use” makes it so the reader has to figure out why they are being shown the data. “The panels make plenty, just not when the house wants it” tells them what they’re looking at.</li>
 <li><strong>No top and right box lines</strong> (<code>spines</code>). This is pure taste, but it makes the plot feel less cluttered.</li>
 </ul>
-<p>Is it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title. I think it passes.</p>
+<p>Is it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title.</p>
 <p>Now the evil twin. Same data, and it looks at least as responsible:</p>
 <div>
 <div id="pyodide-3" class="exercise-cell">
@@ -508,27 +507,18 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmhvdXIgPSBucC5hcmFuZ2UoMjQpICAgICAgIyAwID0gbWlkbmlnaHQgdG8gMSBhbSwgMTIgPSBub29uIHRvIDEgcG0sIC4uLlxuc29sYXJfa1cgPSBucC5hcnJheShbMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjEsIDEuNiwgMy4zLCA0LjEsIDQuOSxcbiAgICAgICAgICAgICAgICAgICAgIDUuMywgNS4zLCA0LjgsIDQuMSwgMy4wLCAxLjYsIDAuMiwgMC4wLCAwLjAsIDAuMCwgMC4wLCAwLjBdKVxudXNlX2tXID0gbnAuYXJyYXkoWzAuNSwgMC41LCAwLjcsIDAuNSwgMC41LCAwLjgsIDEuMiwgMS44LCAxLjQsIDAuNywgMC44LCAwLjksXG4gICAgICAgICAgICAgICAgICAgMC42LCAwLjksIDAuNywgMC43LCAxLjMsIDEuOSwgMi45LCAyLjgsIDEuOSwgMC45LCAwLjcsIDAuNl0pXG5cbm1hZGUgPSBzb2xhcl9rVy5zdW0oKSAgICAgIyBrV2ggb3ZlciB0aGUgd2hvbGUgZGF5XG51c2VkID0gdXNlX2tXLnN1bSgpXG5cbnBsdC5maWd1cmUoZmlnc2l6ZT0oNSwgNC41KSlcbnBsdC5iYXIoW1widXNlZCBieVxcbnRoZSBob3VzZVwiLCBcIm1hZGUgYnlcXG50aGUgcGFuZWxzXCJdLCBbdXNlZCwgbWFkZV0sXG4gICAgICAgIGNvbG9yPVtcIjAuNlwiLCBcImRhcmtvcmFuZ2VcIl0sIHdpZHRoPTAuNilcbnBsdC50ZXh0KDAsIHVzZWQgKyAwLjgsIGZcInt1c2VkOi4xZn0ga1doXCIsIGhhPVwiY2VudGVyXCIpXG5wbHQudGV4dCgxLCBtYWRlICsgMC44LCBmXCJ7bWFkZTouMWZ9IGtXaFwiLCBoYT1cImNlbnRlclwiKVxucGx0LnlsYWJlbChcIkVuZXJneSBvdmVyIG9uZSBkYXkgKGtXaClcIilcbnBsdC55bGltKDAsIDQ1KVxucGx0LnRpdGxlKGZcIlRoaXMgaG91c2UgaXMgezEwMCAqIG1hZGUgLyB1c2VkOi4wZn0lIHNvbGFyLXBvd2VyZWRcIiwgbG9jPVwibGVmdFwiKVxucGx0LmdjYSgpLnNwaW5lc1tbXCJ0b3BcIiwgXCJyaWdodFwiXV0uc2V0X3Zpc2libGUoRmFsc2UpXG5wbHQudGlnaHRfbGF5b3V0KClcbnBsdC5zaG93KCkifQ==
 </script>
 </div>
-<p>Every number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But “solar-powered” suggests the house runs on sunshine, and the hourly plot says that’s not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. Adding up the whole day threw away the one dimension where the story lives… time. (This is not a hypothetical trick, by the way. “Net” claims like this are everywhere. They aren’t <em>wrong</em>, exactly. They’re just answering a different question than the one you think you’re reading.)</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>If we were the honest table, our sentence might be: “Hourly averages from one sunny day. Shading shows when the house sent power to the grid vs.&nbsp;bought it.” If we were the misleading table: “Daily totals hide that the house buys ~60% of its electricity at night. The hourly version shows it.”</p>
-</div></div></section>
+<p>Every number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But “solar-powered” suggests the house runs on sunshine, and the hourly plot says that’s not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. (“Net” claims like this are everywhere. They aren’t <em>wrong</em>, but they might not answer the question you should be asking.)</p>
+</section>
 <section id="the-plan" class="level2">
 <h2 class="anchored" data-anchor-id="the-plan">The plan</h2>
-<p>We have about 40 minutes of making, and then the reveal.</p>
-<p><strong>1. Open your dataset</strong> (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell. Out comes the <strong>boring plot</strong>: markers, labels, units, and nothing else. This is our control, and we’ll leave it alone. It’s the plot a skeptic would make if they had nothing to prove.</p>
-<p><strong>2. Look at the boring plot and talk at your table.</strong> What <em>is</em> the story here? What would a reader take away if all they saw was this? What’s the most interesting true thing in the data, and what’s the most tempting false thing? Both tables — honest and misleading — need to answer both questions. You can’t hide the truth well if you don’t know what it is.</p>
+<p><strong>1. Open your dataset</strong> (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell to see the <strong>boring plot</strong>: markers, labels, units, and nothing else.</p>
+<p><strong>2. Look at the boring plot and talk at your table.</strong> What <em>is</em> the story here? What would a reader take away if all they saw was this? What’s the most interesting true thing in the data, and what’s the most tempting false thing?</p>
 <p><strong>3. Make the interesting plot.</strong> Now open your slip.</p>
 <ul>
-<li><strong>Honest tables:</strong> make the true takeaway jump off the page. Honest doesn’t mean timid. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding. Every choice you make should survive a skeptic who has seen the boring plot.</li>
-<li><strong>Misleading tables:</strong> make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). No typing in fake values. But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look <em>responsible</em>.</li>
+<li><strong>Honest tables:</strong> make the true takeaway jump off the page. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding.</li>
+<li><strong>Misleading tables:</strong> make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). (That is, o typing in fake values!) But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look reasonable.</li>
 </ul>
-<p><strong>4. Write one sentence on paper</strong>, and keep it face-down until the reveal:</p>
-<ul>
-<li>Honest tables: the disclosure you’d put under the plot in a real report. For example, “The y-axis starts at 22 °C, room temperature, because that’s where both mugs end up.”</li>
-<li>Misleading tables: the trick, and what an honest version would show. For example, “We only plotted March through August, which hides that this happens every year.”</li>
-</ul>
-<p><strong>5. Put both plots in the class slide deck</strong>, on your dataset’s two slides: the interesting plot on the first, the boring plot on the second. In the browser you can right-click (or long-press on an iPad) the plot and copy the image. A screenshot works too.</p>
+<p><strong>4. Put both plots in the class slide deck</strong>, on your dataset’s two slides: the interesting plot on the first, the boring plot on the second. In the browser you can right-click (or long-press on an iPad) the plot and copy the image.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -543,14 +533,9 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </div>
 </div>
 </section>
-<section id="the-reveal" class="level2">
-<h2 class="anchored" data-anchor-id="the-reveal">The reveal</h2>
-<p>For each dataset, we’ll put the interesting plot on the screen for about ten seconds. You vote: thumbs up if you believe it, thumbs down if you think you’re being played. Then we flip to the boring plot, and the table reads its sentence.</p>
-<p>Keep score in your head if you like. The misleading plots that fooled the most people and the honest plots that the most people trusted are both winners. More interesting, though, are the misses: an honest plot that the room <em>didn’t</em> trust, or a misleading one that everybody bought. What was it about that plot?</p>
-</section>
 <section id="deliverable-2-ec" class="level2">
 <h2 class="anchored" data-anchor-id="deliverable-2-ec">Deliverable (2 EC)</h2>
-<p>Your table’s two plots (boring and interesting) plus your one sentence. Everyone at the table submits the same thing.</p>
+<p>Your table’s two plots (boring and interesting).</p>
 </section>
 <section id="datasets" class="level2">
 <h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
