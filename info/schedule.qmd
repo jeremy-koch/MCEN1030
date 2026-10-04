@@ -37,7 +37,7 @@ Tentative schedule:
 | 5 | **Sep 22**<br>[A loop that remembers](../lessons/05a-simulate.qmd) — simulating a falling ball. | **Sep 24**<br>[Adding drag](../activities/w05-drag-lab.qmd) — when the formula runs out.<br><br>*Homework:* [HW 3 · The potato cannon](../homework/hw3-potato-cannon.qmd). | S1, S2, S3, A1 |
 | 6 | **Sep 29**<br>✓ **Checkpoint 2**, then [Data in, data out](../lessons/06-data-io-plots.qmd) — files, CSV, and plotting. | **Oct 1**<br>[Plot clinic](../activities/w06-plot-clinic.qmd) — make one honest plot, catch one misleading one.<br><br>*Homework:* [HW 4 · The siren](../homework/hw4-siren.qmd). | F2, A2 |
 | **Phase 2 — Tools** | | | |
-| 7 | **Oct 6**<br>**Pandas**. | **Oct 8**<br>*(No class.)* | P3, F2 |
+| 7 | **Oct 6**<br>[Pandas](../lessons/07-pandas.qmd) — 60,000 rows without fear. | **Oct 8**<br>*(No class.)* | P3, F2 |
 | 8 | **Oct 13**<br>✓ **Checkpoint 3**, then **Fetch** — APIs, JSON, and what to do when a request fails (`try`/`except`/`raise`). | **Oct 15**<br>**Data acquisition lab** — a live API. | F1, F2, A3 |
 | 9 | **Oct 20**<br>**Back to the model** — revisiting the falling ball with real data in hand. | **Oct 22**<br>**Model meets measurement** — phone drop vs. simulation. | S1, S3, A3 |
 | 10 | **Oct 27**<br>✓ **Checkpoint 4**, then **Simulate II** — assumptions, trust, and what-ifs. | **Oct 29**<br>**Model critique**. | S2, S3, S4 |

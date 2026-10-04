@@ -40,6 +40,7 @@ lessons/05*
 lessons/06*
 !lessons/06-data-io-plots.qmd
 lessons/07*
+!lessons/07-pandas.qmd
 lessons/08*
 lessons/09*
 lessons/1*

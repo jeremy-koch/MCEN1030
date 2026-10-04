@@ -1,0 +1,137 @@
+---
+title: "Pandas: 60,000 rows without fear"
+subtitle: "Week 7 — read before Tuesday"
+---
+
+A test rig logging 100 readings per second produces 360,000 rows an hour. The maximum number of rows in an Excel spreadsheet is 1,048,576... and well before that, we'd get frustrated with lag or with the clumsiness of navigating such a large dataset. 
+
+Pandas is a Python package that excels (hehe) at dealing with large datasets. Rather than having an interface that constantly displays the data
+
+
+Excel is not going to help you here. The tools in this course handle that with ease.
+
+In week 1 it was mentioned that promised that engineering datasets have 60,000 rows and that Excel is not going to help you. Today: the tool that will.
+
+## Think First
+
+Recall
+
+1. Week 6: what are the F2 questions you ask of any data file before computing?
+2. What's the largest spreadsheet you've personally scrolled through? How did that go?
+
+Look Ahead
+
+1. "Find every row where temperature exceeded 80 °C" — how would you even *start* in Excel with 60,000 rows?
+2. If a program reduces 60,000 numbers to 5, how do you verify the 5?
+
+## When spreadsheets are no longer useful
+
+Excel has its role in an engineer's toolbox: for small tables where it is possible to inspect the entire dataset with just a bit of scrolling, it is great. If you need to do a little bit of math on that data, e.g. adding two columns together, it is great.
+
+It is not so great whenever you have 400,000 rows and 24 columns — very possible if a collection of sensors is harvesting data several times per second. Imagine: cell Y2 is referenced by A2, but you don't know what is in Y2, so you slowly scroll over. The number in Y2 looks suspicious so you want to check it with a "quick" calculation. Right-click, create a new column, start creating a formula, scroll around to find the cells you need in the formula and click them, get yelled at by Microsoft because there is a problem with the equation, fix it, propagate it down through all 400,000 rows. 
+
+And then imagine having to do the same thing with every spreadsheet that is produced by your test... manually creating columns, scrolling all over the spreadsheet to do so. The point is: yes, one can do this, but there is a better way.
+
+
+
+## Pandas and the DataFrame
+
+Pandas is a Python package (typically imported with `import pandas as pd`) designed to handle large datasets. Its core object is the **DataFrame**: a table (basically a spreadsheet) stored under one variable name (here `df`):
+
+```python
+import pandas as pd
+df = pd.read_csv("motor_test_log.csv")
+df.head()
+```
+`head()` is a useful initial check — make sure the data looks like it should. It prints the column names and first few rows of data. Columns are labeled by *name*, not a cryptic AL2:
+
+```python
+df["temp_C"]            # one column is called temp_C
+df["temp_C"].mean()
+df["temp_C"].max()
+df.describe()           # summary statistics for every numeric column at once
+```
+
+## Filter, summarize, reduce
+
+**Filtering** is like masking:
+
+```python
+hot = df[df["temp_C"] > 80]      # a new DataFrame: only the too-hot rows
+len(hot)                          # how many rows are there?
+hot["rpm"].mean()                 # within the hot DataFrame, what was the average rpm?
+```
+
+Read the inner part first: `df["temp_C"] > 80` produces 60,000 `True`/`False` values; wrapping it in `df[...]` keeps the rows that are `True`. **Grouping** let's you examine the data "broken down by...":
+
+```python
+df.groupby("test_phase")["temp_C"].mean()   # average temp in each phase of the test
+```
+
+## Try things
+
+A live pandas sandbox — this time we will manually create a DataFrame from data.
+
+```{pyodide}
+import pandas as pd
+df = pd.DataFrame({
+    "run":     [1, 2, 3, 4, 5, 6],
+    "coolant": ["air","air","air","water","water","water"],
+    "temp_C":  [88, 91, 84, 62, 58, 65],
+})
+print(df[df["temp_C"] > 80])                    # filter
+print(df.groupby("coolant")["temp_C"].mean())   # group + summarize
+
+df["temp_F"] = df["temp_C"] * 9/5 + 32          # create a column, computed from another
+print(df)
+```
+
+Try things: filter on a different threshold, group by `run` (though that is pretty useless — grouping needs repeats to be interesting), add a new column.
+
+::: {.column-margin}
+My strategy for this course is to get you to do things instead of just watching me do things... I think it is a better way to learn! Do things here!
+:::
+
+## Having many tools in your toolbox
+
+Excel has its place, and knowing when to use it vs. when to use Pandas is wisdom you will develop. I use Excel when I want to actually see the data with a reasonable amount of scrolling. E.g., at the end of the semester I open the gradebook in Excel and have a look around.
+
+But if I have a large dataset and want to do some sort of analysis on it, its time for Pandas. Especially if I might need to do that analysis on several different datasets — one Pandas script can be applied to all the files, without clumsily scrolling through each one.
+
+
+::: {.bring-to-class}
+Here's a 12-row subset of the 60,000-row motor test we'll dig into in class, already loaded as a DataFrame. For each question, **write a line of pandas** that answers it and run it:
+
+1. How many readings were above 80 °C?
+2. What was the mean `rpm` during *only* those readings?
+3. Which `test_phase` ran hottest, on average?
+
+Then check each output against the table by eye.
+
+```{pyodide}
+import pandas as pd
+df = pd.DataFrame({
+    "test_phase": ["startup"]*4 + ["cruise"]*5 + ["shutdown"]*3,
+    "rpm":    [800, 1500, 2200, 3000, 3600, 3600, 3550, 3620, 3580, 2000, 900, 300],
+    "temp_C": [41,  55,   68,   83,   79,   81,   78,   84,   77,   74,   60,  48],
+})
+print(df)
+
+# Question 1:
+
+# Question 2:
+
+# Question 3:
+
+```
+
+Bring your three lines and their outputs. And one more: **invent a question** a supervisor might ask about this motor, and write the pandas line that answers it.
+:::
+
+::: {.content-hidden}
+**Instructor answer key (planning only — stripped from the rendered site):**
+(1) `len(df[df["temp_C"] > 80])` → 3 (83, 81, 84; 80 itself never appears, but "above" vs. "at or above" is still worth a sentence).
+(2) `df[df["temp_C"] > 80]["rpm"].mean()` → 3406.7 rpm. The chaining is the hard part; expect some to filter then forget to select `rpm`.
+(3) `df.groupby("test_phase")["temp_C"].mean()` → cruise 79.8, startup 61.75, shutdown 60.7 (steady-hot beats peaky).
+:::
+
