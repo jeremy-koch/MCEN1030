@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Base Camp – MCEN 1030</title>
+<title>Pandas: 60,000 rows without fear – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -126,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Base Camp</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Pandas: 60,000 rows without fear</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -310,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/07-pandas.html" class="sidebar-item-text sidebar-link">
+  <a href="../lessons/07-pandas.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Pandas: 60,000 rows without fear</span></a>
   </div>
 </li>
@@ -367,18 +402,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-sessions" id="toc-the-sessions" class="nav-link active" data-scroll-target="#the-sessions">The sessions</a></li>
-  <li><a href="#practice-library-async-base-camp" id="toc-practice-library-async-base-camp" class="nav-link" data-scroll-target="#practice-library-async-base-camp">Practice library (async Base Camp)</a></li>
+  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
+  <li><a href="#when-spreadsheets-are-no-longer-useful" id="toc-when-spreadsheets-are-no-longer-useful" class="nav-link" data-scroll-target="#when-spreadsheets-are-no-longer-useful">When spreadsheets are no longer useful</a></li>
+  <li><a href="#pandas-and-the-dataframe" id="toc-pandas-and-the-dataframe" class="nav-link" data-scroll-target="#pandas-and-the-dataframe">Pandas and the DataFrame</a></li>
+  <li><a href="#filter-summarize-reduce" id="toc-filter-summarize-reduce" class="nav-link" data-scroll-target="#filter-summarize-reduce">Filter, summarize, reduce</a></li>
+  <li><a href="#try-things" id="toc-try-things" class="nav-link" data-scroll-target="#try-things">Try things</a></li>
+  <li><a href="#having-many-tools-in-your-toolbox" id="toc-having-many-tools-in-your-toolbox" class="nav-link" data-scroll-target="#having-many-tools-in-your-toolbox">Having many tools in your toolbox</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Pandas: 60,000 rows without fear</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Base Camp</h1>
-<p class="subtitle lead">Monday office hours</p>
+<h1 class="title">Pandas: 60,000 rows without fear</h1>
+<p class="subtitle lead">Week 7 — read before Tuesday</p>
 </div>
 
 
@@ -395,32 +434,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Mondays are an optional session/office hour. The first half of the semester, they are <strong>Base Camp</strong>: particularly useful if you are new to all of this, but open to everyone. No attendance is taken, nothing here affects your grade, but you will have a better grasp of the material at the end of each session. Plus, it’s a good way to meet some more people in the class and to talk to me/the TA!</p>
-
-<!-- **Base Camp is not remedial.** Maybe haven't done this before and it didn't click the first time, or maybe you just want the extra practice, or maybe you just want to meet some more people in the class.  -->
-<!-- Plenty of your classmates arrive with years of tinkering; you're not behind them in ability, you're behind them in *hours*. The course was designed assuming zero prior experience. Base Camp is where that assumption gets honored with an instructor at your elbow. -->
-<div class="no-row-height column-margin column-container"><div class="">
-<p>In the second half of the semester, Mondays become <a href="../info/sidequests.html">Side Quests</a> — interesting extensions beyond the core course content. Still optional.</p>
-</div></div><section id="the-sessions" class="level2">
-<h2 class="anchored" data-anchor-id="the-sessions">The sessions</h2>
-<p><strong>BC1 (Week 1) · The computer itself, and how to talk about code.</strong> Before any coding: the computer itself. Browsers vs.&nbsp;apps, Colab login, where a downloaded file goes, folders, uploading to Colab, what “the cloud” means for your work. Then the second half: <strong>how to ask a question about code</strong> — the vocabulary (what do you call <code>**</code>, <code>[]</code>, <code>:</code>?), the best way to ask a question: <em>what I ran / what I expected / what I got instead</em>.</p>
-<!-- **BC2 (Week 2) · First contact, slowly.** The [week 2 lesson](../lessons/02a-first-contact.qmd) again at half speed: cells, variables, running your first program, and learning to read error messages as information instead of accusation.
-
-**BC3 (Week 3) · The vocabulary drill.** Reps on the core reading skills: trace variables by hand, predict outputs, read `=` as "is assigned." Includes **assembly problems** — working code with its lines scrambled.
-
-**BC4 (Week 4) · Dress rehearsal: Checkpoint 1.** A full practice checkpoint under real conditions — paper, timed, no AI — then we rework it together, item by item. 
-<!-- **Dress rehearsals repeat on the Monday before every checkpoint** (weeks 4, 6, 8, 10). -->
-<!-- **BC5 (Week 5) · Loop clinic.** Loops trip up more beginners than any other fundamental ingredient. Extra reps with accumulators, `range`, predicting iteration by hand, and loop assembly.
-
-**BC6 (Week 6) · Dress rehearsal: Checkpoint 2** — including re-offer items from Checkpoint 1, just as Tuesday will. -->
+<p>A test rig logging 100 readings per second produces 360,000 rows an hour. The maximum number of rows in an Excel spreadsheet is 1,048,576… and well before that, we’d get frustrated with lag or with the clumsiness of navigating such a large dataset.</p>
+<p>Pandas is a Python package that excels (hehe) at dealing with large datasets. Rather than having an interface that constantly displays the data</p>
+<p>Excel is not going to help you here. The tools in this course handle that with ease.</p>
+<p>In week 1 it was mentioned that promised that engineering datasets have 60,000 rows and that Excel is not going to help you. Today: the tool that will.</p>
+<section id="think-first" class="level2">
+<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
+<p>Recall</p>
+<ol type="1">
+<li>Week 6: what are the F2 questions you ask of any data file before computing?</li>
+<li>What’s the largest spreadsheet you’ve personally scrolled through? How did that go?</li>
+</ol>
+<p>Look Ahead</p>
+<ol type="1">
+<li>“Find every row where temperature exceeded 80 °C” — how would you even <em>start</em> in Excel with 60,000 rows?</li>
+<li>If a program reduces 60,000 numbers to 5, how do you verify the 5?</li>
+</ol>
 </section>
-<section id="practice-library-async-base-camp" class="level2">
-<h2 class="anchored" data-anchor-id="practice-library-async-base-camp">Practice library (async Base Camp)</h2>
-<p>I’ll add extra code traces, predict-then-runs, and assembly problems, with collapsible answers. Requests welcome. Page is up: <strong><a href="../info/practice.html">Practice Library</a></strong>.</p>
+<section id="when-spreadsheets-are-no-longer-useful" class="level2">
+<h2 class="anchored" data-anchor-id="when-spreadsheets-are-no-longer-useful">When spreadsheets are no longer useful</h2>
+<p>Excel has its role in an engineer’s toolbox: for small tables where it is possible to inspect the entire dataset with just a bit of scrolling, it is great. If you need to do a little bit of math on that data, e.g.&nbsp;adding two columns together, it is great.</p>
+<p>It is not so great whenever you have 400,000 rows and 24 columns — very possible if a collection of sensors is harvesting data several times per second. Imagine: cell Y2 is referenced by A2, but you don’t know what is in Y2, so you slowly scroll over. The number in Y2 looks suspicious so you want to check it with a “quick” calculation. Right-click, create a new column, start creating a formula, scroll around to find the cells you need in the formula and click them, get yelled at by Microsoft because there is a problem with the equation, fix it, propagate it down through all 400,000 rows.</p>
+<p>And then imagine having to do the same thing with every spreadsheet that is produced by your test… manually creating columns, scrolling all over the spreadsheet to do so. The point is: yes, one can do this, but there is a better way.</p>
+</section>
+<section id="pandas-and-the-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-and-the-dataframe">Pandas and the DataFrame</h2>
+<p>Pandas is a Python package (typically imported with <code>import pandas as pd</code>) designed to handle large datasets. Its core object is the <strong>DataFrame</strong>: a table (basically a spreadsheet) stored under one variable name (here <code>df</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"motor_test_log.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>head()</code> is a useful initial check — make sure the data looks like it should. It prints the column names and first few rows of data. Columns are labeled by <em>name</em>, not a cryptic AL2:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"temp_C"</span>]            <span class="co"># one column is called temp_C</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"temp_C"</span>].mean()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"temp_C"</span>].<span class="bu">max</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df.describe()           <span class="co"># summary statistics for every numeric column at once</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="filter-summarize-reduce" class="level2">
+<h2 class="anchored" data-anchor-id="filter-summarize-reduce">Filter, summarize, reduce</h2>
+<p><strong>Filtering</strong> is like masking:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hot <span class="op">=</span> df[df[<span class="st">"temp_C"</span>] <span class="op">&gt;</span> <span class="dv">80</span>]      <span class="co"># a new DataFrame: only the too-hot rows</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(hot)                          <span class="co"># how many rows are there?</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hot[<span class="st">"rpm"</span>].mean()                 <span class="co"># within the hot DataFrame, what was the average rpm?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Read the inner part first: <code>df["temp_C"] &gt; 80</code> produces 60,000 <code>True</code>/<code>False</code> values; wrapping it in <code>df[...]</code> keeps the rows that are <code>True</code>. <strong>Grouping</strong> let’s you examine the data “broken down by…”:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"test_phase"</span>)[<span class="st">"temp_C"</span>].mean()   <span class="co"># average temp in each phase of the test</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="try-things" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="try-things">Try things</h2>
+<p>A live pandas sandbox — this time we will manually create a DataFrame from data.</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHBhbmRhcyBhcyBwZFxuZGYgPSBwZC5EYXRhRnJhbWUoe1xuICAgIFwicnVuXCI6ICAgICBbMSwgMiwgMywgNCwgNSwgNl0sXG4gICAgXCJjb29sYW50XCI6IFtcImFpclwiLFwiYWlyXCIsXCJhaXJcIixcIndhdGVyXCIsXCJ3YXRlclwiLFwid2F0ZXJcIl0sXG4gICAgXCJ0ZW1wX0NcIjogIFs4OCwgOTEsIDg0LCA2MiwgNTgsIDY1XSxcbn0pXG5wcmludChkZltkZltcInRlbXBfQ1wiXSA+IDgwXSkgICAgICAgICAgICAgICAgICAgICMgZmlsdGVyXG5wcmludChkZi5ncm91cGJ5KFwiY29vbGFudFwiKVtcInRlbXBfQ1wiXS5tZWFuKCkpICAgIyBncm91cCArIHN1bW1hcml6ZVxuXG5kZltcInRlbXBfRlwiXSA9IGRmW1widGVtcF9DXCJdICogOS81ICsgMzIgICAgICAgICAgIyBjcmVhdGUgYSBjb2x1bW4sIGNvbXB1dGVkIGZyb20gYW5vdGhlclxucHJpbnQoZGYpIn0=
+</script>
+</div>
+<p>Try things: filter on a different threshold, group by <code>run</code> (though that is pretty useless — grouping needs repeats to be interesting), add a new column.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>My strategy for this course is to get you to do things instead of just watching me do things… I think it is a better way to learn! Do things here!</p>
+</div></div></section>
+<section id="having-many-tools-in-your-toolbox" class="level2">
+<h2 class="anchored" data-anchor-id="having-many-tools-in-your-toolbox">Having many tools in your toolbox</h2>
+<p>Excel has its place, and knowing when to use it vs.&nbsp;when to use Pandas is wisdom you will develop. I use Excel when I want to actually see the data with a reasonable amount of scrolling. E.g., at the end of the semester I open the gradebook in Excel and have a look around.</p>
+<p>But if I have a large dataset and want to do some sort of analysis on it, its time for Pandas. Especially if I might need to do that analysis on several different datasets — one Pandas script can be applied to all the files, without clumsily scrolling through each one.</p>
+<div class="bring-to-class">
+<p>Here’s a 12-row subset of the 60,000-row motor test we’ll dig into in class, already loaded as a DataFrame. For each question, <strong>write a line of pandas</strong> that answers it and run it:</p>
+<ol type="1">
+<li>How many readings were above 80 °C?</li>
+<li>What was the mean <code>rpm</code> during <em>only</em> those readings?</li>
+<li>Which <code>test_phase</code> ran hottest, on average?</li>
+</ol>
+<p>Then check each output against the table by eye.</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHBhbmRhcyBhcyBwZFxuZGYgPSBwZC5EYXRhRnJhbWUoe1xuICAgIFwidGVzdF9waGFzZVwiOiBbXCJzdGFydHVwXCJdKjQgKyBbXCJjcnVpc2VcIl0qNSArIFtcInNodXRkb3duXCJdKjMsXG4gICAgXCJycG1cIjogICAgWzgwMCwgMTUwMCwgMjIwMCwgMzAwMCwgMzYwMCwgMzYwMCwgMzU1MCwgMzYyMCwgMzU4MCwgMjAwMCwgOTAwLCAzMDBdLFxuICAgIFwidGVtcF9DXCI6IFs0MSwgIDU1LCAgIDY4LCAgIDgzLCAgIDc5LCAgIDgxLCAgIDc4LCAgIDg0LCAgIDc3LCAgIDc0LCAgIDYwLCAgNDhdLFxufSlcbnByaW50KGRmKVxuXG4jIFF1ZXN0aW9uIDE6XG5cbiMgUXVlc3Rpb24gMjpcblxuIyBRdWVzdGlvbiAzOiJ9
+</script>
+</div>
+<p>Bring your three lines and their outputs. And one more: <strong>invent a question</strong> a supervisor might ask about this motor, and write the pandas line that answers it.</p>
+</div>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -441,7 +543,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../info";
+window._ojs.paths.runtimeToDoc = "../../lessons";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;
