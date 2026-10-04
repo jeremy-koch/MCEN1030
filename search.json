@@ -2,85 +2,85 @@
   {
     "objectID": "lessons/07-pandas.html",
     "href": "lessons/07-pandas.html",
-    "title": "Pandas: 60,000 rows without fear",
+    "title": "Pandas",
     "section": "",
-    "text": "A test rig logging 100 readings per second produces 360,000 rows an hour. The maximum number of rows in an Excel spreadsheet is 1,048,576… and well before that, we’d get frustrated with lag or with the clumsiness of navigating such a large dataset.\nPandas is a Python package that excels (hehe) at dealing with large datasets. Rather than having an interface that constantly displays the data\nExcel is not going to help you here. The tools in this course handle that with ease.\nIn week 1 it was mentioned that promised that engineering datasets have 60,000 rows and that Excel is not going to help you. Today: the tool that will.",
+    "text": "A test rig logging 100 readings per second produces 360,000 rows an hour. We can technically store that hour of data in a spreadsheet and open it with Microsoft Excel or Google Sheets, but prepare for a headache: scrolling through the data set is clumsy, creating figures will be laggy, and writing math equations will involve cryptic things like =PI()*AL2… what is AL2?!\nPandas is a Python package that excels (hehe) at dealing with large datasets. Rather than having an interface that constantly displays the data, the data is stored in a variable name and accessed by column name — “temperature_C” instead of “AL2”. There are ways to filter and sort the data and calculate the statistics of it, and the data can be analyzed using Python scripts instead of scrolling around a spreadsheet, creating columns, etc.",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
-      "Pandas: 60,000 rows without fear"
+      "Pandas"
     ]
   },
   {
     "objectID": "lessons/07-pandas.html#think-first",
     "href": "lessons/07-pandas.html#think-first",
-    "title": "Pandas: 60,000 rows without fear",
+    "title": "Pandas",
     "section": "Think First",
-    "text": "Think First\nRecall\n\nWeek 6: what are the F2 questions you ask of any data file before computing?\nWhat’s the largest spreadsheet you’ve personally scrolled through? How did that go?\n\nLook Ahead\n\n“Find every row where temperature exceeded 80 °C” — how would you even start in Excel with 60,000 rows?\nIf a program reduces 60,000 numbers to 5, how do you verify the 5?",
+    "text": "Think First\nRecall\n\nWhat would you check in a data file before an analysis?\nWhat’s the largest spreadsheet you’ve personally scrolled through?\n\nLook Ahead\n\n“Find every row where temperature exceeded 80 °C” — how would you do this in a spreadsheet with 60,000 rows?\nWhat about “Find every row where temperature exceeded 80 °C in phase 1” — now we need to pay attention to two columns!",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
-      "Pandas: 60,000 rows without fear"
+      "Pandas"
     ]
   },
   {
     "objectID": "lessons/07-pandas.html#when-spreadsheets-are-no-longer-useful",
     "href": "lessons/07-pandas.html#when-spreadsheets-are-no-longer-useful",
-    "title": "Pandas: 60,000 rows without fear",
+    "title": "Pandas",
     "section": "When spreadsheets are no longer useful",
-    "text": "When spreadsheets are no longer useful\nExcel has its role in an engineer’s toolbox: for small tables where it is possible to inspect the entire dataset with just a bit of scrolling, it is great. If you need to do a little bit of math on that data, e.g. adding two columns together, it is great.\nIt is not so great whenever you have 400,000 rows and 24 columns — very possible if a collection of sensors is harvesting data several times per second. Imagine: cell Y2 is referenced by A2, but you don’t know what is in Y2, so you slowly scroll over. The number in Y2 looks suspicious so you want to check it with a “quick” calculation. Right-click, create a new column, start creating a formula, scroll around to find the cells you need in the formula and click them, get yelled at by Microsoft because there is a problem with the equation, fix it, propagate it down through all 400,000 rows.\nAnd then imagine having to do the same thing with every spreadsheet that is produced by your test… manually creating columns, scrolling all over the spreadsheet to do so. The point is: yes, one can do this, but there is a better way.",
+    "text": "When spreadsheets are no longer useful\nExcel has its role in an engineer’s toolbox: for small tables where it is possible to inspect the entire dataset with just a bit of scrolling, it is great. If you need to do a little bit of math on that data, e.g. adding two columns together, it is great — easy to check your work, and you can quickly look over the results.\nIt is not so great whenever you have 400,000 rows and 24 columns — a very reasonable situation if a collection of sensors is harvesting data several times per second. Then imagine an ensuing analysis, maybe something delivered to you by a colleague: cell Y2 is referenced by A2, but you don’t know what is in Y2, so you scroll over. The number in Y2 looks suspicious so you want to check it with a “quick” calculation. Right-click, create a new column, start creating a formula, scroll around to find the cells you need in the formula and click them, get yelled at by Microsoft because there is a problem with the equation, fix it, propagate it down through all 400,000 rows.\nAnd then imagine having to do the same thing with every spreadsheet that is produced by your testing process… each time manually creating columns, scrolling all over the spreadsheet to do so, typing the same equation into each spreadsheet. The point is: yes, one can do this, but there is a better way.",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
-      "Pandas: 60,000 rows without fear"
+      "Pandas"
     ]
   },
   {
     "objectID": "lessons/07-pandas.html#pandas-and-the-dataframe",
     "href": "lessons/07-pandas.html#pandas-and-the-dataframe",
-    "title": "Pandas: 60,000 rows without fear",
+    "title": "Pandas",
     "section": "Pandas and the DataFrame",
     "text": "Pandas and the DataFrame\nPandas is a Python package (typically imported with import pandas as pd) designed to handle large datasets. Its core object is the DataFrame: a table (basically a spreadsheet) stored under one variable name (here df):\nimport pandas as pd\ndf = pd.read_csv(\"motor_test_log.csv\")\ndf.head()\nhead() is a useful initial check — make sure the data looks like it should. It prints the column names and first few rows of data. Columns are labeled by name, not a cryptic AL2:\ndf[\"temp_C\"]            # one column is called temp_C\ndf[\"temp_C\"].mean()\ndf[\"temp_C\"].max()\ndf.describe()           # summary statistics for every numeric column at once",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
-      "Pandas: 60,000 rows without fear"
+      "Pandas"
     ]
   },
   {
     "objectID": "lessons/07-pandas.html#filter-summarize-reduce",
     "href": "lessons/07-pandas.html#filter-summarize-reduce",
-    "title": "Pandas: 60,000 rows without fear",
+    "title": "Pandas",
     "section": "Filter, summarize, reduce",
-    "text": "Filter, summarize, reduce\nFiltering is like masking:\nhot = df[df[\"temp_C\"] &gt; 80]      # a new DataFrame: only the too-hot rows\nlen(hot)                          # how many rows are there?\nhot[\"rpm\"].mean()                 # within the hot DataFrame, what was the average rpm?\nRead the inner part first: df[\"temp_C\"] &gt; 80 produces 60,000 True/False values; wrapping it in df[...] keeps the rows that are True. Grouping let’s you examine the data “broken down by…”:\ndf.groupby(\"test_phase\")[\"temp_C\"].mean()   # average temp in each phase of the test",
+    "text": "Filter, summarize, reduce\nFiltering is like masking:\nhot = df[df[\"temp_C\"] &gt; 80]      # a new DataFrame: only the too-hot rows\nlen(hot)                          # how many rows are there?\nhot[\"rpm\"].mean()                 # within the hot DataFrame, what was the average rpm?\nRead the inner part first: df[\"temp_C\"] &gt; 80 produces 60,000 True/False values; wrapping it in df[...] keeps the rows that are True. Grouping let’s you examine the data “broken down by…”:\ndf.groupby(\"test_phase\")[\"temp_C\"].mean()   # average temp in each phase of the test\nImportantly, these commands are part of a Python script — you can run the same script for each of your files and get “the average temp in each phase of the test” (or whatever).",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
-      "Pandas: 60,000 rows without fear"
+      "Pandas"
     ]
   },
   {
     "objectID": "lessons/07-pandas.html#try-things",
     "href": "lessons/07-pandas.html#try-things",
-    "title": "Pandas: 60,000 rows without fear",
+    "title": "Pandas",
     "section": "Try things",
     "text": "Try things\nA live pandas sandbox — this time we will manually create a DataFrame from data.\n\n\n\n\n\n\nTry things: filter on a different threshold, group by run (though that is pretty useless — grouping needs repeats to be interesting), add a new column.\n\n\nMy strategy for this course is to get you to do things instead of just watching me do things… I think it is a better way to learn! Do things here!",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
-      "Pandas: 60,000 rows without fear"
+      "Pandas"
     ]
   },
   {
     "objectID": "lessons/07-pandas.html#having-many-tools-in-your-toolbox",
     "href": "lessons/07-pandas.html#having-many-tools-in-your-toolbox",
-    "title": "Pandas: 60,000 rows without fear",
+    "title": "Pandas",
     "section": "Having many tools in your toolbox",
-    "text": "Having many tools in your toolbox\nExcel has its place, and knowing when to use it vs. when to use Pandas is wisdom you will develop. I use Excel when I want to actually see the data with a reasonable amount of scrolling. E.g., at the end of the semester I open the gradebook in Excel and have a look around.\nBut if I have a large dataset and want to do some sort of analysis on it, its time for Pandas. Especially if I might need to do that analysis on several different datasets — one Pandas script can be applied to all the files, without clumsily scrolling through each one.\n\nHere’s a 12-row subset of the 60,000-row motor test we’ll dig into in class, already loaded as a DataFrame. For each question, write a line of pandas that answers it and run it:\n\nHow many readings were above 80 °C?\nWhat was the mean rpm during only those readings?\nWhich test_phase ran hottest, on average?\n\nThen check each output against the table by eye.\n\n\n\n\n\n\nBring your three lines and their outputs. And one more: invent a question a supervisor might ask about this motor, and write the pandas line that answers it.",
+    "text": "Having many tools in your toolbox\nExcel has its place, and knowing when to use it vs. when to use Pandas is wisdom you will develop. I use Excel when I want to actually see the data with a reasonable amount of scrolling. E.g., at the end of the semester I open the gradebook in Excel and have a look around, maybe add a column with a calculation and see what happens or something.\nBut if I have a large dataset (more than a few hundred rows) and want to do some sort of analysis on it, its time for Pandas. Especially if I might need to do that analysis on several different datasets — one Pandas script can be applied to all the files, without clumsily scrolling through each one.\n\nHere’s a 12-row subset of the 60,000-row motor test we’ll dig into in class, already loaded as a DataFrame. For each question, write a line of pandas that answers it and run it:\n\nHow many readings were above 80 °C?\nWhat was the mean rpm during only those readings?\nWhich test_phase ran hottest, on average?\n\nThen check each output against the table by eye.\n\n\n\n\n\n\nBring your three lines and their outputs. And one more: invent a question a supervisor might ask about this motor, and write the pandas line that answers it.",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
-      "Pandas: 60,000 rows without fear"
+      "Pandas"
     ]
   },
   {

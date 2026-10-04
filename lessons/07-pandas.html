@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Pandas: 60,000 rows without fear – MCEN 1030</title>
+<title>Pandas – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Pandas: 60,000 rows without fear</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Pandas</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/07-pandas.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Pandas: 60,000 rows without fear</span></a>
+ <span class="menu-text">Pandas</span></a>
   </div>
 </li>
       </ul>
@@ -414,9 +414,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Pandas: 60,000 rows without fear</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Pandas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Pandas: 60,000 rows without fear</h1>
+<h1 class="title">Pandas</h1>
 <p class="subtitle lead">Week 7 — read before Tuesday</p>
 </div>
 
@@ -434,28 +434,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>A test rig logging 100 readings per second produces 360,000 rows an hour. The maximum number of rows in an Excel spreadsheet is 1,048,576… and well before that, we’d get frustrated with lag or with the clumsiness of navigating such a large dataset.</p>
-<p>Pandas is a Python package that excels (hehe) at dealing with large datasets. Rather than having an interface that constantly displays the data</p>
-<p>Excel is not going to help you here. The tools in this course handle that with ease.</p>
-<p>In week 1 it was mentioned that promised that engineering datasets have 60,000 rows and that Excel is not going to help you. Today: the tool that will.</p>
+<p>A test rig logging 100 readings per second produces 360,000 rows an hour. We can technically store that hour of data in a spreadsheet and open it with Microsoft Excel or Google Sheets, but prepare for a headache: scrolling through the data set is clumsy, creating figures will be laggy, and writing math equations will involve cryptic things like <code>=PI()*AL2</code>… what is <code>AL2</code>?!</p>
+<p>Pandas is a Python package that excels (hehe) at dealing with large datasets. Rather than having an interface that constantly displays the data, the data is stored in a variable name and accessed by column name — “temperature_C” instead of “AL2”. There are ways to filter and sort the data and calculate the statistics of it, and the data can be analyzed using Python scripts instead of scrolling around a spreadsheet, creating columns, etc.</p>
 <section id="think-first" class="level2">
 <h2 class="anchored" data-anchor-id="think-first">Think First</h2>
 <p>Recall</p>
 <ol type="1">
-<li>Week 6: what are the F2 questions you ask of any data file before computing?</li>
-<li>What’s the largest spreadsheet you’ve personally scrolled through? How did that go?</li>
+<li>What would you check in a data file before an analysis?</li>
+<li>What’s the largest spreadsheet you’ve personally scrolled through?</li>
 </ol>
 <p>Look Ahead</p>
 <ol type="1">
-<li>“Find every row where temperature exceeded 80 °C” — how would you even <em>start</em> in Excel with 60,000 rows?</li>
-<li>If a program reduces 60,000 numbers to 5, how do you verify the 5?</li>
+<li>“Find every row where temperature exceeded 80 °C” — how would you do this in a spreadsheet with 60,000 rows?</li>
+<li>What about “Find every row where temperature exceeded 80 °C in phase 1” — now we need to pay attention to two columns!</li>
 </ol>
 </section>
 <section id="when-spreadsheets-are-no-longer-useful" class="level2">
 <h2 class="anchored" data-anchor-id="when-spreadsheets-are-no-longer-useful">When spreadsheets are no longer useful</h2>
-<p>Excel has its role in an engineer’s toolbox: for small tables where it is possible to inspect the entire dataset with just a bit of scrolling, it is great. If you need to do a little bit of math on that data, e.g.&nbsp;adding two columns together, it is great.</p>
-<p>It is not so great whenever you have 400,000 rows and 24 columns — very possible if a collection of sensors is harvesting data several times per second. Imagine: cell Y2 is referenced by A2, but you don’t know what is in Y2, so you slowly scroll over. The number in Y2 looks suspicious so you want to check it with a “quick” calculation. Right-click, create a new column, start creating a formula, scroll around to find the cells you need in the formula and click them, get yelled at by Microsoft because there is a problem with the equation, fix it, propagate it down through all 400,000 rows.</p>
-<p>And then imagine having to do the same thing with every spreadsheet that is produced by your test… manually creating columns, scrolling all over the spreadsheet to do so. The point is: yes, one can do this, but there is a better way.</p>
+<p>Excel has its role in an engineer’s toolbox: for small tables where it is possible to inspect the entire dataset with just a bit of scrolling, it is great. If you need to do a little bit of math on that data, e.g.&nbsp;adding two columns together, it is great — easy to check your work, and you can quickly look over the results.</p>
+<p>It is not so great whenever you have 400,000 rows and 24 columns — a very reasonable situation if a collection of sensors is harvesting data several times per second. Then imagine an ensuing analysis, maybe something delivered to you by a colleague: cell Y2 is referenced by A2, but you don’t know what is in Y2, so you scroll over. The number in Y2 looks suspicious so you want to check it with a “quick” calculation. Right-click, create a new column, start creating a formula, scroll around to find the cells you need in the formula and click them, get yelled at by Microsoft because there is a problem with the equation, fix it, propagate it down through all 400,000 rows.</p>
+<p>And then imagine having to do the same thing with every spreadsheet that is produced by your testing process… each time manually creating columns, scrolling all over the spreadsheet to do so, typing the same equation into each spreadsheet. The point is: yes, one can do this, but there is a better way.</p>
 </section>
 <section id="pandas-and-the-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="pandas-and-the-dataframe">Pandas and the DataFrame</h2>
@@ -477,6 +475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hot[<span class="st">"rpm"</span>].mean()                 <span class="co"># within the hot DataFrame, what was the average rpm?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Read the inner part first: <code>df["temp_C"] &gt; 80</code> produces 60,000 <code>True</code>/<code>False</code> values; wrapping it in <code>df[...]</code> keeps the rows that are <code>True</code>. <strong>Grouping</strong> let’s you examine the data “broken down by…”:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"test_phase"</span>)[<span class="st">"temp_C"</span>].mean()   <span class="co"># average temp in each phase of the test</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Importantly, these commands are <strong>part of a Python script</strong> — you can run the same script for each of your files and get “the average temp in each phase of the test” (or whatever).</p>
 </section>
 <section id="try-things" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="try-things">Try things</h2>
@@ -496,8 +495,8 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHBhbmRhcyBhcyBw
 </div></div></section>
 <section id="having-many-tools-in-your-toolbox" class="level2">
 <h2 class="anchored" data-anchor-id="having-many-tools-in-your-toolbox">Having many tools in your toolbox</h2>
-<p>Excel has its place, and knowing when to use it vs.&nbsp;when to use Pandas is wisdom you will develop. I use Excel when I want to actually see the data with a reasonable amount of scrolling. E.g., at the end of the semester I open the gradebook in Excel and have a look around.</p>
-<p>But if I have a large dataset and want to do some sort of analysis on it, its time for Pandas. Especially if I might need to do that analysis on several different datasets — one Pandas script can be applied to all the files, without clumsily scrolling through each one.</p>
+<p>Excel has its place, and knowing when to use it vs.&nbsp;when to use Pandas is wisdom you will develop. I use Excel when I want to actually see the data with a reasonable amount of scrolling. E.g., at the end of the semester I open the gradebook in Excel and have a look around, maybe add a column with a calculation and see what happens or something.</p>
+<p>But if I have a large dataset (more than a few hundred rows) and want to do some sort of analysis on it, its time for Pandas. Especially if I might need to do that analysis on several different datasets — one Pandas script can be applied to all the files, without clumsily scrolling through each one.</p>
 <div class="bring-to-class">
 <p>Here’s a 12-row subset of the 60,000-row motor test we’ll dig into in class, already loaded as a DataFrame. For each question, <strong>write a line of pandas</strong> that answers it and run it:</p>
 <ol type="1">
