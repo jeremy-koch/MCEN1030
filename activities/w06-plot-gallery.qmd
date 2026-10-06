@@ -6,7 +6,7 @@ lightbox:
   loop: true
 ---
 
-On Thursday we ran an experiment on ourselves. Every table got one dataset and a secret mission: either make the true story jump off the page, or make the room believe something the data doesn't support... without changing a single number. Every plot you made is below. (The assignment was one plot per table, but some tables got carried away and turned in several, and a few turned in the boring baseline too. Where teammates each turned in an identical copy, we kept just one.)
+<!-- On Thursday we ran an experiment on ourselves. Every table got one dataset and a secret mission: either make the true story jump off the page, or make the room believe something the data doesn't support... without changing a single number. Every plot you made is below. (The assignment was one plot per table, but some tables got carried away and turned in several, and a few turned in the boring baseline too. Where teammates each turned in an identical copy, we kept just one.)
 
 ## How to look at these
 
@@ -18,7 +18,7 @@ Click any plot to enlarge it, and use the arrow keys to flip through its section
 - Would a skeptic who saw *all* of the data agree?
 - If not, which choice (the axis, the range, what got compared, the title) did the work?
 
-We're deliberately not labeling anything honest or misleading here. Partly that's because the fun is in deciding, and partly because (as we found out in class) some of the best plots are hard to classify. Plot numbers are shuffled and anonymous.
+We're deliberately not labeling anything honest or misleading here. Partly that's because the fun is in deciding, and partly because (as we found out in class) some of the best plots are hard to classify. Plot numbers are shuffled and anonymous. -->
 
 
 
