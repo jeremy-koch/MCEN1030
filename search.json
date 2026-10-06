@@ -960,171 +960,75 @@
     ]
   },
   {
-    "objectID": "activities/w05-drag-lab.html",
-    "href": "activities/w05-drag-lab.html",
-    "title": "Adding drag",
+    "objectID": "activities/w06-plot-clinic.html",
+    "href": "activities/w06-plot-clinic.html",
+    "title": "Plot clinic",
     "section": "",
-    "text": "Standards seeded: S1, S2, S3, A1 · You’ll need: Colab, Tuesday’s stepper\nTuesday we built a for loop to do some time stepping, applying it to a situation that we could solve theoretically. So… what was the point? Today we’re going to add some additional terms that make it so that there is no theoretical solution. But those additional terms make the calculations more accurate… so, as engineers, we want to include them!",
+    "text": "Activity for Thursday’s class. (Not a reading.)",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
+      "Plot clinic"
     ]
   },
   {
-    "objectID": "activities/w05-drag-lab.html#setting-up",
-    "href": "activities/w05-drag-lab.html#setting-up",
-    "title": "Adding drag",
-    "section": "Setting up",
-    "text": "Setting up\nFor anything bigger than a raindrop, the force of drag is proportional to the square of the speed. It is indeed a force, so it manifests through the acceleration term (\\(F=ma\\), right?):\n\\[\na = -g - \\frac{k}{m}\\,v\\,|v|\n\\]\nThe \\(v\\,|v|\\) looks strange, but it’s just \\(v^2\\) with the sign of \\(v\\) still present — drag always pushes against you, so when you’re falling (negative \\(v\\)) that term comes out positive.\nThe parameter \\(k\\) bundles together the air density, the object’s cross-sectional area, and how streamlined it is. We’ll go ahead and assume some values for three different items:\n\n\n\nobject\n\\(m\\) (kg)\n\\(k\\)\n\n\n\n\nballoon (25 cm)\n0.003\n0.01227\n\n\nsteel ball (2.5 cm)\n0.0642\n0.000123\n\n\nphone, falling flat\n0.19\n0.0063\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nBelow we’ll use a single variable called k_over_m. Let Python do the math for you: k_over_m=0.01227/0.003. Or even better: k_over_m=k_balloon/m_balloon.",
+    "objectID": "activities/w06-plot-clinic.html#a-matplotlib-cheat-sheet",
+    "href": "activities/w06-plot-clinic.html#a-matplotlib-cheat-sheet",
+    "title": "Plot clinic",
+    "section": "A matplotlib cheat sheet",
+    "text": "A matplotlib cheat sheet\nThe full set of official cheat sheets lives at matplotlib.org/cheatsheets. They’re dense, but they’re great for “I know there’s a way to do this, what’s it called?”\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(8, 4))                 # width, height (inches); call this before plotting\n\n# drawing the data\nplt.plot(x, y, \"o\")                        # markers only: \"o\" dots, \"s\" squares, \"^\" triangles\nplt.plot(x, y, \"o-\")                       # markers joined by lines\nplt.plot(x, y, \"o\", color=\"firebrick\", markersize=8, linewidth=3, label=\"Route A\")\nplt.bar(names, heights)                    # bar chart; plt.barh(...) for sideways bars\nplt.scatter(x, y)                          # another way to get dots\n\n# words\nplt.xlabel(\"Time (min)\")                   # always with units!\nplt.ylabel(\"Temperature (°C)\")\nplt.title(\"Coffee cools faster in ceramic\")\nplt.legend()                               # shows each plot's label=...\nplt.text(20, 65, \"some words\")             # words at the point (x=20, y=65)\nplt.annotate(\"windows opened\", xy=(50, 1250), xytext=(55, 1150),\n             arrowprops=dict(arrowstyle=\"-&gt;\"))   # words with an arrow pointing at xy\n\n# the axes\nplt.xlim(0, 40)                            # which part of the x-axis shows\nplt.ylim(0, 100)                           # which part of the y-axis shows\nplt.yscale(\"log\")                          # logarithmic y-axis\nplt.xticks(rotation=45)                    # tilt the x labels so long names fit\nplt.grid(True)\n\n# reference lines and shading\nplt.axhline(1000, color=\"gray\", linestyle=\"--\")   # horizontal line at y = 1000\nplt.axvline(50, color=\"gray\", linestyle=\":\")      # vertical line at x = 50\nplt.axhspan(20, 30, alpha=0.2)                    # shaded band from y = 20 to y = 30\n\n# a second y-axis on the right side (things plotted after this use it)\nax2 = plt.gca().twinx()\n\nplt.tight_layout()                         # stop labels from overlapping\nplt.show()\nWe’ll also want to know a few NumPy moves for reshaping the data before it gets plotted. For example, y[x &gt;= 2000] keeps only the values where the matching x is at least 2000; np.mean(y) averages; np.cumsum(y) gives a running total; and np.argsort(y) gives the order that would sort y. Doing arithmetic on whole arrays (like 100 * (y - y[0]) / y[0] for percent change since the first value) may be of interest to you too.\n\n\nAI is welcome for the syntax: “how do I put an arrow on a matplotlib plot?” is a perfectly good question to ask it.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
+      "Plot clinic"
     ]
   },
   {
-    "objectID": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
-    "href": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
-    "title": "Adding drag",
-    "section": "Round 1 — add one line (about 10 minutes)",
-    "text": "Round 1 — add one line (about 10 minutes)\nSo everyone starts from the same place, here’s Tuesday’s loop with no drag, already wrapped in a function. It’s the same code as the reading, with the acceleration pulled out into its own line a (so there’s an obvious spot to change) and a k_over_m input that doesn’t do anything yet. Copy it into Colab and run it.\n\n\n\n\n\n\nA 10 m drop lands in 1.43 s at about −14 m/s. Now add drag according to the equation above. Don’t forget: your velocity array has an index.\nThen set k_over_m = 0 and run it. The results should be the same as if \\(a=-g\\).\n\n\n\n\n\n\nImportant\n\n\n\nWhat is round(t[y &lt;= 0][0], 3) doing?",
+    "objectID": "activities/w06-plot-clinic.html#an-example",
+    "href": "activities/w06-plot-clinic.html#an-example",
+    "title": "Plot clinic",
+    "section": "An example",
+    "text": "An example\nWe’ll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here’s the boring plot:\n\n\n\n\n\n\nOK… so what’s the story? Look closer and we can see the panels make way more than the house needs around noon, but the house’s big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.\nThat’s the finding we want someone to walk away with, so let’s build the plot around it. This one pulls out a lot of tricks.\n\n\n\n\n\n\n\n\nThe kWh numbers come from .sum(). Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total.\nWhat’s going on in there:\n\nfill_between colors the space between the two curves, with where= choosing which stretches get which color. The shaded area is energy, so the reader can see that there’s a lot more gold than purple.\naxvspan shades nighttime gray, so we don’t need to explain why the solar is zero from 7 pm to 7 am. zorder=0 puts it behind everything else.\nDirect labels (plt.text) sit right next to each curve, so the reader never has to glance back and forth at a legend.\nannotate points an arrow at the one data point we want people to notice.\nCustom ticks say “noon” and “6 pm” instead of 12 and 18. Small thing, but no translation necessary.\nThe title states the finding instead of just restating the axes. “Solar output and house use” makes it so the reader has to figure out why they are being shown the data. “The panels make plenty, just not when the house wants it” tells them what they’re looking at.\nNo top and right box lines (spines). This is pure taste, but it makes the plot feel less cluttered.\n\nIs it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title.\nNow the evil twin. Same data, and it looks at least as responsible:\n\n\n\n\n\n\nEvery number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But “solar-powered” suggests the house runs on sunshine, and the hourly plot says that’s not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. (“Net” claims like this are everywhere. They aren’t wrong, but they might not answer the question you should be asking.)",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
+      "Plot clinic"
     ]
   },
   {
-    "objectID": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
-    "href": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
-    "title": "Adding drag",
-    "section": "Round 2 — same code, two different answers (about 25 minutes)",
-    "text": "Round 2 — same code, two different answers (about 25 minutes)\nRun your code with all three objects from the table, plus the no-drag case, all from 10 m. Get the four fall times and four impact speeds somewhere you can compare them side by side (e.g., create a text cell after your code and record the results, maybe even as a Markdown table).\nThree things to work out with your colleagues:\n\nThe balloon takes about 4.6× as long as the no-drag formula predicts. The steel ball takes 0.4% longer. Same code, same height, same air. What is it about the two objects that produces such wildly different verdicts? (Look at \\(k/m\\), and say what it means physically.)\nPlot v against t for the balloon. Describe the shape in words — then talk about why it happens. Look at the acceleration formula and ask what value of \\(v\\) makes \\(a = 0\\).\nCompare the balloon’s impact speed to the value of \\(v\\) you just found. Same number? Should they be?\n\n\n\n\n\n\n\nImportant\n\n\n\nOne of my favorite quotes: “All models are wrong, but some are useful.” (From the statistician George Box.)\nModels, by definition, are approximations of reality. We hopefully capture the relevant effects to make a good prediction, but we leave some details out — e.g., is it helpful to know the temperature of the object when determining its fall time? Where the surface imperfections are? Precisely how many nitrogen molecules are disturbed, and their speeds before and after? Probably not… even though they might affect the result in some (tiny) way.\nIgnoring air resistance is perfectly good engineering for the steel ball — being right to within 0.4% and avoiding the nonlinear term is an excellent trade. But, applied to the balloon, our prediction is wrong by a factor of four and a half.\nSo “is it okay to ignore air resistance?” has no general answer. “Is it okay to ignore air resistance for this object, over this distance, at the precision I need?” has an answer — and you can compute it instead of guessing!",
+    "objectID": "activities/w06-plot-clinic.html#the-plan",
+    "href": "activities/w06-plot-clinic.html#the-plan",
+    "title": "Plot clinic",
+    "section": "The plan",
+    "text": "The plan\n1. Open your dataset (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell to see the boring plot: markers, labels, units, and nothing else.\n2. Look at the boring plot and talk at your table. What is the story here? What would a reader take away if all they saw was this? What’s the most interesting true thing in the data, and what’s the most tempting false thing?\n3. Make the interesting plot.\n\nHonest tables: make the true takeaway jump off the page. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding.\nMisleading tables: make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). (That is, o typing in fake values!) But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look reasonable.\n\n4. Deliver the interesting plot to Canvas as an image file. In the browser you can right-click (or long-press on an iPad) the plot and download the image.\n\n\n\n\n\n\nTipStuck?\n\n\n\nHere are some questions that help from either side. What would change if the y-axis started at zero? What if we only saw half of the x-range? Is there a number that everything should be compared to: a threshold, a prediction, room temperature, last year? Would percent change tell a different story than raw numbers? Is anything in this dataset tiny compared to everything else?",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
+      "Plot clinic"
     ]
   },
   {
-    "objectID": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
-    "href": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
-    "title": "Adding drag",
-    "section": "Round 3 — break it (about 15 minutes)",
-    "text": "Round 3 — break it (about 15 minutes)\nOn Tuesday a smaller dt gave a better answer. Run the balloon from 10 m at dt = 0.01, 0.05, 0.1, 0.2, 0.3 and 0.5. For each, report both the landing time and the impact speed.\nThen, on paper:\n\nAt which dt does the answer stop being merely inaccurate and start being nonsense? How did you decide?\nOne of those runs reports a landing time that looks more believable than the correct answer, while its impact speed is absurd. Which one?\nPlot y against t for the worst case. Describe, physically, what your balloon does. Would you have caught that from the numbers alone?\n\n\n\n\n\n\n\nCaution\n\n\n\nYou may see nan appear — “not a number.” It means the arithmetic got to the poin that the computer cannot represent it anymore. That is not a Python bug, but does mean something went wrong with the calculation!",
+    "objectID": "activities/w06-plot-clinic.html#deliverable-2-ec",
+    "href": "activities/w06-plot-clinic.html#deliverable-2-ec",
+    "title": "Plot clinic",
+    "section": "Deliverable (2 EC)",
+    "text": "Deliverable (2 EC)\nYour table’s interesting plot.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
+      "Plot clinic"
     ]
   },
   {
-    "objectID": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
-    "href": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
-    "title": "Adding drag",
-    "section": "Round 4 — the potato leaves the building (about 20 minutes)",
-    "text": "Round 4 — the potato leaves the building (about 20 minutes)\nEverything so far has fallen straight down. Tuesday’s Challenge threw a ball forward and up. Let’s do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato in one end and a tank of compressed air behind it. Launch speeds of 50–100 m/s are typical; we’ll use 75 m/s. (Nobody is allowed to build one, officially.)\nDrag in two directions needs one new idea. How hard the air pushes depends on how fast the potato is moving through the air, which is its total speed. Which way it pushes is straight backward along the path. Split that one push into a sideways piece and an upward piece and you get\n\\[\na_x = -\\frac{k}{m}\\,v_x\\,|V|, \\qquad a_y = -g - \\frac{k}{m}\\,v_y\\,|V|, \\qquad |V| = \\sqrt{v_x^2 + v_y^2}\n\\]\n\n\nThe tempting shortcut is \\(v_x|v_x|\\) in the first formula and \\(v_y|v_y|\\) in the second, but that is not correct!\nHere’s Tuesday’s two-direction throw with no drag, so everyone starts from the same place:\n\n\n\n\n\n\nOur potato is a 5 cm × 8 cm cylinder, about 0.17 kg, with \\(k/m = 0.00289\\).\n\nAdd drag, then turn it off. Put the two formulas into the loop. Then run it with k_over_m = 0 at 40° and compare to the no-drag range formula, \\(R = v_0^2 \\sin(2\\theta)/g\\).\nEstimate before you run. Right at launch, how big is the drag acceleration, \\(\\frac{k}{m} v_0^2\\), compared to \\(g\\)? Based on Round 2, should drag matter a little or a lot?\nSee the trajectory. Run the potato at 75 m/s and 40°, with and without drag, and plot both paths on the same axes: y against x, keeping only the points above ground. Add plt.gca().set_aspect(\"equal\") so that one meter up looks the same as one meter across.\nDescribe the difference. How much shorter is it? The no-drag path is symmetric: is the drag path? Where is its highest point, and how steeply does it come down compared to how it went up?\nCompare the landing speed to the launch speed, with and without drag. The no-drag potato lands at exactly its launch speed. Why does it have to? Then use what you found in Round 2 to work out the potato’s terminal velocity. Our launch speed is above it. What does that say about the first second of the flight?\n\nTuesday’s Challenge found that 45° throws farthest, when there’s no air. Drag just took about half our range at 40°. Is 45° still the best angle? Don’t answer that at your table. That’s HW 3, where you’ll build a launch card for the club’s cannon.",
+    "objectID": "activities/w06-plot-clinic.html#datasets",
+    "href": "activities/w06-plot-clinic.html#datasets",
+    "title": "Plot clinic",
+    "section": "Datasets",
+    "text": "Datasets\nAll fifteen datasets are realistic but made up for today. Each cell below is ready to run here in the browser, or you can copy it into Colab.\n\n\n\n\n\n\nNoteDataset 1 — Boulder’s yearly average temperature\n\n\n\n\n\nThe average air temperature in Boulder for each year from 1950 to 2024, in °F. Each number is an average over all 365 days, so a single hot week barely moves it.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 2 — A laptop battery getting older\n\n\n\n\n\nOne laptop’s battery health, checked every 3 months from new: how much charge the battery can hold, as a percent of what it held on day one. Most manufacturers consider a battery “worn out” and worth replacing below 80%.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 3 — Two coffee mugs\n\n\n\n\n\nCoffee poured at 85 °C into a regular ceramic mug and into a double-walled steel travel mug (lid off, same room), with a thermometer reading every 2 minutes for 40 minutes. The room is 22 °C.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 4 — Two bike routes to campus\n\n\n\n\n\nOne student biked to campus by two different routes and timed each trip, for 20 school days per route. Route A is the road; Route B is the creek path. Times are in minutes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 5 — Where a home’s electricity goes\n\n\n\n\n\nA year of electricity use in one all-electric Colorado home (it has a heat pump instead of a gas furnace), split up by what used it, in kilowatt-hours per year. The categories are listed alphabetically, which is how the utility’s report listed them.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 6 — Speed bumps on a neighborhood street\n\n\n\n\n\nA residential street with a 25 mph speed limit. A radar sign logged every car, and these are the average speeds for each week, 10 weeks before and 10 weeks after the city installed speed bumps. The bumps went in during week 0 (no data that week). Neighbors are split on whether the bumps were worth it.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 7 — 3D-printed bracket strength\n\n\n\n\n\nA small bracket, 3D-printed at different infill percentages (how solid the inside is: 10% is mostly air, 100% is solid plastic). Three brackets were printed at each setting and pulled until they broke. We have the breaking force, in newtons, and the print time for each, in minutes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 8 — Fuel economy vs. speed\n\n\n\n\n\nA midsize gas car driven at steady speeds on a flat test track, with fuel economy measured at each speed, in miles per gallon. Higher mpg means less fuel for the same trip.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 9 — E-scooter rides\n\n\n\n\n\nRides taken on a city’s shared e-scooter program each month, January 2023 through December 2024. The operator is trying to convince the city council to renew its contract.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 10 — Air in a full classroom\n\n\n\n\n\nCarbon dioxide level in a packed 75-minute class, measured every 5 minutes, in parts per million (ppm). Outdoor air is about 420 ppm, and many building guidelines aim to keep rooms under about 1000 ppm, above which people start to feel drowsy and unfocused. Someone opened the windows partway through.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 11 — Snowfall at a ski area\n\n\n\n\n\nTotal snowfall for each ski season at one Colorado ski area, from the 1985 season to the 2024 season, in inches. (The ‘1985 season’ is the winter that started in fall 1985.)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 12 — Heat pump in the cold\n\n\n\n\n\nA heat pump heats a house by moving heat in from outside air, even cold air. Its COP (coefficient of performance) is the units of heat delivered per unit of electricity used: COP = 3 means 3 kWh of heat for every 1 kWh from the wall. An ordinary electric space heater has a COP of exactly 1. These are one cold-climate heat pump’s COPs at different outdoor temperatures, in °F.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 13 — Chargers and burritos\n\n\n\n\n\nTwo things measured each year in one Colorado county, 2012 to 2024: the number of public EV charging ports, and the average price of a burrito at local restaurants, in dollars.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 14 — Rooftop solar in two towns\n\n\n\n\n\nNew rooftop solar systems installed each year in two Colorado towns, 2019 to 2024. Town A has about 98,000 people. Town B has about 1,200.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 15 — Stopping a car\n\n\n\n\n\nHow far a car travels between the moment a hazard appears and the moment it’s stopped, measured on a dry test track at different speeds, in feet. It comes in two parts: the reaction distance (the car keeps going while the driver notices and moves their foot to the brake) and the braking distance (brakes on, slowing to a stop). For scale, a car is about 15 ft long.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w05-drag-lab.html#deliverables",
-    "href": "activities/w05-drag-lab.html#deliverables",
-    "title": "Adding drag",
-    "section": "Deliverables",
-    "text": "Deliverables\n(2 EC):\n\nRound 1: your drop function, and the k_over_m = 0 check with its output.\nRound 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.\nRound 3: your dt table with both columns, and your answer to question 2.\nRound 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Adding drag"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html",
-    "href": "activities/w03-function-forge.html",
-    "title": "Wind farm design",
-    "section": "",
-    "text": "Standards seeded: P1, A1, A4 · You’ll need: a laptop with Colab open, and a phone or paper for the hand-checks.\nToday we build three functions that hand results to one another, and then spend some time deciding whether to trust what they say.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#the-problem",
-    "href": "activities/w03-function-forge.html#the-problem",
-    "title": "Wind farm design",
-    "section": "The problem",
-    "text": "The problem\nYour firm is scoping a wind turbine for the eastern plains outside Denver. You need a tool that answers: for a given rotor diameter and a given wind speed, how much power comes out?\nThe swept area. The blades sweep a circle, and only the wind passing through that circle is available to you. From the rotor diameter \\(D\\):\n\\[\nA = \\frac{\\pi D^2}{4}\n\\]\nThe power in the wind, and the share you capture. Moving air has kinetic energy, and the faster it moves the more it carries — dramatically more, because velocity shows up cubed:\n\\[\nP = \\tfrac{1}{2}\\,\\rho\\,A\\,v^3\\,C_p\n\\]\nwhere \\(\\rho\\) is air density and \\(C_p\\) is the fraction of the wind’s energy the turbine actually captures. Take \\(\\rho = 1.0\\) kg/m³ for Denver’s thin air as the default value.\nThe efficiency, which is not a constant. Blades are shaped to capture the wind best at one particular speed — too slow and there is no aerodynamic lift; too fast and they stall and spill. So \\(C_p\\) peaks at a design speed and falls off on either side:\n\\[\nC_p(v) = C_{p,\\text{max}}\\left[1 - \\left(\\frac{v - v_{\\text{best}}}{w}\\right)^2\\right]\n\\]\nwith \\(C_{p,\\text{max}} = 0.45\\), \\(v_{\\text{best}} = 11\\) m/s, and \\(w = 8\\) m/s.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-0",
-    "href": "activities/w03-function-forge.html#round-0",
-    "title": "Wind farm design",
-    "section": "Round 0",
-    "text": "Round 0\nAn LLM was asked for the power function and handed back a number: for a 100 m rotor in a 10 m/s wind, 52 kilowatts.\nDo you believe it? Discuss with your group",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-1-three-specs",
-    "href": "activities/w03-function-forge.html#round-1-three-specs",
-    "title": "Wind farm design",
-    "section": "Round 1 — three specs",
-    "text": "Round 1 — three specs\nEveryone create a new Colab. Make your first cell a “text” cell, and write specifications for the three functions. Decide what the required inputs, optional inputs, and outputs are of each function, and pay attention to the units. You may not agree with your neighbor, but you may both be reasonable.\nMake your second cell a text cell as well, and do a hand-check of the \\(D = 100\\) m case.\nThe area function you check with a calculator.\nThe efficiency function you can check against a physical bound. No turbine can capture more than about 59% of the wind’s energy. Any \\(C_p\\) your function returns above 0.59 is wrong. You can calculate it too: what should it give at \\(v = 11\\) m/s?\nThe power function you check against common sense after plugging-in reasonable values. Real 100 m turbines produce 2–3 MW… it’s understandable if you didn’t know that number today (I didn’t until I wrote this), but with time/experience in engineering you’ll start to have intuition about numbers. Clearly 52 kW is low, and should set off alarm bells!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
-    "href": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
-    "title": "Wind farm design",
-    "section": "Round 2 — write and audit the functions",
-    "text": "Round 2 — write and audit the functions\nNow prompt for the code (or write it from scratch… good practice). One function at a time or all three at once — your call, and maybe your group tries both ways and you talk about how it went.\nThen annotate what comes back: for each function, write one line in your own words describing what it does. Include this as a docstring.\n\nThree functions?\nMy intention is for you to create three functions. The area one is pretty simple, but the other two contain separate physics and are worth keeping separate. The efficiency function varies between blade designs, and so having that as its own function that is called by the power function is better practice.\nSo: do you have three functions, or did you/the LLM combine them in some way? Add a comment in your code about this.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#round-3-testing",
-    "href": "activities/w03-function-forge.html#round-3-testing",
-    "title": "Wind farm design",
-    "section": "Round 3 — testing",
-    "text": "Round 3 — testing\nRun your hand-check case. If you get agreement, that is a good step towards verification. If not, track down the error — was it you, or the code?\nOnce your chain is verified, run it twice more: \\(v = 11\\) m/s, then \\(v = 15\\) m/s.\nAt 15 m/s the turbine is much less efficient — about 0.34 against the peak 0.45… but you should see it makes more power. There’s more energy in a faster wind, and it is worth wasting energy to extract more of it.\nSo the most efficient operating point isn’t the most productive one. Where exactly is the best wind speed? Run your code a few times to try to find it, but it is tedious… we’ll talk about strategies for optimizing this soon!",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
-    ]
-  },
-  {
-    "objectID": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
-    "href": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
-    "title": "Wind farm design",
-    "section": "Deliverable — 2 EC, per person",
-    "text": "Deliverable — 2 EC, per person\nSubmitted individually this week, not per table. Export a pdf from Colab\n\nYour three specs, as written before you prompted.\nThe prompt you used, plus the model and roughly when you ran it.\nYour annotated code.\nYour hand-check and discussion.\nDiscussion of if there were three functions.\nOne sentence (add as a text cell at the bottom): something interesting that someone else included in their spec that you left out.",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Wind farm design"
+      "Plot clinic"
     ]
   },
   {
@@ -1212,75 +1116,375 @@
     ]
   },
   {
-    "objectID": "activities/w06-plot-clinic.html",
-    "href": "activities/w06-plot-clinic.html",
-    "title": "Plot clinic",
+    "objectID": "activities/w03-function-forge.html",
+    "href": "activities/w03-function-forge.html",
+    "title": "Wind farm design",
     "section": "",
-    "text": "Activity for Thursday’s class. (Not a reading.)",
+    "text": "Standards seeded: P1, A1, A4 · You’ll need: a laptop with Colab open, and a phone or paper for the hand-checks.\nToday we build three functions that hand results to one another, and then spend some time deciding whether to trust what they say.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Plot clinic"
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "activities/w06-plot-clinic.html#a-matplotlib-cheat-sheet",
-    "href": "activities/w06-plot-clinic.html#a-matplotlib-cheat-sheet",
-    "title": "Plot clinic",
-    "section": "A matplotlib cheat sheet",
-    "text": "A matplotlib cheat sheet\nThe full set of official cheat sheets lives at matplotlib.org/cheatsheets. They’re dense, but they’re great for “I know there’s a way to do this, what’s it called?”\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(8, 4))                 # width, height (inches); call this before plotting\n\n# drawing the data\nplt.plot(x, y, \"o\")                        # markers only: \"o\" dots, \"s\" squares, \"^\" triangles\nplt.plot(x, y, \"o-\")                       # markers joined by lines\nplt.plot(x, y, \"o\", color=\"firebrick\", markersize=8, linewidth=3, label=\"Route A\")\nplt.bar(names, heights)                    # bar chart; plt.barh(...) for sideways bars\nplt.scatter(x, y)                          # another way to get dots\n\n# words\nplt.xlabel(\"Time (min)\")                   # always with units!\nplt.ylabel(\"Temperature (°C)\")\nplt.title(\"Coffee cools faster in ceramic\")\nplt.legend()                               # shows each plot's label=...\nplt.text(20, 65, \"some words\")             # words at the point (x=20, y=65)\nplt.annotate(\"windows opened\", xy=(50, 1250), xytext=(55, 1150),\n             arrowprops=dict(arrowstyle=\"-&gt;\"))   # words with an arrow pointing at xy\n\n# the axes\nplt.xlim(0, 40)                            # which part of the x-axis shows\nplt.ylim(0, 100)                           # which part of the y-axis shows\nplt.yscale(\"log\")                          # logarithmic y-axis\nplt.xticks(rotation=45)                    # tilt the x labels so long names fit\nplt.grid(True)\n\n# reference lines and shading\nplt.axhline(1000, color=\"gray\", linestyle=\"--\")   # horizontal line at y = 1000\nplt.axvline(50, color=\"gray\", linestyle=\":\")      # vertical line at x = 50\nplt.axhspan(20, 30, alpha=0.2)                    # shaded band from y = 20 to y = 30\n\n# a second y-axis on the right side (things plotted after this use it)\nax2 = plt.gca().twinx()\n\nplt.tight_layout()                         # stop labels from overlapping\nplt.show()\nWe’ll also want to know a few NumPy moves for reshaping the data before it gets plotted. For example, y[x &gt;= 2000] keeps only the values where the matching x is at least 2000; np.mean(y) averages; np.cumsum(y) gives a running total; and np.argsort(y) gives the order that would sort y. Doing arithmetic on whole arrays (like 100 * (y - y[0]) / y[0] for percent change since the first value) may be of interest to you too.\n\n\nAI is welcome for the syntax: “how do I put an arrow on a matplotlib plot?” is a perfectly good question to ask it.",
+    "objectID": "activities/w03-function-forge.html#the-problem",
+    "href": "activities/w03-function-forge.html#the-problem",
+    "title": "Wind farm design",
+    "section": "The problem",
+    "text": "The problem\nYour firm is scoping a wind turbine for the eastern plains outside Denver. You need a tool that answers: for a given rotor diameter and a given wind speed, how much power comes out?\nThe swept area. The blades sweep a circle, and only the wind passing through that circle is available to you. From the rotor diameter \\(D\\):\n\\[\nA = \\frac{\\pi D^2}{4}\n\\]\nThe power in the wind, and the share you capture. Moving air has kinetic energy, and the faster it moves the more it carries — dramatically more, because velocity shows up cubed:\n\\[\nP = \\tfrac{1}{2}\\,\\rho\\,A\\,v^3\\,C_p\n\\]\nwhere \\(\\rho\\) is air density and \\(C_p\\) is the fraction of the wind’s energy the turbine actually captures. Take \\(\\rho = 1.0\\) kg/m³ for Denver’s thin air as the default value.\nThe efficiency, which is not a constant. Blades are shaped to capture the wind best at one particular speed — too slow and there is no aerodynamic lift; too fast and they stall and spill. So \\(C_p\\) peaks at a design speed and falls off on either side:\n\\[\nC_p(v) = C_{p,\\text{max}}\\left[1 - \\left(\\frac{v - v_{\\text{best}}}{w}\\right)^2\\right]\n\\]\nwith \\(C_{p,\\text{max}} = 0.45\\), \\(v_{\\text{best}} = 11\\) m/s, and \\(w = 8\\) m/s.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Plot clinic"
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "activities/w06-plot-clinic.html#an-example",
-    "href": "activities/w06-plot-clinic.html#an-example",
-    "title": "Plot clinic",
-    "section": "An example",
-    "text": "An example\nWe’ll look at a house in Boulder with solar panels on the roof, on one sunny October day. Every hour we have two numbers: how much power the panels were making, and how much the house was using, both in kilowatts (kW) and both averaged over that hour. Here’s the boring plot:\n\n\n\n\n\n\nOK… so what’s the story? Look closer and we can see the panels make way more than the house needs around noon, but the house’s big moment is around 6–7 pm (people get home, start cooking, turn on lights), right as the sun is going down. The panels and the house are out of sync.\nThat’s the finding we want someone to walk away with, so let’s build the plot around it. This one pulls out a lot of tricks.\n\n\n\n\n\n\n\n\nThe kWh numbers come from .sum(). Each hourly reading is a power (kW) held for one hour, so each one is a rectangle of energy (kW × 1 h = kWh), and adding up the rectangles gives the total.\nWhat’s going on in there:\n\nfill_between colors the space between the two curves, with where= choosing which stretches get which color. The shaded area is energy, so the reader can see that there’s a lot more gold than purple.\naxvspan shades nighttime gray, so we don’t need to explain why the solar is zero from 7 pm to 7 am. zorder=0 puts it behind everything else.\nDirect labels (plt.text) sit right next to each curve, so the reader never has to glance back and forth at a legend.\nannotate points an arrow at the one data point we want people to notice.\nCustom ticks say “noon” and “6 pm” instead of 12 and 18. Small thing, but no translation necessary.\nThe title states the finding instead of just restating the axes. “Solar output and house use” makes it so the reader has to figure out why they are being shown the data. “The panels make plenty, just not when the house wants it” tells them what they’re looking at.\nNo top and right box lines (spines). This is pure taste, but it makes the plot feel less cluttered.\n\nIs it honest? A quick check: the y-axis starts at zero, every number shown is a real reading, and a skeptic looking at the boring plot would agree with the title.\nNow the evil twin. Same data, and it looks at least as responsible:\n\n\n\n\n\n\nEvery number here is true. The y-axis starts at zero, there are units, and the bars are labeled. Over the whole day, the panels really did make 46% more energy than the house used. But “solar-powered” suggests the house runs on sunshine, and the hourly plot says that’s not really true: the house bought 16.3 kWh from the grid, which is about 60% of everything it used, all of it after dark or before sunrise. (“Net” claims like this are everywhere. They aren’t wrong, but they might not answer the question you should be asking.)",
+    "objectID": "activities/w03-function-forge.html#round-0",
+    "href": "activities/w03-function-forge.html#round-0",
+    "title": "Wind farm design",
+    "section": "Round 0",
+    "text": "Round 0\nAn LLM was asked for the power function and handed back a number: for a 100 m rotor in a 10 m/s wind, 52 kilowatts.\nDo you believe it? Discuss with your group",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Plot clinic"
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "activities/w06-plot-clinic.html#the-plan",
-    "href": "activities/w06-plot-clinic.html#the-plan",
-    "title": "Plot clinic",
-    "section": "The plan",
-    "text": "The plan\n1. Open your dataset (down below; your CA will tell you which number). Read the description first. What was measured, in what units, and how many points are there? Run the cell to see the boring plot: markers, labels, units, and nothing else.\n2. Look at the boring plot and talk at your table. What is the story here? What would a reader take away if all they saw was this? What’s the most interesting true thing in the data, and what’s the most tempting false thing?\n3. Make the interesting plot.\n\nHonest tables: make the true takeaway jump off the page. Zoom in if zooming shows something real, add a reference line if a comparison matters, annotate the moment something changed, and write a title that states the finding.\nMisleading tables: make the room believe something false. The rules are that every number you plot must be real (straight from the dataset, or honestly computed from it: an average, a total, a percent). (That is, o typing in fake values!) But you get to choose which numbers to show, which scale to use, what to compare, and what the title claims. Be subtle. The good misleading plots are the ones that look reasonable.\n\n4. Deliver the interesting plot to Canvas as an image file. In the browser you can right-click (or long-press on an iPad) the plot and download the image.\n\n\n\n\n\n\nTipStuck?\n\n\n\nHere are some questions that help from either side. What would change if the y-axis started at zero? What if we only saw half of the x-range? Is there a number that everything should be compared to: a threshold, a prediction, room temperature, last year? Would percent change tell a different story than raw numbers? Is anything in this dataset tiny compared to everything else?",
+    "objectID": "activities/w03-function-forge.html#round-1-three-specs",
+    "href": "activities/w03-function-forge.html#round-1-three-specs",
+    "title": "Wind farm design",
+    "section": "Round 1 — three specs",
+    "text": "Round 1 — three specs\nEveryone create a new Colab. Make your first cell a “text” cell, and write specifications for the three functions. Decide what the required inputs, optional inputs, and outputs are of each function, and pay attention to the units. You may not agree with your neighbor, but you may both be reasonable.\nMake your second cell a text cell as well, and do a hand-check of the \\(D = 100\\) m case.\nThe area function you check with a calculator.\nThe efficiency function you can check against a physical bound. No turbine can capture more than about 59% of the wind’s energy. Any \\(C_p\\) your function returns above 0.59 is wrong. You can calculate it too: what should it give at \\(v = 11\\) m/s?\nThe power function you check against common sense after plugging-in reasonable values. Real 100 m turbines produce 2–3 MW… it’s understandable if you didn’t know that number today (I didn’t until I wrote this), but with time/experience in engineering you’ll start to have intuition about numbers. Clearly 52 kW is low, and should set off alarm bells!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Plot clinic"
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "activities/w06-plot-clinic.html#deliverable-2-ec",
-    "href": "activities/w06-plot-clinic.html#deliverable-2-ec",
-    "title": "Plot clinic",
-    "section": "Deliverable (2 EC)",
-    "text": "Deliverable (2 EC)\nYour table’s interesting plot.",
+    "objectID": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
+    "href": "activities/w03-function-forge.html#round-2-write-and-audit-the-functions",
+    "title": "Wind farm design",
+    "section": "Round 2 — write and audit the functions",
+    "text": "Round 2 — write and audit the functions\nNow prompt for the code (or write it from scratch… good practice). One function at a time or all three at once — your call, and maybe your group tries both ways and you talk about how it went.\nThen annotate what comes back: for each function, write one line in your own words describing what it does. Include this as a docstring.\n\nThree functions?\nMy intention is for you to create three functions. The area one is pretty simple, but the other two contain separate physics and are worth keeping separate. The efficiency function varies between blade designs, and so having that as its own function that is called by the power function is better practice.\nSo: do you have three functions, or did you/the LLM combine them in some way? Add a comment in your code about this.",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Plot clinic"
+      "Wind farm design"
     ]
   },
   {
-    "objectID": "activities/w06-plot-clinic.html#datasets",
-    "href": "activities/w06-plot-clinic.html#datasets",
-    "title": "Plot clinic",
-    "section": "Datasets",
-    "text": "Datasets\nAll fifteen datasets are realistic but made up for today. Each cell below is ready to run here in the browser, or you can copy it into Colab.\n\n\n\n\n\n\nNoteDataset 1 — Boulder’s yearly average temperature\n\n\n\n\n\nThe average air temperature in Boulder for each year from 1950 to 2024, in °F. Each number is an average over all 365 days, so a single hot week barely moves it.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 2 — A laptop battery getting older\n\n\n\n\n\nOne laptop’s battery health, checked every 3 months from new: how much charge the battery can hold, as a percent of what it held on day one. Most manufacturers consider a battery “worn out” and worth replacing below 80%.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 3 — Two coffee mugs\n\n\n\n\n\nCoffee poured at 85 °C into a regular ceramic mug and into a double-walled steel travel mug (lid off, same room), with a thermometer reading every 2 minutes for 40 minutes. The room is 22 °C.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 4 — Two bike routes to campus\n\n\n\n\n\nOne student biked to campus by two different routes and timed each trip, for 20 school days per route. Route A is the road; Route B is the creek path. Times are in minutes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 5 — Where a home’s electricity goes\n\n\n\n\n\nA year of electricity use in one all-electric Colorado home (it has a heat pump instead of a gas furnace), split up by what used it, in kilowatt-hours per year. The categories are listed alphabetically, which is how the utility’s report listed them.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 6 — Speed bumps on a neighborhood street\n\n\n\n\n\nA residential street with a 25 mph speed limit. A radar sign logged every car, and these are the average speeds for each week, 10 weeks before and 10 weeks after the city installed speed bumps. The bumps went in during week 0 (no data that week). Neighbors are split on whether the bumps were worth it.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 7 — 3D-printed bracket strength\n\n\n\n\n\nA small bracket, 3D-printed at different infill percentages (how solid the inside is: 10% is mostly air, 100% is solid plastic). Three brackets were printed at each setting and pulled until they broke. We have the breaking force, in newtons, and the print time for each, in minutes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 8 — Fuel economy vs. speed\n\n\n\n\n\nA midsize gas car driven at steady speeds on a flat test track, with fuel economy measured at each speed, in miles per gallon. Higher mpg means less fuel for the same trip.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 9 — E-scooter rides\n\n\n\n\n\nRides taken on a city’s shared e-scooter program each month, January 2023 through December 2024. The operator is trying to convince the city council to renew its contract.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 10 — Air in a full classroom\n\n\n\n\n\nCarbon dioxide level in a packed 75-minute class, measured every 5 minutes, in parts per million (ppm). Outdoor air is about 420 ppm, and many building guidelines aim to keep rooms under about 1000 ppm, above which people start to feel drowsy and unfocused. Someone opened the windows partway through.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 11 — Snowfall at a ski area\n\n\n\n\n\nTotal snowfall for each ski season at one Colorado ski area, from the 1985 season to the 2024 season, in inches. (The ‘1985 season’ is the winter that started in fall 1985.)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 12 — Heat pump in the cold\n\n\n\n\n\nA heat pump heats a house by moving heat in from outside air, even cold air. Its COP (coefficient of performance) is the units of heat delivered per unit of electricity used: COP = 3 means 3 kWh of heat for every 1 kWh from the wall. An ordinary electric space heater has a COP of exactly 1. These are one cold-climate heat pump’s COPs at different outdoor temperatures, in °F.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 13 — Chargers and burritos\n\n\n\n\n\nTwo things measured each year in one Colorado county, 2012 to 2024: the number of public EV charging ports, and the average price of a burrito at local restaurants, in dollars.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 14 — Rooftop solar in two towns\n\n\n\n\n\nNew rooftop solar systems installed each year in two Colorado towns, 2019 to 2024. Town A has about 98,000 people. Town B has about 1,200.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteDataset 15 — Stopping a car\n\n\n\n\n\nHow far a car travels between the moment a hazard appears and the moment it’s stopped, measured on a dry test track at different speeds, in feet. It comes in two parts: the reaction distance (the car keeps going while the driver notices and moves their foot to the brake) and the braking distance (brakes on, slowing to a stop). For scale, a car is about 15 ft long.",
+    "objectID": "activities/w03-function-forge.html#round-3-testing",
+    "href": "activities/w03-function-forge.html#round-3-testing",
+    "title": "Wind farm design",
+    "section": "Round 3 — testing",
+    "text": "Round 3 — testing\nRun your hand-check case. If you get agreement, that is a good step towards verification. If not, track down the error — was it you, or the code?\nOnce your chain is verified, run it twice more: \\(v = 11\\) m/s, then \\(v = 15\\) m/s.\nAt 15 m/s the turbine is much less efficient — about 0.34 against the peak 0.45… but you should see it makes more power. There’s more energy in a faster wind, and it is worth wasting energy to extract more of it.\nSo the most efficient operating point isn’t the most productive one. Where exactly is the best wind speed? Run your code a few times to try to find it, but it is tedious… we’ll talk about strategies for optimizing this soon!",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Plot clinic"
+      "Wind farm design"
+    ]
+  },
+  {
+    "objectID": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
+    "href": "activities/w03-function-forge.html#deliverable-2-ec-per-person",
+    "title": "Wind farm design",
+    "section": "Deliverable — 2 EC, per person",
+    "text": "Deliverable — 2 EC, per person\nSubmitted individually this week, not per table. Export a pdf from Colab\n\nYour three specs, as written before you prompted.\nThe prompt you used, plus the model and roughly when you ran it.\nYour annotated code.\nYour hand-check and discussion.\nDiscussion of if there were three functions.\nOne sentence (add as a text cell at the bottom): something interesting that someone else included in their spec that you left out.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Wind farm design"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html",
+    "href": "activities/w05-drag-lab.html",
+    "title": "Adding drag",
+    "section": "",
+    "text": "Standards seeded: S1, S2, S3, A1 · You’ll need: Colab, Tuesday’s stepper\nTuesday we built a for loop to do some time stepping, applying it to a situation that we could solve theoretically. So… what was the point? Today we’re going to add some additional terms that make it so that there is no theoretical solution. But those additional terms make the calculations more accurate… so, as engineers, we want to include them!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#setting-up",
+    "href": "activities/w05-drag-lab.html#setting-up",
+    "title": "Adding drag",
+    "section": "Setting up",
+    "text": "Setting up\nFor anything bigger than a raindrop, the force of drag is proportional to the square of the speed. It is indeed a force, so it manifests through the acceleration term (\\(F=ma\\), right?):\n\\[\na = -g - \\frac{k}{m}\\,v\\,|v|\n\\]\nThe \\(v\\,|v|\\) looks strange, but it’s just \\(v^2\\) with the sign of \\(v\\) still present — drag always pushes against you, so when you’re falling (negative \\(v\\)) that term comes out positive.\nThe parameter \\(k\\) bundles together the air density, the object’s cross-sectional area, and how streamlined it is. We’ll go ahead and assume some values for three different items:\n\n\n\nobject\n\\(m\\) (kg)\n\\(k\\)\n\n\n\n\nballoon (25 cm)\n0.003\n0.01227\n\n\nsteel ball (2.5 cm)\n0.0642\n0.000123\n\n\nphone, falling flat\n0.19\n0.0063\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nBelow we’ll use a single variable called k_over_m. Let Python do the math for you: k_over_m=0.01227/0.003. Or even better: k_over_m=k_balloon/m_balloon.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
+    "href": "activities/w05-drag-lab.html#round-1-add-one-line-about-10-minutes",
+    "title": "Adding drag",
+    "section": "Round 1 — add one line (about 10 minutes)",
+    "text": "Round 1 — add one line (about 10 minutes)\nSo everyone starts from the same place, here’s Tuesday’s loop with no drag, already wrapped in a function. It’s the same code as the reading, with the acceleration pulled out into its own line a (so there’s an obvious spot to change) and a k_over_m input that doesn’t do anything yet. Copy it into Colab and run it.\n\n\n\n\n\n\nA 10 m drop lands in 1.43 s at about −14 m/s. Now add drag according to the equation above. Don’t forget: your velocity array has an index.\nThen set k_over_m = 0 and run it. The results should be the same as if \\(a=-g\\).\n\n\n\n\n\n\nImportant\n\n\n\nWhat is round(t[y &lt;= 0][0], 3) doing?",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
+    "href": "activities/w05-drag-lab.html#round-2-same-code-two-different-answers-about-25-minutes",
+    "title": "Adding drag",
+    "section": "Round 2 — same code, two different answers (about 25 minutes)",
+    "text": "Round 2 — same code, two different answers (about 25 minutes)\nRun your code with all three objects from the table, plus the no-drag case, all from 10 m. Get the four fall times and four impact speeds somewhere you can compare them side by side (e.g., create a text cell after your code and record the results, maybe even as a Markdown table).\nThree things to work out with your colleagues:\n\nThe balloon takes about 4.6× as long as the no-drag formula predicts. The steel ball takes 0.4% longer. Same code, same height, same air. What is it about the two objects that produces such wildly different verdicts? (Look at \\(k/m\\), and say what it means physically.)\nPlot v against t for the balloon. Describe the shape in words — then talk about why it happens. Look at the acceleration formula and ask what value of \\(v\\) makes \\(a = 0\\).\nCompare the balloon’s impact speed to the value of \\(v\\) you just found. Same number? Should they be?\n\n\n\n\n\n\n\nImportant\n\n\n\nOne of my favorite quotes: “All models are wrong, but some are useful.” (From the statistician George Box.)\nModels, by definition, are approximations of reality. We hopefully capture the relevant effects to make a good prediction, but we leave some details out — e.g., is it helpful to know the temperature of the object when determining its fall time? Where the surface imperfections are? Precisely how many nitrogen molecules are disturbed, and their speeds before and after? Probably not… even though they might affect the result in some (tiny) way.\nIgnoring air resistance is perfectly good engineering for the steel ball — being right to within 0.4% and avoiding the nonlinear term is an excellent trade. But, applied to the balloon, our prediction is wrong by a factor of four and a half.\nSo “is it okay to ignore air resistance?” has no general answer. “Is it okay to ignore air resistance for this object, over this distance, at the precision I need?” has an answer — and you can compute it instead of guessing!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
+    "href": "activities/w05-drag-lab.html#round-3-break-it-about-15-minutes",
+    "title": "Adding drag",
+    "section": "Round 3 — break it (about 15 minutes)",
+    "text": "Round 3 — break it (about 15 minutes)\nOn Tuesday a smaller dt gave a better answer. Run the balloon from 10 m at dt = 0.01, 0.05, 0.1, 0.2, 0.3 and 0.5. For each, report both the landing time and the impact speed.\nThen, on paper:\n\nAt which dt does the answer stop being merely inaccurate and start being nonsense? How did you decide?\nOne of those runs reports a landing time that looks more believable than the correct answer, while its impact speed is absurd. Which one?\nPlot y against t for the worst case. Describe, physically, what your balloon does. Would you have caught that from the numbers alone?\n\n\n\n\n\n\n\nCaution\n\n\n\nYou may see nan appear — “not a number.” It means the arithmetic got to the poin that the computer cannot represent it anymore. That is not a Python bug, but does mean something went wrong with the calculation!",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
+    "href": "activities/w05-drag-lab.html#round-4-the-potato-leaves-the-building-about-20-minutes",
+    "title": "Adding drag",
+    "section": "Round 4 — the potato leaves the building (about 20 minutes)",
+    "text": "Round 4 — the potato leaves the building (about 20 minutes)\nEverything so far has fallen straight down. Tuesday’s Challenge threw a ball forward and up. Let’s do that again, with drag, and with something more satisfying than a ball: a potato out of a potato cannon. A potato cannon is a tube with a potato in one end and a tank of compressed air behind it. Launch speeds of 50–100 m/s are typical; we’ll use 75 m/s. (Nobody is allowed to build one, officially.)\nDrag in two directions needs one new idea. How hard the air pushes depends on how fast the potato is moving through the air, which is its total speed. Which way it pushes is straight backward along the path. Split that one push into a sideways piece and an upward piece and you get\n\\[\na_x = -\\frac{k}{m}\\,v_x\\,|V|, \\qquad a_y = -g - \\frac{k}{m}\\,v_y\\,|V|, \\qquad |V| = \\sqrt{v_x^2 + v_y^2}\n\\]\n\n\nThe tempting shortcut is \\(v_x|v_x|\\) in the first formula and \\(v_y|v_y|\\) in the second, but that is not correct!\nHere’s Tuesday’s two-direction throw with no drag, so everyone starts from the same place:\n\n\n\n\n\n\nOur potato is a 5 cm × 8 cm cylinder, about 0.17 kg, with \\(k/m = 0.00289\\).\n\nAdd drag, then turn it off. Put the two formulas into the loop. Then run it with k_over_m = 0 at 40° and compare to the no-drag range formula, \\(R = v_0^2 \\sin(2\\theta)/g\\).\nEstimate before you run. Right at launch, how big is the drag acceleration, \\(\\frac{k}{m} v_0^2\\), compared to \\(g\\)? Based on Round 2, should drag matter a little or a lot?\nSee the trajectory. Run the potato at 75 m/s and 40°, with and without drag, and plot both paths on the same axes: y against x, keeping only the points above ground. Add plt.gca().set_aspect(\"equal\") so that one meter up looks the same as one meter across.\nDescribe the difference. How much shorter is it? The no-drag path is symmetric: is the drag path? Where is its highest point, and how steeply does it come down compared to how it went up?\nCompare the landing speed to the launch speed, with and without drag. The no-drag potato lands at exactly its launch speed. Why does it have to? Then use what you found in Round 2 to work out the potato’s terminal velocity. Our launch speed is above it. What does that say about the first second of the flight?\n\nTuesday’s Challenge found that 45° throws farthest, when there’s no air. Drag just took about half our range at 40°. Is 45° still the best angle? Don’t answer that at your table. That’s HW 3, where you’ll build a launch card for the club’s cannon.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w05-drag-lab.html#deliverables",
+    "href": "activities/w05-drag-lab.html#deliverables",
+    "title": "Adding drag",
+    "section": "Deliverables",
+    "text": "Deliverables\n(2 EC):\n\nRound 1: your drop function, and the k_over_m = 0 check with its output.\nRound 2: the four-object comparison, the balloon’s velocity plot, and a short paragraph answering question 1 — what property of an object decides whether air matters.\nRound 3: your dt table with both columns, and your answer to question 2.\nRound 4: your drag-off check against the range formula, the two-path plot, and a few sentences on how the drag path differs.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Adding drag"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html",
+    "href": "activities/w06-plot-gallery.html",
+    "title": "Plot clinic gallery",
+    "section": "",
+    "text": "On Thursday we ran an experiment on ourselves. Every table got one dataset and a secret mission: either make the true story jump off the page, or make the room believe something the data doesn’t support… without changing a single number. Every plot you made is below. (The assignment was one plot per table, but some tables got carried away and turned in several, and a few turned in the boring baseline too. Where teammates each turned in an identical copy, we kept just one.)",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#how-to-look-at-these",
+    "href": "activities/w06-plot-gallery.html#how-to-look-at-these",
+    "title": "Plot clinic gallery",
+    "section": "How to look at these",
+    "text": "How to look at these\nThe plots are grouped by dataset, so that you can compare tables that started with the same numbers and ended up in very different places. The datasets are the ones from the plot clinic, and each section header has a one-line reminder of what the data were.\nClick any plot to enlarge it, and use the arrow keys to flip through its section. As you browse, try the same three questions we used in class:\n\nWhat story is this plot trying to tell?\nWould a skeptic who saw all of the data agree?\nIf not, which choice (the axis, the range, what got compared, the title) did the work?\n\nWe’re deliberately not labeling anything honest or misleading here. Partly that’s because the fun is in deciding, and partly because (as we found out in class) some of the best plots are hard to classify. Plot numbers are shuffled and anonymous.",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-1-boulders-yearly-average-temperature",
+    "href": "activities/w06-plot-gallery.html#dataset-1-boulders-yearly-average-temperature",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 1 — Boulder’s yearly average temperature",
+    "text": "Dataset 1 — Boulder’s yearly average temperature\nSeventy-five years of yearly averages, in °F. (8 plots)\n\n\n\n\n#012\n\n\n\n\n\n#023\n\n\n\n\n\n#026\n\n\n\n\n\n#032\n\n\n\n\n\n#054\n\n\n\n\n\n#071\n\n\n\n\n\n#077\n\n\n\n\n\n#087",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-2-a-laptop-battery-getting-older",
+    "href": "activities/w06-plot-gallery.html#dataset-2-a-laptop-battery-getting-older",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 2 — A laptop battery getting older",
+    "text": "Dataset 2 — A laptop battery getting older\nBattery health every three months from new, with 80% as the “replace it” line. (8 plots)\n\n\n\n\n#006\n\n\n\n\n\n#016\n\n\n\n\n\n#034\n\n\n\n\n\n#043\n\n\n\n\n\n#048\n\n\n\n\n\n#057\n\n\n\n\n\n#066\n\n\n\n\n\n#080",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-3-two-coffee-mugs",
+    "href": "activities/w06-plot-gallery.html#dataset-3-two-coffee-mugs",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 3 — Two coffee mugs",
+    "text": "Dataset 3 — Two coffee mugs\nCeramic versus a double-walled steel mug, same coffee, same room. (2 plots)\n\n\n\n\n#013\n\n\n\n\n\n#065",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-4-two-bike-routes-to-campus",
+    "href": "activities/w06-plot-gallery.html#dataset-4-two-bike-routes-to-campus",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 4 — Two bike routes to campus",
+    "text": "Dataset 4 — Two bike routes to campus\nTwenty commutes each on the road and on the creek path. (4 plots)\n\n\n\n\n#018\n\n\n\n\n\n#036\n\n\n\n\n\n#061\n\n\n\n\n\n#088",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-5-where-a-homes-electricity-goes",
+    "href": "activities/w06-plot-gallery.html#dataset-5-where-a-homes-electricity-goes",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 5 — Where a home’s electricity goes",
+    "text": "Dataset 5 — Where a home’s electricity goes\nOne year of use in an all-electric Colorado home, split by category. (4 plots)\n\n\n\n\n#021\n\n\n\n\n\n#028\n\n\n\n\n\n#070\n\n\n\n\n\n#079",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-6-speed-bumps-on-a-neighborhood-street",
+    "href": "activities/w06-plot-gallery.html#dataset-6-speed-bumps-on-a-neighborhood-street",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 6 — Speed bumps on a neighborhood street",
+    "text": "Dataset 6 — Speed bumps on a neighborhood street\nWeekly average speeds, ten weeks before and ten weeks after the bumps went in. (7 plots)\n\n\n\n\n#007\n\n\n\n\n\n#008\n\n\n\n\n\n#045\n\n\n\n\n\n#055\n\n\n\n\n\n#073\n\n\n\n\n\n#075\n\n\n\n\n\n#083",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-7-3d-printed-bracket-strength",
+    "href": "activities/w06-plot-gallery.html#dataset-7-3d-printed-bracket-strength",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 7 — 3D-printed bracket strength",
+    "text": "Dataset 7 — 3D-printed bracket strength\nBreaking force and print time at ten infill settings, three brackets each. (3 plots)\n\n\n\n\n#015\n\n\n\n\n\n#056\n\n\n\n\n\n#064",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-8-fuel-economy-versus-speed",
+    "href": "activities/w06-plot-gallery.html#dataset-8-fuel-economy-versus-speed",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 8 — Fuel economy versus speed",
+    "text": "Dataset 8 — Fuel economy versus speed\nMiles per gallon at steady speeds from 25 to 80 mph. (5 plots)\n\n\n\n\n#005\n\n\n\n\n\n#009\n\n\n\n\n\n#024\n\n\n\n\n\n#047\n\n\n\n\n\n#069",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-9-e-scooter-rides",
+    "href": "activities/w06-plot-gallery.html#dataset-9-e-scooter-rides",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 9 — E-scooter rides",
+    "text": "Dataset 9 — E-scooter rides\nMonthly rides over two years, from an operator hoping to renew its contract. (5 plots)\n\n\n\n\n#004\n\n\n\n\n\n#011\n\n\n\n\n\n#042\n\n\n\n\n\n#046\n\n\n\n\n\n#059",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-10-air-in-a-full-classroom",
+    "href": "activities/w06-plot-gallery.html#dataset-10-air-in-a-full-classroom",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 10 — Air in a full classroom",
+    "text": "Dataset 10 — Air in a full classroom\nCO₂ every five minutes through a 75-minute class. Someone opened the windows partway through. (7 plots)\n\n\n\n\n#001\n\n\n\n\n\n#020\n\n\n\n\n\n#027\n\n\n\n\n\n#033\n\n\n\n\n\n#050\n\n\n\n\n\n#058\n\n\n\n\n\n#060",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-11-snowfall-at-a-ski-area",
+    "href": "activities/w06-plot-gallery.html#dataset-11-snowfall-at-a-ski-area",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 11 — Snowfall at a ski area",
+    "text": "Dataset 11 — Snowfall at a ski area\nTotal snowfall for each season from 1985 to 2024. (6 plots)\n\n\n\n\n#031\n\n\n\n\n\n#038\n\n\n\n\n\n#044\n\n\n\n\n\n#068\n\n\n\n\n\n#081\n\n\n\n\n\n#086",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-12-a-heat-pump-in-the-cold",
+    "href": "activities/w06-plot-gallery.html#dataset-12-a-heat-pump-in-the-cold",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 12 — A heat pump in the cold",
+    "text": "Dataset 12 — A heat pump in the cold\nCOP at outdoor temperatures from −10 °F to 50 °F, where an electric space heater sits at exactly 1. (11 plots)\n\n\n\n\n#017\n\n\n\n\n\n#019\n\n\n\n\n\n#025\n\n\n\n\n\n#029\n\n\n\n\n\n#040\n\n\n\n\n\n#041\n\n\n\n\n\n#062\n\n\n\n\n\n#063\n\n\n\n\n\n#074\n\n\n\n\n\n#082\n\n\n\n\n\n#084",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-13-chargers-and-burritos",
+    "href": "activities/w06-plot-gallery.html#dataset-13-chargers-and-burritos",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 13 — Chargers and burritos",
+    "text": "Dataset 13 — Chargers and burritos\nEV charging ports and the average burrito price in one Colorado county, 2012 to 2024. (3 plots)\n\n\n\n\n#014\n\n\n\n\n\n#022\n\n\n\n\n\n#051",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-14-rooftop-solar-in-two-towns",
+    "href": "activities/w06-plot-gallery.html#dataset-14-rooftop-solar-in-two-towns",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 14 — Rooftop solar in two towns",
+    "text": "Dataset 14 — Rooftop solar in two towns\nNew installs per year in a town of 98,000 and a town of 1,200. (2 plots)\n\n\n\n\n#002\n\n\n\n\n\n#053",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
+    ]
+  },
+  {
+    "objectID": "activities/w06-plot-gallery.html#dataset-15-stopping-a-car",
+    "href": "activities/w06-plot-gallery.html#dataset-15-stopping-a-car",
+    "title": "Plot clinic gallery",
+    "section": "Dataset 15 — Stopping a car",
+    "text": "Dataset 15 — Stopping a car\nReaction and braking distance at speeds from 20 to 70 mph. (7 plots)\n\n\n\n\n#003\n\n\n\n\n\n#010\n\n\n\n\n\n#030\n\n\n\n\n\n#052\n\n\n\n\n\n#067\n\n\n\n\n\n#072\n\n\n\n\n\n#085",
+    "crumbs": [
+      "Home",
+      "Phase 1 — Vocabulary (Weeks 3–6)",
+      "Plot clinic gallery"
     ]
   },
   {
