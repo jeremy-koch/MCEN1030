@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -379,12 +379,12 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../activities/w07-triage.html">Dataset triage</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Dataset triage</h1>
-<p class="subtitle lead">Week 7 Tuesday (combined with the lesson — no Thursday class) · 2 engagement credits</p>
+<p class="subtitle lead">Week 7 Tuesday · 2 engagement credits</p>
 </div>
 
 
@@ -401,7 +401,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="the-triage" class="level2">
+<p>In-class activity</p>
+<section id="the-triage" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="the-triage">The triage</h2>
 <p>Our data is here: <a href="../data/motor_test_log.csv"><code>motor_test_log.csv</code></a>, 60,000 rows from the same (fictional but realistic) motor test. Download it and upload it to Colab the way we did in <a href="../lessons/06-data-io-plots.html">week 6</a>. Your table’s job is to answer these questions:</p>
 <ol type="1">
@@ -410,7 +411,10 @@ ul.task-list li input[type="checkbox"] {
 <li>Once the motor reached cruise, did the temperature keep climbing or level off? What does that tell you about the cooling?</li>
 </ol>
 <p>Filter, group, summarize, etc., to get the answers.</p>
-</section>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Check out the documentation for <code>value_counts</code>… it might be useful. <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html">Link</a>.</p>
+</div></div></section>
 <section id="before-you-trust-any-of-it" class="level2">
 <h2 class="anchored" data-anchor-id="before-you-trust-any-of-it">Before you trust any of it</h2>
 <p>You won’t be able to manually look at all 60,000 rows. Using <code>mean()</code> could be misleading if there is some suspicious data — 1000 bad measurements will affect it, but it still might seem reasonable. We need a way to check the data! Two good ways:</p>

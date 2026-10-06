@@ -928,7 +928,7 @@
     "href": "activities/w07-triage.html",
     "title": "Dataset triage",
     "section": "",
-    "text": "Our data is here: motor_test_log.csv, 60,000 rows from the same (fictional but realistic) motor test. Download it and upload it to Colab the way we did in week 6. Your table’s job is to answer these questions:\n\nHow many readings were above 80 °C, and during which phase(s)?\nWhat was the motor doing (rpm) during those readings?\nOnce the motor reached cruise, did the temperature keep climbing or level off? What does that tell you about the cooling?\n\nFilter, group, summarize, etc., to get the answers.",
+    "text": "In-class activity",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
@@ -939,8 +939,8 @@
     "objectID": "activities/w07-triage.html#the-triage",
     "href": "activities/w07-triage.html#the-triage",
     "title": "Dataset triage",
-    "section": "",
-    "text": "Our data is here: motor_test_log.csv, 60,000 rows from the same (fictional but realistic) motor test. Download it and upload it to Colab the way we did in week 6. Your table’s job is to answer these questions:\n\nHow many readings were above 80 °C, and during which phase(s)?\nWhat was the motor doing (rpm) during those readings?\nOnce the motor reached cruise, did the temperature keep climbing or level off? What does that tell you about the cooling?\n\nFilter, group, summarize, etc., to get the answers.",
+    "section": "The triage",
+    "text": "The triage\nOur data is here: motor_test_log.csv, 60,000 rows from the same (fictional but realistic) motor test. Download it and upload it to Colab the way we did in week 6. Your table’s job is to answer these questions:\n\nHow many readings were above 80 °C, and during which phase(s)?\nWhat was the motor doing (rpm) during those readings?\nOnce the motor reached cruise, did the temperature keep climbing or level off? What does that tell you about the cooling?\n\nFilter, group, summarize, etc., to get the answers.\n\n\nCheck out the documentation for value_counts… it might be useful. Link.",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
