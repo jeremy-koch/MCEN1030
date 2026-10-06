@@ -1,0 +1,321 @@
+---
+title: "Plot clinic gallery"
+subtitle: "Week 6 · what we made on October 1"
+lightbox:
+  match: auto
+  loop: true
+---
+
+On Thursday we ran an experiment on ourselves. Every table got one dataset and a secret mission: either make the true story jump off the page, or make the room believe something the data doesn't support... without changing a single number. Every plot you made is below. (The assignment was one plot per table, but some tables got carried away and turned in several, and a few turned in the boring baseline too. Where teammates each turned in an identical copy, we kept just one.)
+
+## How to look at these
+
+The plots are grouped by dataset, so that you can compare tables that started with the *same* numbers and ended up in very different places. The datasets are the ones from the [plot clinic](w06-plot-clinic.qmd), and each section header has a one-line reminder of what the data were.
+
+Click any plot to enlarge it, and use the arrow keys to flip through its section. As you browse, try the same three questions we used in class:
+
+- What story is this plot trying to tell?
+- Would a skeptic who saw *all* of the data agree?
+- If not, which choice (the axis, the range, what got compared, the title) did the work?
+
+We're deliberately not labeling anything honest or misleading here. Partly that's because the fun is in deciding, and partly because (as we found out in class) some of the best plots are hard to classify. Plot numbers are shuffled and anonymous.
+
+
+
+## Dataset 1 — Boulder's yearly average temperature
+
+Seventy-five years of yearly averages, in °F. (8 plots)
+
+::: {.plot-gallery}
+
+![#012](plot-submissions/plot-012.png){.lightbox group="d01" fig-alt="Boulder yearly temperature on a 0 to 100 degree axis with a flat gray line; the year labels are upside down"}
+
+![#023](plot-submissions/plot-023.png){.lightbox group="d01" fig-alt="Scatter of Boulder yearly average temperature, 1950 to 2024"}
+
+![#026](plot-submissions/plot-026.png){.lightbox group="d01" fig-alt="Colorful bars of Boulder yearly temperature on a 35 to 70 axis with a best-fit line"}
+
+![#032](plot-submissions/plot-032.png){.lightbox group="d01" fig-alt="Bars of average temperature by decade ending with an estimated 2050s bar, titled with an alarming headline"}
+
+![#054](plot-submissions/plot-054.png){.lightbox group="d01" fig-alt="Boulder yearly temperature line with an overall average and a title saying recent years are often warmer"}
+
+![#071](plot-submissions/plot-071.png){.lightbox group="d01" fig-alt="Bars of Boulder yearly temperature with the minimum and maximum highlighted and a note about the 10 warmest years"}
+
+![#077](plot-submissions/plot-077.png){.lightbox group="d01" fig-alt="Boulder yearly temperature scatter with a best-fit line and its two endpoint values"}
+
+![#087](plot-submissions/plot-087.png){.lightbox group="d01" fig-alt="Boulder yearly temperature on a 0 to 100 degree axis with a flat gray dashed line"}
+
+:::
+
+
+## Dataset 2 — A laptop battery getting older
+
+Battery health every three months from new, with 80% as the "replace it" line. (8 plots)
+
+::: {.plot-gallery}
+
+![#006](plot-submissions/plot-006.png){.lightbox group="d02" fig-alt="Battery health line over a faded mountain photo, each point labeled with its percent"}
+
+![#016](plot-submissions/plot-016.png){.lightbox group="d02" fig-alt="Battery health line with an 80 percent threshold and an arrow at month 36"}
+
+![#034](plot-submissions/plot-034.png){.lightbox group="d02" fig-alt="Scatter of laptop battery health over time"}
+
+![#043](plot-submissions/plot-043.png){.lightbox group="d02" fig-alt="Battery health line with an 80 percent threshold and an arrow at month 36"}
+
+![#048](plot-submissions/plot-048.png){.lightbox group="d02" fig-alt="Screenshot of a notebook showing code and a battery health plot"}
+
+![#057](plot-submissions/plot-057.png){.lightbox group="d02" fig-alt="Screenshot of a notebook showing code and a battery health plot"}
+
+![#066](plot-submissions/plot-066.png){.lightbox group="d02" fig-alt="Screenshot of a notebook showing code and a battery health scatter"}
+
+![#080](plot-submissions/plot-080.png){.lightbox group="d02" fig-alt="Screenshot of notebook code that builds an annotated battery health plot"}
+
+:::
+
+
+## Dataset 3 — Two coffee mugs
+
+Ceramic versus a double-walled steel mug, same coffee, same room. (2 plots)
+
+::: {.plot-gallery}
+
+![#013](plot-submissions/plot-013.png){.lightbox group="d03" fig-alt="Ceramic and steel mug temperatures with the gap between them shaded green"}
+
+![#065](plot-submissions/plot-065.png){.lightbox group="d03" fig-alt="Ceramic and steel mug temperatures plus a difference curve"}
+
+:::
+
+
+## Dataset 4 — Two bike routes to campus
+
+Twenty commutes each on the road and on the creek path. (4 plots)
+
+::: {.plot-gallery}
+
+![#018](plot-submissions/plot-018.png){.lightbox group="d04" fig-alt="Screenshot of code that plots the two commute routes in different units on two y-axes"}
+
+![#036](plot-submissions/plot-036.png){.lightbox group="d04" fig-alt="Two bars comparing average commute times, 21.8 and 21.7 minutes"}
+
+![#061](plot-submissions/plot-061.png){.lightbox group="d04" fig-alt="Screenshot of code and a plot of two commute routes on separate axes with different units"}
+
+![#088](plot-submissions/plot-088.png){.lightbox group="d04" fig-alt="Scatter of commute times for the road and creek-path routes"}
+
+:::
+
+
+## Dataset 5 — Where a home's electricity goes
+
+One year of use in an all-electric Colorado home, split by category. (4 plots)
+
+::: {.plot-gallery}
+
+![#021](plot-submissions/plot-021.png){.lightbox group="d05" fig-alt="Bar chart of home electricity use by category, in alphabetical order"}
+
+![#028](plot-submissions/plot-028.png){.lightbox group="d05" fig-alt="Horizontal bars of home electricity use, sorted, with the top two highlighted in orange"}
+
+![#070](plot-submissions/plot-070.png){.lightbox group="d05" fig-alt="Home electricity use sorted from smallest to largest bars"}
+
+![#079](plot-submissions/plot-079.png){.lightbox group="d05" fig-alt="Bar chart of home electricity use by category, sorted"}
+
+:::
+
+
+## Dataset 6 — Speed bumps on a neighborhood street
+
+Weekly average speeds, ten weeks before and ten weeks after the bumps went in. (7 plots)
+
+::: {.plot-gallery}
+
+![#007](plot-submissions/plot-007.png){.lightbox group="d06" fig-alt="Speed bumps scatter with a red curve and a 6.3 mph arrow between the highest and lowest points"}
+
+![#008](plot-submissions/plot-008.png){.lightbox group="d06" fig-alt="Speed bumps scatter with a dashed baseline"}
+
+![#045](plot-submissions/plot-045.png){.lightbox group="d06" fig-alt="Average weekly traffic speed in kph before and after speed bumps, with a horizontal mean line"}
+
+![#055](plot-submissions/plot-055.png){.lightbox group="d06" fig-alt="Speed bumps scatter with a regression line and r = -0.969"}
+
+![#073](plot-submissions/plot-073.png){.lightbox group="d06" fig-alt="Speed bumps scatter on a 0 to 70 mph axis with the 25 mph limit marked"}
+
+![#075](plot-submissions/plot-075.png){.lightbox group="d06" fig-alt="Speed bumps scatter with before and after average lines and a title about a 3.3 mph drop"}
+
+![#083](plot-submissions/plot-083.png){.lightbox group="d06" fig-alt="Speed bumps scatter, plain"}
+
+:::
+
+
+## Dataset 7 — 3D-printed bracket strength
+
+Breaking force and print time at ten infill settings, three brackets each. (3 plots)
+
+::: {.plot-gallery}
+
+![#015](plot-submissions/plot-015.png){.lightbox group="d07" fig-alt="Breaking force vs infill with fit curves, error bars, and a summary table"}
+
+![#056](plot-submissions/plot-056.png){.lightbox group="d07" fig-alt="Bars of print time with a line of breaking force, one infill setting highlighted as the best balance"}
+
+![#064](plot-submissions/plot-064.gif){.lightbox group="d07" fig-alt="Breaking force vs infill scatter with real-world comparisons like bowling balls and a giant panda"}
+
+:::
+
+
+## Dataset 8 — Fuel economy versus speed
+
+Miles per gallon at steady speeds from 25 to 80 mph. (5 plots)
+
+::: {.plot-gallery}
+
+![#005](plot-submissions/plot-005.png){.lightbox group="d08" fig-alt="Fuel economy vs speed from 25 to 50 mph with an upward best-fit line"}
+
+![#009](plot-submissions/plot-009.png){.lightbox group="d08" fig-alt="Fuel economy vs speed with a shaded 45 to 55 mph sweet spot and two annotations"}
+
+![#024](plot-submissions/plot-024.png){.lightbox group="d08" fig-alt="Fuel economy vs speed from 25 to 50 mph with a green line labeled linear increase"}
+
+![#047](plot-submissions/plot-047.png){.lightbox group="d08" fig-alt="Fuel economy in green and driving cost to New York in blue, both against speed"}
+
+![#069](plot-submissions/plot-069.jpg){.lightbox group="d08" fig-alt="Black line of fuel economy vs speed with a shaded 45 to 55 mph sweet spot"}
+
+:::
+
+
+## Dataset 9 — E-scooter rides
+
+Monthly rides over two years, from an operator hoping to renew its contract. (5 plots)
+
+::: {.plot-gallery}
+
+![#004](plot-submissions/plot-004.png){.lightbox group="d09" fig-alt="Scatter of scooter rides per month for the first twelve months only"}
+
+![#011](plot-submissions/plot-011.png){.lightbox group="d09" fig-alt="Bar chart of cumulative scooter rides over 24 months, every bar a different color"}
+
+![#042](plot-submissions/plot-042.png){.lightbox group="d09" fig-alt="Scatter of scooter rides over 24 months"}
+
+![#046](plot-submissions/plot-046.png){.lightbox group="d09" fig-alt="Line chart of scooter usage by month for one year"}
+
+![#059](plot-submissions/plot-059.png){.lightbox group="d09" fig-alt="Scatter of scooter rides over 24 months"}
+
+:::
+
+
+## Dataset 10 — Air in a full classroom
+
+CO₂ every five minutes through a 75-minute class. Someone opened the windows partway through. (7 plots)
+
+::: {.plot-gallery}
+
+![#001](plot-submissions/plot-001.png){.lightbox group="d10" fig-alt="Scatter of classroom CO2 over a 75-minute class, titled Original"}
+
+![#020](plot-submissions/plot-020.png){.lightbox group="d10" fig-alt="CO2 during class with red and green points, a pink danger zone, and a star at the peak"}
+
+![#027](plot-submissions/plot-027.png){.lightbox group="d10" fig-alt="Single bar showing the classroom average CO2 of 867 ppm under a 1000 ppm guideline"}
+
+![#033](plot-submissions/plot-033.png){.lightbox group="d10" fig-alt="Scatter of classroom CO2 over time"}
+
+![#050](plot-submissions/plot-050.png){.lightbox group="d10" fig-alt="CO2 over 50 minutes with a large red label reading deadly levels"}
+
+![#058](plot-submissions/plot-058.png){.lightbox group="d10" fig-alt="CO2 with a green safe zone below 1000 ppm and a dotted line where the window opened"}
+
+![#060](plot-submissions/plot-060.png){.lightbox group="d10" fig-alt="Scatter of classroom CO2 over time"}
+
+:::
+
+
+## Dataset 11 — Snowfall at a ski area
+
+Total snowfall for each season from 1985 to 2024. (6 plots)
+
+::: {.plot-gallery}
+
+![#031](plot-submissions/plot-031.png){.lightbox group="d11" fig-alt="Pie chart of snowfall in four time periods, with no values shown"}
+
+![#038](plot-submissions/plot-038.png){.lightbox group="d11" fig-alt="Snowfall from 2011 to 2018 with a downward trend line"}
+
+![#044](plot-submissions/plot-044.png){.lightbox group="d11" fig-alt="Snowfall in millimeters with two gray bands marking inaccurate measuring devices and a curve through the middle years"}
+
+![#068](plot-submissions/plot-068.png){.lightbox group="d11" fig-alt="Snowfall from 2006 to 2024 with a downward best-fit line"}
+
+![#081](plot-submissions/plot-081.png){.lightbox group="d11" fig-alt="Pie chart titled snowfall across 4 decades"}
+
+![#086](plot-submissions/plot-086.png){.lightbox group="d11" fig-alt="Dark dramatic image of a cracked desert with a Welcome to Colorado sign, with snowfall for 2010 to 2019 and an 81 percent decline label"}
+
+:::
+
+
+## Dataset 12 — A heat pump in the cold
+
+COP at outdoor temperatures from −10 °F to 50 °F, where an electric space heater sits at exactly 1. (11 plots)
+
+::: {.plot-gallery}
+
+![#017](plot-submissions/plot-017.jpg){.lightbox group="d12" fig-alt="Two heat pump plots: a plain scatter above, and a filled line with a COP = 1 reference below"}
+
+![#019](plot-submissions/plot-019.png){.lightbox group="d12" fig-alt="Heat pump COP from 50 down to 20 degrees F on a tight axis, titled that heat pumps lose 30 percent of their efficiency"}
+
+![#025](plot-submissions/plot-025.png){.lightbox group="d12" fig-alt="Screenshot of code and the resulting tight-axis heat pump plot"}
+
+![#029](plot-submissions/plot-029.png){.lightbox group="d12" fig-alt="Heat pump COP vs a space heater at COP 1, with the Boulder winter temperature range shaded"}
+
+![#040](plot-submissions/plot-040.png){.lightbox group="d12" fig-alt="Monthly heating unit efficiency as dots with Boulder average temperature as an orange line on a second axis"}
+
+![#041](plot-submissions/plot-041.png){.lightbox group="d12" fig-alt="Heat pump COP on a dark blue background with snowflake decorations"}
+
+![#062](plot-submissions/plot-062.png){.lightbox group="d12" fig-alt="Heat pump COP on a dark blue background with snowflake decorations"}
+
+![#063](plot-submissions/plot-063.png){.lightbox group="d12" fig-alt="Filled lines comparing a heat pump and a fireplace efficiency"}
+
+![#074](plot-submissions/plot-074.png){.lightbox group="d12" fig-alt="Scatter of heat pump COP vs outdoor temperature"}
+
+![#082](plot-submissions/plot-082.png){.lightbox group="d12" fig-alt="Monthly heating unit efficiency as dots with Boulder average temperature as an orange line on a second axis"}
+
+![#084](plot-submissions/plot-084.png){.lightbox group="d12" fig-alt="Scatter of heat pump COP vs outdoor temperature"}
+
+:::
+
+
+## Dataset 13 — Chargers and burritos
+
+EV charging ports and the average burrito price in one Colorado county, 2012 to 2024. (3 plots)
+
+::: {.plot-gallery}
+
+![#014](plot-submissions/plot-014.png){.lightbox group="d13" fig-alt="Two side-by-side scatter plots: EV charging ports and burrito price by year"}
+
+![#022](plot-submissions/plot-022.png){.lightbox group="d13" fig-alt="Burrito price vs charger growth in invented units, with burrito icons along the line"}
+
+![#051](plot-submissions/plot-051.png){.lightbox group="d13" fig-alt="Horizontal paired bars of volcanic ash coverage and ozone thickness by year on two axes"}
+
+:::
+
+
+## Dataset 14 — Rooftop solar in two towns
+
+New installs per year in a town of 98,000 and a town of 1,200. (2 plots)
+
+::: {.plot-gallery}
+
+![#002](plot-submissions/plot-002.png){.lightbox group="d14" fig-alt="Bar chart of total rooftop solar installs: Town A about 2,666, Town B about 25"}
+
+![#053](plot-submissions/plot-053.png){.lightbox group="d14" fig-alt="Year-over-year solar installation growth rates for two towns, with the gap shaded"}
+
+:::
+
+
+## Dataset 15 — Stopping a car
+
+Reaction and braking distance at speeds from 20 to 70 mph. (7 plots)
+
+::: {.plot-gallery}
+
+![#003](plot-submissions/plot-003.png){.lightbox group="d15" fig-alt="Multi-panel stopping-distance figure with a physics fit, residuals, and three explanation boxes"}
+
+![#010](plot-submissions/plot-010.png){.lightbox group="d15" fig-alt="Stopping distances with a gray shaded no-crash zone above the total distance"}
+
+![#030](plot-submissions/plot-030.png){.lightbox group="d15" fig-alt="Reaction and braking distance lines crossing at 45 mph, with an arrow where braking takes over"}
+
+![#052](plot-submissions/plot-052.jpg){.lightbox group="d15" fig-alt="Total stopping distance as dots below a red crash line"}
+
+![#067](plot-submissions/plot-067.png){.lightbox group="d15" fig-alt="Reaction, braking, and total stopping distance lines vs speed"}
+
+![#072](plot-submissions/plot-072.png){.lightbox group="d15" fig-alt="Reaction distance and total stopping distance with braking distance shaded, and a car-length reference"}
+
+![#085](plot-submissions/plot-085.png){.lightbox group="d15" fig-alt="Stopping distance compared against a one-car-length-per-10-mph rule, with crash and no-crash regions shaded"}
+
+:::

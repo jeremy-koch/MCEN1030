@@ -64,6 +64,7 @@ website:
           - activities/w05-drag-lab.qmd
           - lessons/06-data-io-plots.qmd
           - activities/w06-plot-clinic.qmd
+          - activities/w06-plot-gallery.qmd
       - section: "Phase 2 — Tools (Weeks 7–10)"
         contents:
           - lessons/07-pandas.qmd

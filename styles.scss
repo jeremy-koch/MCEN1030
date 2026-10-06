@@ -62,3 +62,38 @@ h2 {
 pre {
   border-radius: 6px;
 }
+
+// --- Plot gallery -----------------------------------------------------------
+// Student plots come in every aspect ratio, so give each a fixed-height cell and
+// let `contain` do the letterboxing. Click-to-enlarge is handled by Quarto's lightbox.
+.plot-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.9rem;
+  margin: 1rem 0 2rem;
+
+  .quarto-figure, figure, p {
+    margin: 0;
+  }
+
+  figure {
+    border: 1px solid #e2dccb;
+    border-radius: 6px;
+    background: #fff;
+    padding: 0.4rem;
+  }
+
+  img {
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+    display: block;
+  }
+
+  figcaption {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #777;
+  }
+}
