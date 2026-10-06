@@ -67,6 +67,7 @@ website:
       - section: "Phase 2 — Tools (Weeks 7–10)"
         contents:
           - lessons/07-pandas.qmd
+          - activities/w07-triage.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd

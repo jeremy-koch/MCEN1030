@@ -1,0 +1,29 @@
+---
+title: "Dataset triage"
+subtitle: "Week 7 Tuesday (combined with the lesson — no Thursday class) · 2 engagement credits"
+---
+
+## The triage
+
+Our data is here: [`motor_test_log.csv`](../data/motor_test_log.csv), 60,000 rows from the same (fictional but realistic) motor test. Download it and upload it to Colab the way we did in [week 6](../lessons/06-data-io-plots.qmd). Your table's job is to answer these questions:
+
+1. How many readings were above 80 °C, and during which phase(s)?
+2. What was the motor doing (`rpm`) during those readings?
+3. Once the motor reached cruise, did the temperature keep climbing or level off? What does that tell you about the cooling?
+
+Filter, group, summarize, etc., to get the answers.
+
+## Before you trust any of it
+
+You won't be able to manually look at all 60,000 rows. Using `mean()` could be misleading if there is some suspicious data — 1000 bad measurements will affect it, but it still might seem reasonable. We need a way to check the data! Two good ways:
+
+- `df.describe()` and, for every column, ask whether the min and max make physical sense for a running motor.
+- Plot things — a plot shows all 60,000 rows at once! Which columns, against what? That's your call, but there might be one that looks wrong...
+
+If something looks off, don't stop at "that's weird." Work out three things:
+
+- Is it the *machine* or the *measurement*? Did the motor actually do this, or did the sensor? The other columns might help you tell.
+- Which of your answers above does it change, and by how much? (Maybe all of them, maybe none. Check each one rather than guessing.)
+- What would you do about it, and what would you tell your supervisor?
+
+**Deliverable (2 EC):** your answers to the three questions; the check(s) you made (a plot, a `describe()`, whatever you used); and, if your table found something wrong, what it was, how you found it, and what it did to your answers.

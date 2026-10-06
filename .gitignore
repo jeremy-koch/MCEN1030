@@ -9,6 +9,7 @@ README.html
 README.md
 /data/*
 !/data/siren_frequency.csv
+!/data/motor_test_log.csv
 /instructor/
 /homework/*
 !/homework/example-parking-garage.qmd
@@ -27,6 +28,7 @@ activities/w05*
 activities/w06*
 !activities/w06-plot-clinic.qmd
 activities/w07*
+!activities/w07-triage.qmd
 activities/w08*
 activities/w09*
 activities/w1*
