@@ -1,7 +1,9 @@
 ---
 title: "Dataset triage"
-subtitle: "Week 7 Tuesday (combined with the lesson — no Thursday class) · 2 engagement credits"
+subtitle: "Week 7 Tuesday · 2 engagement credits"
 ---
+
+In-class activity
 
 ## The triage
 
@@ -12,6 +14,10 @@ Our data is here: [`motor_test_log.csv`](../data/motor_test_log.csv), 60,000 row
 3. Once the motor reached cruise, did the temperature keep climbing or level off? What does that tell you about the cooling?
 
 Filter, group, summarize, etc., to get the answers.
+
+::: {.column-margin}
+Check out the documentation for `value_counts`... it might be useful. [Link](https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html).
+:::
 
 ## Before you trust any of it
 
@@ -27,3 +33,44 @@ If something looks off, don't stop at "that's weird." Work out three things:
 - What would you do about it, and what would you tell your supervisor?
 
 **Deliverable (2 EC):** your answers to the three questions; the check(s) you made (a plot, a `describe()`, whatever you used); and, if your table found something wrong, what it was, how you found it, and what it did to your answers.
+
+::: {.content-hidden}
+**Instructor answer key (planning only — stripped from the rendered site):**
+
+**Q1.** 14,094 readings above 80 °C (23.5%): cruise 13,651, startup 443, shutdown 0. Cruise sits at ~79 °C with noise, so about a third of its readings flicker over the line.
+
+```python
+hot = df[df["temp_C"] > 80]
+len(hot)
+hot["test_phase"].value_counts()
+```
+
+**Q2.** Mean rpm during those readings: 3,556.5 (cruise 3,559.8, startup 3,456.4). Basically cruise rpm, because 97% of the readings are cruise.
+
+```python
+hot["rpm"].mean()
+hot.groupby("test_phase")["rpm"].mean()
+```
+
+**Q3.** It levels off at ~79 °C from t ≈ 600 s on, flat for ~70 minutes at ~3,560 rpm. Heat out = heat in, so something is cooling the motor (the data can't say what). The plot is the natural way to see it:
+
+```python
+import matplotlib.pyplot as plt
+plt.plot(df["t_s"], df["temp_C"])
+plt.xlabel("time (s)"); plt.ylabel("temperature (°C)")
+plt.show()
+```
+
+**The trap.** 2,000 readings (t = 3000–3200 s, mid-cruise) have `temp_C = 0.0` while `rpm` stays normal (3,430–3,690): the motor kept running, the sensor dropped out. Ways in: `describe()` shows min = 0.0 for a running motor; the temperature plot shows a 200 s box-shaped plunge. A blind `groupby` hides it (cruise mean 75.4 instead of 79.0).
+
+```python
+bad = df[df["temp_C"] < 10]
+len(bad)                              # 2000
+bad["t_s"].min(), bad["t_s"].max()    # 3000.0, 3199.9
+bad["rpm"].describe()                 # motor fine -> sensor, not machine
+good = df[df["temp_C"] > 0]
+good.groupby("test_phase")["temp_C"].mean()   # cruise 78.99
+```
+
+**What it changes:** Q1 and Q2 are unaffected (zeros aren't above 80); any average that includes cruise temperature is off by ~3.6 °C. Accept any sensible threshold (`< 10`, `!= 0`, `> 0`); grade the reasoning (machine vs. measurement, which answers changed, what to tell the supervisor), not the exact filter.
+:::
