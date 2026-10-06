@@ -1288,19 +1288,7 @@
     "href": "activities/w06-plot-gallery.html",
     "title": "Plot clinic gallery",
     "section": "",
-    "text": "On Thursday we ran an experiment on ourselves. Every table got one dataset and a secret mission: either make the true story jump off the page, or make the room believe something the data doesn’t support… without changing a single number. Every plot you made is below. (The assignment was one plot per table, but some tables got carried away and turned in several, and a few turned in the boring baseline too. Where teammates each turned in an identical copy, we kept just one.)",
-    "crumbs": [
-      "Home",
-      "Phase 1 — Vocabulary (Weeks 3–6)",
-      "Plot clinic gallery"
-    ]
-  },
-  {
-    "objectID": "activities/w06-plot-gallery.html#how-to-look-at-these",
-    "href": "activities/w06-plot-gallery.html#how-to-look-at-these",
-    "title": "Plot clinic gallery",
-    "section": "How to look at these",
-    "text": "How to look at these\nThe plots are grouped by dataset, so that you can compare tables that started with the same numbers and ended up in very different places. The datasets are the ones from the plot clinic, and each section header has a one-line reminder of what the data were.\nClick any plot to enlarge it, and use the arrow keys to flip through its section. As you browse, try the same three questions we used in class:\n\nWhat story is this plot trying to tell?\nWould a skeptic who saw all of the data agree?\nIf not, which choice (the axis, the range, what got compared, the title) did the work?\n\nWe’re deliberately not labeling anything honest or misleading here. Partly that’s because the fun is in deciding, and partly because (as we found out in class) some of the best plots are hard to classify. Plot numbers are shuffled and anonymous.",
+    "text": "Seventy-five years of yearly averages, in °F. (8 plots)\n\n\n\n\n#012\n\n\n\n\n\n#023\n\n\n\n\n\n#026\n\n\n\n\n\n#032\n\n\n\n\n\n#054\n\n\n\n\n\n#071\n\n\n\n\n\n#077\n\n\n\n\n\n#087",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
@@ -1311,8 +1299,8 @@
     "objectID": "activities/w06-plot-gallery.html#dataset-1-boulders-yearly-average-temperature",
     "href": "activities/w06-plot-gallery.html#dataset-1-boulders-yearly-average-temperature",
     "title": "Plot clinic gallery",
-    "section": "Dataset 1 — Boulder’s yearly average temperature",
-    "text": "Dataset 1 — Boulder’s yearly average temperature\nSeventy-five years of yearly averages, in °F. (8 plots)\n\n\n\n\n#012\n\n\n\n\n\n#023\n\n\n\n\n\n#026\n\n\n\n\n\n#032\n\n\n\n\n\n#054\n\n\n\n\n\n#071\n\n\n\n\n\n#077\n\n\n\n\n\n#087",
+    "section": "",
+    "text": "Seventy-five years of yearly averages, in °F. (8 plots)\n\n\n\n\n#012\n\n\n\n\n\n#023\n\n\n\n\n\n#026\n\n\n\n\n\n#032\n\n\n\n\n\n#054\n\n\n\n\n\n#071\n\n\n\n\n\n#077\n\n\n\n\n\n#087",
     "crumbs": [
       "Home",
       "Phase 1 — Vocabulary (Weeks 3–6)",
