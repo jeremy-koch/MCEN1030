@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>First contact with coding – MCEN 1030</title>
+<title>Dataset triage – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,41 +25,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -114,39 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -190,7 +126,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/02a-first-contact.html">First contact with coding</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../activities/w07-triage.html">Dataset triage</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -286,7 +222,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">First contact with coding</span></a>
   </div>
 </li>
@@ -380,7 +316,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../activities/w07-triage.html" class="sidebar-item-text sidebar-link">
+  <a href="../activities/w07-triage.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Dataset triage</span></a>
   </div>
 </li>
@@ -437,22 +373,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
-  <li><a href="#google-colab-edit-code-in-your-browser" id="toc-google-colab-edit-code-in-your-browser" class="nav-link" data-scroll-target="#google-colab-edit-code-in-your-browser">Google Colab: edit code in your browser</a></li>
-  <li><a href="#variables-giving-numbers-names" id="toc-variables-giving-numbers-names" class="nav-link" data-scroll-target="#variables-giving-numbers-names">Variables: giving numbers names</a></li>
-  <li><a href="#a-good-habit-to-get-into-predict-then-run" id="toc-a-good-habit-to-get-into-predict-then-run" class="nav-link" data-scroll-target="#a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</a></li>
-  <li><a href="#errors-are-data" id="toc-errors-are-data" class="nav-link" data-scroll-target="#errors-are-data">Errors are data</a></li>
-  <li><a href="#reading-before-writing" id="toc-reading-before-writing" class="nav-link" data-scroll-target="#reading-before-writing">Reading before writing</a></li>
+  <li><a href="#the-triage" id="toc-the-triage" class="nav-link active" data-scroll-target="#the-triage">The triage</a></li>
+  <li><a href="#before-you-trust-any-of-it" id="toc-before-you-trust-any-of-it" class="nav-link" data-scroll-target="#before-you-trust-any-of-it">Before you trust any of it</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/02a-first-contact.html">First contact with coding</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/07-pandas.html">Phase 2 — Tools (Weeks 7–10)</a></li><li class="breadcrumb-item"><a href="../activities/w07-triage.html">Dataset triage</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">First contact with coding</h1>
-<p class="subtitle lead">Week 2, Lesson A — read before Tuesday</p>
+<h1 class="title">Dataset triage</h1>
+<p class="subtitle lead">Week 7 Tuesday (combined with the lesson — no Thursday class) · 2 engagement credits</p>
 </div>
 
 
@@ -469,169 +401,34 @@ window.Quarto = {
 </header>
 
 
-<p>This lesson gets you running Python code in your browser via Google Colab — nothing to install on your computer, nothing to configure, and so we’ll be able to get going very quickly.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>If you have never written a line of code before
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>… this course assumes exactly that. Let me mention three things:</p>
+<section id="the-triage" class="level2">
+<h2 class="anchored" data-anchor-id="the-triage">The triage</h2>
+<p>Our data is here: <a href="../data/motor_test_log.csv"><code>motor_test_log.csv</code></a>, 60,000 rows from the same (fictional but realistic) motor test. Download it and upload it to Colab the way we did in <a href="../lessons/06-data-io-plots.html">week 6</a>. Your table’s job is to answer these questions:</p>
 <ol type="1">
-<li>I don’t think the best way to learn programming is to spend time trying to memorize the syntax; memorization will come naturally with experience. The best way to learn is to actually write and think about coding real problems. This page includes a lot of discussion of the syntax, but don’t make flash cards about it or anything like that. We’ll be writing programs soon enough, and you’ll start to recognize the patterns the same way you do with spoken language.</li>
-<li>There is hardly any cost for making a mistake in coding: the program gives an error, and you use the information in the error message to figure out how to fix your code. Students often try to write perfect code immediately, and want to give up if they can’t. <em>Don’t fall into that trap.</em> It is typical for a program to be “wrong” the first 5, 12, or 30 times you run it. You fix the errors and it works!</li>
-<li>Some of your colleagues have some experience with coding, and they might have an easier time with this course (and may ask some advanced questions that I’ll <em>try</em> to answer). Don’t let that discourage you: I am creating this course with the beginner in mind, and so you will get all the information you need to start from scratch. That doesn’t mean it will be easy — learning is always an uncomfortable process! But put forth the effort and you will be in a good place by December.</li>
+<li>How many readings were above 80 °C, and during which phase(s)?</li>
+<li>What was the motor doing (<code>rpm</code>) during those readings?</li>
+<li>Once the motor reached cruise, did the temperature keep climbing or level off? What does that tell you about the cooling?</li>
 </ol>
-</div>
-</div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>What do I mean by “syntax”? A “for loop” in Python looks like <code>for i in items:</code>. That is, we need a <code>for</code>; a variable that changes every time through the “loop”, <code>i</code>; the word <code>in</code>; then the list that the variable is drawn from, <code>items</code>; and then a colon <code>:</code>. This is “the syntax” for a for loop — forgetting any of those things will break the code.</p>
-<p>In MATLAB, the syntax is <code>for i=items</code>… an equals sign <code>=</code> instead of <code>in</code>, no colon needed, and there also needs to be an <code>end</code> at the end of the block. The syntax varies from language to language, and if you switch between languages it can be confusing. But LLMs rarely mess up the syntax… they are a useful tool for getting started on a new project (“I need a python for loop that goes through a list of items”), translating between languages (“turn this python code into matlab code”), and debugging when your syntax is imperfect (“why is this code producing an error?… here is my error message:”).</p>
-</div></div><section id="think-first" class="level2">
-<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
-<p>Recall</p>
-<ol type="1">
-<li>From last week: what does an LLM do with the gaps in your specification?</li>
-<li>We evaluate <code>2 + 3 * 4</code> as 14, not 20. What rule is it following, and did anyone ever teach it to you as a <em>computing</em> rule?</li>
-</ol>
-<p>Look Ahead</p>
-<ol type="1">
-<li>If AI can write code, why are we about to learn to <em>read</em> it line by line?</li>
-<li>What’s the difference between a program <em>storing</em> a value and <em>displaying</em> a value?</li>
-</ol>
+<p>Filter, group, summarize, etc., to get the answers.</p>
 </section>
-<section id="google-colab-edit-code-in-your-browser" class="level2">
-<h2 class="anchored" data-anchor-id="google-colab-edit-code-in-your-browser">Google Colab: edit code in your browser</h2>
-<p>Go to <a href="https://colab.research.google.com">colab.research.google.com</a> and sign in with your university Google account. Click <strong>New notebook</strong>. You now have a <strong>notebook</strong>: a document made of <strong>cells</strong>, where each cell holds a bit of Python code you can run by pressing <strong>Shift+Enter</strong> (or the ▶ button).</p>
-<p>Type this into the first cell and run it — or, since this page runs Python <strong>right here in your browser</strong>, you can edit and run the code below (the first run takes a few seconds while Python loads; after that it should be fast):</p>
-<div>
-<div id="pyodide-1" class="exercise-cell">
-
-</div>
-<script type="pyodide-1-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoXCJoZWxsbywgTUNFTiAxMDMwXCIpIn0=
-</script>
-</div>
-<p>The text should appear below the cell. The <code>print(...)</code> part is a <strong>function</strong> (a named, reusable action — much more on these in week 3) whose job is to display the thing between the quotes.</p>
-</section>
-<section id="variables-giving-numbers-names" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="variables-giving-numbers-names">Variables: giving numbers names</h2>
-<p>A <strong>variable</strong> is a name attached to a value, so you can use the value by its name:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="fl">9.81</span>        <span class="co"># gravitational acceleration, m/s^2</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">3.0</span>         <span class="co"># drop height, m</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>The text after a <code>#</code> is a <strong>code comment</strong> — a note for humans that Python ignores. Here, we described the physical meaning of the variables and included the units of the number.</p>
-</div></div><p>Variable names can be simple or complex. Probably you will appreciate being able to write a simple, readable equation <code>y=0.5*g*t**2</code> later in your code, but we also could have defined <code>gravity_earth_surface = 9.81</code> and then used <code>y=0.5*gravity_earth_surface*t**2</code> later on.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It is good practice to make the variable names descriptive such that you know what is going on in the equations involving those variables. Something like <code>g</code> in a mechanics-based program is probably fine because we are so used to seeing <code>g</code> in our mechanics equations. But if we had some code that involved gravity on earth and gravity on the moon (for some reason), it is better to write those as <code>g_earth</code> and <code>g_moon</code> instead of <code>g_1</code> and <code>g_2</code>.</p>
-</div>
-</div>
-<p>The <code>=</code> sign here does <strong>not</strong> mean “equals” in the algebra sense. It means <strong>“store the value under this name.”</strong> This structure conflicts with our experience in math class, for example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we did algebra on this equation: subtract <code>count</code> from both sides, leaving <code>0=1</code>… nonsense. But as an instruction, it will take the (current) value of <code>count</code>, add <code>1</code>, and store the resulting value under the name <code>count</code> (thus replacing the old value stored under that name). This is perfectly acceptable practice, and indeed it is a common ingredient in code.</p>
-</section>
-<section id="a-good-habit-to-get-into-predict-then-run" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="a-good-habit-to-get-into-predict-then-run">A good habit to get into: predict, then run</h2>
-<p>Here is a complete little program. <strong>Before you run it, write down what you expect it to display.</strong></p>
-<div>
-<div id="pyodide-2" class="exercise-cell">
-
-</div>
-<script type="pyodide-2-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZyA9IDkuODFcbmggPSAzLjBcbnQgPSAoMiAqIGggLyBnKSAqKiAwLjVcbnByaW50KHQpIn0=
-</script>
-</div>
-<p>(Sure, you can run it without thinking. I’m not keeping track of what you are doing here… for the sake of your learning, I think you should think! Otherwise this is like the most boring game on the internet: click to see some text.)</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><code>**</code> is, annoyingly, Python’s “raise to a power.” So <code>x ** 0.5</code> is a square root. And <code>*</code> must always be written explicitly: <code>2h</code> will give an error; you need <code>2 * h</code> instead.</p>
-</div></div><p>Some reading help: line 3 computes <span class="math inline">\(t = \sqrt{2h/g}\)</span>, the fall time of an object dropped from height <span class="math inline">\(h\)</span>, subject to gravity <span class="math inline">\(g\)</span>. So: <span class="math inline">\(2 \times 3 / 9.81 \approx 0.61\)</span>, and <span class="math inline">\(\sqrt{0.61} \approx 0.78\)</span>. That is: we predict this code should produce something near <code>0.78</code>.</p>
-<p>Now run it. It should match, unless you changed something in the code. <strong>Verification</strong>!</p>
-</section>
-<section id="errors-are-data" class="level2">
-<h2 class="anchored" data-anchor-id="errors-are-data">Errors are data</h2>
-<p>In the code above, change <code>t = (2 * h / g) ** 0.5</code> to <code>t = (2 * h_2 / g) ** 0.5</code>, and run it again. You’ll get an angry red block ending in something like:</p>
-<pre><code>NameError: name 'h_2' is not defined</code></pre>
-<p>Two things to know about errors:</p>
-<p><strong>They are normal.</strong> Experts probably do make fewer errors, but they don’t make zero errors… and actually, I use errors as a way to write code <em>faster</em>: just write out a sloppy version of the code without expecting it to work, then: run, read and fix the error; run, read and fix the error; run, read and fix the error; and by then I’m probably done. <em>Read the error messages</em>, they usually describe the error and point to where it occurred in the code. Here: this is a <code>NameError</code> because we used a variable name that the program didn’t know.</p>
-<p><strong>They are the friendly failure mode.</strong> It is way more difficult to figure out why code runs successfully, but produces a wrong answer. Error messages are kind of nice because they tell you exactly what is wrong (maybe cryptically)!</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Understanding error messages is a genuinely good use of an LLM: paste the code and the full error, and ask what’s wrong. Verify the explanation makes sense — don’t let the LLM do all your thinking for you!</p>
-</div>
-</div>
-</section>
-<section id="reading-before-writing" class="level2">
-<h2 class="anchored" data-anchor-id="reading-before-writing">Reading before writing</h2>
-<p>You now know enough to <em>read</em> simple Python. Predict what this displays before running:</p>
-<div>
-<div id="pyodide-3" class="exercise-cell">
-
-</div>
-<script type="pyodide-3-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYSA9IDRcbmIgPSBhICogMlxuYSA9IDFcbnByaW50KGIpIn0=
-</script>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Click for the answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><code>8</code> — not <code>2</code>. Line 2 stored the <em>value</em> 8 under <code>b</code>; it did not create a live mathematical relationship “b is twice a.” When <code>a</code> changed afterward, <code>b</code> is unaware. The code executes <strong>top to bottom, each line acting on values as they are at that moment</strong>.</p>
-</div>
-</div>
-</div>
-<div class="bring-to-class">
-<p>On paper, two things:</p>
-<ol type="1">
-<li>Your prediction for what this displays with one sentence of reasoning:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">+</span> <span class="dv">5</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="2" type="1">
-<li>An electric toothbrush draws about 0.3 A of current (<span class="math inline">\(I\)</span>) through 4 ohms of resistance (<span class="math inline">\(R\)</span>); a space heater draws about 12 A through 10 ohms. On paper, set the current and resistance values in the first four lines of your code, then compute and print the power dissipated, <span class="math inline">\(P = I^2 R\)</span>, for <em>both</em> devices. Don’t forget to <code>#</code> comment! Write out your hand estimate on the side. Which device do you expect will dissipate more power?</li>
-</ol>
-</div>
+<section id="before-you-trust-any-of-it" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-trust-any-of-it">Before you trust any of it</h2>
+<p>You won’t be able to manually look at all 60,000 rows. Using <code>mean()</code> could be misleading if there is some suspicious data — 1000 bad measurements will affect it, but it still might seem reasonable. We need a way to check the data! Two good ways:</p>
+<ul>
+<li><code>df.describe()</code> and, for every column, ask whether the min and max make physical sense for a running motor.</li>
+<li>Plot things — a plot shows all 60,000 rows at once! Which columns, against what? That’s your call, but there might be one that looks wrong…</li>
+</ul>
+<p>If something looks off, don’t stop at “that’s weird.” Work out three things:</p>
+<ul>
+<li>Is it the <em>machine</em> or the <em>measurement</em>? Did the motor actually do this, or did the sensor? The other columns might help you tell.</li>
+<li>Which of your answers above does it change, and by how much? (Maybe all of them, maybe none. Check each one rather than guessing.)</li>
+<li>What would you do about it, and what would you tell your supervisor?</li>
+</ul>
+<p><strong>Deliverable (2 EC):</strong> your answers to the three questions; the check(s) you made (a plot, a <code>describe()</code>, whatever you used); and, if your table found something wrong, what it was, how you found it, and what it did to your answers.</p>
 
 
-<script type="pyodide-data">
-eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
-</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
+eyJjb250ZW50cyI6W119
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -652,7 +449,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lessons";
+window._ojs.paths.runtimeToDoc = "../../activities";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;
