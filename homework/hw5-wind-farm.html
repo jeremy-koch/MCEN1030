@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What does an LLM actually do? – MCEN 1030</title>
+<title>HW 5 · Where the wind blows – MCEN 1030</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -155,7 +155,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01b-what-llms-do.html">What does an LLM actually do?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw5-wind-farm.html">HW 5 · Where the wind blows</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -245,7 +245,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What does an LLM actually do?</span></a>
   </div>
 </li>
@@ -398,7 +398,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../homework/hw5-wind-farm.html" class="sidebar-item-text sidebar-link">
+  <a href="../homework/hw5-wind-farm.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">HW 5 · Where the wind blows</span></a>
   </div>
 </li>
@@ -414,26 +414,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#think-first" id="toc-think-first" class="nav-link active" data-scroll-target="#think-first">Think First</a></li>
-  <li><a href="#the-short-version" id="toc-the-short-version" class="nav-link" data-scroll-target="#the-short-version">The short version</a></li>
-  <li><a href="#three-consequences" id="toc-three-consequences" class="nav-link" data-scroll-target="#three-consequences">Three consequences</a>
-  <ul class="collapse">
-  <li><a href="#its-answers-are-plausible-but-might-not-be-true" id="toc-its-answers-are-plausible-but-might-not-be-true" class="nav-link" data-scroll-target="#its-answers-are-plausible-but-might-not-be-true">1. Its answers are plausible, but might not be true</a></li>
-  <li><a href="#same-prompt-different-answers" id="toc-same-prompt-different-answers" class="nav-link" data-scroll-target="#same-prompt-different-answers">2. Same prompt, different answers</a></li>
-  <li><a href="#a-good-specification-tames-the-llm" id="toc-a-good-specification-tames-the-llm" class="nav-link" data-scroll-target="#a-good-specification-tames-the-llm">3. A good specification tames the LLM</a></li>
-  </ul></li>
-  <li><a href="#why-is-it-so-good-at-code-anyway" id="toc-why-is-it-so-good-at-code-anyway" class="nav-link" data-scroll-target="#why-is-it-so-good-at-code-anyway">Why is it so good at code, anyway?</a></li>
-  <li><a href="#the-stance-on-llms-in-this-course" id="toc-the-stance-on-llms-in-this-course" class="nav-link" data-scroll-target="#the-stance-on-llms-in-this-course">The stance on LLMs in this course</a></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#a-few-new-tools" id="toc-a-few-new-tools" class="nav-link" data-scroll-target="#a-few-new-tools">A few new tools</a></li>
+  <li><a href="#part-1-look-first" id="toc-part-1-look-first" class="nav-link" data-scroll-target="#part-1-look-first">Part 1 — Look first</a></li>
+  <li><a href="#part-2-from-wind-to-power" id="toc-part-2-from-wind-to-power" class="nav-link" data-scroll-target="#part-2-from-wind-to-power">Part 2 — From wind to power</a></li>
+  <li><a href="#part-3-the-search" id="toc-part-3-the-search" class="nav-link" data-scroll-target="#part-3-the-search">Part 3 — The search</a></li>
+  <li><a href="#part-4-month-by-month" id="toc-part-4-month-by-month" class="nav-link" data-scroll-target="#part-4-month-by-month">Part 4 — Month by month</a></li>
+  <li><a href="#your-submission" id="toc-your-submission" class="nav-link" data-scroll-target="#your-submission">Your submission</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/01a-what-engineers-do.html">Phase 0 — Thinking (Weeks 1–2)</a></li><li class="breadcrumb-item"><a href="../lessons/01b-what-llms-do.html">What does an LLM actually do?</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw5-wind-farm.html">HW 5 · Where the wind blows</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">What does an LLM actually do?</h1>
-<p class="subtitle lead">Week 1, Lesson B — read before Thursday</p>
+<h1 class="title">HW 5 · Where the wind blows</h1>
+<p class="subtitle lead">Anchor week 7 · Standards: P3, F2, A2, A4</p>
 </div>
 
 
@@ -450,43 +448,40 @@ window.Quarto = {
 </header>
 
 
-<p>You will use AI consistently in this course and you might have some experience already. (If not, don’t worry!) Let’s spend one lesson on what’s it’s actually doing.</p>
-<section id="think-first" class="level2">
-<h2 class="anchored" data-anchor-id="think-first">Think First</h2>
-<p>Recall</p>
-<ol type="1">
-<li>Your phone’s keyboard suggests the next word as you type. How do you think it decides what to suggest?</li>
-<li>Have you ever confidently “remembered” something that turned out to be wrong?</li>
-</ol>
-<p>Look Ahead</p>
-<ol type="1">
-<li>If two students give an AI the <em>exact same prompt</em>, will they get the exact same code back?</li>
-<li>Why might an AI be better at writing code than at doing arithmetic?</li>
-</ol>
-</section>
-<section id="the-short-version" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-short-version">The short version</h2>
-<p>A large language model (LLM) does one thing:</p>
-<blockquote class="blockquote">
-<p>Given some text, predict a plausible next small chunk of text.</p>
-</blockquote>
-<p>That’s it. Everything else — the code-writing, the explanations, the apparent reasoning — emerges from doing that one thing extremely well, at enormous scale.</p>
+<section id="scenario" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>Your firm holds the survey rights over a 100 km × 100 km region of the plains and will build a <strong>10 km × 10 km square wind farm</strong> somewhere inside it. Someone has already spent six months measuring the wind at every square kilometer of the region, which works out to 60,000 numbers. Your job is to turn those 60,000 numbers into one recommendation: <strong>where should the farm go?</strong></p>
+<p><strong>See <a href="../info/colab-format.html">Submitting Homework</a> for how to set up the report. Same look as the last three.</strong></p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>The “small chunks” are called <em>tokens</em> — usually a word or piece of a word. <code>thermal</code> might be one token; <code>thermodynamics</code> might be three. (Different than the tokens involved in our standards-based grading scheme!)</p>
-</div></div><p>The model learned to do this by, in effect, reading a colossal amount of text — books, articles, documentation, and importantly for us, <strong>billions of lines of code</strong> — and adjusting billions (perhaps trillions) of internal numerical knobs until its “next-chunk” predictions got very good. This is what we mean when we talk about a new LLM “model” — there are more parameters (knobs) and updated tunings of those knobs that do a better job of creating accurate/plausible bodies of text.</p>
-<!-- When you **prompt** it, you're providing the start of a text, and it continues that text one chunk at a time, each new chunk chosen based on everything that came before — including its own earlier replies. -->
+<p>Remember the <a href="../activities/w03-function-forge.html">week 3 wind turbine</a>? Power scales with <span class="math inline">\(v^3\)</span>. A site that’s only 5% windier makes about 16% more power, so small differences in wind speed are worth paying attention to.</p>
+</div></div></section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p><a href="../data/wind_survey.csv"><code>wind_survey.csv</code></a> has four columns:</p>
+<ul>
+<li><code>x_km</code>, <code>y_km</code>: the site’s position, 0 to 99 km east and north from the region’s southwest corner. Each site is one square kilometer.</li>
+<li><code>month</code>: 1 through 6 (January through June).</li>
+<li><code>wind_ms</code>: that site’s average wind speed for that month, at turbine height, in m/s.</li>
+</ul>
+<p>So there are 100 × 100 = 10,000 sites, each measured over 6 months: 60,000 rows. Download it and upload it to Colab’s Files panel, the way we did in <a href="../lessons/06-data-io-plots.html">week 6</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Right-click <a href="../data/wind_survey.csv"><code>wind_survey.csv</code></a> and choose “Download linked file” or similar.</p>
+</div>
+</div>
 </section>
-<section id="three-consequences" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="three-consequences">Three consequences</h2>
-<p>Everything strange about LLM behavior falls out of that mechanism.</p>
-<section id="its-answers-are-plausible-but-might-not-be-true" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="its-answers-are-plausible-but-might-not-be-true">1. Its answers are plausible, but might not be true</h3>
-<p>The model produces text that is <em>statistically likely to follow</em> your prompt — the text sounds like what the correct answer might sound like. It is not reasoning based on physics, it has read a bunch of text written by humans who reasoned based on physics. Then it realized, statistically, that whenever those humans mention “physics”, “black holes”, and “singularity”, it is probably appropriate to use the word “Hawking”, and a likely word after that is “<a href="https://en.wikipedia.org/wiki/Hawking_radiation">radiation</a>”.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>One concerning thing about LLMs is that they are increasingly being trained on text generated by LLMs — <a href="https://en.wikipedia.org/wiki/Dead_Internet_theory">so much internet content is generated by LLMs</a> that the LLMs are reinforcing their own tendencies and possibly that will lead to quality degrading over generations.</p>
-</div></div><p>Usually, the most plausible continuation of an engineering question is the correct answer, which is why these tools are often useful. But when the model doesn’t “know,” it does not stop and say so. It keeps generating plausible text — a medical treatment suggestion that doesn’t apply to the situation (dangerous!), a citation to a paper that doesn’t exist, a recipe with a cup of vanilla instead of a teaspoon. This is often called a <strong>hallucination</strong>, and the dangerous part is that the LLM can be just as confident about a hallucination as it is about real information.</p>
+<section id="a-few-new-tools" class="level2">
+<h2 class="anchored" data-anchor-id="a-few-new-tools">A few new tools</h2>
+<p>The <a href="../lessons/07-pandas.html">pandas lesson</a> covered filtering and grouping on one column. This problem needs a few more tricks.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -497,68 +492,112 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There is no tone difference between an LLM being right and an LLM being wrong. Verify!</p>
+<p>I am not expecting you to memorize any of these, I haven’t. But you should know what they do when you see them! And, in this assignment, you’ll be annotating them.</p>
 </div>
 </div>
+<p><strong>Filtering on two conditions.</strong> We need to use <code>&amp;</code>, and each condition needs its own parentheses:</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IHBhbmRhcyBhcyBwZFxuZGYgPSBwZC5EYXRhRnJhbWUoe1xuICAgIFwieF9rbVwiOiAgICBbMCwgMSwgMCwgMSwgMCwgMSwgMCwgMV0sXG4gICAgXCJ5X2ttXCI6ICAgIFswLCAwLCAxLCAxLCAwLCAwLCAxLCAxXSxcbiAgICBcIm1vbnRoXCI6ICAgWzEsIDEsIDEsIDEsIDIsIDIsIDIsIDJdLFxuICAgIFwid2luZF9tc1wiOiBbNy4xLCA3LjQsIDguMCwgOC4zLCA2LjksIDcuNiwgOC4yLCA4LjFdLFxufSlcbm9uZV9zaXRlID0gZGZbKGRmW1wieF9rbVwiXSA9PSAxKSAmIChkZltcInlfa21cIl0gPT0gMCldICAgIyBib3RoIG11c3QgYmUgVHJ1ZVxucHJpbnQob25lX3NpdGUpIn0=
+</script>
+</div>
+<p><strong>Grouping on two columns, then making a map.</strong> Grouping by <em>both</em> coordinates gives one average per site, which squashes the months together. Then <code>.unstack()</code> spreads those averages out into a grid, with one row per <code>y_km</code> and one column per <code>x_km</code>:</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoic2l0ZV9tZWFuID0gZGYuZ3JvdXBieShbXCJ5X2ttXCIsIFwieF9rbVwiXSlbXCJ3aW5kX21zXCJdLm1lYW4oKVxucHJpbnQoc2l0ZV9tZWFuKSAgICAgICAgICAjIG9uZSBsb25nIGxpc3Q6ICh5LCB4KSAtPiBtZWFuXG5ncmlkID0gc2l0ZV9tZWFuLnVuc3RhY2soKVxucHJpbnQoZ3JpZCkgICAgICAgICAgICAgICAjIGEgbGl0dGxlIDIgw5cgMiBtYXAifQ==
+</script>
+</div>
+<p>With the real data, <code>grid</code> is 100 × 100. <code>plt.imshow(grid, origin="lower")</code> draws it as a heatmap, and <code>plt.colorbar()</code> adds the color scale. The <code>origin="lower"</code> part matters: without it, <code>imshow</code> puts row 0 at the <em>top</em>, which flips north and south on your map.</p>
+<p><strong>Slicing a square out of the grid.</strong> <code>grid.to_numpy()</code> turns the grid into a 2-D NumPy array, which can be sliced in both directions at once: <code>[rows, columns]</code>, so <code>[y, x]</code>.</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5HID0gbnAuYXJhbmdlKDM2KS5yZXNoYXBlKDYsIDYpICAgIyBhIDYgw5cgNiBzdGFuZC1pbiBmb3IgdGhlIHdpbmQgZ3JpZFxucHJpbnQoRylcbnByaW50KEdbMTo0LCAyOjVdKSAgICAgICAgICAgICAgICMgcm93cyAxLTMsIGNvbHVtbnMgMi00OiBhIDMgw5cgMyBzcXVhcmVcbnByaW50KEdbMTo0LCAyOjVdLm1lYW4oKSkifQ==
+</script>
+</div>
+<p>Note the order: <code>G[y, x]</code>, not <code>G[x, y]</code>. (Python won’t warn you if you flip them!)</p>
 </section>
-<section id="same-prompt-different-answers" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="same-prompt-different-answers">2. Same prompt, different answers</h3>
-<p>Prediction produces a <em>menu</em> of plausible next chunks, each with a probability. By design, the model doesn’t always pick the single most likely one. A bit of controlled randomness in the choice makes output more varied and, usually, better. Run the same prompt twice and the choices fork somewhere, and once forked, the two continuations keep diverging.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>LLMs with a higher “temperature” value (not the physical temperature) are more likely to choose a token with a lower probability. An LLM with zero temperature chooses the most probable token every time — for a given prompt, it creates the same output every time.</p>
-</div></div><p>This is why, on Thursday, 15 tables prompting for the same task will produce 15 <em>different</em> programs — different variable names, different structures, sometimes different algorithms, occasionally different <em>answers</em>. Thinking about that is an important aspect of this class!</p>
+<section id="part-1-look-first" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-look-first">Part 1 — Look first</h2>
+<p>Load the file, use <code>head()</code> and <code>describe()</code>. Do the minimum and maximum wind speeds make physical sense? (For calibration: 3 m/s is a light breeze, and 12 m/s will blow your hat off.)</p>
+<p>Then make a map. Average each site over its six months (one number per square kilometer), arrange those 10,000 averages into a 100 × 100 table with <code>groupby</code> and <code>unstack</code> (see <a href="#a-few-new-tools">the tools above</a>), and draw it as a heatmap: colorbar with units, axes labeled in km. <strong>Before you compute anything else</strong>, look at it and write down (in a text cell) where <em>you</em> would put the farm, and why. Add your prediction to the notebook… we will compare to what we calculate (and won’t penalize an incorrect guess).</p>
+<p>Finally, find the single windiest site: which square kilometer has the highest six-month average, and what is it?</p>
 </section>
-<section id="a-good-specification-tames-the-llm" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="a-good-specification-tames-the-llm">3. A good specification tames the LLM</h3>
-<p>A <strong>prompt</strong> is the text you supply to the LLM, maybe a question. An effective prompt is thoughtful… it’s not like a Google search where you just say some relevant words (“lyrics steely dan”) and then you, yourself, look through the results to find what you are looking for. You should be supplying instructions, relevant context, and constraints.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Does anyone else find it annoying that Google’s first result is now AI? Whenever I don’t know exactly what I am looking for, being able to scan the first few results is usually what it takes to figure it out; and whenever I do know what I am looking for, I am not interested in Gemini’s mediocre summary!</p>
-</div></div><p>“Build me a diet plan” is too general to be immediately useful… are you trying to lose weight? Gain weight? Gain muscle? Add more fiber? Eliminate carbs? Allergic to nuts? The LLM will probably follow up with questions like that, and you’ll end up somewhere good, but sometimes it might make assumptions for you that you have to spend time undoing. (“Yuck, it wants me to eat fish three times a week!”)</p>
-<p>Rather than arguing with the LLM for 15 minutes, wasting a bunch of water and electricity in the process, you should be thoughtful about your <strong>specifications</strong>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>The <strong>context window</strong> is the cap on how much of that text the model can “see” at once — your current prompt, along with (at least some of) your previous questions in the same conversation, any files you’ve included. And maybe you’ve given the LLM some baseline instructions that are automatically applied to all conversations. There is a limit on how much of that information can be included in a given text-generation step, and even if it were all included, the more context it has, the greater chance of getting confused! I suspect part of the model development that is happening is about doing a better job understanding what in the context window is most relevant to your current prompt.</p>
-</div></div></section>
+<section id="part-2-from-wind-to-power" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-from-wind-to-power">Part 2 — From wind to power</h2>
+<p>Back in <a href="../activities/w03-function-forge.html">week 3</a>, a turbine made power <span class="math inline">\(P = \tfrac{1}{2}\rho A v^3 C_p\)</span>. The <strong>wind power density</strong> is</p>
+<p><span class="math display">\[
+\text{power density} = \tfrac{1}{2}\,\rho\,v^3 \qquad \text{(in W/m}^2\text{)}
+\]</span></p>
+<p>the power carried through each square meter facing the wind. Use <span class="math inline">\(\rho = 1.0\)</span> kg/m³, the same Denver air as week 3.</p>
+<p>Add it as a new column, the same way the pandas lesson made <code>temp_F</code> out of <code>temp_C</code>: one line that computes it for all 60,000 rows at once. Then <code>describe()</code> the new column. For calibration: a typical wind here is about 8 m/s, and <span class="math inline">\(\tfrac{1}{2}(1.0)(8^3) = 256\)</span> W/m². Are your numbers in that neighborhood?</p>
 </section>
-<section id="why-is-it-so-good-at-code-anyway" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="why-is-it-so-good-at-code-anyway">Why is it so good at code, anyway?</h2>
-<p>The biggest reason: the training data included billions of lines of code, much of it from working programs, and a lot of solid documentation from the code creators themselves ( <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html">find_peaks</a>). So there is a strong statistical signal that <strong>these are very relevant words for this task</strong>.</p>
-<p>But furthermore: code is checkable. Compare</p>
-<blockquote class="blockquote">
-<p>“You can’t fix every problem, so just focus on doing good work in your own corner of it.”</p>
-</blockquote>
-<p>with</p>
-<blockquote class="blockquote">
-<p>“<a href="https://en.wikipedia.org/wiki/The_Return_of_the_King">It is not our part</a> to master all the tides of the world, but to do what is in us for the succour of those years wherein we are set, uprooting the evil in the fields that we know, so that those who live after may have clean earth to till.”</p>
-</blockquote>
-<p>How can you judge that the first one is “wrong”? Based on our understanding of how LLMs work, every new word/token in that line is a completely reasonable continuation of the sentence. The second one, by Tolkien, is better, but not “more correct”.</p>
-<p>Meanwhile: if code doesn’t run, something is wrong, and we further will get an output from code that can possibly be confirmed/validated against known results. Modern LLMs are able to run code on the cloud to confirm they perform as intended, and they are increasingly willing to compare against test cases for you: if you need some code to find the area under a curve, an LLM might write it, run it, and compare against the known area under <span class="math inline">\(y=x\)</span> from 0 to 1. Basically, the LLMs are doing their own small <strong>verification</strong>. That probably isn’t sufficient to confirm that the code does what it is supposed to, but it is necessary that the code works for <em>at least</em> that basic problem.</p>
-<p>We will do our own <strong>audit</strong> and <strong>verification</strong> of the code: read through it to make sure it follows a logic we agree with, and test its output in several ways. We may need to <strong>iterate</strong> — the AI gives us code that seems like it is 90% of the way to succeeding at the job, but there is an error, and so we need to work with the AI to revise. Unlike prose, we can identify specifics about what is wrong and eventually arrive at something that is verified correct.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Meanwhile: LLMs are historically mediocre at arithmetic — predicting a text representation of numbers in a calculation is not the same as calculating.</p>
-</div></div></section>
-<section id="the-stance-on-llms-in-this-course" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-stance-on-llms-in-this-course">The stance on LLMs in this course</h2>
-<p>No doubt, LLMs are tools that can <strong>augment</strong> your abilities. A few years ago I might have manually combined 40 spreadsheets into one (which maybe would have taken an hour, but was annoying), or I might have written code to do that for me (which probably would have taken four hours to figure out… should have just done it manually arggg). Now I can ask an LLM to give me the Python code to do it, and the project is done in 5 minutes.</p>
-<p>I have become more ambitious and capable in some aspects of my work because I know I can get a head start using AI. But note: I am the one who came up with the idea, and I needed to describe the problem and some of the necessary steps. And, importantly, I am the one responsible if something breaks along the way, and so I need to have a strategy to confirm that everything made it into the finished project successfully.</p>
-<p>I think the following is very much in the spirit of coding in 2026: <strong>Think of LLMs as your extremely fast, extremely well-read, overconfident junior collaborator</strong>. You can use them to quickly retrieve information, you can ask them to help you write code, they can help troubleshoot problems. But ultimately, you are setting the expectations (specifications), and you are responsible for the project (so you better do some verification). And, further, there will be times when you have to show that you, too, actually know how to do the stuff (the checkpoints).</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>One more term you’ll see a lot: an <strong>agent</strong> is capable of actually making changes on your computer — creating new folders, creating/editing files, maybe sending emails — rather than giving you text in a web browser that you have to move around. Still basically a junior collaborator: you still provide the details and check the results, you just have to do less manual labor.</p>
-</div></div><div class="bring-to-class">
-<p>Answer these:</p>
+<section id="part-3-the-search" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-the-search">Part 3 — The search</h2>
+<p>A 10 × 10 km square is set by its southwest corner <span class="math inline">\((x_0, y_0)\)</span>: it covers <code>x_km</code> from <span class="math inline">\(x_0\)</span> to <span class="math inline">\(x_0 + 9\)</span> and <code>y_km</code> from <span class="math inline">\(y_0\)</span> to <span class="math inline">\(y_0 + 9\)</span>. We want the corner whose square has the highest average power density.</p>
+<p>Make the same kind of 100 × 100 table you made in Part 1, but from the power column: one average power density per site. Then use the same pattern as the <a href="../homework/hw4-siren.html">siren sweep</a>: a nested loop, one loop over <span class="math inline">\(x_0\)</span> and one over <span class="math inline">\(y_0\)</span>. For each corner, slice the square out of the grid, take its mean, and keep track of the best score so far along with the corner that produced it. Think carefully about the loop range: the square can’t hang off the edge of the region, so the biggest allowed <span class="math inline">\(x_0\)</span> isn’t 99. How many candidate squares are there in total?</p>
+<p>Then find the <strong>runner-up</strong>: the best square that doesn’t overlap the winner at all. (A square shifted over by 1 km is basically the same site.)</p>
+<p>Compare the two:</p>
+<ul>
+<li>Their average power density, and the margin as a percentage. Is it a few percent or a lot?</li>
+<li>Their average <em>wind speed</em>.</li>
+<li>Does the winner sit where you pointed in Part 1? Does it contain the windiest single site?</li>
+</ul>
+</section>
+<section id="part-4-month-by-month" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-month-by-month">Part 4 — Month by month</h2>
+<p>A turbine company cares about the average, but it also cares about the bad months. Use the two-condition filter (four conditions, really: two on <code>x_km</code>, two on <code>y_km</code>) to pull out all the rows inside your winning square, then group by <code>month</code> and average the power density. Do the same for the runner-up.</p>
+<p>How many rows should each square have? Check that you got that many.</p>
+<p>Then put both squares’ monthly averages on one plot. Does the winner beat the runner-up in <em>every</em> month? Is one site steadier than the other? Does any of this change your recommendation? There isn’t a single right answer to that last question.</p>
+<p>Now make that plot a second time, with one change: the y-axis. Draw one version with the axis starting at zero and one zoomed in to just the range of the data (<code>plt.ylim</code> sets it). Which one would you show your boss, and why? And which one would a competitor, trying to sell the runner-up site, want to show? (Think back to the <a href="../activities/w06-plot-clinic.html">plot clinic</a>.)</p>
+</section>
+<section id="your-submission" class="level2">
+<h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
+<p><strong>Step 1 — Specify &amp; prompt.</strong> Your spec covers the decisions, not the syntax:</p>
+<ul>
+<li>Your Part 1 eyeball pick, written <em>before</em> any searching.</li>
+<li>The power density column: the formula, the value of <span class="math inline">\(\rho\)</span>, and the units.</li>
+<li>How a square is defined (by which corner), the loop ranges for <span class="math inline">\(x_0\)</span> and <span class="math inline">\(y_0\)</span>, and how many squares that is.</li>
+<li>How you’ll define “doesn’t overlap” for the runner-up.</li>
+<li>What goes on the heatmap and the month-by-month plot.</li>
+</ul>
+<p>Then your actual LLM prompt, with the model name and date.</p>
+<p><strong>Step 2 — Annotate.</strong> Four annotations this time. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it carries out. The four are:</p>
 <ol type="1">
-<li><p>Two students give an LLM the <em>identical</em> prompt for a projectile program. Predict: (a) identical code, (b) different code, same numerical answers, (c) different code, possibly different answers. Write one sentence defending your pick.</p></li>
-<li><p>The LLM hands you a projectile program and it <strong>runs without any errors, and produces a nice plot.</strong> List every distinct reason you can think of that its output might still be wrong.</p></li>
+<li>the line that makes the power density column. Check the exponent and the units;</li>
+<li>the line that groups by site and builds the grid (<code>groupby</code> and <code>unstack</code>);</li>
+<li>the line that slices one 10 × 10 square out of the grid. Which index is <span class="math inline">\(y\)</span> and which is <span class="math inline">\(x\)</span>?</li>
+<li>the line where the best-so-far gets updated.</li>
 </ol>
-</div>
+<p>If the AI made a decision you didn’t specify (a loop range, a value of <span class="math inline">\(\rho\)</span>, a default), point it out too.</p>
+<p><strong>Step 3 — Verify.</strong> Three checks:</p>
+<ol type="1">
+<li><strong>One site by hand.</strong> Pick any site, filter out its 6 rows, and print them. With a calculator, find the power density for each month and average them. Show the arithmetic in a text cell, and confirm it matches the power grid’s value for that site. Also compute <span class="math inline">\(\tfrac{1}{2}\rho\,(\text{average wind})^3\)</span> for the same site: is it bigger or smaller, and does that match the 8-and-12 example? Then check the grid’s orientation: does <code>grid.loc[y, x]</code> give the same number, or the number for the <em>mirrored</em> site?</li>
+<li><strong>The square is where you think it is.</strong> Draw your winning square on the heatmap (<code>plt.Rectangle</code> will do it, or just four lines). Does it sit on top of the windy region the numbers say it does? If it lands somewhere calm, an <span class="math inline">\(x\)</span> and a <span class="math inline">\(y\)</span> got swapped somewhere.</li>
+<li><strong>Counts.</strong> The number of candidate squares from Step 1, and the number of rows in your Part 4 square. Do both match what you predicted?</li>
+</ol>
+<p><strong>Step 4 — Report.</strong> A one-page <strong>site recommendation</strong> for the boss:</p>
+<ol type="1">
+<li>The winning square (corner coordinates), its average power density and wind speed, the runner-up, and the margin.</li>
+<li>One honest map with both squares drawn on.</li>
+<li>The month-by-month plot (the version you chose, and one sentence on why) and your consistency argument: does it change anything?</li>
+<li>One or two sentences on the eye-versus-arithmetic question. Did your Part 1 pick win? If not, why not?</li>
+</ol>
 
 
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIiwibnVtcHkiLCJwYW5kYXMiLCJtYXRwbG90bGliIl19fQ==
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -579,7 +618,7 @@ eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../lessons";
+window._ojs.paths.runtimeToDoc = "../../homework";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "..";
 window._ojs.selfContained = false;
