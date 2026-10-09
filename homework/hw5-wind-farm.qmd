@@ -1,0 +1,180 @@
+---
+title: "HW 5 · Where the wind blows"
+subtitle: "Anchor week 7 · Standards: P3, F2, A2, A4"
+---
+
+## Scenario
+
+Your firm holds the survey rights over a 100 km × 100 km region of the plains and will build a **10 km × 10 km square wind farm** somewhere inside it. Someone has already spent six months measuring the wind at every square kilometer of the region, which works out to 60,000 numbers. Your job is to turn those 60,000 numbers into one recommendation: **where should the farm go?**
+
+**See [Submitting Homework](../info/colab-format.qmd) for how to set up the report. Same look as the last three.**
+
+::: {.column-margin}
+Remember the [week 3 wind turbine](../activities/w03-function-forge.qmd)? Power scales with $v^3$. A site that's only 5% windier makes about 16% more power, so small differences in wind speed are worth paying attention to.
+:::
+
+## Data
+
+[`wind_survey.csv`](../data/wind_survey.csv) has four columns:
+
+- `x_km`, `y_km`: the site's position, 0 to 99 km east and north from the region's southwest corner. Each site is one square kilometer.
+- `month`: 1 through 6 (January through June).
+- `wind_ms`: that site's average wind speed for that month, at turbine height, in m/s.
+
+So there are 100 × 100 = 10,000 sites, each measured over 6 months: 60,000 rows. Download it and upload it to Colab's Files panel, the way we did in [week 6](../lessons/06-data-io-plots.qmd).
+
+::: {.callout-tip}
+Right-click [`wind_survey.csv`](../data/wind_survey.csv) and choose "Download linked file" or similar.
+:::
+
+## A few new tools
+
+The [pandas lesson](../lessons/07-pandas.qmd) covered filtering and grouping on one column. This problem needs a few more tricks. 
+
+
+::: {.callout-important}
+I am not expecting you to memorize any of these, I haven't. But you should know what they do when you see them! And, in this assignment, you'll be annotating them.
+:::
+
+
+
+**Filtering on two conditions.** We need to use `&`, and each condition needs its own parentheses:
+
+```{pyodide}
+import pandas as pd
+df = pd.DataFrame({
+    "x_km":    [0, 1, 0, 1, 0, 1, 0, 1],
+    "y_km":    [0, 0, 1, 1, 0, 0, 1, 1],
+    "month":   [1, 1, 1, 1, 2, 2, 2, 2],
+    "wind_ms": [7.1, 7.4, 8.0, 8.3, 6.9, 7.6, 8.2, 8.1],
+})
+one_site = df[(df["x_km"] == 1) & (df["y_km"] == 0)]   # both must be True
+print(one_site)
+```
+
+**Grouping on two columns, then making a map.** Grouping by *both* coordinates gives one average per site, which squashes the months together. Then `.unstack()` spreads those averages out into a grid, with one row per `y_km` and one column per `x_km`:
+
+```{pyodide}
+site_mean = df.groupby(["y_km", "x_km"])["wind_ms"].mean()
+print(site_mean)          # one long list: (y, x) -> mean
+grid = site_mean.unstack()
+print(grid)               # a little 2 × 2 map
+```
+
+With the real data, `grid` is 100 × 100. `plt.imshow(grid, origin="lower")` draws it as a heatmap, and `plt.colorbar()` adds the color scale. The `origin="lower"` part matters: without it, `imshow` puts row 0 at the *top*, which flips north and south on your map.
+
+**Slicing a square out of the grid.** `grid.to_numpy()` turns the grid into a 2-D NumPy array, which can be sliced in both directions at once: `[rows, columns]`, so `[y, x]`.
+
+```{pyodide}
+import numpy as np
+G = np.arange(36).reshape(6, 6)   # a 6 × 6 stand-in for the wind grid
+print(G)
+print(G[1:4, 2:5])               # rows 1-3, columns 2-4: a 3 × 3 square
+print(G[1:4, 2:5].mean())
+```
+
+Note the order: `G[y, x]`, not `G[x, y]`. (Python won't warn you if you flip them!)
+
+## Part 1 — Look first
+
+Load the file, use `head()` and `describe()`. Do the minimum and maximum wind speeds make physical sense? (For calibration: 3 m/s is a light breeze, and 12 m/s will blow your hat off.)
+
+Then make a map. Average each site over its six months (one number per square kilometer), arrange those 10,000 averages into a 100 × 100 table with `groupby` and `unstack` (see [the tools above](#a-few-new-tools)), and draw it as a heatmap: colorbar with units, axes labeled in km. **Before you compute anything else**, look at it and write down (in a text cell) where *you* would put the farm, and why. Add your prediction to the notebook... we will compare to what we calculate (and won't penalize an incorrect guess).
+
+Finally, find the single windiest site: which square kilometer has the highest six-month average, and what is it?
+
+## Part 2 — From wind to power
+
+Back in [week 3](../activities/w03-function-forge.qmd), a turbine made power $P = \tfrac{1}{2}\rho A v^3 C_p$. The **wind power density** is
+
+$$
+\text{power density} = \tfrac{1}{2}\,\rho\,v^3 \qquad \text{(in W/m}^2\text{)}
+$$
+
+the power carried through each square meter facing the wind. Use $\rho = 1.0$ kg/m³, the same Denver air as week 3.
+
+Add it as a new column, the same way the pandas lesson made `temp_F` out of `temp_C`: one line that computes it for all 60,000 rows at once. Then `describe()` the new column. For calibration: a typical wind here is about 8 m/s, and $\tfrac{1}{2}(1.0)(8^3) = 256$ W/m². Are your numbers in that neighborhood?
+
+
+## Part 3 — The search
+
+A 10 × 10 km square is set by its southwest corner $(x_0, y_0)$: it covers `x_km` from $x_0$ to $x_0 + 9$ and `y_km` from $y_0$ to $y_0 + 9$. We want the corner whose square has the highest average power density.
+
+Make the same kind of 100 × 100 table you made in Part 1, but from the power column: one average power density per site. Then use the same pattern as the [siren sweep](hw4-siren.qmd): a nested loop, one loop over $x_0$ and one over $y_0$. For each corner, slice the square out of the grid, take its mean, and keep track of the best score so far along with the corner that produced it. Think carefully about the loop range: the square can't hang off the edge of the region, so the biggest allowed $x_0$ isn't 99. How many candidate squares are there in total?
+
+Then find the **runner-up**: the best square that doesn't overlap the winner at all. (A square shifted over by 1 km is basically the same site.)
+
+Compare the two:
+
+- Their average power density, and the margin as a percentage. Is it a few percent or a lot?
+- Their average *wind speed*.
+- Does the winner sit where you pointed in Part 1? Does it contain the windiest single site?
+
+## Part 4 — Month by month
+
+A turbine company cares about the average, but it also cares about the bad months. Use the two-condition filter (four conditions, really: two on `x_km`, two on `y_km`) to pull out all the rows inside your winning square, then group by `month` and average the power density. Do the same for the runner-up.
+
+How many rows should each square have? Check that you got that many.
+
+Then put both squares' monthly averages on one plot. Does the winner beat the runner-up in *every* month? Is one site steadier than the other? Does any of this change your recommendation? There isn't a single right answer to that last question.
+
+Now make that plot a second time, with one change: the y-axis. Draw one version with the axis starting at zero and one zoomed in to just the range of the data (`plt.ylim` sets it). Which one would you show your boss, and why? And which one would a competitor, trying to sell the runner-up site, want to show? (Think back to the [plot clinic](../activities/w06-plot-clinic.qmd).)
+
+## Your submission
+
+**Step 1 — Specify & prompt.** Your spec covers the decisions, not the syntax:
+
+- Your Part 1 eyeball pick, written *before* any searching.
+- The power density column: the formula, the value of $\rho$, and the units.
+- How a square is defined (by which corner), the loop ranges for $x_0$ and $y_0$, and how many squares that is.
+- How you'll define "doesn't overlap" for the runner-up.
+- What goes on the heatmap and the month-by-month plot.
+
+Then your actual LLM prompt, with the model name and date.
+
+**Step 2 — Annotate.** Four annotations this time. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it carries out. The four are:
+
+1. the line that makes the power density column. Check the exponent and the units;
+2. the line that groups by site and builds the grid (`groupby` and `unstack`);
+3. the line that slices one 10 × 10 square out of the grid. Which index is $y$ and which is $x$?
+4. the line where the best-so-far gets updated.
+
+If the AI made a decision you didn't specify (a loop range, a value of $\rho$, a default), point it out too.
+
+**Step 3 — Verify.** Three checks:
+
+1. **One site by hand.** Pick any site, filter out its 6 rows, and print them. With a calculator, find the power density for each month and average them. Show the arithmetic in a text cell, and confirm it matches the power grid's value for that site. Also compute $\tfrac{1}{2}\rho\,(\text{average wind})^3$ for the same site: is it bigger or smaller, and does that match the 8-and-12 example? Then check the grid's orientation: does `grid.loc[y, x]` give the same number, or the number for the *mirrored* site?
+2. **The square is where you think it is.** Draw your winning square on the heatmap (`plt.Rectangle` will do it, or just four lines). Does it sit on top of the windy region the numbers say it does? If it lands somewhere calm, an $x$ and a $y$ got swapped somewhere.
+3. **Counts.** The number of candidate squares from Step 1, and the number of rows in your Part 4 square. Do both match what you predicted?
+
+**Step 4 — Report.** A one-page **site recommendation** for the boss:
+
+1. The winning square (corner coordinates), its average power density and wind speed, the runner-up, and the margin.
+2. One honest map with both squares drawn on.
+3. The month-by-month plot (the version you chose, and one sentence on why) and your consistency argument: does it change anything?
+4. One or two sentences on the eye-versus-arithmetic question. Did your Part 1 pick win? If not, why not?
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site):**
+
+**Data.** Generator: `instructor/data_generators.py` section 2, seed 1030. Plateau A: flat-topped disk centered (70, 30), radius ~10 km, +2.6 m/s, seasonal (×1.25 in Jan down to ×0.78 in Jun). Spike B: Gaussian at (24, 76), +4.2 m/s, σ = 3 km, steady. Background 7.4 m/s + 0.25 m/s south→north gradient, noise σ = 0.9 per site-month, region-wide 0.3·sin(month). `describe()`: wind 3.7–14.3 m/s, nothing unphysical. (No planted bad data this week; the triage activity already did that.)
+
+**Part 1.** Brightest single site: (x=25, y=76), **11.99 m/s**, in the spike. The heatmap shows a small bright yellow dot NW and a broad green disk SE. Expect a real split of eyeball picks. Students who pick the dot are the planted lesson, but students who pick the big disk aren't wrong, and their explanation ("it's bigger than the farm") is the good one.
+
+**Part 2.** Power density column: `df["power_Wm2"] = 0.5 * 1.0 * df["wind_ms"]**3`. `describe()`: 26–1,453 W/m², mean 235, median 219, which matches the ~256 calibration. Common slips: `**2` instead of `**3` (values ~30–100, which the calibration catches); `^3`, which in Python is *bitwise XOR*, not a power, and errors on floats (good annotation fodder if an AI ever produces it); ρ = 1.225 (sea level) instead of 1.0, which is fine if stated in the spec, since it scales everything by the same factor and can't change the winner.
+
+**Part 3.** 91 × 91 = **8,281** squares (x0, y0 from 0 to 90). Off-by-one versions: `range(90)` misses nothing important here; `range(100)` with NumPy slicing silently takes *partial* squares at the edge (slicing past the end doesn't error), which would be a great catch but won't change the winner. **Winner: corner (66, 25), 518 W/m², mean wind 10.01 m/s** (neighbors (65, 25) and (66, 24) are within 1 W/m², so accept anything in that cluster). **Runner-up (non-overlapping): corner (19, 71), 455 W/m², mean wind 9.51 m/s**, the best square around the spike. Margin **~14%** in power density (518/455 = 1.14). For comparison, cubing the average wind instead would give (10.01/9.51)³ ≈ 1.17. The spike square is more uneven, so cubing first helps it more, which is exactly the Part 2 point. Searching on average wind alone picks the same winner, so a student who skipped the power column still gets the right square for a slightly wrong reason. The winner does *not* contain the windiest site: the brightest wind site is (25, 76) at 11.99 m/s, and the brightest power site is (24, 75) at 872 W/m², both in the spike. The spike is ~6 km across, smaller than the farm, so a 10 km square around it averages in a lot of ordinary wind. That's the whole lesson: "the windiest square kilometer" and "the best 10 km farm" are different questions. (Beyond scope: real turbines flatten out at rated speed, ~11–13 m/s, which would trim the spike's best sites further. Also, monthly-mean winds understate true power, since minute-to-minute gusts make the cube-first bonus even larger.)
+
+**Part 4.** 600 rows per square (100 sites × 6 months). Monthly average power density (W/m²):
+
+| month | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| winner (66, 25) | 628 | 643 | 539 | 461 | 420 | 420 |
+| runner-up (19, 71) | 482 | 479 | 471 | 430 | 422 | 448 |
+
+The winner is clearly more seasonal (643 → 420, a 35% drop; the runner-up only varies 422–482). It wins four months by a lot, **essentially ties May** (420 vs 422), and **loses June** (420 vs 448). Good answers: "still the winner: it's ~14% ahead on average, way ahead in winter, and only a bit behind in late spring," or a thoughtful "if the buyer needs steady summer output, B deserves a look," backed by numbers. Grade the argument. **Axis question (A2):** zoomed to ~410–650, the winner's spring slide looks like a collapse and the June gap (28 W/m², ~6%) looks like a real defeat. From zero, it's a modest seasonal dip and the two squares look close in late spring. The competitor shows the zoomed version, preferably with only April–June. Either choice for the boss is fine if justified. "From zero, because power is a quantity where zero means something" and "zoomed, but with the numbers labeled so the scale is clear" are both good. Bonus thinking (don't require it): six months is half a year, so we don't know what July through December look like, and that's a fine thing to flag as uncertainty.
+
+**Verify.** Spot-check example: site (70, 30), winds 9.59, 10.68, 8.98, 11.01, 11.11, 8.23 m/s → power densities 441.0, 609.1, 362.1, 667.3, 685.7, 278.7 → mean **507.3 W/m²**. Average wind is 9.93 m/s, and ½(9.93)³ = **490.1**, smaller, as the 8-and-12 example predicts. `grid.loc[y, x]` is the right orientation because the index is `y_km`. If they grouped `["x_km", "y_km"]` instead, the grid is transposed (`grid.loc[x, y]`), and slicing `G[y0:y0+10, x0:x0+10]` then reports the winner as (25, 66). Drawn on a correctly-oriented map, that square sits on ordinary ground (~276 W/m², ~8 m/s) just south of the spike. Check 2 is designed to catch exactly that. Also, `imshow` without `origin="lower"` flips the map vertically, so a correct square drawn on it looks wrong (and vice versa).
+
+**Where students will struggle:** the y/x order (expect a lot of transposed grids, caught or not by Verify 2), the loop's upper limit, and defining "non-overlapping" (corners at least 10 apart in x *or* in y). Accept any correct approach to the search. Pure pandas filtering inside the loop also works, and takes ~2 s for ~8,000 filters, which is fine.
+:::

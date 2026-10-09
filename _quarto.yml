@@ -102,6 +102,7 @@ website:
           - homework/hw2-solar-tilt.qmd
           - homework/hw3-potato-cannon.qmd
           - homework/hw4-siren.qmd
+          - homework/hw5-wind-farm.qmd
       # - section: "Homework"
       #   contents:
       #     - homework/index.qmd

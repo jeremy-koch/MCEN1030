@@ -10,6 +10,7 @@ README.md
 /data/*
 !/data/siren_frequency.csv
 !/data/motor_test_log.csv
+!/data/wind_survey.csv
 /instructor/
 /homework/*
 !/homework/example-parking-garage.qmd
@@ -17,6 +18,7 @@ README.md
 !/homework/hw2-solar-tilt.qmd
 !/homework/hw3-potato-cannon.qmd
 !/homework/hw4-siren.qmd
+!/homework/hw5-wind-farm.qmd
 
 
 activities/w01*
