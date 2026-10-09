@@ -122,17 +122,17 @@ Now make that plot a second time, with one change: the y-axis. Draw one version 
 
 ## Your submission
 
-**Step 1 — Specify & prompt.** Your spec covers the decisions, not the syntax:
+**Step 1 — Specify & prompt.**
 
 - Your Part 1 eyeball pick, written *before* any searching.
-- The power density column: the formula, the value of $\rho$, and the units.
+- How you got/will get the power density column: the formula, the value of $\rho$, and the units.
 - How a square is defined (by which corner), the loop ranges for $x_0$ and $y_0$, and how many squares that is.
 - How you'll define "doesn't overlap" for the runner-up.
 - What goes on the heatmap and the month-by-month plot.
 
 Then your actual LLM prompt, with the model name and date.
 
-**Step 2 — Annotate.** Four annotations this time. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it carries out. The four are:
+**Step 2 — Annotate.** Four annotations this time. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it is related to. The four are:
 
 1. the line that makes the power density column. Check the exponent and the units;
 2. the line that groups by site and builds the grid (`groupby` and `unstack`);
@@ -144,14 +144,14 @@ If the AI made a decision you didn't specify (a loop range, a value of $\rho$, a
 **Step 3 — Verify.** Three checks:
 
 1. **One site by hand.** Pick any site, filter out its 6 rows, and print them. With a calculator, find the power density for each month and average them. Show the arithmetic in a text cell, and confirm it matches the power grid's value for that site. Also compute $\tfrac{1}{2}\rho\,(\text{average wind})^3$ for the same site: is it bigger or smaller, and does that match the 8-and-12 example? Then check the grid's orientation: does `grid.loc[y, x]` give the same number, or the number for the *mirrored* site?
-2. **The square is where you think it is.** Draw your winning square on the heatmap (`plt.Rectangle` will do it, or just four lines). Does it sit on top of the windy region the numbers say it does? If it lands somewhere calm, an $x$ and a $y$ got swapped somewhere.
+2. **The square is where you think it is.** Draw your winning square on the heatmap (`plt.Rectangle` will do it). Does it sit on top of the windy region the numbers say it does? If it lands somewhere calm, an $x$ and a $y$ got swapped somewhere.
 3. **Counts.** The number of candidate squares from Step 1, and the number of rows in your Part 4 square. Do both match what you predicted?
 
 **Step 4 — Report.** A one-page **site recommendation** for the boss:
 
 1. The winning square (corner coordinates), its average power density and wind speed, the runner-up, and the margin.
 2. One honest map with both squares drawn on.
-3. The month-by-month plot (the version you chose, and one sentence on why) and your consistency argument: does it change anything?
+3. The month-by-month plot (the version you chose, and one sentence on why) and a discussion of the consistency: does it change the optimum site?
 4. One or two sentences on the eye-versus-arithmetic question. Did your Part 1 pick win? If not, why not?
 
 ::: {.content-hidden}
