@@ -561,16 +561,16 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 </section>
 <section id="your-submission" class="level2">
 <h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
-<p><strong>Step 1 — Specify &amp; prompt.</strong> Your spec covers the decisions, not the syntax:</p>
+<p><strong>Step 1 — Specify &amp; prompt.</strong></p>
 <ul>
 <li>Your Part 1 eyeball pick, written <em>before</em> any searching.</li>
-<li>The power density column: the formula, the value of <span class="math inline">\(\rho\)</span>, and the units.</li>
+<li>How you got/will get the power density column: the formula, the value of <span class="math inline">\(\rho\)</span>, and the units.</li>
 <li>How a square is defined (by which corner), the loop ranges for <span class="math inline">\(x_0\)</span> and <span class="math inline">\(y_0\)</span>, and how many squares that is.</li>
 <li>How you’ll define “doesn’t overlap” for the runner-up.</li>
 <li>What goes on the heatmap and the month-by-month plot.</li>
 </ul>
 <p>Then your actual LLM prompt, with the model name and date.</p>
-<p><strong>Step 2 — Annotate.</strong> Four annotations this time. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it carries out. The four are:</p>
+<p><strong>Step 2 — Annotate.</strong> Four annotations this time. For each one, quote the line (or short block) in backticks, then write one or two sentences in your own words: what it does, and which spec decision it is related to. The four are:</p>
 <ol type="1">
 <li>the line that makes the power density column. Check the exponent and the units;</li>
 <li>the line that groups by site and builds the grid (<code>groupby</code> and <code>unstack</code>);</li>
@@ -581,14 +581,14 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5w
 <p><strong>Step 3 — Verify.</strong> Three checks:</p>
 <ol type="1">
 <li><strong>One site by hand.</strong> Pick any site, filter out its 6 rows, and print them. With a calculator, find the power density for each month and average them. Show the arithmetic in a text cell, and confirm it matches the power grid’s value for that site. Also compute <span class="math inline">\(\tfrac{1}{2}\rho\,(\text{average wind})^3\)</span> for the same site: is it bigger or smaller, and does that match the 8-and-12 example? Then check the grid’s orientation: does <code>grid.loc[y, x]</code> give the same number, or the number for the <em>mirrored</em> site?</li>
-<li><strong>The square is where you think it is.</strong> Draw your winning square on the heatmap (<code>plt.Rectangle</code> will do it, or just four lines). Does it sit on top of the windy region the numbers say it does? If it lands somewhere calm, an <span class="math inline">\(x\)</span> and a <span class="math inline">\(y\)</span> got swapped somewhere.</li>
+<li><strong>The square is where you think it is.</strong> Draw your winning square on the heatmap (<code>plt.Rectangle</code> will do it). Does it sit on top of the windy region the numbers say it does? If it lands somewhere calm, an <span class="math inline">\(x\)</span> and a <span class="math inline">\(y\)</span> got swapped somewhere.</li>
 <li><strong>Counts.</strong> The number of candidate squares from Step 1, and the number of rows in your Part 4 square. Do both match what you predicted?</li>
 </ol>
 <p><strong>Step 4 — Report.</strong> A one-page <strong>site recommendation</strong> for the boss:</p>
 <ol type="1">
 <li>The winning square (corner coordinates), its average power density and wind speed, the runner-up, and the margin.</li>
 <li>One honest map with both squares drawn on.</li>
-<li>The month-by-month plot (the version you chose, and one sentence on why) and your consistency argument: does it change anything?</li>
+<li>The month-by-month plot (the version you chose, and one sentence on why) and a discussion of the consistency: does it change the optimum site?</li>
 <li>One or two sentences on the eye-versus-arithmetic question. Did your Part 1 pick win? If not, why not?</li>
 </ol>
 
