@@ -1,0 +1,237 @@
+---
+title: "Fetch: APIs and JSON"
+subtitle: "Week 8 — read before Tuesday"
+---
+
+This week we are going to "fetch" data ourselves, instead of having a dataset given to us. Our first reading included the line:
+
+> From a few lines of code you can pull the live position of the International Space Station...
+
+We'll know how to do this after today. We'll learn what an API is, what the response looks like when it comes back ("JSON", and Python reads it as a *dictionary*), and what to do when you don't get a response.
+
+## Think First
+
+Recall
+
+1. Week 7: pandas let us grab a column by *name* (`df["temp_C"]`) instead of by position (`AL2`). Why was that such an improvement?
+2. Week 6: before trusting any data file, what do you check?
+
+Look Ahead
+
+1. When the weather app on your phone shows today's temperature, where does that number actually come from?
+2. Suppose your program asks a server for data every 30 seconds for 20 minutes, and at minute 7 the Wi-Fi hiccups. What *should* your program do?
+
+## What an API is
+
+An **API** (application programming interface) is, for our purposes, a web address that returns *data* instead of a web page. You send a question to a URL, and a computer somewhere sends back an answer.
+
+Here's one that gives the live position of the International Space Station. Click it on whatever device you're reading this on:
+
+<https://api.wheretheiss.at/v1/satellites/25544>
+
+Refresh the page a few times and watch the numbers change... it's moving fast!
+
+That's interesting, but we are probably more interested in *using the answer*. In Python:
+
+```python
+import requests
+r = requests.get("https://api.wheretheiss.at/v1/satellites/25544")
+info = r.json()
+print(info)
+```
+
+`requests.get` sends the request for information and `.json()` turns the reply into something Python can work with.
+
+::: {.column-margin}
+The code cells on this page run inside your browser, which isn't set up for `requests` — so run in Colab. The cells below use a reply I saved earlier.
+:::
+
+<!-- An analogy, with its limits: an API is like a vending machine. You press a specific button (the URL), and you get a specific thing back (the data), in a package you know how to open. The analogy breaks in a useful place, though. A vending machine doesn't care how often you press the button. A free API does, and it will stop answering you if you're rude. More on that in class. -->
+
+## JSON, and the dictionary
+
+Here's what came back when I clicked that link on October 10 (lightly rearranged so it fits on the page):
+
+```
+{"name": "iss", "id": 25544,
+ "latitude": 51.452776061797, "longitude": -116.29532419749,
+ "altitude": 430.56388078893, "velocity": 27565.817344208,
+ "visibility": "daylight", "timestamp": 1791654325,
+ "units": "kilometers", ...}
+```
+
+This is **JSON** ("JavaScript Object Notation", not only used with JavaScript), the format most APIs speak. Base Python has a **dictionary** that has a structure that looks like: `"key": value`. The above is a dictionary, and for example, `name` is a key, and `iss` is the associated value.
+
+Dictionaries function similarly to a DataFrame in that we reference things *by name*, not by position:
+
+
+```{pyodide}
+info = {"name": "iss", "id": 25544,
+        "latitude": 51.452776061797, "longitude": -116.29532419749,
+        "altitude": 430.56388078893, "velocity": 27565.817344208,
+        "visibility": "daylight", "timestamp": 1791654325,
+        "units": "kilometers"}
+
+lat = info["latitude"]
+lon = info["longitude"]
+speed = info["velocity"]
+print(lat, lon, speed)
+```
+
+Latitude 51.45° N, longitude 116.30° W. Paste `51.45, -116.30` into a map and the ISS was over the Canadian Rockies.
+
+Now, is 27,566 a believable speed? The API says `"units": "kilometers"`, so this is presumably km/h. Let's check it against something we know: the ISS goes around the Earth about every 90 minutes. Its orbit is a circle of radius $6371 + 431 \approx 6800$ km, so one lap is $2\pi \times 6800 \approx 42{,}700$ km. At 27,566 km/h, that takes $42{,}700 / 27{,}566 \approx 1.55$ hours, or about 93 minutes.
+
+
+
+### Never guess a key
+
+What happens if we ask for a key that isn't there? Try adding `info["lat"]` to the above cell. You should get `KeyError: 'lat'`. 
+
+Python won't guess what you meant: the key has to match exactly, capitals and all. A good strategy: **print the whole reply once, find the thing you want, and then write the path to it.** Look first, then extract.
+
+### Nesting: dictionaries inside dictionaries
+
+The ISS reply is simple: one level of keys. Most APIs aren't. Here's what a free weather service ([Open-Meteo](https://open-meteo.com/)) sent back when I asked for the current conditions in Boulder:
+
+```{pyodide}
+weather = {
+    "latitude": 40.00006, "longitude": -105.2613,
+    "timezone": "GMT", "elevation": 1635.0,
+    "current_units": {"time": "iso8601", "temperature_2m": "°C",
+                      "wind_speed_10m": "km/h"},
+    "current": {"time": "2026-10-10T17:45",
+                "temperature_2m": 26.0, "wind_speed_10m": 17.0},
+}
+
+print(weather["current"])                     # a whole dictionary
+print(weather["current"]["temperature_2m"])   # one number from inside it
+print(weather["current_units"]["wind_speed_10m"])
+```
+
+`weather["current"]` is itself a dictionary, so we can index into it again: `weather["current"]["temperature_2m"]`. Read the path left to right, like directions: go to `"current"`, then inside that go to `"temperature_2m"`.
+
+This reply also has something nice in it: the units travel *with* the data (`"current_units"`). Wind in km/h, not m/s or mph. And look at the time... `17:45` in `"GMT"`. That's not Boulder time. It was 11:45 in the morning here.
+
+## When the question doesn't get answered
+
+So far, every request worked. However: servers go down, Wi-Fi drops, free APIs get busy and tell you to slow down, and sometimes we just make a typo in the URL. Let's see what failure actually looks like. Here's the reply when I asked for a satellite number that doesn't exist:
+
+```
+{"error": "satellite not found", "status": 404}
+```
+
+The server answered, but not with what we wanted: we got a JSON/dictionary with just two keys, `"error"` and `"status"`. So if the next step in our code looks at `info["latitude"]` we'll get a `KeyError`, and the program stops. If the Wi-Fi is down entirely, it's worse: `requests.get` itself fails with a `ConnectionError` and never gets as far as a reply.
+
+For one request in a notebook, a crash is fine: sigh and run the cell again. But maybe we've built a data logger that does an API request every 30 seconds for 20 minutes, and maybe we run it and step out for coffee. If there is a hiccup at minute 7, you'll come back to a program that stopped 13 minutes ago. What we'd really like is for the program to say "that one didn't work, skip it" and carry on.
+
+That's what `try` and `except` are for:
+
+```{pyodide}
+replies = [
+    {"latitude": 51.45, "longitude": -116.30},
+    {"error": "satellite not found", "status": 404},   # a failed request
+    {"latitude": 50.98, "longitude": -111.84},
+]
+
+for reply in replies:
+    try:
+        lat = reply["latitude"]
+        print("Got a position:", lat)
+    except Exception as err:
+        print("Skipped one. Python said:", repr(err))
+```
+
+Python *tries* the indented block under `try`. If everything in it works, the `except` part is ignored. If anything in it fails, Python doesn't crash. It jumps straight to the `except` block, runs that instead, and carries on with whatever comes next. `err` holds the error, so we can still see what went wrong.
+
+In real fetching code, the `try` block would hold the request itself:
+
+```python
+try:
+    r = requests.get("https://api.wheretheiss.at/v1/satellites/25544", timeout=10)
+    info = r.json()
+    lat = info["latitude"]
+except Exception as err:
+    print("Skipped one reading:", repr(err))
+```
+
+(`timeout=10` means "if there's no answer in 10 seconds, give up." Without it, a stuck request can wait a longggg time.)
+
+::: {.callout-caution}
+`try`/`except` is powerful, and that makes it a little dangerous. It catches *every* error, including the ones that are your fault. Misspell a key inside a `try`, and the program will "skip" every reading without complaining. So keep the `try` block small (just where you need it), always print what was skipped, and count the skips at the end. Twenty requests with two skips is a hiccup. Twenty requests with twenty skips is a bug.
+:::
+
+::: {.column-margin}
+There's a third word in this family, `raise`, which lets your own code *create* an error on purpose: "this temperature is negative in kelvin, stop everything." Useful when you write tools for other people to use.
+:::
+
+## Bring to class
+
+::: {.bring-to-class}
+
+1. **Navigate.** Using the `weather` dictionary above, write the line of Python that gives the current wind speed. What does `weather["current_units"]["temperature_2m"]` give you? What does `weather["temperature_2m"]` give you, and why?
+2. **Predict.** The ISS is moving at about 27,600 km/h. How far does it travel in 5 minutes? The Earth is about 40,000 km around the equator. If the ISS were flying due east along the equator, how many degrees of longitude would it cover in those 5 minutes?
+
+In class we'll fetch the real thing and check your prediction against it.
+:::
+
+::: {.content-hidden}
+**Instructor answer key (planning only — stripped from the rendered site):**
+
+**(1)** `weather["current"]["wind_speed_10m"]` → `17.0` (km/h). `weather["current_units"]["temperature_2m"]` → `"°C"`. `weather["temperature_2m"]` → `KeyError`: temperature lives one level down, inside `"current"`. Expect some to write `weather["current_units"]["wind_speed_10m"]` for the wind speed: that gives the *unit*, `"km/h"`, not the number. That's the productive wrong answer (keys with similar names at different levels).
+
+**(2)** 27,600 km/h ÷ 12 = **2,300 km** in 5 min. 2,300 / 40,000 × 360° ≈ **21°** of longitude. In class, the measured change will be *different*, and where in the orbit the ISS happens to be decides by how much. I checked with a circular orbit at 51.6° inclination, including the Earth's rotation: over 5 minutes the longitude change ranges from **~11°** (crossing the equator, where the track slants 51.6° north or south, so only part of the motion is eastward) to **~29°** (near ±52° latitude, where it's moving nearly due east *and* a degree of longitude is only ~69 km instead of 111). The Earth turning eastward underneath it costs ~1.25° in every case. Two good reasons to hope for: "it doesn't fly along the equator" and "the Earth rotates." The degrees-shrink-at-high-latitude reason is a bonus. Accept anything in the 10–30° range with a reason.
+
+**Numbers on the page (checked Oct 10, 2026):** the ISS reply at timestamp 1791654325 = 2026-10-10 17:45:25 UTC: lat 51.45, lon −116.30 (BC/Alberta Rockies, near Golden, BC). Velocity 27,565.8 km/h, altitude 430.6 km → orbit circumference 42,736 km → period 93.0 min. Real ISS period ≈ 92.9 min. The 404 reply for satellite 99999999 is exactly `{"error":"satellite not found","status":404}`. Open-Meteo reply at the same time: 26.0 °C, 17.0 km/h, timezone GMT, elevation 1635 m.
+
+**Scope decisions:** `requests` is preinstalled in Colab. No `raise` beyond the margin note. `except Exception` (broad) rather than specific exception types: first-years don't have the vocabulary to pick the right one, and the counting-the-skips habit covers the danger. No `r.status_code` in the reading, to keep the vocabulary light, though it's a fine thing to show if someone asks "how do I know it worked?" Phone sensors moved to Thursday.
+
+**Before class:** test both APIs from campus Wi-Fi that morning. wheretheiss.at allows roughly 1 request per second, and that limit is probably *per IP address*. If campus Wi-Fi puts the whole room behind a few shared addresses, 140 students every 30 s is ~4.7 requests/s from what looks like one client, and some requests will time out. (When I tested the loop at 2 s spacing on Oct 10, requests 2 and 3 timed out with `ConnectTimeout`, and the `try`/`except` kept the loop alive.) That's fine, and honestly a gift: skipped readings in the room make the case for `try`/`except` better than the reading does. But if *most* requests fail, have pairs share one notebook (half the traffic), or switch to Open-Meteo for the loop (Boulder temperature every 30 s is boring but works). The saved replies on this page cover the dictionary practice either way.
+:::
+
+## In-class work
+
+We'll ask the ISS where it is a bunch of times and build a small dataset out of the answers.
+
+1. **One request.** Fetch the ISS's position with the three lines from the reading and print the whole reply. Pull out the latitude, longitude, and velocity. Where is it right now? Paste the coordinates into a map. Redo the 93-minute check with the altitude and velocity you got.
+2. **What time is it?** The `timestamp` is a big number like 1791654325. That's **Unix time**: the number of seconds since midnight UTC on January 1, 1970. (This is how most computers count time.) `pd.to_datetime(info["timestamp"], unit="s")` converts it. Is it *now*? In which time zone?
+3. **Ask several times, but patiently.** Here's a loop that asks 10 times, 30 seconds apart:
+
+    ```python
+    import time
+    import requests
+    import pandas as pd
+
+    url = "https://api.wheretheiss.at/v1/satellites/25544"
+    track = {"timestamp": [], "latitude": [], "longitude": []}
+
+    for k in range(10):
+        try:
+            info = requests.get(url, timeout=10).json()
+            t = info["timestamp"]
+            lat = info["latitude"]
+            lon = info["longitude"]
+            track["timestamp"].append(t)
+            track["latitude"].append(lat)
+            track["longitude"].append(lon)
+            print(k, "ok")
+        except Exception as err:
+            print(k, "skipped:", repr(err))
+        time.sleep(30)          # wait 30 seconds before asking again
+
+    df = pd.DataFrame(track)
+    ```
+
+    Before you run it: read it line by line with your partner. What is `track`? (Look at its curly braces.) How long will this take to finish? And why do you think it pulls out all three values *before* appending any of them? (What would happen to the three lists if `"latitude"` were missing from one reply?) Then run it, and while it runs, talk about `time.sleep(30)`. This API allows about one request per second, and if it is busy it might allow even fewer. If a whole classroom doing that in a loop it starts to look like an attack — we might get blocked!
+4. **Check your prediction.** Look at `df`. How many degrees of longitude did the ISS cover in those ~5 minutes (first row to last)? (If you get something huge or negative, the track crossed the date line.) Compare with your bring-to-class prediction. They probably don't match exactly. Can you think of why? (Hint: does the ISS actually fly along the equator? And what is the Earth doing underneath it?)
+5. **Break it on purpose.** Change the satellite number in `url` to `99999999`, and run the loop for 3 requests. What does your program print? Now take out the `try`/`except` (keep the code inside it) and run it again.
+
+## Challenge
+
+**Ask the weather.** Fetch the current Boulder weather from Open-Meteo yourself:
+
+```
+https://api.open-meteo.com/v1/forecast?latitude=40.01&longitude=-105.27&current=temperature_2m,wind_speed_10m
+```
+
+(That's one long URL. The part after the `?` is where we tell the API what we want: a location, and which current values.) Pull out the temperature and wind speed, *with* their units, from the reply. Then check them against a weather app on your phone. Do they agree? If not, what could explain it? Finally, convert the reply's time to Boulder time. (Boulder is 6 hours behind GMT in October.)

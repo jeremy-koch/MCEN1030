@@ -3,7 +3,7 @@ title: "The Standards"
 subtitle: "What you will be able to do"
 ---
 
-Your grade in this course is built from the fourteen standards below. Each is a specific, demonstrable skill, marked **met** or **not yet** — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class **checkpoints** (weeks 4, 6, 8, 10 — see [grading](grading.qmd)), activity work, and the design project. Convergent standards require at least one *in-class* demonstration. A standard missed in week 4 and nailed in week 11 is *met*.
+Your grade in this course is built from the fourteen standards below. Each is a specific, demonstrable skill, marked **met** or **not yet** — there is no partial credit. Standards can be demonstrated (and re-demonstrated) through homework cycles, the in-class **checkpoints** (weeks 4, 6, 9, 11 — see [grading](grading.qmd)), activity work, and the design project. Convergent standards require at least one *in-class* demonstration. A standard missed in week 4 and nailed in week 11 is *met*.
 
 Each standard carries a tag:
 

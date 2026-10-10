@@ -27,7 +27,7 @@ Every standard gets multiple opportunities across the semester. The rules:
 
 ### Checkpoints
 
-Four Tuesday classes (weeks 4, 6, 8, and 10) begin with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards **and re-offers items from earlier checkpoints**. At least one of a convergent standard's two demonstrations must be in-class.
+Four Tuesday classes (weeks 4, 6, 9, and 11) begin with a checkpoint: about twenty minutes, individual, on paper, no AI, no notes. Each checkpoint assesses a few convergent standards **and re-offers items from earlier checkpoints**. At least one of a convergent standard's two demonstrations must be in-class.
 <!-- The rule that gives the whole system its spine: **at least one of a convergent standard's two demonstrations must be in-class** — at a checkpoint or on the defense. -->
 
 <!-- Checkpoints are also where a small amount of unaided writing lives: e -->
@@ -96,7 +96,7 @@ Note about the ceiling: the university doesn't issue A+ grades, so at the A- row
 For Student 1, the two unspent tokens add 2 credits (45), but that doesn't change anything about the grade.
 :::
 
-**Student 2 — the slow start (read this one if you're nervous).** Bombs the first checkpoint, messing up two standards. No big deal — both are re-offered at the week-6 and week-8 checkpoints, and after also succeeding at them in the homework, Student 2 demonstrates each twice by mid-semester. Finishes with 11 standards Met. Then 41 engagement credits, having done the work all semester even while the checkpoints were rough. B- row: 11 ≥ 11 ✓, 41 ≥ 32 ✓ → floor of **B-**. Note that those 41 credits clear the A- row's bar, but 11 standards don't — the floor is the highest row where *every* requirement is met. Then the defense: Student 2 knows everything about the project, teammates' files included → distinguished → **Grade: B+.**
+**Student 2 — the slow start (read this one if you're nervous).** Bombs the first checkpoint, messing up two standards. No big deal — both are re-offered at the week-6 and week-9 checkpoints, and after also succeeding at them in the homework, Student 2 demonstrates each twice by mid-semester. Finishes with 11 standards Met. Then 41 engagement credits, having done the work all semester even while the checkpoints were rough. B- row: 11 ≥ 11 ✓, 41 ≥ 32 ✓ → floor of **B-**. Note that those 41 credits clear the A- row's bar, but 11 standards don't — the floor is the highest row where *every* requirement is met. Then the defense: Student 2 knows everything about the project, teammates' files included → distinguished → **Grade: B+.**
 
 **Student 3 — the ghost (read this one if you're planning to skip class).** Brilliant, and knows it: 12 standards Met, some on first attempt. But treats class as optional — skips the readings' commitments, misses most Thursdays — and finishes with 22 engagement credits, having spent no tokens (which convert: 22 + 3 = 25). A- row: 12 < 13 ✗. B- row: 12 ≥ 11 ✓, but 25 < 32 ✗. C- row: 12 ≥ 9 ✓, 25 ≥ 24 ✓ → floor of **C-**. The defense is, predictably, excellent → distinguished → **Grade: C+.** Is that harsh for someone with 12 standards and a great defense? Well, this course is also about *the process* — prepare, commit, argue, critique. Ten more Thursdays of just *participating* and we would be at a B+.
 
