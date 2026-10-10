@@ -189,7 +189,7 @@ In class we'll fetch the real thing and check your prediction against it.
 **Before class:** test both APIs from campus Wi-Fi that morning. wheretheiss.at allows roughly 1 request per second, and that limit is probably *per IP address*. If campus Wi-Fi puts the whole room behind a few shared addresses, 140 students every 30 s is ~4.7 requests/s from what looks like one client, and some requests will time out. (When I tested the loop at 2 s spacing on Oct 10, requests 2 and 3 timed out with `ConnectTimeout`, and the `try`/`except` kept the loop alive.) That's fine, and honestly a gift: skipped readings in the room make the case for `try`/`except` better than the reading does. But if *most* requests fail, have pairs share one notebook (half the traffic), or switch to Open-Meteo for the loop (Boulder temperature every 30 s is boring but works). The saved replies on this page cover the dictionary practice either way.
 :::
 
-## In-class work
+<!-- ## In-class work
 
 We'll ask the ISS where it is a bunch of times and build a small dataset out of the answers.
 
@@ -234,4 +234,4 @@ We'll ask the ISS where it is a bunch of times and build a small dataset out of 
 https://api.open-meteo.com/v1/forecast?latitude=40.01&longitude=-105.27&current=temperature_2m,wind_speed_10m
 ```
 
-(That's one long URL. The part after the `?` is where we tell the API what we want: a location, and which current values.) Pull out the temperature and wind speed, *with* their units, from the reply. Then check them against a weather app on your phone. Do they agree? If not, what could explain it? Finally, convert the reply's time to Boulder time. (Boulder is 6 hours behind GMT in October.)
+(That's one long URL. The part after the `?` is where we tell the API what we want: a location, and which current values.) Pull out the temperature and wind speed, *with* their units, from the reply. Then check them against a weather app on your phone. Do they agree? If not, what could explain it? Finally, convert the reply's time to Boulder time. (Boulder is 6 hours behind GMT in October.) -->
