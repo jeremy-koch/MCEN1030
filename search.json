@@ -72,30 +72,6 @@
     ]
   },
   {
-    "objectID": "lessons/08-fetch.html#in-class-work",
-    "href": "lessons/08-fetch.html#in-class-work",
-    "title": "Fetch: APIs and JSON",
-    "section": "In-class work",
-    "text": "In-class work\nWe’ll ask the ISS where it is a bunch of times and build a small dataset out of the answers.\n\nOne request. Fetch the ISS’s position with the three lines from the reading and print the whole reply. Pull out the latitude, longitude, and velocity. Where is it right now? Paste the coordinates into a map. Redo the 93-minute check with the altitude and velocity you got.\nWhat time is it? The timestamp is a big number like 1791654325. That’s Unix time: the number of seconds since midnight UTC on January 1, 1970. (This is how most computers count time.) pd.to_datetime(info[\"timestamp\"], unit=\"s\") converts it. Is it now? In which time zone?\nAsk several times, but patiently. Here’s a loop that asks 10 times, 30 seconds apart:\nimport time\nimport requests\nimport pandas as pd\n\nurl = \"https://api.wheretheiss.at/v1/satellites/25544\"\ntrack = {\"timestamp\": [], \"latitude\": [], \"longitude\": []}\n\nfor k in range(10):\n    try:\n        info = requests.get(url, timeout=10).json()\n        t = info[\"timestamp\"]\n        lat = info[\"latitude\"]\n        lon = info[\"longitude\"]\n        track[\"timestamp\"].append(t)\n        track[\"latitude\"].append(lat)\n        track[\"longitude\"].append(lon)\n        print(k, \"ok\")\n    except Exception as err:\n        print(k, \"skipped:\", repr(err))\n    time.sleep(30)          # wait 30 seconds before asking again\n\ndf = pd.DataFrame(track)\nBefore you run it: read it line by line with your partner. What is track? (Look at its curly braces.) How long will this take to finish? And why do you think it pulls out all three values before appending any of them? (What would happen to the three lists if \"latitude\" were missing from one reply?) Then run it, and while it runs, talk about time.sleep(30). This API allows about one request per second, and if it is busy it might allow even fewer. If a whole classroom doing that in a loop it starts to look like an attack — we might get blocked!\nCheck your prediction. Look at df. How many degrees of longitude did the ISS cover in those ~5 minutes (first row to last)? (If you get something huge or negative, the track crossed the date line.) Compare with your bring-to-class prediction. They probably don’t match exactly. Can you think of why? (Hint: does the ISS actually fly along the equator? And what is the Earth doing underneath it?)\nBreak it on purpose. Change the satellite number in url to 99999999, and run the loop for 3 requests. What does your program print? Now take out the try/except (keep the code inside it) and run it again.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Fetch: APIs and JSON"
-    ]
-  },
-  {
-    "objectID": "lessons/08-fetch.html#challenge",
-    "href": "lessons/08-fetch.html#challenge",
-    "title": "Fetch: APIs and JSON",
-    "section": "Challenge",
-    "text": "Challenge\nAsk the weather. Fetch the current Boulder weather from Open-Meteo yourself:\nhttps://api.open-meteo.com/v1/forecast?latitude=40.01&longitude=-105.27&current=temperature_2m,wind_speed_10m\n(That’s one long URL. The part after the ? is where we tell the API what we want: a location, and which current values.) Pull out the temperature and wind speed, with their units, from the reply. Then check them against a weather app on your phone. Do they agree? If not, what could explain it? Finally, convert the reply’s time to Boulder time. (Boulder is 6 hours behind GMT in October.)",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Fetch: APIs and JSON"
-    ]
-  },
-  {
     "objectID": "lessons/06-data-io-plots.html",
     "href": "lessons/06-data-io-plots.html",
     "title": "Data in, data out — and honest plots",
