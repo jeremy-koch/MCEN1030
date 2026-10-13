@@ -464,6 +464,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#when-the-question-doesnt-get-answered" id="toc-when-the-question-doesnt-get-answered" class="nav-link" data-scroll-target="#when-the-question-doesnt-get-answered">When the question doesn’t get answered</a></li>
   <li><a href="#bring-to-class" id="toc-bring-to-class" class="nav-link" data-scroll-target="#bring-to-class">Bring to class</a></li>
+  <li><a href="#in-class-work" id="toc-in-class-work" class="nav-link" data-scroll-target="#in-class-work">In-class work</a></li>
+  <li><a href="#a-different-api" id="toc-a-different-api" class="nav-link" data-scroll-target="#a-different-api">A different API</a></li>
   </ul>
 </nav>
     </div>
@@ -599,7 +601,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>try</code>/<code>except</code> is powerful, and that makes it a little dangerous. It catches <em>every</em> error, including the ones that are your fault. Misspell a key inside a <code>try</code>, and the program will “skip” every reading without complaining. So keep the <code>try</code> block small (just where you need it), always print what was skipped, and count the skips at the end. Twenty requests with two skips is a hiccup. Twenty requests with twenty skips is a bug.</p>
+<p><code>try</code>/<code>except</code> is powerful, and that makes it a little dangerous. It catches <em>every</em> error, including the ones that are your fault. Misspell a key inside a <code>try</code>, and the program will “skip” every reading without complaining. So keep the <code>try</code> block small (just where you need it), always print what was skipped, and count the skips at the end. Twenty requests with two skips is a hiccup, twenty requests with twenty skips is a bug.</p>
 </div>
 </div>
 
@@ -615,44 +617,51 @@ Caution
 </ol>
 <p>In class we’ll fetch the real thing and check your prediction against it.</p>
 </div>
-<!-- ## In-class work
-
-We'll ask the ISS where it is a bunch of times and build a small dataset out of the answers.
-
-1. **One request.** Fetch the ISS's position with the three lines from the reading and print the whole reply. Pull out the latitude, longitude, and velocity. Where is it right now? Paste the coordinates into a map. Redo the 93-minute check with the altitude and velocity you got.
-2. **What time is it?** The `timestamp` is a big number like 1791654325. That's **Unix time**: the number of seconds since midnight UTC on January 1, 1970. (This is how most computers count time.) `pd.to_datetime(info["timestamp"], unit="s")` converts it. Is it *now*? In which time zone?
-3. **Ask several times, but patiently.** Here's a loop that asks 10 times, 30 seconds apart:
-
-    ```python
-    import time
-    import requests
-    import pandas as pd
-
-    url = "https://api.wheretheiss.at/v1/satellites/25544"
-    track = {"timestamp": [], "latitude": [], "longitude": []}
-
-    for k in range(10):
-        try:
-            info = requests.get(url, timeout=10).json()
-            t = info["timestamp"]
-            lat = info["latitude"]
-            lon = info["longitude"]
-            track["timestamp"].append(t)
-            track["latitude"].append(lat)
-            track["longitude"].append(lon)
-            print(k, "ok")
-        except Exception as err:
-            print(k, "skipped:", repr(err))
-        time.sleep(30)          # wait 30 seconds before asking again
-
-    df = pd.DataFrame(track)
-    ```
-
-    Before you run it: read it line by line with your partner. What is `track`? (Look at its curly braces.) How long will this take to finish? And why do you think it pulls out all three values *before* appending any of them? (What would happen to the three lists if `"latitude"` were missing from one reply?) Then run it, and while it runs, talk about `time.sleep(30)`. This API allows about one request per second, and if it is busy it might allow even fewer. If a whole classroom doing that in a loop it starts to look like an attack — we might get blocked!
-4. **Check your prediction.** Look at `df`. How many degrees of longitude did the ISS cover in those ~5 minutes (first row to last)? (If you get something huge or negative, the track crossed the date line.) Compare with your bring-to-class prediction. They probably don't match exactly. Can you think of why? (Hint: does the ISS actually fly along the equator? And what is the Earth doing underneath it?)
-5. **Break it on purpose.** Change the satellite number in `url` to `99999999`, and run the loop for 3 requests. What does your program print? Now take out the `try`/`except` (keep the code inside it) and run it again.
-
-## Challenge
+</section>
+<section id="in-class-work" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-work">In-class work</h2>
+<p>We’ll ask the ISS where it is a bunch of times, build a small dataset out of the answers, and use it to check the ISS’s speed a second way. Then we’ll point everything we learned at an API we’ve never seen.</p>
+<ol type="1">
+<li><p><strong>One request.</strong> Fetch the ISS’s position with the three lines from the reading and print the whole reply. Pull out the latitude, longitude, altitude, and velocity. Where is it right now? Paste the coordinates into a map. Redo the 93-minute check with the altitude and velocity you got.</p></li>
+<li><p><strong>What time is it?</strong> The <code>timestamp</code> is a big number like 1791654325. That’s <strong>Unix time</strong>: the number of seconds since midnight UTC on January 1, 1970. (This is how most computers count time.) <code>pd.to_datetime(info["timestamp"], unit="s")</code> converts it. What time zone is it?</p></li>
+<li><p><strong>Ask several times, but patiently.</strong> We want to ask 10 times, 30 seconds apart, and keep the latitude, longitude, and time of each answer. The skeleton is below, with everything <em>inside</em> the loop removed except the waiting.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://api.wheretheiss.at/v1/satellites/25544"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>track <span class="op">=</span> {<span class="st">"timestamp"</span>: [], <span class="st">"latitude"</span>: [], <span class="st">"longitude"</span>: []}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># your code here</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">30</span>)          <span class="co"># wait 30 seconds before asking again</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(track)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Before you write anything, talk with your partner: what is <code>track</code>? (Look at its curly braces.) Then write the body. Each pass through the loop should ask for the position, pull out the three values, add them to the three lists in <code>track</code>, and print the loop number <code>k</code> with either “ok” or the reason it was skipped. Think about what a skipped request should do, and where the <code>try</code> and <code>except</code> belong. One design question to settle before you run it: should you pull out all three values <em>before</em> appending any of them, or append each as you go? (What would happen to the three lists if <code>"latitude"</code> were missing from one reply?) When it’s working, it takes about 5 minutes, so keep the next step in mind while it runs.</p>
+<p>While it runs, talk about <code>time.sleep(30)</code>. This API allows about one request per second, and if it is busy it might allow even fewer. If a whole classroom did that in a loop it starts to look like an attack — we might get blocked!</p></li>
+<li><p><strong>Check your prediction.</strong> Look at <code>df</code>. How many degrees of longitude did the ISS cover in those ~5 minutes (first row to last)? (If you get something huge or negative, the track crossed the date line.) Compare with your bring-to-class prediction. They probably don’t match exactly. Can you think of why? (Hint: does the ISS actually fly along the equator? And what is the Earth doing underneath it?)</p></li>
+<li><p><strong>How fast did it go?</strong> Now we have positions and times, so we can measure the speed ourselves instead of reading it off the reply. Take the first row and last row of <code>df</code>. Between two nearby points on a sphere of radius <span class="math inline">\(R\)</span>, the distance traveled is</p>
+<p><span class="math display">\[d = R\,\sqrt{(\Delta\varphi)^2 + (\cos\bar\varphi \cdot \Delta\lambda)^2}, \qquad v = \frac{d}{\Delta t}\]</span></p>
+<p>where <span class="math inline">\(\varphi\)</span> is latitude, <span class="math inline">\(\lambda\)</span> is longitude, <span class="math inline">\(\Delta\)</span> means (last − first), and <span class="math inline">\(\bar\varphi\)</span> is the average of the two latitudes. The first term under the root is the north–south distance. The second is the east–west distance, with the <span class="math inline">\(\cos\bar\varphi\)</span> there because a degree of longitude gets shorter as we move away from the equator. <strong>Both angles have to be in radians</strong> (after <code>import numpy as np</code>, <code>np.radians</code> converts and <code>np.cos</code> takes radians). Use <span class="math inline">\(R = 6371 + \text{altitude}\)</span> in km, with the altitude from step 1, and get <span class="math inline">\(\Delta t\)</span> in hours from the timestamps (which are in seconds). Compute <span class="math inline">\(v\)</span> and compare it with the <code>velocity</code> from the API. Do they agree? If they’re off by a little, in which direction, and why?</p></li>
+<li><p><strong>Break it on purpose.</strong> Change the satellite number in <code>url</code> to <code>99999999</code>, and run the loop for 3 requests (change <code>range(10)</code>). What does your program print? Look closely at <em>which</em> error it prints. Now take out the <code>try</code>/<code>except</code> (keep the code inside it) and run it again.</p></li>
+</ol>
+</section>
+<section id="a-different-api" class="level2">
+<h2 class="anchored" data-anchor-id="a-different-api">A different API</h2>
+<p>The ISS API is one example. Now let’s use a different one that you’ve never seen, and use what we learned: <strong>print the reply, look at it, then write the path.</strong></p>
+<p>The US Geological Survey publishes a list of every earthquake it has detected on Earth, updated every minute. Here’s the past hour:</p>
+<pre><code>https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson</code></pre>
+<ol type="1">
+<li><strong>Look first.</strong> Fetch it. The whole reply is long, so don’t print all of it. Start with the keys at the top level (<code>list(reply.keys())</code>), then look at one piece. Where do the earthquakes live? What is each earthquake, and what’s the structure inside it?</li>
+<li><strong>Find the biggest.</strong> How many earthquakes were there in the past hour? (There are two places you could find that out; do they agree?) Which one had the largest magnitude, and where was it? Write the path to its magnitude and its <code>place</code>.</li>
+<li><strong>Where, and how deep?</strong> Each earthquake has <code>"coordinates"</code> with three numbers. Work out what they are, using the biggest earthquake’s <code>place</code> to check yourself. (Careful: this API doesn’t put them in the order the ISS one did!)</li>
+<li><strong>How long ago?</strong> An earthquake’s <code>time</code> is in the same Unix time as the ISS <code>timestamp</code>, but not in the same units. Figure out the units by finding when the biggest earthquake happened, then compare it against the reply’s <code>generated</code> time (in <code>metadata</code>) to find how many minutes ago it was. Does your answer sound plausible for a feed of “the past hour”?</li>
+<li><strong>Keep it going.</strong> Write a <code>try</code>/<code>except</code> loop that asks the USGS for the number of earthquakes in the past hour, five times, 10 seconds apart. (How often do you expect the answer to change? Is 10 seconds a sensible choice?)</li>
+</ol>
+<!--
+## Challenge (reserve)
 
 **Ask the weather.** Fetch the current Boulder weather from Open-Meteo yourself:
 
@@ -660,7 +669,8 @@ We'll ask the ISS where it is a bunch of times and build a small dataset out of 
 https://api.open-meteo.com/v1/forecast?latitude=40.01&longitude=-105.27&current=temperature_2m,wind_speed_10m
 ```
 
-(That's one long URL. The part after the `?` is where we tell the API what we want: a location, and which current values.) Pull out the temperature and wind speed, *with* their units, from the reply. Then check them against a weather app on your phone. Do they agree? If not, what could explain it? Finally, convert the reply's time to Boulder time. (Boulder is 6 hours behind GMT in October.) -->
+(That's one long URL. The part after the `?` is where we tell the API what we want: a location, and which current values.) Pull out the temperature and wind speed, *with* their units, from the reply. Then check them against a weather app on your phone. Do they agree? If not, what could explain it? Finally, convert the reply's time to Boulder time. (Boulder is 6 hours behind GMT in October.)
+-->
 
 
 <script type="pyodide-data">
