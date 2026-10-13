@@ -7,6 +7,8 @@ The code on this page is editable and runs in your browser. More added throughou
 
 The first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.
 
+The sections follow the order of the course, so if you're prepping for a checkpoint, start at whatever week you're least sure about. And a suggestion that I'll make exactly once: commit to a prediction *before* you hit Run. Running first and then nodding along feels like practice, but it mostly isn't.
+
 ## Sandbox
 
 Nothing to solve — just a scratchpad.
@@ -16,7 +18,7 @@ message = "hello"
 print(message * 3)
 ```
 
-## Tracing (weeks 2–3)
+## Tracing (week 2)
 
 **T1.** Look through the code and try to predict all three printed values, then run to check.
 
@@ -37,7 +39,7 @@ Make a two-column table of `a` and `b` values, then go line-by-line. Remember: `
 ::: {.solution exercise="t1"}
 `10`, `4`, `6`.
 
-- After line 1: `a` is `6`. 
+- After line 1: `a` is `6`.
 - After line 2: `b` is `4` (and `a` is still `6`).
 - After Line 3: `a` is `6+4`, that is: `a` is `10`. (And `b` stays `4` — it stored a value, not a relationship.)
 :::
@@ -58,6 +60,99 @@ The same line twice is not the same *result* twice — the second one starts fro
 
 ::: {.solution exercise="t2"}
 `16`. First squaring: `4`. Second squaring squares the *new* value: `16`.
+:::
+
+## Logic: `if`/`elif`/`else` (week 2)
+
+**L1.**
+
+```{pyodide}
+#| exercise: l1
+def classify(speed):
+    if speed > 100:
+        return "too fast"
+    elif speed > 60:
+        return "highway"
+    else:
+        return "city"
+
+print(classify(70))
+print(classify(100))
+print(classify(101))
+print(classify(-5))
+```
+
+::: {.hint exercise="l1"}
+Go top to bottom, and the *first true branch wins*. Check the boundaries: is 100 greater than 100?
+:::
+
+::: {.solution exercise="l1"}
+`highway`, `highway` (100 is not > 100), `too fast`, `city` (−5 falls through to else... not sure this was a good *specification*, if we are talking about the speed of a city!).
+:::
+
+**L2.** Here's a function that sanity-checks a thermometer reading before we trust it. Predict all four outputs.
+
+```{pyodide}
+#| exercise: l2
+def check_reading(T_C):
+    if T_C < -273.15:
+        return "impossible"
+    elif T_C < -40 or T_C > 45:
+        return "suspicious"
+    else:
+        return "ok"
+
+print(check_reading(22))
+print(check_reading(-999))
+print(check_reading(50))
+print(check_reading(-40))
+```
+
+::: {.hint exercise="l2"}
+`or` is `True` if *either* side is `True`. And watch the last one closely: is −40 less than −40?
+:::
+
+::: {.solution exercise="l2"}
+`ok`, `impossible`, `suspicious`, `ok`.
+
+The −999 is worth a second look. It's a common "missing data" marker in real files (we saw one in the wind speeds in week 4), and it's below absolute zero, so it gets caught by the *first* branch. If the branches were in the other order it would only get called "suspicious," which undersells it a bit.
+:::
+
+**L3.** Pipe flow is *laminar* below a Reynolds number of about 2300, *turbulent* above about 4000, and *transitional* in between. (Those are just three labels for three ranges of a number. No fluid mechanics needed today.) Predict what `flow_regime(10000)` returns, then fix the function.
+
+```{pyodide}
+#| exercise: l3
+def flow_regime(Re):
+    if Re > 2300:
+        return "transitional"
+    elif Re > 4000:
+        return "turbulent"
+    else:
+        return "laminar"
+
+print(flow_regime(1000))
+print(flow_regime(3000))
+print(flow_regime(10000))
+```
+
+::: {.hint exercise="l3"}
+10000 is greater than 2300. Once a branch is `True`, does Python ever look at the ones below it?
+:::
+
+::: {.solution exercise="l3"}
+It returns `"transitional"`. The `turbulent` branch can *never* run: anything above 4000 is also above 2300, and the first branch grabs it. Two fixes, either is fine:
+
+```python
+# check the biggest threshold first
+if Re > 4000:
+    return "turbulent"
+elif Re > 2300:
+    return "transitional"
+else:
+    return "laminar"
+```
+
+or keep the original order but make the middle branch say exactly what it means: `if Re > 2300 and Re <= 4000:`. The first is more common. With `elif` chains, the order *is* part of the logic.
 :::
 
 ## Functions (week 3)
@@ -105,35 +200,32 @@ The `n` inside the function is limited in *scope*. What happens in the function 
 `1` then `11`. The outer `n` is untouched; `add_ten` worked on its own local copy and returned the `result`.
 :::
 
-## Logic (week 4)
+## Arrays (week 4)
 
-**L1.**
+**A1.** Fill in the blank so `t` holds the fall time for *every* height at once, then print it.
 
 ```{pyodide}
-#| exercise: l1
-def classify(speed):
-    if speed > 100:
-        return "too fast"
-    elif speed > 60:
-        return "highway"
-    else:
-        return "city"
-
-print(classify(70))
-print(classify(100))
-print(classify(101))
-print(classify(-5))
+#| exercise: a1
+import numpy as np
+h = np.array([1.0, 5.0, 20.0, 80.0])
+t = ______
+print(t)
 ```
 
-::: {.hint exercise="l1"}
-Go top to bottom, and the *first true branch wins*. Check the boundaries: is 100 greater than 100?
+::: {.hint exercise="a1"}
+The formula is $t=\sqrt{2h/g}$, and NumPy's square root is `np.sqrt(...)`. Write the arithmetic as if `h` were a single number — the array handles the "for every value" part itself.
 :::
 
-::: {.solution exercise="l1"}
-`highway`, `highway` (100 is not > 100), `too fast`, `city` (−5 falls through to else... not sure this was a good *specification*, if we are talking about the speed of a city!).
+::: {.solution exercise="a1"}
+```python
+t = np.sqrt(2 * h / 9.81)
+```
+The first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).
 :::
 
-## Loops (week 5)
+## Loops (weeks 4–5)
+
+### Looping over values, looping over indices
 
 **X1.** Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)
 
@@ -171,9 +263,9 @@ total = 0
 ::: {.hint exercise="x2"}
 1. Names must exist before they're used.
 2. The indented line belongs to the `for`.
-3. The `print` needs everything finished. 
+3. The `print` needs everything finished.
 
-(Also — could you avoid hard-coding `count = 3`? Python's `len(values)` exists and is probably better.
+(Also — could you avoid hard-coding `count = 3`? Python's `len(values)` exists and is probably better.)
 :::
 
 ::: {.solution exercise="x2"}
@@ -188,25 +280,543 @@ print(total / count)
 The first three lines can go in any order among themselves.
 :::
 
-## Arrays (weeks 5–6)
-
-**A1.** Fill in the blank so `t` holds the fall time for *every* height at once, then print it.
+**X3.** Two loops over the same list. Predict everything that prints — both loops.
 
 ```{pyodide}
-#| exercise: a1
-import numpy as np
-h = np.array([1.0, 5.0, 20.0, 80.0])
-t = ______
-print(t)
+#| exercise: x3
+tilts = [20, 30, 40]
+
+for a in tilts:
+    print(a)
+
+for i in range(len(tilts)):
+    print(i, tilts[i])
 ```
 
-::: {.hint exercise="a1"}
-The formula is $t=\sqrt{2h/g}$, and NumPy's square root is `np.sqrt(...)`. Write the arithmetic as if `h` were a single number — the array handles the "for every value" part itself.
+::: {.hint exercise="x3"}
+What is `len(tilts)`? Then what's `range` of that? The first loop hands you the *things in the list*; the second hands you *positions*, and you have to go look up the thing yourself.
 :::
 
-::: {.solution exercise="a1"}
-```python
-t = np.sqrt(2 * h / 9.81)
+::: {.solution exercise="x3"}
 ```
-The first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).
+20
+30
+40
+0 20
+1 30
+2 40
+```
+`range(len(tilts))` is `range(3)`, which is `0, 1, 2`: every valid index. Same three values come out either way. So why would anyone bother with the index version? See the next one.
+:::
+
+**X4.** We have two *parallel* lists: the voltage and current of four devices. Fill in the blank so the loop prints each device's power, $P = VI$.
+
+```{pyodide}
+#| exercise: x4
+volts = [12.0, 12.0, 5.0, 3.3]
+amps  = [2.0, 0.5, 1.0, 0.2]
+
+for i in range(______):
+    print(volts[i] * amps[i], "W")
+```
+
+::: {.hint exercise="x4"}
+A `for v in volts:` loop would hand you each voltage... but then how would you find the matching current? The index `i` is the thing that ties `volts[i]` to `amps[i]`. How many indices do you need?
+:::
+
+::: {.solution exercise="x4"}
+```python
+for i in range(len(volts)):
+```
+Prints `24.0 W`, `6.0 W`, `5.0 W`, `0.66 W`. This is *the* reason to loop over indices: you need the same position in two (or more) lists at once.
+
+(Just giving you some vocabulary if you want to read more: Python also has `zip`, as in `for v, a in zip(volts, amps):`, which walks two lists side by side. An LLM will hand you that one a lot. Same idea, different spelling.)
+:::
+
+### Collecting results with `append`
+
+**X5.** Fill in the two blanks so `times` ends up holding the fall time for each height.
+
+```{pyodide}
+#| exercise: x5
+heights = [1.0, 5.0, 20.0]
+times = ______
+
+for h in heights:
+    t = (2 * h / 9.81) ** 0.5
+    ______
+
+print(times)
+print(len(times))
+```
+
+::: {.hint exercise="x5"}
+The first blank needs to make an empty list, *before* the loop. The second blank sticks `t` on the end of that list, once per pass.
+:::
+
+::: {.solution exercise="x5"}
+```python
+times = []
+...
+    times.append(t)
+```
+Three heights in, three times out: `len(times)` is `3`. Sanity check: a 1 m drop taking about 0.45 s feels right (drop your keys... that's roughly how long it takes). And 20 m is 4× higher than 5 m, so it should take 2× as long, which it does.
+:::
+
+**X6.** Someone moved one line. Predict what prints.
+
+```{pyodide}
+#| exercise: x6
+for h in [1.0, 5.0, 20.0]:
+    results = []
+    results.append(2 * h)
+
+print(results)
+```
+
+::: {.hint exercise="x6"}
+That `results = []` line runs *every* pass now. What does it do to whatever was already in `results`?
+:::
+
+::: {.solution exercise="x6"}
+`[40.0]`. Every pass makes a brand-new empty list and puts one thing in it, so at the end only the last pass survives. The empty list has to be built *before* the loop, so it can survive all the passes.
+:::
+
+### Loops with `if` inside
+
+**X7.** A wind sensor logs `-999.0` whenever it misses a reading. Fill in the condition so only the real readings get collected.
+
+```{pyodide}
+#| exercise: x7
+speeds = [8.1, -999.0, 10.7, 9.8, -999.0, 7.4]
+good = []
+
+for v in speeds:
+    if ______:
+        good.append(v)
+
+print(good)
+print(sum(good) / len(good))
+```
+
+::: {.hint exercise="x7"}
+Several conditions work: "not equal to −999," or "at least zero" (can a wind *speed* be negative?). `sum` and `len` are built into Python and work on plain lists.
+:::
+
+::: {.solution exercise="x7"}
+```python
+if v != -999.0:      # or: if v >= 0:
+```
+`good` is `[8.1, 10.7, 9.8, 7.4]` and the average is `9.0` m/s.
+
+Now try it with the `if` removed, so every value gets appended. The average comes out to −327 m/s: a wind blowing backwards at roughly the speed of sound. Nobody needs to read the code to know that's wrong — which is the whole point of estimating before you trust a number.
+:::
+
+**X8.** Counting is just an accumulator that adds 1. How many of these daily highs (°C) are above 32? Fill in the blank.
+
+```{pyodide}
+#| exercise: x8
+highs = [28, 33, 35, 31, 30, 34, 29]
+hot_days = 0
+
+for T in highs:
+    if T > 32:
+        hot_days = ______
+
+print(hot_days)
+```
+
+::: {.hint exercise="x8"}
+Same shape as `total = total + x`, but what are we adding each time we find a hot day?
+:::
+
+::: {.solution exercise="x8"}
+```python
+hot_days = hot_days + 1
+```
+Prints `3` (33, 35, 34). Swap the 7 numbers for a century of Boulder summers and this is, more-or-less, one way to ask "are hot days getting more common?"
+:::
+
+**X9.** The "best so far" pattern. Predict what prints. Then change `output[3]` to `320` (a tie!) and predict again. Then change `>` to `>=` and predict a third time.
+
+```{pyodide}
+#| exercise: x9
+tilts  = [20, 30, 40, 50, 60]
+output = [301, 315, 320, 315, 301]
+
+best_i = 0
+for i in range(len(tilts)):
+    if output[i] > output[best_i]:
+        best_i = i
+
+print(tilts[best_i], output[best_i])
+```
+
+::: {.hint exercise="x9"}
+Keep a table with one column: `best_i`. It only changes when the current output *beats* the best one so far. Does "ties" count as beating?
+:::
+
+::: {.solution exercise="x9"}
+Original: `40 320`.
+
+With the tie and `>`: still `40 320`. When `i` is 3, `320 > 320` is `False`, so the first 320 keeps its spot.
+
+With the tie and `>=`: `50 320`. Now a tie *does* count, so the later one takes over.
+
+This is exactly what `output.argmax()` does for you in one line (and NumPy picks the *first* one on a tie, like `>`). Writing it by hand is worth doing once, because the loop version can do things `argmax` can't, like "the best one *we can afford*." See the last problem on this page.
+:::
+
+**X10.** Here are positions logged during a phone drop (onto a pillow, please), every 0.1 s. The loop estimates the velocity between each pair of neighboring readings. Predict the printed values — roughly is fine — and figure out why the `range` starts at 1.
+
+```{pyodide}
+#| exercise: x10
+t = [0.0, 0.1, 0.2, 0.3, 0.4]          # s
+y = [2.000, 1.951, 1.804, 1.559, 1.215]  # m, height above the floor
+
+for i in range(1, len(t)):
+    v = (y[i] - y[i-1]) / (t[i] - t[i-1])
+    print(round(t[i], 1), round(v, 2))
+```
+
+::: {.hint exercise="x10"}
+`range(1, 5)` is `1, 2, 3, 4` — it starts at 1 instead of 0. Each pass uses the reading at `i` *and* the one just before it, at `i-1`. What would `i-1` be on a pass where `i` is 0?
+:::
+
+::: {.solution exercise="x10"}
+```
+0.1 -0.49
+0.2 -1.47
+0.3 -2.45
+0.4 -3.44
+```
+A physics check: the velocity should get about $g\,\Delta t = 9.81 \times 0.1 \approx 0.98$ m/s more negative every step, and it does (−0.49, −1.47, −2.45, ...). Negative, because we measure $y$ upward and the phone is going down. Good.
+
+Why start at 1? If `i` were 0, then `y[i-1]` is `y[-1]`, the *last* reading. Python happily does that (negative indices are legal!) and you'd get a "velocity" of about −1.96 m/s at t = 0, when the phone hadn't started moving yet. No error, just a wrong number. (Also notice that five positions give only four velocities. Off-by-one, our old friend.)
+:::
+
+## Simulation (week 5)
+
+**S1.** A cup of coffee cools faster when it's much hotter than the room, and slower as it gets close. A time-stepped version: each minute, the temperature drops by a fraction `k` of the gap between the coffee and the room. Trace it and predict the three printed lines.
+
+```{pyodide}
+#| exercise: s1
+T = 90.0        # coffee temperature, °C
+T_room = 20.0
+k = 0.1         # per minute
+dt = 1.0        # minutes
+
+for step in range(3):
+    T = T - k * (T - T_room) * dt
+    print(step, round(T, 2))
+```
+
+::: {.hint exercise="s1"}
+First pass: the gap is 90 − 20 = 70, and 10% of that is 7. The second pass starts from wherever the first one left off.
+:::
+
+::: {.solution exercise="s1"}
+```
+0 83.0
+1 76.7
+2 71.03
+```
+The drops are 7, then 6.3, then 5.67: shrinking, because the gap shrinks. That's the "slows down as it gets close" behavior we wanted.
+:::
+
+**S2.** Now let's break it on purpose. Same cooling model, but someone got impatient and took fifteen-minute steps. Run it. What's wrong with the answer, *physically*?
+
+```{pyodide}
+#| exercise: s2
+T = 90.0
+T_room = 20.0
+k = 0.1
+dt = 15.0       # fifteen minutes per step, to save time
+
+for step in range(3):
+    T = T - k * (T - T_room) * dt
+    print(step, round(T, 2))
+```
+
+::: {.hint exercise="s2"}
+Look at the first printed temperature. Can coffee sitting in a 20 °C room get colder than the room?
+:::
+
+::: {.solution exercise="s2"}
+```
+0 -15.0
+1 37.5
+2 11.25
+```
+Frozen coffee, in a warm room, which then bounces back up to 37.5 and down again. A real cup never goes below room temperature. The algebra is fine. The problem is that `k * dt` is now 1.5, so each step "removes" 150% of the gap and overshoots. Small steps keep the model honest. (Try `dt = 5.0`: it's off from the `dt = 1` answer, but at least it's not absurd.)
+:::
+
+**S3.** After a falling-ball simulation, we want the time when the ball first goes below the ground. Fill in the blank, using a mask from week 4 (no new loop needed).
+
+```{pyodide}
+#| exercise: s3
+import numpy as np
+
+g, dt, n_steps = 9.81, 0.01, 300
+y = np.zeros(n_steps + 1)
+v = np.zeros(n_steps + 1)
+t = np.arange(n_steps + 1) * dt
+y[0] = 10.0
+
+for i in range(n_steps):
+    y[i+1] = y[i] + v[i] * dt
+    v[i+1] = v[i] - g * dt
+
+t_hit = ______
+print(t_hit)
+```
+
+::: {.hint exercise="s3"}
+Build it in pieces. `y < 0` is an array of `True`/`False`. `t[y < 0]` is every time when the ball was underground. You want the *first* one of those.
+:::
+
+::: {.solution exercise="s3"}
+```python
+t_hit = t[y < 0][0]
+```
+Prints `1.44`. The exact answer from $t = \sqrt{2h/g}$ is 1.43 s. Close, and our stepped answer is a hair *late*, which makes sense: the simulation always uses the speed from the start of each step, so it's always a little slower than the real ball.
+:::
+
+## Files and tables (week 6)
+
+**D1.** Four days of weather, one row per day: day number, high (°C), low (°C). Predict all five printed things.
+
+```{pyodide}
+#| exercise: d1
+import numpy as np
+
+data = np.array([[1, 24.4,  9.1],
+                 [2, 27.0, 11.3],
+                 [3, 18.2,  6.0],
+                 [4, 22.5, 12.4]])
+
+print(data.shape)
+print(data[2, 1])
+print(data[:, 0])
+print(data[-1, 2])
+
+swing = data[:, 1] - data[:, 2]
+print(data[swing.argmax(), 0])
+```
+
+::: {.hint exercise="d1"}
+`data[row, column]`, both counting from zero. A `:` means "all of them." And `swing` is the high minus the low for every day at once.
+:::
+
+::: {.solution exercise="d1"}
+- `(4, 3)`: four rows, three columns.
+- `18.2`: row 2 is the *third* day, column 1 is the high.
+- `[1. 2. 3. 4.]`: the whole first column, the day numbers.
+- `12.4`: last row, low column.
+- `2.0`: the swings are 15.3, 15.7, 12.2, 10.1, so the biggest is at index 1, and row 1's day number is 2. (Boulder in the fall really does swing 15 °C in a day. Not a typo.)
+:::
+
+## pandas (week 7)
+
+**P1.** Some made-up summer highs for two years (made up, so don't draw climate conclusions from them!). Fill in the two blanks: the average high for *each* year, and the number of months with a high above 29 °C.
+
+```{pyodide}
+#| exercise: p1
+import pandas as pd
+
+df = pd.DataFrame({
+    "year":   [1950, 1950, 1950, 2020, 2020, 2020],
+    "month":  ["Jun", "Jul", "Aug", "Jun", "Jul", "Aug"],
+    "high_C": [26.1, 29.8, 28.4, 27.9, 31.2, 29.9],
+})
+
+print(______)        # average high_C for each year
+print(______)        # how many rows have high_C above 29
+```
+
+::: {.hint exercise="p1"}
+"For each year" is the phrase that means `groupby`. For the second one: filter first, `df[df["high_C"] > 29]`, then count the rows of what's left with `len(...)`.
+:::
+
+::: {.solution exercise="p1"}
+```python
+print(df.groupby("year")["high_C"].mean())
+print(len(df[df["high_C"] > 29]))
+```
+1950 averages 28.1 °C and 2020 averages about 29.67 °C. Three months are above 29 (29.8, 31.2, 29.9).
+
+Does this mean it's warming? Two years of three months each, invented by me, is not a trend. It's an anecdote with a decimal point. The real question needs the real century of data, and a plot.
+:::
+
+## Dictionaries (week 8)
+
+**DI1.** A solar panel, described as a dictionary. Predict every line of output.
+
+```{pyodide}
+#| exercise: di1
+panel = {"name": "SunMax 400", "watts": 400, "area_m2": 1.9, "tilt_deg": 40}
+
+print(panel["watts"])
+print(panel["watts"] / panel["area_m2"])
+
+panel["tilt_deg"] = 35
+print(panel["tilt_deg"])
+
+panel["cost_usd"] = 220
+print(len(panel))
+print(panel)
+```
+
+::: {.hint exercise="di1"}
+Assigning to a key that already exists replaces its value. Assigning to a key that *doesn't* exist yet... try it and see. (`len` of a dictionary counts its keys.)
+:::
+
+::: {.solution exercise="di1"}
+- `400`
+- `210.5263157894737`, watts per square meter of panel. Sanity check: full sunlight delivers roughly 1000 W/m², so this panel turns about 21% of it into electricity. That's a realistic number for a modern panel, so the dictionary is probably not lying to us.
+- `35`, because the old 40 got replaced.
+- `5`: assigning to a new key *adds* it. This is how you build up a dictionary one piece at a time.
+- The whole dictionary, now with `'cost_usd': 220` on the end.
+:::
+
+**DI2.** Here's a (shortened) reply from an hourly weather forecast API. It's a dictionary, with dictionaries inside, with *lists* inside those. Fill in the blanks.
+
+```{pyodide}
+#| exercise: di2
+import numpy as np
+
+forecast = {
+    "latitude": 40.0,
+    "longitude": -105.25,
+    "hourly_units": {"time": "iso8601", "temperature_2m": "°C"},
+    "hourly": {
+        "time": ["2026-10-13T12:00", "2026-10-13T13:00",
+                 "2026-10-13T14:00", "2026-10-13T15:00"],
+        "temperature_2m": [17.2, 18.9, 19.6, 18.1],
+    },
+}
+
+temps = ______            # the list of four temperatures
+times = forecast["hourly"]["time"]
+
+print(temps[2])                            # the 14:00 temperature
+print(______)                              # the units of temperature
+print(times[np.array(temps).argmax()])     # when is it warmest?
+```
+
+::: {.hint exercise="di2"}
+Read the path like directions: go to `"hourly"`, then inside that go to `"temperature_2m"`. The units live somewhere else — in `"hourly_units"`.
+:::
+
+::: {.solution exercise="di2"}
+```python
+temps = forecast["hourly"]["temperature_2m"]
+...
+print(forecast["hourly_units"]["temperature_2m"])
+```
+Prints `19.6`, `°C`, and `2026-10-13T14:00`.
+
+Notice `"time"` and `"temperature_2m"` are two *parallel* lists, just like `diameters` and `totals` in week 4: index 2 in one goes with index 2 in the other. That's why the last line works.
+:::
+
+**DI3.** Looping over a dictionary hands you its *keys*, one at a time. Predict the output (roughly), then add titanium (4500 kg/m³) to the dictionary and run it again.
+
+```{pyodide}
+#| exercise: di3
+density = {"steel": 7850, "aluminum": 2700, "wood": 600}   # kg/m^3
+volume = 0.002   # m^3, a 2-liter block
+
+for material in density:
+    mass = density[material] * volume
+    print(material, mass, "kg")
+```
+
+::: {.hint exercise="di3"}
+On the first pass `material` is `"steel"`, so `density[material]` is `density["steel"]`. Then 7850 × 0.002 is...
+:::
+
+::: {.solution exercise="di3"}
+Steel 15.7 kg, aluminum 5.4 kg, wood 1.2 kg. To add titanium, put `"titanium": 4500` in the curly braces (or write `density["titanium"] = 4500` before the loop, like in DI1). It comes out at 9.0 kg.
+
+Sanity check: 2 liters of water is 2 kg. Wood is lighter than that (it floats!), and steel is about 8× heavier, which is about right if you've ever picked up a dumbbell.
+
+You probably saw steel print as `15.700000000000001`. That's not a bug in our code. Computers store decimals in binary, and some decimals (like 0.002) can't be stored exactly, so a tiny bit of fuzz shows up way out at the end. It's harmless here. Use `round(mass, 2)` if it bugs you.
+:::
+
+**DI4.** A logger collected four replies from the ISS API. One request failed, and one came back with a key missing. Predict everything that prints, including the final list.
+
+```{pyodide}
+#| exercise: di4
+replies = [
+    {"timestamp": 100, "latitude": 51.45, "longitude": -116.30},
+    {"error": "satellite not found", "status": 404},
+    {"timestamp": 160, "latitude": 50.98, "longitude": -111.84},
+    {"timestamp": 220, "longitude": -107.52},
+]
+
+lats = []
+for reply in replies:
+    try:
+        lats.append(reply["latitude"])
+        print("ok")
+    except Exception as err:
+        print("skipped:", repr(err))
+
+print(lats)
+```
+
+::: {.hint exercise="di4"}
+Go one reply at a time. Does this reply have a `"latitude"` key? If not, the `append` line fails, and Python jumps to `except` *without* running the `print("ok")`.
+:::
+
+::: {.solution exercise="di4"}
+```
+ok
+skipped: KeyError('latitude')
+ok
+skipped: KeyError('latitude')
+[51.45, 50.98]
+```
+Four replies in, two latitudes out, and the loop survived both failures. Something to chew on: suppose we were also collecting `timestamp` in its own list. The last reply *has* a timestamp. If we appended it before trying the latitude, the two lists would end up different lengths... and they'd no longer be parallel.
+:::
+
+## Putting it together
+
+**Z1.** We're choosing a wind turbine rotor diameter. Bigger rotors make more power, but they also cost more, and we have a budget of $3.5 million. Fill in the condition so the loop finds the most powerful turbine *we can afford*.
+
+```{pyodide}
+#| exercise: z1
+import numpy as np
+
+def turbine_power(D, v=10.0):
+    """Power in kW for rotor diameter D (m) at wind speed v (m/s)."""
+    return 0.5 * 1.0 * (np.pi * D**2 / 4) * v**3 * 0.45 / 1000
+
+diameters = [80, 90, 100, 110, 120]     # m
+costs     = [2.1, 2.6, 3.2, 3.9, 4.7]   # million $
+budget = 3.5
+
+best_D = None
+best_P = 0
+for i in range(len(diameters)):
+    P = turbine_power(diameters[i])
+    if ______:
+        best_D = diameters[i]
+        best_P = P
+
+print(best_D, "m rotor:", round(best_P), "kW")
+```
+
+::: {.hint exercise="z1"}
+Two things have to be true at once for a turbine to become the new best: it's affordable, *and* it beats the best one so far. "At once" is the word `and`.
+:::
+
+::: {.solution exercise="z1"}
+```python
+if costs[i] <= budget and P > best_P:
+```
+Prints `100 m rotor: 1767 kW`. The 110 and 120 m rotors make more power but cost too much.
+
+This is the thing `argmax` alone can't do: it would cheerfully pick the 120 m rotor, which we can't buy. Here a function, a loop over indices, parallel lists, `if`, `and`, and the best-so-far pattern all show up in about ten lines, and that's basically a real (if tiny) design decision.
+
+A quick check that the numbers are plausible: real 100 m wind turbines are typically rated around 2–3 MW (at higher wind speeds than our 10 m/s), so 1.8 MW is in the right neighborhood.
 :::
