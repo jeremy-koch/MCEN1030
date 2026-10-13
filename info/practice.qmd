@@ -1,13 +1,13 @@
 ---
 title: "Practice Library"
-subtitle: "Async Base Camp — runnable, right here, answers included"
+subtitle: "Async Base Camp — runnable, answers included"
 ---
 
 The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.
 
 The first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.
 
-The sections follow the order of the course, so if you're prepping for a checkpoint, start at whatever week you're least sure about. And a suggestion that I'll make exactly once: commit to a prediction *before* you hit Run. Running first and then nodding along feels like practice, but it mostly isn't.
+The sections follow the order of the course, so if you're prepping for a checkpoint, start at whatever week you're least sure about. Predict, then run.
 
 ## Sandbox
 
