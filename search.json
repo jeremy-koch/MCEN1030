@@ -582,7 +582,7 @@
     "href": "info/practice.html",
     "title": "Practice Library",
     "section": "",
-    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.",
+    "text": "The code on this page is editable and runs in your browser. More added throughout the semester, let me know if you want to see anything in particular.\nThe first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.\nThe sections follow the order of the course, so if you’re prepping for a checkpoint, start at whatever week you’re least sure about. And a suggestion that I’ll make exactly once: commit to a prediction before you hit Run. Running first and then nodding along feels like practice, but it mostly isn’t.",
     "crumbs": [
       "Home",
       "Start Here",
@@ -602,11 +602,23 @@
     ]
   },
   {
-    "objectID": "info/practice.html#tracing-weeks-23",
-    "href": "info/practice.html#tracing-weeks-23",
+    "objectID": "info/practice.html#tracing-week-2",
+    "href": "info/practice.html#tracing-week-2",
     "title": "Practice Library",
-    "section": "Tracing (weeks 2–3)",
-    "text": "Tracing (weeks 2–3)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
+    "section": "Tracing (week 2)",
+    "text": "Tracing (week 2)\nT1. Look through the code and try to predict all three printed values, then run to check.\n\n\n\n\n\n\n\nMake a two-column table of a and b values, then go line-by-line. Remember: = means is assigned — line 3 uses the values as they are at that moment.\n\n\n10, 4, 6.\n\nAfter line 1: a is 6.\nAfter line 2: b is 4 (and a is still 6).\nAfter Line 3: a is 6+4, that is: a is 10. (And b stays 4 — it stored a value, not a relationship.)\n\n\nT2. This one prints a single value.\n\n\n\n\n\n\n\nThe same line twice is not the same result twice — the second one starts from where the first one left off.\n\n\n16. First squaring: 4. Second squaring squares the new value: 16.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#logic-ifelifelse-week-2",
+    "href": "info/practice.html#logic-ifelifelse-week-2",
+    "title": "Practice Library",
+    "section": "Logic: if/elif/else (week 2)",
+    "text": "Logic: if/elif/else (week 2)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).\n\nL2. Here’s a function that sanity-checks a thermometer reading before we trust it. Predict all four outputs.\n\n\n\n\n\n\n\nor is True if either side is True. And watch the last one closely: is −40 less than −40?\n\n\nok, impossible, suspicious, ok.\nThe −999 is worth a second look. It’s a common “missing data” marker in real files (we saw one in the wind speeds in week 4), and it’s below absolute zero, so it gets caught by the first branch. If the branches were in the other order it would only get called “suspicious,” which undersells it a bit.\n\nL3. Pipe flow is laminar below a Reynolds number of about 2300, turbulent above about 4000, and transitional in between. (Those are just three labels for three ranges of a number. No fluid mechanics needed today.) Predict what flow_regime(10000) returns, then fix the function.\n\n\n\n\n\n\n\n10000 is greater than 2300. Once a branch is True, does Python ever look at the ones below it?\n\n\nIt returns \"transitional\". The turbulent branch can never run: anything above 4000 is also above 2300, and the first branch grabs it. Two fixes, either is fine:\n# check the biggest threshold first\nif Re &gt; 4000:\n    return \"turbulent\"\nelif Re &gt; 2300:\n    return \"transitional\"\nelse:\n    return \"laminar\"\nor keep the original order but make the middle branch say exactly what it means: if Re &gt; 2300 and Re &lt;= 4000:. The first is more common. With elif chains, the order is part of the logic.",
     "crumbs": [
       "Home",
       "Start Here",
@@ -626,11 +638,11 @@
     ]
   },
   {
-    "objectID": "info/practice.html#logic-week-4",
-    "href": "info/practice.html#logic-week-4",
+    "objectID": "info/practice.html#arrays-week-4",
+    "href": "info/practice.html#arrays-week-4",
     "title": "Practice Library",
-    "section": "Logic (week 4)",
-    "text": "Logic (week 4)\nL1.\n\n\n\n\n\n\n\nGo top to bottom, and the first true branch wins. Check the boundaries: is 100 greater than 100?\n\n\nhighway, highway (100 is not &gt; 100), too fast, city (−5 falls through to else… not sure this was a good specification, if we are talking about the speed of a city!).",
+    "section": "Arrays (week 4)",
+    "text": "Arrays (week 4)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
     "crumbs": [
       "Home",
       "Start Here",
@@ -638,11 +650,11 @@
     ]
   },
   {
-    "objectID": "info/practice.html#loops-week-5",
-    "href": "info/practice.html#loops-week-5",
+    "objectID": "info/practice.html#loops-weeks-45",
+    "href": "info/practice.html#loops-weeks-45",
     "title": "Practice Library",
-    "section": "Loops (week 5)",
-    "text": "Loops (week 5)\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.",
+    "section": "Loops (weeks 4–5)",
+    "text": "Loops (weeks 4–5)\n\nLooping over values, looping over indices\nX1. Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)\n\n\n\n\n\n\n\nRun it as-is and look at what you get: 16. The loop isn’t accumulating — each pass throws away the previous total. What’s missing from the right-hand side?\n\n\ntotal = total + k * k\nThe accumulator pattern: the new total is built from the old total. total = k * k just overwrites, and you end up with only the last pass (16).\n\nX2. Assembly problem: these lines compute the average of a list, but they’re scrambled. Reorder them (cut and paste in the editor) so it runs and prints 5.0.\n\n\n\n\n\n\n\n\nNames must exist before they’re used.\nThe indented line belongs to the for.\nThe print needs everything finished.\n\n(Also — could you avoid hard-coding count = 3? Python’s len(values) exists and is probably better.)\n\n\nvalues = [3, 5, 7]\ntotal = 0\ncount = 3\nfor v in values:\n    total = total + v\nprint(total / count)\nThe first three lines can go in any order among themselves.\n\nX3. Two loops over the same list. Predict everything that prints — both loops.\n\n\n\n\n\n\n\nWhat is len(tilts)? Then what’s range of that? The first loop hands you the things in the list; the second hands you positions, and you have to go look up the thing yourself.\n\n\n20\n30\n40\n0 20\n1 30\n2 40\nrange(len(tilts)) is range(3), which is 0, 1, 2: every valid index. Same three values come out either way. So why would anyone bother with the index version? See the next one.\n\nX4. We have two parallel lists: the voltage and current of four devices. Fill in the blank so the loop prints each device’s power, \\(P = VI\\).\n\n\n\n\n\n\n\nA for v in volts: loop would hand you each voltage… but then how would you find the matching current? The index i is the thing that ties volts[i] to amps[i]. How many indices do you need?\n\n\nfor i in range(len(volts)):\nPrints 24.0 W, 6.0 W, 5.0 W, 0.66 W. This is the reason to loop over indices: you need the same position in two (or more) lists at once.\n(Just giving you some vocabulary if you want to read more: Python also has zip, as in for v, a in zip(volts, amps):, which walks two lists side by side. An LLM will hand you that one a lot. Same idea, different spelling.)\n\n\n\nCollecting results with append\nX5. Fill in the two blanks so times ends up holding the fall time for each height.\n\n\n\n\n\n\n\nThe first blank needs to make an empty list, before the loop. The second blank sticks t on the end of that list, once per pass.\n\n\ntimes = []\n...\n    times.append(t)\nThree heights in, three times out: len(times) is 3. Sanity check: a 1 m drop taking about 0.45 s feels right (drop your keys… that’s roughly how long it takes). And 20 m is 4× higher than 5 m, so it should take 2× as long, which it does.\n\nX6. Someone moved one line. Predict what prints.\n\n\n\n\n\n\n\nThat results = [] line runs every pass now. What does it do to whatever was already in results?\n\n\n[40.0]. Every pass makes a brand-new empty list and puts one thing in it, so at the end only the last pass survives. The empty list has to be built before the loop, so it can survive all the passes.\n\n\n\nLoops with if inside\nX7. A wind sensor logs -999.0 whenever it misses a reading. Fill in the condition so only the real readings get collected.\n\n\n\n\n\n\n\nSeveral conditions work: “not equal to −999,” or “at least zero” (can a wind speed be negative?). sum and len are built into Python and work on plain lists.\n\n\nif v != -999.0:      # or: if v &gt;= 0:\ngood is [8.1, 10.7, 9.8, 7.4] and the average is 9.0 m/s.\nNow try it with the if removed, so every value gets appended. The average comes out to −327 m/s: a wind blowing backwards at roughly the speed of sound. Nobody needs to read the code to know that’s wrong — which is the whole point of estimating before you trust a number.\n\nX8. Counting is just an accumulator that adds 1. How many of these daily highs (°C) are above 32? Fill in the blank.\n\n\n\n\n\n\n\nSame shape as total = total + x, but what are we adding each time we find a hot day?\n\n\nhot_days = hot_days + 1\nPrints 3 (33, 35, 34). Swap the 7 numbers for a century of Boulder summers and this is, more-or-less, one way to ask “are hot days getting more common?”\n\nX9. The “best so far” pattern. Predict what prints. Then change output[3] to 320 (a tie!) and predict again. Then change &gt; to &gt;= and predict a third time.\n\n\n\n\n\n\n\nKeep a table with one column: best_i. It only changes when the current output beats the best one so far. Does “ties” count as beating?\n\n\nOriginal: 40 320.\nWith the tie and &gt;: still 40 320. When i is 3, 320 &gt; 320 is False, so the first 320 keeps its spot.\nWith the tie and &gt;=: 50 320. Now a tie does count, so the later one takes over.\nThis is exactly what output.argmax() does for you in one line (and NumPy picks the first one on a tie, like &gt;). Writing it by hand is worth doing once, because the loop version can do things argmax can’t, like “the best one we can afford.” See the last problem on this page.\n\nX10. Here are positions logged during a phone drop (onto a pillow, please), every 0.1 s. The loop estimates the velocity between each pair of neighboring readings. Predict the printed values — roughly is fine — and figure out why the range starts at 1.\n\n\n\n\n\n\n\nrange(1, 5) is 1, 2, 3, 4 — it starts at 1 instead of 0. Each pass uses the reading at i and the one just before it, at i-1. What would i-1 be on a pass where i is 0?\n\n\n0.1 -0.49\n0.2 -1.47\n0.3 -2.45\n0.4 -3.44\nA physics check: the velocity should get about \\(g\\,\\Delta t = 9.81 \\times 0.1 \\approx 0.98\\) m/s more negative every step, and it does (−0.49, −1.47, −2.45, …). Negative, because we measure \\(y\\) upward and the phone is going down. Good.\nWhy start at 1? If i were 0, then y[i-1] is y[-1], the last reading. Python happily does that (negative indices are legal!) and you’d get a “velocity” of about −1.96 m/s at t = 0, when the phone hadn’t started moving yet. No error, just a wrong number. (Also notice that five positions give only four velocities. Off-by-one, our old friend.)",
     "crumbs": [
       "Home",
       "Start Here",
@@ -650,11 +662,59 @@
     ]
   },
   {
-    "objectID": "info/practice.html#arrays-weeks-56",
-    "href": "info/practice.html#arrays-weeks-56",
+    "objectID": "info/practice.html#simulation-week-5",
+    "href": "info/practice.html#simulation-week-5",
     "title": "Practice Library",
-    "section": "Arrays (weeks 5–6)",
-    "text": "Arrays (weeks 5–6)\nA1. Fill in the blank so t holds the fall time for every height at once, then print it.\n\n\n\n\n\n\n\nThe formula is \\(t=\\sqrt{2h/g}\\), and NumPy’s square root is np.sqrt(...). Write the arithmetic as if h were a single number — the array handles the “for every value” part itself.\n\n\nt = np.sqrt(2 * h / 9.81)\nThe first entry should be ≈ 0.45 s and each height is 4× the previous, so each time should be 2× the previous (√4 = 2).",
+    "section": "Simulation (week 5)",
+    "text": "Simulation (week 5)\nS1. A cup of coffee cools faster when it’s much hotter than the room, and slower as it gets close. A time-stepped version: each minute, the temperature drops by a fraction k of the gap between the coffee and the room. Trace it and predict the three printed lines.\n\n\n\n\n\n\n\nFirst pass: the gap is 90 − 20 = 70, and 10% of that is 7. The second pass starts from wherever the first one left off.\n\n\n0 83.0\n1 76.7\n2 71.03\nThe drops are 7, then 6.3, then 5.67: shrinking, because the gap shrinks. That’s the “slows down as it gets close” behavior we wanted.\n\nS2. Now let’s break it on purpose. Same cooling model, but someone got impatient and took fifteen-minute steps. Run it. What’s wrong with the answer, physically?\n\n\n\n\n\n\n\nLook at the first printed temperature. Can coffee sitting in a 20 °C room get colder than the room?\n\n\n0 -15.0\n1 37.5\n2 11.25\nFrozen coffee, in a warm room, which then bounces back up to 37.5 and down again. A real cup never goes below room temperature. The algebra is fine. The problem is that k * dt is now 1.5, so each step “removes” 150% of the gap and overshoots. Small steps keep the model honest. (Try dt = 5.0: it’s off from the dt = 1 answer, but at least it’s not absurd.)\n\nS3. After a falling-ball simulation, we want the time when the ball first goes below the ground. Fill in the blank, using a mask from week 4 (no new loop needed).\n\n\n\n\n\n\n\nBuild it in pieces. y &lt; 0 is an array of True/False. t[y &lt; 0] is every time when the ball was underground. You want the first one of those.\n\n\nt_hit = t[y &lt; 0][0]\nPrints 1.44. The exact answer from \\(t = \\sqrt{2h/g}\\) is 1.43 s. Close, and our stepped answer is a hair late, which makes sense: the simulation always uses the speed from the start of each step, so it’s always a little slower than the real ball.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#files-and-tables-week-6",
+    "href": "info/practice.html#files-and-tables-week-6",
+    "title": "Practice Library",
+    "section": "Files and tables (week 6)",
+    "text": "Files and tables (week 6)\nD1. Four days of weather, one row per day: day number, high (°C), low (°C). Predict all five printed things.\n\n\n\n\n\n\n\ndata[row, column], both counting from zero. A : means “all of them.” And swing is the high minus the low for every day at once.\n\n\n\n(4, 3): four rows, three columns.\n18.2: row 2 is the third day, column 1 is the high.\n[1. 2. 3. 4.]: the whole first column, the day numbers.\n12.4: last row, low column.\n2.0: the swings are 15.3, 15.7, 12.2, 10.1, so the biggest is at index 1, and row 1’s day number is 2. (Boulder in the fall really does swing 15 °C in a day. Not a typo.)",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#pandas-week-7",
+    "href": "info/practice.html#pandas-week-7",
+    "title": "Practice Library",
+    "section": "pandas (week 7)",
+    "text": "pandas (week 7)\nP1. Some made-up summer highs for two years (made up, so don’t draw climate conclusions from them!). Fill in the two blanks: the average high for each year, and the number of months with a high above 29 °C.\n\n\n\n\n\n\n\n“For each year” is the phrase that means groupby. For the second one: filter first, df[df[\"high_C\"] &gt; 29], then count the rows of what’s left with len(...).\n\n\nprint(df.groupby(\"year\")[\"high_C\"].mean())\nprint(len(df[df[\"high_C\"] &gt; 29]))\n1950 averages 28.1 °C and 2020 averages about 29.67 °C. Three months are above 29 (29.8, 31.2, 29.9).\nDoes this mean it’s warming? Two years of three months each, invented by me, is not a trend. It’s an anecdote with a decimal point. The real question needs the real century of data, and a plot.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#dictionaries-week-8",
+    "href": "info/practice.html#dictionaries-week-8",
+    "title": "Practice Library",
+    "section": "Dictionaries (week 8)",
+    "text": "Dictionaries (week 8)\nDI1. A solar panel, described as a dictionary. Predict every line of output.\n\n\n\n\n\n\n\nAssigning to a key that already exists replaces its value. Assigning to a key that doesn’t exist yet… try it and see. (len of a dictionary counts its keys.)\n\n\n\n400\n210.5263157894737, watts per square meter of panel. Sanity check: full sunlight delivers roughly 1000 W/m², so this panel turns about 21% of it into electricity. That’s a realistic number for a modern panel, so the dictionary is probably not lying to us.\n35, because the old 40 got replaced.\n5: assigning to a new key adds it. This is how you build up a dictionary one piece at a time.\nThe whole dictionary, now with 'cost_usd': 220 on the end.\n\n\nDI2. Here’s a (shortened) reply from an hourly weather forecast API. It’s a dictionary, with dictionaries inside, with lists inside those. Fill in the blanks.\n\n\n\n\n\n\n\nRead the path like directions: go to \"hourly\", then inside that go to \"temperature_2m\". The units live somewhere else — in \"hourly_units\".\n\n\ntemps = forecast[\"hourly\"][\"temperature_2m\"]\n...\nprint(forecast[\"hourly_units\"][\"temperature_2m\"])\nPrints 19.6, °C, and 2026-10-13T14:00.\nNotice \"time\" and \"temperature_2m\" are two parallel lists, just like diameters and totals in week 4: index 2 in one goes with index 2 in the other. That’s why the last line works.\n\nDI3. Looping over a dictionary hands you its keys, one at a time. Predict the output (roughly), then add titanium (4500 kg/m³) to the dictionary and run it again.\n\n\n\n\n\n\n\nOn the first pass material is \"steel\", so density[material] is density[\"steel\"]. Then 7850 × 0.002 is…\n\n\nSteel 15.7 kg, aluminum 5.4 kg, wood 1.2 kg. To add titanium, put \"titanium\": 4500 in the curly braces (or write density[\"titanium\"] = 4500 before the loop, like in DI1). It comes out at 9.0 kg.\nSanity check: 2 liters of water is 2 kg. Wood is lighter than that (it floats!), and steel is about 8× heavier, which is about right if you’ve ever picked up a dumbbell.\nYou probably saw steel print as 15.700000000000001. That’s not a bug in our code. Computers store decimals in binary, and some decimals (like 0.002) can’t be stored exactly, so a tiny bit of fuzz shows up way out at the end. It’s harmless here. Use round(mass, 2) if it bugs you.\n\nDI4. A logger collected four replies from the ISS API. One request failed, and one came back with a key missing. Predict everything that prints, including the final list.\n\n\n\n\n\n\n\nGo one reply at a time. Does this reply have a \"latitude\" key? If not, the append line fails, and Python jumps to except without running the print(\"ok\").\n\n\nok\nskipped: KeyError('latitude')\nok\nskipped: KeyError('latitude')\n[51.45, 50.98]\nFour replies in, two latitudes out, and the loop survived both failures. Something to chew on: suppose we were also collecting timestamp in its own list. The last reply has a timestamp. If we appended it before trying the latitude, the two lists would end up different lengths… and they’d no longer be parallel.",
+    "crumbs": [
+      "Home",
+      "Start Here",
+      "Practice Library"
+    ]
+  },
+  {
+    "objectID": "info/practice.html#putting-it-together",
+    "href": "info/practice.html#putting-it-together",
+    "title": "Practice Library",
+    "section": "Putting it together",
+    "text": "Putting it together\nZ1. We’re choosing a wind turbine rotor diameter. Bigger rotors make more power, but they also cost more, and we have a budget of $3.5 million. Fill in the condition so the loop finds the most powerful turbine we can afford.\n\n\n\n\n\n\n\nTwo things have to be true at once for a turbine to become the new best: it’s affordable, and it beats the best one so far. “At once” is the word and.\n\n\nif costs[i] &lt;= budget and P &gt; best_P:\nPrints 100 m rotor: 1767 kW. The 110 and 120 m rotors make more power but cost too much.\nThis is the thing argmax alone can’t do: it would cheerfully pick the 120 m rotor, which we can’t buy. Here a function, a loop over indices, parallel lists, if, and, and the best-so-far pattern all show up in about ten lines, and that’s basically a real (if tiny) design decision.\nA quick check that the numbers are plausible: real 100 m wind turbines are typically rated around 2–3 MW (at higher wind speeds than our 10 m/s), so 1.8 MW is in the right neighborhood.",
     "crumbs": [
       "Home",
       "Start Here",
