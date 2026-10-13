@@ -191,11 +191,11 @@ In class we'll fetch the real thing and check your prediction against it.
 
 ## In-class work
 
-We'll ask the ISS where it is a bunch of times and build a small dataset out of the answers.
+We'll ask the ISS where it is a bunch of times, build a small dataset out of the answers, and use it to check the ISS's speed a second way. Then we'll point everything we learned at an API we've never seen.
 
-1. **One request.** Fetch the ISS's position with the three lines from the reading and print the whole reply. Pull out the latitude, longitude, and velocity. Where is it right now? Paste the coordinates into a map. Redo the 93-minute check with the altitude and velocity you got.
+1. **One request.** Fetch the ISS's position with the three lines from the reading and print the whole reply. Pull out the latitude, longitude, altitude, and velocity. Where is it right now? Paste the coordinates into a map. Redo the 93-minute check with the altitude and velocity you got.
 2. **What time is it?** The `timestamp` is a big number like 1791654325. That's **Unix time**: the number of seconds since midnight UTC on January 1, 1970. (This is how most computers count time.) `pd.to_datetime(info["timestamp"], unit="s")` converts it. What time zone is it?
-3. **Ask several times, but patiently.** Here's a loop that asks 10 times, 30 seconds apart:
+3. **Ask several times, but patiently.** We want to ask 10 times, 30 seconds apart, and keep the latitude, longitude, and time of each answer. The skeleton is below, with everything *inside* the loop removed except the waiting.
 
     ```python
     import time
@@ -206,27 +206,43 @@ We'll ask the ISS where it is a bunch of times and build a small dataset out of 
     track = {"timestamp": [], "latitude": [], "longitude": []}
 
     for k in range(10):
-        try:
-            info = requests.get(url, timeout=10).json()
-            t = info["timestamp"]
-            lat = info["latitude"]
-            lon = info["longitude"]
-            track["timestamp"].append(t)
-            track["latitude"].append(lat)
-            track["longitude"].append(lon)
-            print(k, "ok")
-        except Exception as err:
-            print(k, "skipped:", repr(err))
+
+        # your code here
+
         time.sleep(30)          # wait 30 seconds before asking again
 
     df = pd.DataFrame(track)
     ```
 
-    Before you run it: read it line by line with your partner. What is `track`? (Look at its curly braces.) How long will this take to finish? And why do you think it pulls out all three values *before* appending any of them? (What would happen to the three lists if `"latitude"` were missing from one reply?) Then run it, and while it runs, talk about `time.sleep(30)`. This API allows about one request per second, and if it is busy it might allow even fewer. If a whole classroom doing that in a loop it starts to look like an attack — we might get blocked!
-4. **Check your prediction.** Look at `df`. How many degrees of longitude did the ISS cover in those ~5 minutes (first row to last)? (If you get something huge or negative, the track crossed the date line.) Compare with your bring-to-class prediction. They probably don't match exactly. Can you think of why? (Hint: does the ISS actually fly along the equator? And what is the Earth doing underneath it?)
-5. **Break it on purpose.** Change the satellite number in `url` to `99999999`, and run the loop for 3 requests. What does your program print? Now take out the `try`/`except` (keep the code inside it) and run it again.
+    Before you write anything, talk with your partner: what is `track`? (Look at its curly braces.) Then write the body. Each pass through the loop should ask for the position, pull out the three values, add them to the three lists in `track`, and print the loop number `k` with either "ok" or the reason it was skipped. Think about what a skipped request should do, and where the `try` and `except` belong. One design question to settle before you run it: should you pull out all three values *before* appending any of them, or append each as you go? (What would happen to the three lists if `"latitude"` were missing from one reply?) When it's working, it takes about 5 minutes, so keep the next step in mind while it runs.
 
-## Challenge
+    While it runs, talk about `time.sleep(30)`. This API allows about one request per second, and if it is busy it might allow even fewer. If a whole classroom did that in a loop it starts to look like an attack — we might get blocked!
+4. **Check your prediction.** Look at `df`. How many degrees of longitude did the ISS cover in those ~5 minutes (first row to last)? (If you get something huge or negative, the track crossed the date line.) Compare with your bring-to-class prediction. They probably don't match exactly. Can you think of why? (Hint: does the ISS actually fly along the equator? And what is the Earth doing underneath it?)
+5. **How fast did it go?** Now we have positions and times, so we can measure the speed ourselves instead of reading it off the reply. Take the first row and last row of `df`. Between two nearby points on a sphere of radius $R$, the distance traveled is
+
+    $$d = R\,\sqrt{(\Delta\varphi)^2 + (\cos\bar\varphi \cdot \Delta\lambda)^2}, \qquad v = \frac{d}{\Delta t}$$
+
+    where $\varphi$ is latitude, $\lambda$ is longitude, $\Delta$ means (last − first), and $\bar\varphi$ is the average of the two latitudes. The first term under the root is the north–south distance. The second is the east–west distance, with the $\cos\bar\varphi$ there because a degree of longitude gets shorter as we move away from the equator. **Both angles have to be in radians** (after `import numpy as np`, `np.radians` converts and `np.cos` takes radians). Use $R = 6371 + \text{altitude}$ in km, with the altitude from step 1, and get $\Delta t$ in hours from the timestamps (which are in seconds). Compute $v$ and compare it with the `velocity` from the API. Do they agree? If they're off by a little, in which direction, and why?
+6. **Break it on purpose.** Change the satellite number in `url` to `99999999`, and run the loop for 3 requests (change `range(10)`). What does your program print? Look closely at *which* error it prints. Now take out the `try`/`except` (keep the code inside it) and run it again.
+
+## A different API
+
+The ISS API is one example. Now let's use a different one that you've never seen, and use what we learned: **print the reply, look at it, then write the path.**
+
+The US Geological Survey publishes a list of every earthquake it has detected on Earth, updated every minute. Here's the past hour:
+
+```
+https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson
+```
+
+1. **Look first.** Fetch it. The whole reply is long, so don't print all of it. Start with the keys at the top level (`list(reply.keys())`), then look at one piece. Where do the earthquakes live? What is each earthquake, and what's the structure inside it?
+2. **Find the biggest.** How many earthquakes were there in the past hour? (There are two places you could find that out; do they agree?) Which one had the largest magnitude, and where was it? Write the path to its magnitude and its `place`.
+3. **Where, and how deep?** Each earthquake has `"coordinates"` with three numbers. Work out what they are, using the biggest earthquake's `place` to check yourself. (Careful: this API doesn't put them in the order the ISS one did!)
+4. **How long ago?** An earthquake's `time` is in the same Unix time as the ISS `timestamp`, but not in the same units. Figure out the units by finding when the biggest earthquake happened, then compare it against the reply's `generated` time (in `metadata`) to find how many minutes ago it was. Does your answer sound plausible for a feed of "the past hour"?
+5. **Keep it going.** Write a `try`/`except` loop that asks the USGS for the number of earthquakes in the past hour, five times, 10 seconds apart. (How often do you expect the answer to change? Is 10 seconds a sensible choice?)
+
+<!--
+## Challenge (reserve)
 
 **Ask the weather.** Fetch the current Boulder weather from Open-Meteo yourself:
 
@@ -235,3 +251,24 @@ https://api.open-meteo.com/v1/forecast?latitude=40.01&longitude=-105.27&current=
 ```
 
 (That's one long URL. The part after the `?` is where we tell the API what we want: a location, and which current values.) Pull out the temperature and wind speed, *with* their units, from the reply. Then check them against a weather app on your phone. Do they agree? If not, what could explain it? Finally, convert the reply's time to Boulder time. (Boulder is 6 hours behind GMT in October.)
+-->
+
+::: {.content-hidden}
+**Instructor answer key for the in-class work (planning only — stripped from the rendered site):**
+
+**Step 3.** A solution is the old loop body: inside `try`, `info = requests.get(url, timeout=10).json()`, then `t = info["timestamp"]`, `lat = info["latitude"]`, `lon = info["longitude"]`, *then* the three `.append`s, then `print(k, "ok")`; and `except Exception as err: print(k, "skipped:", repr(err))`. The thing to look for is whether they pull out all three values before appending any: if `"latitude"` is missing, an append-as-you-go loop leaves `timestamp` one entry longer than `latitude`, and `pd.DataFrame(track)` then fails with a "same length" error much later, far from the cause. Some will put the whole loop *inside* the `try`, which defeats the purpose (one failure ends the loop). That is worth a conversation, not a correction.
+
+**Step 5, speed from positions.** I tested the formula on a live 5-sample track (31 s apart, 125 s total, near the equator): Δlon = 4.49°, distance 923 km, speed **26,589 km/h**, versus the API's **27,572 km/h**, about **3.6% low**. Students' first-to-last rows span ~280 s, so expect the same kind of answer, anywhere from about 25,500 to 27,500 km/h; accept anything within 10%. The shortfall is real and in one direction. I believe the reason is the Earth's rotation: the API's `velocity` is relative to the stars, while latitude and longitude are measured on the rotating ground, so our positions record the ISS's speed *relative to the ground*, which is lower by roughly 1,100 km/h (by my estimate this is about the same everywhere on the orbit). It's the same reason their longitude prediction in step 4 was off. If students are off by a lot: forgetting `np.radians` gives nonsense (degrees treated as radians), forgetting $\cos\bar\varphi$ matters near the top of the orbit but little near the equator, and using $\Delta t$ in seconds instead of hours gives a speed 3600× too small, which is the 1000×-style error we want them to catch by estimation (they know it's about 27,600 km/h).
+
+**Step 6.** The `99999999` reply is `{"error": "satellite not found", "status": 404}`. With `try`/`except`, each pass prints `skipped: KeyError('timestamp')`. This is the surprising part: `requests.get` doesn't fail on a 404, it happily hands back the error reply, and the error happens one line later when we ask for a key that isn't there. Without `try`/`except` the program crashes on the first pass, with the same `KeyError`.
+
+**A different API (checked Oct 13, 2026).** The reply has top-level keys `type`, `metadata`, `features`, `bbox`. `features` is a *list* of dictionaries (one per earthquake); each has `properties` (a dictionary with `mag`, `place`, `time`, `title`, ...) and `geometry` (with `coordinates`). The path to the biggest one's magnitude is `reply["features"][i]["properties"]["mag"]`, where `i` is the position in the list: this is the first time they index into a *list* inside a dictionary, so expect to explain `[0]`. The count is both `reply["metadata"]["count"]` and `len(reply["features"])`; they agree (the feed updates every minute, so the count drifts if you check twice). On my first check the past hour had 6 earthquakes: the biggest was **M 5.3, "122 km S of Kokopo, Papua New Guinea"**, `coordinates` `[152.1255, -5.4448, 18.521]`; the others were M 0.45–2.5 in California, Puerto Rico, Hawaii, and Alaska. (That's typical: one or two moderate quakes in the world per hour, many small ones in well-instrumented places like California and Alaska. This reflects where we *measure*, not only where earthquakes happen.)
+
+The `coordinates` are **[longitude, latitude, depth in km]**: longitude first (the GeoJSON convention), and the third number is depth, not altitude. Students check themselves against `place`: Kokopo is at about 4°S, 152°E, so -5.4 is the latitude and 152 the longitude. The productive wrong answer is `[lat, lon]` from the ISS habit, and the `place` check catches it. An 18.5 km depth is shallow and believable.
+
+`time` is in **milliseconds** (1791902170660), and `metadata["generated"]` is also in ms (1791903675000). So the difference is 1,504,340 ms = 25 minutes: "plausible for a feed of the past hour." If they use `unit="s"` in `pd.to_datetime` they get an out-of-bounds error or a nonsense date, which is the estimation catch. (Subtracting the two numbers and *forgetting* ms gives 1.5 million "minutes.")
+
+For the loop (item 5), the count rarely changes in 10 s: the feed updates about every minute. 5 × 10 s is only 50 s, so "ask less often" is the right answer to the question, and it's a fine place for the "be a good citizen" point from step 3. If `all_hour` ever has zero earthquakes (rare), switch to `all_day`; its biggest event when I checked was M 6.8, "central Mid-Atlantic Ridge," from 220 events with no missing magnitudes. If you do switch, tell them *not* to print the whole reply.
+
+**Scope.** No `r.status_code` (see the reading's key). The Open-Meteo challenge is commented out above as a reserve; if the USGS feed is down on the day, it's a drop-in replacement for the whole "A different API" section: temperature and wind from `weather["current"]`, units from `weather["current_units"]`, and time in GMT that has to be shifted by 6 hours.
+:::
