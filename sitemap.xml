@@ -2,130 +2,134 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/08-fetch.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/06-data-io-plots.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/04b-for-loops.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/03-functions.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/02a-first-contact.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/01a-what-engineers-do.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/sidequests.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/practice.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/grading.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/basecamp.html</loc>
-    <lastmod>2026-10-13T20:44:01.485Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.512Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/homework/hw5-wind-farm.html</loc>
-    <lastmod>2026-10-13T20:44:01.485Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.512Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/homework/hw3-potato-cannon.html</loc>
-    <lastmod>2026-10-13T20:44:01.485Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.512Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/homework/hw1-grade-calculator.html</loc>
-    <lastmod>2026-10-13T20:44:01.485Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.512Z</lastmod>
   </url>
   <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w07-triage.html</loc>
-    <lastmod>2026-10-13T20:44:01.474Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w06-plot-clinic.html</loc>
-    <lastmod>2026-10-13T20:44:01.474Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w04-design-sweep.html</loc>
-    <lastmod>2026-10-13T20:44:01.474Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w03-function-forge.html</loc>
-    <lastmod>2026-10-13T20:44:01.474Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w05-drag-lab.html</loc>
-    <lastmod>2026-10-13T20:44:01.474Z</lastmod>
+    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w08-acquisition.html</loc>
+    <lastmod>2026-10-15T13:53:06.504Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/activities/w06-plot-gallery.html</loc>
-    <lastmod>2026-10-13T20:44:01.474Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w05-drag-lab.html</loc>
+    <lastmod>2026-10-15T13:53:06.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w03-function-forge.html</loc>
+    <lastmod>2026-10-15T13:53:06.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w04-design-sweep.html</loc>
+    <lastmod>2026-10-15T13:53:06.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w06-plot-clinic.html</loc>
+    <lastmod>2026-10-15T13:53:06.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jeremy-koch.github.io/MCEN1030/activities/w07-triage.html</loc>
+    <lastmod>2026-10-15T13:53:06.504Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/homework/example-parking-garage.html</loc>
-    <lastmod>2026-10-13T20:44:01.484Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.511Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/homework/hw2-solar-tilt.html</loc>
-    <lastmod>2026-10-13T20:44:01.485Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.512Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/homework/hw4-siren.html</loc>
-    <lastmod>2026-10-13T20:44:01.485Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.512Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/index.html</loc>
-    <lastmod>2026-10-13T20:44:01.485Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.512Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/colab-format.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/installing.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/schedule.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/info/standards.html</loc>
-    <lastmod>2026-10-13T20:44:01.486Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/01b-what-llms-do.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/02b-reading-code.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/04a-arrays.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/05a-simulate.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
   <url>
     <loc>https://jeremy-koch.github.io/MCEN1030/lessons/07-pandas.html</loc>
-    <lastmod>2026-10-13T20:44:01.487Z</lastmod>
+    <lastmod>2026-10-15T13:53:06.513Z</lastmod>
   </url>
 </urlset>
