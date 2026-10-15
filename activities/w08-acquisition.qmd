@@ -103,10 +103,8 @@ Your own data is the only one where you know the answer, so this is your chance 
 Now for the data sets you are to investigate. For each:
 
 1. **Plot it.** Absolute acceleration first, then the axes if you need more clues.
-2. **Discuss.** What do you expect each of the tasks to look like when viewed through the prism of an accelerometer? A measurement above 9.8 or below? How many events?
+2. **Discuss.** What do you expect each of the tasks to look like when viewed as accelerometer data? A measurement above 9.8 or below? How many "events"?
 3. **Make a verdict, with evidence.** Which task was it, and what in the plot convinced you? Use numbers from the plot, not just shapes: "10 peaks over about 3 seconds" not "it's bumpy."
-
-Getting the general type is the basic goal: "it's an elevator," "it's walking or running." The **challenge** is the twin. Elevator up or down? Sit or stand? Jump or squat? Walk or run? These pairs look alike on purpose, and telling them apart takes careful thinking about what your body (or the elevator) was doing at each moment. A hint for the hardest pairs: think about the *order* of things. Something that starts moving has to speed up first and slow down later.
 
 We'll release the answers after class on this webpage.
 
