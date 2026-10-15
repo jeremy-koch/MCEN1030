@@ -70,6 +70,7 @@ website:
           - lessons/07-pandas.qmd
           - activities/w07-triage.qmd
           - lessons/08-fetch.qmd
+          - activities/w08-acquisition.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd

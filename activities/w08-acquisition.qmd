@@ -1,0 +1,143 @@
+---
+title: "Data acquisition lab"
+subtitle: "Week 8 Thursday · 2 engagement credits"
+---
+
+**Standards seeded:** F1, F2, A3 · **You'll need:** a phone with [phyphox](https://phyphox.org/) installed (free, iPhone and Android), a laptop with Colab, and your group's slip of paper.
+
+On Tuesday we fetched data that somebody else measured: a server somewhere knew where the ISS was, and we asked it. Today we make our own data. Your phone has an accelerometer inside it (it's how the screen knows to rotate), and phyphox lets us record it.
+
+Here's the game. Every group gets a slip with a group number, a **secret** task to record, and two other groups to investigate. You record your task and put the data where everyone can see it, but without saying what it was. Then you play detective on the other two groups' data: from the squiggles alone, what did they do?
+
+## The instrument
+
+Open phyphox and choose **Acceleration (with g)**. Before you press play, put the phone flat on the table and make a prediction with your group: what will it read? The phone isn't moving, so...?
+
+Now press play and look.
+
+It reads about 9.8 m/s², not zero. A rough picture (just a picture, not physics we'll need): inside the phone is a tiny weight on a tiny spring. Sitting on the table, the spring is holding the weight up against gravity, and the phone measures how hard the spring is working. Keep this in mind, because it means "9.8" is *normal*, and the interesting stuff is anything that isn't 9.8.
+
+phyphox shows four things: acceleration along the phone's x, y, and z directions (sideways, along its length, and out of the screen), and the **absolute acceleration**, which combines all three into one number that doesn't care which way the phone is pointing. Tilt the phone around while it's recording and watch the x, y, z traces trade places while the absolute stays put.
+
+## The suspects
+
+Every group's secret task is one of these eight. Two groups have each task. Don't tell anyone which one is yours!
+
+- Walk 10 steps
+- Run 10 steps
+- Jump once
+- Squat down and back up (feet stay on the ground)
+- Ride the elevator up (at least two floors)
+- Ride the elevator down (at least two floors)
+- Sit down in a chair
+- Stand up from a chair
+
+## Record
+
+To make everyone's data comparable, we'll all record the same way. Hold the phone flat against your chest with the screen facing out (one hand, firmly; a phone flopping around in a loose hand records the flopping). The one exception is the elevator: put the phone flat on the elevator floor instead, because an elevator's accelerations are gentle and your hand would drown them out.
+
+Then:
+
+1. Press play, and hold still for about 3 seconds.
+2. Do your task.
+3. Hold still for another 3 seconds, then stop.
+
+The still parts at the beginning and end are bookends. They tell anyone reading your data where "nothing happening" is, so the task stands out.
+
+Record two or three times, look at the plots in phyphox, and keep the cleanest one. (If you have an elevator task, everyone in your group can ride together; one phone is enough.)
+
+## Share it
+
+Our class has a shared Google Sheet (link on Canvas) with one tab per group, named `G01` through `G16`. Notice that the tabs are named by group *number*, not by task. If the tab said `walking`, the game would be over.
+
+Getting the numbers from your phone into the Sheet:
+
+1. In phyphox, tap the menu (the three dots) and choose **Export data**. Get it to your computer somehow.
+2. On your computer, find that file in Drive and open it with Google Sheets.
+3. Select everything with data in it (including the header row on top), copy it, and paste it into **your group's tab**, starting at cell A1.
+
+Please be careful to paste only into your own tab.
+
+## Loading a group's data
+
+Each tab of the Sheet has a web address we can read directly with pandas, just like Tuesday's APIs. The data lives at a URL, and we go fetch it:
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sheet = "https://docs.google.com/spreadsheets/d/SHEET_ID/gviz/tq?tqx=out:csv&sheet="
+
+df = pd.read_csv(sheet + "G07")    # change G07 to whichever group you want
+print(df.columns)
+```
+
+The part after the `?` tells Google what we want: CSV format, and which tab. To look at a different group, change only the tab name at the end.
+
+As always, print the columns before you use them. phyphox's column names are long and include the units, something like `"Absolute acceleration (m/s^2)"`. Tuesday's rule applies: never guess a key, copy it exactly.
+
+```python
+t = df["Time (s)"]
+a = df["Absolute acceleration (m/s^2)"]
+
+plt.plot(t, a)
+plt.xlabel("time (s)")
+plt.ylabel("absolute acceleration (m/s²)")
+plt.show()
+```
+
+Then plot the x, y, and z columns together on one plot (with a legend!) to see which way the phone was pointing and whether that changed.
+
+## Your own data first
+
+Before investigating anybody else, get to know your own recording. Plot the absolute acceleration, then the three axes.
+
+- Find the bookends. What does "holding still" read?
+- Find your task. Where does it start and stop? Does its shape make sense, given what you remember doing?
+- Is anything surprising? (Bigger than you expected, smaller, a spike you can't explain?)
+
+Your own data is the only one where you know the answer, so this is your chance to learn what a trace looks like when you're sure what happened.
+
+## Detective work
+
+Now the two groups on your slip. For each one, in this order:
+
+1. **Predict before you look.** Look at the list of suspects. Pick two or three tasks you think will be easy to tell apart from each other and say what you'd expect each to look like in the plot. Above 9.8 or below? Briefly or for a while? Once, or over and over? Write the predictions down *before* you plot. (This is the same move as Tuesday's ISS prediction: say what you expect, then check.)
+2. **Plot it.** Absolute acceleration first, then the axes if you need more clues.
+3. **Make a verdict, with evidence.** Which task was it, and what in the plot convinced you? Use numbers from the plot, not just shapes: "10 peaks over about 3 seconds" makes a stronger case than "it's bumpy."
+
+Getting the general type is the basic goal: "it's an elevator," "it's walking or running." The **challenge** is the twin. Elevator up or down? Sit or stand? Jump or squat? Walk or run? These pairs look alike on purpose, and telling them apart takes careful thinking about what your body (or the elevator) was doing at each moment. A hint for the hardest pairs: think about the *order* of things. Something that starts moving has to speed up first and slow down later.
+
+At the end, we'll reveal who did what. Don't be discouraged if you guess wrong. A careful argument that comes out wrong is worth more (and is a lot more interesting to talk about) than a lucky guess.
+
+## One last question
+
+You just spent half an hour reconstructing what someone did from a file with no label on it. That's the situation of everyone who ever opens a data file that somebody else recorded, except usually it isn't a game.
+
+What would you write at the top of your group's tab so that nobody would have to guess? Think beyond the task itself: what would someone need to know to re-record your data and compare? (Which phone? Where was it held? Which elevator, between which floors?)
+
+**Deliverable (2 EC):** one group Colab notebook, with text cells for: (1) your own trace, with the task marked and a sentence on what you see; (2) for each of your two investigated groups, your prediction (written before the plot), the plot, and your verdict with evidence; (3) your answer to the last question. We are grading your reasoning, not whether your guesses were right.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site):**
+
+**Before class.**
+
+- Make the Sheet with 16 tabs named exactly `G01`…`G16`. Share it as "anyone with the link can edit" (students need to paste; reading via URL needs at least link-view). Put the link on Canvas. Replace `SHEET_ID` above with the long ID from the Sheet's address (`docs.google.com/spreadsheets/d/<SHEET_ID>/edit`).
+- **Test the whole pipeline tonight** with a real phyphox export: phone → Excel export → Drive → open in Sheets → paste into a tab → `pd.read_csv(sheet + "G01")` in Colab → check `df.columns` against the names on this page. I haven't verified phyphox's exact column names or the `gviz` loader against real pasted data. The `gviz` address can mis-guess types if a column mixes text and numbers. If it misbehaves, the fallback is `https://docs.google.com/spreadsheets/d/<SHEET_ID>/export?format=csv&gid=<GID>`, where `<GID>` is the number after `#gid=` in the address bar when that tab is open. That works reliably, but each tab's GID would have to be posted.
+- Record a backup of all eight tasks yourself and keep the files handy. If a group's tab is still empty when their detectives need it, paste a backup in (and make a note, so the reveal isn't confusing).
+- Groups: 16 groups for 68 students = 12 groups of 4 and 4 groups of 5. Four groups need the elevator, so check how far the nearest one is. If it's a long trek or a slow elevator, swap the elevator pair for stairs up / stairs down (a clear cadence like walking, with harder-to-call differences).
+
+**What the traces should look like** (from the physics and from what people typically report, not from recordings of these exact tasks; check against your backups):
+
+- *Walk vs. run.* Both periodic, with one peak per step. Walking is about 2 steps/s, with peaks maybe 12–15 m/s². Running is about 3 steps/s, with peaks of 20 m/s² or more and dips well below 9.8. Ten peaks either way, a free sanity check. The easiest pair to tell apart.
+- *Jump vs. squat.* Both start with a dip below 9.8 (crouching = starting to move downward), then a push well above 9.8. The jump then has a stretch of **near-zero** lasting about 0.3–0.5 s (free fall: the "spring" has nothing to hold up), followed by a big landing spike. The squat never reaches zero. The zero stretch is the whole clue, and it sets up week 9: airtime $t$ gives jump height $h = g t^2/8$ (0.4 s → about 20 cm).
+- *Elevator up vs. down.* Mostly 9.8 with two gentle bumps, maybe 0.5–1 m/s² in size and 1–2 s long, separated by the constant-speed middle (reading 9.8 again). Going up: above 9.8 at the start (speeding up upward feels heavy), below at the end. Going down: the reverse. The hardest pair, and the reason the elevator phone sits on the floor.
+- *Sit vs. stand.* With the phone against the chest, the same logic as the elevator, only faster and messier. Sitting down: a dip below 9.8 as you start downward, then above 9.8 as the chair stops you (often a sharp spike if someone plops). Standing up: above first, then below. The torso also leans forward during both, so the axes shift a little. Expect lots of disagreement, which is what makes the reveal fun.
+
+The productive realization for the twins is the "order of things" hint: whatever starts moving speeds up first and slows down later, so the up/down variants are mirror images in time. Some detectives will find this from the elevator and apply it to sitting/standing on their own.
+
+**Timing (~75 min).** Instrument + phone-on-the-table prediction, 5 min. Record, 10–15 min (elevator groups take longer). Share, 10 min: budget for the export → Drive → Sheets step being slower than expected, since it's the first time many of them move a file between devices on purpose. Own data, 10 min. Detective work, 25 min. Reveal + last question, 10 min.
+
+**Grading.** Credit the prediction-then-verdict structure and evidence with numbers. A wrong verdict with a careful argument gets full credit. The last question is the A3 seed: good answers include the task (obviously), how the phone was held, the phone model, and where/when. The best answers notice that the *start and stop* of the task in the file would help too.
+:::
