@@ -3,11 +3,11 @@ title: "Data acquisition lab"
 subtitle: "Week 8 Thursday · 2 engagement credits"
 ---
 
-**Standards seeded:** F1, F2, A3 · **You'll need:** a phone with [phyphox](https://phyphox.org/) installed (free, iPhone and Android), a laptop with Colab, and your group's slip of paper.
+**Standards seeded:** F1, F2, A3 · **You'll need:** a phone with [phyphox](https://phyphox.org/) installed (free, iPhone and Android).
 
-On Tuesday we fetched data that somebody else measured: a server somewhere knew where the ISS was, and we asked it. Today we make our own data. Your phone has an accelerometer inside it (it's how the screen knows to rotate), and phyphox lets us record it.
+On Tuesday we fetched data that somebody else measured, today we make our own data. Your phone has an accelerometer inside it (it's how the screen knows to rotate), and phyphox lets us record it.
 
-Here's the game. Every group gets a slip with a group number, a **secret** task to record, and two other groups to investigate. You record your task and put the data where everyone can see it, but without saying what it was. Then you play detective on the other two groups' data: from the squiggles alone, what did they do?
+Every group gets a slip with a group number, a **secret** task to record, and two other groups to investigate. You record your task and put the data where everyone can see it, but without saying what it was. Then you play detective on the other two groups' data: from the squiggles alone, what did they do?
 
 ## The instrument
 
@@ -15,9 +15,9 @@ Open phyphox and choose **Acceleration (with g)**. Before you press play, put th
 
 Now press play and look.
 
-It reads about 9.8 m/s², not zero. A rough picture (just a picture, not physics we'll need): inside the phone is a tiny weight on a tiny spring. Sitting on the table, the spring is holding the weight up against gravity, and the phone measures how hard the spring is working. Keep this in mind, because it means "9.8" is *normal*, and the interesting stuff is anything that isn't 9.8.
+It reads about 9.8 m/s², not zero. Ostensibly: inside the phone is a tiny weight on a tiny spring. Sitting on the table, the spring is holding the weight up against gravity, and the phone measures how hard the spring is working.
 
-phyphox shows four things: acceleration along the phone's x, y, and z directions (sideways, along its length, and out of the screen), and the **absolute acceleration**, which combines all three into one number that doesn't care which way the phone is pointing. Tilt the phone around while it's recording and watch the x, y, z traces trade places while the absolute stays put.
+phyphox shows four things: acceleration along the phone's x, y, and z directions (sideways, along its length, and out of the screen), and the **absolute acceleration**, the magnitude of the acceleration vector. Tilt the phone around while it's recording and watch the x, y, z traces trade places while the absolute stays put.
 
 ## The suspects
 
@@ -34,7 +34,7 @@ Every group's secret task is one of these eight. Two groups have each task. Don'
 
 ## Record
 
-To make everyone's data comparable, we'll all record the same way. Hold the phone flat against your chest with the screen facing out (one hand, firmly; a phone flopping around in a loose hand records the flopping). The one exception is the elevator: put the phone flat on the elevator floor instead, because an elevator's accelerations are gentle and your hand would drown them out.
+To make everyone's data comparable, we'll all record the same way. Firmly hold the phone flat against your chest with the screen facing out. The one exception is the elevator: put the phone flat on the elevator floor instead, because an elevator's accelerations are gentle and your hand would drown them out.
 
 Then:
 
@@ -48,11 +48,11 @@ Record two or three times, look at the plots in phyphox, and keep the cleanest o
 
 ## Share it
 
-Our class has a shared Google Sheet (link on Canvas) with one tab per group, named `G01` through `G16`. Notice that the tabs are named by group *number*, not by task. If the tab said `walking`, the game would be over.
+Our class has a shared Google Sheet (link on Canvas) with one tab per group, named `G01` through `G16`.
 
 Getting the numbers from your phone into the Sheet:
 
-1. In phyphox, tap the menu (the three dots) and choose **Export data**. Get it to your computer somehow.
+1. In phyphox, tap the menu (the three dots) and choose **Export data**. Get it to your computer somehow... emailing it might be a good option.
 2. On your computer, find that file in Drive and open it with Google Sheets.
 3. Select everything with data in it (including the header row on top), copy it, and paste it into **your group's tab**, starting at cell A1.
 
@@ -72,9 +72,9 @@ df = pd.read_csv(sheet + "G07")    # change G07 to whichever group you want
 print(df.columns)
 ```
 
-The part after the `?` tells Google what we want: CSV format, and which tab. To look at a different group, change only the tab name at the end.
+The part after the `?` tells Google what we want: CSV format, and which tab. To look at a different group, change only the tab name at the end (`G07` to whatever).
 
-As always, print the columns before you use them. phyphox's column names are long and include the units, something like `"Absolute acceleration (m/s^2)"`. Tuesday's rule applies: never guess a key, copy it exactly.
+As always, print the columns before you use them. phyphox's column names are long and include the units, something like `"Absolute acceleration (m/s^2)"`.
 
 ```python
 t = df["Time (s)"]
@@ -100,23 +100,23 @@ Your own data is the only one where you know the answer, so this is your chance 
 
 ## Detective work
 
-Now the two groups on your slip. For each one, in this order:
+Now for the data sets you are to investigate. For each:
 
-1. **Predict before you look.** Look at the list of suspects. Pick two or three tasks you think will be easy to tell apart from each other and say what you'd expect each to look like in the plot. Above 9.8 or below? Briefly or for a while? Once, or over and over? Write the predictions down *before* you plot. (This is the same move as Tuesday's ISS prediction: say what you expect, then check.)
-2. **Plot it.** Absolute acceleration first, then the axes if you need more clues.
-3. **Make a verdict, with evidence.** Which task was it, and what in the plot convinced you? Use numbers from the plot, not just shapes: "10 peaks over about 3 seconds" makes a stronger case than "it's bumpy."
+1. **Plot it.** Absolute acceleration first, then the axes if you need more clues.
+2. **Discuss.** What do you expect each of the tasks to look like when viewed through the prism of an accelerometer? A measurement above 9.8 or below? How many events?
+3. **Make a verdict, with evidence.** Which task was it, and what in the plot convinced you? Use numbers from the plot, not just shapes: "10 peaks over about 3 seconds" not "it's bumpy."
 
 Getting the general type is the basic goal: "it's an elevator," "it's walking or running." The **challenge** is the twin. Elevator up or down? Sit or stand? Jump or squat? Walk or run? These pairs look alike on purpose, and telling them apart takes careful thinking about what your body (or the elevator) was doing at each moment. A hint for the hardest pairs: think about the *order* of things. Something that starts moving has to speed up first and slow down later.
 
-At the end, we'll reveal who did what. Don't be discouraged if you guess wrong. A careful argument that comes out wrong is worth more (and is a lot more interesting to talk about) than a lucky guess.
+We'll release the answers after class on this webpage.
 
 ## One last question
 
-You just spent half an hour reconstructing what someone did from a file with no label on it. That's the situation of everyone who ever opens a data file that somebody else recorded, except usually it isn't a game.
+<!-- You just spent half an hour reconstructing what someone did from a file with no label on it. That's the situation of everyone who ever opens a data file that somebody else recorded, except usually it isn't a game.
 
-What would you write at the top of your group's tab so that nobody would have to guess? Think beyond the task itself: what would someone need to know to re-record your data and compare? (Which phone? Where was it held? Which elevator, between which floors?)
+What would you write at the top of your group's tab so that nobody would have to guess? Think beyond the task itself: what would someone need to know to re-record your data and compare? (Which phone? Where was it held? Which elevator, between which floors?) -->
 
-**Deliverable (2 EC):** one group Colab notebook, with text cells for: (1) your own trace, with the task marked and a sentence on what you see; (2) for each of your two investigated groups, your prediction (written before the plot), the plot, and your verdict with evidence; (3) your answer to the last question. We are grading your reasoning, not whether your guesses were right.
+**Deliverable (2 EC):** one group Colab notebook, with 6 cells. Code to plot your data (and the plot), then a text cell describing what you see; code to plot the first group you are investigating (and the plot), then a text cell describing your prediction and why; code to plot the second group you are investigating (and the plot), then a text cell describing your prediction and why.
 
 ::: {.content-hidden}
 **Instructor key (planning only — stripped from the rendered site):**
