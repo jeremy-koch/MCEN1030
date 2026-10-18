@@ -35,6 +35,7 @@ website:
   sidebar:
     style: docked
     search: true
+    collapse-level: 1
     contents:
       - section: "Start Here"
         contents:
@@ -71,6 +72,7 @@ website:
           - activities/w07-triage.qmd
           - lessons/08-fetch.qmd
           - activities/w08-acquisition.qmd
+          - lessons/09a-images.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
