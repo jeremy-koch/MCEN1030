@@ -481,7 +481,6 @@ window.Quarto = {
   <li><a href="#the-rest-of-the-toolbox" id="toc-the-rest-of-the-toolbox" class="nav-link" data-scroll-target="#the-rest-of-the-toolbox">The rest of the toolbox</a></li>
   <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a></li>
   <li><a href="#deliverable-2-ec" id="toc-deliverable-2-ec" class="nav-link" data-scroll-target="#deliverable-2-ec">Deliverable (2 EC)</a></li>
-  <li><a href="#challenge-let-the-code-browse" id="toc-challenge-let-the-code-browse" class="nav-link" data-scroll-target="#challenge-let-the-code-browse">Challenge: let the code browse</a></li>
   </ul>
 </nav>
     </div>
@@ -721,38 +720,34 @@ Tip
 </section>
 <section id="is-an-enhanced-picture-honest" class="level2">
 <h2 class="anchored" data-anchor-id="is-an-enhanced-picture-honest">Is an enhanced picture honest?</h2>
-<p>Stretching a picture means choosing which range of brightness to spread across the screen. It’s very similar in spirit to zooming in a plot’s y-axis: <code>set_ylim</code> versus <code>stretch</code>. A stretched Mars picture makes dim, low-contrast rocks look dramatic. Neither one changes a single number in the data. Both change what a reader <em>thinks</em> they’re seeing.</p>
-<p>So, when is an enhanced picture honest? Our answer from week 6 still works: when it says what was done to it. NASA labels these pictures “raw” precisely so that anyone processing them is on the hook for describing what they did.</p>
-<p>And here’s a harder one: <strong>what color is Mars?</strong> The raw pictures come out reddish-brown. <code>stretch_each</code> stretches each channel separately, which usually strips that cast away and leaves things looking grayer and “cleaner.” Is that a better picture, or a less truthful one? (Mars really is red: the dust is full of iron oxide. Rust, basically.)</p>
-<p>The rover team’s actual answer involves the calibration target. Its gray squares are known to be gray, so if they come out tinted in a picture, the tint came from the lighting and the camera, not the target. <code>white_balance</code> does exactly this correction: give it the rows and columns of a patch you know should be gray (read them off the axes of <code>plt.imshow</code>), and it scales the three channels until that patch <em>is</em> gray.</p>
+<p>Stretching a picture means choosing which range of brightness to spread across the screen. It’s spiritually similar to zooming in a plot’s y-axis: <code>set_ylim</code> versus <code>stretch</code>. Neither one changes the data, but both change what a reader <em>thinks</em> they’re seeing.</p>
+<p>But <strong>what color is Mars?</strong> The raw pictures come out reddish-brown. <code>stretch_each</code> stretches each channel separately, which usually strips that cast away and leaves things looking grayer and “cleaner.” Is that a better picture, or a less truthful one? (Mars really is red.)</p>
+<p>The rover team’s actual answer involves the calibration target. Its gray squares are known to be gray, so if they come out tinted in a picture, the tint came from the lighting and the camera, not the target. <code>white_balance</code> is a correction: give it the rows and columns of a patch you know should be gray (read them off the axes of <code>plt.imshow</code>), and it scales the three channels until that patch <em>is</em> gray.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(img)       <span class="co"># find a gray square on the target; note its rows and columns</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>wb <span class="op">=</span> white_balance(img, <span class="dv">850</span>, <span class="dv">900</span>, <span class="dv">420</span>, <span class="dv">470</span>)       <span class="co"># top, bottom, left, right: your numbers here</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>show([img, wb], [<span class="st">"raw"</span>, <span class="st">"white balanced"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>What does that do to the color of the ground? The target was sitting in Martian light, so “make the target gray” means “show the scene as if it were lit by Earth-like white light.” Which version is the <em>real</em> color is… honestly a philosophical question, and it’s one that planetary scientists argue about.</p>
+<p>What does that do to the color of the ground? The target was sitting in Martian light, so “make the target gray” means “show the scene as if it were lit by Earth-like white light.”</p>
 </section>
-<section id="the-rest-of-the-toolbox" class="level2 page-columns page-full">
+<section id="the-rest-of-the-toolbox" class="level2">
 <h2 class="anchored" data-anchor-id="the-rest-of-the-toolbox">The rest of the toolbox</h2>
 <p>Here’s every tool applied to one picture of the calibration target. Click to enlarge.</p>
 <p><a href="images/09a-toolbox-gallery.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/09a-toolbox-gallery.jpg" class="img-fluid" alt="A grid of twelve versions of the same Mars calibration target photo: original, stretch, stretch_each, gamma, gray, remove_reds, invert, false_color, blur, sharpen, edges, and threshold."></a></p>
-<p>The tools come in two families, and the difference is worth noticing.</p>
-<p><strong>One pixel at a time.</strong> <code>stretch</code>, <code>gamma</code>, <code>invert</code>, <code>gray</code>, <code>scale_channels</code>, <code>remove_reds</code>, <code>white_balance</code>, <code>false_color</code>, and <code>threshold</code> all compute each new pixel from <em>that same pixel</em> and nothing else. They’re algebra applied to the whole array at once, exactly like week 4.</p>
+<p>The tools come in two families.</p>
+<p><strong>One pixel at a time.</strong> <code>stretch</code>, <code>gamma</code>, <code>invert</code>, <code>gray</code>, <code>scale_channels</code>, <code>remove_reds</code>, <code>white_balance</code>, <code>false_color</code>, and <code>threshold</code> all compute each new pixel from <em>that same pixel</em>.</p>
 <ul>
-<li><code>gamma(img, 0.5)</code> is <span class="math inline">\(\text{new} = \text{old}^{0.5}\)</span>. Because brightness is between 0 and 1, a power less than 1 lifts dark values a lot and bright values only a little (<span class="math inline">\(0.04^{0.5} = 0.2\)</span>, but <span class="math inline">\(0.81^{0.5} = 0.9\)</span>). Good for digging into shadows without blowing out the highlights.</li>
+<li><code>gamma(img, 0.5)</code> is <span class="math inline">\(\text{new} = \text{old}^{0.5}\)</span>. Because brightness is between 0 and 1, a power less than 1 lifts dark values a lot and bright values only a little (<span class="math inline">\(0.04^{0.5} = 0.2\)</span>, but <span class="math inline">\(0.81^{0.5} = 0.9\)</span>). Good for digging into shadows.</li>
 <li><code>remove_reds</code> multiplies the red channel by zero. On Mars, that’s a dramatic change (everything goes teal), which tells you how much of the scene’s “color” lives in the red channel.</li>
 <li><code>false_color</code> maps brightness onto a color scale, the way a thermal camera does. It can make subtle brightness differences easier to see, but the colors are <em>invented</em>: purple means “darker,” not “purple.”</li>
 </ul>
 <p><strong>Neighborhoods.</strong> <code>blur</code>, <code>sharpen</code>, and <code>edges</code> compute each new pixel from the pixel <em>and its neighbors</em>.</p>
 <ul>
 <li><code>blur</code> replaces each pixel with an average of the pixels around it (nearby ones count more). Smooths out noise, and detail with it.</li>
-<li><code>sharpen</code> is a clever trick. If <code>blur(img)</code> is the picture <em>without</em> its fine detail, then <code>img - blur(img)</code> is <em>just</em> the fine detail. Add extra of that back: <span class="math inline">\(\text{sharpened} = \text{img} + \text{amount} \times \text{detail}\)</span>. Turn <code>amount</code> up to 5 and look closely: you’ll see bright halos along edges, and the noise gets “sharpened” too. More sharpening stops meaning more detail at some point.</li>
-<li><code>edges</code> asks how much each pixel differs from the pixel to its right and the pixel below it. Where the picture is smooth, neighbors are nearly equal, the differences are about zero, and the result is black. At an edge there’s a big jump, and it lights up. The two differences get combined with Pythagoras, <span class="math inline">\(\sqrt{dx^2 + dy^2}\)</span>, the same way we’d combine an east-west and a north-south distance. It’s kind of amazing that one subtraction finds the outline of every rock.</li>
+<li><code>sharpen</code> is a clever trick. If <code>blur(img)</code> is the picture <em>without</em> its fine detail, then <code>img - blur(img)</code> is <em>just</em> the fine detail. Extra of that is added back: <span class="math inline">\(\text{sharpened} = \text{img} + \text{amount} \times \text{detail}\)</span>. Turn <code>amount</code> up to 5 and look closely: you’ll see bright halos along edges, and the noise gets “sharpened” too. More sharpening stops meaning more detail at some point.</li>
+<li><code>edges</code> asks how much each pixel differs from the pixel to its right and the pixel below it. Where the picture is smooth, neighbors are nearly equal, the differences are about zero, and the result is black. At an edge there’s a big jump, and it lights up. The two differences get combined with Pythagoras, <span class="math inline">\(\sqrt{dx^2 + dy^2}\)</span>, the same way we’d combine an east-west and a north-south distance. One subtraction finds the outline of every rock!</li>
 </ul>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Neighborhood operations are the doorway into a much bigger subject (filtering), which you’ll meet again in later courses. We’re just borrowing the three most useful ones.</p>
-</div></div></section>
+</section>
 <section id="your-turn" class="level2">
 <h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
 <p>Pick your image and make the best version of it you can. “Best” is your call: maybe the most detail in the shadows, maybe the clearest rock texture, maybe the most striking picture. Chain at least three tools together, and try each one by itself first so you know what it’s contributing.</p>
@@ -763,15 +758,12 @@ Tip
 </section>
 <section id="deliverable-2-ec" class="level2">
 <h2 class="anchored" data-anchor-id="deliverable-2-ec">Deliverable (2 EC)</h2>
-<p>One Colab notebook per group with:</p>
+<p>One Colab notebook per student with:</p>
 <ol type="1">
 <li>Your raw image and your final version side by side, with the histograms of both.</li>
 <li>The caption: which image (sol, camera, ID or web address) and exactly which tools, in order, with their settings.</li>
-<li>Two or three sentences: what did your processing reveal, and what did it <em>not</em> or <em>could not</em> reveal? Is your final version an honest picture of Mars?</li>
+<li>Two or three sentences: what did your processing reveal, and what did it <em>not</em> or <em>could not</em> reveal? Is your final version an honest picture of Mars? &lt;!– ## Challenge: let the code browse</li>
 </ol>
-</section>
-<section id="challenge-let-the-code-browse" class="level2">
-<h2 class="anchored" data-anchor-id="challenge-let-the-code-browse">Challenge: let the code browse</h2>
 <p>The website is great for browsing, but the same images are available as JSON, just like the ISS and the earthquakes in week 8. This asks for the 100 newest images, keeps only the color ones, and shows them as a contact sheet:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -791,7 +783,7 @@ Tip
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        ax.imshow(iio.imread(color[k][<span class="st">"image_files"</span>][<span class="st">"small"</span>]))</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        ax.set_title(<span class="ss">f'</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: sol </span><span class="sc">{</span>color[k][<span class="st">"sol"</span>]<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Print the whole reply once and look around first (that’s the habit, right?). Then: are all the “color” ones actually color? (Check one with <code>np.array_equal</code>.) What do <code>page=1</code> and <code>num=</code> do to the web address? Can you find the path to an image’s caption, or the time it was taken?</p>
+<p>Print the whole reply once and look around first (that’s the habit, right?). Then: are all the “color” ones actually color? (Check one with <code>np.array_equal</code>.) What do <code>page=1</code> and <code>num=</code> do to the web address? Can you find the path to an image’s caption, or the time it was taken? –&gt;</p>
 
 
 <script type="pyodide-data">
