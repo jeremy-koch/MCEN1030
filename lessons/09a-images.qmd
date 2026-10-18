@@ -267,13 +267,11 @@ The raw image stored brightness as whole numbers from 0 to 255, and the middle 9
 
 ## Is an enhanced picture honest?
 
-Stretching a picture means choosing which range of brightness to spread across the screen. It's very similar in spirit to zooming in a plot's y-axis: `set_ylim` versus `stretch`.  A stretched Mars picture makes dim, low-contrast rocks look dramatic. Neither one changes a single number in the data. Both change what a reader *thinks* they're seeing.
+Stretching a picture means choosing which range of brightness to spread across the screen. It's spiritually similar to zooming in a plot's y-axis: `set_ylim` versus `stretch`. Neither one changes the data, but both change what a reader *thinks* they're seeing.
 
-So, when is an enhanced picture honest? Our answer from week 6 still works: when it says what was done to it. NASA labels these pictures "raw" precisely so that anyone processing them is on the hook for describing what they did.
+But **what color is Mars?** The raw pictures come out reddish-brown. `stretch_each` stretches each channel separately, which usually strips that cast away and leaves things looking grayer and "cleaner." Is that a better picture, or a less truthful one? (Mars really is red.)
 
-And here's a harder one: **what color is Mars?** The raw pictures come out reddish-brown. `stretch_each` stretches each channel separately, which usually strips that cast away and leaves things looking grayer and "cleaner." Is that a better picture, or a less truthful one? (Mars really is red: the dust is full of iron oxide. Rust, basically.)
-
-The rover team's actual answer involves the calibration target. Its gray squares are known to be gray, so if they come out tinted in a picture, the tint came from the lighting and the camera, not the target. `white_balance` does exactly this correction: give it the rows and columns of a patch you know should be gray (read them off the axes of `plt.imshow`), and it scales the three channels until that patch *is* gray.
+The rover team's actual answer involves the calibration target. Its gray squares are known to be gray, so if they come out tinted in a picture, the tint came from the lighting and the camera, not the target. `white_balance` is a correction: give it the rows and columns of a patch you know should be gray (read them off the axes of `plt.imshow`), and it scales the three channels until that patch *is* gray.
 
 ```python
 plt.imshow(img)       # find a gray square on the target; note its rows and columns
@@ -283,7 +281,7 @@ wb = white_balance(img, 850, 900, 420, 470)       # top, bottom, left, right: yo
 show([img, wb], ["raw", "white balanced"])
 ```
 
-What does that do to the color of the ground? The target was sitting in Martian light, so "make the target gray" means "show the scene as if it were lit by Earth-like white light." Which version is the *real* color is... honestly a philosophical question, and it's one that planetary scientists argue about.
+What does that do to the color of the ground? The target was sitting in Martian light, so "make the target gray" means "show the scene as if it were lit by Earth-like white light."
 
 ## The rest of the toolbox
 
@@ -291,23 +289,21 @@ Here's every tool applied to one picture of the calibration target. Click to enl
 
 ![](images/09a-toolbox-gallery.jpg){.lightbox fig-alt="A grid of twelve versions of the same Mars calibration target photo: original, stretch, stretch_each, gamma, gray, remove_reds, invert, false_color, blur, sharpen, edges, and threshold."}
 
-The tools come in two families, and the difference is worth noticing.
+The tools come in two families.
 
-**One pixel at a time.** `stretch`, `gamma`, `invert`, `gray`, `scale_channels`, `remove_reds`, `white_balance`, `false_color`, and `threshold` all compute each new pixel from *that same pixel* and nothing else. They're algebra applied to the whole array at once, exactly like week 4.
+**One pixel at a time.** `stretch`, `gamma`, `invert`, `gray`, `scale_channels`, `remove_reds`, `white_balance`, `false_color`, and `threshold` all compute each new pixel from *that same pixel*.
 
-- `gamma(img, 0.5)` is $\text{new} = \text{old}^{0.5}$. Because brightness is between 0 and 1, a power less than 1 lifts dark values a lot and bright values only a little ($0.04^{0.5} = 0.2$, but $0.81^{0.5} = 0.9$). Good for digging into shadows without blowing out the highlights.
+- `gamma(img, 0.5)` is $\text{new} = \text{old}^{0.5}$. Because brightness is between 0 and 1, a power less than 1 lifts dark values a lot and bright values only a little ($0.04^{0.5} = 0.2$, but $0.81^{0.5} = 0.9$). Good for digging into shadows.
 - `remove_reds` multiplies the red channel by zero. On Mars, that's a dramatic change (everything goes teal), which tells you how much of the scene's "color" lives in the red channel.
 - `false_color` maps brightness onto a color scale, the way a thermal camera does. It can make subtle brightness differences easier to see, but the colors are *invented*: purple means "darker," not "purple."
 
 **Neighborhoods.** `blur`, `sharpen`, and `edges` compute each new pixel from the pixel *and its neighbors*.
 
 - `blur` replaces each pixel with an average of the pixels around it (nearby ones count more). Smooths out noise, and detail with it.
-- `sharpen` is a clever trick. If `blur(img)` is the picture *without* its fine detail, then `img - blur(img)` is *just* the fine detail. Add extra of that back: $\text{sharpened} = \text{img} + \text{amount} \times \text{detail}$. Turn `amount` up to 5 and look closely: you'll see bright halos along edges, and the noise gets "sharpened" too. More sharpening stops meaning more detail at some point.
-- `edges` asks how much each pixel differs from the pixel to its right and the pixel below it. Where the picture is smooth, neighbors are nearly equal, the differences are about zero, and the result is black. At an edge there's a big jump, and it lights up. The two differences get combined with Pythagoras, $\sqrt{dx^2 + dy^2}$, the same way we'd combine an east-west and a north-south distance. It's kind of amazing that one subtraction finds the outline of every rock.
+- `sharpen` is a clever trick. If `blur(img)` is the picture *without* its fine detail, then `img - blur(img)` is *just* the fine detail. Extra of that is added back: $\text{sharpened} = \text{img} + \text{amount} \times \text{detail}$. Turn `amount` up to 5 and look closely: you'll see bright halos along edges, and the noise gets "sharpened" too. More sharpening stops meaning more detail at some point.
+- `edges` asks how much each pixel differs from the pixel to its right and the pixel below it. Where the picture is smooth, neighbors are nearly equal, the differences are about zero, and the result is black. At an edge there's a big jump, and it lights up. The two differences get combined with Pythagoras, $\sqrt{dx^2 + dy^2}$, the same way we'd combine an east-west and a north-south distance. One subtraction finds the outline of every rock!
 
-::: {.column-margin}
-Neighborhood operations are the doorway into a much bigger subject (filtering), which you'll meet again in later courses. We're just borrowing the three most useful ones.
-:::
+
 
 ## Your turn
 
@@ -319,12 +315,12 @@ Then write the caption like an engineer would, so a stranger could reproduce you
 
 ## Deliverable (2 EC)
 
-One Colab notebook per group with:
+One Colab notebook per student with:
 
 1. Your raw image and your final version side by side, with the histograms of both.
 2. The caption: which image (sol, camera, ID or web address) and exactly which tools, in order, with their settings.
 3. Two or three sentences: what did your processing reveal, and what did it *not* or *could not* reveal? Is your final version an honest picture of Mars?
-
+<!-- 
 ## Challenge: let the code browse
 
 The website is great for browsing, but the same images are available as JSON, just like the ISS and the earthquakes in week 8. This asks for the 100 newest images, keeps only the color ones, and shows them as a contact sheet:
@@ -350,7 +346,7 @@ for k, ax in enumerate(axes.ravel()):
 plt.show()
 ```
 
-Print the whole reply once and look around first (that's the habit, right?). Then: are all the "color" ones actually color? (Check one with `np.array_equal`.) What do `page=1` and `num=` do to the web address? Can you find the path to an image's caption, or the time it was taken?
+Print the whole reply once and look around first (that's the habit, right?). Then: are all the "color" ones actually color? (Check one with `np.array_equal`.) What do `page=1` and `num=` do to the web address? Can you find the path to an image's caption, or the time it was taken? -->
 
 ::: {.content-hidden}
 **Instructor notes (planning only — stripped from the rendered site):**
