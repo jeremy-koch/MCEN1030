@@ -508,11 +508,10 @@ window.Quarto = {
 </header>
 
 
-<p>The Perseverance rover takes hundreds of pictures a day on Mars, and NASA posts every one of them online, <em>raw</em>: straight off the camera, before anyone has made them pretty. A lot of them look murky. Some look almost black.</p>
-<p>Today we’ll pick one and pull out the detail that’s hiding in it. The trick is that a picture is just an array of numbers, so everything we’ve learned about arrays (math on a whole array at once, masks, slicing) turns into image processing. We’ll build up the idea on tiny pictures first, then go get a real one from Mars, then work through a toolbox of techniques: contrast, color, blur, sharpen, edges. Along the way we’ll find out what enhancement <em>can’t</em> do, which turns out to matter as much as what it can.</p>
+<p>The Perseverance rover takes hundreds of pictures a day on Mars. A lot of them look murky. Today we’ll pick one and pull out the detail that’s hiding in it. The trick is that a picture is just an array of numbers, so everything we’ve learned about arrays (math on a whole array at once, masks, slicing) turns into image processing. We’ll build up the idea on tiny pictures first, then go get a real one from Mars, then work through a toolbox of techniques: contrast, color, blur, sharpen, edges.</p>
 <section id="a-picture-is-a-grid-of-numbers" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="a-picture-is-a-grid-of-numbers">A picture is a grid of numbers</h2>
-<p>A grayscale image is a 2D array: rows and columns of numbers, one per pixel, where 0 is black and 255 is white. That’s the whole secret.</p>
+<p>A grayscale image is a 2D array: rows and columns of numbers, one per pixel, where 0 is black and 255 is white.</p>
 <p>Here’s a tiny “image,” six pixels tall and eight wide:</p>
 <div>
 <div id="pyodide-1" class="exercise-cell">
@@ -522,11 +521,10 @@ window.Quarto = {
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaW1wb3J0IG51bXB5IGFzIG5wXG5pbXBvcnQgbWF0cGxvdGxpYi5weXBsb3QgYXMgcGx0XG5cbmltZyA9IG5wLmFycmF5KFtcbiAgICBbIDIwLCAgMjIsICAxOSwgIDIxLCAgMjAsICAxOCwgIDIyLCAgMjBdLFxuICAgIFsgMjEsICAyMCwgIDIzLCAgMTksICAyMiwgIDIwLCAgMjEsICAxOV0sXG4gICAgWyAxOSwgIDIyLCAyMDAsIDIzMCwgMjEwLCAgMjEsICAyMCwgIDIyXSxcbiAgICBbIDIwLCAgMjEsIDIyMCwgMjU1LCAyMjUsICAxOSwgIDIyLCAgMjBdLFxuICAgIFsgMjIsICAxOSwgMjA1LCAyMjgsIDE5OSwgIDIwLCAgMjEsICAyMV0sXG4gICAgWyAyMCwgIDIxLCAgMTksICAyMiwgIDIwLCAgMjEsICAxOSwgIDIwXSxcbl0pXG5cbnByaW50KGltZy5zaGFwZSkgICAgICAgICMgKHJvd3MsIGNvbHVtbnMpXG5wbHQuaW1zaG93KGltZywgY21hcD1cImdyYXlcIiwgdm1pbj0wLCB2bWF4PTI1NSlcbnBsdC5jb2xvcmJhcigpXG5wbHQuc2hvdygpIn0=
 </script>
 </div>
-<p>Try things: change one of the 20s to 255. Make a second bright spot. Make the whole thing dimmer with one line (<code>img = img / 2</code>… what does the picture do?).</p>
-<p>Notice the axes: <strong>row 0 is at the top</strong>, and row numbers grow <em>downward</em>. That’s upside down compared with every plot we’ve made so far. It’s just a convention (it’s how you read a page: top line first), but it’ll trip us up at least once.</p>
+<p>Try things: change one of the 20s to 255. Make a second bright spot. Make the whole thing dimmer with one line (<code>img = img / 2</code>… what does the picture do?). Note <strong>row 0 is at the top</strong>, and row numbers grow <em>downward</em>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Why 255? Each pixel’s brightness is stored in one byte, eight bits that are either 0 or 1. Thus, one byte can be used to represent the whole numbers from 0 to 255. That’s 256 shades of gray, and I don’t think our eyes can tell the difference between, e.g., gray 113 and 114… so 256 is more than enough!</p>
+<p>Why 255? Each pixel’s brightness is stored in one byte. One byte is eight bits, and bits are either 0 or 1, so with eight bits available we have $2^8=256 possible combinations.</p>
 </div></div></section>
 <section id="color-is-three-grids" class="level2">
 <h2 class="anchored" data-anchor-id="color-is-three-grids">Color is three grids</h2>
@@ -541,7 +539,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGlueSA9IG5wLmFycmF5KFtc
 </div>
 <p>Top row: pure red, pure green, pure blue. Bottom row: red + green light makes… yellow (this is <em>light</em>, not paint, so the mixing rules are different from art class). All three at full is white, and equal amounts of all three is gray.</p>
 <p>Try: change the gray pixel to <code>[200, 100, 0]</code>. What color do you predict? Then pull out the green channel and the blue channel the same way we pulled out red.</p>
-<p>That last observation is worth holding on to: <strong>if the red, green, and blue channels are identical, the “color” image is really a gray image.</strong> Keep an eye out for that on Mars.</p>
+<p>That last observation is worth holding on to: <strong>if the red, green, and blue channels are identical, the “color” image is really a gray image.</strong></p>
 </section>
 <section id="go-get-a-picture-from-mars" class="level2">
 <h2 class="anchored" data-anchor-id="go-get-a-picture-from-mars">Go get a picture from Mars</h2>
@@ -549,8 +547,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGlueSA9IG5wLmFycmF5KFtc
 <p>Scroll through a few hundred. (This is a task where your eyes are much faster than any code.) Some tips:</p>
 <ul>
 <li>Filter by camera. <strong>Mastcam-Z</strong> (the rover’s main “eyes,” up on the mast) is where most of the color pictures come from. Navcam and the Hazcams are mostly black and white.</li>
-<li>The <em>boring-looking</em> ones are the best candidates: murky, dark, washed out, low contrast. There’s more hiding in them.</li>
-<li>Find one with a little white-and-gray target with colored squares on it if you can. That’s the <strong>calibration target</strong>, and it will come in handy later.</li>
+<li>The <em>boring-looking</em> ones are the best candidates: murky, dark, washed out, low contrast. There’s more hiding in them. <!-- - Find one with a little white-and-gray target with colored squares on it if you can. That's the **calibration target**, and it will come in handy later. --></li>
 </ul>
 <p>When you find one you like, click it, then right-click the big image and choose <strong>Copy Image Address</strong> (on an iPad: press and hold, then <strong>Copy</strong>). You’ll get a long web address ending in <code>.jpg</code> or <code>.png</code>. The version ending in <code>_1200.jpg</code> is plenty big.</p>
 <p>Now in Colab, paste the toolbox below into the first cell and run it (it doesn’t <em>do</em> anything yet, it just defines functions), then load your picture:</p>
@@ -561,7 +558,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGlueSA9IG5wLmFycmF5KFtc
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>show([img], [<span class="st">"raw"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Check the shape: (rows, columns, 3)? Then check whether it’s actually color:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.array_equal(img[:, :, <span class="dv">0</span>], img[:, :, <span class="dv">1</span>]))     <span class="co"># is red exactly equal to green?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>True</code> means you’ve found a gray image in disguise: three identical channels. Plenty of the raw images are like that. Color tools won’t do much to it, so you may want to go back and pick a different one… or not, if you’re more interested in contrast than color.</p>
+<p><code>True</code> means you’ve found a gray image in disguise: three identical channels. You may want to go back and pick a different one… or not, there are plenty of things to do even with gray images.</p>
 </section>
 <section id="the-toolbox" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="the-toolbox">The toolbox</h2>
@@ -677,24 +674,38 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGlueSA9IG5wLmFycmF5KFtc
 <span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crop(img, top, bottom, left, right):</span>
 <span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Keep only rows top..bottom and columns left..right."""</span></span>
 <span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> img[top:bottom, left:right]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>One design decision in there deserves a mention. <code>load</code> divides by 255, so inside the toolbox every brightness is a decimal from 0 (black) to 1 (white) instead of a whole number from 0 to 255. That makes the algebra cleaner (1 means “full,” and <code>1 - img</code> is a negative), and it dodges a nasty trap, described in the margin.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>load</code> divides by 255, so inside the toolbox every brightness is a decimal from 0 (black) to 1 (white) instead of a whole number from 0 to 255. That makes the algebra cleaner (1 means “full,” and <code>1 - img</code> is a negative), and it dodges a nasty trap, described in the margin.</p>
+</div>
+</div>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The trap: images normally store brightness as whole numbers 0 to 255, and <em>only</em> those. Ask NumPy for 10 − 20 in that format and you don’t get −10. It wraps around to 246, nearly white. A “negative brightness” showing up as bright white is a great example of an answer that should make us suspicious. Working in decimals avoids it entirely.</p>
 </div></div></section>
 <section id="reading-a-histogram" class="level2">
 <h2 class="anchored" data-anchor-id="reading-a-histogram">Reading a histogram</h2>
-<p>Before we change anything, let’s look at what we’ve got. A <strong>histogram</strong> counts how many pixels have each brightness:</p>
+<p>A <strong>histogram</strong> counts how many pixels have each brightness:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>histogram(img)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The horizontal axis is brightness, from black on the left to white on the right. The height is how many pixels have that brightness. A dark, murky picture has all its pixels crammed into a narrow lump near the left. A well-exposed picture spreads across most of the range.</p>
-<p>What does yours look like? Where’s the lump? Is there anything at all out near 1?</p>
+<p>The horizontal axis is brightness, from black on the left to white on the right. The height is how many pixels have that brightness. A dark, murky picture has most of its pixels in a narrow range on the left. A well-exposed picture spreads across most of the range.</p>
+<p>What does yours look like? Is there anything at all out near 1?</p>
 </section>
 <section id="stretching" class="level2">
 <h2 class="anchored" data-anchor-id="stretching">Stretching</h2>
 <p>Here’s a real example from sol 2012 (October 2026): a Mastcam-Z picture of the calibration target, taken with almost no light. Its histogram is the lump on the bottom left. Every pixel is between about 0.04 and 0.14. Nothing is even remotely bright.</p>
 <p><img src="images/09a-stretch-comb.jpg" class="img-fluid" alt="Top left: a nearly black raw rover image. Top right: the same image after a contrast stretch, showing the calibration target with its rings, bolts, and color chips. Bottom left: the raw histogram, a narrow spike near zero. Bottom right: the stretched histogram, spread across the whole range but made of separated spikes, like a comb."></p>
 <p>The fix is to <em>stretch</em>: take the darkest pixels we care about and make them black, take the brightest and make them white, and spread everything in between evenly. That’s a straight line:</p>
-<p><span class="math display">\[\text{new} = \frac{\text{old} - \text{lo}}{\text{hi} - \text{lo}}\]</span></p>
+<p><span class="math display">\[
+\text{new} = \frac{\text{old} - \text{lo}}{\text{hi} - \text{lo}}
+\]</span></p>
 <p>Check the ends: a pixel at exactly <code>lo</code> becomes <span class="math inline">\(0/(\text{hi}-\text{lo}) = 0\)</span>, black. A pixel at <code>hi</code> becomes 1, white. Halfway between becomes 0.5. Anything darker than <code>lo</code> or brighter than <code>hi</code> would land below 0 or above 1, so <code>np.clip</code> pins those at 0 and 1.</p>
 <p>How do we choose <code>lo</code> and <code>hi</code>? We could use the very darkest and brightest pixels, but one stray hot pixel would wreck that. Instead, <code>stretch</code> uses <strong>percentiles</strong>: by default, <code>lo</code> is a brightness that only 1% of pixels are darker than, and <code>hi</code> is one that only 1% are brighter than. We sacrifice the extreme 1% at each end (they become pure black or pure white) to make the other 98% use the whole range.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> stretch(img)</span>
@@ -706,14 +717,11 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidGlueSA9IG5wLmFycmF5KFtc
 <section id="the-comb-what-enhancement-cant-do" class="level2">
 <h2 class="anchored" data-anchor-id="the-comb-what-enhancement-cant-do">The comb: what enhancement can’t do</h2>
 <p>Now look closely at the stretched histogram in the example. It isn’t a smooth hill. It’s a <strong>comb</strong>: spikes with empty gaps between them.</p>
-<p>Here’s why. The raw image stored brightness as whole numbers from 0 to 255, and the middle 98% of its pixels used only the values 11 through 35. That’s just <strong>25 different shades.</strong> Stretching spread those 25 shades out across the whole range… but it’s still 25 shades. Nothing can land in the gaps between them, because there was never any pixel “between 23 and 24” to begin with.</p>
-<p>This is the honest limit of image enhancement: <strong>we can reveal what the camera recorded, but we can’t create detail it didn’t record.</strong> Stretch hard enough and you start to see the evidence: blotchy patches, noise, faint stripes that were always there but too dark to notice. (Look at the stretched example closely. Those faint vertical streaks don’t line up with anything on the calibration target, so my guess is they come from the camera itself. Either way, they were in the raw picture all along.)</p>
-<p>CSI-style “enhance!” is fiction. Real enhancement is closer to turning up the volume on a quiet recording: you hear the words better, and you hear the hiss better too.</p>
+<p>The raw image stored brightness as whole numbers from 0 to 255, and the middle 98% of its pixels used only the values 11 through 35. That’s just <strong>25 different shades.</strong> Stretching spread those 25 shades out across the whole range… but it’s still 25 shades, the number value must still be a whole number.</p>
 </section>
 <section id="is-an-enhanced-picture-honest" class="level2">
 <h2 class="anchored" data-anchor-id="is-an-enhanced-picture-honest">Is an enhanced picture honest?</h2>
-<p>A question for your group, and it connects to something you saw this morning. Stretching a picture means choosing which range of brightness to spread across the screen. Where have we seen that before?</p>
-<p>It’s the same move as zooming in a plot’s y-axis: <code>set_ylim</code> versus <code>stretch</code>. On Checkpoint 3, a zoomed-in axis made a 2% drop look like a collapse. A stretched Mars picture makes dim, low-contrast rocks look dramatic. Neither one changes a single number in the data. Both change what a reader <em>thinks</em> they’re seeing.</p>
+<p>Stretching a picture means choosing which range of brightness to spread across the screen. It’s very similar in spirit to zooming in a plot’s y-axis: <code>set_ylim</code> versus <code>stretch</code>. A stretched Mars picture makes dim, low-contrast rocks look dramatic. Neither one changes a single number in the data. Both change what a reader <em>thinks</em> they’re seeing.</p>
 <p>So, when is an enhanced picture honest? Our answer from week 6 still works: when it says what was done to it. NASA labels these pictures “raw” precisely so that anyone processing them is on the hook for describing what they did.</p>
 <p>And here’s a harder one: <strong>what color is Mars?</strong> The raw pictures come out reddish-brown. <code>stretch_each</code> stretches each channel separately, which usually strips that cast away and leaves things looking grayer and “cleaner.” Is that a better picture, or a less truthful one? (Mars really is red: the dust is full of iron oxide. Rust, basically.)</p>
 <p>The rover team’s actual answer involves the calibration target. Its gray squares are known to be gray, so if they come out tinted in a picture, the tint came from the lighting and the camera, not the target. <code>white_balance</code> does exactly this correction: give it the rows and columns of a patch you know should be gray (read them off the axes of <code>plt.imshow</code>), and it scales the three channels until that patch <em>is</em> gray.</p>
