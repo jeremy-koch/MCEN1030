@@ -3,13 +3,11 @@ title: "Enhancing Mars"
 subtitle: "Week 9 Tuesday · in class, after Checkpoint 3 · 2 engagement credits"
 ---
 
-The Perseverance rover takes hundreds of pictures a day on Mars, and NASA posts every one of them online, *raw*: straight off the camera, before anyone has made them pretty. A lot of them look murky. Some look almost black.
-
-Today we'll pick one and pull out the detail that's hiding in it. The trick is that a picture is just an array of numbers, so everything we've learned about arrays (math on a whole array at once, masks, slicing) turns into image processing. We'll build up the idea on tiny pictures first, then go get a real one from Mars, then work through a toolbox of techniques: contrast, color, blur, sharpen, edges. Along the way we'll find out what enhancement *can't* do, which turns out to matter as much as what it can.
+The Perseverance rover takes hundreds of pictures a day on Mars. A lot of them look murky. Today we'll pick one and pull out the detail that's hiding in it. The trick is that a picture is just an array of numbers, so everything we've learned about arrays (math on a whole array at once, masks, slicing) turns into image processing. We'll build up the idea on tiny pictures first, then go get a real one from Mars, then work through a toolbox of techniques: contrast, color, blur, sharpen, edges.
 
 ## A picture is a grid of numbers
 
-A grayscale image is a 2D array: rows and columns of numbers, one per pixel, where 0 is black and 255 is white. That's the whole secret.
+A grayscale image is a 2D array: rows and columns of numbers, one per pixel, where 0 is black and 255 is white.
 
 Here's a tiny "image," six pixels tall and eight wide:
 
@@ -32,12 +30,10 @@ plt.colorbar()
 plt.show()
 ```
 
-Try things: change one of the 20s to 255. Make a second bright spot. Make the whole thing dimmer with one line (`img = img / 2`... what does the picture do?).
-
-Notice the axes: **row 0 is at the top**, and row numbers grow *downward*. That's upside down compared with every plot we've made so far. It's just a convention (it's how you read a page: top line first), but it'll trip us up at least once.
+Try things: change one of the 20s to 255. Make a second bright spot. Make the whole thing dimmer with one line (`img = img / 2`... what does the picture do?). Note **row 0 is at the top**, and row numbers grow *downward*.
 
 ::: {.column-margin}
-Why 255? Each pixel's brightness is stored in one byte, eight bits that are either 0 or 1. Thus, one byte can be used to represent the whole numbers from 0 to 255. That's 256 shades of gray, and I don't think our eyes can tell the difference between, e.g., gray 113 and 114... so 256 is more than enough!
+Why 255? Each pixel's brightness is stored in one byte. One byte is eight bits, and bits are either 0 or 1, so with eight bits available we have $2^8=256 possible combinations.
 :::
 
 ## Color is three grids
@@ -62,7 +58,7 @@ Top row: pure red, pure green, pure blue. Bottom row: red + green light makes...
 
 Try: change the gray pixel to `[200, 100, 0]`. What color do you predict? Then pull out the green channel and the blue channel the same way we pulled out red.
 
-That last observation is worth holding on to: **if the red, green, and blue channels are identical, the "color" image is really a gray image.** Keep an eye out for that on Mars.
+That last observation is worth holding on to: **if the red, green, and blue channels are identical, the "color" image is really a gray image.**
 
 ## Go get a picture from Mars
 
@@ -72,7 +68,7 @@ Scroll through a few hundred. (This is a task where your eyes are much faster th
 
 - Filter by camera. **Mastcam-Z** (the rover's main "eyes," up on the mast) is where most of the color pictures come from. Navcam and the Hazcams are mostly black and white.
 - The *boring-looking* ones are the best candidates: murky, dark, washed out, low contrast. There's more hiding in them.
-- Find one with a little white-and-gray target with colored squares on it if you can. That's the **calibration target**, and it will come in handy later.
+<!-- - Find one with a little white-and-gray target with colored squares on it if you can. That's the **calibration target**, and it will come in handy later. -->
 
 When you find one you like, click it, then right-click the big image and choose **Copy Image Address** (on an iPad: press and hold, then **Copy**). You'll get a long web address ending in `.jpg` or `.png`. The version ending in `_1200.jpg` is plenty big.
 
@@ -92,7 +88,7 @@ Check the shape: (rows, columns, 3)? Then check whether it's actually color:
 print(np.array_equal(img[:, :, 0], img[:, :, 1]))     # is red exactly equal to green?
 ```
 
-`True` means you've found a gray image in disguise: three identical channels. Plenty of the raw images are like that. Color tools won't do much to it, so you may want to go back and pick a different one... or not, if you're more interested in contrast than color.
+`True` means you've found a gray image in disguise: three identical channels. You may want to go back and pick a different one... or not, there are plenty of things to do even with gray images.
 
 ## The toolbox
 
@@ -213,7 +209,11 @@ def crop(img, top, bottom, left, right):
     return img[top:bottom, left:right]
 ```
 
-One design decision in there deserves a mention. `load` divides by 255, so inside the toolbox every brightness is a decimal from 0 (black) to 1 (white) instead of a whole number from 0 to 255. That makes the algebra cleaner (1 means "full," and `1 - img` is a negative), and it dodges a nasty trap, described in the margin.
+
+::: {.callout-tip}
+`load` divides by 255, so inside the toolbox every brightness is a decimal from 0 (black) to 1 (white) instead of a whole number from 0 to 255. That makes the algebra cleaner (1 means "full," and `1 - img` is a negative), and it dodges a nasty trap, described in the margin.
+:::
+ 
 
 ::: {.column-margin}
 The trap: images normally store brightness as whole numbers 0 to 255, and *only* those. Ask NumPy for 10 − 20 in that format and you don't get −10. It wraps around to 246, nearly white. A "negative brightness" showing up as bright white is a great example of an answer that should make us suspicious. Working in decimals avoids it entirely.
@@ -221,15 +221,15 @@ The trap: images normally store brightness as whole numbers 0 to 255, and *only*
 
 ## Reading a histogram
 
-Before we change anything, let's look at what we've got. A **histogram** counts how many pixels have each brightness:
+A **histogram** counts how many pixels have each brightness:
 
 ```python
 histogram(img)
 ```
 
-The horizontal axis is brightness, from black on the left to white on the right. The height is how many pixels have that brightness. A dark, murky picture has all its pixels crammed into a narrow lump near the left. A well-exposed picture spreads across most of the range.
+The horizontal axis is brightness, from black on the left to white on the right. The height is how many pixels have that brightness. A dark, murky picture has most of its pixels in a narrow range on the left. A well-exposed picture spreads across most of the range.
 
-What does yours look like? Where's the lump? Is there anything at all out near 1?
+What does yours look like? Is there anything at all out near 1?
 
 ## Stretching
 
@@ -239,7 +239,9 @@ Here's a real example from sol 2012 (October 2026): a Mastcam-Z picture of the c
 
 The fix is to *stretch*: take the darkest pixels we care about and make them black, take the brightest and make them white, and spread everything in between evenly. That's a straight line:
 
-$$\text{new} = \frac{\text{old} - \text{lo}}{\text{hi} - \text{lo}}$$
+$$
+\text{new} = \frac{\text{old} - \text{lo}}{\text{hi} - \text{lo}}
+$$
 
 Check the ends: a pixel at exactly `lo` becomes $0/(\text{hi}-\text{lo}) = 0$, black. A pixel at `hi` becomes 1, white. Halfway between becomes 0.5. Anything darker than `lo` or brighter than `hi` would land below 0 or above 1, so `np.clip` pins those at 0 and 1.
 
@@ -259,17 +261,13 @@ Try `stretch(img, 5, 95)` and `stretch(img, 0, 100)`. What changes?
 
 Now look closely at the stretched histogram in the example. It isn't a smooth hill. It's a **comb**: spikes with empty gaps between them.
 
-Here's why. The raw image stored brightness as whole numbers from 0 to 255, and the middle 98% of its pixels used only the values 11 through 35. That's just **25 different shades.** Stretching spread those 25 shades out across the whole range... but it's still 25 shades. Nothing can land in the gaps between them, because there was never any pixel "between 23 and 24" to begin with.
+The raw image stored brightness as whole numbers from 0 to 255, and the middle 98% of its pixels used only the values 11 through 35. That's just **25 different shades.** Stretching spread those 25 shades out across the whole range... but it's still 25 shades, the number value must still be a whole number.
 
-This is the honest limit of image enhancement: **we can reveal what the camera recorded, but we can't create detail it didn't record.** Stretch hard enough and you start to see the evidence: blotchy patches, noise, faint stripes that were always there but too dark to notice. (Look at the stretched example closely. Those faint vertical streaks don't line up with anything on the calibration target, so my guess is they come from the camera itself. Either way, they were in the raw picture all along.)
 
-CSI-style "enhance!" is fiction. Real enhancement is closer to turning up the volume on a quiet recording: you hear the words better, and you hear the hiss better too.
 
 ## Is an enhanced picture honest?
 
-A question for your group, and it connects to something you saw this morning. Stretching a picture means choosing which range of brightness to spread across the screen. Where have we seen that before?
-
-It's the same move as zooming in a plot's y-axis: `set_ylim` versus `stretch`. On Checkpoint 3, a zoomed-in axis made a 2% drop look like a collapse. A stretched Mars picture makes dim, low-contrast rocks look dramatic. Neither one changes a single number in the data. Both change what a reader *thinks* they're seeing.
+Stretching a picture means choosing which range of brightness to spread across the screen. It's very similar in spirit to zooming in a plot's y-axis: `set_ylim` versus `stretch`.  A stretched Mars picture makes dim, low-contrast rocks look dramatic. Neither one changes a single number in the data. Both change what a reader *thinks* they're seeing.
 
 So, when is an enhanced picture honest? Our answer from week 6 still works: when it says what was done to it. NASA labels these pictures "raw" precisely so that anyone processing them is on the hook for describing what they did.
 
