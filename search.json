@@ -4,7 +4,7 @@
     "href": "lessons/09a-images.html",
     "title": "Enhancing Mars",
     "section": "",
-    "text": "The Perseverance rover takes hundreds of pictures a day on Mars. A lot of them look murky. Today we’ll pick one and pull out the detail that’s hiding in it. The trick is that a picture is just an array of numbers, so everything we’ve learned about arrays (math on a whole array at once, masks, slicing) turns into image processing. We’ll build up the idea on tiny pictures first, then go get a real one from Mars, then work through a toolbox of techniques: contrast, color, blur, sharpen, edges.",
+    "text": "Skim through before Tuesday, no bring-to-class.\nThe Perseverance rover takes hundreds of pictures a day on Mars. A lot of them look murky. Today we’ll pick one and pull out the detail that’s hiding in it. The trick is that a picture is just an array of numbers, so everything we’ve learned about arrays (math on a whole array at once, masks, slicing) turns into image processing. We’ll build up the idea on tiny pictures first, then go get a real one from Mars, then work through a toolbox of techniques: contrast, color, blur, sharpen, edges.",
     "crumbs": [
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
