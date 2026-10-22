@@ -11,6 +11,7 @@ README.md
 !/data/siren_frequency.csv
 !/data/motor_test_log.csv
 !/data/wind_survey.csv
+!/data/bubbles.mp4
 /instructor/
 /homework/*
 !/homework/example-parking-garage.qmd
@@ -35,6 +36,9 @@ activities/w07*
 activities/w08*
 !activities/w08-acquisition.qmd
 activities/w09*
+!activities/w09-bubble-tracking.qmd
+# original phone video (has GPS in its metadata); students get data/bubbles.mp4
+activities/PXL_20220717_222221822.mp4
 activities/w1*
 
 

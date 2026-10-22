@@ -1,0 +1,428 @@
+---
+title: "Tracking bubbles"
+subtitle: "Week 9 Thursday · 2 engagement credits"
+---
+
+On Tuesday we treated an image as a grid of numbers. Each frame of a video is an image, and so videos are just a series of such grids. Today we'll use that to do something no human could do by hand: follow **thousands** of bubbles rising through a glass.
+
+The video is a pint of a carbonated beverage, filmed on my phone in slow motion. Watch it first (it's 26 seconds), and before writing any code, talk with your group:
+
+- Do the bubbles all rise at the same speed?
+- Does a bubble speed up as it rises? Slow down? Stay the same?
+- How long does a bubble take to get from the bottom of a real glass to the top? (Picture the last fizzy drink you watched. Is it closer to 0.3 seconds, 3 seconds, or 30?)
+
+
+The tool we'll use is **trackpy**, a Python package written by physicists who track particles. We're more-or-less borrowing their [walkthrough](https://soft-matter.github.io/trackpy/dev/tutorial/walkthrough.html) but with our own video, and I've streamlined it a bit.
+
+## Setup
+
+In Colab, the first cell installs trackpy (Colab already has everything else):
+
+```python
+!pip install trackpy
+```
+
+::: {.column-margin}
+In VS Code, run `pip install trackpy opencv-python` once in the terminal instead. And if you're reading the trackpy walkthrough alongside this, you'll see it uses a package called `pims` to read video. We skip `pims` entirely and use `cv2` (that's OpenCV) to read the video, because it comes preinstalled on Colab.
+:::
+
+Then the imports, and a download of the video into your notebook:
+
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import cv2
+import trackpy as tp
+from urllib.request import urlretrieve
+
+urlretrieve("https://jeremy-koch.github.io/MCEN1030/data/bubbles.mp4", "bubbles.mp4")
+```
+
+## Read the video
+
+Here's a function that opens a video file and hands back `count` frames, starting at frame `start`, each one converted to grayscale. (We don't need color to find bubbles, and grayscale is one grid per frame instead of three.)
+
+```python
+def read_frames(path, start, count):
+    """Read `count` grayscale frames from a video, starting at frame `start`.
+    Returns a 3D array: (frame, row, column)."""
+    video = cv2.VideoCapture(path)
+    video.set(cv2.CAP_PROP_POS_FRAMES, start)
+    frames = []
+    for k in range(count):
+        ok, frame = video.read()
+        if not ok:
+            break
+        frames.append(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+    return np.array(frames)
+
+frames = read_frames("bubbles.mp4", 0, 150)
+print(frames.shape)
+
+plt.imshow(frames[0], cmap="gray")
+plt.show()
+```
+
+(We'll look at 150 of the video's 779 frames, that's plenty.)
+
+::: {.callout-tip}
+## You're on track if...
+`frames.shape` is `(150, 1280, 720)`: 150 frames, each 1280 rows tall and 720 columns wide.
+:::
+
+## Find the bubbles (first try)
+
+trackpy's `locate` looks at one frame and finds every blob that's brighter than its surroundings. The one number it requires as an input is `diameter`: roughly how many pixels across a feature is. It has to be odd, and our bubbles are tiny, so let's try 5:
+
+```python
+f = tp.locate(frames[0], 5)
+print(len(f), "features found")
+
+tp.annotate(f, frames[0])
+```
+
+Every red circle is something trackpy thinks is a bubble... you should find somewhere around 5,000 "bubbles," and circles all over the table, the glare, the logo on the glass. Not all of the bright blobs are bubbles, so we need to pare this down somehow.
+
+## The trick: keep only what moves
+
+An observation: the table doesn't move, the glare doesn't move, the glass doesn't move. So let's take the **median** of all 150 frames, pixel by pixel. A pixel on the table is the same in every frame, so its median is just... the table. Subtract that from each frame, and whatever is left over is what moved.
+
+First, let's crop to just the glass (rows 100–950, columns 100–680) so we're not doing math on the table:
+
+```python
+glass = frames[:, 100:950, 100:680]
+
+background = np.median(glass, axis=0).astype(np.float32)
+moving = np.clip(glass - background, 0, None)
+
+fig, ax = plt.subplots(1, 3, figsize=(12, 6))
+ax[0].imshow(glass[0], cmap="gray")
+ax[0].set_title("frame 0")
+ax[1].imshow(background, cmap="gray")
+ax[1].set_title("background (median)")
+ax[2].imshow(moving[0], cmap="gray")
+ax[2].set_title("frame 0 minus background")
+plt.show()
+```
+
+`axis=0` means "take the median across frames," so `background` is a single picture. The `np.clip(..., 0, None)` sets anything negative to zero: we only want things *brighter* than the background.
+
+::: {.callout-tip}
+## You're on track if...
+The middle picture looks like the glass with almost no bubbles in it. The right-hand one is mostly black, with lots of small bright specks in the liquid and almost nothing on the table.
+:::
+
+::: {.column-margin}
+This is called **background subtraction**. Traffic cameras, security cameras, and wildlife cameras all use some version of it.
+:::
+
+## Find the bubbles (second try)
+
+Same `locate`, on the background-subtracted frame:
+
+```python
+f = tp.locate(moving[0], 5)
+print(len(f), "features found")
+
+plt.hist(f["mass"], bins=50)
+plt.xlabel("mass (total brightness)")
+plt.ylabel("number of features")
+plt.show()
+```
+
+trackpy reports a **mass** for each feature: its total brightness. Real bubbles are bright; faint specks are often just noise in the video. The trackpy walkthrough's advice is to look at this histogram and pick a `minmass` that cuts off the dim junk.
+
+::: {.callout-tip}
+## You're on track if...
+You find roughly 3,000 features, with masses from about 10 up to 150 or so, piled up on the low end with a long tail to the right. There's no clean gap here (unlike the walkthrough's beads), so the cutoff is a judgment call. We'll use `minmass=40`, which keeps about 1,700. Anything from 30 to 60 works fine.
+:::
+
+```python
+f = tp.locate(moving[0], 5, minmass=40)
+print(len(f), "features found")
+
+tp.annotate(f, moving[0])
+```
+
+Now the circles should be in the liquid. Look closely at a few of them on the original frame (`glass[0]`). Are they bubbles?
+
+## Find the bubbles in every frame
+
+`tp.batch` runs `locate` on each frame and stacks all the results into one big pandas DataFrame, with a `frame` column so we know which feature came from where:
+
+```python
+f = tp.batch(moving, 5, minmass=40, processes=1)
+print(len(f), "features in", len(moving), "frames")
+f.head()
+```
+
+(`processes=1` tells it to do one frame at a time.)
+
+::: {.callout-tip}
+## You're on track if...
+It takes somewhere between 20 seconds and a minute, and finds roughly 1,500–2,000 features per frame. Note: 150 frames$\times$2000 features per frame = 300,000 things identified in a minute!
+:::
+
+## Link them into trajectories
+
+So... we have a quarter million dots, but dot 142,567 is actually dot 139,212 one frame later — we need to `link` them. TrackPy looks in adjacent frames for the nearest feature within `search_range` pixels of a dot and says "that's probably the same one."
+
+How far does a bubble move between frames? Showing `moving[0]` and `moving[1]` reveals it's a pixel or two. So a `search_range` of 5 gives some breathing room. `memory=2` lets a bubble disappear for up to two frames (behind a reflection, say) and still be recognized when it comes back.
+
+```python
+t = tp.link(f, search_range=5, memory=2)
+t = tp.filter_stubs(t, 10)
+print(t["particle"].nunique(), "trajectories")
+```
+
+`filter_stubs` throws away any trajectory shorter than 10 frames. Those are mostly flickers, not bubbles.
+
+Then let's make a really cool plot:
+
+```python
+plt.figure(figsize=(6, 9))
+tp.plot_traj(t, superimpose=glass[0])
+plt.show()
+```
+
+::: {.callout-tip}
+## You're on track if...
+You have several thousand trajectories, and the plot is a forest of short, mostly vertical colored streaks, dense in the upper two-thirds of the glass and sparser near the bottom.
+:::
+
+Every streak is a bubble that a computer found, followed, and labeled.
+
+## How fast is each bubble going?
+
+For each trajectory, we can ask: how far did it rise, and how many frames did that take? Rise divided by frames gives a speed in pixels per frame. pandas' `groupby` does this for every bubble at once:
+
+```python
+tracks = t.groupby("particle").agg(
+    y_start=("y", "first"),
+    y_end=("y", "last"),
+    f_start=("frame", "first"),
+    f_end=("frame", "last"),
+    y_mid=("y", "mean"),
+)
+tracks["rise"] = (tracks["y_start"] - tracks["y_end"]) / (tracks["f_end"] - tracks["f_start"])
+tracks.head()
+```
+
+Now we have one row per bubble. A quick check on the signs: in an image, row numbers grow *downward*, so a rising bubble's `y` gets *smaller*, hence the `y_start - y_end`.
+
+Let's look at all of these speeds at once:
+
+```python
+plt.hist(tracks["rise"], bins=60)
+plt.xlabel("rise speed (pixels per frame)")
+plt.ylabel("number of trajectories")
+plt.show()
+```
+
+::: {.callout-tip}
+## You're on track if...
+You see two things: a tall, narrow spike right at zero, and a broad hump centered around 1 pixel per frame that trails off by about 3.
+:::
+
+That spike at zero is from "bubbles" that don't rise. What could they be? (Look back at your trajectory plot: where are the tiny, stubby tracks?) We'll keep only trajectories that rise at least 0.3 pixels per frame, using some pandas filtering:
+
+```python
+rising = tracks[tracks["rise"] > 0.3].copy()
+print(len(rising), "rising bubbles out of", len(tracks))
+```
+
+That should drop about 20% of them.
+
+## From pixels per frame to cm/s
+
+**Pixels to centimeters.** We need something of known size in the picture, and the best candidate is the glass itself. In the full, uncropped frame, the rim at the top of the glass runs from about `x = 100` to about `x = 680`, so it's about 580 pixels across. A pint glass rim is about 9 cm across. So:
+
+```python
+px_per_cm = 580 / 9
+print(px_per_cm)
+```
+
+That is, our estimate is about 64 pixels per cm. (I didn't measure the glass two years ago when I shot the video, so maybe it is actually 8.5 cm or 9.2 cm, but let's not worry about it.)
+
+**Frames to seconds.** The video plays at 30 frames per second, but it was filmed in **1/8× slow motion**. So one second of video is only 1/8 of a second of real life. That is, there are 30 × 8 = 240 frames per *real* second.
+
+```python
+rising["speed"] = rising["rise"] * 30 * 8 / px_per_cm      # cm/s
+print(rising["speed"].describe())
+```
+
+::: {.callout-tip}
+## You're on track if...
+The median speed is about 4–5 cm/s.
+:::
+
+A sanity check on the physics: the liquid is about 13 cm deep. At a few cm/s, how long does a bubble take to get from the bottom to the top? Compare that to your guess from the beginning.
+
+## Does a bubble speed up?
+
+Now the question we came for. We need each bubble's height above the bottom of the glass. In our cropped picture, the glass floor is at about `y = 840`, and remember that `y` grows downward:
+
+```python
+rising["height"] = (840 - rising["y_mid"]) / px_per_cm      # cm above the glass floor
+
+plt.scatter(rising["height"], rising["speed"], s=2, alpha=0.3)
+plt.xlabel("height above glass floor (cm)")
+plt.ylabel("rise speed (cm/s)")
+plt.show()
+```
+
+There might be a trend in there, but the scatter is big enough that it's hard to say. What we want is the *typical* speed at each height. So let's chop the glass into 1 cm tall slices and take the median speed in each slice. The code snippet: `height // 1` rounds each height down to a whole number of cm, so every bubble between 4 and 5 cm gets the label 4, and so on. Adding 0.5 puts the label in the middle of the slice:
+
+```python
+rising["band"] = rising["height"] // 1 + 0.5
+
+summary = rising.groupby("band")["speed"].agg(["median", "count"])
+print(summary)
+```
+
+Then put the medians on top of the cloud:
+
+```python
+plt.scatter(rising["height"], rising["speed"], s=2, alpha=0.3, label="each bubble")
+plt.plot(summary.index, summary["median"], "o-", color="red", label="median in each 1 cm slice")
+plt.xlabel("height above glass floor (cm)")
+plt.ylabel("rise speed (cm/s)")
+plt.legend()
+plt.show()
+```
+
+::: {.callout-tip}
+## You're on track if...
+Your table has about 13 rows (heights from 0.5 to 12.5 cm). The bottom couple of slices only have tens of bubbles, while the middle ones have hundreds. The medians start around 2 cm/s near the bottom and climb to about 5–6 cm/s somewhere around 9–10 cm up. Then something happens near the top.
+:::
+
+
+## Why would a bubble speed up?
+
+Here's a story you can hold in your head. A bubble in a carbonated drink isn't a fixed thing: the liquid is full of dissolved CO₂, and as the bubble rises, more CO₂ diffuses into it. So **the bubble grows on the way up**. And bigger bubbles rise faster.
+
+Remember terminal speed from the drag lab? When drag balances the push, acceleration is zero, and the speed stops changing. A bubble this small gets to its terminal speed in a few milliseconds, so at every height, it's essentially at the terminal speed for its current size. The difference from the balloon in the drag lab: the balloon sped up toward one fixed terminal speed. The bubble's terminal speed is a moving target, because the bubble keeps growing.
+
+For very small things moving slowly through a liquid, drag is proportional to the speed (not the speed squared, like it was for things "bigger than a raindrop" in the drag lab). Set drag equal to buoyancy and you get a terminal speed of[^stokes]
+
+$$
+v = \frac{g\,d^2}{18\,\nu}
+$$
+
+where $d$ is the bubble's diameter and $\nu$ (the Greek letter "nu") is the liquid's **kinematic viscosity**, a measure of how syrupy it is. For water, $\nu \approx 1.0\times10^{-6}$ m²/s, and carbonated drinks aren't far off. Notice the $d^2$: double the diameter, and the bubble rises four times as fast.
+
+[^stokes]: This is **Stokes' law**, which you may meet again in fluids. Strictly, it's for things moving so slowly that the liquid flows smoothly around them, and our biggest bubbles are pushing that limit. The honest consequence: the formula slightly *overpredicts* the speed for a given size, so the diameters we get out of it are probably underestimates, maybe by as much as 1.5× for the fastest bubbles. It's a fine model for today, and a great example of a model that's "right enough."
+
+So now we can build a model. Start a bubble at the glass floor with some diameter $d_0$, let its diameter grow at a steady rate, and step it upward through time, just like the falling ball from week 5 (`position += velocity * dt`):
+
+```python
+def grow_bubble(d0, growth):
+    """Simulate one bubble rising from the glass floor while it grows.
+    d0: starting diameter (m). growth: how fast the diameter grows (m/s).
+    Returns lists of heights (cm) and speeds (cm/s)."""
+    g = 9.8
+    nu = 1.0e-6         # kinematic viscosity, m^2/s (water's value)
+    d = d0
+    y = 0.0
+    dt = 0.001
+    heights = []
+    speeds = []
+    while y < 0.13:     # 13 cm of liquid
+        v = g * d**2 / (18 * nu)
+        y = y + v * dt
+        d = d + growth * dt
+        heights.append(100 * y)
+        speeds.append(100 * v)
+    return heights, speeds
+```
+
+Start with a bubble that **doesn't grow** (`growth = 0`) and put it on your plot:
+
+```python
+model_h, model_v = grow_bubble(0.2e-3, 0.0)     # 0.2 mm, no growth
+
+plt.scatter(rising["height"], rising["speed"], s=2, alpha=0.3, label="each bubble")
+plt.plot(summary.index, summary["median"], "o-", color="red", label="median in each 1 cm slice")
+plt.plot(model_h, model_v, "k-", linewidth=2, label="model")
+plt.xlabel("height above glass floor (cm)")
+plt.ylabel("rise speed (cm/s)")
+plt.legend()
+plt.show()
+```
+
+A bubble that doesn't grow rises at constant speed, so the model is a flat line. That's clearly not what the data do! Now turn on growth and adjust the two numbers (`d0` and `growth`) until the model follows the red medians as well as you can.
+
+::: {.callout-tip}
+## You're on track if...
+Good matches to the bottom 10 cm or so have a starting diameter a bit over 0.1 mm and a growth rate of a few hundredths of a mm per second (something like `0.05e-3`). Several combinations look about equally good, which is worth noticing. The model *cannot* match the top couple of cm.
+:::
+
+<!-- ## Questions to answer
+
+1. **Your best model.** What `d0` and `growth` did you settle on? Using your model, what diameter does a bubble have when it reaches the surface? (One way: `d0 + growth * time`, and the time is `len(model_h) * 0.001` seconds. Why?) Is that a reasonable size for a bubble in a drink? Compare it to the thickness of a sheet of paper (about 0.1 mm).
+
+2. **The top of the glass.** In the data, the speeds drop over the last couple of centimeters. The model can't do that: in the model, the bubble only grows, so it only speeds up. Come up with at least two possible explanations. Some of them might be about the physics, some about the video, some about trackpy. For each one, is there anything in your data that supports it or rules it out? (You don't need to know the answer. I'm honestly not sure myself.)
+
+3. **The trust question.** We made a lot of choices along the way, and a fair question is whether the speed-vs-height curve is telling us about *bubbles* or about *our choices*. Everything after `tp.batch` reruns in a second or two, so those choices are cheap to test. Here are four:
+
+    - **The rising cutoff.** We kept bubbles with `rise > 0.3`. Try `0` and `1.0`.
+    - **Median vs. mean.** Change `"median"` to `"mean"` in the `summary` line.
+    - **Slice width.** We used 1 cm slices. For 2 cm slices, use `rising["height"] // 2 * 2 + 1`. For half-cm slices, use `rising["height"] // 0.5 * 0.5 + 0.25`. (Why the `+ 1` and the `+ 0.25`?)
+    - **Shortest trajectory kept.** We threw away anything shorter than 10 frames. Try 5 and 30 in `filter_stubs`. (Rerun from the `tp.link` cell, since `t` was overwritten when we filtered it.)
+
+    Pick **two**. For each, *predict* before you run it: will the red curve move? Which part of it, and which way? Then change one thing at a time, rerun, and compare to your original curve. (Keep a copy of your original plot so you can look at them side by side.) Then answer: which of your two choices mattered, which didn't, and does "bubbles speed up as they rise, then slow near the top" survive both? -->
+
+## Deliverable (2 EC)
+
+One Colab notebook per student containing:
+
+1. The trajectory plot.
+2. The histogram of rise speeds, with a sentence or two on what the spike at zero is and why you filtered it out.
+3. The speed-vs-height plot with all three layers (cloud, medians, your best model), with labeled axes and units.
+<!-- 4. Answers to the three questions above, in text cells. -->
+
+::: {.content-hidden}
+**Instructor notes (planning only — stripped from the rendered site):**
+
+**Before class.**
+
+- `data/bubbles.mp4` must be on the site for the download to work. It's gitignored by `/data/*`; add `!/data/bubbles.mp4` to `.gitignore`. It's ~10 MB. Its GPS tag was blanked; the original (`activities/PXL_20220717_222221822.mp4`) still has GPS coordinates in its metadata, so don't commit that one.
+- **Test the whole page in a real Colab session.** Everything below was tested on a laptop in a fresh Python 3.9 environment with opencv-python-headless 5.0, trackpy 0.7, pandas, matplotlib, and the code blocks run in order exactly as printed (with the download replaced by the local file). I did *not* test in Colab. Two things to check there: that `import cv2` works without installing anything (it should; OpenCV ships with Colab), and that `!pip install trackpy` doesn't fight Colab's numpy/pandas versions.
+- Why not `pims`: the trackpy walkthrough reads video through `pims`, and on Colab that historically needed a `pip install` from GitHub plus PyAV. Reading frames with `cv2` sidesteps the whole thing.
+
+**The video.** Recorded on a Pixel at 1/8× slow motion (240 fps captured, rendered to 30 fps), 720×1280, 779 frames. The exported file has no capture-rate tag and no normal-speed ramp at the ends (rise speed is a steady 1.3–1.6 px/frame through the whole clip), so the 1/8 factor rests on "I always use the slowest setting" plus the physics: at real time, a bubble would take ~25 s to rise 13 cm, which is absurd; at 1/8×, ~3.5 s, which matches watching a pint. At 1/4× the speeds are also physically possible, so this is the softest number on the page. Geometry from frame 0: liquid surface at y ≈ 120, glass floor at y ≈ 940 (= 840 in the crop), rim spans x ≈ 100–680 (580 px → 64 px/cm at 9 cm).
+
+**Numbers from my run (frames 0–149, settings as printed).**
+
+- Raw `locate`, frame 0: 4,962 features, everywhere.
+- After background subtraction, no minmass: 3,202 features, mass 9–180, median 43. minmass 20/40/60/100 → 2,800/1,741/968/203. Feature `size` (radius of gyration) is 1.0–1.4 px, which is why `diameter=5` is right.
+- `batch`: 1,730 features/frame, 23 s on my laptop with `processes=1`. Expect Colab to be 1.5–2× slower.
+- `link` with `search_range=5, memory=2`: 2 s, no SubnetOversizeException. (Earlier tests with `search_range=15` *did* throw one. If a student cranks it up and gets that error, that's why: too many candidates in a dense region.) After `filter_stubs(t, 10)`: 8,814 trajectories.
+- Rise histogram: spike at 0 plus a hump at ~1.1 px/frame, tail to ~3. 22% of tracks have rise < 0.3. The zero-spike is mostly bubbles stuck to the glass, plus shimmer from the table mesh refracted through the lower glass (those show up as stubby tracks in the bottom third).
+- Speed medians by 1 cm band (cm/s, using 64.4 px/cm): 0.5: 2.0 (n=10), 1.5: 2.2, 2.5: 2.4, 3.5: 2.6, 4.5: 3.8, 5.5: 3.9, 6.5: 4.8, 7.5: 4.9, 8.5: 5.5, 9.5: 5.7, 10.5: 4.6, 11.5: 3.8, 12.5: 3.1. The same trend shows up in independent 90-frame windows at frames 0, 300, and 600.
+- Best-fit model to the bottom 10 bands: `d0 = 0.14e-3`, `growth = 0.06e-3`. Rise time 3.6 s, final diameter 0.36 mm. With a Schiller–Naumann-type correction for Re ≈ 5–25, the true diameters would be more like 0.23 → 0.5 mm, hence the footnote.
+
+**Q3 variations (tested, same run as above; medians in cm/s at the 1.5 / 5.5 / 9.5 / 12.5 cm bands, baseline 2.2 / 3.9 / 5.7 / 3.1).**
+
+- *Cutoff 0:* 8,145 tracks; 1.5 / 3.6 / 5.4 / 0.7, and a band at −0.5 cm appears. The stuck "bubbles" drag the bottom and especially the top toward zero, so the top drop looks dramatic. Worth pointing out: a careless filter can *manufacture* a feature.
+- *Cutoff 1.0:* 4,301 tracks; 4.4 / 5.0 / 6.2 / 4.5. **The one that matters most.** It throws out the genuinely slow small bubbles near the bottom, so the bottom jumps from about 2 to about 4.4 and the trend mostly flattens (4.4 → 6.2 instead of 2.2 → 5.7). The lesson: a filter meant to remove junk can also remove real physics if it's set by convenience rather than by looking at the histogram. The 0.3 came from the gap between the zero-spike and the hump.
+- *Mean instead of median:* every band up by about 0.1–0.2 cm/s. Shape unchanged. Doesn't matter.
+- *Slice width 2 cm:* 2.2, 2.5, 3.8, 4.8, 5.6, 4.2, 3.1 at 1, 3, …, 13 cm. Same shape, smoother. *0.5 cm:* same shape, noticeably jumpier (e.g., 4.0 → 3.1 → 4.1 around 5 cm), and the top half-slice drops to 1.4 on few bubbles. A nice illustration of the bin-width trade-off.
+- *filter_stubs 5:* 13,383 tracks; 2.5 / 4.1 / 5.7 / 3.2. The bottom creeps up a bit, the middle and top barely change. *30:* only 771 tracks; 1.3 / 3.5 / 5.5 / 1.8. The same trend, but on a tenth of the data, and the ends drop. I'm not sure why long tracks skew slow there; one guess is that a 30-frame track has to survive 30 links without a mix-up, and slow bubbles in uncrowded regions do that most easily. If a student proposes something like that, it's a good answer.
+
+So the honest summary students should reach is that the rising trend survives everything except a cutoff set way too high, and the top drop survives everything, though its size moves around.
+
+**The top-of-glass drop.** I don't know what causes it, and I'd say so. Candidates students may raise: crowding and tracking errors in the densest region (but track lengths there are about the same as mid-glass, 17 vs. 18 frames median); bubbles stuck under the foam layer; liquid circulation (bubble plumes drag liquid up the middle, it sinks near the walls, and we see mostly bubbles near the front wall); the glass's flare and curvature acting as a lens near the rim; bubble deceleration at the surface (only matters within a few bubble diameters, i.e., under a millimeter, so it can't explain a 2–3 cm band, and that's a nice estimation argument if someone proposes it).
+
+**Things that may go sideways.**
+
+- *Speed vs. bubble size.* Someone will want to plot speed against trackpy's `size` or `mass`. In this video, size is confounded with focus (bubbles near the front/back walls are blurry, look bigger, and really are slower because of the wall), so the trend comes out backwards. A good conversation, a bad deliverable.
+- *Glare.* Last year's snow had glare features mimicking snow, fixed by an upper bound on size. Background subtraction removes static glare here, so it shouldn't come up. Moving reflections at the liquid surface can still sneak in, near the top.
+- *Memory.* `glass` is uint8 (~74 MB) and `moving` is float32 (~300 MB). Fine on Colab. If someone reads all 779 frames, they'll be at 1.5 GB+ and may crash the session.
+- *Forgetting `.copy()`* on `rising` gives a SettingWithCopyWarning, not an error.
+
+**Timing (~75 min).** Watch + predictions, 5 min. Setup through first `locate` (the "5,000 bubbles" moment, worth doing on the projector), 15 min. Background subtraction through trajectories, 20 min. Speeds, histogram, conversions, 15 min. Speed-vs-height + model, 15 min. Questions, the rest. Groups that stall at setup should still get to the trajectory plot; the model is where to cut if needed.
+
+**Grading.** Good-faith completion. Q1 is the A1 seed, Q2 the S3 seed (a missing effect), Q3 the A3 seed. Credit the reasoning (an explanation + what data would support or rule it out), not landing on a "right" answer, since there isn't a confirmed one.
+:::
