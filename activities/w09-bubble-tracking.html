@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tracking bubbles – MCEN 1030</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1ba4ca92754085d92b073623895d1670.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MCEN 1030</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/standards.html"> 
+<span class="menu-text">Standards</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/basecamp.html"> 
+<span class="menu-text">Base Camp</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Tracking bubbles</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Standards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How your grade works</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/installing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going in your language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/colab-format.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Submitting Homework</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phase 0 — Thinking (Weeks 1–2)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What do engineers do with computation?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What does an LLM actually do?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">First contact with coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02b-reading-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading code and conditional statements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phase 1 — Vocabulary (Weeks 3–6)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w03-function-forge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind farm design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04a-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages and arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04b-for-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">For loops, and picking things out by index</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w04-design-sweep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Which design wins?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05a-simulate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A loop that remembers — simulating a falling ball</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w05-drag-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding drag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-data-io-plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data in, data out — and honest plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w06-plot-clinic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plot clinic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w06-plot-gallery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plot clinic gallery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phase 2 — Tools (Weeks 7–10)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w07-triage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dataset triage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/08-fetch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fetch: APIs and JSON</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w08-acquisition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data acquisition lab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/09a-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Enhancing Mars</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/example-parking-garage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An example homework submission</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 1 · The grade calculator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw2-solar-tilt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 2 · Which way should the panel point?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw3-potato-cannon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 3 · The potato cannon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw4-siren.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 4 · The siren</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw5-wind-farm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 5 · Where the wind blows</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#read-the-video" id="toc-read-the-video" class="nav-link" data-scroll-target="#read-the-video">Read the video</a></li>
+  <li><a href="#find-the-bubbles-first-try" id="toc-find-the-bubbles-first-try" class="nav-link" data-scroll-target="#find-the-bubbles-first-try">Find the bubbles (first try)</a></li>
+  <li><a href="#the-trick-keep-only-what-moves" id="toc-the-trick-keep-only-what-moves" class="nav-link" data-scroll-target="#the-trick-keep-only-what-moves">The trick: keep only what moves</a></li>
+  <li><a href="#find-the-bubbles-second-try" id="toc-find-the-bubbles-second-try" class="nav-link" data-scroll-target="#find-the-bubbles-second-try">Find the bubbles (second try)</a></li>
+  <li><a href="#find-the-bubbles-in-every-frame" id="toc-find-the-bubbles-in-every-frame" class="nav-link" data-scroll-target="#find-the-bubbles-in-every-frame">Find the bubbles in every frame</a></li>
+  <li><a href="#link-them-into-trajectories" id="toc-link-them-into-trajectories" class="nav-link" data-scroll-target="#link-them-into-trajectories">Link them into trajectories</a></li>
+  <li><a href="#how-fast-is-each-bubble-going" id="toc-how-fast-is-each-bubble-going" class="nav-link" data-scroll-target="#how-fast-is-each-bubble-going">How fast is each bubble going?</a></li>
+  <li><a href="#from-pixels-per-frame-to-cms" id="toc-from-pixels-per-frame-to-cms" class="nav-link" data-scroll-target="#from-pixels-per-frame-to-cms">From pixels per frame to cm/s</a></li>
+  <li><a href="#does-a-bubble-speed-up" id="toc-does-a-bubble-speed-up" class="nav-link" data-scroll-target="#does-a-bubble-speed-up">Does a bubble speed up?</a></li>
+  <li><a href="#why-would-a-bubble-speed-up" id="toc-why-would-a-bubble-speed-up" class="nav-link" data-scroll-target="#why-would-a-bubble-speed-up">Why would a bubble speed up?</a></li>
+  <li><a href="#deliverable-2-ec" id="toc-deliverable-2-ec" class="nav-link" data-scroll-target="#deliverable-2-ec">Deliverable (2 EC)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tracking bubbles</h1>
+<p class="subtitle lead">Week 9 Thursday · 2 engagement credits</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>On Tuesday we treated an image as a grid of numbers. Each frame of a video is an image, and so videos are just a series of such grids. Today we’ll use that to do something no human could do by hand: follow <strong>thousands</strong> of bubbles rising through a glass.</p>
+<p>The video is a pint of a carbonated beverage, filmed on my phone in slow motion. Watch it first (it’s 26 seconds), and before writing any code, talk with your group:</p>
+<ul>
+<li>Do the bubbles all rise at the same speed?</li>
+<li>Does a bubble speed up as it rises? Slow down? Stay the same?</li>
+<li>How long does a bubble take to get from the bottom of a real glass to the top? (Picture the last fizzy drink you watched. Is it closer to 0.3 seconds, 3 seconds, or 30?)</li>
+</ul>
+<p>The tool we’ll use is <strong>trackpy</strong>, a Python package written by physicists who track particles. We’re more-or-less borrowing their <a href="https://soft-matter.github.io/trackpy/dev/tutorial/walkthrough.html">walkthrough</a> but with our own video, and I’ve streamlined it a bit.</p>
+<section id="setup" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>In Colab, the first cell installs trackpy (Colab already has everything else):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install trackpy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>In VS Code, run <code>pip install trackpy opencv-python</code> once in the terminal instead. And if you’re reading the trackpy walkthrough alongside this, you’ll see it uses a package called <code>pims</code> to read video. We skip <code>pims</code> entirely and use <code>cv2</code> (that’s OpenCV) to read the video, because it comes preinstalled on Colab.</p>
+</div></div><p>Then the imports, and a download of the video into your notebook:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> trackpy <span class="im">as</span> tp</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.request <span class="im">import</span> urlretrieve</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>urlretrieve(<span class="st">"https://jeremy-koch.github.io/MCEN1030/data/bubbles.mp4"</span>, <span class="st">"bubbles.mp4"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="read-the-video" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-video">Read the video</h2>
+<p>Here’s a function that opens a video file and hands back <code>count</code> frames, starting at frame <code>start</code>, each one converted to grayscale. (We don’t need color to find bubbles, and grayscale is one grid per frame instead of three.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_frames(path, start, count):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Read `count` grayscale frames from a video, starting at frame `start`.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns a 3D array: (frame, row, column)."""</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    video <span class="op">=</span> cv2.VideoCapture(path)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    video.<span class="bu">set</span>(cv2.CAP_PROP_POS_FRAMES, start)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    frames <span class="op">=</span> []</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(count):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        ok, frame <span class="op">=</span> video.read()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> ok:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        frames.append(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(frames)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>frames <span class="op">=</span> read_frames(<span class="st">"bubbles.mp4"</span>, <span class="dv">0</span>, <span class="dv">150</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frames.shape)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.imshow(frames[<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(We’ll look at 150 of the video’s 779 frames, that’s plenty.)</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>frames.shape</code> is <code>(150, 1280, 720)</code>: 150 frames, each 1280 rows tall and 720 columns wide.</p>
+</div>
+</div>
+</section>
+<section id="find-the-bubbles-first-try" class="level2">
+<h2 class="anchored" data-anchor-id="find-the-bubbles-first-try">Find the bubbles (first try)</h2>
+<p>trackpy’s <code>locate</code> looks at one frame and finds every blob that’s brighter than its surroundings. The one number it requires as an input is <code>diameter</code>: roughly how many pixels across a feature is. It has to be odd, and our bubbles are tiny, so let’s try 5:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> tp.locate(frames[<span class="dv">0</span>], <span class="dv">5</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(f), <span class="st">"features found"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tp.annotate(f, frames[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Every red circle is something trackpy thinks is a bubble… you should find somewhere around 5,000 “bubbles,” and circles all over the table, the glare, the logo on the glass. Not all of the bright blobs are bubbles, so we need to pare this down somehow.</p>
+</section>
+<section id="the-trick-keep-only-what-moves" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-trick-keep-only-what-moves">The trick: keep only what moves</h2>
+<p>An observation: the table doesn’t move, the glare doesn’t move, the glass doesn’t move. So let’s take the <strong>median</strong> of all 150 frames, pixel by pixel. A pixel on the table is the same in every frame, so its median is just… the table. Subtract that from each frame, and whatever is left over is what moved.</p>
+<p>First, let’s crop to just the glass (rows 100–950, columns 100–680) so we’re not doing math on the table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>glass <span class="op">=</span> frames[:, <span class="dv">100</span>:<span class="dv">950</span>, <span class="dv">100</span>:<span class="dv">680</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>background <span class="op">=</span> np.median(glass, axis<span class="op">=</span><span class="dv">0</span>).astype(np.float32)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>moving <span class="op">=</span> np.clip(glass <span class="op">-</span> background, <span class="dv">0</span>, <span class="va">None</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(glass[<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"frame 0"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(background, cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"background (median)"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].imshow(moving[<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_title(<span class="st">"frame 0 minus background"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>axis=0</code> means “take the median across frames,” so <code>background</code> is a single picture. The <code>np.clip(..., 0, None)</code> sets anything negative to zero: we only want things <em>brighter</em> than the background.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The middle picture looks like the glass with almost no bubbles in it. The right-hand one is mostly black, with lots of small bright specks in the liquid and almost nothing on the table.</p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>This is called <strong>background subtraction</strong>. Traffic cameras, security cameras, and wildlife cameras all use some version of it.</p>
+</div></div></section>
+<section id="find-the-bubbles-second-try" class="level2">
+<h2 class="anchored" data-anchor-id="find-the-bubbles-second-try">Find the bubbles (second try)</h2>
+<p>Same <code>locate</code>, on the background-subtracted frame:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> tp.locate(moving[<span class="dv">0</span>], <span class="dv">5</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(f), <span class="st">"features found"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.hist(f[<span class="st">"mass"</span>], bins<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"mass (total brightness)"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"number of features"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>trackpy reports a <strong>mass</strong> for each feature: its total brightness. Real bubbles are bright; faint specks are often just noise in the video. The trackpy walkthrough’s advice is to look at this histogram and pick a <code>minmass</code> that cuts off the dim junk.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You find roughly 3,000 features, with masses from about 10 up to 150 or so, piled up on the low end with a long tail to the right. There’s no clean gap here (unlike the walkthrough’s beads), so the cutoff is a judgment call. We’ll use <code>minmass=40</code>, which keeps about 1,700. Anything from 30 to 60 works fine.</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> tp.locate(moving[<span class="dv">0</span>], <span class="dv">5</span>, minmass<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(f), <span class="st">"features found"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>tp.annotate(f, moving[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now the circles should be in the liquid. Look closely at a few of them on the original frame (<code>glass[0]</code>). Are they bubbles?</p>
+</section>
+<section id="find-the-bubbles-in-every-frame" class="level2">
+<h2 class="anchored" data-anchor-id="find-the-bubbles-in-every-frame">Find the bubbles in every frame</h2>
+<p><code>tp.batch</code> runs <code>locate</code> on each frame and stacks all the results into one big pandas DataFrame, with a <code>frame</code> column so we know which feature came from where:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> tp.batch(moving, <span class="dv">5</span>, minmass<span class="op">=</span><span class="dv">40</span>, processes<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(f), <span class="st">"features in"</span>, <span class="bu">len</span>(moving), <span class="st">"frames"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>f.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(<code>processes=1</code> tells it to do one frame at a time.)</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It takes somewhere between 20 seconds and a minute, and finds roughly 1,500–2,000 features per frame. Note: 150 frames$$2000 features per frame = 300,000 things identified in a minute!</p>
+</div>
+</div>
+</section>
+<section id="link-them-into-trajectories" class="level2">
+<h2 class="anchored" data-anchor-id="link-them-into-trajectories">Link them into trajectories</h2>
+<p>So… we have a quarter million dots, but dot 142,567 is actually dot 139,212 one frame later — we need to <code>link</code> them. TrackPy looks in adjacent frames for the nearest feature within <code>search_range</code> pixels of a dot and says “that’s probably the same one.”</p>
+<p>How far does a bubble move between frames? Showing <code>moving[0]</code> and <code>moving[1]</code> reveals it’s a pixel or two. So a <code>search_range</code> of 5 gives some breathing room. <code>memory=2</code> lets a bubble disappear for up to two frames (behind a reflection, say) and still be recognized when it comes back.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> tp.link(f, search_range<span class="op">=</span><span class="dv">5</span>, memory<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> tp.filter_stubs(t, <span class="dv">10</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t[<span class="st">"particle"</span>].nunique(), <span class="st">"trajectories"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>filter_stubs</code> throws away any trajectory shorter than 10 frames. Those are mostly flickers, not bubbles.</p>
+<p>Then let’s make a really cool plot:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">9</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tp.plot_traj(t, superimpose<span class="op">=</span>glass[<span class="dv">0</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have several thousand trajectories, and the plot is a forest of short, mostly vertical colored streaks, dense in the upper two-thirds of the glass and sparser near the bottom.</p>
+</div>
+</div>
+<p>Every streak is a bubble that a computer found, followed, and labeled.</p>
+</section>
+<section id="how-fast-is-each-bubble-going" class="level2">
+<h2 class="anchored" data-anchor-id="how-fast-is-each-bubble-going">How fast is each bubble going?</h2>
+<p>For each trajectory, we can ask: how far did it rise, and how many frames did that take? Rise divided by frames gives a speed in pixels per frame. pandas’ <code>groupby</code> does this for every bubble at once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tracks <span class="op">=</span> t.groupby(<span class="st">"particle"</span>).agg(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    y_start<span class="op">=</span>(<span class="st">"y"</span>, <span class="st">"first"</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    y_end<span class="op">=</span>(<span class="st">"y"</span>, <span class="st">"last"</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    f_start<span class="op">=</span>(<span class="st">"frame"</span>, <span class="st">"first"</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    f_end<span class="op">=</span>(<span class="st">"frame"</span>, <span class="st">"last"</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    y_mid<span class="op">=</span>(<span class="st">"y"</span>, <span class="st">"mean"</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>tracks[<span class="st">"rise"</span>] <span class="op">=</span> (tracks[<span class="st">"y_start"</span>] <span class="op">-</span> tracks[<span class="st">"y_end"</span>]) <span class="op">/</span> (tracks[<span class="st">"f_end"</span>] <span class="op">-</span> tracks[<span class="st">"f_start"</span>])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>tracks.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we have one row per bubble. A quick check on the signs: in an image, row numbers grow <em>downward</em>, so a rising bubble’s <code>y</code> gets <em>smaller</em>, hence the <code>y_start - y_end</code>.</p>
+<p>Let’s look at all of these speeds at once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.hist(tracks[<span class="st">"rise"</span>], bins<span class="op">=</span><span class="dv">60</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"rise speed (pixels per frame)"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"number of trajectories"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You see two things: a tall, narrow spike right at zero, and a broad hump centered around 1 pixel per frame that trails off by about 3.</p>
+</div>
+</div>
+<p>That spike at zero is from “bubbles” that don’t rise. What could they be? (Look back at your trajectory plot: where are the tiny, stubby tracks?) We’ll keep only trajectories that rise at least 0.3 pixels per frame, using some pandas filtering:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>rising <span class="op">=</span> tracks[tracks[<span class="st">"rise"</span>] <span class="op">&gt;</span> <span class="fl">0.3</span>].copy()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(rising), <span class="st">"rising bubbles out of"</span>, <span class="bu">len</span>(tracks))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That should drop about 20% of them.</p>
+</section>
+<section id="from-pixels-per-frame-to-cms" class="level2">
+<h2 class="anchored" data-anchor-id="from-pixels-per-frame-to-cms">From pixels per frame to cm/s</h2>
+<p><strong>Pixels to centimeters.</strong> We need something of known size in the picture, and the best candidate is the glass itself. In the full, uncropped frame, the rim at the top of the glass runs from about <code>x = 100</code> to about <code>x = 680</code>, so it’s about 580 pixels across. A pint glass rim is about 9 cm across. So:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>px_per_cm <span class="op">=</span> <span class="dv">580</span> <span class="op">/</span> <span class="dv">9</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(px_per_cm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That is, our estimate is about 64 pixels per cm. (I didn’t measure the glass two years ago when I shot the video, so maybe it is actually 8.5 cm or 9.2 cm, but let’s not worry about it.)</p>
+<p><strong>Frames to seconds.</strong> The video plays at 30 frames per second, but it was filmed in <strong>1/8× slow motion</strong>. So one second of video is only 1/8 of a second of real life. That is, there are 30 × 8 = 240 frames per <em>real</em> second.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rising[<span class="st">"speed"</span>] <span class="op">=</span> rising[<span class="st">"rise"</span>] <span class="op">*</span> <span class="dv">30</span> <span class="op">*</span> <span class="dv">8</span> <span class="op">/</span> px_per_cm      <span class="co"># cm/s</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rising[<span class="st">"speed"</span>].describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The median speed is about 4–5 cm/s.</p>
+</div>
+</div>
+<p>A sanity check on the physics: the liquid is about 13 cm deep. At a few cm/s, how long does a bubble take to get from the bottom to the top? Compare that to your guess from the beginning.</p>
+</section>
+<section id="does-a-bubble-speed-up" class="level2">
+<h2 class="anchored" data-anchor-id="does-a-bubble-speed-up">Does a bubble speed up?</h2>
+<p>Now the question we came for. We need each bubble’s height above the bottom of the glass. In our cropped picture, the glass floor is at about <code>y = 840</code>, and remember that <code>y</code> grows downward:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rising[<span class="st">"height"</span>] <span class="op">=</span> (<span class="dv">840</span> <span class="op">-</span> rising[<span class="st">"y_mid"</span>]) <span class="op">/</span> px_per_cm      <span class="co"># cm above the glass floor</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(rising[<span class="st">"height"</span>], rising[<span class="st">"speed"</span>], s<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"height above glass floor (cm)"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"rise speed (cm/s)"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There might be a trend in there, but the scatter is big enough that it’s hard to say. What we want is the <em>typical</em> speed at each height. So let’s chop the glass into 1 cm tall slices and take the median speed in each slice. The code snippet: <code>height // 1</code> rounds each height down to a whole number of cm, so every bubble between 4 and 5 cm gets the label 4, and so on. Adding 0.5 puts the label in the middle of the slice:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rising[<span class="st">"band"</span>] <span class="op">=</span> rising[<span class="st">"height"</span>] <span class="op">//</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.5</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> rising.groupby(<span class="st">"band"</span>)[<span class="st">"speed"</span>].agg([<span class="st">"median"</span>, <span class="st">"count"</span>])</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then put the medians on top of the cloud:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(rising[<span class="st">"height"</span>], rising[<span class="st">"speed"</span>], s<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"each bubble"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.plot(summary.index, summary[<span class="st">"median"</span>], <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"median in each 1 cm slice"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"height above glass floor (cm)"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"rise speed (cm/s)"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your table has about 13 rows (heights from 0.5 to 12.5 cm). The bottom couple of slices only have tens of bubbles, while the middle ones have hundreds. The medians start around 2 cm/s near the bottom and climb to about 5–6 cm/s somewhere around 9–10 cm up. Then something happens near the top.</p>
+</div>
+</div>
+</section>
+<section id="why-would-a-bubble-speed-up" class="level2">
+<h2 class="anchored" data-anchor-id="why-would-a-bubble-speed-up">Why would a bubble speed up?</h2>
+<p>Here’s a story you can hold in your head. A bubble in a carbonated drink isn’t a fixed thing: the liquid is full of dissolved CO₂, and as the bubble rises, more CO₂ diffuses into it. So <strong>the bubble grows on the way up</strong>. And bigger bubbles rise faster.</p>
+<p>Remember terminal speed from the drag lab? When drag balances the push, acceleration is zero, and the speed stops changing. A bubble this small gets to its terminal speed in a few milliseconds, so at every height, it’s essentially at the terminal speed for its current size. The difference from the balloon in the drag lab: the balloon sped up toward one fixed terminal speed. The bubble’s terminal speed is a moving target, because the bubble keeps growing.</p>
+<p>For very small things moving slowly through a liquid, drag is proportional to the speed (not the speed squared, like it was for things “bigger than a raindrop” in the drag lab). Set drag equal to buoyancy and you get a terminal speed of<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><span class="math display">\[
+v = \frac{g\,d^2}{18\,\nu}
+\]</span></p>
+<p>where <span class="math inline">\(d\)</span> is the bubble’s diameter and <span class="math inline">\(\nu\)</span> (the Greek letter “nu”) is the liquid’s <strong>kinematic viscosity</strong>, a measure of how syrupy it is. For water, <span class="math inline">\(\nu \approx 1.0\times10^{-6}\)</span> m²/s, and carbonated drinks aren’t far off. Notice the <span class="math inline">\(d^2\)</span>: double the diameter, and the bubble rises four times as fast.</p>
+<p>So now we can build a model. Start a bubble at the glass floor with some diameter <span class="math inline">\(d_0\)</span>, let its diameter grow at a steady rate, and step it upward through time, just like the falling ball from week 5 (<code>position += velocity * dt</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grow_bubble(d0, growth):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Simulate one bubble rising from the glass floor while it grows.</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">    d0: starting diameter (m). growth: how fast the diameter grows (m/s).</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns lists of heights (cm) and speeds (cm/s)."""</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> <span class="fl">9.8</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    nu <span class="op">=</span> <span class="fl">1.0e-6</span>         <span class="co"># kinematic viscosity, m^2/s (water's value)</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> d0</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    heights <span class="op">=</span> []</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    speeds <span class="op">=</span> []</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> y <span class="op">&lt;</span> <span class="fl">0.13</span>:     <span class="co"># 13 cm of liquid</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> g <span class="op">*</span> d<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">18</span> <span class="op">*</span> nu)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> y <span class="op">+</span> v <span class="op">*</span> dt</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> d <span class="op">+</span> growth <span class="op">*</span> dt</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        heights.append(<span class="dv">100</span> <span class="op">*</span> y)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        speeds.append(<span class="dv">100</span> <span class="op">*</span> v)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> heights, speeds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Start with a bubble that <strong>doesn’t grow</strong> (<code>growth = 0</code>) and put it on your plot:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model_h, model_v <span class="op">=</span> grow_bubble(<span class="fl">0.2e-3</span>, <span class="fl">0.0</span>)     <span class="co"># 0.2 mm, no growth</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(rising[<span class="st">"height"</span>], rising[<span class="st">"speed"</span>], s<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"each bubble"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.plot(summary.index, summary[<span class="st">"median"</span>], <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"median in each 1 cm slice"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plt.plot(model_h, model_v, <span class="st">"k-"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"model"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"height above glass floor (cm)"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"rise speed (cm/s)"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A bubble that doesn’t grow rises at constant speed, so the model is a flat line. That’s clearly not what the data do! Now turn on growth and adjust the two numbers (<code>d0</code> and <code>growth</code>) until the model follows the red medians as well as you can.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You’re on track if…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Good matches to the bottom 10 cm or so have a starting diameter a bit over 0.1 mm and a growth rate of a few hundredths of a mm per second (something like <code>0.05e-3</code>). Several combinations look about equally good, which is worth noticing. The model <em>cannot</em> match the top couple of cm.</p>
+</div>
+</div>
+<!-- ## Questions to answer
+
+1. **Your best model.** What `d0` and `growth` did you settle on? Using your model, what diameter does a bubble have when it reaches the surface? (One way: `d0 + growth * time`, and the time is `len(model_h) * 0.001` seconds. Why?) Is that a reasonable size for a bubble in a drink? Compare it to the thickness of a sheet of paper (about 0.1 mm).
+
+2. **The top of the glass.** In the data, the speeds drop over the last couple of centimeters. The model can't do that: in the model, the bubble only grows, so it only speeds up. Come up with at least two possible explanations. Some of them might be about the physics, some about the video, some about trackpy. For each one, is there anything in your data that supports it or rules it out? (You don't need to know the answer. I'm honestly not sure myself.)
+
+3. **The trust question.** We made a lot of choices along the way, and a fair question is whether the speed-vs-height curve is telling us about *bubbles* or about *our choices*. Everything after `tp.batch` reruns in a second or two, so those choices are cheap to test. Here are four:
+
+    - **The rising cutoff.** We kept bubbles with `rise > 0.3`. Try `0` and `1.0`.
+    - **Median vs. mean.** Change `"median"` to `"mean"` in the `summary` line.
+    - **Slice width.** We used 1 cm slices. For 2 cm slices, use `rising["height"] // 2 * 2 + 1`. For half-cm slices, use `rising["height"] // 0.5 * 0.5 + 0.25`. (Why the `+ 1` and the `+ 0.25`?)
+    - **Shortest trajectory kept.** We threw away anything shorter than 10 frames. Try 5 and 30 in `filter_stubs`. (Rerun from the `tp.link` cell, since `t` was overwritten when we filtered it.)
+
+    Pick **two**. For each, *predict* before you run it: will the red curve move? Which part of it, and which way? Then change one thing at a time, rerun, and compare to your original curve. (Keep a copy of your original plot so you can look at them side by side.) Then answer: which of your two choices mattered, which didn't, and does "bubbles speed up as they rise, then slow near the top" survive both? -->
+</section>
+<section id="deliverable-2-ec" class="level2">
+<h2 class="anchored" data-anchor-id="deliverable-2-ec">Deliverable (2 EC)</h2>
+<p>One Colab notebook per student containing:</p>
+<ol type="1">
+<li>The trajectory plot.</li>
+<li>The histogram of rise speeds, with a sentence or two on what the spike at zero is and why you filtered it out.</li>
+<li>The speed-vs-height plot with all three layers (cloud, medians, your best model), with labeled axes and units. <!-- 4. Answers to the three questions above, in text cells. --></li>
+</ol>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This is <strong>Stokes’ law</strong>, which you may meet again in fluids. Strictly, it’s for things moving so slowly that the liquid flows smoothly around them, and our biggest bubbles are pushing that limit. The honest consequence: the formula slightly <em>overpredicts</em> the speed for a given size, so the diameters we get out of it are probably underestimates, maybe by as much as 1.5× for the fastest bubbles. It’s a fine model for today, and a great example of a model that’s “right enough.”<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../activities";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jeremy-koch\.github\.io\/MCEN1030\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
