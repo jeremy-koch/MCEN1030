@@ -81,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1ba4ca92754085d92b073623895d1670.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-47e81372c9d0b761f8eb13b1da38bc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -752,11 +752,11 @@ window.Quarto = {
 <p>The median speed is about 4–5 cm/s.</p>
 </div>
 </div>
-<p>A sanity check on the physics: the liquid is about 13 cm deep. At a few cm/s, how long does a bubble take to get from the bottom to the top? Compare that to your guess from the beginning.</p>
+<p>A sanity check on the physics: the liquid is about 13 cm deep. At a few cm/s, how long does a bubble take to get from the bottom to the top?</p>
 </section>
 <section id="does-a-bubble-speed-up" class="level2">
 <h2 class="anchored" data-anchor-id="does-a-bubble-speed-up">Does a bubble speed up?</h2>
-<p>Now the question we came for. We need each bubble’s height above the bottom of the glass. In our cropped picture, the glass floor is at about <code>y = 840</code>, and remember that <code>y</code> grows downward:</p>
+<p>We need each bubble’s height above the bottom of the glass. In our cropped picture, the glass floor is at about <code>y = 840</code>, and remember that <code>y</code> grows downward:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rising[<span class="st">"height"</span>] <span class="op">=</span> (<span class="dv">840</span> <span class="op">-</span> rising[<span class="st">"y_mid"</span>]) <span class="op">/</span> px_per_cm      <span class="co"># cm above the glass floor</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(rising[<span class="st">"height"</span>], rising[<span class="st">"speed"</span>], s<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
