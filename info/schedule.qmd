@@ -47,6 +47,9 @@ Tentative schedule:
 | 13 | **Nov 17**<br>**Project studio** — desk crits at tables. | **Nov 19**<br>**Pin-up #2** — working artifacts, same-project pairing. | P4, A2, A3 |
 | | **Nov 24 & 26**<br>*Thanksgiving break — no class.* | | |
 | 14 | **Dec 1**<br>**Defense prep** — what it means to know your own project. | **Dec 3**<br>**Mock defenses** at tables. | — |
-| Finals | **The Defense** — a written exam about your project: trace it, explain it, predict what breaks. | | the grade modifier |
+| Finals | For the 9:30 section: Monday, Dec. 7 1:30–4 p.m. | For the 11:00 section: Thursday, Dec. 10	
+10:30 a.m.–1 p.m.|  |
+
+<!-- **The Defense** — a written exam about your project: trace it, explain it, predict what breaks. -->
 
 : {tbl-colwidths="[6,34,34,26]"}
