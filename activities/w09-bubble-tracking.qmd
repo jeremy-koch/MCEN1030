@@ -300,21 +300,20 @@ Your table has about 13 rows (heights from 0.5 to 12.5 cm). The bottom couple of
 
 ## Why would a bubble speed up?
 
-Here's a story you can hold in your head. A bubble in a carbonated drink isn't a fixed thing: the liquid is full of dissolved CO₂, and as the bubble rises, more CO₂ diffuses into it. So **the bubble grows on the way up**. And bigger bubbles rise faster.
-
-Remember terminal speed from the drag lab? When drag balances the push, acceleration is zero, and the speed stops changing. A bubble this small gets to its terminal speed in a few milliseconds, so at every height, it's essentially at the terminal speed for its current size. The difference from the balloon in the drag lab: the balloon sped up toward one fixed terminal speed. The bubble's terminal speed is a moving target, because the bubble keeps growing.
-
-For very small things moving slowly through a liquid, drag is proportional to the speed (not the speed squared, like it was for things "bigger than a raindrop" in the drag lab). Set drag equal to buoyancy and you get a terminal speed of[^stokes]
+Small things have a terminal velocity of
 
 $$
 v = \frac{g\,d^2}{18\,\nu}
 $$
 
-where $d$ is the bubble's diameter and $\nu$ (the Greek letter "nu") is the liquid's **kinematic viscosity**, a measure of how syrupy it is. For water, $\nu \approx 1.0\times10^{-6}$ m²/s, and carbonated drinks aren't far off. Notice the $d^2$: double the diameter, and the bubble rises four times as fast.
+where $g$ is gravity, $d$ is the bubble diameter, and $\nu$ is the dynamic viscosity of the liquid. Our initial guess might be that the bubbles take time to reach their terminal velocity, but actually that is not the case — they reach their terminal velocity very quickly. 
 
-[^stokes]: This is **Stokes' law**, which you may meet again in fluids. Strictly, it's for things moving so slowly that the liquid flows smoothly around them, and our biggest bubbles are pushing that limit. The honest consequence: the formula slightly *overpredicts* the speed for a given size, so the diameters we get out of it are probably underestimates, maybe by as much as 1.5× for the fastest bubbles. It's a fine model for today, and a great example of a model that's "right enough."
+So what is it then? The bubbles are increasing with speed for two reasons:
 
-So now we can build a model. Start a bubble at the glass floor with some diameter $d_0$, let its diameter grow at a steady rate, and step it upward through time, just like the falling ball from week 5 (`position += velocity * dt`):
+1. The liquid is full of dissolved CO₂, and as the bubble rises, more CO₂ diffuses into it. So **the bubble grows on the way up**. And bigger bubbles rise faster.
+2. The deeper you go in a liquid, the greater the pressure. The bubbles at the bottom are squeezed more, and so they are smaller in diameter.
+
+And the first reason is more important here by a factor of about 100. So let's build a model based on it, try to estimate the growth factor based on the data. We'll start a bubble at the glass floor with some diameter $d_0$, let its diameter grow at a steady rate, and step it upward through time, just like the falling ball from week 5 (`position += velocity * dt`):
 
 ```python
 def grow_bubble(d0, growth):
@@ -351,7 +350,7 @@ plt.legend()
 plt.show()
 ```
 
-A bubble that doesn't grow rises at constant speed, so the model is a flat line. That's clearly not what the data do! Now turn on growth and adjust the two numbers (`d0` and `growth`) until the model follows the red medians as well as you can.
+A bubble that doesn't grow rises at constant speed, so the model is a flat line. Now turn on growth and adjust the two numbers (`d0` and `growth`) until the model follows the red medians as well as you can.
 
 ::: {.callout-tip}
 ## You're on track if...
@@ -379,7 +378,8 @@ One Colab notebook per student containing:
 
 1. The trajectory plot.
 2. The histogram of rise speeds, with a sentence or two on what the spike at zero is and why you filtered it out.
-3. The speed-vs-height plot with all three layers (cloud, medians, your best model), with labeled axes and units.
+3. The speed-vs-height plot with all three layers (cloud, medians, your best model), with labels and units.
+4. Your best values for `d0` and `growth` in a text cell.
 <!-- 4. Answers to the three questions above, in text cells. -->
 
 ::: {.content-hidden}
