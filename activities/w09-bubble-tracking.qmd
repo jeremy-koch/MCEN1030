@@ -257,11 +257,11 @@ print(rising["speed"].describe())
 The median speed is about 4–5 cm/s.
 :::
 
-A sanity check on the physics: the liquid is about 13 cm deep. At a few cm/s, how long does a bubble take to get from the bottom to the top? Compare that to your guess from the beginning.
+A sanity check on the physics: the liquid is about 13 cm deep. At a few cm/s, how long does a bubble take to get from the bottom to the top?
 
 ## Does a bubble speed up?
 
-Now the question we came for. We need each bubble's height above the bottom of the glass. In our cropped picture, the glass floor is at about `y = 840`, and remember that `y` grows downward:
+We need each bubble's height above the bottom of the glass. In our cropped picture, the glass floor is at about `y = 840`, and remember that `y` grows downward:
 
 ```python
 rising["height"] = (840 - rising["y_mid"]) / px_per_cm      # cm above the glass floor
