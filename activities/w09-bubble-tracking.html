@@ -791,14 +791,17 @@ window.Quarto = {
 </section>
 <section id="why-would-a-bubble-speed-up" class="level2">
 <h2 class="anchored" data-anchor-id="why-would-a-bubble-speed-up">Why would a bubble speed up?</h2>
-<p>Here’s a story you can hold in your head. A bubble in a carbonated drink isn’t a fixed thing: the liquid is full of dissolved CO₂, and as the bubble rises, more CO₂ diffuses into it. So <strong>the bubble grows on the way up</strong>. And bigger bubbles rise faster.</p>
-<p>Remember terminal speed from the drag lab? When drag balances the push, acceleration is zero, and the speed stops changing. A bubble this small gets to its terminal speed in a few milliseconds, so at every height, it’s essentially at the terminal speed for its current size. The difference from the balloon in the drag lab: the balloon sped up toward one fixed terminal speed. The bubble’s terminal speed is a moving target, because the bubble keeps growing.</p>
-<p>For very small things moving slowly through a liquid, drag is proportional to the speed (not the speed squared, like it was for things “bigger than a raindrop” in the drag lab). Set drag equal to buoyancy and you get a terminal speed of<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Small things have a terminal velocity of</p>
 <p><span class="math display">\[
 v = \frac{g\,d^2}{18\,\nu}
 \]</span></p>
-<p>where <span class="math inline">\(d\)</span> is the bubble’s diameter and <span class="math inline">\(\nu\)</span> (the Greek letter “nu”) is the liquid’s <strong>kinematic viscosity</strong>, a measure of how syrupy it is. For water, <span class="math inline">\(\nu \approx 1.0\times10^{-6}\)</span> m²/s, and carbonated drinks aren’t far off. Notice the <span class="math inline">\(d^2\)</span>: double the diameter, and the bubble rises four times as fast.</p>
-<p>So now we can build a model. Start a bubble at the glass floor with some diameter <span class="math inline">\(d_0\)</span>, let its diameter grow at a steady rate, and step it upward through time, just like the falling ball from week 5 (<code>position += velocity * dt</code>):</p>
+<p>where <span class="math inline">\(g\)</span> is gravity, <span class="math inline">\(d\)</span> is the bubble diameter, and <span class="math inline">\(\nu\)</span> is the dynamic viscosity of the liquid. Our initial guess might be that the bubbles take time to reach their terminal velocity, but actually that is not the case — they reach their terminal velocity very quickly.</p>
+<p>So what is it then? The bubbles are increasing with speed for two reasons:</p>
+<ol type="1">
+<li>The liquid is full of dissolved CO₂, and as the bubble rises, more CO₂ diffuses into it. So <strong>the bubble grows on the way up</strong>. And bigger bubbles rise faster.</li>
+<li>The deeper you go in a liquid, the greater the pressure. The bubbles at the bottom are squeezed more, and so they are smaller in diameter.</li>
+</ol>
+<p>And the first reason is more important here by a factor of about 100. So let’s build a model based on it, try to estimate the growth factor based on the data. We’ll start a bubble at the glass floor with some diameter <span class="math inline">\(d_0\)</span>, let its diameter grow at a steady rate, and step it upward through time, just like the falling ball from week 5 (<code>position += velocity * dt</code>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grow_bubble(d0, growth):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Simulate one bubble rising from the glass floor while it grows.</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">    d0: starting diameter (m). growth: how fast the diameter grows (m/s).</span></span>
@@ -827,7 +830,7 @@ v = \frac{g\,d^2}{18\,\nu}
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"rise speed (cm/s)"</span>)</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A bubble that doesn’t grow rises at constant speed, so the model is a flat line. That’s clearly not what the data do! Now turn on growth and adjust the two numbers (<code>d0</code> and <code>growth</code>) until the model follows the red medians as well as you can.</p>
+<p>A bubble that doesn’t grow rises at constant speed, so the model is a flat line. Now turn on growth and adjust the two numbers (<code>d0</code> and <code>growth</code>) until the model follows the red medians as well as you can.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -862,7 +865,8 @@ v = \frac{g\,d^2}{18\,\nu}
 <ol type="1">
 <li>The trajectory plot.</li>
 <li>The histogram of rise speeds, with a sentence or two on what the spike at zero is and why you filtered it out.</li>
-<li>The speed-vs-height plot with all three layers (cloud, medians, your best model), with labeled axes and units. <!-- 4. Answers to the three questions above, in text cells. --></li>
+<li>The speed-vs-height plot with all three layers (cloud, medians, your best model), with labels and units.</li>
+<li>Your best values for <code>d0</code> and <code>growth</code> in a text cell. <!-- 4. Answers to the three questions above, in text cells. --></li>
 </ol>
 
 
@@ -882,13 +886,7 @@ W10=
 </script>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>This is <strong>Stokes’ law</strong>, which you may meet again in fluids. Strictly, it’s for things moving so slowly that the liquid flows smoothly around them, and our biggest bubbles are pushing that limit. The honest consequence: the formula slightly <em>overpredicts</em> the speed for a given size, so the diameters we get out of it are probably underestimates, maybe by as much as 1.5× for the fastest bubbles. It’s a fine model for today, and a great example of a model that’s “right enough.”<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W119
 </script>
