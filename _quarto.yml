@@ -73,6 +73,7 @@ website:
           - lessons/08-fetch.qmd
           - activities/w08-acquisition.qmd
           - lessons/09a-images.qmd
+          - activities/w09-bubble-tracking.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
