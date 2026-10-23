@@ -1,0 +1,215 @@
+---
+title: "HW 6 · Is Boulder warming?"
+subtitle: "Anchor week 9 · Standards: F1, P3, A2, A3"
+---
+
+## Scenario
+
+**Is Boulder warming, and by how much?** We need a number we can put in a report and defend in a public meeting.
+
+Fortunately, someone has been writing down Boulder's temperature every day since 1893. You're going to go get all of it (about 46,000 days) and turn it into that number. Along the way you'll find that "how much has it warmed?" depends on choices *you* make.
+
+**See [Submitting Homework](../info/colab-format.qmd) for how to set up the report. Same look as before.**
+
+::: {.column-margin}
+AI use is welcome on this one: say which parts it wrote in your spec. This time we're *not* grading the AI audit (standard A4).
+:::
+
+## Data
+
+NOAA (the National Oceanic and Atmospheric Administration) keeps the records for thousands of weather stations, and anyone can download them from a web address, no account needed, the same way we asked the ISS where it was in [week 8](../lessons/08-fetch.qmd). The address is a base plus a list of options after the `?`:
+
+```
+https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=...&startDate=...&endDate=...&dataTypes=...&units=...&format=csv
+```
+
+::: {.column-margin}
+To be clear: you are going to need to edit this address.
+:::
+
+
+The options you need to fill in:
+
+| option | what it means | what you want |
+|:---|:---|:---|
+| `stations` | which weather station | `USC00050848` (Boulder) |
+| `startDate`, `endDate` | the date range, as `YYYY-MM-DD` | the whole record: 1893 through the end of 2025 |
+| `dataTypes` | which measurements, separated by commas | `TMAX` (each day's high) and `TMIN` (each day's low) |
+| `units` | `metric` or `standard` | `metric` (°C) |
+
+**Download it once.** We'll be running our code over and over while we work on it, and there's no reason to ask NOAA for 46,000 rows every single time. So we'll download the file once and work from our own copy:
+
+1. Put your full address together (no spaces anywhere), paste it into your browser's address bar, and press Enter. NOAA answers with a file, and your browser downloads it. It takes a few seconds. (On an iPad, Safari puts it in the Files app, under Downloads.)
+2. Look at the file's name: something like `daily-summaries-2026-10-23T02-37-41.csv`. That's the date and time NOAA made it for you (in UTC, which is 6 hours ahead of Boulder until daylight saving time ends on November 1, and 7 hours after). Copy that name into your notebook, then rename the file to something friendlier, like `boulder_daily.csv`.
+3. Upload it to Colab's Files panel, the way we did in [week 6](../lessons/06-data-io-plots.qmd), and read it:
+
+    ```python
+    import pandas as pd
+    df = pd.read_csv("boulder_daily.csv")
+    ```
+
+    Colab's files vanish when the session ends, so you'll upload it again each time you come back. That's fine: it's on your computer now, not NOAA's.
+
+
+::: {.column-margin}
+`pd.read_csv` can also read straight from a web address: `pd.read_csv(url)`. That works, but it downloads the whole record every time the cell runs. The server might get mad at you if you download it 40 times in an hour as you debug.
+:::
+
+::: {.column-margin}
+Remember: you can spread your code across several cells. It's a good idea to put your imports and the line that loads the data in your first code cell, and the rest of your code in cells after it. Run the first cell once; the others you can rerun as often as you like while you work on them. (If Colab restarts, run the first cell again.)
+:::
+
+**Write down where it came from.** In a text cell right after you load it: the full address you used, and the file name NOAA gave you (with its date and time).
+
+## A few new tools
+
+**Dates.** The `DATE` column arrives as text, like `"1947-07-29"`. `pd.to_datetime` turns it into real dates, and then `.dt.year` pulls out just the year:
+
+```{pyodide}
+import pandas as pd
+d = pd.DataFrame({
+    "DATE": ["1999-12-30", "1999-12-31", "2000-01-01", "2000-01-02", "2000-01-03"],
+    "TMAX": [3.3, 5.0, 8.9, None, 7.2],
+})
+d["DATE"] = pd.to_datetime(d["DATE"])
+d["year"] = d["DATE"].dt.year
+print(d)
+```
+
+(`None` shows up as `NaN`: a missing measurement. Real records have plenty of those.)
+
+**Two summaries at once.** `.agg` lets one `groupby` compute several things. Here, each year's average *and* how many days actually had a measurement. `count` skips missing values, which is what we want:
+
+```{pyodide}
+print(d.groupby("year")["TMAX"].agg(["mean", "count"]))
+```
+
+If you save that result as `yearly`, its rows are labeled by year (the "index"), so `yearly.loc[1996:2025]` picks out a range of years by label, and `yearly.index` is the list of years itself.
+
+**Decades.** `//` is division that throws away the remainder: `1987 // 10` is `198`. Multiply back by 10 and you have the decade:
+
+```{pyodide}
+import numpy as np
+years = np.array([1898, 1905, 1987, 2017])
+print(years // 10 * 10)
+```
+
+**The biggest few.** `df.nlargest(5, "TMIN")` gives the five rows with the highest `TMIN`, and `nsmallest` the lowest.
+
+## Part 1 — Get the data and look at it
+
+Download the data and load your copy. Then use `head()`, `shape`, and `describe()`.
+
+On a July afternoon in Boulder, a typical high is around 30 °C (86 °F). On a January night, a typical low is around −8 °C (18 °F). Do your numbers look like that? If they don't, figure out why before going further. (Check the address you used.)
+
+Then look at the extremes. Find the hottest high, the coldest high, the warmest low, and the coldest low in the whole record, each with its date. Are they believable? (For calibration: Boulder's all-time records are around 40 °C and −36 °C.) If you don't believe one, look at the days on either side of it. What do you think happened, and **what will you do about it**? Removing it, keeping it, and fixing it are all defensible, as long as you say which and why.
+
+Finally, check on the missing data. Add a `year` column and count how many days each year actually has a `TMAX` measurement. Which years are badly incomplete? Pick one and find which months are missing.
+
+## Part 2 — From 46,000 days to a handful of numbers
+
+Compute each year's average high (`TMAX`) and average low (`TMIN`), along with the count of days used to calculate each average.
+
+An incomplete year is a problem: a year that's missing its winter months will look warm, and that has nothing to do with climate. Decide on a rule for which years to keep (for example, "at least N days of data") and apply it. **Your rule is part of your answer**: write it down, and say how many years it keeps.
+
+Then average your kept years by decade, for both the highs and the lows, into a small table. How many years went into each decade's average?
+
+## Part 3 — The plot
+
+Make one plot that tells the whole story: each year's average high and average low, with the decade averages drawn on top so the reader can see the long-term pattern through the year-to-year noise. Labeled axes, units, legend.
+
+Highs and lows are about 15 °C apart, so on one plot each line will look nearly flat. Is that a problem? Think about it the way we did in the [plot clinic](../activities/w06-plot-clinic.qmd) and on Checkpoint 3: what does the reader need to see, and what range on the axis would show it honestly? Two panels, one for highs and one for lows, is a reasonable solution.
+
+Then, two more versions for comparison:
+
+1. The plot someone would make to convince the meeting that **Boulder is heating up alarmingly**.
+2. The plot someone would make to convince them that **nothing is happening**.
+
+Use only real data, no fake numbers. (Your tools: the y-axis range, the start year, which variable you show, what you leave out.)
+
+## Part 4 — The number, and how sure you are
+
+Climate scientists usually compare **30-year averages**, long enough that one hot summer or one cold winter can't swing the answer much. So:
+
+1. **The headline.** Average the yearly highs over 1996–2025. Average them over 1900–1929. How much warmer is the recent period? Do the same for the lows.
+2. **The noise.** How much do yearly average highs typically bounce around from one year to the next? (`.std()`, the standard deviation, from [HW 4](hw4-siren.qmd), is one good measure; the hottest year minus the coldest year is another.) Is your warming bigger or smaller than that bounce? What does that mean for someone who says "but last year was cool"?
+3. **The baseline.** Now use 1930–1959 as the early period instead. How much does the answer change? Look at your decade table: what was going on in the 1930s and 1950s? (Hint: the Dust Bowl.)
+4. **The surprise.** Compare the highs and the lows. Are they telling the same story? I can think of a few explanations for what you'll find. Some ideas to start from: weather stations sometimes move, cities grow up around them, and the time of day someone reads the thermometer has changed over the years. Which explanation seems most likely to you, and what would you want to know to decide?
+
+**Optional, if you'd like a slope.** `np.polyfit(years, temps, 1)` fits a straight line and returns its slope (in °C per year) and intercept. Multiply the slope by 10 for °C per decade. Try it starting from 1900, then 1930, 1950, 1980, and 2000. How much does the "warming rate" depend on where you start?
+
+## Your submission
+
+**Step 1 — Specify & prompt.**
+
+- The full data address, and the file name NOAA gave you (it has the date and time in it).
+- What you did with each unbelievable value from Part 1, and why.
+- Your rule for keeping a year, and how many years survived it.
+- Which 30-year periods you compared, and why those.
+- What goes on the main plot.
+
+If AI wrote any of your code, include your prompt, with the model name and date.
+
+**Step 2 — Annotate.** Three lines (or short blocks), each quoted in backticks, with a sentence or two in your own words about what it does and which decision from Step 1 it carries out:
+
+1. the line that makes the yearly averages and counts;
+2. the line that applies your keep-a-year rule;
+3. the line that computes one of the 30-year averages.
+
+**Step 3 — Verify.** Three checks:
+
+1. **One year by hand.** Pick a year. Filter its rows out of the *daily* data, and compute its average high and count directly. Do they match that year's row in your yearly table?
+2. **Units.** Compute the average high for July of 2025 alone. Is it near the calibration number from Part 1?
+3. **How much did that bad value matter?** For one value you removed or fixed in Part 1, compute its year's average both with and without it. How big is the difference, compared to the warming you found? (Was it worth fixing? Would it have been worth fixing if it had been −999?)
+
+**Step 4 — Report.** A one-page memo for our report:
+
+1. **The answer**, in a sentence they can quote: how much warmer, measured how, compared with when.
+2. **The figure** from Part 3, the honest one.
+3. **How sure**: the year-to-year noise, how much the answer moves with the baseline, and what the lows say.
+4. **Provenance**: where the data came from, when, and every choice you made that could change the number (the bad values, the keep-a-year rule, the periods). Someone should be able to reproduce your number from this paragraph alone.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site):**
+
+**Data (checked Oct 22, 2026).** Station USC00050848, Boulder. `startDate=1893-01-01&endDate=2025-12-31&dataTypes=TMAX,TMIN&units=metric&format=csv` → **46,794 rows**, `STATION, DATE, TMAX, TMIN`, first date 1893-10-01, last 2025-12-31, ~8 s to download. NOAA serves it with `Content-Disposition: attachment; filename="daily-summaries-<UTC timestamp>.csv"`, so pasting the address in a browser downloads a timestamped file (checked Oct 22). If an address comes back as an error page instead, look for a space or a missing `&` in it. TMAX missing on 154 days, TMIN on 162.
+
+**The units trap (Part 1).** Without `units=metric`, NOAA does *not* send °F: it sends **tenths of °C** as whole numbers (a July 2025 high comes through as `322`, July 2025 average ~320). pandas reads it silently as integers. The calibration paragraph is the catch: a 320-degree July. Students who *do* say "°F" are reasoning, but wrongly (320 °F isn't believable either); the fix in both cases is adding `units=metric` (or dividing by 10, if they say so). Good A1 behavior, and it's caught by estimation, not code-reading. With `units=metric`, July 2025's average high is **32.0 °C** (Verify 2).
+
+**Extremes (Part 1).**
+
+- Hottest high **40.0 °C, 1954-06-23**. Coldest high −24.4 °C, 1989-02-04. Coldest low **−36.1 °C, 1930-01-17**. All believable for Boulder.
+- Warmest low **33.9 °C, 1947-07-29**: the planted catch. Neighbors are 18.3, 18.3, 19.4, [33.9], 18.9, 17.2, 17.8, with highs of 36–38 °C, so a 33.9 °C (93 °F) overnight low is a recording error (likely meant 13.9 or 18.9; we can't know). Second: **1933-09-06, high = low = 31.7 °C**, suspicious (a low equal to the afternoon high). No days have TMIN > TMAX.
+- Any decision counts if stated. **Verify 3 numbers:** 1947's average low is 3.997 °C with the bad day, 3.914 without, a **0.08 °C** difference, an order of magnitude below the ~1.5 °C warming in the highs. The −999 question: one −999 °C day would drag a year's average down by ~2.8 °C, as big as the whole signal, which is why sentinels must be found.
+
+**Missing data.** Years with fewer than 330 TMAX days: 1893 (91; record starts Oct 1), 1894 (195), 1895 (182), 1897 (245), 1910 (301), 1912 (296), **1979 (272), 1983 (322), 1989 (212), 1990 (275)**. 1989 has only January–July. With the ≥ 330 rule: **122 years kept**, 1898–2025. Any rule from ~300 to 350 days is fine if stated; results move by hundredths.
+
+**Decade averages (≥ 330-day years), °C:**
+
+| decade | 1890s | 1900s | 1910s | 1920s | 1930s | 1940s | 1950s | 1960s | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| years | 2 | 10 | 8 | 10 | 10 | 10 | 10 | 10 | 9 | 8 | 9 | 10 | 10 | 6 |
+| TMAX | 15.99 | 17.20 | 17.78 | 17.50 | 18.33 | 17.05 | 19.09 | 18.54 | 18.18 | 18.61 | 17.87 | 18.72 | 19.21 | 19.39 |
+| TMIN | 3.69 | 4.26 | 3.77 | 2.68 | 3.35 | 3.50 | 4.54 | 3.93 | 3.15 | 3.40 | 3.07 | 3.38 | 3.48 | 3.40 |
+
+**Part 4 numbers.**
+
+| period | years kept | TMAX | TMIN |
+|---|---|---|---|
+| 1900–1929 | 28 | 17.47 | 3.55 |
+| 1930–1959 | 30 | 18.16 | 3.79 |
+| 1996–2025 | 30 | 18.96 | 3.40 |
+
+- **Headline:** highs **+1.48 °C** (1996–2025 vs 1900–1929). Lows **−0.16 °C**: essentially flat.
+- **Noise:** year-to-year std of annual TMAX **1.14 °C** (TMIN 0.80). Hottest years 2017 (21.11), 1954 (20.98), 2012 (20.64); coldest 1941 (15.28), 1909 (15.47), 1898 (15.50). The warming in the highs is about the size of one year's typical bounce, so single years prove nothing either way, but a 30-year average is much steadier. (Beyond scope, don't require: the standard error of a 30-year mean is about 1.14/√30 ≈ 0.2 °C, so +1.5 is well outside the noise of the *averages*. A student who reasons "30 years averages out most of the bounce" is there.)
+- **Baseline:** vs 1930–1959, highs **+0.80 °C**, lows **−0.39 °C**. The answer roughly halves because the 1930s (Dust Bowl) and 1950s (drought) were hot. This is the start-year cherry-pick in action; it connects directly to Part 3.
+- **Optional slopes (TMAX, °C/decade):** from 1900, 0.14; 1930, 0.12; 1950, 0.06; 1970, 0.25; 1980, 0.30; 2000, 0.34. TMIN slopes are within ±0.13 of zero from every start year. Accept any honest reading; the point is the spread.
+- **Daily mean ((TMAX+TMIN)/2):** +0.66 °C, recent vs 1900–1929, for anyone who combines them.
+- **The surprise (open question).** Highs up ~1.5 °C, lows flat. I don't know the cause for this station and haven't researched its history, so grade the reasoning, not the answer. Plausible explanations: station relocations (this is raw, unadjusted station data; NOAA publishes homogenized versions that correct for moves and instrument changes), changes in observation time (a known bias in cooperative-station records), changes in surroundings (irrigation, trees, buildings). A strong answer proposes one *and* says what evidence would test it ("check the station's history for moves," "compare with a nearby station").
+
+**Part 3 (A2).** The honest plot: two panels, or one panel with a sensible range, decade means visible through the scatter. The "alarming" version: start in 1950 or later, zoom the y-axis, show only highs. The "nothing happening" version: y-axis from −20 to 40 °C, show only lows, or start in the 1930s and end in the 1990s. Most groups will find it unsettlingly easy, which is the lesson.
+
+**Standards.** F1: built the address, downloaded the file, recorded the address and NOAA's timestamped file name. P3: the yearly and decade reductions with the completeness rule. A2: the honest main plot, with the two counter-examples as evidence of judgment. A3: the memo's "how sure" and provenance paragraphs. Accept any defensible choices; dock only undeclared ones.
+
+**Where students will struggle:** forgetting `units=metric` (caught by calibration, we hope); `count` vs `size` (`size` counts missing days too, so every year looks complete; good annotation material); keeping incomplete years without noticing (1989 at 212 days); averaging 30 years with `loc[1996:2025]` after filtering, then wondering why they only have 28 early years (1910 and 1912 were dropped: that's correct, and worth a sentence).
+:::
