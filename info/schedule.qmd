@@ -40,7 +40,7 @@ Tentative schedule:
 | 7 | **Oct 6**<br>[Pandas](../lessons/07-pandas.qmd) — 60,000 rows without fear. Then [Dataset triage](../activities/w07-triage.qmd). | **Oct 8**<br>*(No class.)*<br><br>*Homework:* [HW 5 · Where the wind blows](../homework/hw5-wind-farm.qmd). | P3, F2 |
 | 8 | **Oct 13**<br>[Fetch](../lessons/08-fetch.qmd) — APIs, JSON, dictionaries, and what to do when a request fails (`try`/`except`). | **Oct 15**<br>[**Data acquisition lab**](../activities/w08-acquisition.qmd) — your phone as a lab instrument. | F1, F2, A3 |
 | 9 | **Oct 20**<br>✓ **Checkpoint 3**, then **Back to the model** — revisiting the falling ball with real data in hand. | **Oct 22**<br>**Model meets measurement** — phone drop vs. simulation. | S1, S3, A3 |
-| 10 | **Oct 27**<br>**Simulate II** — assumptions, trust, and what-ifs. | **Oct 29**<br>**Model critique**. | S2, S3, S4 |
+| 10 | **Oct 27**<br>[**Reading MATLAB**](../activities/w10-reading-matlab.qmd) — predicting MATLAB code on paper, then getting MATLAB set up. | **Oct 29**<br>**Model critique**. | S2, S3, S4 |
 | **Phase 3 — Integration** | | | |
 | 11 | **Nov 3**<br>✓ **Checkpoint 4**, then **Your second language** — MATLAB, translation, and choosing tools. | **Nov 5**<br>**Project launch**. | P4, A4 |
 | 12 | **Nov 10**<br>**Project studio** — desk crits at tables. | **Nov 12**<br>**Pin-up #1** — specs & verification plans on the wall. | S2, A3, A4 |

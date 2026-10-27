@@ -41,6 +41,7 @@ activities/w09*
 # original phone video (has GPS in its metadata); students get data/bubbles.mp4
 activities/PXL_20220717_222221822.mp4
 activities/w1*
+!activities/w10-reading-matlab.qmd
 
 
 lessons/04*

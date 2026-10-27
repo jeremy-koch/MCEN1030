@@ -1,0 +1,209 @@
+---
+title: "Reading MATLAB"
+subtitle: "Week 10 Tuesday · 2 engagement credits"
+---
+
+Below are three short MATLAB scripts. We're going to work through them on paper, no computer. Then, at the end of class, we'll get everyone set up with MATLAB, ready for Thursday.
+
+## How this works
+
+For each example, on your group's sheet:
+
+1. **Predict.** Write down exactly what you think MATLAB will display.
+2. **Explain.** One or two sentences on how you got there. Lines marked with a `% <--` comment are the important ones: make sure your explanation says what each of those lines is doing. If your group disagrees, write down both answers and both reasons. That's more interesting than a quick vote.
+3. **Check.** After one member gets MATLAB installed, paste the code in and see what actually happens. If it's different from your prediction, try to say why.
+
+We aren't grading on correctness, so don't cross anything out.
+
+## A couple quick warnings
+
+You will be surprised at how successful you are at reading this code. A few things that MATLAB does differently (and I'll add a more complete list as a lesson after class).
+
+- MATLAB puts its indices in `(...)` (instead of `[...]`).
+- MATLAB indexes from 1. That is: the first element of an array is `x(1)`.
+- MATLAB requires an `end` at the end of each block. Whitespace is not important. (It also uses `(end)` to get the last element in an array, instead of `[-1]`).
+- MATLAB "displays" instead of "printing".
+- MATLAB automatically displays the result of a line if the line does not end with a `;`.
+
+There are, of course, other differences, but this should get you started.
+
+## Example 1
+
+Daily high temperatures for one week, in °C:
+
+```matlab
+temps = [12, 15, 9, 20, 18];
+disp(temps(1))          % <-- in your description, say what this line is doing
+disp(temps(end))        % <-- and this one
+
+total = 0;
+for k = 2:4             % <-- which values does k take?
+    total = total + temps(k);
+end
+disp(total)
+```
+
+What three numbers does this display?
+
+## Example 2
+
+```matlab
+v = [1, 2, 3];
+a = v .* v          % <-- in your description, say what this line is doing
+b = v * 2
+c = sum(v .^ 2)
+d = v * v           % <-- and this one
+```
+
+There are no semicolons on these lines. In MATLAB, leaving the semicolon off means "show me the result," so each line displays its own answer.
+
+What are `a`, `b`, `c`, and `d`? For each one, write down the numbers, or "error" if you think MATLAB will refuse. (Look at the cheat sheet's row about element-wise math.)
+
+## Example 3
+
+
+
+::: {.callout-important}
+
+The one fundamental programming idea I have not explicitly taught you is the `while` loop. A quick example in Python:
+
+```python
+k=0
+while k<15:
+    print(k)
+    k=k+1
+
+print("done")
+```
+
+The `while` line includes a conditional statement that can be evaluated as `True` or `False`. We proceed through the `while` block as long as it is `True`: in this case, the code will print the current value of `k`, then add `1` to the value of `k`, and then return to the top of the block. It continues until `k` is `15`, and then moves on to `print("done")`.
+:::
+
+Now in MATLAB, let's look at a `while` loop and a function:
+
+```matlab
+mins = time_to_cool(80, 50)
+mins = time_to_cool(90, 50);     % <-- what does the semicolon change?
+fprintf('The hotter cup takes %d minutes\n', mins)
+
+function t = time_to_cool(T, target)     % <-- in your description, say what this line is doing
+    % Minutes for a cup at T (degrees C) in a 20 C room to drop below target.
+    t = 0;
+    while T > target                     % <-- and this one
+        T = T - 0.1 * (T - 20);
+        t = t + 1;
+    end
+end
+```
+
+
+- Compare the function's first line, `function t = time_to_cool(T, target)`, with a Python `def` line. What does the MATLAB version tell you that the Python one doesn't? And where's the `return`?
+
+## Getting MATLAB
+
+As a CU student, you have free access if you create a MathWorks account using your CU email address. Instructions are [here](https://oit.colorado.edu/software-hardware/software-catalog/matlab): use the ones for students, under "How to get it."
+
+Once you have your account set up, you can access MATLAB online [at this link](https://www.mathworks.com/products/matlab-online.html). You can explore on your own, or flag down a CA/TA/me and we'll give your group a quick introduction.
+
+The MathWorks site has many tutorials, maybe most notably the "MATLAB Onramp," a free online training. You can find it [here](https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted).
+
+**Before you leave today:** get MATLAB running, make a new script, and run this one line in it:
+
+```matlab
+disp('MATLAB works!')
+```
+
+Then run the three examples above and check them against your sheet.
+
+<!-- ## If you have time: translate a simulation
+
+Here's the cooling cup in Python, the time-stepping style from week 5: pre-allocated array, fill it one step at a time, plot.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+dt = 0.5          # minutes
+n = 40            # steps
+T = np.zeros(n + 1)
+T[0] = 80         # degrees C
+for i in range(n):
+    T[i+1] = T[i] - 0.1 * (T[i] - 20) * dt
+
+t = np.arange(n + 1) * dt
+plt.plot(t, T)
+plt.xlabel("time (min)")
+plt.ylabel("temperature (°C)")
+plt.show()
+print(T[-1])
+```
+
+Write it in MATLAB, using the cheat sheet. The places to slow down and think:
+
+- `np.zeros(n + 1)` makes an array of 41 zeros. What's the MATLAB version, and how many elements should it have?
+- `T[0] = 80` sets the *first* element. What's the first element called in MATLAB?
+- `for i in range(n)` runs `i = 0, 1, ..., 39`, and the body uses `T[i+1]`. If your MATLAB loop runs `i = 1:n`, does `T(i+1)` still land on the right elements?
+- `np.arange(n + 1) * dt` makes the times. What's the MATLAB version?
+
+**Check it:** the Python version prints `27.7107293939062`. Does your MATLAB version display `27.7107`? And does the plot start at 80 and head toward 20, the temperature of the room? -->
+
+## Deliverable (2 EC)
+
+Your group's sheet, with all three examples: the prediction, the reasoning, what actually happened, and why. Names of everyone in the group at the top.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site).** All outputs below are from MATLAB R2025a, run Oct 25, 2026.
+
+**Running the reveal.** Do the examples one at a time: groups predict, then go over it together with the code running on the projector. Poll the room before you run it ("who has 15 for the first number?"). Students can't check their own predictions until the end of class, which is fine; the projector does it.
+
+**Example 1.** Displays `12`, `18`, `44`.
+
+- `temps(1)` is **12**, the *first* element. The Python habit is 15 (thinking of `temps[1]`).
+- `temps(end)` is **18**.
+- `2:4` is 2, 3, 4, *including* 4, so the total is temps(2) + temps(3) + temps(4) = 15 + 9 + 20 = **44**. Python habits give 29 (`9 + 20`: counting from zero and stopping before 4) or 24 (`15 + 9`: counting from one but stopping before 4). Both habits at once is the most common wrong answer.
+
+**Example 2.** `a = 1 4 9`, `b = 2 4 6`, `c = 14`, then `d` is an **error**:
+
+```
+Error using *
+Incorrect dimensions for matrix multiplication. Check that the number of
+columns in the first matrix matches the number of rows in the second matrix. To
+operate on each element of the matrix individually, use TIMES (.*) for
+elementwise multiplication.
+```
+
+The NumPy habit predicts `d = 1 4 9`. Many will get `b` right anyway (a number times an array is fine either way), which is the moment to say "`*` is only a problem between *two arrays*." Read the last sentence of the error message out loud: the language explains itself. MATLAB's display has a blank line and padding (`a =`, blank, `     1     4     9`); students writing `[1, 4, 9]` have it right.
+
+**Example 3.** First call displays `mins = 7`, then `The hotter cup takes 9 minutes`.
+
+| t | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|---|---|---|---|---|---|---|---|---|
+| T | 80 | 74.0 | 68.6 | 63.74 | 59.37 | 55.43 | 51.89 | 48.70 |
+
+The 90 °C cup takes 9 minutes: only 2 more, because the hotter cup cools *faster* at first (the rule is proportional to T − 20). "A bit more, because it cools faster when it's hotter" is an excellent estimate; "a lot more" and "the same" are the productive wrong answers. Semicolon: the second `mins` isn't displayed, only the `fprintf` line. Function line: `t =` names the output up front, so the reader knows what comes back before reading the body; there's no `return` statement, and whatever `t` holds when the function reaches `end` is what's returned. (Where functions go in a script: in R2025a a function at the *top* of a script also runs fine; versions before 2024 required local functions at the end, which is why the reading calls "at the end" a convention.)
+
+**Getting MATLAB.** This is the part most likely to run long: account creation, CU email verification, and linking to the campus license. Expect a few students whose verification email is slow, and a few who download the desktop installer (several GB) on campus Wi-Fi; steer anyone who's short on time to the online version for today. The `disp('MATLAB works!')` check catches license problems now instead of Thursday.
+
+**Translation (if time; otherwise it makes a good Thursday warm-up).** One correct version, tested:
+
+```matlab
+dt = 0.5;          % minutes
+n = 40;            % steps
+T = zeros(1, n + 1);
+T(1) = 80;         % degrees C
+for i = 1:n
+    T(i+1) = T(i) - 0.1 * (T(i) - 20) * dt;
+end
+t = (0:n) * dt;
+plot(t, T)
+xlabel('time (min)')
+ylabel('temperature (°C)')
+disp(T(end))
+```
+
+Displays **27.7107**, matching Python's 27.7107293939062 (41 elements in both). `t = 0:dt:n*dt` also works. Common slips: `zeros(n + 1)` with one input makes a 41 × 41 *matrix* (no error; `plot` then draws 41 lines, a great "huh?" moment); `T(0) = 80` errors ("Array indices must be positive integers or logical values."); `for i = 0:n-1` with `T(i+1)` and `T(i)` hits that same error at `T(0)` on the first pass.
+
+**Timing (75 min).** Examples 1–3 with reveals, 35–40 (about 12 each). Getting MATLAB, 20–25. Translation for whoever gets there.
+
+**Standards.** P4 seed (predicting code, now in a second language): Checkpoint 4 has a MATLAB predict-the-output item. Good-faith completion for credit; a wrong prediction with a good "why" is full credit.
+:::
