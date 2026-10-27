@@ -3,7 +3,7 @@ title: "Reading MATLAB"
 subtitle: "Week 10 Tuesday · 2 engagement credits"
 ---
 
-Below are three short MATLAB scripts. We're going to work through them on paper, no computer. Then, at the end of class, we'll get everyone set up with MATLAB, ready for Thursday.
+Below are three short MATLAB scripts. We're going to work through them on paper, no computer. Then, at the end of class, we'll get everyone set up with MATLAB.
 
 ## How this works
 
@@ -11,19 +11,20 @@ For each example, on your group's sheet:
 
 1. **Predict.** Write down exactly what you think MATLAB will display.
 2. **Explain.** One or two sentences on how you got there. Lines marked with a `% <--` comment are the important ones: make sure your explanation says what each of those lines is doing. If your group disagrees, write down both answers and both reasons. That's more interesting than a quick vote.
-3. **Check.** After one member gets MATLAB installed, paste the code in and see what actually happens. If it's different from your prediction, try to say why.
+3. **Check.** After one member gets MATLAB running, paste the code into a script and see what actually happens. If it's different from your prediction, try to say why.
 
 We aren't grading on correctness, so don't cross anything out.
 
 ## A couple quick warnings
 
-You will be surprised at how successful you are at reading this code. A few things that MATLAB does differently (and I'll add a more complete list as a lesson after class).
+You will be surprised at how successful you are at reading this code. Here are a few things that MATLAB does differently (and I'll add a more complete list as a lesson before Thursday).
 
 - MATLAB puts its indices in `(...)` (instead of `[...]`).
-- MATLAB indexes from 1. That is: the first element of an array is `x(1)`.
+- MATLAB indexes from 1. The first element of an array is `x(1)`.
 - MATLAB requires an `end` at the end of each block. Whitespace is not important. (It also uses `(end)` to get the last element in an array, instead of `[-1]`).
-- MATLAB "displays" instead of "printing".
+- MATLAB uses `disp` instead of `print`.
 - MATLAB automatically displays the result of a line if the line does not end with a `;`.
+- To do "element-by-element" math in MATLAB, you include a `.` before the operation. E.g. `[1,2,3].*[4,5,6]` will return an array whose first element is $4$, second element is $10$ and third element is $18$. This applies to `.*`, `.^` (to raise to a power), `./`. (MATLAB reserves the "non-dotted" versions for matrix math... this is perhaps the #1 thing that is going to trip us up!)
 
 There are, of course, other differences, but this should get you started.
 
@@ -37,7 +38,7 @@ disp(temps(1))          % <-- in your description, say what this line is doing
 disp(temps(end))        % <-- and this one
 
 total = 0;
-for k = 2:4             % <-- which values does k take?
+for k = 2:4             % <-- what values does k take?
     total = total + temps(k);
 end
 disp(total)
@@ -50,22 +51,18 @@ What three numbers does this display?
 ```matlab
 v = [1, 2, 3];
 a = v .* v          % <-- in your description, say what this line is doing
-b = v * 2
-c = sum(v .^ 2)
-d = v * v           % <-- and this one
+b = sum(v .^ 2)
 ```
 
-There are no semicolons on these lines. In MATLAB, leaving the semicolon off means "show me the result," so each line displays its own answer.
+What are `a` and `b`?
 
-What are `a`, `b`, `c`, and `d`? For each one, write down the numbers, or "error" if you think MATLAB will refuse. (Look at the cheat sheet's row about element-wise math.)
+<!-- (Look at the cheat sheet's row about element-wise math.) -->
 
 ## Example 3
 
-
-
 ::: {.callout-important}
 
-The one fundamental programming idea I have not explicitly taught you is the `while` loop. A quick example in Python:
+The one fundamental programming idea I have not explicitly taught you is the `while` loop (though it did appear in the TrackPy code from last week). A quick example in Python:
 
 ```python
 k=0
@@ -96,8 +93,7 @@ function t = time_to_cool(T, target)     % <-- in your description, say what thi
 end
 ```
 
-
-- Compare the function's first line, `function t = time_to_cool(T, target)`, with a Python `def` line. What does the MATLAB version tell you that the Python one doesn't? And where's the `return`?
+Compare the function's first line, `function t = time_to_cool(T, target)`, with a Python `def` line. Note that there is no `return` here... how do you think MATLAB handles it?
 
 ## Getting MATLAB
 
@@ -149,7 +145,7 @@ Write it in MATLAB, using the cheat sheet. The places to slow down and think:
 
 ## Deliverable (2 EC)
 
-Your group's sheet, with all three examples: the prediction, the reasoning, what actually happened, and why. Names of everyone in the group at the top.
+Your group's sheet, with all three examples: the prediction, the reasoning, what actually happened, and why. Names of everyone in the group at the top. Everyone should have a MathWorks account before leaving.
 
 ::: {.content-hidden}
 **Instructor key (planning only — stripped from the rendered site).** All outputs below are from MATLAB R2025a, run Oct 25, 2026.

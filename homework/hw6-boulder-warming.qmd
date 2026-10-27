@@ -12,7 +12,7 @@ Fortunately, someone has been writing down Boulder's temperature every day since
 **See [Submitting Homework](../info/colab-format.qmd) for how to set up the report. Same look as before.**
 
 ::: {.column-margin}
-AI use is welcome on this one: say which parts it wrote in your spec. This time we're *not* grading the AI audit (standard A4).
+AI use is still welcome: say which parts it wrote in your spec. This time we're *not* grading the AI audit (standard A4).
 :::
 
 ## Data
