@@ -39,12 +39,12 @@ Tentative schedule:
 | **Phase 2 — Tools** | | | |
 | 7 | **Oct 6**<br>[Pandas](../lessons/07-pandas.qmd) — 60,000 rows without fear. Then [Dataset triage](../activities/w07-triage.qmd). | **Oct 8**<br>*(No class.)*<br><br>*Homework:* [HW 5 · Where the wind blows](../homework/hw5-wind-farm.qmd). | P3, F2 |
 | 8 | **Oct 13**<br>[Fetch](../lessons/08-fetch.qmd) — APIs, JSON, dictionaries, and what to do when a request fails (`try`/`except`). | **Oct 15**<br>[**Data acquisition lab**](../activities/w08-acquisition.qmd) — your phone as a lab instrument. | F1, F2, A3 |
-| 9 | **Oct 20**<br>✓ **Checkpoint 3**, then **Back to the model** — revisiting the falling ball with real data in hand. | **Oct 22**<br>**Model meets measurement** — phone drop vs. simulation. | S1, S3, A3 |
+| 9 | **Oct 20**<br>✓ **Checkpoint 3**, then [Enhancing Mars](../lessons/09a-images.qmd) — a picture is an array, so array math becomes image processing. | **Oct 22**<br>[Tracking bubbles](../activities/w09-bubble-tracking.qmd) — video as a stack of images, and TrackPy to follow thousands of bubbles.<br><br>*Homework:* [HW 6 · Is Boulder warming?](../homework/hw6-boulder-warming.qmd). | S1, S3, A3 |
 | 10 | **Oct 27**<br>[**Reading MATLAB**](../activities/w10-reading-matlab.qmd) — predicting MATLAB code on paper, then getting MATLAB set up. | **Oct 29**<br>**Model critique**. | S2, S3, S4 |
 | **Phase 3 — Integration** | | | |
-| 11 | **Nov 3**<br>✓ **Checkpoint 4**, then **Your second language** — MATLAB, translation, and choosing tools. | **Nov 5**<br>**Project launch**. | P4, A4 |
-| 12 | **Nov 10**<br>**Project studio** — desk crits at tables. | **Nov 12**<br>**Pin-up #1** — specs & verification plans on the wall. | S2, A3, A4 |
-| 13 | **Nov 17**<br>**Project studio** — desk crits at tables. | **Nov 19**<br>**Pin-up #2** — working artifacts, same-project pairing. | P4, A2, A3 |
+| 11 | **Nov 3**<br>✓ **Checkpoint 4**, then **Project launch**. | **Nov 5**<br>**Project studio**. | P4, A4 |
+| 12 | **Nov 10**<br>**Project studio**. | **Nov 12**<br>**Pin-up #1** — specs & verification plans on the wall. | S2, A3, A4 |
+| 13 | **Nov 17**<br>**Project studio**. | **Nov 19**<br>**Pin-up #2** — working artifacts, same-project pairing. | P4, A2, A3 |
 | | **Nov 24 & 26**<br>*Thanksgiving break — no class.* | | |
 | 14 | **Dec 1**<br>**Defense prep** — what it means to know your own project. | **Dec 3**<br>**Mock defenses** at tables. | — |
 | Finals | **Dec 7 (Mon)**<br>9:30 section: 1:30–4 p.m. | **Dec 10 (Thu)**<br>11:00 section: 10:30 a.m.–1 p.m. | — |

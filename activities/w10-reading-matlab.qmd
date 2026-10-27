@@ -97,7 +97,7 @@ Compare the function's first line, `function t = time_to_cool(T, target)`, with 
 
 ## Getting MATLAB
 
-As a CU student, you have free access if you create a MathWorks account using your CU email address. Instructions are [here](https://oit.colorado.edu/software-hardware/software-catalog/matlab): use the ones for students, under "How to get it."
+As a CU student, you have free access if you create a MathWorks account using your CU email address. Instructions are [here](https://oit.colorado.edu/software-hardware/software-catalog/matlab): use the ones for students, under "How to get it." **You do not have to install MATLAB and can instead use MATLAB Online, but you do need to create a MathWorks account.**
 
 Once you have your account set up, you can access MATLAB online [at this link](https://www.mathworks.com/products/matlab-online.html). You can explore on your own, or flag down a CA/TA/me and we'll give your group a quick introduction.
 
