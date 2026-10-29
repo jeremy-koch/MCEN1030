@@ -9,7 +9,7 @@ On a windy night in January your power company shuts off electricity to your nei
 
 ## Part 1 — The model
 
-In heat transfer you will learn that the heat transfer rate depends on the difference in temperature between the two objects — when it is warm inside and cold outside, the hot object cools off faster, but that reduces the difference in temperature inside-outside, and so the cooling slows down with time. Mathematically there is one important number in the model: the object's **time constant**, `tau` (τ, in hours). Each hour, the object loses about 1/τ of the gap. A drafty house has a small τ; a well-insulated one has a big τ. We'll start with τ = 30 hours, which is a reasonable guess for an ordinary house.
+In heat transfer you will learn that the heat transfer rate depends on the difference in temperature between two objects — when it is warm inside and cold outside, the house cools off faster, but that reduces the difference in temperature inside-outside, and so the cooling slows down with time. Mathematically there is one important number in the model: the object's **time constant**, `tau` (τ, in hours). Each hour, the house loses about 1/τ of the gap. A drafty house has a small τ; a well-insulated one has a big τ. We'll start with τ = 30 hours, which is a reasonable guess.
 
 ::: {.column-margin}
 A house's τ depends on its insulation, its windows, air sneaking under doors, how much heavy stuff is soaking up heat, etc. Somewhere between τ = 15 and 60 hours covers most houses.
