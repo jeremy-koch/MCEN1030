@@ -1,0 +1,142 @@
+---
+title: "Your second language: MATLAB"
+subtitle: "Week 10 — reading (any time this week)"
+---
+
+You could say that we have spent nine weeks learning Python, but I would say we've spent nine weeks learning *computing* (variables, functions, loops, arrays, plots, time-stepping) and it happened to be in Python. Learning MATLAB is not starting from scratch. Indeed, the syntax is similar in a lot of ways... but the little differences will trip you up! My goal is not to have you memorize all the nuances of both languages, or either language, but instead to understand how to think computationally.
+
+This page is a reference more than a lesson.
+
+## Why MATLAB at all?
+
+A lot of controls, dynamics, and test-and-measurement work is done MATLAB, partly because of **Simulink** (a drag-and-drop tool for simulating systems, built on MATLAB) and partly because of decades of engineering code that already exists in it. It also is geared towards education: you install and launch a program without much fuss, the interface has all the information you need right there, there are a lot of great tutorials...
+
+<!-- Python and MATLAB are mostly good at the same things. The honest reasons to pick one over the other are usually about *people*: what your team uses, what code already exists, what toolboxes the job needs. More on that at the end. -->
+
+::: {.column-margin}
+The name is short for **MAT**rix **LAB**oratory. It was built for doing vector/matrix math. Recall how Python was a little clumsy with vectors: we didn't create them with `x=[1,2,3]`, we had to write `x=np.array([1,2,3])`. Python was not made for math, at least originally, but packages have made it very useful to engineers.
+:::
+
+## Getting in
+
+We'll use **MATLAB Online**, which runs in a web browser, the same way Colab does. As a CU student you have free access: create a MathWorks account with your CU email, following [OIT's instructions](https://oit.colorado.edu/software-hardware/software-catalog/matlab) (the ones for students, under "How to get it"). You can also install the desktop version if you prefer; the [Tuesday activity](../activities/w10-reading-matlab.qmd) has more on choosing.
+
+A few things you'll see:
+
+- The **Command Window** is a place to type one line and see the answer immediately. Good for quick checks, like a calculator.
+- A **script** is a file of code ending in `.m`. You write it, save it, and click Run.
+- A **Live Script** (ending in `.mlx`) mixes code, output, plots, and text in one document, a lot like a Colab notebook.
+
+## The falling object simulation
+
+Here's the falling-object simulation from [week 5](../activities/w05-drag-lab.qmd), written as a function that steps forward in time until the object hits the ground. First in Python, then in MATLAB:
+
+::: {layout-ncol=2}
+```python
+# Python
+def drop(h0, k_over_m):
+    """Time (s) to fall from h0 (m), with drag k/m."""
+    g = 9.81
+    dt = 0.005
+    y = h0
+    v = 0
+    t = 0
+    while y > 0:
+        a = -g - k_over_m * v * abs(v)
+        y = y + v * dt
+        v = v + a * dt
+        t = t + dt
+    return t
+
+t = drop(10.0, 0.0)
+print(f"lands at {t:.3f} s")
+```
+
+```matlab
+% MATLAB
+t = drop(10.0, 0.0);
+fprintf('lands at %.3f s\n', t)
+
+function t = drop(h0, k_over_m)
+    % Time (s) to fall from h0 (m), with drag k/m.
+    g = 9.81;
+    dt = 0.005;
+    y = h0;
+    v = 0;
+    t = 0;
+    while y > 0
+        a = -g - k_over_m * v * abs(v);
+        y = y + v * dt;
+        v = v + a * dt;
+        t = t + dt;
+    end
+end
+```
+:::
+
+Both print `lands at 1.435 s`.
+
+Three things to notice about the MATLAB code:
+
+**It has identical thinking/organization.** A function with inputs and an output, we set variable values. A `while` loop that steps forward until the ball lands. The same strategy for updating.
+
+**Cosmetic differences: the spelling.** `%` starts a comment instead of `#`. Blocks end with `end` instead of being marked by indentation (MATLAB code *can* be indented, but doesn't have to be indented — it just helps with reading). We include semicolons at the end of a lines, else it prints the result of that line every time. `fprintf` instead of an f-string. The function says what it returns in its first line (`function t = drop(...)`) instead of with a `return` statement.
+
+**Genuinely different.** A handful of things that can actually change your answer... let's talk about these in more detail.
+
+## The real differences
+
+**1. Counting starts at 1.** In MATLAB, `x(1)` is the *first* element and `x(end)` is the last element. In Python, `x[0]` is the first and `x[-1]` is the last. This is probably *the biggest bug* when moving between languages.
+
+**2. Ranges include their end.** `1:5` gives `1, 2, 3, 4, 5`. Python's `range(1, 5)` is `1, 2, 3, 4`. And `0:0.5:2` (start, step, stop) gives `0, 0.5, 1, 1.5, 2`, where `np.arange(0, 2, 0.5)` stops before 2.
+
+**3. `*` means matrix multiplication.** In NumPy, `a * b` multiplies two arrays element by element. In MATLAB, `a * b` is *matrix* multiplication, a different operation from linear algebra. For element-by-element, put a dot in front: `.*`, `./`, `.^`. Multiplying an array by a single number is fine either way: `2 * v` doubles every element. If you forget the dot between two arrays, MATLAB will usually stop with an error (and, helpfully, the error message tells you to use `.*`). Occasionally the shapes happen to fit and it computes something... probably not what you want.
+
+**4. Parentheses do two jobs.** `T(3)` might mean "element 3 of the array `T`" or "call the function `T` with input 3." MATLAB uses parentheses for both, where Python uses square brackets for indexing. You figure out which from context (or from what `T` is).
+
+**5. Where functions live.** A function can go right inside a script, as in the drop example above, or in its own file named after the function (`drop.m`). Until a few years ago, functions in a script had to go at the *end*, after the code that uses them. But modern MATLAB will accept them anywhere in the script.
+
+**6. No importing.** `zeros`, `max`, etc., are built in to MATLAB, no need to `import numpy as np` and then use the awkward `np.zeros`.
+
+## Cheat sheet
+
+| what | Python (NumPy) | MATLAB |
+|:---|:---|:---|
+| comment | `# note` | `% note` |
+| array | `np.array([1, 2, 3])` | `[1, 2, 3]` |
+| first / last element | `x[0]`, `x[-1]` | `x(1)`, `x(end)` |
+| elements 2 through 4 | `x[1:4]` | `x(2:4)` |
+| array of zeros | `np.zeros(n)` | `zeros(1, n)` |
+| evenly spaced | `np.arange(0, 2, 0.5)` (stops before 2) | `0:0.5:2` (includes 2) |
+| how many elements | `len(x)` | `length(x)` or `numel(x)` |
+| element-wise math | `a * b`, `a / b`, `a ** 2` | `a .* b`, `a ./ b`, `a .^ 2` |
+| sum, mean, max | `x.sum()`, `x.mean()`, `x.max()` | `sum(x)`, `mean(x)`, `max(x)` |
+| loop | `for i in range(n):` | `for i = 1:n` ... `end` |
+| while | `while y > 0:` | `while y > 0` ... `end` |
+| if | `if a > b:` / `elif` / `else:` | `if a > b` / `elseif` / `else` ... `end` |
+| not equal | `!=` | `~=` |
+| print | `print(x)` | `disp(x)`, or leave off the `;` |
+| formatted print | `print(f"{t:.3f} s")` | `fprintf('%.3f s\n', t)` |
+| function | `def f(x):` ... `return y` | `function y = f(x)` ... `end` |
+| plot | `plt.plot(t, y)` | `plot(t, y)` |
+| labels | `plt.xlabel("time (s)")` | `xlabel('time (s)')` |
+| two lines on one plot | call `plt.plot` twice | `hold on` between the `plot` calls |
+| read a CSV | `pd.read_csv("f.csv")` | `readtable('f.csv')` |
+
+
+## Choosing a tool
+
+So when *should* you use MATLAB rather than Python? Or Excel, or a calculator, or ...
+
+1. **What does the team already use?** If your team is comfortable in MATLAB, don't throw them a curveball and insist on using another language.
+2. **What already exists?** Thousands of lines of working code is a good reason to keep using that language.
+3. **What does the job need?** Fetching data from the web and wrangling big tables: Python's ecosystem is hard to beat. Simulating a control system with Simulink: MATLAB is best. Glancing at a 30-row spreadsheet from a colleague: Excel. Checking whether a pump can fill a tank by Friday: thirty seconds on paper.
+
+Notice what's not on the list: which language you like better. You'll have preferences, everyone does, but they go last.
+
+
+::: {.callout-warning}
+
+MATLAB is not free! Part of your tuition goes to getting you "free" access. There are many companies who are willing to pay for MATLAB, due to legacy code, a particular toolbox, etc. But you might one day work at a start-up company who is unwilling to spend thousands of dollars on a MATLAB license when Python can do the same things for free. 
+
+:::

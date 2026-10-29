@@ -1,6 +1,6 @@
 ---
 title: "HW 4 · The siren"
-subtitle: "Anchor week 6 · Tentative standards: P2, A3, A4"
+subtitle: "Anchor week 6 · Standards: P2, A3, A4"
 ---
 
 

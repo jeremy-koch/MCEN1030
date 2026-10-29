@@ -75,6 +75,8 @@ website:
           - lessons/09a-images.qmd
           - activities/w09-bubble-tracking.qmd
           - activities/w10-reading-matlab.qmd
+          - lessons/10a-matlab.qmd
+          - activities/w10-lights-out.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd

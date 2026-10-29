@@ -1,6 +1,6 @@
 ---
 title: "HW 1 · The grade calculator"
-# subtitle: "Anchor week 2 · Standards: P4, A4"
+subtitle: "Anchor week 2 · Standards: P4, A4"
 ---
 
 

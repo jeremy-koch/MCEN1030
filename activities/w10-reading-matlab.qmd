@@ -101,7 +101,7 @@ As a CU student, you have free access if you create a MathWorks account using yo
 
 Once you have your account set up, you can access MATLAB online [at this link](https://www.mathworks.com/products/matlab-online.html). You can explore on your own, or flag down a CA/TA/me and we'll give your group a quick introduction.
 
-The MathWorks site has many tutorials, maybe most notably the "MATLAB Onramp," a free online training. You can find it [here](https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted).
+The MathWorks site has many free tutorials, maybe most notably the "MATLAB Onramp," an introduction to MATLAB. You can find it [here](https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted).
 
 **Before you leave today:** get MATLAB running, make a new script, and run this one line in it:
 

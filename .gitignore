@@ -42,6 +42,7 @@ activities/w09*
 activities/PXL_20220717_222221822.mp4
 activities/w1*
 !activities/w10-reading-matlab.qmd
+!activities/w10-lights-out.qmd
 
 
 lessons/04*
@@ -58,6 +59,7 @@ lessons/08*
 lessons/09*
 !lessons/09a-images.qmd
 lessons/1*
+!lessons/10a-matlab.qmd
 
 lessons/old/
 homework/old/

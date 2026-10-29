@@ -1,0 +1,192 @@
+---
+title: "Lights out"
+subtitle: "Week 10 Thursday · 2 engagement credits"
+---
+
+On a windy night in January your power company shuts off electricity to your neighborhood. (This is happening more often on high-wind days due to fire risk.) It's 20 °C inside and −10 °C outside, and no power means no furnace. Your landlord texts the only engineer they know, you: *how long before we have to worry about the pipes?*
+
+(What is your guess for how long until the inside reaches **10 °C**? Two hours? Ten? Two days?)
+
+## Part 1 — The model
+
+In heat transfer you will learn that the heat transfer rate depends on the difference in temperature between the two objects — when it is warm inside and cold outside, the hot object cools off faster, but that reduces the difference in temperature inside-outside, and so the cooling slows down with time. Mathematically there is one important number in the model: the object's **time constant**, `tau` (τ, in hours). Each hour, the object loses about 1/τ of the gap. A drafty house has a small τ; a well-insulated one has a big τ. We'll start with τ = 30 hours, which is a reasonable guess for an ordinary house.
+
+::: {.column-margin}
+A house's τ depends on its insulation, its windows, air sneaking under doors, how much heavy stuff is soaking up heat, etc. Somewhere between τ = 15 and 60 hours covers most houses.
+:::
+
+Here's the model written in Python. We've been writing Python for ten weeks, so you can read it already. Your job is to **translate it into MATLAB**, using the [cheat sheet](../lessons/10a-matlab.qmd) from this week.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+T_out = -10      # outside temperature (C), held constant
+tau = 30         # house time constant (hours)
+dt = 0.5         # time step (hours)
+n = 96           # number of steps
+
+t = np.arange(n + 1) * dt
+T = np.zeros(n + 1)
+T[0] = 20        # inside temperature when the power goes out (C)
+
+for k in range(n):
+    T[k+1] = T[k] - (T[k] - T_out) / tau * dt
+
+plt.plot(t, T)
+plt.xlabel("hours since the power went out")
+plt.ylabel("inside temperature (C)")
+plt.show()
+```
+
+1. **Translate it.** The places to be careful: `np.arange(n + 1)`, `np.zeros(n + 1)`, `T[0] = 20`, and `for k in range(n)` together with `T[k+1]` and `T[k]`. **Don't use AI, get some experience looking at MATLAB!**
+2. **Check yourself, milestone by milestone.** Type each of these in the Command Window as you go:
+
+    | check | what you should see |
+    |:--|:--|
+    | `length(T)` | `97` |
+    | `T(1)` | `20` |
+    | `T(2)` | `19.5000` |
+    | `T(3)` | `19.0083` |
+    | `T(19)` | `12.1684` |
+    | `T(end)` | `-4.0242` |
+
+    If one of them is off, you now know which part of the translation to look at: the first two catch a wrong start, problems with `T(2)` and `T(3)` point you to the loop update, and `T(end)` makes sure you have the right number of elements. (With one input, `zeros` makes a square matrix, not a list: `length(T)` still says 97, and the plot will look strange.)
+3. **Look at the shape.** Does it make sense? What value is it heading towards if we have many days where it stays at −10 °C? Does that make sense?
+4. **Answer the landlord.** This line finds the first time the inside is below 10 °C. You should get `12.5`.
+
+    ```matlab
+    t(find(T < 10, 1))
+    ```
+
+    `find(T < 10, 1)` gives the *index* of the first element of `T` that's below 10, and then `t(...)` looks up the time at that index. How does the answer compare with your guess?
+
+
+::: {.column-margin}
+LLMs are very good at translating code between languages, but the point of this exercise is to give you some experience looking through MATLAB code.
+:::
+
+## Part 2 — Three ways to be wrong
+
+You'll get a nice plot, but that does not necessarily mean you should believe the result! Engineers sort the ways a model can mislead into three kinds:
+
+- **Numerical.** The model is fine, but the way we computed it isn't. Chopping time into steps that are too big is the classic one; we saw it with the balloon in [week 5](w05-drag-lab.qmd).
+- **Physical.** The model leaves out something that matters for this situation: a missing effect.
+- **Extrapolation.** The model was fine where it was tested, but we use it in conditions far from where it was tested.
+
+Below are three situations. For each, your group writes down **which kind it is**, **the evidence** that tells you, and **what check would have caught it**.
+
+### Situation A: "Faster"
+
+Your roommate thinks the simulation has too many steps. They change `dt` to 10 hours and `n` to 6, so it still covers about the same stretch of time.
+
+Try it. Then try `dt = 20`, `30`, `45`, `60`, and `70` (keep `n = 6`). Look at the plots, and look at the actual numbers in `T`.
+
+- At what `dt` does the answer stop being *a bit off* and start being *ridiculous*? What is ridiculous about it? (Think about what the outside temperature is.)
+- At `dt = 0.5` and `dt = 0.25`, when does the house reach 10 °C? Does halving the step change the answer much? What does that tell you about whether 0.5 hours is small enough?
+
+### Situation B: "It was a sunny day"
+
+A neighbor had their thermostat app logging during an outage last winter, with power out for a full day starting at 6 p.m. Outside stayed around −5 °C the whole time. (These are made-up numbers, but they're realistic.)
+
+| time | 6 pm | 8 pm | 10 pm | 12 am | 2 am | 4 am | 6 am | 8 am | 10 am | 12 pm | 2 pm | 4 pm | 6 pm |
+|:--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+| inside (°C) | 20.0 | 18.4 | 16.9 | 15.5 | 14.1 | 12.9 | 11.8 | 10.7 | 10.0 | 11.4 | 13.2 | 13.4 | 12.2 |
+
+Change your model to `T_out = -5` and `dt = 0.5`, run it for 24 hours (what's `n`?), and compare with the log. Typing these two lines plots the log on top of your model:
+
+```matlab
+hold on
+plot(0:2:24, [20.0 18.4 16.9 15.5 14.1 12.9 11.8 10.7 10.0 11.4 13.2 13.4 12.2], 'o')
+```
+
+- Where do the model and the log agree, and where do they split?
+- The house got *warmer* with no furnace and a −5 °C day. What could do that? Can our model ever do that, no matter what `tau` we pick?
+- Is the model useless now? For the landlord's question about the *first night*, should we trust it?
+
+### Situation C: "Just tell them it's fine"
+
+Suppose a property manager tested this exact model against five real outages last winter. Each outage lasted less than 12 hours, on nights between −5 and 5 °C, and the model matched the thermostat logs within about 1 °C every time. Now they want to tell tenants: *"our model shows the pipes will be fine through a three-day outage at −25 °C."*
+
+- What is different in the present situation vs. the ones the property manager looked at?
+- Physically, why might the pipes be damaged earlier than predicted?
+
+
+<!-- No code for this one.
+
+- What's the model actually been tested on, and what's being claimed? Draw the two on a sketch (outside temperature on one axis, outage length on the other) if it helps.
+- Would anything *in the model's output* look different or warn you if it were wrong out there?
+ -->
+
+## Part 3 — A what-if (if you have time)
+
+Back to `T_out = -10`, `dt = 0.5`, and enough steps for 100 hours. Put `hold on` after the `plot` line, then run the model three times: τ = 15, 30, and 60 hours. For each, determine when the house reaches 10 °C.
+
+What happens to that time when τ doubles? Is that what you'd have guessed?
+
+## Deliverable (2 EC)
+
+Your group's sheet, names at the top:
+
+1. Everyone's guess, and the model's answer for 10 °C.
+2. The values of `T(end)`, etc., confirming they match with Python's results.
+3. For each of Situations A, B, and C: what is wrong and why?
+4. If you got to Part 3: the three times, and one sentence on the pattern.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site).** Numbers computed with an equivalent Python stepper (not run in MATLAB); the milestone values above were computed in Python, so run the reference translation below once in MATLAB before class and confirm they match. The page now gives students the Python and asks for the MATLAB. It is also the starting point for HW 7, which is in MATLAB too.
+
+**Reference translation:**
+
+```matlab
+T_out = -10;     % outside temperature (C), held constant
+tau   = 30;      % house time constant (hours)
+dt    = 0.5;     % time step (hours)
+n     = 96;      % number of steps
+
+t = (0:n) * dt;
+T = zeros(1, n + 1);
+T(1) = 20;
+
+for k = 1:n
+    T(k+1) = T(k) - (T(k) - T_out) / tau * dt;
+end
+
+plot(t, T)
+xlabel('hours since the power went out')
+ylabel('inside temperature (C)')
+```
+
+Common slips: `zeros(n + 1)` (a 97 × 97 matrix: `length(T)` still says 97, and `T(2)`, `T(3)`, `T(19)` all come out right because MATLAB indexes a matrix down its columns, but `T(end)` is `0`, the last element of the whole matrix, and `plot` draws 97 lines); `T(0) = 20` (error: indices must be positive); `for k = 0:n-1` with `T(k+1)` and `T(k)` (same error at `T(0)`); `t = (0:n) * dt` written as `0:dt:n` (runs to 96 h).
+
+**Why this activity.** It's the S3 lesson in activity form: CP4 (Tuesday) has an S3 item for everyone, and S3 hasn't had a formal outing yet (seeded in week 5's balloon and the top of the bubble glass). It's also the setup for HW 7, which uses the same model with real outside temperatures, the way the drag lab set up the potato cannon. Second purpose: more MATLAB practice before CP4's MATLAB predict item (P4).
+
+**Guesses.** Expect a spread from 1 h to 2 days. Answer: about 12 h.
+
+**Part 1.** `n = 96`, `dt = 0.5` → 48 hours. `t` is 0, 0.5, ..., 48. `T(2) = 20 − 30/30 × 0.5 = 19.5`; `T(3) = 19.5 − 29.5/30 × 0.5 = 19.0083`. MATLAB prints `19.5000` and `19.0083`. Python's `T[1]` and `T[2]` are MATLAB's `T(2)` and `T(3)`; that off-by-one is the classic trap; say it out loud at the projector if groups mix them up. **Milestones (the table on the page):** `length(T)` 97, `T(1)` 20, `T(2)` 19.5000, `T(3)` 19.0083, `T(19)` 12.1684 (9 h), `T(end)` −4.0242 (48 h). Also available if you want more: `T(25)` 10.0419 (12 h), `T(49)` 3.3893 (24 h). Shape: drops fast, then slower, levels toward −10 (the outside temperature: the gap closes, so the cooling stops). After 48 h, T ≈ −4.0. `t(find(T < 10, 1))` → **12.5** (T at 12 h is 10.04). The exact answer, τ ln(30/20) = 12.16 h, isn't needed; mention only if asked.
+
+**Situation A (numerical).** `n = 6`:
+
+| dt | T values |
+|---|---|
+| 10 | 20, 10.0, 3.3, −1.1, −4.1, −6.0, −7.4 (coarse but plausible: the subtle one) |
+| 20 | 20, 0.0, −6.7, −8.9, −9.6, −9.9, −10.0 |
+| 30 | 20, −10, −10, ... (jumps straight to outside in one step) |
+| 45 | 20, **−25.0**, −2.5, −13.8, −8.1, −10.9, −9.5 (colder than outside: impossible) |
+| 60 | 20, −40, 20, −40, ... (oscillates forever) |
+| 70 | 20, −50, 43.3, −81.1, 84.8, −136.4, 158.6 (blows up) |
+
+The impossible line is crossed when dt > τ (the step overshoots the outside temperature); groups will say "45" and that's the right instinct. Physical evidence: with no AC, the inside can't get colder than outside, and a house can't heat itself to 158 °C. Check: halve dt and compare. Crossing 10 °C: dt = 0.5 → 12.5 h, dt = 0.25 → 12.25 h (dt = 1, 2 → 12 h, which is just the output resolution). Halving barely changes it, so 0.5 h is small enough. As in week 5, keep it to "the step held the cooling rate fixed for too long and overshot." No stability criteria.
+
+**Situation B (physical: missing effect, sunlight through windows).** With `n = 48`, the model gives 20.0, 18.4, 16.9, 15.4, 14.1, 12.9, 11.7, 10.6, **9.6, 8.7, 7.8, 6.9, 6.2** at the same times: within 0.1 °C overnight (the log was generated from the same model, at a finer step, plus a sun term; say so if anyone asks why it's *so* good). The log rises 10.0 → 13.4 from 10 am to 4 pm. The model can never rise: every step moves T toward T_out, and no τ changes that. Other answers worth crediting: people inside, a gas stove, a fireplace. Check: compare against even one measurement; an assumptions audit ("what heats a house besides the furnace?"). Still trustworthy for the first night, since the sun's down: the key judgment, a missing effect matters only when it's present.
+
+**Situation C (extrapolation, twice: colder and longer).** Tested at −5 to 5 °C, under 12 h; claimed at −25 °C, 72 h. Nothing in the output warns you: the model happily produces a smooth curve. Things that might change: wind drives more cold air through gaps (τ effectively shorter on windy nights); pipes in exterior walls are colder than room air; the heavy parts of the house (slab, walls) keep giving off stored heat for a while, which matters more over days than hours (direction unclear without data); snow cover; tenants running space heaters or opening doors. Wanting a test outage on a colder night, or a log from a cold snap, or a safety margin, all good. The Challenger framing from the old week-10 lesson is a fine two-minute story here if the room is engaged: "we had no data at that temperature" is the sentence to say out loud. Note the overlap: "pipes in exterior walls" is arguably physical. That's fine and worth naming: the skill is identifying the *nearest* failure mode with evidence, not the one true label.
+
+**Part 3.** Time to 10 °C at dt = 0.5: τ = 15 → 6.0 h, τ = 30 → 12.5 h, τ = 60 → 24.5 h. Doubling τ doubles the time (exactly, in the true solution). Insulation buys time in direct proportion. A nice S4 seed for HW 7.
+
+**Timing (75 min).** Guess 5. Part 1, 25 (translating the Python is a bit longer than just typing the MATLAB, but the milestones should keep groups from getting stuck; groups without a working account share a screen). Part 2, 35: A 15, B 12, C 8. Part 3 and close, 10–15. If behind, do Situation C as a whole-room discussion at the end; it's the one that works best out loud anyway.
+
+**Debrief (last 5 min).** Put the three kinds on the board with their checks: numerical → halve the step; physical → compare with a measurement, assumptions audit; extrapolation → know the range you tested. Tell them this is on Tuesday's checkpoint.
+
+**Standards.** S3 (all three kinds), S1 (reading and running a time-stepping model), P4 (MATLAB). Good-faith completion; a wrong label with a good reason is full credit.
+:::
