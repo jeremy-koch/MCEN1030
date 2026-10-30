@@ -1,0 +1,190 @@
+---
+title: "HW 7 · Lights out"
+subtitle: "Anchor week 10 · Standards: S1, S2, S3, S4, F1"
+---
+
+## Scenario
+
+On Thursday we built a model of a house cooling after the power goes out, and we spent most of the period asking when to believe it. Now let's point it at a real night.
+
+On the afternoon of **December 21, 2022**, an arctic front came down the Front Range. Boulder went from about 6 °C at lunchtime to about −18 °C by 6 p.m., and it stayed brutally cold for two days. Suppose the power had gone out at 6 p.m. that evening. You're writing a short memo for a landlord with a few houses in town: **how long do the tenants have before the pipes are in danger, and what, if anything, would buy them more time?**
+
+This is the last homework of the semester, and it's all about the Simulate theme: build the model (S1), decide what goes in it (S2), judge whether to trust it (S3), and use it to ask what-if questions (S4).
+
+**Due Wednesday, November 4, at 11:59 p.m.**
+
+
+::: {.column-margin}
+**This one is in MATLAB**, the same as Thursday's activity. The [cheat sheet](../lessons/10a-matlab.qmd) has the translations from Python. A Live Script (`.mlx`) exported to PDF is a good way to make the report, with the same four headings as before: Specify / Annotate / Verify / Report. AI use is welcome: say which parts it wrote in your spec. As in HW 6, we're *not* grading the AI audit (A4) this time.
+
+How to create the pdf (from an mlx file): Live Editor tab → Export → Export to PDF.
+:::
+
+## The model
+
+From Thursday: each time step, the inside temperature moves toward the outside temperature by a fraction of the gap,
+
+```
+T_new = T - (T - T_out) / tau * dt
+```
+
+with `tau` (τ) the house's time constant in hours. We'll say τ = 30 hours for an ordinary house, and it's somewhere between 15 (drafty) and 60 (very well insulated) in general. (We'll go beyond as a "what if".)
+
+The new thing on this assignment: `T_out` isn't constant anymore. It's the real outside temperature, hour by hour, so each step uses whatever the outside temperature was during that hour.
+
+**The danger line.** Plumbers usually tell people to keep the heat at 55 °F (about 13 °C) or higher in a cold snap, because pipes inside exterior walls run colder than the room. Let's say **10 °C** inside is when we start worrying and **4 °C** is when pipes in the outside walls are probably freezing. (These are estimates.)
+
+## Data
+
+The outside temperatures come from [Open-Meteo](https://open-meteo.com/), the same free weather service we used in [week 8](../lessons/08-fetch.qmd). Besides forecasts, it keeps a historical archive. The address is a base plus options after the `?`:
+
+```
+https://archive-api.open-meteo.com/v1/archive?latitude=...&longitude=...&start_date=...&end_date=...&hourly=temperature_2m&timezone=America/Denver
+```
+
+| option | what it means | what you want |
+|:---|:---|:---|
+| `latitude`, `longitude` | where | Boulder: 40.015, −105.27 |
+| `start_date`, `end_date` | the date range, as `YYYY-MM-DD` | `2022-12-21` to `2022-12-24` (the end date is included, so this runs through 11 p.m. on Dec 24) |
+| `hourly` | which measurements | `temperature_2m` (the air temperature 2 m above the ground, °C) |
+| `timezone` | which clock the times use | `America/Denver`, so 6 p.m. means 6 p.m. in Boulder |
+
+In MATLAB, `webread` sends the request and turns the JSON reply into a *struct*, which is MATLAB's version of the dictionary we used in week 8. Instead of `info["hourly"]`, you write `info.hourly`:
+
+```matlab
+url = '...';                  % full address, no spaces
+info = webread(url);
+```
+
+Then look at what came back before using it (type `info` in the Command Window, then `info.hourly`, and keep digging). Where are the times? The temperatures? How many hours did you get? Which hour is 6 p.m. on December 21? (Remember: MATLAB counts from 1.)
+
+**Write down where it came from**, in a comment or text block right after you fetch it: the full address, the date you fetched it, and the latitude and longitude Open-Meteo says it actually used. (Compare those with the ones you asked for. Interesting...)
+
+::: {.column-margin}
+If the request fails, try again in a minute. If Open-Meteo is down for a long stretch, there's a saved copy on Canvas, but say in your spec that you used it.
+:::
+
+## Part 1 — Build it and check it
+
+Write a function that takes the starting inside temperature, an array of hourly outside temperatures, τ, and the time step, and returns the times and inside temperatures. Use a time step smaller than an hour. Each hour's outside temperature holds for every step inside that hour. (Is that a reasonable thing to assume? Put it in your audit in Part 3.)
+
+Before trusting it, check it in two ways:
+
+1. **Thursday's case.** Give it a constant −10 °C outside (an array where every hour is −10) and τ = 30. It should reach 10 °C at about 12 hours, as on Thursday.
+2. **By hand.** Using the real outside temperatures, compute the first three steps yourself and compare.
+
+## Part 2 — The real night
+
+Start at 20 °C inside at 6 p.m. on December 21, with τ = 30. Run it through 11 p.m. on December 24, the last hour of data (78 hours in all).
+
+- When does the inside reach 10 °C? 4 °C? Give actual clock times.
+- Plot the inside and outside temperatures on one plot, with your danger lines drawn on it.
+- Look at the curve: does it make physical sense? Is the inside ever colder than the outside? If so, did the inside cool past the outside, or did the outside warm past the inside? Which of those should be possible?
+
+## Part 3 — What's in the model, and what isn't
+
+Make an **assumptions audit**: a short list of what the model includes, then at least five things it leaves out. For each thing left out, finish the sentence "this would matter when/because..." in a line or two. Some places to look: what heats a house besides the furnace? Is one number really enough to describe "the house"? Is the temperature at the airport-ish grid point the temperature at the house? Is τ the same on a windy night as on a calm one? Is the danger line the right line?
+
+Then pick **one** thing you left out and *test* whether leaving it out was OK. You get to choose how. Here's a tool that handles several of them: any steady source of heat inside the house (people, a space heater, the oven) acts like making the outside a bit warmer. For an ordinary house:
+
+| heat source | about how much warmer it acts |
+|:---|:---|
+| three people | 1 °C |
+| one space heater (1500 W, plugged into a generator or a big battery) | 5 °C |
+
+so the model becomes `T_new = T - (T - (T_out + extra)) / tau * dt`. For something like sunlight, you'll need your own estimate (Open-Meteo can also give you `shortwave_radiation`, the sunlight hitting the ground, in W/m², but that is ambitious!). Whatever you test: how much did it change the answer to the landlord's question? Was it OK to leave out?
+
+## Part 4 — How far to trust it
+
+Write a short paragraph about each of the three ways a model goes wrong, *for this model, on this night*:
+
+1. **Numerical.** Is your time step small enough? Show the evidence: halve it, and compare the clock times from Part 2.
+2. **Physical.** Which effect from your audit is most likely to make the answer wrong, and in which direction (too early or too late)?
+3. **Extrapolation.** τ = 30 is an estimate for an ordinary house on an ordinary night. How far outside "ordinary" is this night? What would you want to know before you'd promise anyone a number?
+
+## Part 5 — What if?
+
+Now use the model to explore. Pose **at least two** what-if questions, run them, and say what you learned. One of them must be a sweep: run many values of one input and plot how the answer changes.
+
+Some starting points:
+
+- **Insulation.** How does the time to 4 °C depend on τ? Sweep τ from 15 to 100 hours and plot the time to 4 °C against τ. Is it a straight line? How big does τ need to be for the house to stay above 4 °C for the first 24 hours?
+- **The space heater.** Does a space heater on a generator save the pipes? How much time does it buy?
+- **Timing.** What if the power had gone out at noon on December 21, before the front arrived? Or at 6 p.m. on December 23?
+- **Your own.** Anything the landlord might reasonably ask.
+
+For each, interpret, don't just report: which inputs move the answer a lot, and which barely matter? What would you tell someone choosing how to spend money on this?
+
+## Your submission
+
+**Step 1 — Specify & prompt.**
+
+- The full data address, the date you fetched it, and the location Open-Meteo used.
+- Your function's inputs and outputs, with units, and how it handles the hourly outside temperatures.
+- Your time step, and why.
+- Your what-if questions, and what you'll vary in each.
+- If you still need **F1**, say so here, and we'll assess your data fetching and provenance for it.
+
+If AI wrote any of your code, include your prompt and the model name and date.
+
+**Step 2 — Annotate.** Three lines (or short blocks), each quoted in backticks, with a sentence or two in your own words about what it does:
+
+1. the update line, inside the loop;
+2. the line that picks the outside temperature for the current step;
+3. the line that finds the time the house reaches 4 °C.
+
+**Step 3 — Verify.** Your two checks from Part 1, and the time-step halving from Part 4.
+
+**Step 4 — Report.** A one-page memo for the landlord:
+
+1. **The answer**, in a sentence: how long until the pipes are in danger, for an ordinary house, on that night.
+2. **The figure**: inside and outside temperature through the outage, with the danger lines.
+3. **What would buy more time**, from your what-ifs, with numbers.
+4. **How sure**: the effects you left out and whether they matter, and how far outside the model's comfort zone this night is.
+
+Then attach your Part 3 audit, Part 4 paragraphs, and Part 5 plots after the memo.
+
+::: {.content-hidden}
+**Instructor key (planning only — stripped from the rendered site).** Computed with a Python stepper, Oct 28, 2026, and **reproduced in MATLAB Online, Oct 30, 2026**: `webread` gives `info.hourly.time` as a 96×1 cell array of text and `info.hourly.temperature_2m` as a 96×1 double (a *column*, no NaN), and every number below matched.
+
+**Why this homework.** Coverage (see `instructor/standards-coverage.md`): before HW 7, S2 has had *no* graded opportunity, S4 has had one (HW 3), and S1 and S3 have had no out-of-class opportunity. HW 7 is the last revisable chance at the divergent ones (the project has no revision window), so it's built around all four S standards. F1 is opt-in for students who missed it on HW 6, since the fetch is already part of the job.
+
+**Data (fetched Oct 28, 2026).** `start_date=2022-12-21&end_date=2022-12-24` gives 96 hours. Open-Meteo snaps the request (40.015, −105.27) to its grid cell at **40.035, −105.231**, elevation 1624 m: that's the "Interesting..." in the provenance paragraph, and a good A3/F1 detail (the data are a model's grid value, not a thermometer at the house). Dec 21: 6.0 °C at noon, 4.1 at 5 pm, **−18.3 at 6 pm**. Coldest: **−29.0 °C at midnight Dec 22–23**. 6 p.m. Dec 21 is index 18 (0-based) in the hourly arrays; 78 hours from there to the end. The JSON is `info["hourly"]["time"]` and `info["hourly"]["temperature_2m"]` (lists), plus `info["hourly_units"]`. Save a copy to Canvas as the fallback.
+
+**Part 1.** Constant −10, τ = 30, dt = 0.25: below 10 °C at **12.25 h** (dt = 0.5 gives 12.5, matching Thursday). Hand steps on the real night (dt = 0.25, T_out = −18.3 for the first hour): 20 → 19.681 → 19.364 → 19.050.
+
+**Part 2 (τ = 30).**
+
+| dt (h) | reaches 10 °C | reaches 4 °C | inside at 12 h |
+|---|---|---|---|
+| 1 | 9 h | 15 h | 6.14 |
+| 0.5 | 8.5 h | 14.5 h | 6.24 |
+| 0.25 | 8.75 h | 14.5 h | 6.28 |
+| 0.125 | 8.625 h | 14.375 h | 6.31 |
+
+So about **2:45 a.m.** for 10 °C and about **8:30 a.m. Dec 22** for 4 °C. Wiggles of a quarter hour between rows are mostly output resolution (the first time *below* the line can only be a multiple of dt). Inside stays warmer than outside until the front breaks: at about **54 h (just after midnight going into Dec 24)** the outside climbs past the inside, and by 11 p.m. Dec 24 it's about +1 °C outside and −7 °C inside. That's correct physics (the house is now lagging a *warming* outside, and starts warming back up), and it's the answer the bullet is after: the *outside warmed past the inside*, which is possible; the inside cooling past the outside is not (each step closes only a fraction `dt/tau` of the gap, so it can't overshoot unless dt > τ). A student who sees the inside dive below a steady or falling outside has a bug or a huge dt. Students who only look at the first day will say "never"; that's fine too if they say why. Expect some students to notice that the inside keeps falling all of Dec 22 and 23 while the outside sits at −22 to −29.
+
+**Part 3 (S2).** Heat sources: people +1 → 4 °C at 14.75 h (15 minutes later: ignorable); heater +5 → 10.0 h and 16.5 h (two hours: the heater helps, but nowhere near enough at −25 °C). Sun: Dec 22 and 23 were clear (Open-Meteo `shortwave_radiation` peaks near 400 W/m²), so a house with south windows would get a midday bump, as in Thursday's Situation B. It doesn't change the *first* crossing at 8:30 a.m. much, but it matters for "how bad by day 2." Other good audit rows: wind (the front was windy: more cold air leaking in, so τ effectively shorter), grid temperature vs. the house's actual location, pipes in exterior walls vs. room air (why the danger line is above 0), a basement or slab that stays warmer, one-temperature-for-the-whole-house. Met on S2 needs a real audit (not just "we ignored friction"-style rows) **and** one left-out effect actually tested, with a judgment about whether it mattered *for this question*.
+
+**Part 4 (S3).** Numerical: dt halving from 0.5 to 0.25 changes nothing meaningful (above). Physical: wind is the strongest candidate for "too late" (τ shorter than assumed, pipes freeze earlier); sun makes it "too early" by day 2. Extrapolation: τ = 30 is a generic estimate, never checked against this house, and this night was ~20 °C colder than a typical winter night; the honest statement is something like "the clock time could be off by hours in either direction." Met on S3 needs all three kinds addressed specifically for this model, with evidence for the numerical one.
+
+**Part 5 (S4), dt = 0.25:**
+
+| τ (h) | 10 °C | 4 °C | 0 °C | inside at 24 h |
+|---|---|---|---|---|
+| 15 | 4.5 | 7.75 | 10.0 | −15.0 |
+| 20 | 6.0 | 10.0 | 13.0 | −10.6 |
+| 30 | 8.75 | 14.5 | 18.75 | −4.0 |
+| 40 | 11.25 | 18.75 | 24.75 | 0.4 |
+| 60 | 16.25 | 27.5 | 35.75 | 5.7 |
+| 80 | 21.25 | 35.75 | 47.75 | 8.8 |
+| 100 | 26.25 | 44.25 | never (in the 78 h of data) | 10.8 |
+
+Time to 4 °C is close to proportional to τ (not exactly, since the outside temperature isn't constant). To stay above 4 °C for the first 24 hours takes τ ≈ **55 h**, a very well-insulated house. The interpretation we're hoping for: insulation is the big lever; the space heater is a small one on a night this cold; the start time matters a lot (an outage at noon Dec 21 gets six mild hours first). Met on S4 needs a sweep plus an *interpretation* (sensitive vs. insensitive inputs, what it means for a decision), not just plots.
+
+**S1.** Met if the function works on both checks in Part 1 and the hand steps match.
+
+**F1 (opt-in).** Met if they built the address, got the data, located 6 p.m. Dec 21 correctly, and recorded the address, fetch date, and actual grid location. The saved Canvas copy doesn't count toward F1.
+
+**Where students will struggle.** Off-by-one in picking 6 p.m. (the 6 p.m. entry is element **19** in MATLAB; 18 is 5 p.m., which is 4.1 °C and *before* the front: the inside temperature falls much more slowly for the first hour); picking the hour for each step with `floor((k-1)*dt) + 1` vs. something equivalent (any correct rule is fine if they explain it); `zeros(n)` instead of `zeros(1, n)` (a matrix, not a vector); mixing rows and columns (the temperatures arrive as a *column* but `zeros(1, n)` makes a row, so a vectorized comparison like `T < Tout` silently expands into a matrix instead of erroring: it bit our own check script); forgetting `timezone` and getting UTC (then "6 p.m." is really 11 a.m. local, *before* the front: their inside temperature drops much more slowly at first, and the outside plot shows the front arriving at hour 7. Good catch for anyone who plots the outside temperature first).
+:::
