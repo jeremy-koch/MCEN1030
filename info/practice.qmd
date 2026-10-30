@@ -7,7 +7,24 @@ The code on this page is editable and runs in your browser. More added throughou
 
 The first Run on this page takes a few seconds while Python (etc.) loads into your browser. After that, it should be fast.
 
-The sections follow the order of the course, so if you're prepping for a checkpoint, start at whatever week you're least sure about. Predict, then run.
+The sections follow the order of the course, and each heading is tagged with the [standards](standards.qmd) it practices. If you're prepping for a checkpoint, find the standards you still need and start there. Predict, then run.
+
+
+Here's where to practice each convergent standard:
+
+| Standard | In short | Problems |
+|:--|:--|:--|
+| **F2** | Read data's shape: rows, columns, dictionaries | D1, DI1–DI5, IM1–IM2 |
+| **P1** | Write a function, check it against a hand estimate | FN1–FN3 |
+| **P2** | Parameter sweep: one function, many values, results to a file | X5, D2, Z1 |
+| **P3** | pandas: filter, summarize, reduce | PD1 |
+| **P4** | Predict what a short script does | T1–T2, L1–L3, FN2, X1–X10, IM1 |
+| **S1** | Build a model: a formula, or time-stepping | AR1, SIM1, SIM3 |
+| **S3** | Should we trust it? Numerical, physical, extrapolation | SIM2, TW1–TW3 |
+| **A1** | Estimate and sanity-check before trusting | X7, X10, FN3, DI5 |
+| **A2** | Make an honest plot, catch a misleading one | PL1–PL2 |
+
+(The divergent standards, F1, S2, S4, A3, and A4, are tested on the homeworks and project, so they're not on the checkpoint.)
 
 ## Sandbox
 
@@ -18,7 +35,7 @@ message = "hello"
 print(message * 3)
 ```
 
-## Tracing (week 2)
+## Tracing (week 2) · P4
 
 **T1.** Look through the code and try to predict all three printed values, then run to check.
 
@@ -62,7 +79,7 @@ The same line twice is not the same *result* twice — the second one starts fro
 `16`. First squaring: `4`. Second squaring squares the *new* value: `16`.
 :::
 
-## Logic: `if`/`elif`/`else` (week 2)
+## Logic: `if`/`elif`/`else` (week 2) · P4
 
 **L1.**
 
@@ -155,12 +172,12 @@ else:
 or keep the original order but make the middle branch say exactly what it means: `if Re > 2300 and Re <= 4000:`. The first is more common. With `elif` chains, the order *is* part of the logic.
 :::
 
-## Functions (week 3)
+## Functions (week 3) · P1, P4
 
-**F1.** Fill in the blank `______` so the function matches its docstring, then verify it works by running the code.
+**FN1.** Fill in the blank `______` so the function matches its docstring, then verify it works by running the code.
 
 ```{pyodide}
-#| exercise: f1
+#| exercise: fn1
 def circle_area(r):
     """Area of a circle of radius r."""
     return 3.14159 * ______
@@ -168,20 +185,20 @@ def circle_area(r):
 print(circle_area(5))
 ```
 
-::: {.hint exercise="f1"}
+::: {.hint exercise="fn1"}
 Area is π r² — and remember Python needs the power written explicitly.
 :::
 
-::: {.solution exercise="f1"}
+::: {.solution exercise="fn1"}
 ```python
 return 3.14159 * r ** 2      # or: 3.14159 * r * r
 ```
 :::
 
-**F2.** Predict what prints.
+**FN2.** Predict what prints.
 
 ```{pyodide}
-#| exercise: f2
+#| exercise: fn2
 def add_ten(n):
     n = n + 10
     return n
@@ -192,31 +209,62 @@ print(n)
 print(result)
 ```
 
-::: {.hint exercise="f2"}
+::: {.hint exercise="fn2"}
 The `n` inside the function is limited in *scope*. What happens in the function stays in the function — only the `return` value escapes.
 :::
 
-::: {.solution exercise="f2"}
+::: {.solution exercise="fn2"}
 `1` then `11`. The outer `n` is untouched; `add_ten` worked on its own local copy and returned the `result`.
 :::
 
-## Arrays (week 4)
+**FN3.** This is the checkpoint-style one: write the whole function from its spec. Try it on paper first, about five lines. Then, *before* you trust it, work out one case by hand where you already know the answer, and make sure the function agrees.
 
-**A1.** Fill in the blank so `t` holds the fall time for *every* height at once, then print it.
+The spec: `cost_to_run(power_W, hours, price_per_kWh=0.15)` returns the cost, in dollars, of running a device that draws `power_W` watts for `hours` hours, when electricity costs `price_per_kWh` dollars per kilowatt-hour.
 
 ```{pyodide}
-#| exercise: a1
+#| exercise: fn3
+def cost_to_run(power_W, hours, price_per_kWh=0.15):
+    """______"""
+    ______
+
+print(cost_to_run(1000, 1))       # your hand check goes here
+print(cost_to_run(1500, 8))       # a space heater, overnight
+```
+
+::: {.hint exercise="fn3"}
+A kilowatt-hour is 1000 watts for one hour. So first turn watts into kilowatts, multiply by hours to get kWh, then multiply by the price. The easiest hand check is the one you can do without a calculator: a 1000 W device for 1 hour is exactly 1 kWh.
+:::
+
+::: {.solution exercise="fn3"}
+```python
+def cost_to_run(power_W, hours, price_per_kWh=0.15):
+    """Dollars to run a device drawing power_W watts for `hours` hours,
+    at price_per_kWh dollars per kilowatt-hour."""
+    energy_kWh = power_W / 1000 * hours
+    return energy_kWh * price_per_kWh
+```
+The hand check: 1000 W for 1 hour is 1 kWh, which costs $0.15. The space heater is 1.5 kW × 8 h = 12 kWh, so $1.80 (Python may print `1.7999999999999998`, the same harmless decimal fuzz as in DI3).
+
+The classic slip is forgetting the `/ 1000`. Then one hour of a 1000 W device costs $150, and the space heater costs $1800 a night. Nobody's electric bill looks like that... which is exactly why the hand check catches it, without anyone having to stare at the code.
+:::
+
+## Arrays (week 4) · S1, A1
+
+**AR1.** Fill in the blank so `t` holds the fall time for *every* height at once, then print it.
+
+```{pyodide}
+#| exercise: ar1
 import numpy as np
 h = np.array([1.0, 5.0, 20.0, 80.0])
 t = ______
 print(t)
 ```
 
-::: {.hint exercise="a1"}
+::: {.hint exercise="ar1"}
 The formula is $t=\sqrt{2h/g}$, and NumPy's square root is `np.sqrt(...)`. Write the arithmetic as if `h` were a single number — the array handles the "for every value" part itself.
 :::
 
-::: {.solution exercise="a1"}
+::: {.solution exercise="ar1"}
 ```python
 t = np.sqrt(2 * h / 9.81)
 ```
@@ -225,7 +273,7 @@ The first entry should be ≈ 0.45 s and each height is 4× the previous, so eac
 
 ## Loops (weeks 4–5)
 
-### Looping over values, looping over indices
+### Looping over values, looping over indices · P4
 
 **X1.** Fix the loop so it prints the sum of the squares of 1 through 4. (What value do you expect?)
 
@@ -333,7 +381,7 @@ Prints `24.0 W`, `6.0 W`, `5.0 W`, `0.66 W`. This is *the* reason to loop over i
 (Just giving you some vocabulary if you want to read more: Python also has `zip`, as in `for v, a in zip(volts, amps):`, which walks two lists side by side. An LLM will hand you that one a lot. Same idea, different spelling.)
 :::
 
-### Collecting results with `append`
+### Collecting results with `append` · P2, P4
 
 **X5.** Fill in the two blanks so `times` ends up holding the fall time for each height.
 
@@ -382,7 +430,7 @@ That `results = []` line runs *every* pass now. What does it do to whatever was 
 `[40.0]`. Every pass makes a brand-new empty list and puts one thing in it, so at the end only the last pass survives. The empty list has to be built *before* the loop, so it can survive all the passes.
 :::
 
-### Loops with `if` inside
+### Loops with `if` inside · P4, A1
 
 **X7.** A wind sensor logs `-999.0` whenever it misses a reading. Fill in the condition so only the real readings get collected.
 
@@ -494,12 +542,12 @@ A physics check: the velocity should get about $g\,\Delta t = 9.81 \times 0.1 \a
 Why start at 1? If `i` were 0, then `y[i-1]` is `y[-1]`, the *last* reading. Python happily does that (negative indices are legal!) and you'd get a "velocity" of about −1.96 m/s at t = 0, when the phone hadn't started moving yet. No error, just a wrong number. (Also notice that five positions give only four velocities. Off-by-one, our old friend.)
 :::
 
-## Simulation (week 5)
+## Simulation (week 5) · S1, S3
 
-**S1.** A cup of coffee cools faster when it's much hotter than the room, and slower as it gets close. A time-stepped version: each minute, the temperature drops by a fraction `k` of the gap between the coffee and the room. Trace it and predict the three printed lines.
+**SIM1.** A cup of coffee cools faster when it's much hotter than the room, and slower as it gets close. A time-stepped version: each minute, the temperature drops by a fraction `k` of the gap between the coffee and the room. Trace it and predict the three printed lines.
 
 ```{pyodide}
-#| exercise: s1
+#| exercise: sim1
 T = 90.0        # coffee temperature, °C
 T_room = 20.0
 k = 0.1         # per minute
@@ -510,11 +558,11 @@ for step in range(3):
     print(step, round(T, 2))
 ```
 
-::: {.hint exercise="s1"}
+::: {.hint exercise="sim1"}
 First pass: the gap is 90 − 20 = 70, and 10% of that is 7. The second pass starts from wherever the first one left off.
 :::
 
-::: {.solution exercise="s1"}
+::: {.solution exercise="sim1"}
 ```
 0 83.0
 1 76.7
@@ -523,10 +571,10 @@ First pass: the gap is 90 − 20 = 70, and 10% of that is 7. The second pass sta
 The drops are 7, then 6.3, then 5.67: shrinking, because the gap shrinks. That's the "slows down as it gets close" behavior we wanted.
 :::
 
-**S2.** Now let's break it on purpose. Same cooling model, but someone got impatient and took fifteen-minute steps. Run it. What's wrong with the answer, *physically*?
+**SIM2.** Now let's break it on purpose. Same cooling model, but someone got impatient and took fifteen-minute steps. Run it. What's wrong with the answer, *physically*?
 
 ```{pyodide}
-#| exercise: s2
+#| exercise: sim2
 T = 90.0
 T_room = 20.0
 k = 0.1
@@ -537,11 +585,11 @@ for step in range(3):
     print(step, round(T, 2))
 ```
 
-::: {.hint exercise="s2"}
+::: {.hint exercise="sim2"}
 Look at the first printed temperature. Can coffee sitting in a 20 °C room get colder than the room?
 :::
 
-::: {.solution exercise="s2"}
+::: {.solution exercise="sim2"}
 ```
 0 -15.0
 1 37.5
@@ -550,10 +598,10 @@ Look at the first printed temperature. Can coffee sitting in a 20 °C room get c
 Frozen coffee, in a warm room, which then bounces back up to 37.5 and down again. A real cup never goes below room temperature. The algebra is fine. The problem is that `k * dt` is now 1.5, so each step "removes" 150% of the gap and overshoots. Small steps keep the model honest. (Try `dt = 5.0`: it's off from the `dt = 1` answer, but at least it's not absurd.)
 :::
 
-**S3.** After a falling-ball simulation, we want the time when the ball first goes below the ground. Fill in the blank, using a mask from week 4 (no new loop needed).
+**SIM3.** After a falling-ball simulation, we want the time when the ball first goes below the ground. Fill in the blank, using a mask from week 4 (no new loop needed).
 
 ```{pyodide}
-#| exercise: s3
+#| exercise: sim3
 import numpy as np
 
 g, dt, n_steps = 9.81, 0.01, 300
@@ -570,18 +618,18 @@ t_hit = ______
 print(t_hit)
 ```
 
-::: {.hint exercise="s3"}
+::: {.hint exercise="sim3"}
 Build it in pieces. `y < 0` is an array of `True`/`False`. `t[y < 0]` is every time when the ball was underground. You want the *first* one of those.
 :::
 
-::: {.solution exercise="s3"}
+::: {.solution exercise="sim3"}
 ```python
 t_hit = t[y < 0][0]
 ```
 Prints `1.44`. The exact answer from $t = \sqrt{2h/g}$ is 1.43 s. Close, and our stepped answer is a hair *late*, which makes sense: the simulation always uses the speed from the start of each step, so it's always a little slower than the real ball.
 :::
 
-## Files and tables (week 6)
+## Files and tables (week 6) · F2, P2
 
 **D1.** Four days of weather, one row per day: day number, high (°C), low (°C). Predict all five printed things.
 
@@ -615,12 +663,128 @@ print(data[swing.argmax(), 0])
 - `2.0`: the swings are 15.3, 15.7, 12.2, 10.1, so the biggest is at index 1, and row 1's day number is 2. (Boulder in the fall really does swing 15 °C in a day. Not a typo.)
 :::
 
-## pandas (week 7)
-
-**P1.** Some made-up summer highs for two years (made up, so don't draw climate conclusions from them!). Fill in the two blanks: the average high for *each* year, and the number of months with a high above 29 °C.
+**D2.** The full parameter sweep, start to finish: the solar panel from HW 2 at noon on the equinox, one function run across ten tilt angles, results written to a file, and the file read back to find the winner. Fill in the two blanks.
 
 ```{pyodide}
-#| exercise: p1
+#| exercise: d2
+import numpy as np
+
+def panel_power(tilt_deg, elevation_deg=50, G=1000, A=1.6, eta=0.20):
+    """Noon power (W) of a panel tilted tilt_deg up from horizontal,
+    with the sun elevation_deg above the horizon."""
+    theta = np.abs((90 - elevation_deg) - tilt_deg)
+    return G * A * eta * np.cos(np.radians(theta))
+
+tilts = np.arange(0, 91, 10)
+powers = ______                          # power at every tilt, in one line
+
+np.savetxt("tilt_sweep.csv",
+           np.column_stack([tilts, powers]),
+           delimiter=",",
+           header="tilt_deg,power_W",
+           comments="",
+           fmt="%.1f")
+print(open("tilt_sweep.csv").read())
+
+data = np.loadtxt("tilt_sweep.csv", delimiter=",", skiprows=1)
+print("best tilt:", data[______, 0], "deg")
+```
+
+::: {.hint exercise="d2"}
+The function already works on a whole array, so the first blank doesn't need a loop. For the second: which *row* has the biggest number in the power column? `data[:, 1]` is the power column, and `.argmax()` gives the index of its biggest entry.
+:::
+
+::: {.solution exercise="d2"}
+```python
+powers = panel_power(tilts)
+...
+print("best tilt:", data[data[:, 1].argmax(), 0], "deg")
+```
+The file has a header line and ten rows, from `0.0,245.1` up to `40.0,320.0` and back down to `90.0,205.7`. The best tilt is `40.0` degrees.
+
+Two sanity checks. By hand: at 0° tilt the sunlight is 40° off straight-on, and $1000 \times 1.6 \times 0.2 \times \cos 40° \approx 320 \times 0.77 = 245$ W. And the rule of thumb says to tilt a fixed panel at about your latitude, which for Boulder is 40°N. Both agree.
+
+(Notice the sweep only *looked* at every 10°. If the true best were 43°, this sweep couldn't tell us. For this problem we know it's 40, but that's a question worth asking of any sweep.)
+:::
+
+## Plots (week 6) · A2
+
+**PL1.** Two panel brands, tested side by side. Run it, and before reading anything else, answer for yourself: how much better is BrightCell? Then list everything about this plot that pushes you toward that answer, and fix it.
+
+```{pyodide}
+#| exercise: pl1
+import matplotlib.pyplot as plt
+
+brands = ["SunMax", "BrightCell"]
+efficiency = [20.1, 20.6]        # percent
+
+plt.bar(brands, efficiency, color=["gray", "orange"])
+plt.ylim(20.0, 20.7)
+plt.title("BrightCell CRUSHES the competition")
+plt.show()
+```
+
+::: {.hint exercise="pl1"}
+Look at where the y-axis starts. What would the bars look like if it started at zero? And is there anything missing that would tell you what the numbers even *are*?
+:::
+
+::: {.solution exercise="pl1"}
+The plot makes BrightCell's bar look about six times taller. The real difference is half a percentage point: 20.6 vs. 20.1, so BrightCell makes about 2.5% more power. That's real, but it's not a crushing.
+
+What's doing the misleading: the truncated axis (`ylim(20.0, 20.7)`), the editorial title, and no y-axis label or units at all. One honest version:
+
+```python
+plt.bar(brands, efficiency, color="gray")
+plt.ylim(0, 25)
+plt.ylabel("Conversion efficiency (%)")
+plt.title("BrightCell is about 0.5 points more efficient")
+plt.show()
+```
+
+Starting at zero is the rule for *bar* charts, because the bar's length is the thing your eye compares. (For dots or lines, zooming in can be perfectly honest, as long as the axis is labeled and the reader can see you zoomed. That's the judgment part of A2.) And if half a percent really matters for your design, say that in words, rather than letting the axis say something bigger.
+:::
+
+**PL2.** Make an honest plot of D2's sweep. Fill in the labels, and run it.
+
+```{pyodide}
+#| exercise: pl2
+import numpy as np
+import matplotlib.pyplot as plt
+
+def panel_power(tilt_deg, elevation_deg=50, G=1000, A=1.6, eta=0.20):
+    theta = np.abs((90 - elevation_deg) - tilt_deg)
+    return G * A * eta * np.cos(np.radians(theta))
+
+tilts = np.arange(0, 91, 1)
+powers = panel_power(tilts)
+
+plt.plot(tilts, powers)
+plt.xlabel(______)
+plt.ylabel(______)
+plt.title("Noon power on the equinox, Boulder")
+plt.show()
+```
+
+::: {.hint exercise="pl2"}
+Someone reading this plot cold needs to know *what* each axis is and *in what units*. Look at the docstring in D2 for both.
+:::
+
+::: {.solution exercise="pl2"}
+```python
+plt.xlabel("Panel tilt from horizontal (degrees)")
+plt.ylabel("Power (W)")
+```
+A plot check: the curve should peak at 40° and 320 W (it does), and it should be a gentle hill rather than a sharp spike, since $\cos$ is flat near its top. That flatness is worth noticing. Being 10° off only costs about 1.5%. Something to say in a report, and something the plot shows better than the table does.
+
+Want to go further? Mark the best point with `plt.plot(40, 320, "o")`. Try `plt.ylim(310, 321)` and see how much more dramatic the "peak" looks. Same numbers, different story.
+:::
+
+## pandas (week 7) · P3
+
+**PD1.** Some made-up summer highs for two years (made up, so don't draw climate conclusions from them!). Fill in the two blanks: the average high for *each* year, and the number of months with a high above 29 °C.
+
+```{pyodide}
+#| exercise: pd1
 import pandas as pd
 
 df = pd.DataFrame({
@@ -633,11 +797,11 @@ print(______)        # average high_C for each year
 print(______)        # how many rows have high_C above 29
 ```
 
-::: {.hint exercise="p1"}
+::: {.hint exercise="pd1"}
 "For each year" is the phrase that means `groupby`. For the second one: filter first, `df[df["high_C"] > 29]`, then count the rows of what's left with `len(...)`.
 :::
 
-::: {.solution exercise="p1"}
+::: {.solution exercise="pd1"}
 ```python
 print(df.groupby("year")["high_C"].mean())
 print(len(df[df["high_C"] > 29]))
@@ -647,7 +811,7 @@ print(len(df[df["high_C"] > 29]))
 Does this mean it's warming? Two years of three months each, invented by me, is not a trend. It's an anecdote with a decimal point. The real question needs the real century of data, and a plot.
 :::
 
-## Dictionaries (week 8)
+## Dictionaries (week 8) · F2, A1
 
 **DI1.** A solar panel, described as a dictionary. Predict every line of output.
 
@@ -779,7 +943,169 @@ skipped: KeyError('latitude')
 Four replies in, two latitudes out, and the loop survived both failures. Something to chew on: suppose we were also collecting `timestamp` in its own list. The last reply *has* a timestamp. If we appended it before trying the latitude, the two lists would end up different lengths... and they'd no longer be parallel.
 :::
 
-## Putting it together
+**DI5.** A reply from the ISS API (trimmed down a bit). We want the speed in meters per second. *Before running anything*, estimate it: the ISS goes once around the Earth in about 90 minutes, and once around the Earth is about 40,000 km. Then run the code. Do you believe it?
+
+```{pyodide}
+#| exercise: di5
+reply = {"name": "iss", "id": 25544,
+         "latitude": 12.31, "longitude": -87.62,
+         "altitude": 418.2, "velocity": 27596.4,
+         "units": "kilometers"}
+
+v_kmh = reply["velocity"]                 # km/h
+v_ms = v_kmh * 1000 * 3600
+print(round(v_ms), "m/s")
+```
+
+::: {.hint exercise="di5"}
+The estimate: 40,000,000 m in 90 × 60 = 5400 s. Compare that with what printed. Then think about the conversion out loud: 1000 m in a km, sure. But are there *more* seconds than hours in a given stretch of time, or fewer? So should a speed per second be a bigger number than the speed per hour, or a smaller one?
+:::
+
+::: {.solution exercise="di5"}
+The estimate is $40{,}000{,}000 / 5400 \approx 7400$ m/s. The code prints about 99,347,040,000 m/s, which is roughly 300 times the speed of light. Hmm.
+
+The fix is to *divide* by 3600: there are 3600 seconds in an hour, so the ship covers 1/3600 as much ground per second as per hour.
+
+```python
+v_ms = v_kmh * 1000 / 3600
+```
+Now it prints `7666 m/s`, close to our 7400 (the ISS orbits about 400 km above the ground, so its circle is a bit bigger than the Earth's, and a bit faster than our estimate). A ten-second estimate caught a mistake in a line of code that looks completely reasonable.
+:::
+
+## Images (week 9) · F2, P4
+
+**IM1.** A tiny grayscale "image": 0 is black, 255 is white. Predict all five printed lines, and roughly sketch what the picture will look like, before running.
+
+```{pyodide}
+#| exercise: im1
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = np.array([
+    [ 10,  10,  10,  10,  10],
+    [ 10, 200, 220,  10,  10],
+    [ 10, 210, 255,  10,  10],
+    [ 10,  10,  10,  10,  90],
+])
+
+print(img.shape)
+print(img[2, 2])
+print(img[0, 4], img[3, 4])
+print(img[:, 1])
+print((img > 100).sum())
+
+plt.imshow(img, cmap="gray", vmin=0, vmax=255)
+plt.show()
+```
+
+::: {.hint exercise="im1"}
+`img[row, column]`, counting from zero, and row 0 is at the *top*. `img > 100` is an array of `True`/`False`, one per pixel. When you `.sum()` it, each `True` counts as 1.
+:::
+
+::: {.solution exercise="im1"}
+- `(4, 5)`: four rows, five columns. (Twenty pixels, which is a bit less than the rover's camera.)
+- `255`: row 2, column 2, the brightest pixel.
+- `10 90`: the top-right corner is dark, and the bottom-right corner is a dim gray.
+- `[ 10 200 210  10]`: all four rows of column 1.
+- `4`: the four pixels of the bright blob.
+
+The picture: a dark background with a bright 2 × 2 square a little up and to the left of center, and one dim gray pixel in the bottom-right corner.
+:::
+
+**IM2.** A color photo from Mastcam-Z has `photo.shape` equal to `(1200, 1600, 3)`. On paper: how many pixels is that? How many *numbers* are stored? What's the shape of `photo[:, :, 2]`, and what does it hold? Then run this to check (it's a stand-in photo, all black, with the right shape).
+
+```{pyodide}
+#| exercise: im2
+import numpy as np
+
+photo = np.zeros((1200, 1600, 3))
+
+print(photo.shape[0] * photo.shape[1])
+print(photo.shape[0] * photo.shape[1] * photo.shape[2])
+print(photo[:, :, 2].shape)
+print(photo[0, -1])
+```
+
+::: {.hint exercise="im2"}
+`(rows, columns, channels)`. Every pixel has three numbers: red, green, blue. The last line asks for a single pixel: which row, which column, and how many numbers come back?
+:::
+
+::: {.solution exercise="im2"}
+- `1920000` pixels (1200 × 1600, about 2 megapixels).
+- `5760000` numbers, three per pixel.
+- `(1200, 1600)`: channel 2 is the *blue* channel, one number per pixel. It's a grayscale image all by itself.
+- `[0. 0. 0.]`: the top-right pixel (row 0, last column), with its red, green, and blue. All zero, so black.
+
+And the week 9 trick worth remembering: if all three channels are exactly equal, it's a gray picture dressed up as a color one.
+:::
+
+## Three ways to be wrong (week 10) · S3
+
+From Lights Out: a model can mislead us in three ways, and each comes with its own check.
+
+- **Numerical**: the model is fine, but we computed it badly (too big a step). *Check: halve the step and see if the answer changes.*
+- **Physical**: the model leaves out an effect that matters here. *Check: compare with a measurement; ask what's missing.*
+- **Extrapolation**: the model worked where we tested it, but we're using it somewhere else. *Check: know the range you tested.*
+
+SIM2 above was the dramatic numerical failure (frozen coffee). Here's the subtle one.
+
+**TW1.** The coffee model from SIM1, run for 10 minutes with five different step sizes. Predict: as `dt` shrinks, does the answer go up or down? Does it keep changing forever? Then run it, and decide which `dt` is "small enough."
+
+```{pyodide}
+#| exercise: tw1
+def coffee_at_10_min(dt):
+    """Coffee temperature (C) after 10 minutes, time-stepped with step dt (min)."""
+    T = 90.0
+    for step in range(round(10 / dt)):
+        T = T - 0.1 * (T - 20) * dt
+    return T
+
+for dt in [5, 2, 1, 0.5, 0.25]:
+    print(dt, round(coffee_at_10_min(dt), 2))
+```
+
+::: {.hint exercise="tw1"}
+Each step uses the cooling rate from the *start* of the step, when the coffee is hottest and cooling fastest. So does a big step cool the coffee too much, or too little?
+:::
+
+::: {.solution exercise="tw1"}
+```
+5 37.5
+2 42.94
+1 44.41
+0.5 45.09
+0.25 45.43
+```
+Big steps cool too much, because each step holds the fastest cooling rate for the whole step. As `dt` shrinks, the answer climbs, and it *settles*: going from 1 to 0.5 changes it by 0.68 °C, and 0.5 to 0.25 changes it by 0.34 °C. Each halving changes it by about half as much as the last one. (It's heading toward about 45.75 °C, which you can get with calculus. Not required!)
+
+So which is "small enough"? It depends on the question, which is the honest answer and not a dodge. For "is my coffee still drinkable," `dt = 1` (within about 1.3 °C) is plenty. For a lab comparison with a thermometer good to 0.1 °C, we'd want to keep halving. What's *not* OK is never checking: `dt = 5` gives a perfectly plausible-looking 37.5 that's 8 °C off.
+:::
+
+The next two are on paper, checkpoint-style. For each: **which kind** of wrong, **what's the evidence**, and **what check** would have caught it.
+
+**TW2.** Our week 5 falling-ball simulation (no drag) matched a phone dropped from 2 m to within a few centimeters. A friend uses the same code for a skydiver jumping from 3000 m, and reports that they'd hit the ground at about 243 m/s.
+
+::: {.callout-note collapse="true"}
+### Click for the answer
+Mostly **physical**: the model leaves out air drag. At 2 m the phone only reaches about 6 m/s, slow enough that drag barely matters, so the test passed. A skydiver goes fast enough that drag ends up balancing gravity, and real skydivers top out around 55 m/s (about 120 mph), which is a long way from 243.
+
+Evidence: 243 m/s is roughly 540 mph, about the cruising speed of an airliner... for a person, falling belly-down. Estimation catches it. The check: compare against a measurement or a known number (skydiving terminal velocity is easy to look up), and ask "what did we leave out, and does it matter *here*?"
+
+You could also call this **extrapolation**: we tested at 2 m and used it at 3000 m. That's a fine answer with that evidence. The two overlap here, because the reason the model breaks far from where we tested it is a missing effect. The skill isn't finding the one true label. It's naming a failure mode and backing it up.
+:::
+
+**TW3.** An electric car owner built a range model, *miles = 3.5 × kWh in the battery*, and checked it on 40 trips last summer and fall, at 40–90 °F. It was within 5% every time. Now they're planning a 250-mile drive in January at −10 °F. The battery holds 75 kWh, so the model says 262 miles: "made it, with a little to spare."
+
+::: {.callout-note collapse="true"}
+### Click for the answer
+**Extrapolation**. The model was tested at 40–90 °F and is being used at −10 °F, well outside that range. Nothing in the model's output warns you: it happily says 262, the same way it would in July.
+
+Why it might fail out there: batteries deliver less when they're cold, and the car is now using battery energy to heat the cabin, which it didn't need to do in summer. (That second one is also a *missing effect*, so "physical" is a defensible label too.) Cold-weather range for electric cars can drop by a quarter or more.
+
+The check: know the range you tested, and say it out loud along with the prediction ("this model is good for 40–90 °F"). Then either get data from a few cold trips, or plan with a big margin. A 5% cushion is not a big margin when you're 50 °F outside your tested range.
+:::
+
+## Putting it together · P1, P2, P4
 
 **Z1.** We're choosing a wind turbine rotor diameter. Bigger rotors make more power, but they also cost more, and we have a budget of $3.5 million. Fill in the condition so the loop finds the most powerful turbine *we can afford*.
 
