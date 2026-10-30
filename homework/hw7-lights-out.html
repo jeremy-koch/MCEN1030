@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.20">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>HW 7 · Lights out – MCEN 1030</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-17888a1159294d3eb470f19f6f52f5a5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d7f80cb51ca2ea53b27b36b30e850cfb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MCEN 1030</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/standards.html"> 
+<span class="menu-text">Standards</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../info/basecamp.html"> 
+<span class="menu-text">Base Camp</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw7-lights-out.html">HW 7 · Lights out</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Start Here</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Standards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How your grade works</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/installing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going in your language</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Library</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/colab-format.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Submitting Homework</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phase 0 — Thinking (Weeks 1–2)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01a-what-engineers-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What do engineers do with computation?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/01b-what-llms-do.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What does an LLM actually do?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02a-first-contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">First contact with coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/02b-reading-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading code and conditional statements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phase 1 — Vocabulary (Weeks 3–6)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/03-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w03-function-forge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind farm design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04a-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages and arrays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/04b-for-loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">For loops, and picking things out by index</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w04-design-sweep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Which design wins?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/05a-simulate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A loop that remembers — simulating a falling ball</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w05-drag-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding drag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/06-data-io-plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data in, data out — and honest plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w06-plot-clinic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plot clinic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w06-plot-gallery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plot clinic gallery</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phase 2 — Tools (Weeks 7–10)</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/07-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w07-triage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dataset triage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/08-fetch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fetch: APIs and JSON</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w08-acquisition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data acquisition lab</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/09a-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Enhancing Mars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w09-bubble-tracking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tracking bubbles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w10-reading-matlab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading MATLAB</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/10a-matlab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Your second language: MATLAB</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../activities/w10-lights-out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lights out</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/example-parking-garage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An example homework submission</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw1-grade-calculator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 1 · The grade calculator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw2-solar-tilt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 2 · Which way should the panel point?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw3-potato-cannon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 3 · The potato cannon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw4-siren.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 4 · The siren</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw5-wind-farm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 5 · Where the wind blows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw6-boulder-warming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW 6 · Is Boulder warming?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/hw7-lights-out.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">HW 7 · Lights out</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#part-1-build-it-and-check-it" id="toc-part-1-build-it-and-check-it" class="nav-link" data-scroll-target="#part-1-build-it-and-check-it">Part 1 — Build it and check it</a></li>
+  <li><a href="#part-2-the-real-night" id="toc-part-2-the-real-night" class="nav-link" data-scroll-target="#part-2-the-real-night">Part 2 — The real night</a></li>
+  <li><a href="#part-3-whats-in-the-model-and-what-isnt" id="toc-part-3-whats-in-the-model-and-what-isnt" class="nav-link" data-scroll-target="#part-3-whats-in-the-model-and-what-isnt">Part 3 — What’s in the model, and what isn’t</a></li>
+  <li><a href="#part-4-how-far-to-trust-it" id="toc-part-4-how-far-to-trust-it" class="nav-link" data-scroll-target="#part-4-how-far-to-trust-it">Part 4 — How far to trust it</a></li>
+  <li><a href="#part-5-what-if" id="toc-part-5-what-if" class="nav-link" data-scroll-target="#part-5-what-if">Part 5 — What if?</a></li>
+  <li><a href="#your-submission" id="toc-your-submission" class="nav-link" data-scroll-target="#your-submission">Your submission</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../homework/example-parking-garage.html">Homework</a></li><li class="breadcrumb-item"><a href="../homework/hw7-lights-out.html">HW 7 · Lights out</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">HW 7 · Lights out</h1>
+<p class="subtitle lead">Anchor week 10 · Standards: S1, S2, S3, S4, F1</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="scenario" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>On Thursday we built a model of a house cooling after the power goes out, and we spent most of the period asking when to believe it. Now let’s point it at a real night.</p>
+<p>On the afternoon of <strong>December 21, 2022</strong>, an arctic front came down the Front Range. Boulder went from about 6 °C at lunchtime to about −18 °C by 6 p.m., and it stayed brutally cold for two days. Suppose the power had gone out at 6 p.m. that evening. You’re writing a short memo for a landlord with a few houses in town: <strong>how long do the tenants have before the pipes are in danger, and what, if anything, would buy them more time?</strong></p>
+<p>This is the last homework of the semester, and it’s all about the Simulate theme: build the model (S1), decide what goes in it (S2), judge whether to trust it (S3), and use it to ask what-if questions (S4).</p>
+<p><strong>Due Wednesday, November 4, at 11:59 p.m.</strong></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>This one is in MATLAB</strong>, the same as Thursday’s activity. The <a href="../lessons/10a-matlab.html">cheat sheet</a> has the translations from Python. A Live Script (<code>.mlx</code>) exported to PDF is a good way to make the report, with the same four headings as before: Specify / Annotate / Verify / Report. AI use is welcome: say which parts it wrote in your spec. As in HW 6, we’re <em>not</em> grading the AI audit (A4) this time.</p>
+<p>How to create the pdf (from an mlx file): Live Editor tab → Export → Export to PDF.</p>
+</div></div></section>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
+<p>From Thursday: each time step, the inside temperature moves toward the outside temperature by a fraction of the gap,</p>
+<pre><code>T_new = T - (T - T_out) / tau * dt</code></pre>
+<p>with <code>tau</code> (τ) the house’s time constant in hours. We’ll say τ = 30 hours for an ordinary house, and it’s somewhere between 15 (drafty) and 60 (very well insulated) in general. (We’ll go beyond as a “what if”.)</p>
+<p>The new thing on this assignment: <code>T_out</code> isn’t constant anymore. It’s the real outside temperature, hour by hour, so each step uses whatever the outside temperature was during that hour.</p>
+<p><strong>The danger line.</strong> Plumbers usually tell people to keep the heat at 55 °F (about 13 °C) or higher in a cold snap, because pipes inside exterior walls run colder than the room. Let’s say <strong>10 °C</strong> inside is when we start worrying and <strong>4 °C</strong> is when pipes in the outside walls are probably freezing. (These are estimates.)</p>
+</section>
+<section id="data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The outside temperatures come from <a href="https://open-meteo.com/">Open-Meteo</a>, the same free weather service we used in <a href="../lessons/08-fetch.html">week 8</a>. Besides forecasts, it keeps a historical archive. The address is a base plus options after the <code>?</code>:</p>
+<pre><code>https://archive-api.open-meteo.com/v1/archive?latitude=...&amp;longitude=...&amp;start_date=...&amp;end_date=...&amp;hourly=temperature_2m&amp;timezone=America/Denver</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">option</th>
+<th style="text-align: left;">what it means</th>
+<th style="text-align: left;">what you want</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>latitude</code>, <code>longitude</code></td>
+<td style="text-align: left;">where</td>
+<td style="text-align: left;">Boulder: 40.015, −105.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>start_date</code>, <code>end_date</code></td>
+<td style="text-align: left;">the date range, as <code>YYYY-MM-DD</code></td>
+<td style="text-align: left;"><code>2022-12-21</code> to <code>2022-12-24</code> (the end date is included, so this runs through 11 p.m. on Dec 24)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>hourly</code></td>
+<td style="text-align: left;">which measurements</td>
+<td style="text-align: left;"><code>temperature_2m</code> (the air temperature 2 m above the ground, °C)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>timezone</code></td>
+<td style="text-align: left;">which clock the times use</td>
+<td style="text-align: left;"><code>America/Denver</code>, so 6 p.m. means 6 p.m. in Boulder</td>
+</tr>
+</tbody>
+</table>
+<p>In MATLAB, <code>webread</code> sends the request and turns the JSON reply into a <em>struct</em>, which is MATLAB’s version of the dictionary we used in week 8. Instead of <code>info["hourly"]</code>, you write <code>info.hourly</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">url</span> <span class="op">=</span> <span class="ss">'...'</span><span class="op">;</span>                  <span class="co">% full address, no spaces</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">info</span> <span class="op">=</span> <span class="va">webread</span>(<span class="va">url</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then look at what came back before using it (type <code>info</code> in the Command Window, then <code>info.hourly</code>, and keep digging). Where are the times? The temperatures? How many hours did you get? Which hour is 6 p.m. on December 21? (Remember: MATLAB counts from 1.)</p>
+<p><strong>Write down where it came from</strong>, in a comment or text block right after you fetch it: the full address, the date you fetched it, and the latitude and longitude Open-Meteo says it actually used. (Compare those with the ones you asked for. Interesting…)</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>If the request fails, try again in a minute. If Open-Meteo is down for a long stretch, there’s a saved copy on Canvas, but say in your spec that you used it.</p>
+</div></div></section>
+<section id="part-1-build-it-and-check-it" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-build-it-and-check-it">Part 1 — Build it and check it</h2>
+<p>Write a function that takes the starting inside temperature, an array of hourly outside temperatures, τ, and the time step, and returns the times and inside temperatures. Use a time step smaller than an hour. Each hour’s outside temperature holds for every step inside that hour. (Is that a reasonable thing to assume? Put it in your audit in Part 3.)</p>
+<p>Before trusting it, check it in two ways:</p>
+<ol type="1">
+<li><strong>Thursday’s case.</strong> Give it a constant −10 °C outside (an array where every hour is −10) and τ = 30. It should reach 10 °C at about 12 hours, as on Thursday.</li>
+<li><strong>By hand.</strong> Using the real outside temperatures, compute the first three steps yourself and compare.</li>
+</ol>
+</section>
+<section id="part-2-the-real-night" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-the-real-night">Part 2 — The real night</h2>
+<p>Start at 20 °C inside at 6 p.m. on December 21, with τ = 30. Run it through 11 p.m. on December 24, the last hour of data (78 hours in all).</p>
+<ul>
+<li>When does the inside reach 10 °C? 4 °C? Give actual clock times.</li>
+<li>Plot the inside and outside temperatures on one plot, with your danger lines drawn on it.</li>
+<li>Look at the curve: does it make physical sense? Is the inside ever colder than the outside? If so, did the inside cool past the outside, or did the outside warm past the inside? Which of those should be possible?</li>
+</ul>
+</section>
+<section id="part-3-whats-in-the-model-and-what-isnt" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-whats-in-the-model-and-what-isnt">Part 3 — What’s in the model, and what isn’t</h2>
+<p>Make an <strong>assumptions audit</strong>: a short list of what the model includes, then at least five things it leaves out. For each thing left out, finish the sentence “this would matter when/because…” in a line or two. Some places to look: what heats a house besides the furnace? Is one number really enough to describe “the house”? Is the temperature at the airport-ish grid point the temperature at the house? Is τ the same on a windy night as on a calm one? Is the danger line the right line?</p>
+<p>Then pick <strong>one</strong> thing you left out and <em>test</em> whether leaving it out was OK. You get to choose how. Here’s a tool that handles several of them: any steady source of heat inside the house (people, a space heater, the oven) acts like making the outside a bit warmer. For an ordinary house:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">heat source</th>
+<th style="text-align: left;">about how much warmer it acts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">three people</td>
+<td style="text-align: left;">1 °C</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">one space heater (1500 W, plugged into a generator or a big battery)</td>
+<td style="text-align: left;">5 °C</td>
+</tr>
+</tbody>
+</table>
+<p>so the model becomes <code>T_new = T - (T - (T_out + extra)) / tau * dt</code>. For something like sunlight, you’ll need your own estimate (Open-Meteo can also give you <code>shortwave_radiation</code>, the sunlight hitting the ground, in W/m², but that is ambitious!). Whatever you test: how much did it change the answer to the landlord’s question? Was it OK to leave out?</p>
+</section>
+<section id="part-4-how-far-to-trust-it" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-how-far-to-trust-it">Part 4 — How far to trust it</h2>
+<p>Write a short paragraph about each of the three ways a model goes wrong, <em>for this model, on this night</em>:</p>
+<ol type="1">
+<li><strong>Numerical.</strong> Is your time step small enough? Show the evidence: halve it, and compare the clock times from Part 2.</li>
+<li><strong>Physical.</strong> Which effect from your audit is most likely to make the answer wrong, and in which direction (too early or too late)?</li>
+<li><strong>Extrapolation.</strong> τ = 30 is an estimate for an ordinary house on an ordinary night. How far outside “ordinary” is this night? What would you want to know before you’d promise anyone a number?</li>
+</ol>
+</section>
+<section id="part-5-what-if" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-what-if">Part 5 — What if?</h2>
+<p>Now use the model to explore. Pose <strong>at least two</strong> what-if questions, run them, and say what you learned. One of them must be a sweep: run many values of one input and plot how the answer changes.</p>
+<p>Some starting points:</p>
+<ul>
+<li><strong>Insulation.</strong> How does the time to 4 °C depend on τ? Sweep τ from 15 to 100 hours and plot the time to 4 °C against τ. Is it a straight line? How big does τ need to be for the house to stay above 4 °C for the first 24 hours?</li>
+<li><strong>The space heater.</strong> Does a space heater on a generator save the pipes? How much time does it buy?</li>
+<li><strong>Timing.</strong> What if the power had gone out at noon on December 21, before the front arrived? Or at 6 p.m. on December 23?</li>
+<li><strong>Your own.</strong> Anything the landlord might reasonably ask.</li>
+</ul>
+<p>For each, interpret, don’t just report: which inputs move the answer a lot, and which barely matter? What would you tell someone choosing how to spend money on this?</p>
+</section>
+<section id="your-submission" class="level2">
+<h2 class="anchored" data-anchor-id="your-submission">Your submission</h2>
+<p><strong>Step 1 — Specify &amp; prompt.</strong></p>
+<ul>
+<li>The full data address, the date you fetched it, and the location Open-Meteo used.</li>
+<li>Your function’s inputs and outputs, with units, and how it handles the hourly outside temperatures.</li>
+<li>Your time step, and why.</li>
+<li>Your what-if questions, and what you’ll vary in each.</li>
+<li>If you still need <strong>F1</strong>, say so here, and we’ll assess your data fetching and provenance for it.</li>
+</ul>
+<p>If AI wrote any of your code, include your prompt and the model name and date.</p>
+<p><strong>Step 2 — Annotate.</strong> Three lines (or short blocks), each quoted in backticks, with a sentence or two in your own words about what it does:</p>
+<ol type="1">
+<li>the update line, inside the loop;</li>
+<li>the line that picks the outside temperature for the current step;</li>
+<li>the line that finds the time the house reaches 4 °C.</li>
+</ol>
+<p><strong>Step 3 — Verify.</strong> Your two checks from Part 1, and the time-step halving from Part 4.</p>
+<p><strong>Step 4 — Report.</strong> A one-page memo for the landlord:</p>
+<ol type="1">
+<li><strong>The answer</strong>, in a sentence: how long until the pipes are in danger, for an ordinary house, on that night.</li>
+<li><strong>The figure</strong>: inside and outside temperature through the outage, with the danger lines.</li>
+<li><strong>What would buy more time</strong>, from your what-ifs, with numbers.</li>
+<li><strong>How sure</strong>: the effects you left out and whether they matter, and how far outside the model’s comfort zone this night is.</li>
+</ol>
+<p>Then attach your Part 3 audit, Part 4 paragraphs, and Part 5 plots after the memo.</p>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../homework";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jeremy-koch\.github\.io\/MCEN1030\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
