@@ -1,5 +1,41 @@
 [
   {
+    "objectID": "project/peer-evaluation.html",
+    "href": "project/peer-evaluation.html",
+    "title": "Peer evaluation",
+    "section": "",
+    "text": "The design project is team-built, but the Engagement Credits earned during the project period will be awarded on an individual basis.",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "Peer evaluation"
+    ]
+  },
+  {
+    "objectID": "project/peer-evaluation.html#how-it-works",
+    "href": "project/peer-evaluation.html#how-it-works",
+    "title": "Peer evaluation",
+    "section": "How it works",
+    "text": "How it works\nYou complete two short evaluations of your teammates — five minutes each, on Canvas:\n\nEvaluation 1, end of week 12 — formative. The purpose is to be an early warning.\nEvaluation 2, end of week 14 — summative. This sets the project-period credits.\n\nBoth ask the same three questions:\n\nFor each teammate: describe, concretely, what they built, verified, or produced. (“Wrote and annotated the filtering module; ran the dt-halving checks” — concrete things.)\nFor each teammate: describe one moment they moved the team forward.\nAnything I should know? (Free response, optional.)\n\nA recommendation: do something your teammates can name, and maybe even have a discussion early about assigning tasks so that every group member does something worth writing about in the peer evaluations. This is not a “gotcha”; I hope everyone gets full credit!",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "Peer evaluation"
+    ]
+  },
+  {
+    "objectID": "project/peer-evaluation.html#what-happens-with-it",
+    "href": "project/peer-evaluation.html#what-happens-with-it",
+    "title": "Peer evaluation",
+    "section": "What happens with it",
+    "text": "What happens with it\nThe default outcome — by far the most common — is nothing. Ordinary evaluations, including ones mentioning ordinary friction, change no one’s credits.\nHowever, when multiple evaluations can’t explain what a group member is doing/did, that is a problem. I will contact the student and potentially reduce their project-period credits.\n\n\n\n\n\n\n\n\nNote\n\n\n\nTeam conflict that is… bigger… should not wait for an evaluation window. (Someone unreachable, someone hostile, a team genuinely stuck.) Send me an email or let’s talk in office hours.",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "Peer evaluation"
+    ]
+  },
+  {
     "objectID": "lessons/10a-matlab.html",
     "href": "lessons/10a-matlab.html",
     "title": "Your second language: MATLAB",
@@ -3608,6 +3644,78 @@
       "Home",
       "Phase 2 — Tools (Weeks 7–10)",
       "Enhancing Mars"
+    ]
+  },
+  {
+    "objectID": "project/11-project.html",
+    "href": "project/11-project.html",
+    "title": "The project",
+    "section": "",
+    "text": "For the last few weeks of the semester, your team will work on a computational project of your choosing. I want your topic choice to be open, though you should consider the notes that follow.",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "The project"
+    ]
+  },
+  {
+    "objectID": "project/11-project.html#the-timelinemilestones",
+    "href": "project/11-project.html#the-timelinemilestones",
+    "title": "The project",
+    "section": "The timeline/milestones",
+    "text": "The timeline/milestones\n\n\n\nwhen\nmilestone\nEC\n\n\n\n\nTue Nov 3\nLaunch: start creating teams, think about your topic\n0\n\n\nThu Nov 5\nStudio, finalize teams, submit proposal\n2\n\n\nTue Nov 10\nStudio, experiment to see what is possible\n2\n\n\nThu Nov 12\nPin-up #1: specs and verification plans on the wall\n3\n\n\nTue Nov 17\nCheckpoint 5, then studio\n2\n\n\nThu Nov 19\nPin-up #2: working code, draft plots\n3\n\n\nNov 24 & 26\nFall Break\n-\n\n\nTue Dec 1\nDefense prep\n1\n\n\nWed Dec 2, 11:59 p.m.\nProject due\n0\n\n\nThu Dec 3\nMock defense\n3\n\n\nFinals week\nThe defense (your final exam)\n0\n\n\n\nEngagement Credits associated with the project: 16\nAdditionally: there will be a Peer Review Assignment that may adjust your number of Engagement Credits.\n\nWhat are these “Pin-ups”?",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "The project"
+    ]
+  },
+  {
+    "objectID": "project/11-project.html#teams",
+    "href": "project/11-project.html#teams",
+    "title": "The project",
+    "section": "Teams",
+    "text": "Teams\nI would like to see teams of three, with two or four possible with my approval.\n\n\n\n\n\n\nWarning\n\n\n\nThe final defense will be completed as an individual, but every team member is responsible for knowing the entire project. The larger the team, the greater the chance that there is an aspect of the project you don’t know.\nThere will also be a Peer Review. The baseline is ~16 Engagement Credits, but if your Peer Review indicates that you have not contributed to the same level as your teammates, your Engagement Credits will be reduced, potentially to zero.\n\n\nThe project is due on Wed Dec 2, 11:59 p.m., the week after Fall Break. Decide now if you are going to work on Fall Break — you don’t have to, I am not encouraging you to. You will be presenting a basically-finished product before Fall Break anyway. But I don’t want half your team to be disappointed that the other half is unwilling/unable to put the finishing touches on the project over break. Set expectations this week, and if your team is not in agreement, consider not being a team.",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "The project"
+    ]
+  },
+  {
+    "objectID": "project/11-project.html#scope-can-you-explain-it",
+    "href": "project/11-project.html#scope-can-you-explain-it",
+    "title": "The project",
+    "section": "Scope: can you explain it?",
+    "text": "Scope: can you explain it?\nAn AI will write you a 2,000-line dashboard by this afternoon, if you ask. The scope of the project is set by how much you can understand.\nBy Thursday you will define your big-picture core goal, and additionally at least one stretch goal. The core is the smallest version of the project that can be called a “success” — you collect and analyze the data, or build a dashboard, or find the optimum. The stretch is something that you are less certain is possible — an extra interactive feature, a model with a difficult parameter, etc.\nI should also say: it is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You’ll submit a proposal on Thursday and I’ll give some feedback.",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "The project"
+    ]
+  },
+  {
+    "objectID": "project/11-project.html#languageformat",
+    "href": "project/11-project.html#languageformat",
+    "title": "The project",
+    "section": "Language/format",
+    "text": "Language/format\nYou may use Python or MATLAB for the project. Either way, it is going to look different than your homework submissions.\nNamely: you can use a notebook (.ipynb, .mlx) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (.py, .m). And for some, a notebook file might not make sense — no problem, you can write the report in a word processor.\n\n\n\n\n\n\nTip\n\n\n\nMy recommendation is to install VS Code and work in Python. VS Code can be linked to a GitHub repository very easily — we’ll teach this in Monday’s “Side Quest” office hour. I encourage you to think about publishing this publicly and adding a link to your resume.\nThe power of GitHub is “version control”",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "The project"
+    ]
+  },
+  {
+    "objectID": "project/11-project.html#what-gets-turned-in",
+    "href": "project/11-project.html#what-gets-turned-in",
+    "title": "The project",
+    "section": "What gets turned in",
+    "text": "What gets turned in\nDue Wednesday, Dec 2, at 11:59 p.m.: details to follow.\n\nThe code, as your file map: each file annotated by the person who led it.\nThe spec history: your specs and prompts as they changed, kept as you go (not reconstructed in December).\nThe report: the question, what you did, the answer, an honest plot, and how sure you are. Plus two sections that are easy to forget:\n\nProvenance: where every piece of data came from and when, so someone else could rerun it.\nWhat we cut, and why. Every good project drops something. Telling us what you dropped and why is engineering judgment, and it counts as evidence for S2 (deciding what to include and what to ignore). Cutting scope isn’t failing; cutting it silently is.\n\nYour own sections. For each file you led: the verification you did (hand checks, comparisons, the ones that failed), and the AI audit (spec, what the AI produced, your critique, what you changed). Your name goes on these. This is where your standards get assessed.",
+    "crumbs": [
+      "Home",
+      "Project (Weeks 11–14)",
+      "The project"
     ]
   }
 ]
