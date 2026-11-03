@@ -94,7 +94,7 @@ Namely: you *can* use a notebook (`.ipynb`, `.mlx`) to demonstrate your results,
 
 My recommendation is to install VS Code and work in Python. VS Code can be linked to a GitHub repository very easily — we'll teach this in Monday's "Side Quest" office hour. I encourage you to think about publishing this publicly and adding a link to your resume.
 
-The power of GitHub is "version control"
+The power of GitHub is "version control": with three or four people working on a project, how will you keep your files organized? Can two people work on the same file at once? With GitHub you keep a version history and settle conflicts between versions easily.
 
 :::
 
@@ -102,14 +102,15 @@ The power of GitHub is "version control"
 
 ## What gets turned in
 
-Due **Wednesday, Dec 2, at 11:59 p.m.**: details to follow.
+Due **Wednesday, Dec 2, at 11:59 p.m.**.
 
 1. **The code**, as your file map: each file annotated by the person who led it.
 2. **The spec history**: your specs and prompts as they changed, kept as you go (not reconstructed in December).
-3. **The report**: the question, what you did, the answer, an honest plot, and how sure you are. Plus two sections that are easy to forget:
+3. **The report**: the question, what you did, the answer, an honest plot, and how confident you are about the results. Plus two sections:
     - **Provenance**: where every piece of data came from and when, so someone else could rerun it.
-    - **What we cut, and why.** Every good project drops something. Telling us what you dropped and why is engineering judgment, and it counts as evidence for S2 (deciding what to include and what to ignore). Cutting scope isn't failing; cutting it *silently* is.
-4. **Your own sections.** For each file you led: the verification you did (hand checks, comparisons, the ones that failed), and the AI audit (spec, what the AI produced, your critique, what you changed). Your name goes on these. This is where your standards get assessed.
+    - **What we cut, and why.**: this is engineering judgment. Too ambitious for the timeframe, model was too complicated without significantly improving results, etc.
+4. **Your own sections.** For each file you led: the verification you did (hand checks, comparisons, the ones that failed), and the AI audit (spec, what the AI produced, your critique, what you changed). 
+<!-- Your name goes on these. This is where your standards get assessed. -->
 
 
 
