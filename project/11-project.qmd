@@ -1,0 +1,116 @@
+---
+title: "The project"
+---
+
+For the last few weeks of the semester, your team will work on a computational project of your choosing. I want your topic choice to be open, though you should consider the notes that follow. 
+
+- Pick something you are passionate about — you will do better work if so. You can put a link to your project repository on your resume... maybe it will help you get an internship. (We'll do a Side Quest on creating GitHub repositories.)
+- Make sure you do something you understand. You are going to have to explain your project in the final exam. (And if you are asked about it in an interview, you don't want to say "I don't know, my partner/ChatGPT did that part".) **Every team member is responsible for knowing the entire project.**
+- We have some time here, but not a lot of time. Getting the scope right is your first challenge. It may be tempting to be wildly ambitious because **LLMs are allowed**, but don't forget: you have to defend it in the final!
+- The project is your last chance at the divergent standards (F1, S2, S4, A3, A4), so it should be shaped around the ones you still need. If you still need to demonstrate F1, think about a project that includes a fetch step; but if you are good on all the "fetch" standards, you don't need to include a fetch step. Let's talk about it if you are uncertain.
+
+## The timeline/milestones
+
+| when | milestone | EC |
+|:--|:--|:--|
+| Tue Nov 3 | Launch: start creating teams, think about your topic | 0 |
+| Thu Nov 5 | Studio, finalize teams, submit proposal | 2 |
+| Tue Nov 10 | Studio, experiment to see what is possible | 2 |
+| Thu Nov 12 | Pin-up #1: specs and verification plans on the wall | 3 |
+| Tue Nov 17 | Checkpoint 5, then studio |  2 |
+| Thu Nov 19 | Pin-up #2: working code, draft plots | 3 |
+| Nov 24 & 26 | Fall Break | - |
+| Tue Dec 1 | Defense prep | 1 |
+| **Wed Dec 2, 11:59 p.m.** | **Project due** | 0 |
+| Thu Dec 3 | Mock defense | 3 |
+| Finals week | The defense (your final exam) | 0 |
+
+Engagement Credits associated with the project: 16
+
+Additionally: there will be a [**Peer Review Assignment**](peer-evaluation.qmd) that may adjust your number of Engagement Credits.
+
+### What are these "Pin-ups"?
+
+
+## Teams
+
+I would like to see teams of three, with two or four possible with my approval.
+
+
+::: {.callout-warning}
+
+The final defense will be completed as an individual, but **every team member is responsible for knowing the entire project**. The larger the team, the greater the chance that there is an aspect of the project you don't know.
+
+There will also be a [Peer Review](peer-evaluation.qmd). The baseline is ~16 Engagement Credits, but if your Peer Review indicates that you have not contributed to the same level as your teammates, your Engagement Credits will be reduced, potentially to zero.
+
+:::
+
+The project is due on **Wed Dec 2, 11:59 p.m.**, the week after Fall Break. **Decide now if you are going to work on Fall Break** — you don't have to, I am not encouraging you to. You will be presenting a basically-finished product before Fall Break anyway. But I don't want half your team to be disappointed that the other half is unwilling/unable to put the finishing touches on the project over break. **Set expectations this week, and if your team is not in agreement, consider not being a team.**
+
+
+
+
+## Scope: can you explain it?
+
+An AI will write you a 2,000-line dashboard by this afternoon, if you ask. The scope of the project is set by **how much you can understand.**
+
+By Thursday you will define your big-picture **core** goal, and additionally at least one **stretch** goal. The core is the smallest version of the project that can be called a "success" — you collect and analyze the data, or build a dashboard, or find the optimum. The stretch is something that you are less certain is possible — an extra interactive feature, a model with a difficult parameter, etc. 
+
+I should also say: it is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You'll submit a proposal on Thursday and I'll give some feedback.
+
+
+<!-- The final exam asks each of you to explain your project, including the files your teammates led. If a good student on your team can't explain some piece of it (what it does, why it's there, how you know it's right), then that piece was too ambitious. Size the project by what you can explain, not by what you can generate.
+
+The practical tool for this is to split the project into a core and a stretch. Here's the trap, and almost every team falls into it: defining "done" as a list of features. ("It'll pull the data, and make a dashboard, and predict next year, and...") Feature lists grow. Instead, we'll define "done" by what can be *checked*.
+
+**The core** is the smallest version of your project that produces at least one number you can verify. Everything we assess lives in the core. **The stretch** is exactly one thing you'd add if the core is done and verified. It's where the ambition goes, so the ambition can't sink the core.
+
+You'll write both down at launch. Then, every time you're tempted to add something, ask: *could I explain this at the final without looking?* If not, either learn it or cut it. (Cutting it out loud earns credit; see "What we cut" below.) -->
+
+
+## Language/format
+
+You may use Python or MATLAB for the project. Either way, it is going to look different than your homework submissions.
+
+Namely: you *can* use a notebook (`.ipynb`, `.mlx`) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (`.py`, `.m`). And for some, a notebook file might not make sense — no problem, you can write the report in a word processor.
+
+
+::: {.callout-tip}
+
+My recommendation is to install VS Code and work in Python. VS Code can be linked to a GitHub repository very easily — we'll teach this in Monday's "Side Quest" office hour. I encourage you to think about publishing this publicly and adding a link to your resume.
+
+The power of GitHub is "version control"
+
+:::
+
+
+
+## What gets turned in
+
+Due **Wednesday, Dec 2, at 11:59 p.m.**: details to follow.
+
+1. **The code**, as your file map: each file annotated by the person who led it.
+2. **The spec history**: your specs and prompts as they changed, kept as you go (not reconstructed in December).
+3. **The report**: the question, what you did, the answer, an honest plot, and how sure you are. Plus two sections that are easy to forget:
+    - **Provenance**: where every piece of data came from and when, so someone else could rerun it.
+    - **What we cut, and why.** Every good project drops something. Telling us what you dropped and why is engineering judgment, and it counts as evidence for S2 (deciding what to include and what to ignore). Cutting scope isn't failing; cutting it *silently* is.
+4. **Your own sections.** For each file you led: the verification you did (hand checks, comparisons, the ones that failed), and the AI audit (spec, what the AI produced, your critique, what you changed). Your name goes on these. This is where your standards get assessed.
+
+
+
+
+::: {.content-hidden}
+**Instructor notes (planning only — stripped from the rendered site).**
+
+- Bracketed sentence under "Convergent standards" is a placeholder for your voice; rewrite or cut.
+- EC mismatch: the timeline table says launch 0 / mock defense 3; "Engagement credits" says launch 2 / mock defense 2. Pick one.
+- Due Wed Dec 2 (tentative). Gives a week to print file maps before Dec 7/10, and the mock defense runs on the submitted version.
+- Team size: 4 default, 3 OK, 5 by approval with a five-file map. Fewer teams also means fewer projects to review and fewer defenses to write.
+- Team board: Canvas Discussion (zero setup, inside Canvas) or Padlet with three columns: "have an idea, need people" / "have a team, need one more" / "need a team." Link it on Canvas before launch. Sticky-note wall at launch for anyone still loose.
+- Topic is now pitch-your-own by default; the old menu is demoted to "Stuck?" with its fallback data. The `#the-topic` anchor is unchanged, but w11-launch's "Pick a topic" section still says "menu" and should be reworded to match.
+- GitHub showcase side quest: public visibility is the student's choice, not a requirement (FERPA, and some won't want their name attached). Check that ready-made datasets are OK to redistribute in a public repo.
+- Local-LLM side quest + defense prep: offer to run each repo through Ollama/LM Studio with a fixed prompt ("find places to simplify; identify the parts that are trickiest to explain; ..."). If the same pass seeds the defense questions, say so openly and publish the prompt; students running it themselves becomes the study guide. Staff curate and edit the output, never use it raw. Projects are small (3–5 files), so they fit in a local model's context.
+- Menu changes from the summer version: dropped "audio forensics" (frequency extraction leans on FFT, ceded to Data & Measurements) and "pendulum's damping" (System Dynamics). Dropped "industry option" unless a partner exists. Added climate/weather and HW 7 data as fallbacks.
+- Fallback data to stage on Canvas before Nov 3: course phyphox recordings (week 8 sheet), saved ISS/USGS/Open-Meteo replies, HW 6 NOAA file, HW 7 cold-snap JSON, `bubbles.mp4` (already on the site).
+- P5 no longer exists on the standards page; the old studio page and pin-up pages still mention it. Strip on next pass.
+:::

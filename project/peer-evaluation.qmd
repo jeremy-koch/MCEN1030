@@ -1,0 +1,38 @@
+---
+title: "Peer evaluation"
+---
+
+The design project is team-built, but the Engagement Credits earned during the project period will be awarded on an individual basis.
+
+## How it works
+
+You complete two short evaluations of your teammates — five minutes each, on Canvas:
+
+- **Evaluation 1, end of week 12** — *formative.* The purpose is to be an early warning. 
+- **Evaluation 2, end of week 14** — *summative.* This sets the project-period credits.
+
+Both ask the same three questions:
+
+1. For each teammate: *describe, concretely, what they built, verified, or produced.* ("Wrote and annotated the filtering module; ran the dt-halving checks" — concrete things.)
+2. For each teammate: *describe one moment they moved the team forward.*
+3. Anything I should know? (Free response, optional.)
+
+A recommendation: *do something your teammates can name,* and maybe even have a discussion early about assigning tasks so that every group member does something worth writing about in the peer evaluations. This is not a "gotcha"; I hope everyone gets full credit!
+
+## What happens with it
+
+**The default outcome — by far the most common — is nothing.** Ordinary evaluations, including ones mentioning ordinary friction, change no one's credits.
+
+However, when multiple evaluations can't explain what a group member is doing/did, that is a problem. I will contact the student and potentially reduce their project-period credits.
+
+<!-- ## Why descriptions instead of ratings
+
+Because ratings inflate — nobody wants to give a teammate a 3/5, so everyone gets 5s and the instrument reads nothing. Descriptions resist inflation for a simple reason: **you can't describe work that didn't happen.** A hollow answer to "what did they build?" isn't an accusation anyone had to make; it's just an absence, visible on its own. This also protects *you* as an evaluator — you're never asked to judge a teammate, only to state what you saw, which is a much easier thing to do honestly. -->
+
+<!-- ## The honest framing
+
+This is not surveillance and it's not a gotcha — it's the standard mechanism (borrowed from decades of team-based-learning practice) that makes team projects fair to the people who do the work. If you're worried about it, notice what it actually takes to be unaffected: *do something your teammates can name.* That is the lowest bar in the course, and it's identical to the bar your first job will set. And if you're on the other side — carrying a teammate and quietly resenting it — evaluation 1 is your pressure valve, weeks before it costs anyone anything. -->
+
+::: {.callout-note}
+Team conflict that is... bigger... should not wait for an evaluation window. (Someone unreachable, someone hostile, a team genuinely stuck.) Send me an email or let's talk in office hours.
+:::

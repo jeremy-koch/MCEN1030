@@ -51,7 +51,7 @@ Rules: a wrong answer with detailed reasoning earns full credit; a blank or a tr
 
 <!-- ### Project-period credits are individual
 
-The 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded **per person, informed by teammate evaluation** — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the [peer evaluation page](peer-evaluation.qmd). -->
+The 8 credits of the project period (pin-ups #1 and #2, the mock defense) are awarded **per person, informed by teammate evaluation** — two short, description-based evaluations, one formative in week 13 and one summative in finals week. The default outcome is nothing: ordinary teams keep ordinary credits. The instrument exists for the teammate no one can describe. Full mechanics, including exactly what the form asks and why it asks for descriptions rather than ratings, on the [peer evaluation page](../project/peer-evaluation.qmd). -->
 
 ## Tokens
 

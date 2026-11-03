@@ -9,6 +9,7 @@ project:
     - "lessons/*.qmd"
     - "activities/*.qmd"
     - "homework/*.qmd"
+    - "project/*.qmd"
     - "!instructor/"
 
 website:
@@ -77,6 +78,10 @@ website:
           - activities/w10-reading-matlab.qmd
           - lessons/10a-matlab.qmd
           - activities/w10-lights-out.qmd
+      - section: "Project (Weeks 11–14)"
+        contents:
+          - project/11-project.qmd
+          - project/peer-evaluation.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd
@@ -102,7 +107,7 @@ website:
       #     - activities/w13-pinup-2.qmd
       #     - lessons/14-defense.qmd
       #     - activities/w14-mock-defense.qmd
-      #     - info/peer-evaluation.qmd
+      #     - project/peer-evaluation.qmd
       - section: "Homework"
         contents:
           - homework/example-parking-garage.qmd

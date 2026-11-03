@@ -65,7 +65,10 @@ lessons/1*
 lessons/old/
 homework/old/
 
-peer-evaluation.qmd
+/project/*
+!/project/11-project.qmd
+!/project/peer-evaluation.qmd
+
 CLAUDE.md
 
 /.quarto/
