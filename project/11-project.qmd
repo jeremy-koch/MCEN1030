@@ -11,25 +11,38 @@ For the last few weeks of the semester, your team will work on a computational p
 
 ## The timeline/milestones
 
-| when | milestone | EC |
+| when | milestone | EC|
 |:--|:--|:--|
 | Tue Nov 3 | Launch: start creating teams, think about your topic | 0 |
 | Thu Nov 5 | Studio, finalize teams, submit proposal | 2 |
-| Tue Nov 10 | Studio, experiment to see what is possible | 2 |
+| Tue Nov 10 | Studio, exploring what is possible | 2 |
 | Thu Nov 12 | Pin-up #1: specs and verification plans on the wall | 3 |
 | Tue Nov 17 | Checkpoint 5, then studio |  2 |
 | Thu Nov 19 | Pin-up #2: working code, draft plots | 3 |
-| Nov 24 & 26 | Fall Break | - |
+| Nov 24 & 26 | Fall Break | 0 |
 | Tue Dec 1 | Defense prep | 1 |
 | **Wed Dec 2, 11:59 p.m.** | **Project due** | 0 |
 | Thu Dec 3 | Mock defense | 3 |
 | Finals week | The defense (your final exam) | 0 |
 
-Engagement Credits associated with the project: 16
-
-Additionally: there will be a [**Peer Review Assignment**](peer-evaluation.qmd) that may adjust your number of Engagement Credits.
+Engagement Credits associated with the project: 16. Additionally: there will be a [**Peer Review Assignment**](peer-evaluation.qmd) that may adjust your number of Engagement Credits.
 
 ### What are these "Pin-ups"?
+
+**Pin-up #1, Nov 12:** Specs and plans. Before any major code exists, you will present your thinking to other teams, and the teams will give you feedback. Is the specification complete? What assumptions are being made? How is "success" going to be defined? Any recommendations?
+
+**Pin-up #2, Nov 19:** Working code, real outputs, draft plots. Again, you will present your work to other teams, and the teams will give feedback. The project is due **Wed Dec 2** and so you will have some time to act on the feedback.
+
+
+::: {.callout-important}
+
+Critique the work, not the people. Ask questions without being overly judgmental ("What happens if the input file is empty?" is better than "This isn't going to work.")
+
+:::
+
+
+
+
 
 
 ## Teams
