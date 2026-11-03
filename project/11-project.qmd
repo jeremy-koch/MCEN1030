@@ -25,7 +25,9 @@ For the last few weeks of the semester, your team will work on a computational p
 | Thu Dec 3 | Mock defense | 3 |
 | Finals week | The defense (your final exam) | 0 |
 
-Engagement Credits associated with the project: 16. Additionally: there will be a [**Peer Review Assignment**](peer-evaluation.qmd) that may adjust your number of Engagement Credits.
+Engagement Credits associated with the project: 16. There will be a [**Peer Review Assignment**](peer-evaluation.qmd) that may adjust your number of Engagement Credits.
+
+Further: you are expected to attend every class and should be working on the project for the entire class period. If you'd like to watch videos or work on homework for other classes, please do not expect to receive Engagement Credits for that day.
 
 ### What are these "Pin-ups"?
 
