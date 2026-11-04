@@ -6,9 +6,17 @@ Here is the skeleton for your final project report. The headers are the same fou
 
 ::: {.callout-tip}
 ## Commentary
-These callouts are guidance for you. Delete them from your report.
+These callouts are comments, not part of the report.
 
 A tip if you're writing the report in a notebook: have the notebook `import` your own `.py` files and call them, e.g. `from analysis import yearly_means`. Then the report stays short, but your plots come from the real code.
+
+Getting figures out of a `.py` file: when you run a script, `plt.show()` pops up a window with a toolbar, and it's very tempting to screenshot it. Don't (see the [presentation checklist](11-project.qmd#it-should-look-like-an-engineer-made-it)). Instead, put this line just before `plt.show()`:
+
+```python
+plt.savefig("figure1.png", dpi=200, bbox_inches="tight")
+```
+
+That saves a clean image file next to your script, and that's the file you put in the report. `dpi=200` keeps it sharp on paper. `bbox_inches="tight"` trims the extra white border.
 :::
 
 ---
@@ -23,9 +31,9 @@ A tip if you're writing the report in a notebook: have the notebook `import` you
 
 *Team section.* About two pages.
 
-Open with one or two sentences placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it's mostly about, and which part does each. ("This project is mostly Fetch, pulling a month of readings from the ___ API, and Process, turning those readings into daily statistics.")
+Open with one or two sentences placing the project in the course themes: which of Fetch, Process, Simulate, and Analyze it's mostly about and why? ("This project is mostly Fetch, pulling a month of readings from the ___ API, and Process, turning those readings into daily statistics.")
 
-What question did we ask, and what's the answer, in a sentence someone could quote? Then the honest plot, and how sure we are: how much would the answer move if we'd made a different reasonable choice?
+Then: What question did you ask and what's the answer? Then plots, and some comments on the scope/limitations/uncertainty of your work.
 
 **Provenance.** Where every piece of data came from, and when: URLs, file names, phone model and app settings, retrieval dates. Also every choice that could change the number. Someone should be able to reproduce our result from this paragraph and the README alone.
 
@@ -49,14 +57,14 @@ Same test as the homework: could a classmate who never saw your project read thi
 
 ::: {.callout-tip}
 ## Commentary
-The rows above are made up; yours will look different. If a file has two leads, list both, and both of you write that file's section below.
+The rows above are made up, yours will look different. If a file has two leads, list both, and both of you write that file's section below.
 :::
 
 ## Specify
 
 *Team section.*
 
-The final spec: inputs, outputs, and what counts as success. The core and stretch goals, and which ones we hit.
+The final spec: inputs, outputs, and what counts as success. The core and stretch goals, and which ones were attained.
 
 The assumptions table:
 

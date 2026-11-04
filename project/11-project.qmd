@@ -7,7 +7,7 @@ For the last few weeks of the semester, your team will work on a computational p
 - Pick something you are passionate about — you will do better work if so. You can put a link to your project repository on your resume... maybe it will help you get an internship. (We'll do a Side Quest on creating GitHub repositories.)
 - Make sure you do something you understand. You are going to have to explain your project in the final exam. (And if you are asked about it in an interview, you don't want to say "I don't know, my partner/ChatGPT did that part".) **Every team member is responsible for knowing the entire project.**
 - We have some time here, but not a lot of time. Getting the scope right is your first challenge. It may be tempting to be wildly ambitious because **LLMs are allowed**, but don't forget: you have to defend it in the final!
-- The project is your last chance at the divergent standards (F1, S2, S4, A3, A4), so it should be shaped around the ones you still need. If you still need to demonstrate F1, think about a project that includes a fetch step; but if you are good on all the "fetch" standards, you don't need to include a fetch step. Let's talk about it if you are uncertain.
+- The project is your last chance at the divergent standards (F1, S2, S4, A3, A4), so it should be shaped around the ones you still need. (But note you can revise your homeworks for all divergent standards, and so you may not need any.) E.g.: If you still need to demonstrate F1, think about a project that includes a fetch step; but if you are good on all the "fetch" standards, you don't need to include a fetch step. Let's talk about it if you are uncertain.
 
 ## The timeline/milestones
 
@@ -31,7 +31,7 @@ Further: you are expected to attend every class and should be working on the pro
 
 ### What are these "Pin-ups"?
 
-**Pin-up #1, Nov 12:** Specs and plans. Before any major code exists, you will present your thinking to other teams, and the teams will give you feedback. Is the specification complete? What assumptions are being made? How is "success" going to be defined? Any recommendations?
+**Pin-up #1, Nov 12:** Specs and plans. Before any major code exists, you will present your thinking to other teams and they will give you feedback. Is the specification complete? What assumptions are being made? How is "success" going to be defined? Any recommendations?
 
 **Pin-up #2, Nov 19:** Working code, real outputs, draft plots. Again, you will present your work to other teams, and the teams will give feedback. The project is due **Wed Dec 2** and so you will have some time to act on the feedback.
 
@@ -41,10 +41,6 @@ Further: you are expected to attend every class and should be working on the pro
 Critique the work, not the people. Ask questions without being overly judgmental ("What happens if the input file is empty?" is better than "This isn't going to work.")
 
 :::
-
-
-
-
 
 
 ## Teams
@@ -71,7 +67,7 @@ An AI will write you a 2,000-line dashboard by this afternoon, if you ask. The s
 
 By Thursday you will define your big-picture **core** goal, and additionally at least one **stretch** goal. The core is the smallest version of the project that can be called a "success" — you collect and analyze the data, or build a dashboard, or find the optimum. The stretch is something that you are less certain is possible — an extra interactive feature, a model with a difficult parameter, etc. 
 
-I should also say: it is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You'll submit a proposal on Thursday and I'll give some feedback.
+It is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You'll submit a proposal on Thursday and I'll give some feedback over the weekend.
 
 
 <!-- The final exam asks each of you to explain your project, including the files your teammates led. If a good student on your team can't explain some piece of it (what it does, why it's there, how you know it's right), then that piece was too ambitious. Size the project by what you can explain, not by what you can generate.
@@ -87,7 +83,7 @@ You'll write both down at launch. Then, every time you're tempted to add somethi
 
 You may use Python or MATLAB for the project. Either way, it is going to look different than your homework submissions.
 
-Namely: you *can* use a notebook (`.ipynb`, `.mlx`) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (`.py`, `.m`). And for some, a notebook file might not make sense — no problem, you can write the report in a word processor.
+Namely: you *can* use a notebook (`.ipynb`, `.mlx`) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (`.py`, `.m`). A notebook file might not make sense — no problem, you can write the report in a word processor.
 
 
 ::: {.callout-tip}
@@ -97,6 +93,7 @@ My recommendation is to install VS Code and work in Python. VS Code can be linke
 The power of GitHub is "version control": with three or four people working on a project, how will you keep your files organized? Can two people work on the same file at once? With GitHub you keep a version history and settle conflicts between versions easily.
 
 :::
+
 
 
 
@@ -111,23 +108,46 @@ The report is built from the same four steps as your homework (Specify, Annotate
 
 **First, the Report moves to the front.** In the homework the grader reads everything, so the summary can wait until the end. A project report has other readers, like the other teams at a pin-up or someone who clicked the link on your resume, and they want the answer first.
 
-**Second, some sections belong to the team and some belong to you.** Your name goes on the sections for the files you led. That's where your standards get assessed.
+**Second, some sections belong to the team and some belong to you.** Your name goes on the sections for the files you led.
 
 ### The team's sections
 
-- **Report.** Open by placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it's mostly about, and which part of the project does each. Then the question, the answer, the honest plot, and how sure you are. Also: **provenance** (where every piece of data came from and when, so someone else could reproduce your number) and **what we cut, and why** (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.
+- **Report.** Open by placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it's mostly about, and which part of the project does each. Then describe the question you proposed, a summary of the answer, some relevant plots, and comment on the scope/limitations/uncertainty of your work. Also: **provenance** (where every piece of data came from and when, so someone else could reproduce your number) and **what we cut, and why** (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.
 - **File map.** One row per file: what goes in, what comes out, and who led it. It's the "inputs → script → outputs" shape from week 2, scaled up to the whole project.
 - **Specify.** Your final spec, your core and stretch goals, and your assumptions table, the same kind of "rulings" table as in the [example homework](../homework/example-parking-garage.qmd). Say how the spec changed since the proposal and point to the spec history for the details.
 
 ### Individual sections, one per file you led
 
 - **Annotate.** Your comments live in the `.py` files themselves; every file should be commented well enough that a teammate could explain it. In the report, quote just the two or three lines/sections from each file, and say what you noticed about them.
-- **Verify.** At Pin-up #1 you'll describe what success looks like. That was your "predictions before running." So here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them.
+- **Verify.** At Pin-up #1 you'll describe what success looks like. Here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them. Two cases are probably appropriate, though it depends on the file.
 - **AI audit.** Over three weeks your AI transcripts will be enormous, so don't paste them. Pick the one or two exchanges where your judgment actually changed something. For each one: what you asked for, an excerpt of what came back, your critique, and what you changed.
 - **Standards claimed.** One line at the top: which divergent standards you're claiming and where the evidence is. ("S4: Report, second paragraph, and the tilt-angle what-if in my Verify section.")
 
 The [report template](report-template.qmd) has the skeleton with these headers.
 
+::: {.callout-important}
+## The report is your ticket to the final
+
+The final exam is a defense of *your submitted report*. We write your questions from it, and the file map you hold during the exam comes from it. So if the report is missing, or your sections of it are, there's nothing to defend: your final is assessed as Weak and you stay at your [grade floor](../info/grading.qmd#the-grade-table). The mock defense on Dec 3 also runs on the submitted report, so no report means no mock defense credits (3 ECs).
+
+"Complete" doesn't mean perfect. It means every section from the template is there with a real attempt in it, the same good-faith standard as engagement credits. A rough Verify section that honestly reports two failed checks is complete. A header with nothing under it is not.
+
+The team sections are the team's responsibility. Your individual sections are yours.
+
+And if you're counting on the project for a divergent standard, the report is where it gets assessed. No report, no standard.
+:::
+
+### It should look like an engineer made it
+
+This report might end up linked on your resume, so it should look like something you'd hand a boss. A report that fails any item below has its final capped at **Solid**. (Even if your defense is brilliant, the most you can get is the whole letter, not the plus.)
+
+- **Figures come out of your code, not off your screen.** In Python: save them with `plt.savefig("figure1.png", dpi=200)` and put that file in the report. In MATLAB you can hover over the figure and click the save icon. No screenshots, no toolbars, no "File" menus, no slivers of your desktop in the corner. Backgrounds inside and outside the plotting area should be white, unless there is a good reason not to.
+- **Every figure is readable on its own:** axis labels with units, a legend if there's more than one line, text big enough to read on paper, and a sentence in the report saying what to look at. Below the figure is a figure caption explaining what is being presented and what the takeaway is. "Speed vs. time" is not a good caption; "The speed of a $m=10$ kg sphere increases with time due to gravitational acceleration" is good.
+- **Code goes in as text, not screenshots.** Use a monospace font, or a code block in a notebook. If your code is in Times New Roman, Arial, etc., it is unreadable.
+- **No raw output dumps.** No 60,000-row DataFrame, no 400 lines of `print`. Show a useful summary.
+- **The first page has** the project title, every team member's name, the date, and the link to your repository.
+
+The presentation is the team's job, so one screenshot caps the whole team. Before you submit, everyone should confirm that the report satisfies these requirements. (It takes five minutes.)
 
 
 
