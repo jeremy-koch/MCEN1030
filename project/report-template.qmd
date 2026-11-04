@@ -23,6 +23,8 @@ A tip if you're writing the report in a notebook: have the notebook `import` you
 
 *Team section.* About two pages.
 
+Open with one or two sentences placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it's mostly about, and which part does each. ("This project is mostly Fetch, pulling a month of readings from the ___ API, and Process, turning those readings into daily statistics.")
+
 What question did we ask, and what's the answer, in a sentence someone could quote? Then the honest plot, and how sure we are: how much would the answer move if we'd made a different reasonable choice?
 
 **Provenance.** Where every piece of data came from, and when: URLs, file names, phone model and app settings, retrieval dates. Also every choice that could change the number. Someone should be able to reproduce our result from this paragraph and the README alone.
@@ -92,5 +94,5 @@ One or two exchanges where our judgment changed the outcome. For each one: what 
 
 ::: {.callout-tip}
 ## Commentary
-Choose the moments where the AI did something you didn't ask for, or did what you asked and it turned out to be wrong. But don't just say "the AI wrote it and it worked"!
+Choose the spots where the AI did something you didn't ask for, or did what you asked and it turned out to be wrong. But don't just say "the AI wrote it and it worked"!
 :::

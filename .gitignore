@@ -68,6 +68,7 @@ homework/old/
 /project/*
 !/project/11-project.qmd
 !/project/peer-evaluation.qmd
+!/project/github.qmd
 !/project/report-template.qmd
 
 CLAUDE.md

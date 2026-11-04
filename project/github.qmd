@@ -1,0 +1,77 @@
+---
+title: "GitHub"
+subtitle: "Sharing code with your team"
+---
+
+GitHub has become the standard location for developers to store, manage, and share their code. [TrackPy's](https://soft-matter.github.io/trackpy/v0.7/) code is actually [hosted on GitHub](https://github.com/soft-matter/trackpy), and you can look around (bottom right) and see that there are 32 contributors to that project.
+
+Imagine trying to co-write code with 31 other people by emailing files back-and-forth! Is there a better way?! Yes — [git](https://en.wikipedia.org/wiki/Git). GitHub uses git so that collaborators can work on the same project at once, "pushing" changes from their computers to a shared repository and "merging" those changes into the main version if they look good and don't conflict with anyone else's. Perhaps the coolest thing: you can link this up with your coding environment, sending updates directly from VS Code.
+
+## In this course...
+
+...GitHub is optional, but it's a natural home for your project: one shared place for your team's files, with a history of every change. I outline two approaches below: a web-based method, which requires no downloads (you just upload files in your browser, like you do on Canvas, and it works on an iPad); and a more advanced approach, which after some initial setup lets you send changes directly from VS Code.
+
+<!-- ::: {.callout-note}
+This website was built in VS Code, and I push changes to its repository with a couple clicks in VS Code's left toolbar. Feels good.
+::: -->
+
+::: {.callout-tip}
+If you are proud of your project, you can make its repository public and include a link to it in your resume. (Public is your call — a private repository works just as well for the course.) Additionally: particularly now that AI is around to help, it is easy to put together a website and host it on GitHub. And it doesn't have to look like this one — plenty of tutorials and templates out there! Maybe you'd be interested in establishing an internet presence, highlighting projects to show future employers...
+:::
+
+## Setting up a team repository
+
+One person on the team does this part:
+
+1. Make a free account at [github.com](https://github.com) if you don't have one. (Everyone on the team needs an account.)
+2. Click the **+** at the top right and choose **New repository**. Give it a name that says what the project is (`boulder-snowpack` is better than `mcen1030-project`), choose Public or Private, and check "Add a README file."
+3. In the new repository, go to **Settings** → **Collaborators** → **Add people**, and invite each teammate by their GitHub username. They'll get an email and have to accept before they can make changes.
+
+## Easy mode: the web browser
+
+You may choose to use GitHub in a straightforward way, with no downloads, no git, none of that. All you need is your internet browser.
+
+1. Go to your team's repository online.
+2. Look for the **Add file** button towards the top right. Select **Upload files**, and find your `.py` or `.m` file(s).
+3. Scroll down to the green **Commit changes** button and click it.
+
+::: {.callout-important}
+I'm going to say it again: scroll down to the green **Commit changes** button and click it. If you forget to commit changes, the file is not saved!
+:::
+
+This approach is perfectly fine to use for the whole project, and can be your fallback plan if you want to use the integrated method below but have some trouble.
+
+## Harder-at-first-but-ultimately-not-too-bad mode: VS Code
+
+It is possible to link your team's repository directly to VS Code, so that sharing your work is a matter of clicking "commit" and "push." No need to clumsily navigate around on the internet. Feels good!
+
+::: {.callout-tip}
+These instructions may look a bit overwhelming but likely we are talking about 20 minutes of work. Plus, interacting with GitHub is a good skill to have — you could put it on your resume if you get confident with it.
+:::
+
+I followed [this tutorial](https://code.visualstudio.com/docs/sourcecontrol/github) to get it set up. There is a lot there but only part of it is really relevant to us: Prerequisites, Getting started, Cloning a repository, and then there is information scattered about on "committing" (saving a snapshot to the copy of the repository on your computer) and "pushing" (sending it to the online repository). VS Code will ask you to sign in to GitHub through your web browser the first time, and after that it remembers you. When committing you have to give a commit message — something like "draft of the cooling model" is more than sufficient.
+
+Committing and pushing are done through the **Source Control** icon on the left toolbar (which should be highlighted after you have made changes). Particularly the first time, I recommend visiting the web version to make sure your changes made it there.
+
+::: {.callout-important}
+On a team, there's one more step: **pull before you start working.** "Pull" brings down the changes your teammates pushed since last time. If two people change the same lines of the same file without pulling, git will ask you to sort out the conflict by hand, which is no fun. (This is another reason for each person to lead their own file.)
+:::
+
+::: {.callout-tip}
+Try asking an AI for help or to clarify things, it can really help navigate tutorials, especially when they are bloated with extra things you don't need (as is the case here).
+:::
+
+## If your team is using MATLAB...
+
+MATLAB can talk to GitHub too, but setting it up involves generating a password-like "token," and I don't think it's worth the trouble for this project. Instead, use **MATLAB Drive**, which comes with MATLAB Online:
+
+1. One person makes a folder for the project in [MATLAB Drive](https://drive.matlab.com).
+2. Right-click the folder, choose **Share**, and invite your teammates with permission to edit. Once they accept, the folder shows up in their MATLAB Drive (and in MATLAB Online) too.
+
+MATLAB Drive doesn't merge changes the way git does, so if two people edit the same file at the same time, one of them may overwrite the other. Lead your own file, and talk to each other before editing someone else's.
+
+If you want the project on GitHub at the end (for your resume, say), download the finished files from MATLAB Drive and use easy mode above.
+
+## If these sound like too much...
+
+It's not required. A shared folder that everyone on your team can reach is all the project needs.

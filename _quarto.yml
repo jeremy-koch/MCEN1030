@@ -83,6 +83,7 @@ website:
           - project/11-project.qmd
           - project/report-template.qmd
           - project/peer-evaluation.qmd
+          - project/github.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
       #     - lessons/05-loops-sweeps.qmd

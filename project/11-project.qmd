@@ -115,7 +115,7 @@ The report is built from the same four steps as your homework (Specify, Annotate
 
 ### The team's sections
 
-- **Report.** The question, the answer, the honest plot, and how sure you are. Also: **provenance** (where every piece of data came from and when, so someone else could reproduce your number) and **what we cut, and why** (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.
+- **Report.** Open by placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it's mostly about, and which part of the project does each. Then the question, the answer, the honest plot, and how sure you are. Also: **provenance** (where every piece of data came from and when, so someone else could reproduce your number) and **what we cut, and why** (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.
 - **File map.** One row per file: what goes in, what comes out, and who led it. It's the "inputs → script → outputs" shape from week 2, scaled up to the whole project.
 - **Specify.** Your final spec, your core and stretch goals, and your assumptions table, the same kind of "rulings" table as in the [example homework](../homework/example-parking-garage.qmd). Say how the spec changed since the proposal and point to the spec history for the details.
 
