@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -502,8 +537,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These callouts are guidance for you. Delete them from your report.</p>
+<p>These callouts are comments, not part of the report.</p>
 <p>A tip if you’re writing the report in a notebook: have the notebook <code>import</code> your own <code>.py</code> files and call them, e.g.&nbsp;<code>from analysis import yearly_means</code>. Then the report stays short, but your plots come from the real code.</p>
+<p>Getting figures out of a <code>.py</code> file: when you run a script, <code>plt.show()</code> pops up a window with a toolbar, and it’s very tempting to screenshot it. Don’t (see the <a href="../project/11-project.html#it-should-look-like-an-engineer-made-it">presentation checklist</a>). Instead, put this line just before <code>plt.show()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"figure1.png"</span>, dpi<span class="op">=</span><span class="dv">200</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That saves a clean image file next to your script, and that’s the file you put in the report. <code>dpi=200</code> keeps it sharp on paper. <code>bbox_inches="tight"</code> trims the extra white border.</p>
 </div>
 </div>
 <hr>
@@ -513,8 +551,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="report" class="level2">
 <h2 class="anchored" data-anchor-id="report">Report</h2>
 <p><em>Team section.</em> About two pages.</p>
-<p>Open with one or two sentences placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it’s mostly about, and which part does each. (“This project is mostly Fetch, pulling a month of readings from the ___ API, and Process, turning those readings into daily statistics.”)</p>
-<p>What question did we ask, and what’s the answer, in a sentence someone could quote? Then the honest plot, and how sure we are: how much would the answer move if we’d made a different reasonable choice?</p>
+<p>Open with one or two sentences placing the project in the course themes: which of Fetch, Process, Simulate, and Analyze it’s mostly about and why? (“This project is mostly Fetch, pulling a month of readings from the ___ API, and Process, turning those readings into daily statistics.”)</p>
+<p>Then: What question did you ask and what’s the answer? Then plots, and some comments on the scope/limitations/uncertainty of your work.</p>
 <p><strong>Provenance.</strong> Where every piece of data came from, and when: URLs, file names, phone model and app settings, retrieval dates. Also every choice that could change the number. Someone should be able to reproduce our result from this paragraph and the README alone.</p>
 <p><strong>What we cut, and why.</strong> What was in the proposal (or the stretch goal) that didn’t make it, and the reasoning behind each cut.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -580,14 +618,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The rows above are made up; yours will look different. If a file has two leads, list both, and both of you write that file’s section below.</p>
+<p>The rows above are made up, yours will look different. If a file has two leads, list both, and both of you write that file’s section below.</p>
 </div>
 </div>
 </section>
 <section id="specify" class="level2">
 <h2 class="anchored" data-anchor-id="specify">Specify</h2>
 <p><em>Team section.</em></p>
-<p>The final spec: inputs, outputs, and what counts as success. The core and stretch goals, and which ones we hit.</p>
+<p>The final spec: inputs, outputs, and what counts as success. The core and stretch goals, and which ones were attained.</p>
 <p>The assumptions table:</p>
 <table class="caption-top table">
 <thead>

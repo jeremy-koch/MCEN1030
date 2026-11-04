@@ -80,6 +80,35 @@ ul.task-list li input[type="checkbox"] {
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -468,6 +497,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#the-teams-sections" id="toc-the-teams-sections" class="nav-link" data-scroll-target="#the-teams-sections">The team’s sections</a></li>
   <li><a href="#individual-sections-one-per-file-you-led" id="toc-individual-sections-one-per-file-you-led" class="nav-link" data-scroll-target="#individual-sections-one-per-file-you-led">Individual sections, one per file you led</a></li>
+  <li><a href="#it-should-look-like-an-engineer-made-it" id="toc-it-should-look-like-an-engineer-made-it" class="nav-link" data-scroll-target="#it-should-look-like-an-engineer-made-it">It should look like an engineer made it</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -499,7 +529,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Pick something you are passionate about — you will do better work if so. You can put a link to your project repository on your resume… maybe it will help you get an internship. (We’ll do a Side Quest on creating GitHub repositories.)</li>
 <li>Make sure you do something you understand. You are going to have to explain your project in the final exam. (And if you are asked about it in an interview, you don’t want to say “I don’t know, my partner/ChatGPT did that part”.) <strong>Every team member is responsible for knowing the entire project.</strong></li>
 <li>We have some time here, but not a lot of time. Getting the scope right is your first challenge. It may be tempting to be wildly ambitious because <strong>LLMs are allowed</strong>, but don’t forget: you have to defend it in the final!</li>
-<li>The project is your last chance at the divergent standards (F1, S2, S4, A3, A4), so it should be shaped around the ones you still need. If you still need to demonstrate F1, think about a project that includes a fetch step; but if you are good on all the “fetch” standards, you don’t need to include a fetch step. Let’s talk about it if you are uncertain.</li>
+<li>The project is your last chance at the divergent standards (F1, S2, S4, A3, A4), so it should be shaped around the ones you still need. (But note you can revise your homeworks for all divergent standards, and so you may not need any.) E.g.: If you still need to demonstrate F1, think about a project that includes a fetch step; but if you are good on all the “fetch” standards, you don’t need to include a fetch step. Let’s talk about it if you are uncertain.</li>
 </ul>
 <section id="the-timelinemilestones" class="level2">
 <h2 class="anchored" data-anchor-id="the-timelinemilestones">The timeline/milestones</h2>
@@ -573,7 +603,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Further: you are expected to attend every class and should be working on the project for the entire class period. If you’d like to watch videos or work on homework for other classes, please do not expect to receive Engagement Credits for that day.</p>
 <section id="what-are-these-pin-ups" class="level3">
 <h3 class="anchored" data-anchor-id="what-are-these-pin-ups">What are these “Pin-ups”?</h3>
-<p><strong>Pin-up #1, Nov 12:</strong> Specs and plans. Before any major code exists, you will present your thinking to other teams, and the teams will give you feedback. Is the specification complete? What assumptions are being made? How is “success” going to be defined? Any recommendations?</p>
+<p><strong>Pin-up #1, Nov 12:</strong> Specs and plans. Before any major code exists, you will present your thinking to other teams and they will give you feedback. Is the specification complete? What assumptions are being made? How is “success” going to be defined? Any recommendations?</p>
 <p><strong>Pin-up #2, Nov 19:</strong> Working code, real outputs, draft plots. Again, you will present your work to other teams, and the teams will give feedback. The project is due <strong>Wed Dec 2</strong> and so you will have some time to act on the feedback.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -613,7 +643,7 @@ Warning
 <h2 class="anchored" data-anchor-id="scope-can-you-explain-it">Scope: can you explain it?</h2>
 <p>An AI will write you a 2,000-line dashboard by this afternoon, if you ask. The scope of the project is set by <strong>how much you can understand.</strong></p>
 <p>By Thursday you will define your big-picture <strong>core</strong> goal, and additionally at least one <strong>stretch</strong> goal. The core is the smallest version of the project that can be called a “success” — you collect and analyze the data, or build a dashboard, or find the optimum. The stretch is something that you are less certain is possible — an extra interactive feature, a model with a difficult parameter, etc.</p>
-<p>I should also say: it is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You’ll submit a proposal on Thursday and I’ll give some feedback.</p>
+<p>It is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You’ll submit a proposal on Thursday and I’ll give some feedback over the weekend.</p>
 <!-- The final exam asks each of you to explain your project, including the files your teammates led. If a good student on your team can't explain some piece of it (what it does, why it's there, how you know it's right), then that piece was too ambitious. Size the project by what you can explain, not by what you can generate.
 
 The practical tool for this is to split the project into a core and a stretch. Here's the trap, and almost every team falls into it: defining "done" as a list of features. ("It'll pull the data, and make a dashboard, and predict next year, and...") Feature lists grow. Instead, we'll define "done" by what can be *checked*.
@@ -625,7 +655,7 @@ You'll write both down at launch. Then, every time you're tempted to add somethi
 <section id="languageformat" class="level2">
 <h2 class="anchored" data-anchor-id="languageformat">Language/format</h2>
 <p>You may use Python or MATLAB for the project. Either way, it is going to look different than your homework submissions.</p>
-<p>Namely: you <em>can</em> use a notebook (<code>.ipynb</code>, <code>.mlx</code>) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (<code>.py</code>, <code>.m</code>). And for some, a notebook file might not make sense — no problem, you can write the report in a word processor.</p>
+<p>Namely: you <em>can</em> use a notebook (<code>.ipynb</code>, <code>.mlx</code>) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (<code>.py</code>, <code>.m</code>). A notebook file might not make sense — no problem, you can write the report in a word processor.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -650,11 +680,11 @@ Tip
 </ol>
 <p>The report is built from the same four steps as your homework (Specify, Annotate, Verify, Report), with a couple small changes.</p>
 <p><strong>First, the Report moves to the front.</strong> In the homework the grader reads everything, so the summary can wait until the end. A project report has other readers, like the other teams at a pin-up or someone who clicked the link on your resume, and they want the answer first.</p>
-<p><strong>Second, some sections belong to the team and some belong to you.</strong> Your name goes on the sections for the files you led. That’s where your standards get assessed.</p>
+<p><strong>Second, some sections belong to the team and some belong to you.</strong> Your name goes on the sections for the files you led.</p>
 <section id="the-teams-sections" class="level3">
 <h3 class="anchored" data-anchor-id="the-teams-sections">The team’s sections</h3>
 <ul>
-<li><strong>Report.</strong> Open by placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it’s mostly about, and which part of the project does each. Then the question, the answer, the honest plot, and how sure you are. Also: <strong>provenance</strong> (where every piece of data came from and when, so someone else could reproduce your number) and <strong>what we cut, and why</strong> (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.</li>
+<li><strong>Report.</strong> Open by placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it’s mostly about, and which part of the project does each. Then describe the question you proposed, a summary of the answer, some relevant plots, and comment on the scope/limitations/uncertainty of your work. Also: <strong>provenance</strong> (where every piece of data came from and when, so someone else could reproduce your number) and <strong>what we cut, and why</strong> (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.</li>
 <li><strong>File map.</strong> One row per file: what goes in, what comes out, and who led it. It’s the “inputs → script → outputs” shape from week 2, scaled up to the whole project.</li>
 <li><strong>Specify.</strong> Your final spec, your core and stretch goals, and your assumptions table, the same kind of “rulings” table as in the <a href="../homework/example-parking-garage.html">example homework</a>. Say how the spec changed since the proposal and point to the spec history for the details.</li>
 </ul>
@@ -663,11 +693,39 @@ Tip
 <h3 class="anchored" data-anchor-id="individual-sections-one-per-file-you-led">Individual sections, one per file you led</h3>
 <ul>
 <li><strong>Annotate.</strong> Your comments live in the <code>.py</code> files themselves; every file should be commented well enough that a teammate could explain it. In the report, quote just the two or three lines/sections from each file, and say what you noticed about them.</li>
-<li><strong>Verify.</strong> At Pin-up #1 you’ll describe what success looks like. That was your “predictions before running.” So here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them.</li>
+<li><strong>Verify.</strong> At Pin-up #1 you’ll describe what success looks like. Here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them. Two cases are probably appropriate, though it depends on the file.</li>
 <li><strong>AI audit.</strong> Over three weeks your AI transcripts will be enormous, so don’t paste them. Pick the one or two exchanges where your judgment actually changed something. For each one: what you asked for, an excerpt of what came back, your critique, and what you changed.</li>
 <li><strong>Standards claimed.</strong> One line at the top: which divergent standards you’re claiming and where the evidence is. (“S4: Report, second paragraph, and the tilt-angle what-if in my Verify section.”)</li>
 </ul>
 <p>The <a href="../project/report-template.html">report template</a> has the skeleton with these headers.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The report is your ticket to the final
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The final exam is a defense of <em>your submitted report</em>. We write your questions from it, and the file map you hold during the exam comes from it. So if the report is missing, or your sections of it are, there’s nothing to defend: your final is assessed as Weak and you stay at your <a href="../info/grading.html#the-grade-table">grade floor</a>. The mock defense on Dec 3 also runs on the submitted report, so no report means no mock defense credits (3 ECs).</p>
+<p>“Complete” doesn’t mean perfect. It means every section from the template is there with a real attempt in it, the same good-faith standard as engagement credits. A rough Verify section that honestly reports two failed checks is complete. A header with nothing under it is not.</p>
+<p>The team sections are the team’s responsibility. Your individual sections are yours.</p>
+<p>And if you’re counting on the project for a divergent standard, the report is where it gets assessed. No report, no standard.</p>
+</div>
+</div>
+</section>
+<section id="it-should-look-like-an-engineer-made-it" class="level3">
+<h3 class="anchored" data-anchor-id="it-should-look-like-an-engineer-made-it">It should look like an engineer made it</h3>
+<p>This report might end up linked on your resume, so it should look like something you’d hand a boss. A report that fails any item below has its final capped at <strong>Solid</strong>. (Even if your defense is brilliant, the most you can get is the whole letter, not the plus.)</p>
+<ul>
+<li><strong>Figures come out of your code, not off your screen.</strong> In Python: save them with <code>plt.savefig("figure1.png", dpi=200)</code> and put that file in the report. In MATLAB you can hover over the figure and click the save icon. No screenshots, no toolbars, no “File” menus, no slivers of your desktop in the corner. Backgrounds inside and outside the plotting area should be white, unless there is a good reason not to.</li>
+<li><strong>Every figure is readable on its own:</strong> axis labels with units, a legend if there’s more than one line, text big enough to read on paper, and a sentence in the report saying what to look at. Below the figure is a figure caption explaining what is being presented and what the takeaway is. “Speed vs.&nbsp;time” is not a good caption; “The speed of a <span class="math inline">\(m=10\)</span> kg sphere increases with time due to gravitational acceleration” is good.</li>
+<li><strong>Code goes in as text, not screenshots.</strong> Use a monospace font, or a code block in a notebook. If your code is in Times New Roman, Arial, etc., it is unreadable.</li>
+<li><strong>No raw output dumps.</strong> No 60,000-row DataFrame, no 400 lines of <code>print</code>. Show a useful summary.</li>
+<li><strong>The first page has</strong> the project title, every team member’s name, the date, and the link to your repository.</li>
+</ul>
+<p>The presentation is the team’s job, so one screenshot caps the whole team. Before you submit, everyone should confirm that the report satisfies these requirements. (It takes five minutes.)</p>
 
 
 <script type="ojs-module-contents">
