@@ -67,6 +67,7 @@ homework/old/
 
 /project/*
 !/project/11-project.qmd
+!/project/proposal.qmd
 !/project/peer-evaluation.qmd
 !/project/github.qmd
 !/project/report-template.qmd

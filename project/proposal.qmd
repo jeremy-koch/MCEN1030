@@ -1,0 +1,64 @@
+---
+title: "The proposal (and an example)"
+---
+
+Here is an example of a project. A few warnings before you read it.
+
+1. I want you to come up with a project you care about. Don't think you need to be interested in what I am interested in — this project is graded on your continued participation (Engagement Credits in class) and your understanding of your own work (the Final Defense). The Report is important as well, but it is more about your computational thinking (spec, verify, etc.) instead of the problem itself. Do something cool!
+2. Pin-up #1 is about the project specifications. You dreaming up the specifications is a big part of the project... I don't really want you to use my specs as a template. I tried to "one-shot" the LLM prompt to get something cool. It produced something awesome but overwhelming, so I did one more prompt to get a tamer version. Your process will be more iterative and might involve numerous prompts.
+3. I saw many students asking AI for project ideas. I encourage you to not do this. If AI is generating ideas for you, and generating code for you, what exactly are you bringing to the table?
+
+With those comments in mind, I wanted to give you a project that is about the right scope. I chose a topic I have been interested in: [Ballistic Capture](https://en.wikipedia.org/wiki/Ballistic_capture). Focus less on the physics and more on the scope. There are just four `.py` files, but...
+
+- `hohmann.py` contains four Python functions.
+- `moon.py` contains seven, but most of them are really small and probably don't even need to be functions. E.g. `sun_position` is just an equation, `rk4_step` could actually be handled in one line if I used a built-in function from `scipy`.
+- `test_moon.py` contains four, but these are just checks that Claude generated for me. I could do hand checks instead, and these could all disappear.
+- `ballistic.py` contains no functions but runs everything, saves the results, and makes plots. A lot of code goes in to making nice plots!
+
+So, I would say the scope is pretty reasonable: probably about eight functions that I would need to spend time dissecting, and a few others that are easy. With a few hours of study, I would feel pretty confident. To be clear: **I** would feel confident about this with a few hours of study because I have a good starting point on several of these functions.
+
+
+::: {.column-margin}
+I teach `rk4` in MCEN 3030 — it is a fancier version of the time-stepping we've done, e.g. on [HW 7](../homework/hw7-lights-out.qmd). It looks like there is a numerical derivative function in here... I teach that in MCEN 3030 too.
+:::
+
+
+::: {.callout-caution}
+
+If you use an LLM, you should half-understand the code it gives you without studying. What is it sweeping through? Why is this function running through an `if`/`else`? Is that an API call... who is it calling? You don't have to understand everything immediately, you have time to study. But studying from scratch will be a terrible experience.
+
+:::
+
+
+
+## The example
+
+[Link to my GitHub Repository](https://github.com/jeremy-koch/ballisticCapture/tree/simplified).
+
+The `README.md` file is what gets displayed on the repository "home page". It is **not** your report, but does include some key aspects of the report: the problem statement, what we hope to achieve, some key plots. (I was a little thin on these — see the [report template](report-template.qmd).)
+
+Make a basic `README.md` file (if you use [GitHub](github.qmd)), and if you have ambition to put it in your resume, make a good one!
+
+
+
+## For your proposal...
+
+... it is not very formal, but I want to hear:
+
+- A sentence or two on your main project idea and goal. Is the work mostly Fetch? Process? Simulate? Pretty much all projects will have Analyze. Talk about what you'll do.
+- A brief explanation of where your data is going to come from. 
+    - Is data on X available? Don't wait until next week to realize your project is impossible because you can't get the data.
+    - If you are going to model something, do you have the mathematical tools to do so? Don't just generically say "we're going to model X" — how are you going to do it? Is there an equation? Statistics? 
+- What is your "core goal" and what is/are your "stretch goal(s)"? These can change next week as you explore, but try to describe what success will look like today.
+- Are you thinking about meeting any divergent standards with this project?
+- Did you have a conversation about working or not working on Fall Break?
+
+A paragraph, maybe five sentences.
+
+## Submission
+
+Type your proposal out somewhere. Talk about it and edit with your team.
+
+Then: on Canvas I have set up a Group Set called "Project Teams" and made it so students can "self sign-up". One team member should create a group, and then the remaining team members should join.
+
+Then: one team member should paste the proposal into the assignment. 

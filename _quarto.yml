@@ -81,6 +81,7 @@ website:
       - section: "Project (Weeks 11–14)"
         contents:
           - project/11-project.qmd
+          - project/proposal.qmd
           - project/report-template.qmd
           - project/peer-evaluation.qmd
           - project/github.qmd
