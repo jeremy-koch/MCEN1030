@@ -373,6 +373,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../project/report-template.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project report template</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../project/peer-evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Peer evaluation</span></a>
   </div>
@@ -452,7 +458,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#teams" id="toc-teams" class="nav-link" data-scroll-target="#teams">Teams</a></li>
   <li><a href="#scope-can-you-explain-it" id="toc-scope-can-you-explain-it" class="nav-link" data-scroll-target="#scope-can-you-explain-it">Scope: can you explain it?</a></li>
   <li><a href="#languageformat" id="toc-languageformat" class="nav-link" data-scroll-target="#languageformat">Language/format</a></li>
-  <li><a href="#what-gets-turned-in" id="toc-what-gets-turned-in" class="nav-link" data-scroll-target="#what-gets-turned-in">What gets turned in</a></li>
+  <li><a href="#what-gets-turned-in" id="toc-what-gets-turned-in" class="nav-link" data-scroll-target="#what-gets-turned-in">What gets turned in</a>
+  <ul class="collapse">
+  <li><a href="#the-teams-sections" id="toc-the-teams-sections" class="nav-link" data-scroll-target="#the-teams-sections">The team’s sections</a></li>
+  <li><a href="#individual-sections-one-per-file-you-led" id="toc-individual-sections-one-per-file-you-led" class="nav-link" data-scroll-target="#individual-sections-one-per-file-you-led">Individual sections, one per file you led</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -627,17 +637,31 @@ Tip
 </section>
 <section id="what-gets-turned-in" class="level2">
 <h2 class="anchored" data-anchor-id="what-gets-turned-in">What gets turned in</h2>
-<p>Due <strong>Wednesday, Dec 2, at 11:59 p.m.</strong>.</p>
+<p>Due <strong>Wednesday, Dec 2, at 11:59 p.m.</strong> Two things:</p>
 <ol type="1">
-<li><strong>The code</strong>, as your file map: each file annotated by the person who led it.</li>
-<li><strong>The spec history</strong>: your specs and prompts as they changed, kept as you go (not reconstructed in December).</li>
-<li><strong>The report</strong>: the question, what you did, the answer, an honest plot, and how confident you are about the results. Plus two sections:
-<ul>
-<li><strong>Provenance</strong>: where every piece of data came from and when, so someone else could rerun it.</li>
-<li><strong>What we cut, and why.</strong>: this is engineering judgment. Too ambitious for the timeframe, model was too complicated without significantly improving results, etc.</li>
-</ul></li>
-<li><strong>Your own sections.</strong> For each file you led: the verification you did (hand checks, comparisons, the ones that failed), and the AI audit (spec, what the AI produced, your critique, what you changed). <!-- Your name goes on these. This is where your standards get assessed. --></li>
+<li><strong>The code</strong>, as a link to your repository (or a zip). At the top level it needs a <code>README</code> that tells a stranger how to run it: which file to start with, which packages to install, and where the data goes. It also needs a <strong>spec history</strong>: a file or folder of your specs and prompts as they changed, dated, kept as you go. (Not reconstructed in December.)</li>
+<li><strong>The report</strong>, one PDF.</li>
 </ol>
+<p>The report is built from the same four steps as your homework (Specify, Annotate, Verify, Report), with a couple small changes.</p>
+<p><strong>First, the Report moves to the front.</strong> In the homework the grader reads everything, so the summary can wait until the end. A project report has other readers, like the other teams at a pin-up or someone who clicked the link on your resume, and they want the answer first.</p>
+<p><strong>Second, some sections belong to the team and some belong to you.</strong> Your name goes on the sections for the files you led. That’s where your standards get assessed.</p>
+<section id="the-teams-sections" class="level3">
+<h3 class="anchored" data-anchor-id="the-teams-sections">The team’s sections</h3>
+<ul>
+<li><strong>Report.</strong> The question, the answer, the honest plot, and how sure you are. Also: <strong>provenance</strong> (where every piece of data came from and when, so someone else could reproduce your number) and <strong>what we cut, and why</strong> (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.</li>
+<li><strong>File map.</strong> One row per file: what goes in, what comes out, and who led it. It’s the “inputs → script → outputs” shape from week 2, scaled up to the whole project.</li>
+<li><strong>Specify.</strong> Your final spec, your core and stretch goals, and your assumptions table, the same kind of “rulings” table as in the <a href="../homework/example-parking-garage.html">example homework</a>. Say how the spec changed since the proposal and point to the spec history for the details.</li>
+</ul>
+</section>
+<section id="individual-sections-one-per-file-you-led" class="level3">
+<h3 class="anchored" data-anchor-id="individual-sections-one-per-file-you-led">Individual sections, one per file you led</h3>
+<ul>
+<li><strong>Annotate.</strong> Your comments live in the <code>.py</code> files themselves; every file should be commented well enough that a teammate could explain it. In the report, quote just the two or three lines/sections from each file, and say what you noticed about them.</li>
+<li><strong>Verify.</strong> At Pin-up #1 you’ll describe what success looks like. That was your “predictions before running.” So here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them.</li>
+<li><strong>AI audit.</strong> Over three weeks your AI transcripts will be enormous, so don’t paste them. Pick the one or two exchanges where your judgment actually changed something. For each one: what you asked for, an excerpt of what came back, your critique, and what you changed.</li>
+<li><strong>Standards claimed.</strong> One line at the top: which divergent standards you’re claiming and where the evidence is. (“S4: Report, second paragraph, and the tilt-angle what-if in my Verify section.”)</li>
+</ul>
+<p>The <a href="../project/report-template.html">report template</a> has the skeleton with these headers.</p>
 
 
 <script type="ojs-module-contents">
@@ -654,6 +678,7 @@ eyJjb250ZW50cyI6W119
 <script type="vfs-file">
 W10=
 </script>
+</section>
 </section>
 
 </main> <!-- /main -->
