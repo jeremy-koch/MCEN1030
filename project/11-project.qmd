@@ -102,15 +102,33 @@ The power of GitHub is "version control": with three or four people working on a
 
 ## What gets turned in
 
-Due **Wednesday, Dec 2, at 11:59 p.m.**.
+Due **Wednesday, Dec 2, at 11:59 p.m.** Two things:
 
-1. **The code**, as your file map: each file annotated by the person who led it.
-2. **The spec history**: your specs and prompts as they changed, kept as you go (not reconstructed in December).
-3. **The report**: the question, what you did, the answer, an honest plot, and how confident you are about the results. Plus two sections:
-    - **Provenance**: where every piece of data came from and when, so someone else could rerun it.
-    - **What we cut, and why.**: this is engineering judgment. Too ambitious for the timeframe, model was too complicated without significantly improving results, etc.
-4. **Your own sections.** For each file you led: the verification you did (hand checks, comparisons, the ones that failed), and the AI audit (spec, what the AI produced, your critique, what you changed). 
-<!-- Your name goes on these. This is where your standards get assessed. -->
+1. **The code**, as a link to your repository (or a zip). At the top level it needs a `README` that tells a stranger how to run it: which file to start with, which packages to install, and where the data goes. It also needs a **spec history**: a file or folder of your specs and prompts as they changed, dated, kept as you go. (Not reconstructed in December.)
+2. **The report**, one PDF.
+
+The report is built from the same four steps as your homework (Specify, Annotate, Verify, Report), with a couple small changes.
+
+**First, the Report moves to the front.** In the homework the grader reads everything, so the summary can wait until the end. A project report has other readers, like the other teams at a pin-up or someone who clicked the link on your resume, and they want the answer first.
+
+**Second, some sections belong to the team and some belong to you.** Your name goes on the sections for the files you led. That's where your standards get assessed.
+
+### The team's sections
+
+- **Report.** The question, the answer, the honest plot, and how sure you are. Also: **provenance** (where every piece of data came from and when, so someone else could reproduce your number) and **what we cut, and why** (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.
+- **File map.** One row per file: what goes in, what comes out, and who led it. It's the "inputs → script → outputs" shape from week 2, scaled up to the whole project.
+- **Specify.** Your final spec, your core and stretch goals, and your assumptions table, the same kind of "rulings" table as in the [example homework](../homework/example-parking-garage.qmd). Say how the spec changed since the proposal and point to the spec history for the details.
+
+### Individual sections, one per file you led
+
+- **Annotate.** Your comments live in the `.py` files themselves; every file should be commented well enough that a teammate could explain it. In the report, quote just the two or three lines/sections from each file, and say what you noticed about them.
+- **Verify.** At Pin-up #1 you'll describe what success looks like. That was your "predictions before running." So here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them.
+- **AI audit.** Over three weeks your AI transcripts will be enormous, so don't paste them. Pick the one or two exchanges where your judgment actually changed something. For each one: what you asked for, an excerpt of what came back, your critique, and what you changed.
+- **Standards claimed.** One line at the top: which divergent standards you're claiming and where the evidence is. ("S4: Report, second paragraph, and the tilt-angle what-if in my Verify section.")
+
+The [report template](report-template.qmd) has the skeleton with these headers.
+
+
 
 
 

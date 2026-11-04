@@ -1,0 +1,96 @@
+---
+title: "Project report template"
+---
+
+Here is the skeleton for your final project report. The headers are the same four steps as your homework, rearranged for a team. (See [What gets turned in](11-project.qmd#what-gets-turned-in) for the reasoning.) Write it in whatever you like: Google Docs, Word, LaTeX if you are brave, anything to get a PDF. If you use a notebook, your complete code *should not* be interspersed throughout — the majority of your code should be in `.py` files.
+
+::: {.callout-tip}
+## Commentary
+These callouts are guidance for you. Delete them from your report.
+
+A tip if you're writing the report in a notebook: have the notebook `import` your own `.py` files and call them, e.g. `from analysis import yearly_means`. Then the report stays short, but your plots come from the real code.
+:::
+
+---
+
+```
+# [Project title]
+[Team member names]
+[Date] · [Link to repository]
+```
+
+## Report
+
+*Team section.* About two pages.
+
+What question did we ask, and what's the answer, in a sentence someone could quote? Then the honest plot, and how sure we are: how much would the answer move if we'd made a different reasonable choice?
+
+**Provenance.** Where every piece of data came from, and when: URLs, file names, phone model and app settings, retrieval dates. Also every choice that could change the number. Someone should be able to reproduce our result from this paragraph and the README alone.
+
+**What we cut, and why.** What was in the proposal (or the stretch goal) that didn't make it, and the reasoning behind each cut.
+
+::: {.callout-tip}
+## Commentary
+Same test as the homework: could a classmate who never saw your project read this and know what you found, how much to trust it, and how to rerun it? Point to later sections rather than repeating them.
+:::
+
+## File map
+
+*Team section.*
+
+| file | what goes in | what comes out | led by |
+|---|---|---|---|
+| `fetch_data.py` | the API address | `raw.csv` | |
+| `clean.py` | `raw.csv` | `clean.csv` | |
+| `analysis.py` | `clean.csv` | the numbers in the report | |
+| `make_plots.py` | `clean.csv`, results | `figure1.png` | |
+
+::: {.callout-tip}
+## Commentary
+The rows above are made up; yours will look different. If a file has two leads, list both, and both of you write that file's section below.
+:::
+
+## Specify
+
+*Team section.*
+
+The final spec: inputs, outputs, and what counts as success. The core and stretch goals, and which ones we hit.
+
+The assumptions table:
+
+| situation / assumption | our ruling | why |
+|---|---|---|
+| | | |
+
+How the spec changed since the proposal, and why. Point to the spec history in the repo for the full record.
+
+---
+
+## [File name] — [Your name]
+
+*One of these for each file you led.*
+
+**Standards claimed:** e.g. "S4: see Report ¶2 and the what-if in Verify below."
+
+### Annotate
+
+Two or three quoted lines (or short blocks) from this file, each with a few sentences about what it does, which decision from the spec it carries out, and anything you noticed that wasn't obvious.
+
+### Verify
+
+What we planned to check at Pin-up #1, what we actually checked, and the results:
+
+| check | I expected | code gave | ? |
+|---|---|---|---|
+| | | | |
+
+Include the checks that failed, and what we did about them.
+
+### AI audit
+
+One or two exchanges where our judgment changed the outcome. For each one: what we asked for (the prompt, with model and date), an excerpt of what came back, our critique, and what we changed.
+
+::: {.callout-tip}
+## Commentary
+Choose the moments where the AI did something you didn't ask for, or did what you asked and it turned out to be wrong. But don't just say "the AI wrote it and it worked"!
+:::

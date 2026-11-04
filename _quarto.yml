@@ -81,6 +81,7 @@ website:
       - section: "Project (Weeks 11–14)"
         contents:
           - project/11-project.qmd
+          - project/report-template.qmd
           - project/peer-evaluation.qmd
       #     - lessons/04-logic-edges.qmd
       #     - activities/w04-edge-hunt.qmd
