@@ -97,3 +97,10 @@ pre {
     color: #777;
   }
 }
+
+// --- Hover definitions ------------------------------------------------------
+// [word]{.define data-def="..."} — popup wired up in define-tooltips.html
+.define {
+  border-bottom: 1px dotted #8a6d1f;
+  cursor: help;
+}

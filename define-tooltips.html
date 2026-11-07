@@ -1,0 +1,18 @@
+<script>
+// Hover (or tap) definitions. In a .qmd, write:
+//   [open-weight]{.define data-def="The definition goes here."}
+// Reuses tippy, which Quarto already loads for footnote popups.
+window.addEventListener("load", function () {
+  if (typeof tippy === "undefined") return;
+  document.querySelectorAll(".define[data-def]").forEach(function (el) {
+    el.setAttribute("tabindex", "0");   // keyboard-focusable
+    tippy(el, {
+      content: el.getAttribute("data-def"),
+      theme: "quarto",
+      maxWidth: 350,
+      placement: "top",
+      trigger: "mouseenter focus click",  // click so it works on an iPad
+    });
+  });
+});
+</script>

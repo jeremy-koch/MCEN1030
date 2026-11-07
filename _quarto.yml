@@ -78,6 +78,7 @@ website:
           - activities/w10-reading-matlab.qmd
           - lessons/10a-matlab.qmd
           - activities/w10-lights-out.qmd
+          - lessons/10b-local-llms.qmd
       - section: "Project (Weeks 11–14)"
         contents:
           - project/11-project.qmd
@@ -155,6 +156,7 @@ format:
     code-copy: true
     code-overflow: wrap
     link-external-newwindow: true
+    include-after-body: define-tooltips.html
 
 execute:
   freeze: auto
