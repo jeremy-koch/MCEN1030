@@ -3,6 +3,14 @@ title: "GitHub"
 subtitle: "Sharing code with your team"
 ---
 
+
+::: {.callout-note}
+
+Monday (11/9) we will talk about this in the office hour, for anyone who needs a bit more help getting set up.
+
+:::
+
+
 GitHub has become the standard location for developers to store, manage, and share their code. [TrackPy's](https://soft-matter.github.io/trackpy/v0.7/) code is actually [hosted on GitHub](https://github.com/soft-matter/trackpy), and you can look around (bottom right) and see that there are 32 contributors to that project.
 
 Imagine trying to co-write code with 31 other people by emailing files back-and-forth! Is there a better way?! Yes — [git](https://en.wikipedia.org/wiki/Git). GitHub uses git so that collaborators can work on the same project at once, "pushing" changes from their computers to a shared repository and "merging" those changes into the main version if they look good and don't conflict with anyone else's. Perhaps the coolest thing: you can link this up with your coding environment, sending updates directly from VS Code.
