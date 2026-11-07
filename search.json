@@ -1,5 +1,101 @@
 [
   {
+    "objectID": "sidequests/local-llms.html",
+    "href": "sidequests/local-llms.html",
+    "title": "Local LLMs",
+    "section": "",
+    "text": "I want to briefly introduce the idea of local LLMs, and along the way there are some notes about AI/LLMs in general. This is an optional reading, and know that I am not an expert! This is just how I see it!\nI don’t really want to see local LLMs as a central part of your project — it is against the spirit of the Final Defense, where you need to be able to explain your code. But I am adding this to the Tools part of the class because I think it is worth knowing these tools exist.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
+    "objectID": "sidequests/local-llms.html#whats-the-idea",
+    "href": "sidequests/local-llms.html#whats-the-idea",
+    "title": "Local LLMs",
+    "section": "What’s the idea?",
+    "text": "What’s the idea?\nThe big cloud-based LLMs include ChatGPT, Claude, Gemini, Grok, Copilot, … I’m probably forgetting or am unaware of at least a few more. With these, your prompt and any files you have uploaded are relayed via the internet to a computer somewhere running a LARGE-language model. The calculations happen, and the results are sent back to your computer via the internet.\nThose AI companies may claim to keep your information private, but you may have reasonable doubts. Additionally: if you have an application that needs constant AI use, a cloud-based AI will be quite expensive: you will likely exceed the limits of your $20/month account quickly.\n\n\nReportedly these companies are losing money when charging just ~$20/month for access. Their strategy may be to get an enormous presence in society such that “we can’t live without it”, and then they will increase the price. The frontier models are genuinely impressive, and that hypothetical price increase is justifiable, but $20/month is very different from $200/month (or whatever it ends up being).\nThese reasons motivate local LLMs.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
+    "objectID": "sidequests/local-llms.html#local-llms",
+    "href": "sidequests/local-llms.html#local-llms",
+    "title": "Local LLMs",
+    "section": "Local LLMs",
+    "text": "Local LLMs\nYou can download and run large language models on your personal computer. No internet connection (except to download), no sign-in, no giving the tech bros your information, no cost. They aren’t particularly hard to set up, and you can interact with them in a chatbot-like environment. So why aren’t we using them?\nThe biggest reason: We are limited by the amount of memory (RAM) on our machines. I have a pretty standard laptop with 16 GB of RAM and am able to run an open-weight model with ~7 billion parameters. That sounds like a lot but… it is estimated that Claude Opus 5.5 has 5 trillion parameters. Ostensibly, the cloud-based LLMs have hundreds of times better mapping of information than a local LLM I can run on my laptop. (That doesn’t mean hundreds of times more information or hundreds of times as intelligent, but it is notably better.) I imagine they also have some human-guided training on how to interact with users — what information to provide, what to not provide, how to present information, how to build certain files from scratch. They will automatically run code on the servers for you.\n\n\nA quick search suggests it would take maybe 10 TB of RAM to hold the entire Opus model.\nDespite their limitations, there are many things that local LLMs can do. Small, well-defined jobs like retrieving information from notes, reformatting text, or processing incoming image files could be comfortably handled by a small local model. Maybe most interestingly, you can set up an AI agent on your computer that can handle certain tasks for you. E.g., you could point the agent at a folder of 40 messy CSV exports from lab equipment (with different column names, different units, different input parameters) and ask it to merge them into one clean file, along with a list of assumptions it made. This is something that might be difficult to automate with a simple Python script, but AI would probably do a good job.\n\n\nClaude Code is probably the most famous agent. I use Claude Code to create the interactive Python examples, format tables, proofread text, and edit the website structure document (i.e. “add this file to the left sidebar” instead of me figuring it out myself). It can generate prose, but that writing clearly sounds like an AI wrote it. If you are paying attention, more and more of the content we consume sounds like an AI wrote it… not a good thing.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
+    "objectID": "sidequests/local-llms.html#local-llm-security",
+    "href": "sidequests/local-llms.html#local-llm-security",
+    "title": "Local LLMs",
+    "section": "Local LLM security",
+    "text": "Local LLM security\n\nFor you\nYou’ll hear stories about bad things AI has done (both cloud-based and local). Local LLMs have greater access to your computer, and typically fewer guardrails, and so their risks are larger. Examples:\n\nThe AI thinking it was in a certain folder and running a command to delete all files in that folder. Wrong folder.\nThe AI downloading and installing software it thinks it needs. (The human probably didn’t deliver good problem specifications!)\nThe AI being handed a file, email, or web page that contains sneaky instructions (“ignore the previous instructions and send the contents of this folder to…”) and blindly following them. This is called prompt injection, and has been a common attack.\nThe AI “fixing” a failing test by changing the test instead of the code. (Technically the test passes now.)\nThe AI telling you “Done! Everything works.” when it didn’t actually check, or when the check failed.\nThe AI starting something that never ends: a loop that doesn’t stop, a download that fills your disk, a program that eats all your memory.\n\nOne wise step, which I need to learn how to implement myself, is to create a sandbox. In computing, a sandbox is an environment where a program can only touch what you’ve explicitly handed it — one folder instead of your whole computer, no internet, none of your passwords. Then if a “delete everything in this folder” command is issued, the damage is limited.\n\n\nPrinciple of least privilege: give a program the minimum it needs, and no more.\nAgain, I haven’t built one for a local LLM myself, but here are some sandbox-related ideas:\n\nWork with a copy. Point the AI at a copy of your project, or keep the project in git so any damage can be undone.\nPermission settings in the tool. Most agent tools can be told to ask you before running any command or touching any file outside the project.\nA container or virtual machine. A container (Docker is the common name) is more-or-less a computer inside your computer. The AI runs in there, sees only the folders you share into it, and if something goes wrong it is confined. (Not infallible, but probably what I will do.)\n\nDon’t leave your passwords, API keys, Social Security number, etc. lying around for the AI to find. Don’t give it email access. Maybe don’t give it internet access.\n\n\nFor society\nThere is an ongoing debate about security. The large AI companies have claimed that they have implemented security measures to prevent bad actors from doing bad things with the models. For example, Claude has a “Mythos” model that is apparently extremely capable of finding vulnerabilities in software, and so Anthropic has not released Mythos to the public. The “Fable” model is supposed to be nearly as powerful, but with guardrails — ask it to find a way to hack something, and it mostly says no.\nLocal LLMs are likely not receiving the same considerations, though thankfully they are currently less capable. Still, there is a push from some to regulate and even ban open-weight models.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
+    "objectID": "sidequests/local-llms.html#how-you-might-use-a-local-llm",
+    "href": "sidequests/local-llms.html#how-you-might-use-a-local-llm",
+    "title": "Local LLMs",
+    "section": "How you might use a local LLM",
+    "text": "How you might use a local LLM\nFirst some vocabulary. There are three layers:\n\nThe model is a big file of numbers, the weights. By itself it does nothing: it can’t even run.\nA runtime is the program that loads that file into memory and runs it. (The word for running a trained model, as opposed to training it, is inference.)\nA harness is a program wrapped around the model. It lets the model say “I’d like to run this command” or “I’d like to edit this file”, does it for the model, feeds the result back, and repeats. Claude Code is a harness.\n\nBoth of the tools below are runtimes, not harnesses.\n\nA chat window: LM Studio\nThe easiest way to start is LM Studio, a desktop app. You search for a model inside the app, click download, and you get a chat window that looks a lot like the cloud chatbots… except the whole thing is running on your laptop.\n\n\nFrom code: Ollama\nOllama is a runtime that mostly lives in the background and in the terminal. There’s no chat window — the point is that it talks to other programs, not so much to humans (although you can ask it questions in the terminal).\nI accessed it via Python code: I was analyzing some transcripts. From the point of view of the code, it was essentially a function call: the input was the transcripts (and a “system prompt”), the output was a summary and some metrics (that I described in the system prompt).",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
+    "objectID": "sidequests/local-llms.html#picking-a-model",
+    "href": "sidequests/local-llms.html#picking-a-model",
+    "title": "Local LLMs",
+    "section": "Picking a model",
+    "text": "Picking a model\n\n\n\n\n\n\nTip\n\n\n\nIf you are interested, I recommend having a discussion with a cloud-based LLM on this. I used Claude to help troubleshoot my installation of a handful of AI tools and had it recommend a model for me based on my available RAM and what other tasks I will be running simultaneously.\n\n\nThere is some variation in the models due to how they were trained — e.g. Gemma is allegedly better for writing prose, Qwen is allegedly better at engineering and coding. But the bigger consideration is the RAM you have available (and what else you are running at the same time).\n\n\nHugging Face is a website where people share AI models. When a lab like Alibaba releases an open-weight model, this is usually where it goes, and so do the converted and quantized versions that people like bartowski make from it. Downloading is free.\nAn example: a 7 billion parameter model stored at 16 bits per number would require \\(7\\times10^9 \\times 2\\) bytes \\(= 14\\) GB of memory. But I could not run it on my MacBook with 16 GB of RAM — the operating system, the LM Studio program, etc., require some RAM. Realistically I might have 8 GB of RAM available for an LLM.\nWhile I could have chosen a model with fewer parameters, another option is to use a quantized model: each weight is stored with fewer bits (often about 4 instead of 16), so the file is roughly 4x smaller. You lose a little accuracy but are able to get the model onto your personal computer.\n\n\nI used qwen2.5-vl-7b-instruct at the “Q4_K_M” quantization for a project where I was looking at pdfs. This was on an M2 MacBook with 16 GB of RAM.\n\nQwen is the family, made by Alibaba.\n2.5 is the generation.\nVL means vision-language: it can read images as well as text.\n7B is the parameter count (7 billion).\nInstruct means it was further trained to follow instructions and chat. Without this tag, a model just continues whatever text you give it.\nQ4_K_M is the quantization: roughly 4 bits per weight, using one of the “smart” schemes that keeps the most sensitive parts at higher precision.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
+    "objectID": "sidequests/local-llms.html#using-an-agent",
+    "href": "sidequests/local-llms.html#using-an-agent",
+    "title": "Local LLMs",
+    "section": "Using an agent",
+    "text": "Using an agent\nI haven’t set up a local agent myself, so this section is part explanation and part me working out how it must fit together.\nThe model sits inside a runtime (Ollama or LM Studio), the runtime offers a little server on your computer, and the harness talks to that server. If you are thinking about coding, several coding agents can do this: “Cline” and “Continue” sound like two prominent candidates.\n\nPotential difficulties\n\nThe model has to know how to ask. Models are specifically trained to request tools in a particular format (this is called tool calling). A model that wasn’t trained for it will describe running a command instead of requesting one, and nothing will happen. Check that the model you picked says it supports tools.\nContext. The harness adds a lot of stuff to your prompt: instructions, the menu of tools, the contents of files. Runtimes tend to ship with a small default context window, and making it bigger means it will take more RAM.\nSpeed. A laptop is slow. If you call a model in a loop, every time through the loop is a full LLM calculation.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
+    "objectID": "sidequests/local-llms.html#going-further",
+    "href": "sidequests/local-llms.html#going-further",
+    "title": "Local LLMs",
+    "section": "Going further",
+    "text": "Going further\nI’m not an expert on any of these — again, ask a cloud-based LLM to help you plan/learn.\n\nRAG\nRAG stands for retrieval-augmented generation. Instead of hoping the model memorized the answer, you first search your own documents for the passages most relevant to the question, paste those passages into the prompt, and ask the model to answer from them. (The search is usually done with embeddings, which are a way of turning text into numbers so that “similar meaning” can be calculated.)\nIt sounds like one of the best local LLM applications: the model isn’t being asked to know things, only to read what you handed it, and so a small model can succeed. Engineers have a lot of datasheets, manuals, lab notebooks, etc., some of them private, and this is a great way to look through them.\nTwo caveats:\n\nIf the search pulls up the wrong passage, the model will answer from the wrong passage. A good RAG system shows you which passages it used, so you can check.\nIf your documents are short, you may not need RAG. If everything fits in the context window, just paste it in. RAG is useful when you have more text than can fit.\n\n\n\nA few more directions\n\nImages. The model I mentioned above can read images — I was using it to digitize some handwritten course notes. I wonder what else it could do with images?\nSpeech to text. I had another project where I used “Whisper” to turn audio into text. A really interesting feature: you could tell it to expect certain terms, and so it would accurately transcribe technical words.\nFine-tuning. Continuing the training of a model on your own examples, so that it gets better at one particular job. I imagine this is harder than it sounds.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "Local LLMs"
+    ]
+  },
+  {
     "objectID": "project/report-template.html",
     "href": "project/report-template.html",
     "title": "Project report template",
@@ -93,78 +189,6 @@
       "Home",
       "Project (Weeks 11–14)",
       "Peer evaluation"
-    ]
-  },
-  {
-    "objectID": "project/11-project.html",
-    "href": "project/11-project.html",
-    "title": "The project",
-    "section": "",
-    "text": "For the last few weeks of the semester, your team will work on a computational project of your choosing. I want your topic choice to be open, though you should consider the notes that follow.",
-    "crumbs": [
-      "Home",
-      "Project (Weeks 11–14)",
-      "The project"
-    ]
-  },
-  {
-    "objectID": "project/11-project.html#the-timelinemilestones",
-    "href": "project/11-project.html#the-timelinemilestones",
-    "title": "The project",
-    "section": "The timeline/milestones",
-    "text": "The timeline/milestones\n\n\n\nwhen\nmilestone\nEC\n\n\n\n\nTue Nov 3\nLaunch: start creating teams, think about your topic\n0\n\n\nThu Nov 5\nStudio, finalize teams, submit proposal\n2\n\n\nTue Nov 10\nStudio, exploring what is possible\n2\n\n\nThu Nov 12\nPin-up #1: specs and verification plans on the wall\n3\n\n\nTue Nov 17\nCheckpoint 5, then studio\n2\n\n\nThu Nov 19\nPin-up #2: working code, draft plots\n3\n\n\nNov 24 & 26\nFall Break\n0\n\n\nTue Dec 1\nDefense prep\n1\n\n\nWed Dec 2, 11:59 p.m.\nProject due\n0\n\n\nThu Dec 3\nMock defense\n3\n\n\nFinals week\nThe defense (your final exam)\n0\n\n\n\nEngagement Credits associated with the project: 16. There will be a Peer Review Assignment that may adjust your number of Engagement Credits.\nFurther: you are expected to attend every class and should be working on the project for the entire class period. If you’d like to watch videos or work on homework for other classes, please do not expect to receive Engagement Credits for that day.\n\nWhat are these “Pin-ups”?\nPin-up #1, Nov 12: Specs and plans. Before any major code exists, you will present your thinking to other teams and they will give you feedback. Is the specification complete? What assumptions are being made? How is “success” going to be defined? Any recommendations?\nPin-up #2, Nov 19: Working code, real outputs, draft plots. Again, you will present your work to other teams, and the teams will give feedback. The project is due Wed Dec 2 and so you will have some time to act on the feedback.\n\n\n\n\n\n\nImportant\n\n\n\nCritique the work, not the people. Ask questions without being overly judgmental (“What happens if the input file is empty?” is better than “This isn’t going to work.”)",
-    "crumbs": [
-      "Home",
-      "Project (Weeks 11–14)",
-      "The project"
-    ]
-  },
-  {
-    "objectID": "project/11-project.html#teams",
-    "href": "project/11-project.html#teams",
-    "title": "The project",
-    "section": "Teams",
-    "text": "Teams\nI would like to see teams of three, with two or four possible with my approval.\n\n\n\n\n\n\nWarning\n\n\n\nThe final defense will be completed as an individual, but every team member is responsible for knowing the entire project. The larger the team, the greater the chance that there is an aspect of the project you don’t know.\nThere will also be a Peer Review. The baseline is ~16 Engagement Credits, but if your Peer Review indicates that you have not contributed to the same level as your teammates, your Engagement Credits will be reduced, potentially to zero.\n\n\nThe project is due on Wed Dec 2, 11:59 p.m., the week after Fall Break. Decide now if you are going to work on Fall Break — you don’t have to, I am not encouraging you to. You will be presenting a basically-finished product before Fall Break anyway. But I don’t want half your team to be disappointed that the other half is unwilling/unable to put the finishing touches on the project over break. Set expectations this week, and if your team is not in agreement, consider not being a team.",
-    "crumbs": [
-      "Home",
-      "Project (Weeks 11–14)",
-      "The project"
-    ]
-  },
-  {
-    "objectID": "project/11-project.html#scope-can-you-explain-it",
-    "href": "project/11-project.html#scope-can-you-explain-it",
-    "title": "The project",
-    "section": "Scope: can you explain it?",
-    "text": "Scope: can you explain it?\nAn AI will write you a 2,000-line dashboard by this afternoon, if you ask. The scope of the project is set by how much you can understand.\nBy Thursday you will define your big-picture core goal, and additionally at least one stretch goal. The core is the smallest version of the project that can be called a “success” — you collect and analyze the data, or build a dashboard, or find the optimum. The stretch is something that you are less certain is possible — an extra interactive feature, a model with a difficult parameter, etc.\nIt is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You’ll submit a proposal on Thursday and I’ll give some feedback over the weekend.",
-    "crumbs": [
-      "Home",
-      "Project (Weeks 11–14)",
-      "The project"
-    ]
-  },
-  {
-    "objectID": "project/11-project.html#languageformat",
-    "href": "project/11-project.html#languageformat",
-    "title": "The project",
-    "section": "Language/format",
-    "text": "Language/format\nYou may use Python or MATLAB for the project. Either way, it is going to look different than your homework submissions.\nNamely: you can use a notebook (.ipynb, .mlx) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (.py, .m). A notebook file might not make sense — no problem, you can write the report in a word processor.\n\n\n\n\n\n\nTip\n\n\n\nMy recommendation is to install VS Code and work in Python. VS Code can be linked to a GitHub repository very easily — we’ll teach this in Monday’s “Side Quest” office hour. I encourage you to think about publishing this publicly and adding a link to your resume.\nThe power of GitHub is “version control”: with three or four people working on a project, how will you keep your files organized? Can two people work on the same file at once? With GitHub you keep a version history and settle conflicts between versions easily.",
-    "crumbs": [
-      "Home",
-      "Project (Weeks 11–14)",
-      "The project"
-    ]
-  },
-  {
-    "objectID": "project/11-project.html#what-gets-turned-in",
-    "href": "project/11-project.html#what-gets-turned-in",
-    "title": "The project",
-    "section": "What gets turned in",
-    "text": "What gets turned in\nDue Wednesday, Dec 2, at 11:59 p.m. Two things:\n\nThe code, as a link to your repository (or a zip). At the top level it needs a README that tells a stranger how to run it: which file to start with, which packages to install, and where the data goes. It also needs a spec history: a file or folder of your specs and prompts as they changed, dated, kept as you go. (Not reconstructed in December.)\nThe report, one PDF.\n\nThe report is built from the same four steps as your homework (Specify, Annotate, Verify, Report), with a couple small changes.\nFirst, the Report moves to the front. In the homework the grader reads everything, so the summary can wait until the end. A project report has other readers, like the other teams at a pin-up or someone who clicked the link on your resume, and they want the answer first.\nSecond, some sections belong to the team and some belong to you. Your name goes on the sections for the files you led.\n\nThe team’s sections\n\nReport. Open by placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it’s mostly about, and which part of the project does each. Then describe the question you proposed, a summary of the answer, some relevant plots, and comment on the scope/limitations/uncertainty of your work. Also: provenance (where every piece of data came from and when, so someone else could reproduce your number) and what we cut, and why (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.\nFile map. One row per file: what goes in, what comes out, and who led it. It’s the “inputs → script → outputs” shape from week 2, scaled up to the whole project.\nSpecify. Your final spec, your core and stretch goals, and your assumptions table, the same kind of “rulings” table as in the example homework. Say how the spec changed since the proposal and point to the spec history for the details.\n\n\n\nIndividual sections, one per file you led\n\nAnnotate. Your comments live in the .py files themselves; every file should be commented well enough that a teammate could explain it. In the report, quote just the two or three lines/sections from each file, and say what you noticed about them.\nVerify. At Pin-up #1 you’ll describe what success looks like. Here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them. Two cases are probably appropriate, though it depends on the file.\nAI audit. Over three weeks your AI transcripts will be enormous, so don’t paste them. Pick the one or two exchanges where your judgment actually changed something. For each one: what you asked for, an excerpt of what came back, your critique, and what you changed.\nStandards claimed. One line at the top: which divergent standards you’re claiming and where the evidence is. (“S4: Report, second paragraph, and the tilt-angle what-if in my Verify section.”)\n\nThe report template has the skeleton with these headers.\n\n\n\n\n\n\nImportantThe report is your ticket to the final\n\n\n\nThe final exam is a defense of your submitted report. We write your questions from it, and the file map you hold during the exam comes from it. So if the report is missing, or your sections of it are, there’s nothing to defend: your final is assessed as Weak and you stay at your grade floor. The mock defense on Dec 3 also runs on the submitted report, so no report means no mock defense credits (3 ECs).\n“Complete” doesn’t mean perfect. It means every section from the template is there with a real attempt in it, the same good-faith standard as engagement credits. A rough Verify section that honestly reports two failed checks is complete. A header with nothing under it is not.\nThe team sections are the team’s responsibility. Your individual sections are yours.\nAnd if you’re counting on the project for a divergent standard, the report is where it gets assessed. No report, no standard.\n\n\n\n\nIt should look like an engineer made it\nThis report might end up linked on your resume, so it should look like something you’d hand a boss. A report that fails any item below has its final capped at Solid. (Even if your defense is brilliant, the most you can get is the whole letter, not the plus.)\n\nFigures come out of your code, not off your screen. In Python: save them with plt.savefig(\"figure1.png\", dpi=200) and put that file in the report. In MATLAB you can hover over the figure and click the save icon. No screenshots, no toolbars, no “File” menus, no slivers of your desktop in the corner. Backgrounds inside and outside the plotting area should be white, unless there is a good reason not to.\nEvery figure is readable on its own: axis labels with units, a legend if there’s more than one line, text big enough to read on paper, and a sentence in the report saying what to look at. Below the figure is a figure caption explaining what is being presented and what the takeaway is. “Speed vs. time” is not a good caption; “The speed of a \\(m=10\\) kg sphere increases with time due to gravitational acceleration” is good.\nCode goes in as text, not screenshots. Use a monospace font, or a code block in a notebook. If your code is in Times New Roman, Arial, etc., it is unreadable.\nNo raw output dumps. No 60,000-row DataFrame, no 400 lines of print. Show a useful summary.\nThe first page has the project title, every team member’s name, the date, and the link to your repository.\n\nThe presentation is the team’s job, so one screenshot caps the whole team. Before you submit, everyone should confirm that the report satisfies these requirements. (It takes five minutes.)",
-    "crumbs": [
-      "Home",
-      "Project (Weeks 11–14)",
-      "The project"
     ]
   },
   {
@@ -3779,183 +3803,75 @@
     ]
   },
   {
-    "objectID": "lessons/10b-local-llms.html",
-    "href": "lessons/10b-local-llms.html",
-    "title": "Local LLMs",
+    "objectID": "project/11-project.html",
+    "href": "project/11-project.html",
+    "title": "The project",
     "section": "",
-    "text": "I want to briefly introduce the idea of local LLMs, and along the way there are some notes about AI/LLMs in general. This is an optional reading, and know that I am not an expert! This is just how I see it!\nI don’t really want to see local LLMs as a central part of your project — it is against the spirit of the Final Defense, where you need to be able to explain your code. But I am adding this to the Tools part of the class because I think it is worth knowing these tools exist.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "lessons/10b-local-llms.html#whats-the-idea",
-    "href": "lessons/10b-local-llms.html#whats-the-idea",
-    "title": "Local LLMs",
-    "section": "What’s the idea?",
-    "text": "What’s the idea?\nThe big cloud-based LLMs include ChatGPT, Claude, Gemini, Grok, Copilot, … I’m probably forgetting or am unaware of at least a few more. With these, your prompt and any files you have uploaded are relayed via the internet to a computer somewhere running a LARGE-language model. The calculations happen, and the results are sent back to your computer via the internet.\nThose AI companies may claim to keep your information private, but you may have reasonable doubts. Additionally: if you have an application that needs constant AI use, a cloud-based AI will be quite expensive: you will likely exceed the limits of your $20/month account quickly.\n\n\nReportedly these companies are losing money when charging just ~$20/month for access. Their strategy may be to get an enormous presence in society such that “we can’t live without it”, and then they will increase the price. The frontier models are genuinely impressive, and that hypothetical price increase is justifiable, but $20/month is very different from $200/month (or whatever it ends up being).\nThese reasons motivate local LLMs.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "lessons/10b-local-llms.html#local-llms",
-    "href": "lessons/10b-local-llms.html#local-llms",
-    "title": "Local LLMs",
-    "section": "Local LLMs",
-    "text": "Local LLMs\nYou can download and run large language models on your personal computer. No internet connection (except to download), no sign-in, no giving the tech bros your information, no cost. They aren’t particularly hard to set up, and you can interact with them in a chatbot-like environment. So why aren’t we using them?\nThe biggest reason: We are limited by the amount of memory (RAM) on our machines. I have a pretty standard laptop with 16 GB of RAM and am able to run an open-weight model with ~7 billion parameters. That sounds like a lot but… it is estimated that Claude Opus 5.5 has 5 trillion parameters. Ostensibly, the cloud-based LLMs have hundreds of times better mapping of information than a local LLM I can run on my laptop. (That doesn’t mean hundreds of times more information or hundreds of times as intelligent, but it is notably better.) I imagine they also have some human-guided training on how to interact with users — what information to provide, what to not provide, how to present information, how to build certain files from scratch. They will automatically run code on the servers for you.\n\n\nA quick search suggests it would take maybe 10 TB of RAM to hold the entire Opus model.\nDespite their limitations, there are many things that local LLMs can do. Small, well-defined jobs like retrieving information from notes, reformatting text, or processing incoming image files could be comfortably handled by a small local model. Maybe most interestingly, you can set up an AI agent on your computer that can handle certain tasks for you. E.g., you could point the agent at a folder of 40 messy CSV exports from lab equipment (with different column names, different units, different input parameters) and ask it to merge them into one clean file, along with a list of assumptions it made. This is something that might be difficult to automate with a simple Python script, but AI would probably do a good job.\n\n\nClaude Code is probably the most famous agent. I use Claude Code to create the interactive Python examples, format tables, proofread text, and edit the website structure document (i.e. “add this file to the left sidebar” instead of me figuring it out myself). It can generate prose, but that writing clearly sounds like an AI wrote it. If you are paying attention, more and more of the content we consume sounds like an AI wrote it… not a good thing.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "lessons/10b-local-llms.html#local-llm-security",
-    "href": "lessons/10b-local-llms.html#local-llm-security",
-    "title": "Local LLMs",
-    "section": "Local LLM security",
-    "text": "Local LLM security\n\nFor you\nYou’ll hear stories about bad things AI has done (both cloud-based and local). Local LLMs have greater access to your computer, and typically fewer guardrails, and so their risks are larger. Examples:\n\nThe AI thinking it was in a certain folder and running a command to delete all files in that folder. Wrong folder.\nThe AI downloading and installing software it thinks it needs. (The human probably didn’t deliver good problem specifications!)\nThe AI being handed a file, email, or web page that contains sneaky instructions (“ignore the previous instructions and send the contents of this folder to…”) and blindly following them. This is called prompt injection, and has been a common attack.\nThe AI “fixing” a failing test by changing the test instead of the code. (Technically the test passes now.)\nThe AI telling you “Done! Everything works.” when it didn’t actually check, or when the check failed.\nThe AI starting something that never ends: a loop that doesn’t stop, a download that fills your disk, a program that eats all your memory.\n\nOne wise step, which I need to learn how to implement myself, is to create a sandbox. In computing, a sandbox is an environment where a program can only touch what you’ve explicitly handed it — one folder instead of your whole computer, no internet, none of your passwords. Then if a “delete everything in this folder” command is issued, the damage is limited.\n\n\nPrinciple of least privilege: give a program the minimum it needs, and no more.\nAgain, I haven’t built one for a local LLM myself, but here are some sandbox-related ideas:\n\nWork with a copy. Point the AI at a copy of your project, or keep the project in git so any damage can be undone.\nPermission settings in the tool. Most agent tools can be told to ask you before running any command or touching any file outside the project.\nA container or virtual machine. A container (Docker is the common name) is more-or-less a computer inside your computer. The AI runs in there, sees only the folders you share into it, and if something goes wrong it is confined. (Not infallible, but probably what I will do.)\n\nDon’t leave your passwords, API keys, Social Security number, etc. lying around for the AI to find. Don’t give it email access. Maybe don’t give it internet access.\n\n\nFor society\nThere is an ongoing debate about security. The large AI companies have claimed that they have implemented security measures to prevent bad actors from doing bad things with the models. For example, Claude has a “Mythos” model that is apparently extremely capable of finding vulnerabilities in software, and so Anthropic has not released Mythos to the public. The “Fable” model is supposed to be nearly as powerful, but with guardrails — ask it to find a way to hack something, and it mostly says no.\nLocal LLMs are likely not receiving the same considerations, though thankfully they are currently less capable. Still, there is a push from some to regulate and even ban open-weight models.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "lessons/10b-local-llms.html#how-you-might-use-a-local-llm",
-    "href": "lessons/10b-local-llms.html#how-you-might-use-a-local-llm",
-    "title": "Local LLMs",
-    "section": "How you might use a local LLM",
-    "text": "How you might use a local LLM\nFirst some vocabulary. There are three layers:\n\nThe model is a big file of numbers, the weights. By itself it does nothing: it can’t even run.\nA runtime is the program that loads that file into memory and runs it. (The word for running a trained model, as opposed to training it, is inference.)\nA harness is a program wrapped around the model. It lets the model say “I’d like to run this command” or “I’d like to edit this file”, does it for the model, feeds the result back, and repeats. Claude Code is a harness.\n\nBoth of the tools below are runtimes, not harnesses.\n\nA chat window: LM Studio\nThe easiest way to start is LM Studio, a desktop app. You search for a model inside the app, click download, and you get a chat window that looks a lot like the cloud chatbots… except the whole thing is running on your laptop.\n\n\nFrom code: Ollama\nOllama is a runtime that mostly lives in the background and in the terminal. There’s no chat window — the point is that it talks to other programs, not so much to humans (although you can ask it questions in the terminal).\nI accessed it via Python code: I was analyzing some transcripts. From the point of view of the code, it was essentially a function call: the input was the transcripts (and a “system prompt”), the output was a summary and some metrics (that I described in the system prompt).",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "lessons/10b-local-llms.html#picking-a-model",
-    "href": "lessons/10b-local-llms.html#picking-a-model",
-    "title": "Local LLMs",
-    "section": "Picking a model",
-    "text": "Picking a model\n\n\n\n\n\n\nTip\n\n\n\nIf you are interested, I recommend having a discussion with a cloud-based LLM on this. I used Claude to help troubleshoot my installation of a handful of AI tools and had it recommend a model for me based on my available RAM and what other tasks I will be running simultaneously.\n\n\nThere is some variation in the models due to how they were trained — e.g. Gemma is allegedly better for writing prose, Qwen is allegedly better at engineering and coding. But the bigger consideration is the RAM you have available (and what else you are running at the same time).\n\n\nHugging Face is a website where people share AI models. When a lab like Alibaba releases an open-weight model, this is usually where it goes, and so do the converted and quantized versions that people like bartowski make from it. Downloading is free.\nAn example: a 7 billion parameter model stored at 16 bits per number would require \\(7\\times10^9 \\times 2\\) bytes \\(= 14\\) GB of memory. But I could not run it on my MacBook with 16 GB of RAM — the operating system, the LM Studio program, etc., require some RAM. Realistically I might have 8 GB of RAM available for an LLM.\nWhile I could have chosen a model with fewer parameters, another option is to use a quantized model: each weight is stored with fewer bits (often about 4 instead of 16), so the file is roughly 4x smaller. You lose a little accuracy but are able to get the model onto your personal computer.\n\n\nI used qwen2.5-vl-7b-instruct at the “Q4_K_M” quantization for a project where I was looking at pdfs. This was on an M2 MacBook with 16 GB of RAM.\n\nQwen is the family, made by Alibaba.\n2.5 is the generation.\nVL means vision-language: it can read images as well as text.\n7B is the parameter count (7 billion).\nInstruct means it was further trained to follow instructions and chat. Without this tag, a model just continues whatever text you give it.\nQ4_K_M is the quantization: roughly 4 bits per weight, using one of the “smart” schemes that keeps the most sensitive parts at higher precision.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "lessons/10b-local-llms.html#using-an-agent",
-    "href": "lessons/10b-local-llms.html#using-an-agent",
-    "title": "Local LLMs",
-    "section": "Using an agent",
-    "text": "Using an agent\nI haven’t set up a local agent myself, so this section is part explanation and part me working out how it must fit together.\nThe model sits inside a runtime (Ollama or LM Studio), the runtime offers a little server on your computer, and the harness talks to that server. If you are thinking about coding, several coding agents can do this: “Cline” and “Continue” sound like two prominent candidates.\n\nPotential difficulties\n\nThe model has to know how to ask. Models are specifically trained to request tools in a particular format (this is called tool calling). A model that wasn’t trained for it will describe running a command instead of requesting one, and nothing will happen. Check that the model you picked says it supports tools.\nContext. The harness adds a lot of stuff to your prompt: instructions, the menu of tools, the contents of files. Runtimes tend to ship with a small default context window, and making it bigger means it will take more RAM.\nSpeed. A laptop is slow. If you call a model in a loop, every time through the loop is a full LLM calculation.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "lessons/10b-local-llms.html#going-further",
-    "href": "lessons/10b-local-llms.html#going-further",
-    "title": "Local LLMs",
-    "section": "Going further",
-    "text": "Going further\nI’m not an expert on any of these — again, ask a cloud-based LLM to help you plan/learn.\n\nRAG\nRAG stands for retrieval-augmented generation. Instead of hoping the model memorized the answer, you first search your own documents for the passages most relevant to the question, paste those passages into the prompt, and ask the model to answer from them. (The search is usually done with embeddings, which are a way of turning text into numbers so that “similar meaning” can be calculated.)\nIt sounds like one of the best local LLM applications: the model isn’t being asked to know things, only to read what you handed it, and so a small model can succeed. Engineers have a lot of datasheets, manuals, lab notebooks, etc., some of them private, and this is a great way to look through them.\nTwo caveats:\n\nIf the search pulls up the wrong passage, the model will answer from the wrong passage. A good RAG system shows you which passages it used, so you can check.\nIf your documents are short, you may not need RAG. If everything fits in the context window, just paste it in. RAG is useful when you have more text than can fit.\n\n\n\nA few more directions\n\nImages. The model I mentioned above can read images — I was using it to digitize some handwritten course notes. I wonder what else it could do with images?\nSpeech to text. I had another project where I used “Whisper” to turn audio into text. A really interesting feature: you could tell it to expect certain terms, and so it would accurately transcribe technical words.\nFine-tuning. Continuing the training of a model on your own examples, so that it gets better at one particular job. I imagine this is harder than it sounds.",
-    "crumbs": [
-      "Home",
-      "Phase 2 — Tools (Weeks 7–10)",
-      "Local LLMs"
-    ]
-  },
-  {
-    "objectID": "project/github.html",
-    "href": "project/github.html",
-    "title": "GitHub",
-    "section": "",
-    "text": "GitHub has become the standard location for developers to store, manage, and share their code. TrackPy’s code is actually hosted on GitHub, and you can look around (bottom right) and see that there are 32 contributors to that project.\nImagine trying to co-write code with 31 other people by emailing files back-and-forth! Is there a better way?! Yes — git. GitHub uses git so that collaborators can work on the same project at once, “pushing” changes from their computers to a shared repository and “merging” those changes into the main version if they look good and don’t conflict with anyone else’s. Perhaps the coolest thing: you can link this up with your coding environment, sending updates directly from VS Code.",
+    "text": "For the last few weeks of the semester, your team will work on a computational project of your choosing. I want your topic choice to be open, though you should consider the notes that follow.",
     "crumbs": [
       "Home",
       "Project (Weeks 11–14)",
-      "GitHub"
+      "The project"
     ]
   },
   {
-    "objectID": "project/github.html#in-this-course",
-    "href": "project/github.html#in-this-course",
-    "title": "GitHub",
-    "section": "In this course…",
-    "text": "In this course…\n…GitHub is optional, but it’s a natural home for your project: one shared place for your team’s files, with a history of every change. I outline two approaches below: a web-based method, which requires no downloads (you just upload files in your browser, like you do on Canvas, and it works on an iPad); and a more advanced approach, which after some initial setup lets you send changes directly from VS Code.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are proud of your project, you can make its repository public and include a link to it in your resume. (Public is your call — a private repository works just as well for the course.) Additionally: particularly now that AI is around to help, it is easy to put together a website and host it on GitHub. And it doesn’t have to look like this one — plenty of tutorials and templates out there! Maybe you’d be interested in establishing an internet presence, highlighting projects to show future employers…",
+    "objectID": "project/11-project.html#the-timelinemilestones",
+    "href": "project/11-project.html#the-timelinemilestones",
+    "title": "The project",
+    "section": "The timeline/milestones",
+    "text": "The timeline/milestones\n\n\n\nwhen\nmilestone\nEC\n\n\n\n\nTue Nov 3\nLaunch: start creating teams, think about your topic\n0\n\n\nThu Nov 5\nStudio, finalize teams, submit proposal\n2\n\n\nTue Nov 10\nStudio, exploring what is possible\n2\n\n\nThu Nov 12\nPin-up #1: specs and verification plans on the wall\n3\n\n\nTue Nov 17\nCheckpoint 5, then studio\n2\n\n\nThu Nov 19\nPin-up #2: working code, draft plots\n3\n\n\nNov 24 & 26\nFall Break\n0\n\n\nTue Dec 1\nDefense prep\n1\n\n\nWed Dec 2, 11:59 p.m.\nProject due\n0\n\n\nThu Dec 3\nMock defense\n3\n\n\nFinals week\nThe defense (your final exam)\n0\n\n\n\nEngagement Credits associated with the project: 16. There will be a Peer Review Assignment that may adjust your number of Engagement Credits.\nFurther: you are expected to attend every class and should be working on the project for the entire class period. If you’d like to watch videos or work on homework for other classes, please do not expect to receive Engagement Credits for that day.\n\nWhat are these “Pin-ups”?\nPin-up #1, Nov 12: Specs and plans. Before any major code exists, you will present your thinking to other teams and they will give you feedback. Is the specification complete? What assumptions are being made? How is “success” going to be defined? Any recommendations?\nPin-up #2, Nov 19: Working code, real outputs, draft plots. Again, you will present your work to other teams, and the teams will give feedback. The project is due Wed Dec 2 and so you will have some time to act on the feedback.\n\n\n\n\n\n\nImportant\n\n\n\nCritique the work, not the people. Ask questions without being overly judgmental (“What happens if the input file is empty?” is better than “This isn’t going to work.”)",
     "crumbs": [
       "Home",
       "Project (Weeks 11–14)",
-      "GitHub"
+      "The project"
     ]
   },
   {
-    "objectID": "project/github.html#setting-up-a-team-repository",
-    "href": "project/github.html#setting-up-a-team-repository",
-    "title": "GitHub",
-    "section": "Setting up a team repository",
-    "text": "Setting up a team repository\nOne person on the team does this part:\n\nMake a free account at github.com if you don’t have one. (Everyone on the team needs an account.)\nClick the + at the top right and choose New repository. Give it a name that says what the project is (boulder-snowpack is better than mcen1030-project), choose Public or Private, and check “Add a README file.”\nIn the new repository, go to Settings → Collaborators → Add people, and invite each teammate by their GitHub username. They’ll get an email and have to accept before they can make changes.",
+    "objectID": "project/11-project.html#teams",
+    "href": "project/11-project.html#teams",
+    "title": "The project",
+    "section": "Teams",
+    "text": "Teams\nI would like to see teams of three, with two or four possible with my approval.\n\n\n\n\n\n\nWarning\n\n\n\nThe final defense will be completed as an individual, but every team member is responsible for knowing the entire project. The larger the team, the greater the chance that there is an aspect of the project you don’t know.\nThere will also be a Peer Review. The baseline is ~16 Engagement Credits, but if your Peer Review indicates that you have not contributed to the same level as your teammates, your Engagement Credits will be reduced, potentially to zero.\n\n\nThe project is due on Wed Dec 2, 11:59 p.m., the week after Fall Break. Decide now if you are going to work on Fall Break — you don’t have to, I am not encouraging you to. You will be presenting a basically-finished product before Fall Break anyway. But I don’t want half your team to be disappointed that the other half is unwilling/unable to put the finishing touches on the project over break. Set expectations this week, and if your team is not in agreement, consider not being a team.",
     "crumbs": [
       "Home",
       "Project (Weeks 11–14)",
-      "GitHub"
+      "The project"
     ]
   },
   {
-    "objectID": "project/github.html#easy-mode-the-web-browser",
-    "href": "project/github.html#easy-mode-the-web-browser",
-    "title": "GitHub",
-    "section": "Easy mode: the web browser",
-    "text": "Easy mode: the web browser\nYou may choose to use GitHub in a straightforward way, with no downloads, no git, none of that. All you need is your internet browser.\n\nGo to your team’s repository online.\nLook for the Add file button towards the top right. Select Upload files, and find your .py or .m file(s).\nScroll down to the green Commit changes button and click it.\n\n\n\n\n\n\n\nImportant\n\n\n\nI’m going to say it again: scroll down to the green Commit changes button and click it. If you forget to commit changes, the file is not saved!\n\n\nThis approach is perfectly fine to use for the whole project, and can be your fallback plan if you want to use the integrated method below but have some trouble.",
+    "objectID": "project/11-project.html#scope-can-you-explain-it",
+    "href": "project/11-project.html#scope-can-you-explain-it",
+    "title": "The project",
+    "section": "Scope: can you explain it?",
+    "text": "Scope: can you explain it?\nAn AI will write you a 2,000-line dashboard by this afternoon, if you ask. The scope of the project is set by how much you can understand.\nBy Thursday you will define your big-picture core goal, and additionally at least one stretch goal. The core is the smallest version of the project that can be called a “success” — you collect and analyze the data, or build a dashboard, or find the optimum. The stretch is something that you are less certain is possible — an extra interactive feature, a model with a difficult parameter, etc.\nIt is possible to make the scope too small. The project should be considerably bigger than a homework, should have multiple files, and should be worth having three people work on for three weeks. You’ll submit a proposal on Thursday and I’ll give some feedback over the weekend.",
     "crumbs": [
       "Home",
       "Project (Weeks 11–14)",
-      "GitHub"
+      "The project"
     ]
   },
   {
-    "objectID": "project/github.html#harder-at-first-but-ultimately-not-too-bad-mode-vs-code",
-    "href": "project/github.html#harder-at-first-but-ultimately-not-too-bad-mode-vs-code",
-    "title": "GitHub",
-    "section": "Harder-at-first-but-ultimately-not-too-bad mode: VS Code",
-    "text": "Harder-at-first-but-ultimately-not-too-bad mode: VS Code\nIt is possible to link your team’s repository directly to VS Code, so that sharing your work is a matter of clicking “commit” and “push.” No need to clumsily navigate around on the internet. Feels good!\n\n\n\n\n\n\nTip\n\n\n\nThese instructions may look a bit overwhelming but likely we are talking about 20 minutes of work. Plus, interacting with GitHub is a good skill to have — you could put it on your resume if you get confident with it.\n\n\nI followed this tutorial to get it set up. There is a lot there but only part of it is really relevant to us: Prerequisites, Getting started, Cloning a repository, and then there is information scattered about on “committing” (saving a snapshot to the copy of the repository on your computer) and “pushing” (sending it to the online repository). VS Code will ask you to sign in to GitHub through your web browser the first time, and after that it remembers you. When committing you have to give a commit message — something like “draft of the cooling model” is more than sufficient.\nCommitting and pushing are done through the Source Control icon on the left toolbar (which should be highlighted after you have made changes). Particularly the first time, I recommend visiting the web version to make sure your changes made it there.\n\n\n\n\n\n\nImportant\n\n\n\nOn a team, there’s one more step: pull before you start working. “Pull” brings down the changes your teammates pushed since last time. If two people change the same lines of the same file without pulling, git will ask you to sort out the conflict by hand, which is no fun. (This is another reason for each person to lead their own file.)\n\n\n\n\n\n\n\n\nTip\n\n\n\nTry asking an AI for help or to clarify things, it can really help navigate tutorials, especially when they are bloated with extra things you don’t need (as is the case here).",
+    "objectID": "project/11-project.html#languageformat",
+    "href": "project/11-project.html#languageformat",
+    "title": "The project",
+    "section": "Language/format",
+    "text": "Language/format\nYou may use Python or MATLAB for the project. Either way, it is going to look different than your homework submissions.\nNamely: you can use a notebook (.ipynb, .mlx) to demonstrate your results, but your code should be a collection of basic Python/MATLAB files (.py, .m). A notebook file might not make sense — no problem, you can write the report in a word processor.\n\n\n\n\n\n\nTip\n\n\n\nMy recommendation is to install VS Code and work in Python. VS Code can be linked to a GitHub repository very easily — we’ll teach this in Monday’s “Side Quest” office hour. I encourage you to think about publishing this publicly and adding a link to your resume.\nThe power of GitHub is “version control”: with three or four people working on a project, how will you keep your files organized? Can two people work on the same file at once? With GitHub you keep a version history and settle conflicts between versions easily.",
     "crumbs": [
       "Home",
       "Project (Weeks 11–14)",
-      "GitHub"
+      "The project"
     ]
   },
   {
-    "objectID": "project/github.html#if-your-team-is-using-matlab",
-    "href": "project/github.html#if-your-team-is-using-matlab",
-    "title": "GitHub",
-    "section": "If your team is using MATLAB…",
-    "text": "If your team is using MATLAB…\nMATLAB can talk to GitHub too, but setting it up involves generating a password-like “token,” and I don’t think it’s worth the trouble for this project. Instead, use MATLAB Drive, which comes with MATLAB Online:\n\nOne person makes a folder for the project in MATLAB Drive.\nRight-click the folder, choose Share, and invite your teammates with permission to edit. Once they accept, the folder shows up in their MATLAB Drive (and in MATLAB Online) too.\n\nMATLAB Drive doesn’t merge changes the way git does, so if two people edit the same file at the same time, one of them may overwrite the other. Lead your own file, and talk to each other before editing someone else’s.\nIf you want the project on GitHub at the end (for your resume, say), download the finished files from MATLAB Drive and use easy mode above.",
+    "objectID": "project/11-project.html#what-gets-turned-in",
+    "href": "project/11-project.html#what-gets-turned-in",
+    "title": "The project",
+    "section": "What gets turned in",
+    "text": "What gets turned in\nDue Wednesday, Dec 2, at 11:59 p.m. Two things:\n\nThe code, as a link to your repository (or a zip). At the top level it needs a README that tells a stranger how to run it: which file to start with, which packages to install, and where the data goes. It also needs a spec history: a file or folder of your specs and prompts as they changed, dated, kept as you go. (Not reconstructed in December.)\nThe report, one PDF.\n\nThe report is built from the same four steps as your homework (Specify, Annotate, Verify, Report), with a couple small changes.\nFirst, the Report moves to the front. In the homework the grader reads everything, so the summary can wait until the end. A project report has other readers, like the other teams at a pin-up or someone who clicked the link on your resume, and they want the answer first.\nSecond, some sections belong to the team and some belong to you. Your name goes on the sections for the files you led.\n\nThe team’s sections\n\nReport. Open by placing the project in the course themes: which one or two of Fetch, Process, Simulate, and Analyze it’s mostly about, and which part of the project does each. Then describe the question you proposed, a summary of the answer, some relevant plots, and comment on the scope/limitations/uncertainty of your work. Also: provenance (where every piece of data came from and when, so someone else could reproduce your number) and what we cut, and why (too ambitious for the timeframe, a model that got more complicated without getting better, etc.). Aim for about two pages, and point to the later sections rather than repeating them.\nFile map. One row per file: what goes in, what comes out, and who led it. It’s the “inputs → script → outputs” shape from week 2, scaled up to the whole project.\nSpecify. Your final spec, your core and stretch goals, and your assumptions table, the same kind of “rulings” table as in the example homework. Say how the spec changed since the proposal and point to the spec history for the details.\n\n\n\nIndividual sections, one per file you led\n\nAnnotate. Your comments live in the .py files themselves; every file should be commented well enough that a teammate could explain it. In the report, quote just the two or three lines/sections from each file, and say what you noticed about them.\nVerify. At Pin-up #1 you’ll describe what success looks like. Here: what you planned to check, what you actually checked (hand checks, comparisons, test cases), and what came out, including the checks that failed and what you did about them. Two cases are probably appropriate, though it depends on the file.\nAI audit. Over three weeks your AI transcripts will be enormous, so don’t paste them. Pick the one or two exchanges where your judgment actually changed something. For each one: what you asked for, an excerpt of what came back, your critique, and what you changed.\nStandards claimed. One line at the top: which divergent standards you’re claiming and where the evidence is. (“S4: Report, second paragraph, and the tilt-angle what-if in my Verify section.”)\n\nThe report template has the skeleton with these headers.\n\n\n\n\n\n\nImportantThe report is your ticket to the final\n\n\n\nThe final exam is a defense of your submitted report. We write your questions from it, and the file map you hold during the exam comes from it. So if the report is missing, or your sections of it are, there’s nothing to defend: your final is assessed as Weak and you stay at your grade floor. The mock defense on Dec 3 also runs on the submitted report, so no report means no mock defense credits (3 ECs).\n“Complete” doesn’t mean perfect. It means every section from the template is there with a real attempt in it, the same good-faith standard as engagement credits. A rough Verify section that honestly reports two failed checks is complete. A header with nothing under it is not.\nThe team sections are the team’s responsibility. Your individual sections are yours.\nAnd if you’re counting on the project for a divergent standard, the report is where it gets assessed. No report, no standard.\n\n\n\n\nIt should look like an engineer made it\nThis report might end up linked on your resume, so it should look like something you’d hand a boss. A report that fails any item below has its final capped at Solid. (Even if your defense is brilliant, the most you can get is the whole letter, not the plus.)\n\nFigures come out of your code, not off your screen. In Python: save them with plt.savefig(\"figure1.png\", dpi=200) and put that file in the report. In MATLAB you can hover over the figure and click the save icon. No screenshots, no toolbars, no “File” menus, no slivers of your desktop in the corner. Backgrounds inside and outside the plotting area should be white, unless there is a good reason not to.\nEvery figure is readable on its own: axis labels with units, a legend if there’s more than one line, text big enough to read on paper, and a sentence in the report saying what to look at. Below the figure is a figure caption explaining what is being presented and what the takeaway is. “Speed vs. time” is not a good caption; “The speed of a \\(m=10\\) kg sphere increases with time due to gravitational acceleration” is good.\nCode goes in as text, not screenshots. Use a monospace font, or a code block in a notebook. If your code is in Times New Roman, Arial, etc., it is unreadable.\nNo raw output dumps. No 60,000-row DataFrame, no 400 lines of print. Show a useful summary.\nThe first page has the project title, every team member’s name, the date, and the link to your repository.\n\nThe presentation is the team’s job, so one screenshot caps the whole team. Before you submit, everyone should confirm that the report satisfies these requirements. (It takes five minutes.)",
     "crumbs": [
       "Home",
       "Project (Weeks 11–14)",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "project/github.html#if-these-sound-like-too-much",
-    "href": "project/github.html#if-these-sound-like-too-much",
-    "title": "GitHub",
-    "section": "If these sound like too much…",
-    "text": "If these sound like too much…\nIt’s not required. A shared folder that everyone on your team can reach is all the project needs.",
-    "crumbs": [
-      "Home",
-      "Project (Weeks 11–14)",
-      "GitHub"
+      "The project"
     ]
   },
   {
@@ -4004,6 +3920,90 @@
       "Home",
       "Project (Weeks 11–14)",
       "The proposal (and an example)"
+    ]
+  },
+  {
+    "objectID": "sidequests/github.html",
+    "href": "sidequests/github.html",
+    "title": "GitHub",
+    "section": "",
+    "text": "GitHub has become the standard location for developers to store, manage, and share their code. TrackPy’s code is actually hosted on GitHub, and you can look around (bottom right) and see that there are 32 contributors to that project.\nImagine trying to co-write code with 31 other people by emailing files back-and-forth! Is there a better way?! Yes — git. GitHub uses git so that collaborators can work on the same project at once, “pushing” changes from their computers to a shared repository and “merging” those changes into the main version if they look good and don’t conflict with anyone else’s. Perhaps the coolest thing: you can link this up with your coding environment, sending updates directly from VS Code.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "sidequests/github.html#in-this-course",
+    "href": "sidequests/github.html#in-this-course",
+    "title": "GitHub",
+    "section": "In this course…",
+    "text": "In this course…\n…GitHub is optional, but it’s a natural home for your project: one shared place for your team’s files, with a history of every change. I outline two approaches below: a web-based method, which requires no downloads (you just upload files in your browser, like you do on Canvas, and it works on an iPad); and a more advanced approach, which after some initial setup lets you send changes directly from VS Code.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you are proud of your project, you can make its repository public and include a link to it in your resume. (Public is your call — a private repository works just as well for the course.) Additionally: particularly now that AI is around to help, it is easy to put together a website and host it on GitHub. And it doesn’t have to look like this one — plenty of tutorials and templates out there! Maybe you’d be interested in establishing an internet presence, highlighting projects to show future employers…",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "sidequests/github.html#setting-up-a-team-repository",
+    "href": "sidequests/github.html#setting-up-a-team-repository",
+    "title": "GitHub",
+    "section": "Setting up a team repository",
+    "text": "Setting up a team repository\nOne person on the team does this part:\n\nMake a free account at github.com if you don’t have one. (Everyone on the team needs an account.)\nClick the + at the top right and choose New repository. Give it a name that says what the project is (boulder-snowpack is better than mcen1030-project), choose Public or Private, and check “Add a README file.”\nIn the new repository, go to Settings → Collaborators → Add people, and invite each teammate by their GitHub username. They’ll get an email and have to accept before they can make changes.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "sidequests/github.html#easy-mode-the-web-browser",
+    "href": "sidequests/github.html#easy-mode-the-web-browser",
+    "title": "GitHub",
+    "section": "Easy mode: the web browser",
+    "text": "Easy mode: the web browser\nYou may choose to use GitHub in a straightforward way, with no downloads, no git, none of that. All you need is your internet browser.\n\nGo to your team’s repository online.\nLook for the Add file button towards the top right. Select Upload files, and find your .py or .m file(s).\nScroll down to the green Commit changes button and click it.\n\n\n\n\n\n\n\nImportant\n\n\n\nI’m going to say it again: scroll down to the green Commit changes button and click it. If you forget to commit changes, the file is not saved!\n\n\nThis approach is perfectly fine to use for the whole project, and can be your fallback plan if you want to use the integrated method below but have some trouble.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "sidequests/github.html#harder-at-first-but-ultimately-not-too-bad-mode-vs-code",
+    "href": "sidequests/github.html#harder-at-first-but-ultimately-not-too-bad-mode-vs-code",
+    "title": "GitHub",
+    "section": "Harder-at-first-but-ultimately-not-too-bad mode: VS Code",
+    "text": "Harder-at-first-but-ultimately-not-too-bad mode: VS Code\nIt is possible to link your team’s repository directly to VS Code, so that sharing your work is a matter of clicking “commit” and “push.” No need to clumsily navigate around on the internet. Feels good!\n\n\n\n\n\n\nTip\n\n\n\nThese instructions may look a bit overwhelming but likely we are talking about 20 minutes of work. Plus, interacting with GitHub is a good skill to have — you could put it on your resume if you get confident with it.\n\n\nI followed this tutorial to get it set up. There is a lot there but only part of it is really relevant to us: Prerequisites, Getting started, Cloning a repository, and then there is information scattered about on “committing” (saving a snapshot to the copy of the repository on your computer) and “pushing” (sending it to the online repository). VS Code will ask you to sign in to GitHub through your web browser the first time, and after that it remembers you. When committing you have to give a commit message — something like “draft of the cooling model” is more than sufficient.\nCommitting and pushing are done through the Source Control icon on the left toolbar (which should be highlighted after you have made changes). Particularly the first time, I recommend visiting the web version to make sure your changes made it there.\n\n\n\n\n\n\nImportant\n\n\n\nOn a team, there’s one more step: pull before you start working. “Pull” brings down the changes your teammates pushed since last time. If two people change the same lines of the same file without pulling, git will ask you to sort out the conflict by hand, which is no fun. (This is another reason for each person to lead their own file.)\n\n\n\n\n\n\n\n\nTip\n\n\n\nTry asking an AI for help or to clarify things, it can really help navigate tutorials, especially when they are bloated with extra things you don’t need (as is the case here).",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "sidequests/github.html#if-your-team-is-using-matlab",
+    "href": "sidequests/github.html#if-your-team-is-using-matlab",
+    "title": "GitHub",
+    "section": "If your team is using MATLAB…",
+    "text": "If your team is using MATLAB…\nMATLAB can talk to GitHub too, but setting it up involves generating a password-like “token,” and I don’t think it’s worth the trouble for this project. Instead, use MATLAB Drive, which comes with MATLAB Online:\n\nOne person makes a folder for the project in MATLAB Drive.\nRight-click the folder, choose Share, and invite your teammates with permission to edit. Once they accept, the folder shows up in their MATLAB Drive (and in MATLAB Online) too.\n\nMATLAB Drive doesn’t merge changes the way git does, so if two people edit the same file at the same time, one of them may overwrite the other. Lead your own file, and talk to each other before editing someone else’s.\nIf you want the project on GitHub at the end (for your resume, say), download the finished files from MATLAB Drive and use easy mode above.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "sidequests/github.html#if-these-sound-like-too-much",
+    "href": "sidequests/github.html#if-these-sound-like-too-much",
+    "title": "GitHub",
+    "section": "If these sound like too much…",
+    "text": "If these sound like too much…\nIt’s not required. A shared folder that everyone on your team can reach is all the project needs.",
+    "crumbs": [
+      "Home",
+      "Side quests (optional)",
+      "GitHub"
     ]
   }
 ]
