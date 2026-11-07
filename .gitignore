@@ -61,7 +61,6 @@ lessons/09*
 !lessons/09a-images.qmd
 lessons/1*
 !lessons/10a-matlab.qmd
-!lessons/10b-local-llms.qmd
 
 lessons/old/
 homework/old/
@@ -70,7 +69,6 @@ homework/old/
 !/project/11-project.qmd
 !/project/proposal.qmd
 !/project/peer-evaluation.qmd
-!/project/github.qmd
 !/project/report-template.qmd
 
 CLAUDE.md

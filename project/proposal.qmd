@@ -37,7 +37,7 @@ If you use an LLM, you should half-understand the code it gives you without stud
 
 The `README.md` file is what gets displayed on the repository "home page". It is **not** your report, but does include some key aspects of the report: the problem statement, what we hope to achieve, some key plots. (I was a little thin on these — see the [report template](report-template.qmd).)
 
-Make a basic `README.md` file (if you use [GitHub](github.qmd)), and if you have ambition to put it in your resume, make a good one!
+Make a basic `README.md` file (if you use [GitHub](../sidequests/github.qmd)), and if you have ambition to put it in your resume, make a good one!
 
 
 
